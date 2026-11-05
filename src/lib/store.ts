@@ -2,6 +2,7 @@ import "server-only";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import postgres from "postgres";
 import type { Connection } from "./types";
 
 /**
@@ -54,21 +55,60 @@ function decrypt(payload: string): string {
   return Buffer.concat([d.update(enc), d.final()]).toString("utf8");
 }
 
-async function read(): Promise<FileShape> {
+/**
+ * Two backends:
+ *  - DATABASE_URL set → Postgres (Railway, Neon, Supabase…). Required on hosts
+ *    whose disk is wiped on every deploy.
+ *  - otherwise       → data/connections.json on local disk.
+ */
+type Sql = ReturnType<typeof postgres>;
+let sqlPromise: Promise<Sql> | null = null;
+
+function db(): Promise<Sql> | null {
+  const url = process.env.DATABASE_URL;
+  if (!url) return null;
+  sqlPromise ??= (async () => {
+    const sql = postgres(url, { max: 3, ssl: /localhost|127\.0\.0\.1|\.railway\.internal/.test(url) ? false : "require" });
+    await sql`CREATE TABLE IF NOT EXISTS app_state (key text PRIMARY KEY, value text NOT NULL)`;
+    return sql;
+  })();
+  return sqlPromise;
+}
+
+async function readRaw(): Promise<string | null> {
+  const p = db();
+  if (p) {
+    const sql = await p;
+    const rows = await sql<{ value: string }[]>`SELECT value FROM app_state WHERE key = 'state'`;
+    return rows[0]?.value ?? null;
+  }
   try {
-    const parsed = JSON.parse(await fs.readFile(FILE, "utf8")) as Partial<FileShape>;
-    return {
-      connections: parsed.connections ?? {},
-      settings: { ...DEFAULT_SETTINGS, ...parsed.settings },
-    };
+    return await fs.readFile(FILE, "utf8");
   } catch {
-    return { connections: {}, settings: DEFAULT_SETTINGS };
+    return null;
   }
 }
 
+async function read(): Promise<FileShape> {
+  const raw = await readRaw();
+  const parsed = (raw ? JSON.parse(raw) : {}) as Partial<FileShape>;
+  return {
+    connections: parsed.connections ?? {},
+    settings: { ...DEFAULT_SETTINGS, ...parsed.settings },
+  };
+}
+
 async function write(data: FileShape) {
+  const json = JSON.stringify(data, null, 2);
+  const p = db();
+  if (p) {
+    const sql = await p;
+    await sql`INSERT INTO app_state (key, value) VALUES ('state', ${json})
+              ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`;
+    return;
+  }
   await fs.mkdir(path.dirname(FILE), { recursive: true });
-  await fs.writeFile(FILE, JSON.stringify(data, null, 2), { mode: 0o600 });
+  await fs.writeFile(FILE, json, { mode: 0o600 });
 }
 
 export async function listConnections(): Promise<Connection[]> {
@@ -118,4 +158,24 @@ export function redact(conn: Connection): Connection {
     credentials[k] = secret && v ? `••••${v.slice(-4)}` : v;
   }
   return { ...conn, credentials };
+}
+
+/** Append an incoming webhook event (keeps the last 5000). */
+export async function appendEvent(source: string, payload: unknown) {
+  const entry = { source, receivedAt: new Date().toISOString(), payload };
+  const p = db();
+  if (p) {
+    const sql = await p;
+    await sql`CREATE TABLE IF NOT EXISTS webhook_events (id bigserial PRIMARY KEY, source text NOT NULL, received_at timestamptz NOT NULL DEFAULT now(), payload text NOT NULL)`;
+    await sql`INSERT INTO webhook_events (source, payload) VALUES (${source}, ${JSON.stringify(payload)})`;
+    return;
+  }
+  const file = path.join(process.cwd(), "data", `${source}-events.json`);
+  let events: unknown[] = [];
+  try {
+    events = JSON.parse(await fs.readFile(file, "utf8"));
+  } catch {}
+  events.push(entry);
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await fs.writeFile(file, JSON.stringify(events.slice(-5000)));
 }

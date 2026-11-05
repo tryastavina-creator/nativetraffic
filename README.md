@@ -61,7 +61,34 @@ O conector é configurável (base URL, endpoint de pedidos, API key). Cadastre n
 `https://<seu-dominio>/api/webhooks/wio` para receber pedidos, reembolsos e chargebacks (assinatura HMAC-SHA256
 no header `x-wio-signature`). Ajuste `src/lib/connectors/wio.ts` conforme a documentação da sua conta.
 
-## Deploy
+## Login
 
-O armazenamento padrão usa o disco (`data/`). Em hosts serverless (Vercel), troque `src/lib/store.ts` por um
-banco (Postgres/Supabase) — a interface é pequena (`listConnections`, `saveConnection`, `deleteConnection`, settings).
+O painel exige login quando roda em produção. Configure no servidor:
+
+- `APP_USERS=ana@empresa.com:senha1,joao@empresa.com:senha2` — um login por pessoa, **ou**
+- `APP_PASSWORD=senha` — uma senha compartilhada.
+
+Para adicionar ou remover alguém, edite a variável e reinicie. Webhooks (`/api/webhooks/*`) ficam
+públicos de propósito e são protegidos pela assinatura HMAC.
+
+## Deploy no Railway
+
+1. Suba este repositório no GitHub.
+2. Em [railway.com](https://railway.com): **New Project → Deploy from GitHub repo** → escolha o repositório.
+3. No mesmo projeto: **+ New → Database → PostgreSQL**. Depois, no serviço do app → **Variables** →
+   **Add reference** → `DATABASE_URL` do Postgres.
+4. Ainda em **Variables**, adicione `ENCRYPTION_KEY`, `AUTH_SECRET` (gere cada um com `openssl rand -hex 32`)
+   e `APP_USERS` (ou `APP_PASSWORD`).
+5. Em **Settings → Networking → Generate Domain** você recebe a URL pública (`…up.railway.app`).
+6. Cadastre na WIO o webhook `https://<sua-url>/api/webhooks/wio`.
+
+O `railway.json` já define o comando de start e o health check (`/api/health`).
+
+**Importante:** não troque o `ENCRYPTION_KEY` depois de conectar as integrações — as credenciais salvas
+ficariam ilegíveis e precisariam ser cadastradas de novo.
+
+## Outros hosts
+
+Funciona em qualquer host Node com Postgres: Render (+ Neon), Fly.io, um VPS com Docker etc.
+Basta `npm run build`, `npm start` e as mesmas variáveis de ambiente. Sem `DATABASE_URL`, as credenciais
+vão para `data/connections.json` — serve só para rodar local, porque a maioria dos hosts apaga o disco a cada deploy.

@@ -10,6 +10,7 @@ const NAV = [
 
 export function Sidebar() {
   const path = usePathname();
+  if (path.startsWith("/login")) return null;
   return (
     <aside className="sticky top-0 hidden h-screen w-56 shrink-0 flex-col border-r border-line bg-[#0c0d10] px-3 py-5 md:flex">
       <div className="mb-8 px-2">
@@ -38,6 +39,15 @@ export function Sidebar() {
           );
         })}
       </nav>
+      <button
+        onClick={async () => {
+          await fetch("/api/auth/logout", { method: "POST" });
+          window.location.href = "/login";
+        }}
+        className="mt-auto rounded-lg px-2.5 py-2 text-left text-sm text-faint transition hover:bg-panel hover:text-zinc-200"
+      >
+        Sair
+      </button>
     </aside>
   );
 }
