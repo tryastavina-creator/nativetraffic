@@ -11,7 +11,26 @@ const NAV = [
 export function Sidebar() {
   const path = usePathname();
   if (path.startsWith("/login")) return null;
+  const logout = async () => {
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.href = "/login";
+  };
   return (
+    <>
+    <nav className="sticky top-0 z-30 flex items-center gap-1 overflow-x-auto border-b border-line bg-[#0c0d10] px-4 py-2 md:hidden">
+      <span className="mr-2 shrink-0 text-sm font-semibold">
+        n<span className="text-accent">t</span>
+      </span>
+      {NAV.map((n) => {
+        const on = n.href === "/" ? path === "/" : path.startsWith(n.href);
+        return (
+          <Link key={n.href} href={n.href} className={`shrink-0 rounded-md px-2.5 py-1.5 text-sm ${on ? "bg-panel2 text-zinc-100" : "text-muted"}`}>
+            {n.label}
+          </Link>
+        );
+      })}
+      <button onClick={logout} className="ml-auto shrink-0 px-2 text-sm text-faint">Sair</button>
+    </nav>
     <aside className="sticky top-0 hidden h-screen w-56 shrink-0 flex-col border-r border-line bg-[#0c0d10] px-3 py-5 md:flex">
       <div className="mb-8 px-2">
         <div className="text-[15px] font-semibold tracking-tight">
@@ -40,14 +59,12 @@ export function Sidebar() {
         })}
       </nav>
       <button
-        onClick={async () => {
-          await fetch("/api/auth/logout", { method: "POST" });
-          window.location.href = "/login";
-        }}
+        onClick={logout}
         className="mt-auto rounded-lg px-2.5 py-2 text-left text-sm text-faint transition hover:bg-panel hover:text-zinc-200"
       >
         Sair
       </button>
     </aside>
+    </>
   );
 }
