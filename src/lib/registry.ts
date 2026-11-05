@@ -99,6 +99,20 @@ export const PROVIDERS: ProviderDef[] = [
     ],
   },
   {
+    id: "revcontent",
+    name: "Revcontent",
+    category: "traffic",
+    description: "Gasto via Revcontent API (client credentials). Sem conexão direta, o custo vem do RedTrack.",
+    docsUrl: "https://help.revcontent.com/knowledge/revcontent-api",
+    color: "#ff4f64",
+    initials: "RC",
+    status: "beta",
+    fields: [
+      { key: "clientId", label: "Client ID" },
+      { key: "clientSecret", label: "Client secret", type: "password" },
+    ],
+  },
+  {
     id: "meta",
     name: "Meta Ads",
     category: "traffic",
@@ -195,10 +209,24 @@ export function getProvider(id: string): ProviderDef | undefined {
   return PROVIDERS.find((p) => p.id === id);
 }
 
-/** Map a raw utm_source value to a provider id. */
+/**
+ * Map an order to a traffic platform. Checks utm_source first, then the
+ * campaign name (e.g. "012 | Taboola | OmniPro | ADV"), then the referrer.
+ */
+export function platformFromOrder(o: { utmSource?: string; utmCampaign?: string; referrer?: string }): string {
+  for (const v of [o.utmSource, o.utmCampaign]) {
+    const p = platformFromUtm(v);
+    if (p !== "untracked" && p !== "other") return p;
+  }
+  return o.utmSource || o.utmCampaign ? "other" : "untracked";
+}
+
+/** Map a raw utm_source / campaign string to a provider id. */
 export function platformFromUtm(source?: string): string {
   const s = (source ?? "").toLowerCase();
   if (!s) return "untracked";
+  if (s.includes("revcontent")) return "revcontent";
+  if (s.includes("newsbreak")) return "newsbreak";
   if (s.includes("taboola")) return "taboola";
   if (s.includes("outbrain")) return "outbrain";
   if (s.includes("mediago")) return "mediago";
@@ -210,6 +238,8 @@ export function platformFromUtm(source?: string): string {
 
 export const PLATFORM_LABEL: Record<string, string> = {
   ...Object.fromEntries(PROVIDERS.map((p) => [p.id, p.name])),
+  revcontent: "Revcontent",
+  newsbreak: "NewsBreak",
   untracked: "Sem UTM",
   other: "Outros",
   subscription: "Recorrência",

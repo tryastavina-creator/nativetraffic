@@ -70,7 +70,7 @@ query Orders($q: String!, $after: String) {
       totalRefundedSet { shopMoney { amount } }
       shippingAddress { countryCodeV2 }
       tags
-      customerJourneySummary { lastVisit { utmParameters { source campaign } } }
+      customerJourneySummary { lastVisit { source utmParameters { source campaign } } }
       lineItems(first: 30) {
         nodes {
           title
@@ -91,7 +91,10 @@ type RawOrder = {
   shippingAddress: { countryCodeV2: string } | null;
   tags: string[];
   customerJourneySummary: {
-    lastVisit: { utmParameters: { source: string | null; campaign: string | null } | null } | null;
+    lastVisit: {
+      source: string | null;
+      utmParameters: { source: string | null; campaign: string | null } | null;
+    } | null;
   } | null;
   lineItems: {
     nodes: {
@@ -103,25 +106,47 @@ type RawOrder = {
   };
 };
 
+/** Calendar day in the shop's timezone, so totals match Shopify Analytics. */
+export function localDay(iso: string, timeZone: string) {
+  return new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(
+    new Date(iso),
+  );
+}
+
+export const UPSELL_TAG = /upsell|aftersell|zipify|ocu|order bump/i;
+
 export async function fetchOrders(c: Credentials, range: DateRange): Promise<Order[]> {
-  const q = `created_at:>=${range.from}T00:00:00Z created_at:<=${range.to}T23:59:59Z -status:cancelled`;
+  const { shop } = await gql<{ shop: { ianaTimezone: string } }>(c, `{ shop { ianaTimezone } }`);
+  const tz = shop.ianaTimezone || "UTC";
+  // Widen the UTC window by a day each side, then keep only days inside the range in shop time.
+  const pad = (d: string, days: number) => {
+    const x = new Date(`${d}T00:00:00Z`);
+    x.setUTCDate(x.getUTCDate() + days);
+    return x.toISOString().slice(0, 10);
+  };
+  const q = `created_at:>=${pad(range.from, -1)} created_at:<=${pad(range.to, 1)} -status:cancelled`;
   const out: Order[] = [];
   let after: string | null = null;
   for (let page = 0; page < 200; page++) {
     const d: { orders: { pageInfo: { hasNextPage: boolean; endCursor: string }; nodes: RawOrder[] } } =
       await gql(c, ORDERS_QUERY, { q, after });
     for (const o of d.orders.nodes) {
-      const utm = o.customerJourneySummary?.lastVisit?.utmParameters;
+      const visit = o.customerJourneySummary?.lastVisit;
+      const utm = visit?.utmParameters;
+      const date = localDay(o.createdAt, tz);
+      if (date < range.from || date > range.to) continue;
       out.push({
         id: o.id,
         createdAt: o.createdAt,
-        date: o.createdAt.slice(0, 10),
+        date,
         total: num(o.totalPriceSet.shopMoney.amount),
         refunded: num(o.totalRefundedSet.shopMoney.amount),
         country: o.shippingAddress?.countryCodeV2,
         utmSource: utm?.source ?? undefined,
         utmCampaign: utm?.campaign ?? undefined,
+        referrer: visit?.source ?? undefined,
         isSubscription: o.tags.some((t) => /subscription|recurring|kaching/i.test(t)),
+        hasUpsell: o.tags.some((t) => UPSELL_TAG.test(t)),
         lines: o.lineItems.nodes.map((l) => ({
           product: l.title,
           quantity: l.quantity,

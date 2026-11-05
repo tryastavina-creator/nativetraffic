@@ -1,9 +1,10 @@
 import "server-only";
+import { promises as fs } from "node:fs";
 import { TRAFFIC_CONNECTORS, redtrack, shopify } from "./connectors";
 import { eachDay } from "./connectors/http";
 import { demoData } from "./demo";
-import { PLATFORM_LABEL, platformFromUtm } from "./registry";
-import { getSettings, listConnections } from "./store";
+import { PLATFORM_LABEL, platformFromOrder } from "./registry";
+import { getSettings, listConnections, type Settings } from "./store";
 import type { DateRange, Order, SpendRow } from "./types";
 
 export type PlatformRow = {
@@ -19,10 +20,21 @@ export type PlatformRow = {
   cpa: number;
 };
 
+export type CampaignRow = {
+  campaign: string;
+  platform: string;
+  label: string;
+  orders: number;
+  revenue: number;
+  aov: number;
+  upsellRate: number;
+  lastOrder: string;
+};
+
 export type Metrics = {
   range: DateRange;
   currency: string;
-  dataSources: { orders: string; spend: string[]; demo: boolean };
+  dataSources: { orders: string; spend: string[]; demo: boolean; hasSpend: boolean };
   warnings: string[];
   kpis: {
     investment: number;
@@ -38,14 +50,28 @@ export type Metrics = {
     productCost: number;
     fees: number;
     trackedSales: number;
+    upsellRate: number;
+    cogsEstimated: boolean;
   };
   daily: { date: string; revenue: number; investment: number; profit: number; margin: number }[];
   platforms: PlatformRow[];
+  campaigns: CampaignRow[];
   products: { product: string; units: number; orders: number; revenue: number; cost: number; aov: number }[];
 };
 
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
 const div = (a: number, b: number) => (b ? a / b : 0);
+
+/**
+ * NT_SNAPSHOT points to a JSON file of Order[] (e.g. exported through the
+ * Shopify MCP) and replaces the live Shopify call. Used for previews/tests.
+ */
+async function snapshotOrders(range: DateRange): Promise<Order[] | null> {
+  const file = process.env.NT_SNAPSHOT;
+  if (!file) return null;
+  const all = JSON.parse(await fs.readFile(file, "utf8")) as Order[];
+  return all.filter((o) => o.date >= range.from && o.date <= range.to);
+}
 
 export async function computeMetrics(range: DateRange): Promise<Metrics> {
   const [connections, settings] = await Promise.all([listConnections(), getSettings()]);
@@ -57,8 +83,12 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
   const spendSources: string[] = [];
   let ordersSource = "demo";
 
+  const snap = await snapshotOrders(range);
   const shop = byProvider.get("shopify");
-  if (shop) {
+  if (snap) {
+    orders = snap;
+    ordersSource = "shopify";
+  } else if (shop) {
     try {
       orders = await shopify.fetchOrders(shop.credentials, range);
       ordersSource = "shopify";
@@ -68,8 +98,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
   }
 
   const rt = byProvider.get("redtrack");
-  const useRedtrack = rt && settings.spendSource === "redtrack";
-  if (useRedtrack) {
+  if (rt && settings.spendSource === "redtrack") {
     try {
       spend = await redtrack.fetchSpend(rt.credentials, range);
       spendSources.push("redtrack");
@@ -113,15 +142,37 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     spend = d.spend;
   }
 
-  // ---------- aggregate ----------
+  return aggregate({
+    range,
+    orders,
+    spend,
+    settings,
+    warnings,
+    dataSources: {
+      orders: demo ? "demo" : ordersSource,
+      spend: demo ? ["demo"] : spendSources,
+      demo,
+      hasSpend: demo || spendSources.length > 0,
+    },
+  });
+}
+
+export function aggregate(input: {
+  range: DateRange;
+  orders: Order[];
+  spend: SpendRow[];
+  settings: Settings;
+  warnings: string[];
+  dataSources: Metrics["dataSources"];
+}): Metrics {
+  const { range, orders, spend, settings } = input;
+
+  const lineCost = (l: Order["lines"][number]) =>
+    l.quantity * (l.unitCost || (l.price * settings.defaultCogsPercent) / 100);
   const feeFor = (o: Order) => o.total * (settings.paymentFeePercent / 100) + settings.paymentFeeFixed;
-  const costFor = (o: Order) =>
-    sum(
-      o.lines.map(
-        (l) => l.quantity * (l.unitCost || (l.price * settings.defaultCogsPercent) / 100),
-      ),
-    );
-  const platformOf = (o: Order) => (o.isSubscription ? "subscription" : platformFromUtm(o.utmSource));
+  const costFor = (o: Order) => sum(o.lines.map(lineCost));
+  const platformOf = (o: Order) => (o.isSubscription ? "subscription" : platformFromOrder(o));
+  const isTracked = (p: string) => !["untracked", "subscription", "other"].includes(p);
 
   const revenue = sum(orders.map((o) => o.total));
   const refunds = sum(orders.map((o) => o.refunded));
@@ -129,13 +180,10 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
   const fees = sum(orders.map(feeFor));
   const investment = sum(spend.map((s) => s.spend));
   const netProfit = revenue - refunds - productCost - fees - investment;
-  const trackedSales = orders.filter((o) => {
-    const p = platformOf(o);
-    return p !== "untracked" && p !== "subscription" && p !== "other";
-  }).length;
+  const trackedSales = orders.filter((o) => isTracked(platformOf(o))).length;
+  const cogsEstimated = orders.some((o) => o.lines.some((l) => !l.unitCost));
 
-  const days = eachDay(range.from, range.to);
-  const daily = days.map((date) => {
+  const daily = eachDay(range.from, range.to).map((date) => {
     const os = orders.filter((o) => o.date === date);
     const rev = sum(os.map((o) => o.total));
     const inv = sum(spend.filter((s) => s.date === date).map((s) => s.spend));
@@ -165,6 +213,28 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     })
     .sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
 
+  const campMap = new Map<string, Order[]>();
+  for (const o of orders) {
+    const key = o.utmCampaign || "(sem campanha)";
+    campMap.set(key, [...(campMap.get(key) ?? []), o]);
+  }
+  const campaigns: CampaignRow[] = [...campMap.entries()]
+    .map(([campaign, os]) => {
+      const platform = platformOf(os[0]);
+      const rev = sum(os.map((o) => o.total));
+      return {
+        campaign,
+        platform,
+        label: PLATFORM_LABEL[platform] ?? platform,
+        orders: os.length,
+        revenue: rev,
+        aov: div(rev, os.length),
+        upsellRate: div(os.filter((o) => o.hasUpsell).length, os.length) * 100,
+        lastOrder: os.map((o) => o.date).sort().at(-1) ?? "",
+      };
+    })
+    .sort((a, b) => b.revenue - a.revenue);
+
   const prodMap = new Map<string, { units: number; orders: number; revenue: number; cost: number }>();
   for (const o of orders) {
     for (const l of o.lines) {
@@ -172,7 +242,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
       p.units += l.quantity;
       p.orders += 1;
       p.revenue += l.quantity * l.price;
-      p.cost += l.quantity * (l.unitCost || (l.price * settings.defaultCogsPercent) / 100);
+      p.cost += lineCost(l);
       prodMap.set(l.product, p);
     }
   }
@@ -183,8 +253,8 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
   return {
     range,
     currency: settings.currency,
-    dataSources: { orders: demo ? "demo" : ordersSource, spend: demo ? ["demo"] : spendSources, demo },
-    warnings,
+    dataSources: input.dataSources,
+    warnings: input.warnings,
     kpis: {
       investment,
       revenue,
@@ -199,37 +269,46 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
       productCost,
       fees,
       trackedSales,
+      upsellRate: div(orders.filter((o) => o.hasUpsell).length, orders.length) * 100,
+      cogsEstimated,
     },
     daily,
     platforms,
+    campaigns,
     products,
   };
 }
 
+/** Today's date in the given timezone (defaults to the store timezone env or UTC). */
+function today(tz = process.env.STORE_TIMEZONE || "UTC") {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(
+    new Date(),
+  );
+}
+
 export function rangeFromPreset(preset: string, from?: string, to?: string): DateRange {
-  const iso = (d: Date) => d.toISOString().slice(0, 10);
-  const now = new Date();
+  const now = today();
   const back = (n: number) => {
-    const d = new Date(now);
+    const d = new Date(`${now}T00:00:00Z`);
     d.setUTCDate(d.getUTCDate() - n);
-    return iso(d);
+    return d.toISOString().slice(0, 10);
   };
   switch (preset) {
     case "today":
-      return { from: iso(now), to: iso(now) };
+      return { from: now, to: now };
     case "yesterday":
       return { from: back(1), to: back(1) };
     case "7d":
-      return { from: back(6), to: iso(now) };
+      return { from: back(6), to: now };
     case "30d":
-      return { from: back(29), to: iso(now) };
+      return { from: back(29), to: now };
     case "month":
-      return { from: iso(new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1))), to: iso(now) };
+      return { from: `${now.slice(0, 8)}01`, to: now };
     case "custom":
       if (from && to) return { from, to };
-      return { from: back(13), to: iso(now) };
+      return { from: back(13), to: now };
     case "14d":
     default:
-      return { from: back(13), to: iso(now) };
+      return { from: back(13), to: now };
   }
 }

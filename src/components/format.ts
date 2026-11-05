@@ -19,6 +19,8 @@ export const PLATFORM_COLOR: Record<string, string> = {
   googleads: "#e5484d",
   mgid: "#a78bfa",
   meta: "#38bdf8",
+  revcontent: "#ff4f64",
+  newsbreak: "#f97316",
   untracked: "#5c636d",
   subscription: "#8b929c",
   other: "#3f444b",

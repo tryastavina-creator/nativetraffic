@@ -40,6 +40,8 @@ export default function Dashboard() {
 
   const cur = m?.currency ?? "USD";
   const k = m?.kpis;
+  const spendOk = m?.dataSources.hasSpend ?? true;
+  const noSpend = "Aguardando custo de tráfego";
 
   return (
     <div className="mx-auto max-w-[1400px]">
@@ -75,6 +77,17 @@ export default function Dashboard() {
           </Link>
         </div>
       )}
+      {m && !m.dataSources.demo && !spendOk && (
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-info/30 bg-info/5 px-4 py-3 text-sm">
+          <span className="text-info">
+            Receita vem da Shopify. Investimento, ROAS, CPA e lucro aparecem quando o RedTrack ou as fontes de tráfego
+            forem conectados.
+          </span>
+          <Link href="/integrations" className="btn-ghost">
+            Conectar RedTrack →
+          </Link>
+        </div>
+      )}
       {m?.warnings.map((w) => (
         <div key={w} className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">
           {w}
@@ -84,22 +97,23 @@ export default function Dashboard() {
       <div className={`transition-opacity ${loading ? "opacity-50" : ""}`}>
         <h2 className="h-section">Resultado operacional</h2>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-          <Kpi label="Investimento" value={k ? money(k.investment, cur) : "—"} hint="Gasto total em ads" />
+          <Kpi label="Investimento" value={k && spendOk ? money(k.investment, cur) : "—"} hint={spendOk ? "Gasto total em ads" : noSpend} />
           <Kpi label="Receita" value={k ? money(k.revenue, cur) : "—"} hint="Receita bruta Shopify" tone="good" />
           <Kpi
-            label="Lucro líquido"
+            label={spendOk ? "Lucro líquido" : "Lucro antes dos ads"}
             value={k ? money(k.netProfit, cur) : "—"}
-            hint="Receita − ads − COGS − taxas − reembolsos"
+            hint={spendOk ? "Receita − ads − COGS − taxas − reembolsos" : "Receita − COGS − taxas − reembolsos"}
             tone={k && k.netProfit < 0 ? "bad" : "good"}
           />
-          <Kpi label="Margem" value={k ? pct(k.margin) : "—"} hint="Lucro ÷ receita" tone={k && k.margin < 0 ? "bad" : "good"} />
-          <Kpi label="ROAS" value={k ? `${k.roas.toFixed(2)}x` : "—"} hint="Receita ÷ investimento" />
+          <Kpi label="Margem" value={k && spendOk ? pct(k.margin) : "—"} hint={spendOk ? "Lucro ÷ receita" : noSpend} tone={k && k.margin < 0 ? "bad" : "good"} />
+          <Kpi label="ROAS" value={k && spendOk ? `${k.roas.toFixed(2)}x` : "—"} hint={spendOk ? "Receita ÷ investimento" : noSpend} />
         </div>
 
-        <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-5">
           <Kpi small label="Vendas" value={k ? int(k.sales) : "—"} hint={k ? `${int(k.trackedSales)} com UTM de tráfego` : ""} />
           <Kpi small label="Ticket médio" value={k ? money(k.aov, cur, 2) : "—"} hint="Valor por pedido" />
-          <Kpi small label="CPA real" value={k ? money(k.cpa, cur, 2) : "—"} hint="Investimento ÷ vendas rastreadas" tone="warn" />
+          <Kpi small label="CPA real" value={k && spendOk ? money(k.cpa, cur, 2) : "—"} hint={spendOk ? "Investimento ÷ vendas rastreadas" : noSpend} tone="warn" />
+          <Kpi small label="Upsell" value={k ? pct(k.upsellRate) : "—"} hint="Pedidos com upsell pós-compra" tone="good" />
           <Kpi
             small
             label="Reembolsos"
@@ -186,7 +200,7 @@ export default function Dashboard() {
                     <td className="text-right text-warn">{p.spend && p.orders ? money(p.cpa, cur, 2) : "—"}</td>
                     <td className="text-right">{p.orders ? money(p.aov, cur) : "—"}</td>
                     <td className="text-right text-muted">{pct(p.refundRate)}</td>
-                    <td className={`text-right font-medium ${p.profit < 0 ? "text-bad" : "text-accent"}`}>{money(p.profit, cur)}</td>
+                    <td className={`text-right font-medium ${p.profit < 0 ? "text-bad" : "text-accent"}`}>{spendOk ? money(p.profit, cur) : "—"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -194,13 +208,13 @@ export default function Dashboard() {
           </div>
 
           <div className="card card-pad">
-            <div className="label mb-2">Distribuição do investimento</div>
+            <div className="label mb-2">{spendOk ? "Distribuição do investimento" : "Distribuição da receita"}</div>
             <div className="relative h-44">
               <ResponsiveContainer>
                 <PieChart>
                   <Pie
-                    data={m?.platforms.filter((p) => p.spend > 0) ?? []}
-                    dataKey="spend"
+                    data={m?.platforms.filter((p) => (spendOk ? p.spend : p.revenue) > 0) ?? []}
+                    dataKey={spendOk ? "spend" : "revenue"}
                     nameKey="label"
                     innerRadius={56}
                     outerRadius={76}
@@ -208,35 +222,77 @@ export default function Dashboard() {
                     stroke="none"
                   >
                     {m?.platforms
-                      .filter((p) => p.spend > 0)
+                      .filter((p) => (spendOk ? p.spend : p.revenue) > 0)
                       .map((p) => <Cell key={p.platform} fill={PLATFORM_COLOR[p.platform] ?? "#888"} />)}
                   </Pie>
                 </PieChart>
               </ResponsiveContainer>
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-                <div className="text-lg font-semibold">{k ? money(k.investment, cur) : "—"}</div>
+                <div className="text-lg font-semibold">{k ? money(spendOk ? k.investment : k.revenue, cur) : "—"}</div>
                 <div className="label">total</div>
               </div>
             </div>
             <ul className="mt-3 space-y-2 text-sm">
               {m?.platforms
-                .filter((p) => p.spend > 0)
+                .filter((p) => (spendOk ? p.spend : p.revenue) > 0)
                 .map((p) => (
                   <li key={p.platform} className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[p.platform] ?? "#888" }} />
                     <span className="text-zinc-300">{p.label}</span>
-                    <span className="ml-auto text-muted">{pct((p.spend / (k?.investment || 1)) * 100)}</span>
+                    <span className="ml-auto text-muted">
+                      {pct(spendOk ? (p.spend / (k?.investment || 1)) * 100 : (p.revenue / (k?.revenue || 1)) * 100)}
+                    </span>
                   </li>
                 ))}
             </ul>
           </div>
         </div>
 
+        <h2 className="h-section">Campanhas</h2>
+        <div className="card overflow-x-auto">
+          <table className="tbl w-full min-w-[680px]">
+            <thead>
+              <tr>
+                <th>Campanha (utm_campaign)</th>
+                <th>Plataforma</th>
+                <th className="text-right">Pedidos</th>
+                <th className="text-right">Receita</th>
+                <th className="text-right">Ticket</th>
+                <th className="text-right">Upsell</th>
+                <th className="text-right">Última venda</th>
+              </tr>
+            </thead>
+            <tbody>
+              {m?.campaigns.map((c) => (
+                <tr key={c.campaign}>
+                  <td className="max-w-[280px] truncate" title={c.campaign}>{c.campaign}</td>
+                  <td>
+                    <span className="flex items-center gap-2 text-muted">
+                      <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[c.platform] ?? "#888" }} />
+                      {c.label}
+                    </span>
+                  </td>
+                  <td className="text-right">{int(c.orders)}</td>
+                  <td className="text-right text-accent">{money(c.revenue, cur)}</td>
+                  <td className="text-right">{money(c.aov, cur)}</td>
+                  <td className="text-right">{pct(c.upsellRate, 0)}</td>
+                  <td className="text-right text-muted">{c.lastOrder.slice(8, 10)}/{c.lastOrder.slice(5, 7)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <h2 className="h-section">Custos e produtos</h2>
         <div className="grid gap-3 lg:grid-cols-[360px_1fr]">
           <div className="card card-pad space-y-3 text-sm">
-            <CostRow label="Investimento em ads" value={k?.investment} cur={cur} />
-            <CostRow label="Custo de produto (COGS)" value={k?.productCost} cur={cur} sub={k ? pct((k.productCost / (k.revenue || 1)) * 100) + " da receita" : ""} />
+            <CostRow label="Investimento em ads" value={spendOk ? k?.investment : undefined} cur={cur} sub={spendOk ? "" : noSpend} />
+            <CostRow
+              label="Custo de produto (COGS)"
+              value={k?.productCost}
+              cur={cur}
+              sub={k ? (k.cogsEstimated ? "Estimado: cadastre o custo por item na Shopify" : pct((k.productCost / (k.revenue || 1)) * 100) + " da receita") : ""}
+            />
             <CostRow label="Taxas de pagamento" value={k?.fees} cur={cur} sub="Configurável em Configurações" />
             <CostRow label="Reembolsos" value={k?.refunds} cur={cur} sub={k ? pct(k.refundRate, 2) + " da receita" : ""} />
           </div>

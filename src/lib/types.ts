@@ -59,7 +59,11 @@ export type Order = {
   country?: string;
   utmSource?: string;
   utmCampaign?: string;
+  /** Last-visit referrer, e.g. "https://nowhealthy.site/". */
+  referrer?: string;
   isSubscription?: boolean;
+  /** Bought a post-purchase / order-bump upsell (tag set by Zipify OCU, AfterSell…). */
+  hasUpsell?: boolean;
   lines: OrderLine[];
 };
 
