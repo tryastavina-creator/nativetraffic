@@ -46,6 +46,19 @@ async function upsert(req: Request) {
     }
   }
 
+  if (body.provider === "shopify" && !credentials.accessToken && !(credentials.clientId && credentials.clientSecret)) {
+    return NextResponse.json(
+      { error: "Preencha o Client ID e o Client secret do app criado no Dev Dashboard da Shopify." },
+      { status: 400 },
+    );
+  }
+  if (body.provider === "shopify" && !/\.myshopify\.com$/i.test(credentials.shop.replace(/^https?:\/\//, "").replace(/\/.*$/, ""))) {
+    return NextResponse.json(
+      { error: "Use o domínio interno terminado em .myshopify.com (ex.: 0dbhhy-ry.myshopify.com), não o domínio público." },
+      { status: 400 },
+    );
+  }
+
   const conn: Connection = {
     id,
     provider: body.provider,
