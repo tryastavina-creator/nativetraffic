@@ -184,3 +184,164 @@ export async function revcontentDuplicate(c: Credentials, sourceId: string, name
   };
   return revcontentCreateCampaign(c, name, setup);
 }
+
+// ------------------------------ read / edit existing ------------------------------
+
+export type ExistingItem = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string };
+export type CampaignDetail = {
+  platform: "taboola" | "revcontent";
+  campaignId: string;
+  name: string;
+  setup: CampaignSetup;
+  groupId?: string;
+  items: ExistingItem[];
+  /** Landing URL of the ads (the RedTrack link), from the first ad. */
+  url: string;
+};
+
+const FROM_TB_DEVICE: Record<string, "DESKTOP" | "MOBILE" | "TABLET"> = { DESK: "DESKTOP", PHON: "MOBILE", TBLT: "TABLET" };
+const https = (u: string) => u.replace(/^http:\/\//, "https://");
+
+export async function taboolaDetail(c: Credentials, id: string): Promise<CampaignDetail> {
+  const h = await tbHeaders(c);
+  const [x, items] = await Promise.all([
+    http<Record<string, unknown>>(`${TB}/${c.accountId}/campaigns/${id}/`, { headers: h }),
+    http<{ results: Record<string, unknown>[] }>(`${TB}/${c.accountId}/campaigns/${id}/items/`, { headers: h }).catch(() => ({ results: [] })),
+  ]);
+  const ct = x.country_targeting as { type?: string; value?: string[] } | undefined;
+  const pt = x.platform_targeting as { type?: string; value?: string[] } | undefined;
+  const list: ExistingItem[] = (items.results ?? []).map((i) => ({
+    id: String(i.id),
+    title: String(i.title ?? ""),
+    thumbnail: https(String(i.thumbnail_url ?? "")),
+    url: String(i.url ?? ""),
+    active: i.is_active === true,
+    status: String(i.status ?? ""),
+  }));
+  return {
+    platform: "taboola",
+    campaignId: String(x.id),
+    name: String(x.name ?? ""),
+    groupId: x.campaign_group_id ? String(x.campaign_group_id) : undefined,
+    url: list.find((i) => i.url)?.url ?? "",
+    items: list,
+    setup: {
+      product: "",
+      countries: ct?.type === "INCLUDE" ? (ct.value ?? []) : [],
+      devices: pt?.type === "INCLUDE" ? (pt.value ?? []).map((d) => FROM_TB_DEVICE[d]).filter(Boolean) : ["DESKTOP", "MOBILE", "TABLET"],
+      bidStrategy: String(x.bid_strategy ?? "FIXED"),
+      cpc: x.cpc != null ? num(x.cpc) : undefined,
+      cpaGoal: x.cpa_goal != null ? num(x.cpa_goal) : undefined,
+      spendingLimitModel: String(x.spending_limit_model ?? "MONTHLY"),
+      spendingLimit: x.spending_limit != null ? num(x.spending_limit) : undefined,
+      dailyCap: x.daily_cap != null ? num(x.daily_cap) : undefined,
+      marketingObjective: String(x.marketing_objective ?? "ONLINE_PURCHASES"),
+      brandingText: String(x.branding_text ?? ""),
+      trackingCode: x.tracking_code ? String(x.tracking_code) : undefined,
+    },
+  };
+}
+
+export async function taboolaUpdate(c: Credentials, id: string, name: string, s: CampaignSetup) {
+  const body = taboolaCampaignBody(name, s);
+  delete body.is_active; // keep the current on/off state
+  delete body.marketing_objective; // fixed after creation on most accounts
+  await http(`${TB}/${c.accountId}/campaigns/${id}/`, { method: "POST", headers: await tbHeaders(c), body: JSON.stringify(body) });
+}
+
+export async function taboolaUpdateItem(c: Credentials, campaignId: string, itemId: string, p: { title?: string; active?: boolean }) {
+  const body: Record<string, unknown> = {};
+  if (p.title !== undefined) body.title = p.title;
+  if (p.active !== undefined) body.is_active = p.active;
+  await http(`${TB}/${c.accountId}/campaigns/${campaignId}/items/${itemId}/`, {
+    method: "POST",
+    headers: await tbHeaders(c),
+    body: JSON.stringify(body),
+  });
+}
+
+export async function revcontentDetail(c: Credentials, id: string): Promise<CampaignDetail> {
+  const [b, content] = await Promise.all([
+    rcGet<Record<string, unknown>[]>(c, "/stats/api/v1.0/boosts", { boost_id: id }),
+    rcGet<Record<string, unknown>[]>(c, `/stats/api/v1.0/boosts/${id}/content`, { limit: "1000" }).catch(() => ({
+      success: false,
+      data: [] as Record<string, unknown>[],
+    })),
+  ]);
+  const x = b.data[0] ?? {};
+  const items: ExistingItem[] = content.data
+    .filter((i) => i.admin_status !== "deleted")
+    .map((i) => ({
+      id: String(i.content_id),
+      title: String(i.headline ?? ""),
+      thumbnail: https(String(i.image_url ?? "")),
+      url: String(i.target_url ?? ""),
+      active: i.enabled === "active",
+      status: String(i.admin_status ?? ""),
+    }));
+  const budget = String(x.budget ?? "");
+  return {
+    platform: "revcontent",
+    campaignId: id,
+    name: String(x.name ?? ""),
+    url: items.find((i) => i.url)?.url ?? "",
+    items,
+    setup: {
+      product: "",
+      countries: [],
+      devices: ["DESKTOP"],
+      bidStrategy: "cpc",
+      cpc: x.default_bid != null ? num(x.default_bid) : undefined,
+      budget: budget && budget !== "unlimited" ? num(budget) : undefined,
+      pacing: String(x.pacing ?? "") === "on" || x.pacing === 1 || x.pacing === "1",
+      brandingText: items.length ? "" : "",
+    },
+  };
+}
+
+export async function revcontentUpdate(c: Credentials, id: string, name: string, s: CampaignSetup) {
+  const deviceIds = await revcontentDeviceIds(c, s.devices);
+  const web = s.cpc ?? 0.1;
+  await rcPost(c, `/stats/api/v1.0/boosts/${id}/settings`, {
+    boost_id: Number(id),
+    name,
+    budget_type: s.budget ? "daily" : "unlimited",
+    ...(s.budget ? { budget_amount: Math.max(50, s.budget), pacing: s.pacing ? "on" : "off" } : {}),
+    optimize: s.bidStrategy === "cpa" ? "cpa" : "cpc",
+    ...(s.countries.length ? { country_targeting: "include", country_codes: s.countries } : { country_targeting: "all" }),
+    ...(deviceIds.length ? { device_targeting: deviceIds } : {}),
+    default_bids: { web, email: s.bidEmail ?? web, apple_news: s.bidAppleNews ?? web },
+  });
+}
+
+export async function revcontentUpdateItem(c: Credentials, boostId: string, contentId: string, p: { title?: string; active?: boolean }) {
+  await rcPost(c, `/stats/api/v1.0/boosts/${boostId}/content`, {
+    boost_id: Number(boostId),
+    id: Number(contentId),
+    ...(p.title !== undefined ? { headline: p.title.slice(0, 80) } : {}),
+    ...(p.active !== undefined ? { enabled: p.active ? "on" : "off" } : {}),
+  });
+}
+
+/** Taboola native duplicate with field overrides (same account). */
+export async function taboolaDuplicateWith(
+  c: Credentials,
+  sourceId: string,
+  name: string,
+  s: CampaignSetup,
+  includeItems: boolean,
+): Promise<SourceCampaignInfo> {
+  const overrides = taboolaCampaignBody(name, s);
+  delete overrides.marketing_objective;
+  const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${c.accountId}/campaigns/${sourceId}/duplicate/`, {
+    method: "POST",
+    headers: await tbHeaders(c),
+    body: JSON.stringify({ ...overrides, is_active: false, duplicate_settings: { include_items: includeItems } }),
+  });
+  await http(`${TB}/${c.accountId}/campaigns/${r.id}/`, {
+    method: "POST",
+    headers: await tbHeaders(c),
+    body: JSON.stringify({ is_active: false }),
+  }).catch(() => {});
+  return { id: String(r.id), name: r.name, status: r.status, active: false };
+}

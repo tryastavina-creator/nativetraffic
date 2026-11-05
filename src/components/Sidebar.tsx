@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 const NAV = [
   { href: "/", label: "Dashboard", icon: "M3 12l9-8 9 8M5 10v10h14V10" },
   { href: "/trafego", label: "Tráfego", icon: "M3 17l6-6 4 4 8-8M15 7h6v6" },
-  { href: "/campanhas", label: "Campanhas", icon: "M12 5v14M5 12h14" },
   { href: "/criativos", label: "Criativos", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1zM4 15l4-4 4 4 3-3 5 5M15 9h.01" },
   { href: "/integrations", label: "Integrações", icon: "M8 12h8M12 8v8M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2z" },
   { href: "/conferencia", label: "Conferência", icon: "M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9" },

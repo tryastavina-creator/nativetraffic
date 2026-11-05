@@ -56,6 +56,9 @@ export type TrafficRow = {
    * split by the source's own conversions or by clicks (several source campaigns feeding one), or none.
    */
   attribution?: "exata" | "conversoes" | "cliques" | "sem-ligacao" | "redtrack";
+  /** API view: the source account and campaign id (for edit / duplicate). */
+  accountId?: string;
+  sourceId?: string;
 };
 
 export type TrafficReport = {
@@ -66,7 +69,7 @@ export type TrafficReport = {
   apiRows: TrafficRow[];
   totals: Omit<
     TrafficRow,
-    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "namingOk" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution"
+    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "namingOk" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution" | "accountId" | "sourceId"
   >;
   linkTargets: { key: string; name: string; platform: string }[];
   unlinked: number;
@@ -125,7 +128,7 @@ async function sourceCampaigns(range: DateRange, warnings: string[]) {
     })[];
   }
   const conns = uniqueAccounts(await listConnections()).filter((c) => TRAFFIC_CONNECTORS[c.provider]?.campaigns);
-  const out: (SourceCampaign & { platform: string })[] = [];
+  const out: (SourceCampaign & { platform: string; accountId?: string })[] = [];
   await Promise.all(
     conns.map(async (c) => {
       try {
@@ -134,13 +137,13 @@ async function sourceCampaigns(range: DateRange, warnings: string[]) {
             TRAFFIC_CONNECTORS[c.provider].campaigns!(c.credentials, range),
           )
         ).value;
-        out.push(...list.map((x) => ({ ...x, platform: c.provider })));
+        out.push(...list.map((x) => ({ ...x, platform: c.provider, accountId: c.id })));
       } catch (e) {
         warnings.push(friendlyError(c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider, e));
       }
     }),
   );
-  const merged = new Map<string, SourceCampaign & { platform: string }>();
+  const merged = new Map<string, SourceCampaign & { platform: string; accountId?: string }>();
   for (const x of out) {
     const k = `${x.platform}:${x.id}`;
     const prev = merged.get(k);
@@ -155,7 +158,7 @@ async function sourceCampaigns(range: DateRange, warnings: string[]) {
   return [...merged.values()];
 }
 
-type Src = SourceCampaign & { platform: string };
+type Src = SourceCampaign & { platform: string; accountId?: string };
 
 type Bucket = {
   key: string;
@@ -332,6 +335,8 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     linkSource?: string;
     linkedBy?: Bucket["linkedBy"];
     sourceKeys: string[];
+    accountId?: string;
+    sourceId?: string;
   }): TrafficRow => {
     const s = o.shop;
     const revenue = (s?.revenue ?? 0) * o.share;
@@ -371,6 +376,8 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       linkSource: o.linkSource,
       needsLink: o.attribution === "sem-ligacao",
       attribution: o.attribution,
+      accountId: o.accountId,
+      sourceId: o.sourceId,
     };
   };
 
@@ -406,6 +413,8 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
             linkSource: sourceOnly ? `${x.platform}:${x.id}` : undefined,
             linkedBy: sourceOnly ? undefined : b.srcLinkedBy.get(`${x.platform}:${x.id}`),
             sourceKeys: [`${x.platform}:${x.id}`],
+            accountId: x.accountId,
+            sourceId: x.id,
           }),
         );
       });

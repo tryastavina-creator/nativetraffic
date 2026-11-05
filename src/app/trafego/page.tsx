@@ -4,6 +4,9 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 import { PLATFORM_COLOR, int, money, pct } from "@/components/format";
 import { BIDS, buildRtName, buildSourceName, DEVICES, SOURCE_NAME } from "@/lib/naming";
 import type { TrafficReport, TrafficRow } from "@/lib/traffic";
+import { CampaignHistory } from "@/components/campaignParts";
+import { CampaignStudio, type StudioMode } from "@/components/CampaignStudio";
+import type { CampaignLogEntry } from "@/lib/store";
 
 const PRESETS = [
   ["today", "Hoje"],
@@ -33,6 +36,12 @@ export default function Trafego() {
   const [platform, setPlatform] = useState("all");
   const [view, setView] = useState<"api" | "redtrack">("api");
   const [showNaming, setShowNaming] = useState(false);
+  const [studio, setStudio] = useState<{ mode: StudioMode; accountId?: string; campaignId?: string } | null>(null);
+  const [history, setHistory] = useState<CampaignLogEntry[] | null>(null);
+  const openHistory = () =>
+    fetch("/api/campaigns/meta")
+      .then((r) => r.json())
+      .then((d) => setHistory(d.log ?? []));
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "spend", dir: -1 });
 
   const [reload, setReload] = useState(0);
@@ -132,7 +141,15 @@ export default function Trafego() {
     <div className="mx-auto max-w-[1500px]">
       <header className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Tráfego</h1>
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-2xl font-semibold tracking-tight">Tráfego</h1>
+            <button className="btn-primary py-1.5 text-xs" onClick={() => setStudio({ mode: "create" })}>
+              + Criar campanha
+            </button>
+            <button className="btn-ghost py-1.5 text-xs" onClick={openHistory}>
+              Histórico
+            </button>
+          </div>
           <p className="mt-1 text-sm text-muted">
             Lucro real de cada campanha: gasto e cliques do RedTrack, vendas e custos da Shopify e da Wiio.
           </p>
@@ -208,6 +225,28 @@ export default function Trafego() {
           </span>
         </div>
         {showNaming && <NamingGenerator />}
+        {studio && (
+          <CampaignStudio
+            mode={studio.mode}
+            accountId={studio.accountId}
+            campaignId={studio.campaignId}
+            onClose={() => setStudio(null)}
+            onDone={() => setReload((n) => n + 1)}
+          />
+        )}
+        {history && (
+          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-6 backdrop-blur-sm" onClick={() => setHistory(null)}>
+            <div className="w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-between">
+                <h2 className="font-semibold">Histórico de campanhas criadas pelo CRM</h2>
+                <button className="text-muted hover:text-zinc-100" onClick={() => setHistory(null)} aria-label="Fechar">
+                  ✕
+                </button>
+              </div>
+              <CampaignHistory log={history} />
+            </div>
+          </div>
+        )}
         <div className="relative mt-3 flex flex-wrap items-center gap-1">
           <button className="btn-ghost order-last ml-auto py-1 text-xs" onClick={() => setShowCols((v) => !v)}>
             Colunas ({visibleCols.length})
@@ -279,6 +318,7 @@ export default function Trafego() {
                   r={r}
                   cur={cur}
                   cols={visibleCols}
+                  onAction={(mode) => r.accountId && r.sourceId && setStudio({ mode, accountId: r.accountId, campaignId: r.sourceId })}
                   targets={(data?.linkTargets ?? []).filter((t) => t.platform === r.platform)}
                   onLink={link}
                 />
@@ -384,12 +424,14 @@ function Row({
   r,
   cur,
   cols,
+  onAction,
   targets,
   onLink,
 }: {
   r: TrafficRow;
   cur: string;
   cols: Col[];
+  onAction: (mode: StudioMode) => void;
   targets: { key: string; name: string }[];
   onLink: (source: string, target: string | null) => void;
 }) {
@@ -461,6 +503,16 @@ function Row({
                 </option>
               ))}
             </select>
+          </div>
+        )}
+        {r.accountId && r.sourceId && (r.platform === "taboola" || r.platform === "revcontent") && (
+          <div className="mt-1.5 flex gap-1.5 pl-4">
+            <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("edit")}>
+              Editar
+            </button>
+            <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("duplicate")}>
+              Duplicar
+            </button>
           </div>
         )}
       </td>

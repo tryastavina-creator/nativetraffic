@@ -3,14 +3,22 @@ import { randomBytes } from "node:crypto";
 import {
   revcontentCampaigns,
   revcontentCreateCampaign,
+  revcontentDetail,
   revcontentDuplicate,
+  revcontentUpdate,
+  revcontentUpdateItem,
   taboolaCampaigns,
   taboolaCreateCampaign,
   taboolaCreateGroup,
+  taboolaDetail,
   taboolaDuplicate,
+  taboolaDuplicateWith,
   taboolaGroups,
+  taboolaUpdate,
+  taboolaUpdateItem,
   type NewGroup,
 } from "./connectors/campaignBuilder";
+import { parseSourceName } from "./naming";
 import { listCampaigns as listRtCampaigns } from "./connectors/redtrack";
 import { publishRevcontent, publishTaboola } from "./connectors/taboolaCreatives";
 import { friendlyError } from "./cache";
@@ -46,6 +54,11 @@ async function connection(platform: Platform, accountId: string) {
 }
 
 export async function builderMeta(platform: Platform, accountId: string) {
+  // NT_SNAPSHOT_BUILDER_META: JSON standing in for the source + RedTrack APIs (tests).
+  if (process.env.NT_SNAPSHOT_BUILDER_META) {
+    const m = JSON.parse(await (await import("node:fs")).promises.readFile(process.env.NT_SNAPSHOT_BUILDER_META, "utf8"));
+    return { ...m, templates: (await listTemplates()).filter((t) => t.platform === platform) };
+  }
   const warnings: string[] = [];
   const conn = await connection(platform, accountId);
   const rt = (await listConnections()).find((c) => c.provider === "redtrack");
@@ -252,4 +265,145 @@ async function log(
     steps,
     ok,
   });
+}
+
+
+// ------------------------------ edit / duplicate anywhere ------------------------------
+
+/** Settings + ads of an existing campaign (to edit it or to start a copy). */
+export async function campaignDetail(accountId: string, campaignId: string) {
+  if (process.env.NT_SNAPSHOT_CAMPAIGN_DETAIL) {
+    return { ...JSON.parse(await (await import("node:fs")).promises.readFile(process.env.NT_SNAPSHOT_CAMPAIGN_DETAIL, "utf8")), accountId };
+  }
+  const conn = await getConnection(accountId);
+  if (!conn || (conn.provider !== "taboola" && conn.provider !== "revcontent")) throw new Error("Conta da fonte não encontrada.");
+  const d = conn.provider === "taboola" ? await taboolaDetail(conn.credentials, campaignId) : await revcontentDetail(conn.credentials, campaignId);
+  // Fill product / devices / country from the name when the API doesn't give them.
+  const p = parseSourceName(d.name);
+  if (p) {
+    d.setup.product = p.product;
+    if (!d.setup.countries.length) d.setup.countries = [p.country];
+    if (conn.provider === "revcontent" && p.device && p.device !== "ALL") d.setup.devices = [p.device as "DESKTOP"];
+  }
+  return { ...d, accountId };
+}
+
+export type ItemChange = { id: string; title?: string; active?: boolean };
+
+export async function updateCampaign(
+  input: {
+    accountId: string;
+    campaignId: string;
+    name: string;
+    setup: CampaignSetup;
+    itemChanges: ItemChange[];
+    url?: string;
+    rtCampaign?: string;
+    creatives: CreativeInput[];
+  },
+  baseUrl: string,
+) {
+  const conn = await getConnection(input.accountId);
+  if (!conn || (conn.provider !== "taboola" && conn.provider !== "revcontent")) throw new Error("Conta da fonte não encontrada.");
+  const platform = conn.provider as Platform;
+  const steps: string[] = [];
+  let ok = true;
+  try {
+    if (platform === "taboola") await taboolaUpdate(conn.credentials, input.campaignId, input.name, input.setup);
+    else await revcontentUpdate(conn.credentials, input.campaignId, input.name, input.setup);
+    steps.push("Configurações da campanha salvas");
+  } catch (e) {
+    ok = false;
+    steps.push(`Erro nas configurações: ${friendlyError(conn.label ?? platform, e)}`);
+  }
+  for (const ch of input.itemChanges) {
+    try {
+      if (platform === "taboola") await taboolaUpdateItem(conn.credentials, input.campaignId, ch.id, ch);
+      else await revcontentUpdateItem(conn.credentials, input.campaignId, ch.id, ch);
+      steps.push(`Anúncio ${ch.id}: ${[ch.title !== undefined ? "headline nova" : "", ch.active !== undefined ? (ch.active ? "ativado" : "pausado") : ""].filter(Boolean).join(", ")}`);
+    } catch (e) {
+      ok = false;
+      steps.push(`Falhou no anúncio ${ch.id}: ${friendlyError("", e).replace(/^: /, "")}`);
+    }
+  }
+  let items = 0;
+  if (input.creatives.length) {
+    if (!input.url) {
+      steps.push("Criativos novos não enviados: falta o link do RedTrack.");
+    } else {
+      const r = await addCreatives(platform, input.accountId, input.campaignId, input.url, input.creatives, baseUrl);
+      steps.push(...r.steps);
+      items = r.ok;
+    }
+  }
+  await log("criativos", platform, input.accountId, input.campaignId, input.name, input.rtCampaign, input.url, items, ["Edição", ...steps], ok);
+  return { ok, campaignId: input.campaignId, steps };
+}
+
+/**
+ * Copies a campaign to the same account, another account or another source.
+ * Same Taboola account → native duplicate (keeps blocked sites, bid modifiers…), with the edited setup.
+ * Anything else → new campaign with the (translated) setup, re-uploading the kept ads.
+ */
+export async function copyCampaign(
+  input: {
+    source: { accountId: string; campaignId: string };
+    target: { accountId: string };
+    name: string;
+    setup: CampaignSetup;
+    group?: CreateInput["group"];
+    url: string;
+    rtCampaign?: string;
+    /** Ads of the source to carry over (with possibly edited headlines). */
+    keep: { title: string; thumbnail: string }[];
+    keepAll: boolean;
+    creatives: CreativeInput[];
+  },
+  baseUrl: string,
+) {
+  const src = await getConnection(input.source.accountId);
+  const dst = await getConnection(input.target.accountId);
+  if (!src || !dst) throw new Error("Conta não encontrada.");
+  const platform = dst.provider as Platform;
+  const kept: CreativeInput[] = input.keep.map((k) => ({ kind: "ad", imageUrl: k.thumbnail, headline: k.title }));
+
+  if (src.id === dst.id && platform === "taboola") {
+    const steps: string[] = [];
+    let campaignId = "";
+    try {
+      const c = await taboolaDuplicateWith(dst.credentials, input.source.campaignId, input.name, input.setup, input.keepAll);
+      campaignId = c.id;
+      steps.push(`Campanha duplicada pausada (id ${c.id})${input.keepAll ? " com todos os anúncios da original" : ""}`);
+      const toAdd = [...(input.keepAll ? [] : kept), ...input.creatives];
+      let items = 0;
+      if (toAdd.length) {
+        const r = await addCreatives(platform, dst.id, c.id, input.url, toAdd, baseUrl);
+        steps.push(...r.steps);
+        items = r.ok;
+      }
+      await log("duplicada", platform, dst.id, campaignId, input.name, input.rtCampaign, input.url, items, steps, true);
+      return { ok: true, campaignId, steps };
+    } catch (e) {
+      steps.push(`Erro: ${friendlyError(dst.label ?? platform, e)}`);
+      await log("duplicada", platform, dst.id, campaignId, input.name, input.rtCampaign, input.url, 0, steps, false);
+      return { ok: false, campaignId, steps };
+    }
+  }
+  const r = await createCampaign(
+    {
+      platform,
+      accountId: dst.id,
+      name: input.name,
+      setup: input.setup,
+      group: input.group,
+      url: input.url,
+      rtCampaign: input.rtCampaign,
+      creatives: [...kept, ...input.creatives],
+    },
+    baseUrl,
+  );
+  return {
+    ...r,
+    steps: [`Cópia de ${src.label ?? src.provider} → ${dst.label ?? dst.provider}`, ...r.steps],
+  };
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { addToCampaign, createCampaign, duplicateCampaign } from "@/lib/campaigns";
+import { addToCampaign, copyCampaign, createCampaign, duplicateCampaign, updateCampaign } from "@/lib/campaigns";
 import { baseUrl } from "@/lib/shopifyOAuth";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +22,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Escolha a campanha, o link e pelo menos um criativo." }, { status: 400 });
     }
     return NextResponse.json(await addToCampaign(b, base));
+  }
+  if (b.action === "update") {
+    if (!b.accountId || !b.campaignId || !b.name?.trim()) return NextResponse.json({ error: "Faltam dados da campanha." }, { status: 400 });
+    return NextResponse.json(await updateCampaign({ itemChanges: [], creatives: [], ...b }, base));
+  }
+  if (b.action === "copy") {
+    if (!b.source?.accountId || !b.target?.accountId || !b.name?.trim()) {
+      return NextResponse.json({ error: "Escolha a conta de destino e o nome da cópia." }, { status: 400 });
+    }
+    if (!b.url?.trim() && (b.keep?.length || b.creatives?.length) && !(b.keepAll && b.source.accountId === b.target.accountId)) {
+      return NextResponse.json({ error: "Informe o link do RedTrack para os anúncios da cópia." }, { status: 400 });
+    }
+    return NextResponse.json(await copyCampaign({ keep: [], keepAll: false, creatives: [], ...b }, base));
   }
   return NextResponse.json({ error: "Ação inválida." }, { status: 400 });
 }
