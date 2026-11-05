@@ -55,13 +55,20 @@ export default function Dashboard() {
   const [preset, setPreset] = useState("14d");
   const [from, setFrom] = useState(daysAgo(13));
   const [to, setTo] = useState(today());
-  const [compare, setCompare] = useState("previous");
+  // Comparison only when asked for.
+  const [compare, setCompare] = useState("none");
   const [cfrom, setCfrom] = useState(daysAgo(27));
   const [cto, setCto] = useState(daysAgo(14));
   const [applied, setApplied] = useState(0); // bump to refetch custom ranges
   const [m, setM] = useState<Payload | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(0); // "Atualizar" button
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
+  // Turning comparison off hides it at once (no waiting for the next response).
+  useEffect(() => {
+    if (compare === "none") setM((x) => (x && x.previous ? { ...x, previous: null } : x));
+  }, [compare]);
 
   // Remember the viewer's last choice.
   useEffect(() => {
@@ -90,25 +97,32 @@ export default function Dashboard() {
   }, [preset, compare, applied]);
 
   useEffect(() => {
+    // Only the latest request may fill the screen (a slow older one — e.g. with comparison — must not win).
+    let live = true;
     setLoading(true);
     setError("");
     try {
       localStorage.setItem("nt_dash", JSON.stringify({ preset, compare, from, to, cfrom, cto }));
     } catch {}
-    fetch(`/api/metrics?${query}`)
+    fetch(`/api/metrics?${query}${refresh ? `&refresh=${refresh}` : ""}`)
       .then(async (r) => {
         const j = await r.json();
         if (!r.ok) throw new Error(j.error ?? "Erro ao carregar");
-        setM(j);
+        if (!live) return;
+        setM(compare === "none" ? { ...j, previous: null } : j);
+        setUpdatedAt(new Date());
       })
-      .catch((e: Error) => setError(e.message))
-      .finally(() => setLoading(false));
+      .catch((e: Error) => live && setError(e.message))
+      .finally(() => live && setLoading(false));
+    return () => {
+      live = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
+  }, [query, refresh]);
 
   const cur = m?.currency ?? "USD";
   const k = m?.kpis;
-  const p = m?.previous?.kpis;
+  const p = compare === "none" ? undefined : m?.previous?.kpis;
   const spendOk = m?.dataSources.hasSpend ?? true;
   const ordersOk = m?.dataSources.hasOrders ?? true;
   const full = spendOk && ordersOk;
@@ -180,6 +194,15 @@ export default function Dashboard() {
                 Aplicar
               </button>
             )}
+            <button
+              className="btn-ghost flex items-center gap-1.5 py-1.5"
+              disabled={loading}
+              title={updatedAt ? `Atualizado às ${updatedAt.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}` : ""}
+              onClick={() => setRefresh(Date.now())}
+            >
+              <span className={loading ? "inline-block animate-spin" : "inline-block"}>↻</span>
+              {loading ? "Atualizando…" : "Atualizar"}
+            </button>
           </div>
         </div>
       </header>

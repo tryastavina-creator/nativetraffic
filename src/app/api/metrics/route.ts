@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { bustCache } from "@/lib/cache";
 import { computeMetrics, previousRange, rangeFromPreset } from "@/lib/metrics";
 
 export const dynamic = "force-dynamic";
@@ -12,6 +13,8 @@ const isDate = (s: string | null): s is string => !!s && /^\d{4}-\d{2}-\d{2}$/.t
  */
 export async function GET(req: Request) {
   const q = new URL(req.url).searchParams;
+  // ?refresh=1 — "Atualizar": fetch Shopify, RedTrack and every traffic source again.
+  if (q.get("refresh")) bustCache();
   const range = rangeFromPreset(
     q.get("preset") ?? "14d",
     q.get("from") ?? undefined,

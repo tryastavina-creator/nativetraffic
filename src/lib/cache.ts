@@ -46,13 +46,20 @@ function refresh<T>(key: string, fn: () => Promise<T>): Promise<T> {
 
 export type Cached<T> = { value: T; at: number; stale: boolean };
 
+/** "Atualizar" button: everything cached before this moment is fetched again (old value kept only as fallback). */
+let bustAt = 0;
+export function bustCache() {
+  bustAt = Date.now();
+  inflight.clear();
+}
+
 export async function cached<T>(
   key: string,
   fn: () => Promise<T>,
   { ttl = 5 * 60_000, maxStale = 6 * 60 * 60_000 } = {},
 ): Promise<Cached<T>> {
   const hit = store.get(key) as Entry<T> | undefined;
-  const age = hit ? Date.now() - hit.at : Infinity;
+  const age = hit && hit.at >= bustAt ? Date.now() - hit.at : Infinity;
   if (hit && age < ttl) return { value: hit.value, at: hit.at, stale: false };
   if (hit && age < maxStale) {
     refresh(key, fn).catch(() => {}); // background refresh; keep serving the last value
