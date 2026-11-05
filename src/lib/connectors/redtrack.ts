@@ -125,3 +125,47 @@ export async function fetchCampaigns(c: Credentials, range: DateRange, icField?:
     ic: icKey ? num(r[icKey]) : null,
   }));
 }
+
+export type RtCampaignInfo = { id: string; title: string; status: string; url: string };
+
+/** Finds the click URL in a RedTrack campaign object (field names vary): any http(s) string carrying the campaign id. */
+function findTrackingUrl(obj: unknown, id: string): string {
+  let best = "";
+  const walk = (v: unknown, key = "") => {
+    if (best) return;
+    if (typeof v === "string") {
+      if (/^https?:\/\//i.test(v) && (v.includes(id) || /track|click|url|link/i.test(key))) best = v;
+      return;
+    }
+    if (Array.isArray(v)) v.forEach((x) => walk(x, key));
+    else if (v && typeof v === "object") for (const [k, x] of Object.entries(v)) walk(x, k);
+  };
+  walk(obj);
+  if (best) return best;
+  const o = obj as Record<string, unknown>;
+  const domain = String(o.domain ?? o.domain_name ?? o.tracking_domain ?? "");
+  return domain ? `https://${domain.replace(/^https?:\/\//, "").replace(/\/$/, "")}/${id}` : "";
+}
+
+/** RedTrack campaigns with their tracking link (GET /campaigns). */
+export async function listCampaigns(c: Credentials): Promise<RtCampaignInfo[]> {
+  return (
+    await cached(hashKey("rt-campaigns", c.apiKey), async () => {
+      const qs = new URLSearchParams({ api_key: c.apiKey, page: "1", per: "500" });
+      const res = await http<unknown>(`${BASE}/campaigns?${qs}`);
+      const list = (Array.isArray(res) ? res : ((res as { items?: unknown[]; data?: unknown[] }).items ?? (res as { data?: unknown[] }).data ?? [])) as Record<
+        string,
+        unknown
+      >[];
+      return list.map((x) => {
+        const id = String(x.id ?? x._id ?? x.campaign_id ?? "");
+        return {
+          id,
+          title: String(x.title ?? x.name ?? id),
+          status: String(x.status ?? ""),
+          url: findTrackingUrl(x, id),
+        };
+      });
+    }, { ttl: 10 * 60_000 })
+  ).value;
+}

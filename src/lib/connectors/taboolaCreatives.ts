@@ -112,12 +112,18 @@ export async function publishTaboola(
   campaignId: string,
   landingUrl: string,
   title: string,
-  image: { bytes: Buffer; mime: string },
+  image: { bytes: Buffer; mime: string } | { hostedUrl: string },
+  aiGenerated = true,
 ): Promise<{ itemId: string; status: string }> {
   const auth = { Authorization: `Bearer ${await taboolaToken(c)}` };
-  const form = new FormData();
-  form.append("file", new Blob([new Uint8Array(image.bytes)], { type: image.mime }), image.mime.includes("png") ? "variant.png" : "variant.jpg");
-  const uploaded = await http<{ value: string }>(`${API}/operations/upload-image`, { method: "POST", headers: auth, body: form });
+  let thumbnail: string;
+  if ("hostedUrl" in image) {
+    thumbnail = image.hostedUrl; // already on Taboola's CDN (reusing a running ad)
+  } else {
+    const form = new FormData();
+    form.append("file", new Blob([new Uint8Array(image.bytes)], { type: image.mime }), image.mime.includes("png") ? "variant.png" : "variant.jpg");
+    thumbnail = (await http<{ value: string }>(`${API}/operations/upload-image`, { method: "POST", headers: auth, body: form })).value;
+  }
 
   const headers = { ...auth, "Content-Type": "application/json" };
   const base = `${API}/${c.accountId}/campaigns/${campaignId}/items/`;
@@ -136,7 +142,12 @@ export async function publishTaboola(
   const done = await http<Item>(`${base}${created.id}/`, {
     method: "POST",
     headers,
-    body: JSON.stringify({ title, thumbnail_url: uploaded.value, is_active: false, ai_disclosure: { status: "AI_GENERATED" } }),
+    body: JSON.stringify({
+      title,
+      thumbnail_url: thumbnail,
+      is_active: false,
+      ...(aiGenerated ? { ai_disclosure: { status: "AI_GENERATED" } } : {}),
+    }),
   });
   return { itemId: done.id, status: `${done.status} · ${String(done.approval_state).toLowerCase()}` };
 }

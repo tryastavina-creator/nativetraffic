@@ -43,6 +43,50 @@ type FileShape = {
   supplierImports: SupplierImport[];
   /** Library of AI-generated creative variants (metadata; image bytes live in the asset store). */
   variants: CreativeVariant[];
+  /** Saved setups for new campaigns, per source. */
+  campaignTemplates: CampaignTemplate[];
+  /** Every campaign created/duplicated/edited from the CRM. */
+  campaignLog: CampaignLogEntry[];
+};
+
+/** Campaign setup saved once and reused. Fields not used by a platform are ignored. */
+export type CampaignSetup = {
+  product: string;
+  countries: string[];
+  devices: ("DESKTOP" | "MOBILE" | "TABLET")[];
+  /** Taboola: MAX_CONVERSIONS | TARGET_CPA | SMART | FIXED · Revcontent: cpc | cpa */
+  bidStrategy: string;
+  cpc?: number;
+  cpaGoal?: number;
+  /** Taboola: MONTHLY | ENTIRE | NONE */
+  spendingLimitModel?: string;
+  spendingLimit?: number;
+  dailyCap?: number;
+  marketingObjective?: string;
+  brandingText: string;
+  trackingCode?: string;
+  /** Revcontent */
+  budget?: number;
+  pacing?: boolean;
+  bidAppleNews?: number;
+  bidEmail?: number;
+};
+
+export type CampaignTemplate = { id: string; name: string; platform: "taboola" | "revcontent"; setup: CampaignSetup; updatedAt: string };
+
+export type CampaignLogEntry = {
+  id: string;
+  at: string;
+  action: "criada" | "duplicada" | "criativos";
+  platform: string;
+  accountId: string;
+  campaignId: string;
+  campaignName: string;
+  rtCampaign?: string;
+  url?: string;
+  items: number;
+  steps: string[];
+  ok: boolean;
 };
 
 /** Where a variant came from: the ad it was generated from. */
@@ -152,6 +196,8 @@ async function read(): Promise<FileShape> {
     supplierCosts: parsed.supplierCosts ?? {},
     supplierImports: parsed.supplierImports ?? [],
     variants: parsed.variants ?? [],
+    campaignTemplates: parsed.campaignTemplates ?? [],
+    campaignLog: parsed.campaignLog ?? [],
   };
 }
 
@@ -271,6 +317,34 @@ export function redact(conn: Connection): Connection {
     credentials[k] = secret && v ? `••••${v.slice(-4)}` : v;
   }
   return { ...conn, credentials };
+}
+
+// ------------------------------- campaign builder -------------------------------
+
+export async function listTemplates(): Promise<CampaignTemplate[]> {
+  return (await read()).campaignTemplates;
+}
+
+export async function saveTemplate(t: CampaignTemplate) {
+  const data = await read();
+  data.campaignTemplates = [t, ...data.campaignTemplates.filter((x) => x.id !== t.id)];
+  await write(data);
+}
+
+export async function deleteTemplate(id: string) {
+  const data = await read();
+  data.campaignTemplates = data.campaignTemplates.filter((x) => x.id !== id);
+  await write(data);
+}
+
+export async function listCampaignLog(): Promise<CampaignLogEntry[]> {
+  return (await read()).campaignLog;
+}
+
+export async function addCampaignLog(e: CampaignLogEntry) {
+  const data = await read();
+  data.campaignLog = [e, ...data.campaignLog].slice(0, 1000);
+  await write(data);
 }
 
 // ------------------------------- creative variants -------------------------------
