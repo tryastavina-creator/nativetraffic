@@ -15,8 +15,12 @@ const tokenCache = new Map<string, { token: string; expires: number }>();
  * token valid ~24h, cached in memory).
  */
 async function accessToken(c: Credentials): Promise<string> {
-  if (c.accessToken) return c.accessToken;
-  if (!c.clientId || !c.clientSecret) throw new Error("Informe o access token ou Client ID + Secret");
+  if (c.accessToken) {
+    const expiresAt = Number(c.tokenExpiresAt || 0);
+    if (!expiresAt || expiresAt - 300_000 > Date.now() || !c.refreshToken) return c.accessToken;
+    return refreshAccessToken(c);
+  }
+  if (!c.clientId || !c.clientSecret) throw new Error("Informe o Client ID e o Client secret do app da Shopify");
   const cached = tokenCache.get(c.clientId);
   if (cached && cached.expires > Date.now()) return cached.token;
   const res = await http<{ access_token: string; expires_in?: number }>(
@@ -30,11 +34,51 @@ async function accessToken(c: Credentials): Promise<string> {
         client_secret: c.clientSecret,
       }),
     },
-  );
+  ).catch((e: Error) => {
+    if (/shop_not_permitted/.test(e.message)) {
+      throw new Error(
+        "Falta autorizar: o app e a loja estão em organizações diferentes. Clique em \"Autorizar na Shopify\" logo abaixo.",
+      );
+    }
+    throw e;
+  });
   tokenCache.set(c.clientId, {
     token: res.access_token,
     expires: Date.now() + ((res.expires_in ?? 86_400) - 300) * 1000,
   });
+  return res.access_token;
+}
+
+/** Renews an expiring offline token from the install flow and persists it. */
+async function refreshAccessToken(c: Credentials): Promise<string> {
+  const cached = tokenCache.get(c.refreshToken);
+  if (cached && cached.expires > Date.now()) return cached.token;
+  const res = await http<{ access_token: string; expires_in?: number; refresh_token?: string }>(
+    `https://${shopDomain(c)}/admin/oauth/access_token`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        client_id: c.clientId,
+        client_secret: c.clientSecret,
+        grant_type: "refresh_token",
+        refresh_token: c.refreshToken,
+      }),
+    },
+  );
+  const expires = Date.now() + (res.expires_in ?? 3600) * 1000;
+  tokenCache.set(c.refreshToken, { token: res.access_token, expires: expires - 300_000 });
+  const { getConnection, saveConnection } = await import("../store");
+  const conn = await getConnection("shopify");
+  if (conn) {
+    conn.credentials = {
+      ...conn.credentials,
+      accessToken: res.access_token,
+      refreshToken: res.refresh_token ?? conn.credentials.refreshToken,
+      tokenExpiresAt: String(expires),
+    };
+    await saveConnection(conn);
+  }
   return res.access_token;
 }
 

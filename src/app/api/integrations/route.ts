@@ -59,6 +59,17 @@ async function upsert(req: Request) {
     );
   }
 
+  // Keep tokens obtained through "Autorizar na Shopify" while the app stays the same.
+  if (
+    existing &&
+    body.provider === "shopify" &&
+    credentials.clientId === existing.credentials.clientId &&
+    credentials.accessToken === existing.credentials.accessToken
+  ) {
+    credentials.refreshToken = existing.credentials.refreshToken ?? "";
+    credentials.tokenExpiresAt = existing.credentials.tokenExpiresAt ?? "";
+  }
+
   const conn: Connection = {
     id,
     provider: body.provider,

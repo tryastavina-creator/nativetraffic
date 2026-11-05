@@ -16,6 +16,24 @@ const ORDER: Category[] = ["store", "tracker", "traffic", "payments", "fulfillme
 export default function Integrations() {
   const [data, setData] = useState<Data | null>(null);
   const [editing, setEditing] = useState<Editing | null>(null);
+  const [notice, setNotice] = useState<{ ok: boolean; text: string } | null>(null);
+
+  // Result of "Autorizar na Shopify" (the callback redirects back here).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const st = q.get("shopify");
+    if (!st) return;
+    const text =
+      st === "ok"
+        ? "Shopify autorizada e conectada."
+        : st === "missing"
+          ? "Salve primeiro o domínio, o Client ID e o Client secret da Shopify."
+          : st === "badshop"
+            ? "O domínio precisa terminar em .myshopify.com."
+            : `A Shopify recusou a autorização: ${q.get("detail") ?? "erro desconhecido"}`;
+    setNotice({ ok: st === "ok", text });
+    window.history.replaceState(null, "", "/integrations");
+  }, []);
 
   const load = () => fetch("/api/integrations").then((r) => r.json()).then(setData);
   useEffect(() => {
@@ -37,6 +55,15 @@ export default function Integrations() {
         </p>
       </header>
 
+      {notice && (
+        <div
+          className={`mt-5 rounded-xl border px-4 py-3 text-sm ${
+            notice.ok ? "border-accent/30 bg-accent/5 text-accent" : "border-bad/30 bg-bad/5 text-bad"
+          }`}
+        >
+          {notice.text}
+        </div>
+      )}
       {data?.storage.backend === "disk" && data.storage.production && (
         <div className="mt-5 rounded-xl border border-bad/30 bg-bad/5 px-4 py-3 text-sm text-bad">
           As conexões estão sendo salvas no disco temporário do servidor e somem a cada novo deploy. No Railway, abra o
@@ -214,7 +241,9 @@ function ConnectDrawer({
     else setTools(r.tools);
   }
 
-  const webhookUrl = typeof window !== "undefined" ? `${window.location.origin}/api/webhooks/wio` : "";
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const webhookUrl = `${origin}/api/webhooks/wio`;
+  const shopifyCallback = `${origin}/api/shopify/callback`;
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm" onClick={onClose}>
@@ -260,6 +289,29 @@ function ConnectDrawer({
               {f.help && <span className="mt-1 block text-[11px] text-faint">{f.help}</span>}
             </label>
           ))}
+
+          {def.id === "shopify" && (
+            <div className="space-y-3 rounded-lg border border-line bg-bg p-3 text-xs">
+              <div className="text-zinc-300">Se aparecer "shop_not_permitted", autorize pelo botão abaixo</div>
+              <ol className="list-decimal space-y-1 pl-4 text-muted">
+                <li>Preencha o domínio, o Client ID e o Client secret e clique em Conectar (pode dar erro, tudo bem).</li>
+                <li>
+                  No Dev Dashboard → seu app → Versions → nova versão, coloque em <b>App URL</b> o endereço deste site e
+                  em <b>Allowed redirection URL(s)</b>:
+                  <code className="mt-1 block break-all text-accent">{shopifyCallback}</code>
+                  Depois clique em Release.
+                </li>
+                <li>Clique em Autorizar na Shopify e aprove na tela da loja.</li>
+              </ol>
+              {conn?.credentials.clientId ? (
+                <a href="/api/shopify/install" className="btn-primary inline-flex">
+                  Autorizar na Shopify
+                </a>
+              ) : (
+                <span className="block text-faint">O botão aparece depois que você salvar o Client ID.</span>
+              )}
+            </div>
+          )}
 
           {def.id === "wio" && (
             <div className="rounded-lg border border-line bg-bg p-3 text-xs">

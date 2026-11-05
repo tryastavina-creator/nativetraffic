@@ -1,7 +1,14 @@
 export async function http<T = unknown>(url: string, init: RequestInit = {}): Promise<T> {
   const res = await fetch(url, { ...init, cache: "no-store" });
   const text = await res.text();
-  if (!res.ok) throw new Error(`${res.status} ${res.statusText}: ${text.slice(0, 300)}`);
+  if (!res.ok) {
+    const clean = text
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    throw new Error(`${res.status} ${res.statusText}: ${clean.slice(0, 300)}`);
+  }
   try {
     return JSON.parse(text) as T;
   } catch {
