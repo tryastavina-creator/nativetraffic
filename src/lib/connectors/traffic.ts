@@ -2,6 +2,8 @@
  * Ad-spend connectors for each traffic source. Every one returns the same
  * normalized SpendRow[] so the dashboard does not care where data came from.
  */
+import { createHash } from "node:crypto";
+import { getToken, putToken } from "../store";
 import type { Credentials, DateRange, SpendRow, TestResult } from "../types";
 import { http, num } from "./http";
 
@@ -127,20 +129,97 @@ const taboola: Connector = {
 };
 
 /* --------------------------------- Outbrain --------------------------------- */
-async function outbrainToken(c: Credentials) {
-  const r = await http<{ "OB-TOKEN-V1": string }>("https://api.outbrain.com/amplify/v0.1/login", {
+// Amplify API. The login call is heavily rate-limited by Outbrain, so the 30-day token is kept
+// (memory + encrypted store) and reused; a fresh login only happens when it expires or is rejected.
+const OB = process.env.OUTBRAIN_API_BASE || "https://api.outbrain.com/amplify/v0.1";
+const obMemory = new Map<string, { token: string; expires: number }>();
+const obKey = (c: Credentials) => `outbrain:${createHash("sha1").update(`${c.username}:${c.password}`).digest("hex").slice(0, 16)}`;
+const obFail = (msg: string) => Object.assign(new Error(msg), { friendly: true });
+
+async function outbrainLogin(c: Credentials) {
+  if (!c.username || !c.password) throw obFail("preencha usuário e senha (os mesmos do painel Amplify) ou cole o token");
+  const res = await fetch(`${OB}/login`, {
     headers: { Authorization: `Basic ${Buffer.from(`${c.username}:${c.password}`).toString("base64")}` },
+    cache: "no-store",
   });
-  return r["OB-TOKEN-V1"];
+  if (res.status === 401 || res.status === 403)
+    throw obFail("usuário ou senha recusados no login da API (use o login do Amplify; se a conta usa login Google/SSO ou 2FA, peça ao gerente da Outbrain a liberação da API e cole o token)");
+  if (res.status === 429) throw obFail("a Outbrain limita logins por hora; tentando de novo em alguns minutos");
+  if (!res.ok) throw new Error(`${res.status} login Outbrain`);
+  const body = (await res.json().catch(() => ({}))) as Record<string, string>;
+  const token = body["OB-TOKEN-V1"] ?? res.headers.get("OB-TOKEN-V1") ?? "";
+  if (!token) throw obFail("login aceito, mas a Outbrain não devolveu o token");
+  return token;
+}
+
+async function outbrainToken(c: Credentials, fresh = false): Promise<string> {
+  if (c.token && !fresh) return c.token;
+  const key = obKey(c);
+  if (!fresh) {
+    const hit = obMemory.get(key) ?? (await getToken(key).catch(() => undefined));
+    if (hit && hit.expires > Date.now()) {
+      obMemory.set(key, hit);
+      return hit.token;
+    }
+  }
+  const token = await outbrainLogin(c);
+  const entry = { token, expires: Date.now() + 29 * 24 * 3600_000 };
+  obMemory.set(key, entry);
+  await putToken(key, entry).catch(() => {});
+  return token;
+}
+
+/** GET on the Amplify API; a rejected token is renewed once. */
+async function obGet<T>(c: Credentials, path: string): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    const token = await outbrainToken(c, attempt > 0);
+    try {
+      return await http<T>(`${OB}${path}`, { headers: { "OB-TOKEN-V1": token } });
+    } catch (e) {
+      const auth = /^401\b/.test(String((e as Error).message));
+      if (!auth || attempt > 0 || (c.token && !c.username)) {
+        if (auth) throw obFail("o token foi recusado (expirou?). Gere outro ou preencha usuário e senha");
+        throw e;
+      }
+      await putToken(obKey(c), null).catch(() => {});
+      obMemory.delete(obKey(c));
+    }
+  }
+}
+
+/** Marketer to report on: the one typed in, or the only/first one this login can see. */
+async function outbrainMarketer(c: Credentials): Promise<{ id: string; name: string }> {
+  const r = await obGet<{ marketers?: { id: string; name: string }[] }>(c, "/marketers");
+  const list = r.marketers ?? [];
+  const want = String(c.marketerId ?? "").trim();
+  if (want) {
+    const m = list.find((x) => x.id === want || x.name.toLowerCase() === want.toLowerCase());
+    if (m) return m;
+    if (!list.length) return { id: want, name: want };
+    throw obFail(`Marketer ID "${want}" não existe nesse login. Disponíveis: ${list.map((x) => `${x.name} (${x.id})`).join(", ")}`);
+  }
+  if (!list.length) throw obFail("esse login não tem nenhuma conta (marketer) liberada");
+  return list[0];
+}
+
+const obMarketerCache = new Map<string, { id: string; name: string }>();
+async function marketerId(c: Credentials) {
+  const k = `${obKey(c)}:${c.marketerId ?? ""}:${c.token ? "t" : ""}`;
+  let m = obMarketerCache.get(k);
+  if (!m) {
+    m = await outbrainMarketer(c);
+    obMarketerCache.set(k, m);
+  }
+  return m.id;
 }
 
 const outbrain: Connector = {
   async campaigns(c, range) {
-    const token = await outbrainToken(c);
+    const id = await marketerId(c);
     const qs = new URLSearchParams({ from: range.from, to: range.to, limit: "500" });
-    const r = await http<{ results?: { metadata?: { id?: string; name?: string }; metrics?: Record<string, unknown> }[] }>(
-      `https://api.outbrain.com/amplify/v0.1/reports/marketers/${c.marketerId}/campaigns?${qs}`,
-      { headers: { "OB-TOKEN-V1": token } },
+    const r = await obGet<{ results?: { metadata?: { id?: string; name?: string }; metrics?: Record<string, unknown> }[] }>(
+      c,
+      `/reports/marketers/${id}/campaigns?${qs}`,
     );
     return (r.results ?? []).map((x) => ({
       id: String(x.metadata?.id ?? ""),
@@ -151,21 +230,16 @@ const outbrain: Connector = {
     }));
   },
   async test(c) {
-    const token = await outbrainToken(c);
-    const r = await http<{ name: string }>(`https://api.outbrain.com/amplify/v0.1/marketers/${c.marketerId}`, {
-      headers: { "OB-TOKEN-V1": token },
-    });
-    return { ok: true, message: `Conectado (${r.name})` };
+    const m = await outbrainMarketer(c);
+    return { ok: true, message: `Conectado (${m.name} · ${m.id})` };
   },
   async fetchSpend(c, range) {
-    const token = await outbrainToken(c);
+    const id = await marketerId(c);
     const qs = new URLSearchParams({ from: range.from, to: range.to, breakdown: "daily", limit: "500" });
-    const r = await http<{
-      results: { metadata: { id: string }; metrics: { spend: number; clicks: number; impressions: number } }[];
-    }>(`https://api.outbrain.com/amplify/v0.1/reports/marketers/${c.marketerId}/periodic?${qs}`, {
-      headers: { "OB-TOKEN-V1": token },
-    });
-    return r.results.map((x) => ({
+    const r = await obGet<{
+      results?: { metadata: { id: string }; metrics: { spend: number; clicks: number; impressions: number } }[];
+    }>(c, `/reports/marketers/${id}/periodic?${qs}`);
+    return (r.results ?? []).map((x) => ({
       date: x.metadata.id.slice(0, 10),
       platform: "outbrain",
       spend: num(x.metrics.spend),

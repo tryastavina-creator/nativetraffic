@@ -76,9 +76,21 @@ export const PROVIDERS: ProviderDef[] = [
     color: "#f5a524",
     initials: "O",
     fields: [
-      { key: "username", label: "Usuário" },
-      { key: "password", label: "Senha", type: "password" },
-      { key: "marketerId", label: "Marketer ID" },
+      { key: "username", label: "Usuário", help: "O e-mail de login do painel Amplify", optional: true },
+      { key: "password", label: "Senha", type: "password", optional: true },
+      {
+        key: "marketerId",
+        label: "Marketer ID",
+        optional: true,
+        help: "Pode deixar vazio: a conta é encontrada sozinha. Com várias contas, use o ID ou o nome.",
+      },
+      {
+        key: "token",
+        label: "Token da API (opcional)",
+        type: "password",
+        optional: true,
+        help: "Só se o login for Google/SSO: peça o OB-TOKEN-V1 ao gerente da Outbrain e cole aqui.",
+      },
     ],
   },
   {

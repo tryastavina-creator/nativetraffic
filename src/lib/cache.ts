@@ -77,6 +77,8 @@ export async function cached<T>(
 /** Short, human message for an API error (never the raw response body). */
 export function friendlyError(source: string, e: unknown): string {
   const msg = String((e as Error)?.message ?? e);
+  // Messages written for the user by a connector go through as they are.
+  if ((e as { friendly?: boolean })?.friendly) return `${source}: ${msg}`;
   if (isRateLimit(msg)) return `${source}: limite de consultas atingido, atualizando em instantes.`;
   if (/\b401\b|\b403\b|invalid_client|unauthorized|forbidden/i.test(msg)) {
     return `${source}: acesso recusado. Confira a conexão em Integrações.`;

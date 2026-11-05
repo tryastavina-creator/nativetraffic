@@ -52,6 +52,8 @@ type FileShape = {
   campaignTemplates: CampaignTemplate[];
   /** Every campaign created/duplicated/edited from the CRM. */
   campaignLog: CampaignLogEntry[];
+  /** API session tokens kept between restarts (encrypted), e.g. Outbrain's 30-day OB-TOKEN-V1. */
+  tokens?: Record<string, string>;
 };
 
 /** Campaign setup saved once and reused. Fields not used by a platform are ignored. */
@@ -204,7 +206,27 @@ async function read(): Promise<FileShape> {
     variants: parsed.variants ?? [],
     campaignTemplates: parsed.campaignTemplates ?? [],
     campaignLog: parsed.campaignLog ?? [],
+    tokens: parsed.tokens ?? {},
   };
+}
+
+/** Saved API session token (decrypted), or undefined. */
+export async function getToken(key: string): Promise<{ token: string; expires: number } | undefined> {
+  const blob = (await read()).tokens?.[key];
+  if (!blob) return undefined;
+  try {
+    return JSON.parse(decrypt(blob)) as { token: string; expires: number };
+  } catch {
+    return undefined;
+  }
+}
+
+export async function putToken(key: string, value: { token: string; expires: number } | null) {
+  const data = await read();
+  const tokens = { ...(data.tokens ?? {}) };
+  if (value) tokens[key] = encrypt(JSON.stringify(value));
+  else delete tokens[key];
+  await write({ ...data, tokens });
 }
 
 async function write(data: FileShape) {
