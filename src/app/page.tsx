@@ -3,8 +3,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
   Area,
-  AreaChart,
   CartesianGrid,
+  ComposedChart,
+  Line,
   Cell,
   Pie,
   PieChart,
@@ -274,38 +275,7 @@ export default function Dashboard() {
         {m && ordersOk && m.upsell.front && <UpsellFunnel m={m} cur={cur} />}
 
         <h2 className="h-section">Histórico P&amp;L</h2>
-        <div className="card card-pad">
-          <div className="mb-4 flex flex-wrap gap-4 text-xs text-muted">
-            <Legend color="#3ddc84" label="Receita" />
-            <Legend color="#e5484d" label="Investimento" />
-            <Legend color="#5b8def" label="Lucro" />
-          </div>
-          <div className="h-72">
-            <ResponsiveContainer>
-              <AreaChart data={m?.daily ?? []} margin={{ left: 0, right: 8, top: 4 }}>
-                <defs>
-                  {[
-                    ["rev", "#3ddc84"],
-                    ["inv", "#e5484d"],
-                    ["pro", "#5b8def"],
-                  ].map(([id, c]) => (
-                    <linearGradient key={id} id={id} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor={c} stopOpacity={0.22} />
-                      <stop offset="100%" stopColor={c} stopOpacity={0} />
-                    </linearGradient>
-                  ))}
-                </defs>
-                <CartesianGrid stroke="#1f2328" vertical={false} />
-                <XAxis dataKey="date" tickFormatter={(d: string) => d.slice(8, 10) + "/" + d.slice(5, 7)} stroke="#5c636d" fontSize={11} tickLine={false} axisLine={false} />
-                <YAxis stroke="#5c636d" fontSize={11} tickFormatter={(v: number) => compact(v)} tickLine={false} axisLine={false} width={44} />
-                <Tooltip contentStyle={{ background: "#16191d", border: "1px solid #1f2328", borderRadius: 8, fontSize: 12 }} formatter={(v: number) => money(v, cur)} />
-                <Area type="monotone" dataKey="revenue" name="Receita" stroke="#3ddc84" fill="url(#rev)" strokeWidth={2} />
-                <Area type="monotone" dataKey="investment" name="Investimento" stroke="#e5484d" fill="url(#inv)" strokeWidth={2} />
-                <Area type="monotone" dataKey="profit" name="Lucro" stroke="#5b8def" fill="url(#pro)" strokeWidth={2} />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+        {m && <PnlChart daily={m.daily} cur={cur} />}
 
         <h2 className="h-section">Canais e plataformas</h2>
         <div className="grid gap-3 xl:grid-cols-[1fr_340px]">
@@ -477,6 +447,97 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* ------------------------------- P&L chart ------------------------------- */
+
+type Daily = Metrics["daily"][number];
+const SERIES: { key: keyof Daily; label: string; color: string; axis: "money" | "other"; kind: "money" | "count" | "x" | "pct"; area?: boolean }[] = [
+  { key: "revenue", label: "Receita", color: "#3ddc84", axis: "money", kind: "money", area: true },
+  { key: "investment", label: "Investimento", color: "#e5484d", axis: "money", kind: "money", area: true },
+  { key: "profit", label: "Lucro", color: "#5b8def", axis: "money", kind: "money", area: true },
+  { key: "cpa", label: "CPA", color: "#f5b544", axis: "money", kind: "money" },
+  { key: "sales", label: "Vendas", color: "#e4e4e7", axis: "other", kind: "count" },
+  { key: "roas", label: "ROAS", color: "#a78bfa", axis: "other", kind: "x" },
+  { key: "margin", label: "Margem", color: "#38bdf8", axis: "other", kind: "pct" },
+];
+const DEFAULT_SERIES = ["revenue", "investment", "profit"];
+
+function PnlChart({ daily, cur }: { daily: Daily[]; cur: string }) {
+  const [on, setOn] = useState<string[]>(DEFAULT_SERIES);
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("nt_pnl_series") ?? "null");
+      if (Array.isArray(saved) && saved.length) setOn(saved);
+    } catch {}
+  }, []);
+  const toggle = (k: string) => {
+    const next = on.includes(k) ? on.filter((x) => x !== k) : [...on, k];
+    if (!next.length) return;
+    setOn(next);
+    try {
+      localStorage.setItem("nt_pnl_series", JSON.stringify(next));
+    } catch {}
+  };
+  const active = SERIES.filter((s) => on.includes(s.key));
+  const hasOther = active.some((s) => s.axis === "other");
+  const hasMoney = active.some((s) => s.axis === "money");
+  const fmt = (kind: string, v: number) =>
+    kind === "money" ? money(v, cur) : kind === "x" ? `${v.toFixed(2)}x` : kind === "pct" ? pct(v) : int(v);
+
+  return (
+    <div className="card card-pad">
+      <div className="mb-4 flex flex-wrap gap-1.5">
+        {SERIES.map((s) => {
+          const sel = on.includes(s.key);
+          return (
+            <button
+              key={s.key}
+              onClick={() => toggle(s.key)}
+              className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs transition ${sel ? "border-line bg-panel2 text-zinc-100" : "border-transparent text-faint hover:text-muted"}`}
+            >
+              <span className="h-2 w-2 rounded-full" style={{ background: sel ? s.color : "#3f444b" }} />
+              {s.label}
+            </button>
+          );
+        })}
+      </div>
+      <div className="h-72">
+        <ResponsiveContainer>
+          <ComposedChart data={daily} margin={{ left: 0, right: hasOther ? 0 : 8, top: 4 }}>
+            <defs>
+              {SERIES.filter((s) => s.area).map((s) => (
+                <linearGradient key={s.key} id={`g-${s.key}`} x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={s.color} stopOpacity={0.2} />
+                  <stop offset="100%" stopColor={s.color} stopOpacity={0} />
+                </linearGradient>
+              ))}
+            </defs>
+            <CartesianGrid stroke="#1f2328" vertical={false} />
+            <XAxis dataKey="date" tickFormatter={(d: string) => d.slice(8, 10) + "/" + d.slice(5, 7)} stroke="#5c636d" fontSize={11} tickLine={false} axisLine={false} />
+            <YAxis yAxisId="money" hide={!hasMoney} stroke="#5c636d" fontSize={11} tickFormatter={(v: number) => compact(v)} tickLine={false} axisLine={false} width={44} />
+            <YAxis yAxisId="other" orientation="right" hide={!hasOther} stroke="#5c636d" fontSize={11} tickFormatter={(v: number) => compact(v)} tickLine={false} axisLine={false} width={40} />
+            <Tooltip
+              contentStyle={{ background: "#16191d", border: "1px solid #1f2328", borderRadius: 8, fontSize: 12 }}
+              labelFormatter={(d: string) => `${d.slice(8, 10)}/${d.slice(5, 7)}`}
+              formatter={(v: number, _n: string, item: { dataKey?: string | number }) => {
+                const s = SERIES.find((x) => x.key === item.dataKey);
+                return [fmt(s?.kind ?? "money", v), s?.label ?? ""];
+              }}
+            />
+            {active.map((s) =>
+              s.area ? (
+                <Area key={s.key} yAxisId={s.axis} type="monotone" dataKey={s.key} name={s.label} stroke={s.color} fill={`url(#g-${s.key})`} strokeWidth={2} />
+              ) : (
+                <Line key={s.key} yAxisId={s.axis} type="monotone" dataKey={s.key} name={s.label} stroke={s.color} strokeWidth={2} dot={false} />
+              ),
+            )}
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+      {hasOther && <p className="mt-2 text-[11px] text-faint">Valores em dinheiro no eixo da esquerda; vendas, ROAS e margem no da direita.</p>}
     </div>
   );
 }

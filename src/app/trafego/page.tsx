@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { PLATFORM_COLOR, int, money, pct } from "@/components/format";
 import { BIDS, buildRtName, buildSourceName, DEVICES, SOURCE_NAME } from "@/lib/naming";
 import type { TrafficReport, TrafficRow } from "@/lib/traffic";
@@ -74,6 +74,43 @@ export default function Trafego() {
   }, [source, platform, sort]);
   const t = data?.totals;
   const showIc = !!data?.icConfigured;
+  const [order, setOrder] = useState<string[]>(COLS.map((c) => c.id));
+  const [hidden, setHidden] = useState<string[]>([]);
+  const [dragging, setDragging] = useState<string | null>(null);
+  const [showCols, setShowCols] = useState(false);
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("nt_traffic_cols") ?? "null");
+      if (saved?.order) setOrder([...saved.order.filter((id: string) => COLS.some((c) => c.id === id)), ...COLS.map((c) => c.id).filter((id) => !saved.order.includes(id))]);
+      if (saved?.hidden) setHidden(saved.hidden);
+    } catch {}
+  }, []);
+  const persist = (o: string[], h: string[]) => {
+    try {
+      localStorage.setItem("nt_traffic_cols", JSON.stringify({ order: o, hidden: h }));
+    } catch {}
+  };
+  const moveCol = (from: string, to: string) => {
+    if (from === to) return;
+    const o = order.filter((x) => x !== from);
+    o.splice(o.indexOf(to), 0, from);
+    setOrder(o);
+    persist(o, hidden);
+  };
+  const toggleCol = (id: string) => {
+    const h = hidden.includes(id) ? hidden.filter((x) => x !== id) : [...hidden, id];
+    setHidden(h);
+    persist(order, h);
+  };
+  const resetCols = () => {
+    const o = COLS.map((c) => c.id);
+    setOrder(o);
+    setHidden([]);
+    persist(o, []);
+  };
+  const visibleCols = order
+    .map((id) => COLS.find((c) => c.id === id)!)
+    .filter((c) => c && !hidden.includes(c.id) && (!c.ic || showIc));
 
   const Th = ({ k, children }: { k?: SortKey; children: React.ReactNode }) => (
     <th className="whitespace-nowrap text-right">
@@ -171,7 +208,29 @@ export default function Trafego() {
           </span>
         </div>
         {showNaming && <NamingGenerator />}
-        <div className="mt-3 flex flex-wrap gap-1">
+        <div className="relative mt-3 flex flex-wrap items-center gap-1">
+          <button className="btn-ghost order-last ml-auto py-1 text-xs" onClick={() => setShowCols((v) => !v)}>
+            Colunas ({visibleCols.length})
+          </button>
+          {showCols && (
+            <div className="absolute right-0 top-9 z-20 w-64 rounded-xl border border-line bg-panel p-3 shadow-xl">
+              <div className="mb-2 flex items-center justify-between text-xs">
+                <span className="text-zinc-300">Mostrar colunas</span>
+                <button className="text-info hover:underline" onClick={resetCols}>
+                  restaurar
+                </button>
+              </div>
+              <div className="grid grid-cols-2 gap-1">
+                {COLS.filter((c) => !c.ic || showIc).map((c) => (
+                  <label key={c.id} className="flex items-center gap-1.5 text-xs">
+                    <input type="checkbox" checked={!hidden.includes(c.id)} onChange={() => toggleCol(c.id)} />
+                    {c.label}
+                  </label>
+                ))}
+              </div>
+              <p className="mt-2 text-[10px] text-faint">Arraste o título da coluna na tabela para mudar a ordem. Fica salvo neste navegador.</p>
+            </div>
+          )}
           {["all", ...platforms].map((p) => (
             <button key={p} onClick={() => setPlatform(p)} className={`chip border border-line ${platform === p ? "chip-on" : ""}`}>
               {p === "all" ? "Todas" : (source.find((r) => r.platform === p)?.label ?? p)}
@@ -180,23 +239,37 @@ export default function Trafego() {
         </div>
 
         <div className="card mt-3 overflow-x-auto">
-          <table className="tbl w-full min-w-[1100px]">
+          <table className="tbl w-full" style={{ minWidth: 380 + visibleCols.length * 96 }}>
             <thead>
               <tr>
                 <th className="text-left">Campanha</th>
-                <Th k="spend">Gasto</Th>
-                <Th k="clicks">Cliques</Th>
-                <Th>CPC</Th>
-                {showIc && <Th>Checkouts</Th>}
-                {showIc && <Th>Conv. checkout</Th>}
-                <Th k="sales">Vendas</Th>
-                <Th k="upsells">Upsells</Th>
-                <Th>Conv. %</Th>
-                <Th k="cpa">CPA real</Th>
-                <Th k="revenue">Receita</Th>
-                <Th k="roas">ROAS real</Th>
-                <Th k="profit">Lucro real</Th>
-                <Th k="roi">ROI</Th>
+                {visibleCols.map((c) => (
+                  <th
+                    key={c.id}
+                    draggable
+                    onDragStart={(e) => {
+                      setDragging(c.id);
+                      e.dataTransfer.effectAllowed = "move";
+                    }}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={() => dragging && moveCol(dragging, c.id)}
+                    onDragEnd={() => setDragging(null)}
+                    className={`cursor-grab whitespace-nowrap text-right select-none ${dragging === c.id ? "opacity-40" : ""}`}
+                    title="Arraste para mudar a ordem"
+                  >
+                    {c.sort ? (
+                      <button
+                        className={`hover:text-zinc-200 ${sort.key === c.sort ? "text-zinc-200" : ""}`}
+                        onClick={() => setSort((st) => ({ key: c.sort!, dir: st.key === c.sort ? (st.dir === 1 ? -1 : 1) : -1 }))}
+                      >
+                        {c.label}
+                        {sort.key === c.sort ? (sort.dir === -1 ? " ↓" : " ↑") : ""}
+                      </button>
+                    ) : (
+                      c.label
+                    )}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -205,14 +278,14 @@ export default function Trafego() {
                   key={r.key}
                   r={r}
                   cur={cur}
-                  showIc={showIc}
+                  cols={visibleCols}
                   targets={(data?.linkTargets ?? []).filter((t) => t.platform === r.platform)}
                   onLink={link}
                 />
               ))}
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={15} className="py-8 text-center text-muted">
+                  <td colSpan={visibleCols.length + 1} className="py-8 text-center text-muted">
                     Nenhuma campanha com gasto ou venda no período.
                   </td>
                 </tr>
@@ -232,16 +305,91 @@ export default function Trafego() {
   );
 }
 
+type Col = { id: string; label: string; sort?: SortKey; ic?: boolean; cell: (r: TrafficRow, cur: string) => React.ReactNode };
+
+const COLS: Col[] = [
+  {
+    id: "spend",
+    label: "Gasto",
+    sort: "spend",
+    cell: (r, cur) => (
+      <td className={`text-right ${r.counted ? "text-bad" : "text-warn italic"}`}>
+        {r.spend ? money(r.spend, cur) : "—"}
+        {r.spendSource && (
+          <div className="text-[10px] not-italic text-faint">
+            {r.spendSource === "fonte" ? `API ${r.label}` : r.counted ? "RedTrack" : "RedTrack · fora do total"}
+          </div>
+        )}
+      </td>
+    ),
+  },
+  { id: "clicks", label: "Cliques", sort: "clicks", cell: (r) => <td className="text-right">{int(r.clicks)}</td> },
+  { id: "cpc", label: "CPC", cell: (r, cur) => <td className="text-right text-muted">{r.clicks && r.spend ? money(r.cpc, cur, 3) : "—"}</td> },
+  {
+    id: "checkouts",
+    label: "Checkouts",
+    ic: true,
+    cell: (r) => (
+      <td className="text-right">
+        {r.ic === null ? "—" : int(r.ic)}
+        {r.icRate !== null && r.ic ? <div className="text-[10px] text-faint">{pct(r.icRate)} dos cliques</div> : null}
+      </td>
+    ),
+  },
+  {
+    id: "checkoutConv",
+    label: "Conv. checkout",
+    ic: true,
+    cell: (r) => <td className={`text-right ${r.ic && r.sales / r.ic < 0.2 ? "text-warn" : "text-muted"}`}>{r.ic ? pct((r.sales / r.ic) * 100) : "—"}</td>,
+  },
+  { id: "sales", label: "Vendas", sort: "sales", cell: (r) => <td className="text-right font-medium">{int(r.sales)}</td> },
+  {
+    id: "upsells",
+    label: "Upsells",
+    sort: "upsells",
+    cell: (r) => (
+      <td className="text-right">
+        {int(r.upsells)}
+        {r.sales > 0 && <div className="text-[10px] text-faint">{pct(r.upsellRate, 0)}</div>}
+      </td>
+    ),
+  },
+  { id: "cvr", label: "Conv. %", cell: (r) => <td className="text-right text-muted">{r.clicks ? pct(r.cvr, 2) : "—"}</td> },
+  { id: "cpa", label: "CPA real", sort: "cpa", cell: (r, cur) => <td className="text-right text-warn">{r.sales && r.spend ? money(r.cpa, cur, 2) : "—"}</td> },
+  { id: "aov", label: "Ticket médio", cell: (r, cur) => <td className="text-right">{r.sales ? money(r.aov, cur, 2) : "—"}</td> },
+  { id: "revenue", label: "Receita", sort: "revenue", cell: (r, cur) => <td className="text-right text-accent">{money(r.revenue, cur)}</td> },
+  {
+    id: "roas",
+    label: "ROAS real",
+    sort: "roas",
+    cell: (r) => <td className={`text-right ${r.spend && r.roas < 1 ? "text-bad" : ""}`}>{r.spend ? `${r.roas.toFixed(2)}x` : "—"}</td>,
+  },
+  {
+    id: "profit",
+    label: "Lucro real",
+    sort: "profit",
+    cell: (r, cur) => <td className={`text-right font-medium ${r.profit < 0 ? "text-bad" : "text-accent"}`}>{money(r.profit, cur)}</td>,
+  },
+  {
+    id: "margin",
+    label: "Margem",
+    cell: (r) => (
+      <td className={`text-right ${r.revenue && r.profit < 0 ? "text-bad" : "text-muted"}`}>{r.revenue ? pct((r.profit / r.revenue) * 100) : "—"}</td>
+    ),
+  },
+  { id: "roi", label: "ROI", sort: "roi", cell: (r) => <td className={`text-right ${r.roi < 0 ? "text-bad" : "text-accent"}`}>{r.spend ? pct(r.roi, 0) : "—"}</td> },
+];
+
 function Row({
   r,
   cur,
-  showIc,
+  cols,
   targets,
   onLink,
 }: {
   r: TrafficRow;
   cur: string;
-  showIc: boolean;
+  cols: Col[];
   targets: { key: string; name: string }[];
   onLink: (source: string, target: string | null) => void;
 }) {
@@ -316,36 +464,9 @@ function Row({
           </div>
         )}
       </td>
-      <td className={`text-right ${r.counted ? "text-bad" : "text-warn italic"}`}>
-        {r.spend ? money(r.spend, cur) : "—"}
-        {r.spendSource && (
-          <div className="text-[10px] not-italic text-faint">
-            {r.spendSource === "fonte" ? `API ${r.label}` : r.counted ? "RedTrack" : "RedTrack · fora do total"}
-          </div>
-        )}
-      </td>
-      <td className="text-right">{int(r.clicks)}</td>
-      <td className="text-right text-muted">{r.clicks && r.spend ? money(r.cpc, cur, 3) : "—"}</td>
-      {showIc && (
-        <td className="text-right">
-          {r.ic === null ? "—" : int(r.ic)}
-          {r.icRate !== null && r.ic ? <div className="text-[10px] text-faint">{pct(r.icRate)} dos cliques</div> : null}
-        </td>
-      )}
-      {showIc && (
-        <td className={`text-right ${r.ic && r.sales / r.ic < 0.2 ? "text-warn" : "text-muted"}`}>{r.ic ? pct((r.sales / r.ic) * 100) : "—"}</td>
-      )}
-      <td className="text-right font-medium">{int(r.sales)}</td>
-      <td className="text-right">
-        {int(r.upsells)}
-        {r.sales > 0 && <div className="text-[10px] text-faint">{pct(r.upsellRate, 0)}</div>}
-      </td>
-      <td className="text-right text-muted">{r.clicks ? pct(r.cvr, 2) : "—"}</td>
-      <td className="text-right text-warn">{r.sales && r.spend ? money(r.cpa, cur, 2) : "—"}</td>
-      <td className="text-right text-accent">{money(r.revenue, cur)}</td>
-      <td className={`text-right ${r.spend && r.roas < 1 ? "text-bad" : ""}`}>{r.spend ? `${r.roas.toFixed(2)}x` : "—"}</td>
-      <td className={`text-right font-medium ${r.profit < 0 ? "text-bad" : "text-accent"}`}>{money(r.profit, cur)}</td>
-      <td className={`text-right ${r.roi < 0 ? "text-bad" : "text-accent"}`}>{r.spend ? pct(r.roi, 0) : "—"}</td>
+      {cols.map((c) => (
+        <Fragment key={c.id}>{c.cell(r, cur)}</Fragment>
+      ))}
     </tr>
   );
 }

@@ -72,7 +72,17 @@ export type Metrics = {
     /** InitiateCheckout counted by RedTrack (all tracked traffic). */
     rtCheckouts: number;
   };
-  daily: { date: string; revenue: number; investment: number; profit: number; margin: number; checkouts: number }[];
+  daily: {
+    date: string;
+    revenue: number;
+    investment: number;
+    profit: number;
+    margin: number;
+    checkouts: number;
+    sales: number;
+    cpa: number;
+    roas: number;
+  }[];
   /** Store funnel from Shopify reports (null when not available). */
   funnel: { sessions: number; carts: number; checkouts: number; completed: number } | null;
   platforms: PlatformRow[];
@@ -304,7 +314,18 @@ export function aggregate(input: {
     const rtIc = sum(rtRows.filter((r) => r.date === date).map((r) => r.ic ?? 0));
     const checkouts =
       input.funnel?.source === "analytics" ? (fd?.checkouts ?? 0) : rtIc || (input.funnel ? (fd?.checkouts ?? 0) + os.length : 0);
-    return { date, revenue: rev, investment: inv, profit, margin: div(profit, rev) * 100, checkouts };
+    const tracked = os.filter((o) => isTracked(platformOf(o))).length;
+    return {
+      date,
+      revenue: rev,
+      investment: inv,
+      profit,
+      margin: div(profit, rev) * 100,
+      checkouts,
+      sales: os.length,
+      cpa: div(inv, tracked || os.length),
+      roas: div(rev, inv),
+    };
   });
 
   const platformIds = new Set<string>([...spend.map((s) => s.platform), ...orders.map(platformOf)]);
