@@ -192,6 +192,8 @@ function ConnectDrawer({
     conn?.lastTestMessage ? { ok: !!conn.lastTestOk, text: conn.lastTestMessage } : null,
   );
   const [tools, setTools] = useState<{ name: string; description?: string }[] | null>(null);
+  // Id of the saved connection, set right after the first save so the buttons appear without reopening.
+  const [savedId, setSavedId] = useState<string | undefined>(conn?.id);
 
   async function save() {
     setBusy(true);
@@ -199,22 +201,23 @@ function ConnectDrawer({
     const r = await fetch("/api/integrations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: conn?.id, provider: def.id, credentials: values }),
+      body: JSON.stringify({ id: savedId, provider: def.id, credentials: values }),
     }).then((r) => r.json());
     setBusy(false);
     if (r.error) return setMsg({ ok: false, text: r.error });
     setMsg({ ok: r.result.ok, text: r.result.message, details: r.result.details });
     setValues(r.connection.credentials);
+    setSavedId(r.connection.id);
     onChanged();
   }
 
   async function retest() {
-    if (!conn) return;
+    if (!savedId) return;
     setBusy(true);
     const r = await fetch("/api/integrations/test", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: conn.id }),
+      body: JSON.stringify({ id: savedId }),
     }).then((r) => r.json());
     setBusy(false);
     setMsg({ ok: r.result.ok, text: r.result.message });
@@ -222,8 +225,8 @@ function ConnectDrawer({
   }
 
   async function remove() {
-    if (!conn || !confirm(`Desconectar ${def.name}?`)) return;
-    await fetch(`/api/integrations?id=${encodeURIComponent(conn.id)}`, { method: "DELETE" });
+    if (!savedId) return;
+    await fetch(`/api/integrations?id=${encodeURIComponent(savedId)}`, { method: "DELETE" });
     onChanged();
     onClose();
   }
@@ -290,29 +293,6 @@ function ConnectDrawer({
             </label>
           ))}
 
-          {def.id === "shopify" && (
-            <div className="space-y-3 rounded-lg border border-line bg-bg p-3 text-xs">
-              <div className="text-zinc-300">Se aparecer "shop_not_permitted", autorize pelo botão abaixo</div>
-              <ol className="list-decimal space-y-1 pl-4 text-muted">
-                <li>Preencha o domínio, o Client ID e o Client secret e clique em Conectar (pode dar erro, tudo bem).</li>
-                <li>
-                  No Dev Dashboard → seu app → Versions → nova versão, coloque em <b>App URL</b> o endereço deste site e
-                  em <b>Allowed redirection URL(s)</b>:
-                  <code className="mt-1 block break-all text-accent">{shopifyCallback}</code>
-                  Depois clique em Release.
-                </li>
-                <li>Clique em Autorizar na Shopify e aprove na tela da loja.</li>
-              </ol>
-              {conn?.credentials.clientId ? (
-                <a href="/api/shopify/install" className="btn-primary inline-flex">
-                  Autorizar na Shopify
-                </a>
-              ) : (
-                <span className="block text-faint">O botão aparece depois que você salvar o Client ID.</span>
-              )}
-            </div>
-          )}
-
           {def.id === "wio" && (
             <div className="rounded-lg border border-line bg-bg p-3 text-xs">
               <div className="text-zinc-300">URL de webhook (se a Wiio oferecer webhooks)</div>
@@ -329,9 +309,9 @@ function ConnectDrawer({
 
           <div className="flex flex-wrap gap-2 pt-2">
             <button type="submit" disabled={busy} className="btn-primary">
-              {busy ? "Testando…" : conn ? "Salvar e testar" : "Conectar"}
+              {busy ? "Testando…" : savedId ? "Salvar e testar" : "Conectar"}
             </button>
-            {conn && (
+            {savedId && (
               <button type="button" disabled={busy} onClick={retest} className="btn-ghost">
                 Testar de novo
               </button>
@@ -341,12 +321,33 @@ function ConnectDrawer({
                 Ver ferramentas
               </button>
             )}
-            {conn && (
+            {savedId && (
               <button type="button" onClick={remove} className="btn ml-auto text-bad hover:bg-bad/10">
                 Desconectar
               </button>
             )}
           </div>
+
+          {def.id === "shopify" && (
+            <div className="space-y-3 rounded-lg border border-accent/30 bg-accent/5 p-4 text-xs">
+              <div className="text-sm font-medium text-zinc-100">Autorizar na Shopify</div>
+              {savedId && values.clientId ? (
+                <>
+                  <p className="text-muted">
+                    Antes de clicar, confira no Dev Dashboard → seu app → <b>Versions</b> se a versão ativa tem em{" "}
+                    <b>Allowed redirection URL(s)</b> exatamente:
+                  </p>
+                  <code className="block break-all rounded bg-bg px-2 py-1.5 text-accent">{shopifyCallback}</code>
+                  <a href="/api/shopify/install" className="btn-primary inline-flex">
+                    Autorizar na Shopify →
+                  </a>
+                  <p className="text-faint">Você vai para a tela da loja, aprova o app e volta para cá já conectado.</p>
+                </>
+              ) : (
+                <p className="text-muted">Preencha o domínio, o Client ID e o Client secret e clique em Conectar. O botão aparece logo aqui.</p>
+              )}
+            </div>
+          )}
         </form>
 
         {tools && (

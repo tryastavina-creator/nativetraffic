@@ -37,7 +37,7 @@ async function accessToken(c: Credentials): Promise<string> {
   ).catch((e: Error) => {
     if (/shop_not_permitted/.test(e.message)) {
       throw new Error(
-        "Falta autorizar: o app e a loja estão em organizações diferentes. Clique em \"Autorizar na Shopify\" logo abaixo.",
+        "Falta um passo: clique no botão verde \"Autorizar na Shopify\" logo abaixo e aprove o app na tela da loja.",
       );
     }
     throw e;
