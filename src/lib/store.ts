@@ -41,6 +41,36 @@ type FileShape = {
   /** Keyed by order number ("#1031"). */
   supplierCosts: Record<string, SupplierCost>;
   supplierImports: SupplierImport[];
+  /** Library of AI-generated creative variants (metadata; image bytes live in the asset store). */
+  variants: CreativeVariant[];
+};
+
+/** Where a variant came from: the ad it was generated from. */
+export type VariantSource = {
+  platform: "taboola" | "revcontent";
+  accountId: string;
+  campaignId: string;
+  campaignName: string;
+  itemId: string;
+  title: string;
+  imageUrl: string;
+  url: string;
+  /** Brand name shown on the original ad (Revcontent requires one). */
+  brand?: string;
+};
+
+export type CreativeVariant = {
+  id: string;
+  createdAt: string;
+  source: VariantSource;
+  assetId: string;
+  headline: string;
+  model: string;
+  mode: string;
+  style: string;
+  prompt: string;
+  status: "new" | "published" | "archived";
+  published?: { platform: string; itemId: string; at: string; status: string }[];
 };
 
 const DEFAULT_SETTINGS: Settings = {
@@ -121,6 +151,7 @@ async function read(): Promise<FileShape> {
     settings: { ...DEFAULT_SETTINGS, ...parsed.settings },
     supplierCosts: parsed.supplierCosts ?? {},
     supplierImports: parsed.supplierImports ?? [],
+    variants: parsed.variants ?? [],
   };
 }
 
@@ -240,6 +271,87 @@ export function redact(conn: Connection): Connection {
     credentials[k] = secret && v ? `••••${v.slice(-4)}` : v;
   }
   return { ...conn, credentials };
+}
+
+// ------------------------------- creative variants -------------------------------
+
+export async function listVariants(): Promise<CreativeVariant[]> {
+  return (await read()).variants;
+}
+
+export async function saveVariants(add: CreativeVariant[]) {
+  const data = await read();
+  data.variants = [...add, ...data.variants].slice(0, 2000);
+  await write(data);
+}
+
+export async function updateVariant(id: string, patch: Partial<CreativeVariant>): Promise<CreativeVariant | undefined> {
+  const data = await read();
+  const v = data.variants.find((x) => x.id === id);
+  if (!v) return undefined;
+  Object.assign(v, patch);
+  await write(data);
+  return v;
+}
+
+export async function deleteVariant(id: string) {
+  const data = await read();
+  const v = data.variants.find((x) => x.id === id);
+  data.variants = data.variants.filter((x) => x.id !== id);
+  await write(data);
+  if (v) await deleteAsset(v.assetId);
+}
+
+// ------------------------------------ assets ------------------------------------
+// Image bytes (generated variants). Ids are 32 random hex chars, so a public URL
+// (needed by Revcontent, which fetches the image itself) can't be guessed.
+
+const ASSET_DIR = path.join(process.cwd(), "data", "assets");
+
+export async function putAsset(bytes: Buffer, mime: string): Promise<string> {
+  const id = randomBytes(16).toString("hex");
+  const p = db();
+  if (p) {
+    const sql = await p;
+    await sql`CREATE TABLE IF NOT EXISTS assets (id text PRIMARY KEY, mime text NOT NULL, data bytea NOT NULL, created_at timestamptz NOT NULL DEFAULT now())`;
+    await sql`INSERT INTO assets (id, mime, data) VALUES (${id}, ${mime}, ${bytes})`;
+    return id;
+  }
+  await fs.mkdir(ASSET_DIR, { recursive: true });
+  await fs.writeFile(path.join(ASSET_DIR, `${id}`), bytes);
+  await fs.writeFile(path.join(ASSET_DIR, `${id}.mime`), mime);
+  return id;
+}
+
+export async function getAsset(id: string): Promise<{ bytes: Buffer; mime: string } | null> {
+  if (!/^[a-f0-9]{32}$/.test(id)) return null;
+  const p = db();
+  if (p) {
+    const sql = await p;
+    await sql`CREATE TABLE IF NOT EXISTS assets (id text PRIMARY KEY, mime text NOT NULL, data bytea NOT NULL, created_at timestamptz NOT NULL DEFAULT now())`;
+    const rows = await sql<{ mime: string; data: Buffer }[]>`SELECT mime, data FROM assets WHERE id = ${id}`;
+    return rows[0] ? { bytes: Buffer.from(rows[0].data), mime: rows[0].mime } : null;
+  }
+  try {
+    return {
+      bytes: await fs.readFile(path.join(ASSET_DIR, id)),
+      mime: await fs.readFile(path.join(ASSET_DIR, `${id}.mime`), "utf8"),
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function deleteAsset(id: string) {
+  if (!/^[a-f0-9]{32}$/.test(id)) return;
+  const p = db();
+  if (p) {
+    const sql = await p;
+    await sql`DELETE FROM assets WHERE id = ${id}`.catch(() => {});
+    return;
+  }
+  await fs.unlink(path.join(ASSET_DIR, id)).catch(() => {});
+  await fs.unlink(path.join(ASSET_DIR, `${id}.mime`)).catch(() => {});
 }
 
 /** Append an incoming webhook event (keeps the last 5000). */

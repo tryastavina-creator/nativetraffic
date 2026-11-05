@@ -229,10 +229,10 @@ const mgid: Connector = {
 /* --------------------------------- Meta Ads --------------------------------- */
 /* -------------------------------- Revcontent -------------------------------- */
 // Official spec: https://api.revcontent.io/docs/stats/api_data.json
-const RC = "https://api.revcontent.io";
+export const RC = "https://api.revcontent.io";
 const rcTokens = new Map<string, { token: string; expires: number }>();
 
-async function revcontentToken(c: Credentials) {
+export async function revcontentToken(c: Credentials) {
   const cached = rcTokens.get(c.clientId);
   if (cached && cached.expires > Date.now()) return cached.token;
   const r = await http<{ access_token: string; expires_in?: number }>(`${RC}/oauth/token`, {
@@ -251,7 +251,7 @@ async function revcontentToken(c: Credentials) {
   return r.access_token;
 }
 
-async function rcGet<T>(c: Credentials, path: string, params: Record<string, string> = {}) {
+export async function rcGet<T>(c: Credentials, path: string, params: Record<string, string> = {}) {
   const qs = new URLSearchParams(params);
   return http<{ success: boolean; data: T }>(`${RC}${path}${qs.size ? `?${qs}` : ""}`, {
     headers: { Authorization: `Bearer ${await revcontentToken(c)}`, "Content-Type": "application/json" },
