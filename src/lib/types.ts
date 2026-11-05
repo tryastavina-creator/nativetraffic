@@ -46,6 +46,8 @@ export type SpendRow = {
   impressions?: number;
   conversions?: number;
   revenue?: number;
+  /** InitiateCheckout count (RedTrack). */
+  ic?: number;
 };
 
 export type OrderLine = { product: string; quantity: number; price: number; unitCost: number };

@@ -231,6 +231,44 @@ export default function Dashboard() {
           />
         </div>
 
+        {k && ordersOk && k.checkoutSource && (
+          <div className="mt-3 grid gap-3 lg:grid-cols-[1fr_1fr_2fr]">
+            <Kpi
+              small
+              label="Checkouts iniciados"
+              value={int(k.checkouts)}
+              hint={
+                k.checkoutSource === "shopify"
+                  ? "Sessões que chegaram ao checkout (Shopify)"
+                  : k.checkoutSource === "redtrack"
+                    ? "InitiateCheckout do RedTrack"
+                    : "Checkouts com contato preenchido (Shopify)"
+              }
+              change={ch(k.checkouts, p?.checkouts)}
+            />
+            <Kpi
+              small
+              label="Conversão do checkout"
+              value={pct(k.checkoutConv)}
+              hint="Compras ÷ checkouts iniciados"
+              tone={k.checkoutConv < 20 ? "warn" : "good"}
+              change={ch(k.checkoutConv, p?.checkoutConv)}
+              points
+            />
+            {m?.funnel ? (
+              <FunnelCard f={m.funnel} />
+            ) : (
+              <div className="card card-pad text-xs text-muted">
+                {k.rtCheckouts > 0 && k.checkoutSource !== "redtrack" && <div>RedTrack: {int(k.rtCheckouts)} InitiateCheckout no período.</div>}
+                <div className="mt-1 text-faint">
+                  O funil completo (sessões → carrinho → checkout → compra) aparece quando a Shopify for autorizada de novo com a
+                  permissão de relatórios.
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {m && ordersOk && m.untracked.length > 0 && <UntrackedSales m={m} cur={cur} />}
 
         {m && ordersOk && m.upsell.front && <UpsellFunnel m={m} cur={cur} />}
@@ -438,6 +476,37 @@ export default function Dashboard() {
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* --------------------------------- funnel --------------------------------- */
+
+function FunnelCard({ f }: { f: NonNullable<Metrics["funnel"]> }) {
+  // Checkout is compared with sessions (links may go straight to checkout, skipping the cart);
+  // purchase is compared with checkout.
+  const steps = [
+    { label: "Sessões", v: f.sessions, base: 0, of: "" },
+    { label: "Carrinho", v: f.carts, base: f.sessions, of: "das sessões" },
+    { label: "Checkout", v: f.checkouts, base: f.sessions, of: "das sessões" },
+    { label: "Compra", v: f.completed, base: f.checkouts, of: "dos checkouts" },
+  ];
+  return (
+    <div className="card card-pad">
+      <div className="label mb-3">Funil da loja (Shopify)</div>
+      <div className="grid grid-cols-4 gap-2">
+        {steps.map((s, i) => (
+          <div key={s.label}>
+            <div className="text-[11px] text-faint">{s.label}</div>
+            <div className="text-lg font-semibold">{int(s.v)}</div>
+            {i > 0 && (
+              <div className={`text-[11px] ${i === 3 && s.base && s.v / s.base < 0.2 ? "text-warn" : "text-muted"}`}>
+                {s.base ? pct((s.v / s.base) * 100) : "—"} {s.of}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

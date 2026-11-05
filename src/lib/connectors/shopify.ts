@@ -213,3 +213,69 @@ async function fetchOrdersLive(c: Credentials, range: DateRange): Promise<Order[
   }
   return out;
 }
+
+export type FunnelDay = { date: string; sessions: number; carts: number; checkouts: number; completed: number };
+export type Funnel = {
+  /** analytics = Shopify reports (sessions that reached checkout); contato = abandoned checkouts with contact info. */
+  source: "analytics" | "contato";
+  days: FunnelDay[];
+};
+
+/**
+ * Store funnel per day. Uses ShopifyQL (sessions → cart → checkout → purchase) when the app has
+ * read_reports; otherwise counts checkouts where the buyer left contact info (abandoned, not
+ * recovered) — the caller adds the orders to get checkouts started.
+ */
+export async function fetchFunnel(c: Credentials, range: DateRange): Promise<Funnel> {
+  const key = hashKey("shopify-funnel", c.shop, c.clientId ?? "", c.accessToken ?? "", range);
+  return (await cached(key, () => fetchFunnelLive(c, range))).value;
+}
+
+async function fetchFunnelLive(c: Credentials, range: DateRange): Promise<Funnel> {
+  try {
+    const q = `FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout TIMESERIES day SINCE ${range.from} UNTIL ${range.to}`;
+    const d = await gql<{
+      shopifyqlQuery: { parseErrors: string[]; tableData: { rows: Record<string, string>[] } | null } | null;
+    }>(c, `query($q: String!) { shopifyqlQuery(query: $q) { parseErrors tableData { rows } } }`, { q });
+    const t = d.shopifyqlQuery;
+    if (t && !t.parseErrors.length && t.tableData) {
+      return {
+        source: "analytics",
+        days: t.tableData.rows.map((r) => ({
+          date: String(r.day ?? "").slice(0, 10),
+          sessions: num(r.sessions),
+          carts: num(r.sessions_with_cart_additions),
+          checkouts: num(r.sessions_that_reached_checkout),
+          completed: num(r.sessions_that_completed_checkout),
+        })),
+      };
+    }
+  } catch {
+    // No read_reports scope yet (or reports unavailable): fall back below.
+  }
+
+  const { shop } = await gql<{ shop: { ianaTimezone: string } }>(c, `{ shop { ianaTimezone } }`);
+  const tz = shop.ianaTimezone || "UTC";
+  const byDay = new Map<string, number>();
+  let after: string | null = null;
+  for (let page = 0; page < 20; page++) {
+    const d: {
+      abandonedCheckouts: { pageInfo: { hasNextPage: boolean; endCursor: string }; nodes: { createdAt: string; completedAt: string | null }[] };
+    } = await gql(
+      c,
+      `query($q: String!, $after: String) { abandonedCheckouts(first: 100, after: $after, query: $q, sortKey: CREATED_AT) { pageInfo { hasNextPage endCursor } nodes { createdAt completedAt } } }`,
+      { q: `created_at:>=${range.from} created_at:<=${range.to}T23:59:59`, after },
+    );
+    for (const n of d.abandonedCheckouts.nodes) {
+      if (n.completedAt) continue; // recovered → already an order
+      const day = localDay(n.createdAt, tz);
+      if (day >= range.from && day <= range.to) byDay.set(day, (byDay.get(day) ?? 0) + 1);
+    }
+    if (!d.abandonedCheckouts.pageInfo.hasNextPage) break;
+    after = d.abandonedCheckouts.pageInfo.endCursor;
+  }
+  return {
+    source: "contato",
+    days: [...byDay.entries()].map(([date, n]) => ({ date, sessions: 0, carts: 0, checkouts: n, completed: 0 })),
+  };
+}

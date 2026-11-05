@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { PLATFORM_COLOR, int, money, pct } from "@/components/format";
+import { BIDS, buildRtName, buildSourceName, DEVICES, SOURCE_NAME } from "@/lib/naming";
 import type { TrafficReport, TrafficRow } from "@/lib/traffic";
 
 const PRESETS = [
@@ -31,6 +32,7 @@ export default function Trafego() {
   const [loading, setLoading] = useState(true);
   const [platform, setPlatform] = useState("all");
   const [view, setView] = useState<"api" | "redtrack">("api");
+  const [showNaming, setShowNaming] = useState(false);
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "spend", dir: -1 });
 
   const [reload, setReload] = useState(0);
@@ -159,12 +161,16 @@ export default function Trafego() {
               Campanhas do RedTrack
             </button>
           </div>
+          <button className="btn-ghost py-1.5 text-xs" onClick={() => setShowNaming((v) => !v)}>
+            {showNaming ? "Fechar gerador de nomes" : "Gerador de nomes"}
+          </button>
           <span className="text-[11px] text-faint">
             {view === "api"
               ? "Cada linha é uma campanha real da Taboola, Revcontent… com as vendas atribuídas a ela."
               : "Cada linha é uma campanha do RedTrack, com o gasto das campanhas da fonte ligadas a ela."}
           </span>
         </div>
+        {showNaming && <NamingGenerator />}
         <div className="mt-3 flex flex-wrap gap-1">
           {["all", ...platforms].map((p) => (
             <button key={p} onClick={() => setPlatform(p)} className={`chip border border-line ${platform === p ? "chip-on" : ""}`}>
@@ -181,8 +187,8 @@ export default function Trafego() {
                 <Th k="spend">Gasto</Th>
                 <Th k="clicks">Cliques</Th>
                 <Th>CPC</Th>
-                {showIc && <Th>IC</Th>}
-                {showIc && <Th>IC %</Th>}
+                {showIc && <Th>Checkouts</Th>}
+                {showIc && <Th>Conv. checkout</Th>}
                 <Th k="sales">Vendas</Th>
                 <Th k="upsells">Upsells</Th>
                 <Th>Conv. %</Th>
@@ -215,17 +221,11 @@ export default function Trafego() {
           </table>
         </div>
         <p className="mt-3 text-[11px] text-faint">
-          Gasto vem da API da fonte quando ela está conectada (senão, do RedTrack). Vendas e upsells vêm da Shopify pelo
-          código da campanha. CPA real = gasto ÷ vendas. Lucro real = receita − custo Wiio − taxas − reembolsos − gasto. O
-          RedTrack conta 1 compra por venda e mais 1 por upsell.
+          Gasto vem da API da fonte quando ela está conectada (senão, do RedTrack). Vendas e upsells vêm da Shopify. Campanhas
+          ligam sozinhas pela nomenclatura: RedTrack &quot;PRODUTO FONTE PAÍS&quot; e fonte &quot;PRODUTO DEVICE LANCE PAÍS DATA&quot;.
+          CPA real = gasto ÷ vendas. Lucro real = receita − custo Wiio − taxas − reembolsos − gasto. Checkouts = InitiateCheckout
+          do RedTrack. O RedTrack conta 1 compra por venda e mais 1 por upsell.
           {!!data?.hidden && ` ${data.hidden} campanha(s) sem gasto e sem venda ocultas.`}
-          {!showIc && (
-            <>
-              {" "}
-              Para ver o IC (InitiateCheckout), informe em <Link href="/settings" className="text-info hover:underline">Configurações</Link> qual tipo
-              de conversão do RedTrack é o InitiateCheckout.
-            </>
-          )}
         </p>
       </div>
     </div>
@@ -257,10 +257,15 @@ function Row({
         </div>
         <div className="space-x-2 pl-4 text-[11px] text-faint">
           <span>{r.label}</span>
+          {!r.namingOk && (
+            <span className="text-faint" title="RedTrack: PRODUTO FONTE PAÍS · Fonte: PRODUTO DEVICE LANCE PAÍS DATA">
+              · nome fora do padrão
+            </span>
+          )}
           {r.attribution && r.attribution !== "sem-ligacao" && (
             <span className={r.attribution === "conversoes" || r.attribution === "cliques" ? "text-warn" : ""}>
               {r.attribution === "exata"
-                ? `vendas da campanha ${r.linkedBy === "manual" ? "(ligada manualmente)" : r.linkedBy === "link" ? "(ligada pelo link do RedTrack)" : "(ligada pelo código)"}`
+                ? `vendas da campanha ${r.linkedBy === "manual" ? "(ligada manualmente)" : r.linkedBy === "link" ? "(ligada pelo link do RedTrack)" : r.linkedBy === "padrao" ? "(ligada pela nomenclatura)" : "(ligada pelo código)"}`
                 : r.attribution === "conversoes"
                   ? "vendas divididas pelas conversões da fonte (estimado)"
                   : r.attribution === "cliques"
@@ -277,7 +282,7 @@ function Row({
           )}
           {!r.attribution && r.linkedBy && r.sourceNames.length > 0 && (
             <span title={r.sourceNames.join(" · ")}>
-              {r.linkedBy === "link" ? "ligada pelo link do RedTrack" : r.linkedBy === "manual" ? "ligada manualmente" : "ligada pelo código"}
+              {r.linkedBy === "link" ? "ligada pelo link do RedTrack" : r.linkedBy === "manual" ? "ligada manualmente" : r.linkedBy === "padrao" ? "ligada pela nomenclatura" : "ligada pelo código"}
               {r.linkedBy === "manual" && (
                 <button className="ml-1 text-info hover:underline" onClick={() => r.sourceKeys.forEach((k) => onLink(k, null))}>
                   desfazer
@@ -321,8 +326,15 @@ function Row({
       </td>
       <td className="text-right">{int(r.clicks)}</td>
       <td className="text-right text-muted">{r.clicks && r.spend ? money(r.cpc, cur, 3) : "—"}</td>
-      {showIc && <td className="text-right">{r.ic === null ? "—" : int(r.ic)}</td>}
-      {showIc && <td className="text-right text-muted">{r.icRate === null ? "—" : pct(r.icRate)}</td>}
+      {showIc && (
+        <td className="text-right">
+          {r.ic === null ? "—" : int(r.ic)}
+          {r.icRate !== null && r.ic ? <div className="text-[10px] text-faint">{pct(r.icRate)} dos cliques</div> : null}
+        </td>
+      )}
+      {showIc && (
+        <td className={`text-right ${r.ic && r.sales / r.ic < 0.2 ? "text-warn" : "text-muted"}`}>{r.ic ? pct((r.sales / r.ic) * 100) : "—"}</td>
+      )}
       <td className="text-right font-medium">{int(r.sales)}</td>
       <td className="text-right">
         {int(r.upsells)}
@@ -345,6 +357,80 @@ function Tile({ label, value, tone, hint }: { label: string; value: string; tone
       <div className="label">{label}</div>
       <div className={`mt-2 text-xl font-semibold ${c}`}>{value}</div>
       {hint && <div className="mt-1 text-[11px] text-faint">{hint}</div>}
+    </div>
+  );
+}
+
+function NamingGenerator() {
+  const [product, setProduct] = useState("OMNIPRO");
+  const [source, setSource] = useState("taboola");
+  const [country, setCountry] = useState("US");
+  const [device, setDevice] = useState("DESKTOP");
+  const [bid, setBid] = useState<string>("MAXCONV");
+  const [copied, setCopied] = useState("");
+  const rt = buildRtName(product, source, country);
+  const src = buildSourceName(product, device, bid, country);
+  const copy = async (t: string) => {
+    try {
+      await navigator.clipboard.writeText(t);
+      setCopied(t);
+      setTimeout(() => setCopied(""), 1500);
+    } catch {}
+  };
+  const sel = "input w-auto py-1.5 text-xs";
+  return (
+    <div className="card card-pad mt-3 space-y-3 text-xs">
+      <div className="flex flex-wrap items-end gap-2">
+        <label className="block">
+          <span className="mb-1 block text-faint">Produto</span>
+          <input id="nm-product" className={sel} value={product} onChange={(e) => setProduct(e.target.value.toUpperCase())} />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-faint">Fonte</span>
+          <select id="nm-source" className={sel} value={source} onChange={(e) => setSource(e.target.value)}>
+            {Object.entries(SOURCE_NAME).map(([id, n]) => (
+              <option key={id} value={id}>
+                {n}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-faint">País</span>
+          <input id="nm-country" className={`${sel} w-16`} maxLength={2} value={country} onChange={(e) => setCountry(e.target.value.toUpperCase())} />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-faint">Device</span>
+          <select id="nm-device" className={sel} value={device} onChange={(e) => setDevice(e.target.value)}>
+            {Object.keys(DEVICES).map((d) => (
+              <option key={d}>{d}</option>
+            ))}
+          </select>
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-faint">Lance</span>
+          <select id="nm-bid" className={sel} value={bid} onChange={(e) => setBid(e.target.value)}>
+            {BIDS.map((b) => (
+              <option key={b}>{b}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+      {[
+        ["Campanha no RedTrack", rt],
+        ["Campanha na fonte", src],
+      ].map(([label, name]) => (
+        <div key={label} className="flex flex-wrap items-center gap-2">
+          <span className="w-44 text-faint">{label}</span>
+          <code className="rounded bg-bg px-2 py-1 text-accent">{name}</code>
+          <button className="text-info hover:underline" onClick={() => copy(name)}>
+            {copied === name ? "copiado ✓" : "copiar"}
+          </button>
+        </div>
+      ))}
+      <p className="text-faint">
+        Mesmo produto, fonte e país nos dois nomes: a campanha da fonte liga sozinha à do RedTrack e às vendas da Shopify.
+      </p>
     </div>
   );
 }

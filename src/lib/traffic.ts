@@ -5,6 +5,7 @@ import { redtrack, TRAFFIC_CONNECTORS } from "./connectors";
 import type { RtCampaign } from "./connectors/redtrack";
 import type { SourceCampaign } from "./connectors/traffic";
 import { computeMetrics, type CampaignRow } from "./metrics";
+import { buildRtName, namingKey, parseRtName, parseSourceName } from "./naming";
 import { PLATFORM_LABEL, platformFromUtm } from "./registry";
 import { getSettings, listConnections, uniqueAccounts } from "./store";
 import type { DateRange } from "./types";
@@ -42,8 +43,10 @@ export type TrafficRow = {
   missingCost: boolean;
   /** false = RedTrack spend shown for a platform with API but not linked yet (kept out of totals). */
   counted: boolean;
+  /** Name follows the convention (RedTrack: PRODUTO FONTE PAÍS · source: PRODUTO DEVICE LANCE PAÍS DATA). */
+  namingOk: boolean;
   key: string;
-  linkedBy?: "manual" | "link" | "nome";
+  linkedBy?: "manual" | "link" | "padrao" | "nome";
   sourceNames: string[];
   sourceKeys: string[];
   linkSource?: string;
@@ -63,7 +66,7 @@ export type TrafficReport = {
   apiRows: TrafficRow[];
   totals: Omit<
     TrafficRow,
-    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution"
+    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "namingOk" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution"
   >;
   linkTargets: { key: string; name: string; platform: string }[];
   unlinked: number;
@@ -159,12 +162,18 @@ type Bucket = {
   name: string;
   platform: string;
   srcs: Src[];
-  linkedBy?: "manual" | "link" | "nome";
+  linkedBy?: "manual" | "link" | "padrao" | "nome";
   /** How each source campaign got linked (key "platform:id"). */
-  srcLinkedBy: Map<string, "manual" | "link" | "nome">;
+  srcLinkedBy: Map<string, "manual" | "link" | "padrao" | "nome">;
   rt?: RtCampaign;
   shop?: CampaignRow;
 };
+
+/** RedTrack / utm_campaign key: the naming convention (PRODUTO FONTE PAÍS) when it parses, else code/name. */
+function rtKey(name: string): string {
+  const p = parseRtName(name);
+  return p ? namingKey(p.product, p.source, p.country) : campaignKey(name);
+}
 
 /** Finds the RedTrack campaign whose id appears in one of the ad landing URLs (RedTrack tracking links). */
 function rtFromUrls(urls: string[] | undefined, rtById: Map<string, string>): string | undefined {
@@ -201,7 +210,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
   for (const r of rts ?? []) {
     const fromSource = platformFromUtm(r.source);
     const p = !["other", "untracked"].includes(fromSource) ? fromSource : platformFromUtm(r.name);
-    const key = campaignKey(r.name);
+    const key = rtKey(r.name);
     const b = bucket(key, r.name, p);
     b.rt = r;
     if (b.platform === "other" || b.platform === "untracked") b.platform = p;
@@ -210,7 +219,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
   // 2) Shopify sales by utm_campaign.
   for (const c of m.campaigns) {
     if (c.campaign === "(sem campanha)") continue;
-    const b = bucket(campaignKey(c.campaign), c.campaign, c.platform);
+    const b = bucket(rtKey(c.campaign), c.campaign, c.platform);
     b.shop = c;
     b.name = c.campaign;
   }
@@ -221,12 +230,16 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     const sk = `${s.platform}:${s.id}`;
     const manual = links[sk];
     const byUrl = rtFromUrls(s.urls, rtById);
+    // Naming convention: "PRODUTO DEVICE LANCE PAÍS DATA" on platform X → RedTrack "PRODUTO X PAÍS".
+    const ps = parseSourceName(s.name);
+    const byNaming = ps ? namingKey(ps.product, s.platform, ps.country) : undefined;
+    if (byNaming && !buckets.has(byNaming)) bucket(byNaming, buildRtName(ps!.product, s.platform, ps!.country), s.platform);
     const byName = buckets.has(campaignKey(s.name)) ? campaignKey(s.name) : undefined;
-    const target = manual ?? byUrl ?? byName;
+    const target = manual ?? byUrl ?? byNaming ?? byName;
     if (target) {
       const b = buckets.get(target) ?? bucket(target, s.name, s.platform);
       b.srcs.push(s);
-      const how = manual ? "manual" : byUrl ? "link" : "nome";
+      const how = manual ? "manual" : byUrl ? "link" : byNaming ? "padrao" : "nome";
       b.srcLinkedBy.set(sk, how);
       b.linkedBy ??= how;
     } else {
@@ -287,6 +300,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       matched: !!s,
       missingCost,
       counted,
+      namingOk: !!parseRtName(b.name) && b.srcs.every((x) => !!parseSourceName(x.name)),
       key: b.key,
       linkedBy: b.linkedBy,
       sourceNames: b.srcs.map((x) => x.name),
@@ -331,8 +345,8 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       spend: o.spend,
       clicks: o.clicks,
       cpc: div(o.spend, o.clicks),
-      ic: null,
-      icRate: null,
+      ic: o.rt && o.rt.ic !== null ? Math.round(o.rt.ic * o.share) : null,
+      icRate: o.rt && o.rt.ic !== null ? div(o.rt.ic * o.share, o.clicks) * 100 : null,
       sales: o.sales,
       upsells: o.upsells,
       upsellRate: div(o.upsells, o.sales) * 100,
@@ -349,6 +363,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       matched: !!s,
       missingCost: !o.spend && (o.clicks >= 100 || o.sales > 0),
       counted: o.counted,
+      namingOk: o.attribution === "redtrack" ? !!parseRtName(o.name) : !!parseSourceName(o.name),
       key: o.key,
       linkedBy: o.linkedBy,
       sourceNames: [],
@@ -462,7 +477,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     linkTargets,
     unlinked: rows.filter((r) => r.needsLink).length,
     hasRedtrack: rts !== null,
-    icConfigured: !!settings.redtrackIcField,
+    icConfigured: !!settings.redtrackIcField || rows.some((r) => r.ic !== null && r.ic > 0),
     hidden,
     warnings: [...new Set(warnings)],
   };

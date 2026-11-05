@@ -4,6 +4,7 @@ import { TRAFFIC_CONNECTORS, redtrack, shopify } from "./connectors";
 import { eachDay } from "./connectors/http";
 import { cached, friendlyError, hashKey } from "./cache";
 import { demoData } from "./demo";
+import type { Funnel } from "./connectors/shopify";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
 import { getSettings, getSupplierCosts, listConnections, uniqueAccounts, type Settings, type SupplierCost } from "./store";
 import type { DateRange, Order, SpendRow } from "./types";
@@ -64,8 +65,16 @@ export type Metrics = {
     cogsEstimated: boolean;
     /** How each order's supplier cost was found: exact (imported export), table, or % estimate. */
     costCoverage: { exact: number; table: number; estimated: number };
+    /** Checkouts started and checkout → purchase conversion, from the best source available. */
+    checkouts: number;
+    checkoutConv: number;
+    checkoutSource: "shopify" | "redtrack" | "shopify-contato" | "";
+    /** InitiateCheckout counted by RedTrack (all tracked traffic). */
+    rtCheckouts: number;
   };
-  daily: { date: string; revenue: number; investment: number; profit: number; margin: number }[];
+  daily: { date: string; revenue: number; investment: number; profit: number; margin: number; checkouts: number }[];
+  /** Store funnel from Shopify reports (null when not available). */
+  funnel: { sessions: number; carts: number; checkouts: number; completed: number } | null;
   platforms: PlatformRow[];
   campaigns: CampaignRow[];
   products: { product: string; units: number; orders: number; revenue: number; cost: number; aov: number }[];
@@ -137,6 +146,11 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
   let ordersSource = "demo";
 
   const snap = await snapshotOrders(range);
+  let funnel: Funnel | null = null;
+  if (process.env.NT_SNAPSHOT_FUNNEL) {
+    const f = JSON.parse(await fs.readFile(process.env.NT_SNAPSHOT_FUNNEL, "utf8")) as Funnel;
+    funnel = { ...f, days: f.days.filter((d) => d.date >= range.from && d.date <= range.to) };
+  }
   const shop = byProvider.get("shopify");
   if (snap) {
     orders = snap;
@@ -145,6 +159,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     try {
       orders = await shopify.fetchOrders(shop.credentials, range);
       ordersSource = "shopify";
+      funnel = await shopify.fetchFunnel(shop.credentials, range).catch(() => null);
     } catch (e) {
       warnings.push(friendlyError("Shopify", e));
     }
@@ -159,7 +174,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     rt = { id: "redtrack", provider: "redtrack", credentials: {}, createdAt: "" };
   } else if (rt) {
     try {
-      rtRows = await redtrack.fetchSpend(rt.credentials, range);
+      rtRows = await redtrack.fetchSpend(rt.credentials, range, settings.redtrackIcField || undefined);
     } catch (e) {
       warnings.push(friendlyError("RedTrack", e));
     }
@@ -211,6 +226,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     rtRows: demo ? [] : rtRows,
     hasRedtrack: !!rt,
     supplierCosts: demo ? {} : supplierCosts,
+    funnel: demo ? null : funnel,
     settings,
     warnings,
     dataSources: {
@@ -230,6 +246,7 @@ export function aggregate(input: {
   rtRows?: SpendRow[];
   hasRedtrack?: boolean;
   supplierCosts?: Record<string, SupplierCost>;
+  funnel?: Funnel | null;
   settings: Settings;
   warnings: string[];
   dataSources: Metrics["dataSources"];
@@ -283,7 +300,11 @@ export function aggregate(input: {
     const rev = sum(os.map((o) => o.total));
     const inv = sum(spend.filter((s) => s.date === date).map((s) => s.spend));
     const profit = rev - sum(os.map((o) => o.refunded + costFor(o) + feeFor(o))) - inv;
-    return { date, revenue: rev, investment: inv, profit, margin: div(profit, rev) * 100 };
+    const fd = input.funnel?.days.find((d) => d.date === date);
+    const rtIc = sum(rtRows.filter((r) => r.date === date).map((r) => r.ic ?? 0));
+    const checkouts =
+      input.funnel?.source === "analytics" ? (fd?.checkouts ?? 0) : rtIc || (input.funnel ? (fd?.checkouts ?? 0) + os.length : 0);
+    return { date, revenue: rev, investment: inv, profit, margin: div(profit, rev) * 100, checkouts };
   });
 
   const platformIds = new Set<string>([...spend.map((s) => s.platform), ...orders.map(platformOf)]);
@@ -445,7 +466,36 @@ export function aggregate(input: {
         .sort((a, b) => b.shopifyOrders - a.shopifyOrders)
     : [];
 
+  // ---------- checkout ----------
+  const rtCheckouts = sum(rtRows.map((r) => r.ic ?? 0));
+  const f = input.funnel;
+  const checkoutKpis = (() => {
+    if (f?.source === "analytics") {
+      const checkouts = sum(f.days.map((d) => d.checkouts));
+      const completed = sum(f.days.map((d) => d.completed));
+      return { checkouts, checkoutConv: div(completed, checkouts) * 100, checkoutSource: "shopify" as const, rtCheckouts };
+    }
+    if (rtCheckouts > 0) {
+      return { checkouts: rtCheckouts, checkoutConv: div(trackedSales, rtCheckouts) * 100, checkoutSource: "redtrack" as const, rtCheckouts };
+    }
+    if (f) {
+      const checkouts = sum(f.days.map((d) => d.checkouts)) + orders.length;
+      return { checkouts, checkoutConv: div(orders.length, checkouts) * 100, checkoutSource: "shopify-contato" as const, rtCheckouts };
+    }
+    return { checkouts: 0, checkoutConv: 0, checkoutSource: "" as const, rtCheckouts };
+  })();
+  const funnelOut =
+    f?.source === "analytics"
+      ? {
+          sessions: sum(f.days.map((d) => d.sessions)),
+          carts: sum(f.days.map((d) => d.carts)),
+          checkouts: sum(f.days.map((d) => d.checkouts)),
+          completed: sum(f.days.map((d) => d.completed)),
+        }
+      : null;
+
   return {
+    funnel: funnelOut,
     untracked,
     upsell,
     reconciliation,
@@ -486,6 +536,7 @@ export function aggregate(input: {
       upsellRate: div(orders.filter((o) => o.hasUpsell).length, orders.length) * 100,
       cogsEstimated,
       costCoverage,
+      ...checkoutKpis,
     },
     daily,
     platforms,

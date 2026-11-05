@@ -5,7 +5,7 @@ import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
  * unlike the client-credentials grant, which Shopify only allows when the app
  * and the store belong to the same organization (otherwise: shop_not_permitted).
  */
-export const SHOPIFY_SCOPES = "read_orders,read_products,read_inventory";
+export const SHOPIFY_SCOPES = "read_orders,read_products,read_inventory,read_reports";
 export const STATE_COOKIE = "nt_shopify_state";
 
 export function normalizeShop(shop: string) {

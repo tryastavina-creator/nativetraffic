@@ -24,7 +24,26 @@ function chooseKey(rows: Row[], keys: string[]): string | undefined {
 }
 
 /** Which RedTrack field fed each metric in the last report (shown on the Conferência page). */
-export let lastMapping: { conversions?: string; revenue?: string; cost?: string } = {};
+export let lastMapping: { conversions?: string; revenue?: string; cost?: string; ic?: string; icAuto?: boolean } = {};
+
+/**
+ * InitiateCheckout is one of the custom conversion types (convtype1…40). RedTrack's API doesn't say
+ * which, so we read it from the funnel: checkout is the step right before purchase, i.e. the custom type
+ * with the smallest volume that is still above front-end purchases and below clicks.
+ * An explicit field in Configurações always wins.
+ */
+function detectIc(rows: Row[], purchaseKey: string | undefined, override?: string): { key?: string; auto: boolean } {
+  if (override) return { key: override, auto: false };
+  const total = (k: string) => rows.reduce((a, r) => a + num(r[k]), 0);
+  const purchases = purchaseKey ? total(purchaseKey) : 0;
+  const clicks = total("clicks");
+  const candidates = [...new Set(rows.flatMap((r) => Object.keys(r)))]
+    .filter((k) => /^convtype\d+$/.test(k))
+    .map((k) => ({ k, t: total(k) }))
+    .filter((x) => x.t > purchases && (!clicks || x.t <= clicks))
+    .sort((a, b) => a.t - b.t);
+  return { key: candidates[0]?.k, auto: true };
+}
 
 export async function test(c: Credentials): Promise<TestResult> {
   const today = new Date().toISOString().slice(0, 10);
@@ -50,14 +69,15 @@ async function reportLive(c: Credentials, range: DateRange, group: string): Prom
 }
 
 /** Cost/revenue per day and traffic source as seen by RedTrack. */
-export async function fetchSpend(c: Credentials, range: DateRange): Promise<SpendRow[]> {
+export async function fetchSpend(c: Credentials, range: DateRange, icField?: string): Promise<SpendRow[]> {
   const rows = await report(c, range, "date,source");
   const k = {
     cost: chooseKey(rows, COST),
     revenue: chooseKey(rows, REVENUE),
     conversions: chooseKey(rows, CONVERSIONS),
   };
-  if (rows.length) lastMapping = k;
+  const ic = detectIc(rows, k.conversions, icField);
+  if (rows.length) lastMapping = { ...k, ic: ic.key, icAuto: ic.auto };
   const get = (r: Row, key?: string) => (key ? num(r[key]) : 0);
   return rows.map((r) => ({
     date: (r.date ?? range.from).slice(0, 10),
@@ -67,6 +87,7 @@ export async function fetchSpend(c: Credentials, range: DateRange): Promise<Spen
     clicks: num(r.clicks),
     conversions: get(r, k.conversions),
     impressions: num(r.impressions),
+    ic: ic.key ? num(r[ic.key]) : undefined,
   }));
 }
 
@@ -92,6 +113,7 @@ export async function fetchCampaigns(c: Credentials, range: DateRange, icField?:
     conversions: chooseKey(rows, CONVERSIONS),
   };
   const nameKey = NAME.find((n) => rows.some((r) => typeof r[n] === "string" && r[n]));
+  const icKey = detectIc(rows, k.conversions, icField).key;
   return rows.map((r) => ({
     id: String(r.campaign_id ?? r.id ?? r[nameKey ?? "campaign"] ?? ""),
     name: String((nameKey && r[nameKey]) || r.campaign_id || "(sem nome)"),
@@ -100,6 +122,6 @@ export async function fetchCampaigns(c: Credentials, range: DateRange, icField?:
     clicks: num(r.clicks),
     conversions: k.conversions ? num(r[k.conversions]) : 0,
     revenue: k.revenue ? num(r[k.revenue]) : 0,
-    ic: icField ? num(r[icField]) : null,
+    ic: icKey ? num(r[icKey]) : null,
   }));
 }
