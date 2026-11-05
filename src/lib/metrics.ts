@@ -62,7 +62,8 @@ export type Metrics = {
   untracked: { name: string; date: string; total: number; campaign: string; referrer: string }[];
   upsell: UpsellStats;
   reconciliation: ReconRow[];
-  redtrackFields: string[];
+  reconDaily: { date: string; shopifyOrders: number; rtConversions: number; shopifyRevenue: number; rtRevenue: number }[];
+  redtrackMapping: { conversions?: string; revenue?: string; cost?: string };
 };
 
 export type UpsellStats = {
@@ -401,7 +402,20 @@ export function aggregate(input: {
     untracked,
     upsell,
     reconciliation,
-    redtrackFields: input.hasRedtrack ? redtrack.lastFields : [],
+    reconDaily: input.hasRedtrack
+      ? eachDay(range.from, range.to).map((date) => {
+          const os = orders.filter((o) => o.date === date && isTracked(platformOf(o)));
+          const rs = rtRows.filter((r) => r.date === date);
+          return {
+            date,
+            shopifyOrders: os.length,
+            rtConversions: sum(rs.map((r) => r.conversions ?? 0)),
+            shopifyRevenue: sum(os.map((o) => o.total)),
+            rtRevenue: sum(rs.map((r) => r.revenue ?? 0)),
+          };
+        })
+      : [],
+    redtrackMapping: input.hasRedtrack ? redtrack.lastMapping : {},
     range,
     currency: settings.currency,
     dataSources: input.dataSources,

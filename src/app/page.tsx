@@ -14,7 +14,7 @@ import {
   YAxis,
 } from "recharts";
 import { PLATFORM_COLOR, compact, int, money, pct } from "@/components/format";
-import type { Metrics, ReconRow } from "@/lib/metrics";
+import type { Metrics } from "@/lib/metrics";
 
 type Payload = Metrics & { previous: Metrics | null };
 
@@ -235,7 +235,7 @@ export default function Dashboard() {
           />
         </div>
 
-        {m && ordersOk && <DataHealth m={m} cur={cur} />}
+        {m && ordersOk && m.untracked.length > 0 && <UntrackedSales m={m} cur={cur} />}
 
         {m && ordersOk && m.upsell.front && <UpsellFunnel m={m} cur={cur} />}
 
@@ -437,118 +437,38 @@ export default function Dashboard() {
   );
 }
 
-/* ------------------------------ data health ------------------------------ */
+/* ---------------------------- sales without UTM --------------------------- */
 
-const STATUS: Record<ReconRow["status"], { label: string; cls: string }> = {
-  ok: { label: "Bate", cls: "bg-accent/10 text-accent" },
-  warn: { label: "Diferença", cls: "bg-warn/10 text-warn" },
-  bad: { label: "Não bate", cls: "bg-bad/10 text-bad" },
-  nodata: { label: "Sem dados", cls: "bg-panel2 text-muted" },
-  nosales: { label: "Gasto sem venda", cls: "bg-bad/10 text-bad" },
-};
-
-function DataHealth({ m, cur }: { m: Payload; cur: string }) {
-  const recon = m.reconciliation;
-  const rtSilent = recon.length > 0 && recon.every((r) => r.rtConversions === 0) && recon.some((r) => r.shopifyOrders > 0);
-  const problems =
-    recon.filter((r) => r.status === "bad" || r.status === "warn" || r.status === "nosales").length + (m.untracked.length ? 1 : 0);
-
+function UntrackedSales({ m, cur }: { m: Payload; cur: string }) {
   return (
     <>
       <h2 className="h-section flex items-center gap-2">
-        Conferência dos dados
-        <span className={`rounded px-1.5 py-0.5 text-[11px] font-normal ${problems ? "bg-warn/10 text-warn" : "bg-accent/10 text-accent"}`}>
-          {problems ? `${problems} ponto(s) para olhar` : "tudo certo"}
-        </span>
+        Vendas sem UTM
+        <span className="rounded bg-warn/10 px-1.5 py-0.5 text-[11px] font-normal text-warn">{m.untracked.length}</span>
       </h2>
-      <div className="grid gap-3 xl:grid-cols-[1fr_1fr]">
-        <div className="card overflow-x-auto">
-          <div className="flex items-center justify-between px-4 pt-4">
-            <div className="label">Shopify × RedTrack (vendas por plataforma)</div>
-          </div>
-          {recon.length === 0 ? (
-            <p className="px-4 pb-4 pt-2 text-sm text-muted">Conecte o RedTrack para conferir as vendas de cada plataforma.</p>
-          ) : (
-            <table className="tbl mt-2 w-full min-w-[520px]">
-              <thead>
-                <tr>
-                  <th>Plataforma</th>
-                  <th className="text-right">Shopify</th>
-                  <th className="text-right">RedTrack</th>
-                  <th className="text-right">Diferença</th>
-                  <th className="text-right">Receita Shopify</th>
-                  <th className="text-right">Receita RT</th>
-                  <th className="text-right">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recon.map((r) => (
-                  <tr key={r.platform}>
-                    <td>{r.label}</td>
-                    <td className="text-right">{int(r.shopifyOrders)}</td>
-                    <td className="text-right">{int(r.rtConversions)}</td>
-                    <td className="text-right text-muted">
-                      {r.rtConversions - r.shopifyOrders > 0 ? "+" : ""}
-                      {int(r.rtConversions - r.shopifyOrders)}
-                    </td>
-                    <td className="text-right">{money(r.shopifyRevenue, cur)}</td>
-                    <td className="text-right text-muted">{money(r.rtRevenue, cur)}</td>
-                    <td className="text-right">
-                      <span className={`whitespace-nowrap rounded px-1.5 py-0.5 text-[11px] ${STATUS[r.status].cls}`}>{STATUS[r.status].label}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-          {rtSilent && (
-            <p className="m-4 rounded-lg border border-warn/30 bg-warn/5 px-3 py-2 text-xs text-warn">
-              O RedTrack não devolveu nenhuma conversão no período. Confira se o postback de venda da Shopify está ativo no
-              RedTrack. Campos recebidos: {m.redtrackFields.join(", ") || "nenhum"}.
-            </p>
-          )}
-          {recon.length > 0 && (
-            <p className="px-4 pb-4 text-[11px] text-faint">
-              &quot;Bate&quot; = diferença de até 1 venda ou 10%. Diferenças grandes costumam ser postback faltando, UTM errada no
-              anúncio ou venda atribuída a outra campanha.
-            </p>
-          )}
-        </div>
-
-        <div className="card overflow-x-auto">
-          <div className="flex items-center justify-between px-4 pt-4">
-            <div className="label">Vendas sem UTM</div>
-            <span className={`rounded px-1.5 py-0.5 text-[11px] ${m.untracked.length ? "bg-warn/10 text-warn" : "bg-accent/10 text-accent"}`}>
-              {m.untracked.length ? `${m.untracked.length} venda(s)` : "nenhuma"}
-            </span>
-          </div>
-          {m.untracked.length === 0 ? (
-            <p className="px-4 pb-4 pt-2 text-sm text-muted">Todas as vendas do período vieram com campanha identificada.</p>
-          ) : (
-            <table className="tbl mt-2 w-full min-w-[480px]">
-              <thead>
-                <tr>
-                  <th>Pedido</th>
-                  <th>Data</th>
-                  <th className="text-right">Valor</th>
-                  <th>Origem</th>
-                </tr>
-              </thead>
-              <tbody>
-                {m.untracked.slice(0, 30).map((o) => (
-                  <tr key={o.name}>
-                    <td className="font-medium">{o.name}</td>
-                    <td className="text-muted">{fmtDate(o.date)}</td>
-                    <td className="text-right">{money(o.total, cur, 2)}</td>
-                    <td className="max-w-[220px] truncate text-muted" title={o.campaign || o.referrer}>
-                      {o.campaign ? `campanha "${o.campaign}"` : o.referrer || "direto / sem referência"}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
+      <div className="card overflow-x-auto">
+        <table className="tbl w-full min-w-[480px]">
+          <thead>
+            <tr>
+              <th>Pedido</th>
+              <th>Data</th>
+              <th className="text-right">Valor</th>
+              <th>Origem</th>
+            </tr>
+          </thead>
+          <tbody>
+            {m.untracked.slice(0, 30).map((o) => (
+              <tr key={o.name}>
+                <td className="font-medium">{o.name}</td>
+                <td className="text-muted">{fmtDate(o.date)}</td>
+                <td className="text-right">{money(o.total, cur, 2)}</td>
+                <td className="max-w-[320px] truncate text-muted" title={o.campaign || o.referrer}>
+                  {o.campaign ? `campanha "${o.campaign}"` : o.referrer || "direto / sem referência"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
