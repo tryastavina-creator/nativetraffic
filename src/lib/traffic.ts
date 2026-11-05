@@ -6,7 +6,7 @@ import type { RtCampaign } from "./connectors/redtrack";
 import type { SourceCampaign } from "./connectors/traffic";
 import { computeMetrics, type CampaignRow } from "./metrics";
 import { PLATFORM_LABEL, platformFromUtm } from "./registry";
-import { getSettings, listConnections } from "./store";
+import { getSettings, listConnections, uniqueAccounts } from "./store";
 import type { DateRange } from "./types";
 
 export type TrafficRow = {
@@ -121,7 +121,7 @@ async function sourceCampaigns(range: DateRange, warnings: string[]) {
       platform: string;
     })[];
   }
-  const conns = (await listConnections()).filter((c) => TRAFFIC_CONNECTORS[c.provider]?.campaigns);
+  const conns = uniqueAccounts(await listConnections()).filter((c) => TRAFFIC_CONNECTORS[c.provider]?.campaigns);
   const out: (SourceCampaign & { platform: string })[] = [];
   await Promise.all(
     conns.map(async (c) => {
@@ -137,7 +137,19 @@ async function sourceCampaigns(range: DateRange, warnings: string[]) {
       }
     }),
   );
-  return out;
+  const merged = new Map<string, SourceCampaign & { platform: string }>();
+  for (const x of out) {
+    const k = `${x.platform}:${x.id}`;
+    const prev = merged.get(k);
+    if (!prev) merged.set(k, { ...x, urls: [...(x.urls ?? [])] });
+    else {
+      prev.spend += x.spend;
+      prev.clicks += x.clicks;
+      prev.conversions += x.conversions;
+      prev.urls = [...new Set([...(prev.urls ?? []), ...(x.urls ?? [])])];
+    }
+  }
+  return [...merged.values()];
 }
 
 type Src = SourceCampaign & { platform: string };

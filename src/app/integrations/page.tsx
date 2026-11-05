@@ -42,6 +42,17 @@ export default function Integrations() {
 
   const byId = useMemo(() => new Map(data?.connections.map((c) => [c.id, c]) ?? []), [data]);
   const mcpConns = data?.connections.filter((c) => c.provider === "mcp") ?? [];
+  // Same account connected twice (same provider + same masked credentials): counted once, but confusing.
+  const duplicates = useMemo(() => {
+    const seen = new Map<string, Connection>();
+    const out: Connection[] = [];
+    for (const c of data?.connections ?? []) {
+      const k = `${c.provider}|${JSON.stringify(Object.entries(c.credentials).sort())}`;
+      if (seen.has(k)) out.push(c);
+      else seen.set(k, c);
+    }
+    return out;
+  }, [data]);
   const connectedCount = data?.connections.length ?? 0;
 
   return (
@@ -55,6 +66,12 @@ export default function Integrations() {
         </p>
       </header>
 
+      {duplicates.length > 0 && (
+        <div className="mt-5 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
+          A mesma conta está conectada mais de uma vez: {duplicates.map((d) => d.label ?? d.provider).join(", ")}. O gasto é
+          contado uma vez só, mas você pode abrir o card repetido e clicar em Desconectar.
+        </div>
+      )}
       {notice && (
         <div
           className={`mt-5 rounded-xl border px-4 py-3 text-sm ${

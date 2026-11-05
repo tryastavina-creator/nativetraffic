@@ -218,6 +218,20 @@ export async function saveSettings(patch: Partial<Settings>) {
   await write(data);
 }
 
+/**
+ * Connections of the same provider with identical credentials (the same account added twice) collapse
+ * into one, so spend is never counted twice.
+ */
+export function uniqueAccounts(conns: Connection[]): Connection[] {
+  const seen = new Set<string>();
+  return conns.filter((c) => {
+    const k = `${c.provider}|${JSON.stringify(Object.entries(c.credentials).sort())}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
 /** Mask secrets before sending connections to the browser. */
 export function redact(conn: Connection): Connection {
   const credentials: Record<string, string> = {};

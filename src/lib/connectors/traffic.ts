@@ -303,17 +303,23 @@ const revcontent: Connector & {
         { campaign: String(x.boost_id), url: String(x.utm_codes ?? "") },
       ]),
     );
-    return perf.data
-      .filter((x) => x.id)
-      .map((x) => ({
-        id: String(x.id),
-        urls: [...(urls.get(String(x.id)) ?? [])],
-        name: byId.get(String(x.id))?.name ?? `Campanha ${x.id}`,
-        status: byId.get(String(x.id))?.enabled ?? "",
-        spend: num(x.cost),
-        clicks: num(x.clicks),
-        conversions: num(x.conversions),
-      }));
+    // all_boosts=yes returns one row per campaign *per day*: add the days up.
+    const agg = new Map<string, { spend: number; clicks: number; conversions: number }>();
+    for (const x of perf.data) {
+      if (!x.id) continue;
+      const a = agg.get(String(x.id)) ?? { spend: 0, clicks: 0, conversions: 0 };
+      a.spend += num(x.cost);
+      a.clicks += num(x.clicks);
+      a.conversions += num(x.conversions);
+      agg.set(String(x.id), a);
+    }
+    return [...agg.entries()].map(([id, a]) => ({
+      id,
+      urls: [...(urls.get(id) ?? [])],
+      name: byId.get(id)?.name ?? `Campanha ${id}`,
+      status: byId.get(id)?.enabled ?? "",
+      ...a,
+    }));
   },
 };
 

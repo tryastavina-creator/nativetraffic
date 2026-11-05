@@ -5,7 +5,7 @@ import { eachDay } from "./connectors/http";
 import { cached, friendlyError, hashKey } from "./cache";
 import { demoData } from "./demo";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
-import { getSettings, getSupplierCosts, listConnections, type Settings, type SupplierCost } from "./store";
+import { getSettings, getSupplierCosts, listConnections, uniqueAccounts, type Settings, type SupplierCost } from "./store";
 import type { DateRange, Order, SpendRow } from "./types";
 
 export type PlatformRow = {
@@ -169,7 +169,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     if (rtRows.length) spendSources.push("redtrack");
   } else {
     // Every connected account of every traffic source (e.g. two Taboola accounts).
-    const jobs = connections
+    const jobs = uniqueAccounts(connections)
       .filter((c) => TRAFFIC_CONNECTORS[c.provider])
       .map(async (c) => {
         try {
