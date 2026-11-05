@@ -52,6 +52,8 @@ export type OrderLine = { product: string; quantity: number; price: number; unit
 
 export type Order = {
   id: string;
+  /** Human order number, e.g. "#1031". */
+  name?: string;
   date: string;
   createdAt: string;
   total: number;

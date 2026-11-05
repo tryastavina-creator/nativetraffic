@@ -58,6 +58,37 @@ export type Metrics = {
   platforms: PlatformRow[];
   campaigns: CampaignRow[];
   products: { product: string; units: number; orders: number; revenue: number; cost: number; aov: number }[];
+  /** Orders whose traffic source could not be identified. */
+  untracked: { name: string; date: string; total: number; campaign: string; referrer: string }[];
+  upsell: UpsellStats;
+  reconciliation: ReconRow[];
+  redtrackFields: string[];
+};
+
+export type UpsellStats = {
+  /** Product most orders start with (the front-end offer). */
+  front: string;
+  frontOrders: number;
+  /** Orders with at least one extra product, and with a post-purchase tag (Zipify, AfterSell…). */
+  anyRate: number;
+  postPurchaseRate: number;
+  items: { product: string; orders: number; rate: number; revenue: number; share: number }[];
+  /** How many orders took 0, 1, 2… extra products. */
+  depth: { extras: number; orders: number }[];
+};
+
+export type ReconRow = {
+  platform: string;
+  label: string;
+  shopifyOrders: number;
+  shopifyRevenue: number;
+  rtConversions: number;
+  rtRevenue: number;
+  rtSpend: number;
+  /** (RedTrack − Shopify) ÷ Shopify, in % of orders. */
+  diffPct: number;
+  /** nosales = money spent and no sale on either side. */
+  status: "ok" | "warn" | "bad" | "nodata" | "nosales";
 };
 
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
@@ -98,14 +129,23 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     }
   }
 
-  const rt = byProvider.get("redtrack");
-  if (rt && settings.spendSource === "redtrack") {
+  let rt = byProvider.get("redtrack");
+  let rtRows: SpendRow[] = [];
+  // NT_SNAPSHOT_REDTRACK: JSON SpendRow[] standing in for the RedTrack API (previews/tests).
+  if (process.env.NT_SNAPSHOT_REDTRACK) {
+    const all = JSON.parse(await fs.readFile(process.env.NT_SNAPSHOT_REDTRACK, "utf8")) as SpendRow[];
+    rtRows = all.filter((r) => r.date >= range.from && r.date <= range.to);
+    rt = { id: "redtrack", provider: "redtrack", credentials: {}, createdAt: "" };
+  } else if (rt) {
     try {
-      spend = await redtrack.fetchSpend(rt.credentials, range);
-      spendSources.push("redtrack");
+      rtRows = await redtrack.fetchSpend(rt.credentials, range);
     } catch (e) {
       warnings.push(`RedTrack: ${(e as Error).message}`);
     }
+  }
+  if (rt && settings.spendSource === "redtrack") {
+    spend = rtRows;
+    if (rtRows.length) spendSources.push("redtrack");
   } else {
     const jobs = Object.entries(TRAFFIC_CONNECTORS)
       .filter(([id]) => byProvider.has(id))
@@ -121,17 +161,12 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
       });
     spend = (await Promise.all(jobs)).flat();
     // Fall back to RedTrack cost for platforms without a direct API connection.
-    if (rt) {
-      try {
-        const rtRows = await redtrack.fetchSpend(rt.credentials, range);
-        const covered = new Set(spendSources);
-        const extra = rtRows.filter((r) => !covered.has(r.platform));
-        if (extra.length) {
-          spend.push(...extra);
-          spendSources.push("redtrack");
-        }
-      } catch (e) {
-        warnings.push(`RedTrack: ${(e as Error).message}`);
+    if (rtRows.length) {
+      const covered = new Set(spendSources);
+      const extra = rtRows.filter((r) => !covered.has(r.platform));
+      if (extra.length) {
+        spend.push(...extra);
+        spendSources.push("redtrack");
       }
     }
   }
@@ -147,6 +182,8 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     range,
     orders,
     spend,
+    rtRows: demo ? [] : rtRows,
+    hasRedtrack: !!rt,
     settings,
     warnings,
     dataSources: {
@@ -163,11 +200,14 @@ export function aggregate(input: {
   range: DateRange;
   orders: Order[];
   spend: SpendRow[];
+  rtRows?: SpendRow[];
+  hasRedtrack?: boolean;
   settings: Settings;
   warnings: string[];
   dataSources: Metrics["dataSources"];
 }): Metrics {
   const { range, orders, spend, settings } = input;
+  const rtRows = input.rtRows ?? [];
 
   const supplierCost = (product: string): number | undefined => {
     const name = product.toLowerCase();
@@ -269,7 +309,99 @@ export function aggregate(input: {
     .map(([product, p]) => ({ product, ...p, aov: div(p.revenue, p.orders) }))
     .sort((a, b) => b.revenue - a.revenue);
 
+  // ---------- sales without UTM ----------
+  const untracked = orders
+    .filter((o) => !isTracked(platformOf(o)) && platformOf(o) !== "subscription")
+    .map((o) => ({
+      name: o.name ?? o.id,
+      date: o.date,
+      total: o.total,
+      campaign: o.utmCampaign ?? "",
+      referrer: o.referrer ?? "",
+    }))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  // ---------- upsell funnel ----------
+  const firstCount = new Map<string, number>();
+  for (const o of orders) {
+    const f = o.lines[0]?.product;
+    if (f) firstCount.set(f, (firstCount.get(f) ?? 0) + 1);
+  }
+  const front = [...firstCount.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
+  const extrasOf = (o: Order) => [...new Set(o.lines.map((l) => l.product))].filter((p) => p !== front);
+  const upItems = new Map<string, { orders: number; revenue: number }>();
+  for (const o of orders) {
+    for (const p of extrasOf(o)) {
+      const it = upItems.get(p) ?? { orders: 0, revenue: 0 };
+      it.orders += 1;
+      it.revenue += sum(o.lines.filter((l) => l.product === p).map((l) => l.price * l.quantity));
+      upItems.set(p, it);
+    }
+  }
+  const depthMap = new Map<number, number>();
+  for (const o of orders) depthMap.set(extrasOf(o).length, (depthMap.get(extrasOf(o).length) ?? 0) + 1);
+  const upsell: UpsellStats = {
+    front,
+    frontOrders: orders.length,
+    anyRate: div(orders.filter((o) => extrasOf(o).length > 0).length, orders.length) * 100,
+    postPurchaseRate: div(orders.filter((o) => o.hasUpsell).length, orders.length) * 100,
+    items: [...upItems.entries()]
+      .map(([product, it]) => ({
+        product,
+        orders: it.orders,
+        rate: div(it.orders, orders.length) * 100,
+        revenue: it.revenue,
+        share: div(it.revenue, revenue) * 100,
+      }))
+      .sort((a, b) => b.orders - a.orders),
+    depth: [...depthMap.entries()].map(([extras, n]) => ({ extras, orders: n })).sort((a, b) => a.extras - b.extras),
+  };
+
+  // ---------- Shopify × RedTrack ----------
+  const reconIds = new Set<string>([
+    ...rtRows.filter((r) => r.conversions || r.revenue || r.spend).map((r) => r.platform),
+    ...orders.map(platformOf).filter(isTracked),
+  ]);
+  const reconciliation: ReconRow[] = input.hasRedtrack
+    ? [...reconIds]
+        .map((platform) => {
+          const os = orders.filter((o) => platformOf(o) === platform);
+          const rs = rtRows.filter((r) => r.platform === platform);
+          const shopifyOrders = os.length;
+          const rtConversions = sum(rs.map((r) => r.conversions ?? 0));
+          const diffPct = shopifyOrders ? ((rtConversions - shopifyOrders) / shopifyOrders) * 100 : rtConversions ? 100 : 0;
+          const gap = Math.abs(rtConversions - shopifyOrders);
+          const rtSpend = sum(rs.map((r) => r.spend));
+          const status: ReconRow["status"] =
+            !shopifyOrders && !rtConversions
+              ? rtSpend > 0
+                ? "nosales"
+                : "nodata"
+              : gap <= 1 || Math.abs(diffPct) <= 10
+                ? "ok"
+                : Math.abs(diffPct) <= 25
+                  ? "warn"
+                  : "bad";
+          return {
+            platform,
+            label: PLATFORM_LABEL[platform] ?? platform,
+            shopifyOrders,
+            shopifyRevenue: sum(os.map((o) => o.total)),
+            rtConversions,
+            rtRevenue: sum(rs.map((r) => r.revenue ?? 0)),
+            rtSpend,
+            diffPct,
+            status,
+          };
+        })
+        .sort((a, b) => b.shopifyOrders - a.shopifyOrders)
+    : [];
+
   return {
+    untracked,
+    upsell,
+    reconciliation,
+    redtrackFields: input.hasRedtrack ? redtrack.lastFields : [],
     range,
     currency: settings.currency,
     dataSources: input.dataSources,
@@ -297,6 +429,17 @@ export function aggregate(input: {
     campaigns,
     products,
   };
+}
+
+/** Same-length period right before `range`. */
+export function previousRange(range: DateRange): DateRange {
+  const d = (s: string) => new Date(`${s}T00:00:00Z`);
+  const days = Math.round((d(range.to).getTime() - d(range.from).getTime()) / 86_400_000) + 1;
+  const to = d(range.from);
+  to.setUTCDate(to.getUTCDate() - 1);
+  const from = new Date(to);
+  from.setUTCDate(from.getUTCDate() - (days - 1));
+  return { from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) };
 }
 
 /** Today's date in the given timezone (defaults to the store timezone env or UTC). */

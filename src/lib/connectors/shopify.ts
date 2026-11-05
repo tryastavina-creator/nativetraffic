@@ -109,6 +109,7 @@ query Orders($q: String!, $after: String) {
     pageInfo { hasNextPage endCursor }
     nodes {
       id
+      name
       createdAt
       totalPriceSet { shopMoney { amount } }
       totalRefundedSet { shopMoney { amount } }
@@ -129,6 +130,7 @@ query Orders($q: String!, $after: String) {
 
 type RawOrder = {
   id: string;
+  name: string;
   createdAt: string;
   totalPriceSet: { shopMoney: { amount: string } };
   totalRefundedSet: { shopMoney: { amount: string } };
@@ -181,6 +183,7 @@ export async function fetchOrders(c: Credentials, range: DateRange): Promise<Ord
       if (date < range.from || date > range.to) continue;
       out.push({
         id: o.id,
+        name: o.name,
         createdAt: o.createdAt,
         date,
         total: num(o.totalPriceSet.shopMoney.amount),

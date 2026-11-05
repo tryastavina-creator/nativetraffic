@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -14,7 +14,9 @@ import {
   YAxis,
 } from "recharts";
 import { PLATFORM_COLOR, compact, int, money, pct } from "@/components/format";
-import type { Metrics } from "@/lib/metrics";
+import type { Metrics, ReconRow } from "@/lib/metrics";
+
+type Payload = Metrics & { previous: Metrics | null };
 
 const PRESETS = [
   ["today", "Hoje"],
@@ -23,35 +25,111 @@ const PRESETS = [
   ["14d", "14 dias"],
   ["30d", "30 dias"],
   ["month", "Este mês"],
+  ["custom", "Personalizado"],
 ] as const;
+
+const COMPARE = [
+  ["none", "Sem comparação"],
+  ["previous", "Período anterior"],
+  ["custom", "Outro período"],
+] as const;
+
+const fmtDate = (d: string) => (d ? `${d.slice(8, 10)}/${d.slice(5, 7)}/${d.slice(2, 4)}` : "");
+const today = () => new Date().toISOString().slice(0, 10);
+const daysAgo = (n: number) => {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString().slice(0, 10);
+};
+
+function loadPrefs() {
+  try {
+    return JSON.parse(localStorage.getItem("nt_dash") ?? "{}") as Record<string, string>;
+  } catch {
+    return {};
+  }
+}
 
 export default function Dashboard() {
   const [preset, setPreset] = useState("14d");
-  const [m, setM] = useState<Metrics | null>(null);
+  const [from, setFrom] = useState(daysAgo(13));
+  const [to, setTo] = useState(today());
+  const [compare, setCompare] = useState("previous");
+  const [cfrom, setCfrom] = useState(daysAgo(27));
+  const [cto, setCto] = useState(daysAgo(14));
+  const [applied, setApplied] = useState(0); // bump to refetch custom ranges
+  const [m, setM] = useState<Payload | null>(null);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+
+  // Remember the viewer's last choice.
+  useEffect(() => {
+    const p = loadPrefs();
+    if (p.preset) setPreset(p.preset);
+    if (p.compare) setCompare(p.compare);
+    if (p.from) setFrom(p.from);
+    if (p.to) setTo(p.to);
+    if (p.cfrom) setCfrom(p.cfrom);
+    if (p.cto) setCto(p.cto);
+  }, []);
+
+  const query = useMemo(() => {
+    const q = new URLSearchParams({ preset, compare });
+    if (preset === "custom") {
+      q.set("from", from);
+      q.set("to", to);
+    }
+    if (compare === "custom") {
+      q.set("cfrom", cfrom);
+      q.set("cto", cto);
+    }
+    return q.toString();
+    // custom dates only apply when the user clicks "Aplicar"
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preset, compare, applied]);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/metrics?preset=${preset}`)
-      .then((r) => r.json())
-      .then(setM)
+    setError("");
+    try {
+      localStorage.setItem("nt_dash", JSON.stringify({ preset, compare, from, to, cfrom, cto }));
+    } catch {}
+    fetch(`/api/metrics?${query}`)
+      .then(async (r) => {
+        const j = await r.json();
+        if (!r.ok) throw new Error(j.error ?? "Erro ao carregar");
+        setM(j);
+      })
+      .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [preset]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
 
   const cur = m?.currency ?? "USD";
   const k = m?.kpis;
+  const p = m?.previous?.kpis;
   const spendOk = m?.dataSources.hasSpend ?? true;
   const ordersOk = m?.dataSources.hasOrders ?? true;
+  const full = spendOk && ordersOk;
   const noOrders = "Conecte a Shopify";
   const noSpend = "Aguardando custo de tráfego";
 
+  /** % change vs comparison period. */
+  const ch = (a?: number, b?: number) => (a === undefined || b === undefined ? undefined : { cur: a, prev: b });
+
   return (
     <div className="mx-auto max-w-[1400px]">
-      <header className="flex flex-wrap items-end justify-between gap-4">
+      <header className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
           <p className="mt-1 text-sm text-muted">
-            {m ? `${m.range.from} → ${m.range.to}` : "Carregando…"}
+            {m ? `${fmtDate(m.range.from)} → ${fmtDate(m.range.to)}` : "Carregando…"}
+            {m?.previous && (
+              <span className="text-faint">
+                {" "}
+                · comparando com {fmtDate(m.previous.range.from)} → {fmtDate(m.previous.range.to)}
+              </span>
+            )}
             {m && (
               <span className="ml-2">
                 · pedidos: {m.dataSources.orders ? <Source name={m.dataSources.orders} /> : "—"} · custo:{" "}
@@ -60,45 +138,63 @@ export default function Dashboard() {
             )}
           </p>
         </div>
-        <div className="flex flex-wrap gap-1 rounded-lg border border-line bg-panel p-1">
-          {PRESETS.map(([id, label]) => (
-            <button key={id} onClick={() => setPreset(id)} className={`chip ${preset === id ? "chip-on" : ""}`}>
-              {label}
-            </button>
-          ))}
+
+        <div className="flex flex-col gap-2 xl:items-end">
+          <div className="flex flex-wrap gap-1 rounded-lg border border-line bg-panel p-1">
+            {PRESETS.map(([id, label]) => (
+              <button key={id} onClick={() => setPreset(id)} className={`chip ${preset === id ? "chip-on" : ""}`}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            {preset === "custom" && (
+              <span className="flex items-center gap-1.5">
+                <input id="d-from" type="date" className="input w-auto py-1.5" value={from} max={to} onChange={(e) => setFrom(e.target.value)} />
+                <span className="text-faint">até</span>
+                <input id="d-to" type="date" className="input w-auto py-1.5" value={to} min={from} onChange={(e) => setTo(e.target.value)} />
+              </span>
+            )}
+            <select id="d-compare" className="input w-auto py-1.5" value={compare} onChange={(e) => setCompare(e.target.value)}>
+              {COMPARE.map(([id, label]) => (
+                <option key={id} value={id}>
+                  {label}
+                </option>
+              ))}
+            </select>
+            {compare === "custom" && (
+              <span className="flex items-center gap-1.5">
+                <input id="c-from" type="date" className="input w-auto py-1.5" value={cfrom} max={cto} onChange={(e) => setCfrom(e.target.value)} />
+                <span className="text-faint">até</span>
+                <input id="c-to" type="date" className="input w-auto py-1.5" value={cto} min={cfrom} onChange={(e) => setCto(e.target.value)} />
+              </span>
+            )}
+            {(preset === "custom" || compare === "custom") && (
+              <button className="btn-primary py-1.5" onClick={() => setApplied((n) => n + 1)}>
+                Aplicar
+              </button>
+            )}
+          </div>
         </div>
       </header>
 
+      {error && <div className="mt-5 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">{error}</div>}
+
       {m?.dataSources.demo && (
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm">
-          <span className="text-warn">
-            Modo demonstração — os números abaixo são fictícios até você conectar a Shopify e as fontes de tráfego.
-          </span>
-          <Link href="/integrations" className="btn-ghost">
-            Conectar integrações →
-          </Link>
-        </div>
+        <Banner tone="warn" action={{ href: "/integrations", label: "Conectar integrações →" }}>
+          Modo demonstração — os números abaixo são fictícios até você conectar a Shopify e as fontes de tráfego.
+        </Banner>
       )}
       {m && !m.dataSources.demo && !ordersOk && (
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm">
-          <span className="text-warn">
-            O custo de tráfego já está chegando. Falta conectar a Shopify para ver receita, ROAS, CPA e lucro.
-          </span>
-          <Link href="/integrations" className="btn-ghost">
-            Conectar Shopify →
-          </Link>
-        </div>
+        <Banner tone="warn" action={{ href: "/integrations", label: "Conectar Shopify →" }}>
+          O custo de tráfego já está chegando. Falta conectar a Shopify para ver receita, ROAS, CPA e lucro.
+        </Banner>
       )}
       {m && !m.dataSources.demo && !spendOk && (
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-info/30 bg-info/5 px-4 py-3 text-sm">
-          <span className="text-info">
-            Receita vem da Shopify. Investimento, ROAS, CPA e lucro aparecem quando o RedTrack ou as fontes de tráfego
-            forem conectados.
-          </span>
-          <Link href="/integrations" className="btn-ghost">
-            Conectar RedTrack →
-          </Link>
-        </div>
+        <Banner tone="info" action={{ href: "/integrations", label: "Conectar RedTrack →" }}>
+          Receita vem da Shopify. Investimento, ROAS, CPA e lucro aparecem quando o RedTrack ou as fontes de tráfego forem
+          conectados.
+        </Banner>
       )}
       {m?.warnings.map((w) => (
         <div key={w} className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">
@@ -109,31 +205,39 @@ export default function Dashboard() {
       <div className={`transition-opacity ${loading ? "opacity-50" : ""}`}>
         <h2 className="h-section">Resultado operacional</h2>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
-          <Kpi label="Investimento" value={k && spendOk ? money(k.investment, cur) : "—"} hint={spendOk ? "Gasto total em ads" : noSpend} />
-          <Kpi label="Receita" value={k && ordersOk ? money(k.revenue, cur) : "—"} hint={ordersOk ? "Receita bruta Shopify" : noOrders} tone="good" />
+          <Kpi label="Investimento" value={k && spendOk ? money(k.investment, cur) : "—"} hint={spendOk ? "Gasto total em ads" : noSpend} change={spendOk ? ch(k?.investment, p?.investment) : undefined} invert />
+          <Kpi label="Receita" value={k && ordersOk ? money(k.revenue, cur) : "—"} hint={ordersOk ? "Receita bruta Shopify" : noOrders} tone="good" change={ordersOk ? ch(k?.revenue, p?.revenue) : undefined} />
           <Kpi
             label={spendOk ? "Lucro líquido" : "Lucro antes dos ads"}
             value={k && ordersOk ? money(k.netProfit, cur) : "—"}
             hint={spendOk ? "Receita − ads − produto − frete − taxas − reembolsos" : "Receita − produto − frete − taxas − reembolsos"}
             tone={k && k.netProfit < 0 ? "bad" : "good"}
+            change={ordersOk ? ch(k?.netProfit, p?.netProfit) : undefined}
           />
-          <Kpi label="Margem" value={k && spendOk && ordersOk ? pct(k.margin) : "—"} hint={spendOk ? "Lucro ÷ receita" : noSpend} tone={k && k.margin < 0 ? "bad" : "good"} />
-          <Kpi label="ROAS" value={k && spendOk && ordersOk ? `${k.roas.toFixed(2)}x` : "—"} hint={spendOk ? "Receita ÷ investimento" : noSpend} />
+          <Kpi label="Margem" value={k && full ? pct(k.margin) : "—"} hint={spendOk ? "Lucro ÷ receita" : noSpend} tone={k && k.margin < 0 ? "bad" : "good"} change={full ? ch(k?.margin, p?.margin) : undefined} points />
+          <Kpi label="ROAS" value={k && full ? `${k.roas.toFixed(2)}x` : "—"} hint={spendOk ? "Receita ÷ investimento" : noSpend} change={full ? ch(k?.roas, p?.roas) : undefined} />
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-5">
-          <Kpi small label="Vendas" value={k && ordersOk ? int(k.sales) : "—"} hint={k ? `${int(k.trackedSales)} com UTM de tráfego` : ""} />
-          <Kpi small label="Ticket médio" value={k && ordersOk ? money(k.aov, cur, 2) : "—"} hint="Valor por pedido" />
-          <Kpi small label="CPA real" value={k && spendOk && ordersOk ? money(k.cpa, cur, 2) : "—"} hint={spendOk ? "Investimento ÷ vendas rastreadas" : noSpend} tone="warn" />
-          <Kpi small label="Upsell" value={k && ordersOk ? pct(k.upsellRate) : "—"} hint="Pedidos com upsell pós-compra" tone="good" />
+          <Kpi small label="Vendas" value={k && ordersOk ? int(k.sales) : "—"} hint={k ? `${int(k.trackedSales)} com UTM de tráfego` : ""} change={ordersOk ? ch(k?.sales, p?.sales) : undefined} />
+          <Kpi small label="Ticket médio" value={k && ordersOk ? money(k.aov, cur, 2) : "—"} hint="Valor por pedido" change={ordersOk ? ch(k?.aov, p?.aov) : undefined} />
+          <Kpi small label="CPA real" value={k && full ? money(k.cpa, cur, 2) : "—"} hint={spendOk ? "Investimento ÷ vendas rastreadas" : noSpend} tone="warn" change={full ? ch(k?.cpa, p?.cpa) : undefined} invert />
+          <Kpi small label="Upsell" value={k && ordersOk && m ? pct(m.upsell.anyRate) : "—"} hint="Pedidos com algum produto extra" tone="good" change={ordersOk && m?.previous ? ch(m.upsell.anyRate, m.previous.upsell.anyRate) : undefined} points />
           <Kpi
             small
             label="Reembolsos"
             value={k ? pct(k.refundRate, 2) : "—"}
             hint={k ? money(k.refunds, cur) : ""}
             tone={k && k.refundRate > 5 ? "bad" : undefined}
+            change={ch(k?.refundRate, p?.refundRate)}
+            invert
+            points
           />
         </div>
+
+        {m && ordersOk && <DataHealth m={m} cur={cur} />}
+
+        {m && ordersOk && m.upsell.front && <UpsellFunnel m={m} cur={cur} />}
 
         <h2 className="h-section">Histórico P&amp;L</h2>
         <div className="card card-pad">
@@ -158,19 +262,9 @@ export default function Dashboard() {
                   ))}
                 </defs>
                 <CartesianGrid stroke="#1f2328" vertical={false} />
-                <XAxis
-                  dataKey="date"
-                  tickFormatter={(d: string) => d.slice(8, 10) + "/" + d.slice(5, 7)}
-                  stroke="#5c636d"
-                  fontSize={11}
-                  tickLine={false}
-                  axisLine={false}
-                />
+                <XAxis dataKey="date" tickFormatter={(d: string) => d.slice(8, 10) + "/" + d.slice(5, 7)} stroke="#5c636d" fontSize={11} tickLine={false} axisLine={false} />
                 <YAxis stroke="#5c636d" fontSize={11} tickFormatter={(v: number) => compact(v)} tickLine={false} axisLine={false} width={44} />
-                <Tooltip
-                  contentStyle={{ background: "#16191d", border: "1px solid #1f2328", borderRadius: 8, fontSize: 12 }}
-                  formatter={(v: number) => money(v, cur)}
-                />
+                <Tooltip contentStyle={{ background: "#16191d", border: "1px solid #1f2328", borderRadius: 8, fontSize: 12 }} formatter={(v: number) => money(v, cur)} />
                 <Area type="monotone" dataKey="revenue" name="Receita" stroke="#3ddc84" fill="url(#rev)" strokeWidth={2} />
                 <Area type="monotone" dataKey="investment" name="Investimento" stroke="#e5484d" fill="url(#inv)" strokeWidth={2} />
                 <Area type="monotone" dataKey="profit" name="Lucro" stroke="#5b8def" fill="url(#pro)" strokeWidth={2} />
@@ -197,22 +291,22 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {m?.platforms.map((p) => (
-                  <tr key={p.platform}>
+                {m?.platforms.map((pl) => (
+                  <tr key={pl.platform}>
                     <td>
                       <span className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[p.platform] ?? "#888" }} />
-                        {p.label}
+                        <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[pl.platform] ?? "#888" }} />
+                        {pl.label}
                       </span>
                     </td>
-                    <td className="text-right">{int(p.orders)}</td>
-                    <td className="text-right text-bad">{p.spend ? money(p.spend, cur) : "—"}</td>
-                    <td className="text-right text-accent">{money(p.revenue, cur)}</td>
-                    <td className={`text-right ${ordersOk && p.spend && p.roas < 1 ? "text-bad" : ""}`}>{p.spend && ordersOk ? `${p.roas.toFixed(2)}x` : "—"}</td>
-                    <td className="text-right text-warn">{p.spend && p.orders ? money(p.cpa, cur, 2) : "—"}</td>
-                    <td className="text-right">{p.orders ? money(p.aov, cur) : "—"}</td>
-                    <td className="text-right text-muted">{pct(p.refundRate)}</td>
-                    <td className={`text-right font-medium ${p.profit < 0 ? "text-bad" : "text-accent"}`}>{spendOk && ordersOk ? money(p.profit, cur) : "—"}</td>
+                    <td className="text-right">{int(pl.orders)}</td>
+                    <td className="text-right text-bad">{pl.spend ? money(pl.spend, cur) : "—"}</td>
+                    <td className="text-right text-accent">{money(pl.revenue, cur)}</td>
+                    <td className={`text-right ${ordersOk && pl.spend && pl.roas < 1 ? "text-bad" : ""}`}>{pl.spend && ordersOk ? `${pl.roas.toFixed(2)}x` : "—"}</td>
+                    <td className="text-right text-warn">{pl.spend && pl.orders ? money(pl.cpa, cur, 2) : "—"}</td>
+                    <td className="text-right">{pl.orders ? money(pl.aov, cur) : "—"}</td>
+                    <td className="text-right text-muted">{pct(pl.refundRate)}</td>
+                    <td className={`text-right font-medium ${pl.profit < 0 ? "text-bad" : "text-accent"}`}>{full ? money(pl.profit, cur) : "—"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -225,7 +319,7 @@ export default function Dashboard() {
               <ResponsiveContainer>
                 <PieChart>
                   <Pie
-                    data={m?.platforms.filter((p) => (spendOk ? p.spend : p.revenue) > 0) ?? []}
+                    data={m?.platforms.filter((pl) => (spendOk ? pl.spend : pl.revenue) > 0) ?? []}
                     dataKey={spendOk ? "spend" : "revenue"}
                     nameKey="label"
                     innerRadius={56}
@@ -234,8 +328,8 @@ export default function Dashboard() {
                     stroke="none"
                   >
                     {m?.platforms
-                      .filter((p) => (spendOk ? p.spend : p.revenue) > 0)
-                      .map((p) => <Cell key={p.platform} fill={PLATFORM_COLOR[p.platform] ?? "#888"} />)}
+                      .filter((pl) => (spendOk ? pl.spend : pl.revenue) > 0)
+                      .map((pl) => <Cell key={pl.platform} fill={PLATFORM_COLOR[pl.platform] ?? "#888"} />)}
                   </Pie>
                 </PieChart>
               </ResponsiveContainer>
@@ -246,13 +340,13 @@ export default function Dashboard() {
             </div>
             <ul className="mt-3 space-y-2 text-sm">
               {m?.platforms
-                .filter((p) => (spendOk ? p.spend : p.revenue) > 0)
-                .map((p) => (
-                  <li key={p.platform} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[p.platform] ?? "#888" }} />
-                    <span className="text-zinc-300">{p.label}</span>
+                .filter((pl) => (spendOk ? pl.spend : pl.revenue) > 0)
+                .map((pl) => (
+                  <li key={pl.platform} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[pl.platform] ?? "#888" }} />
+                    <span className="text-zinc-300">{pl.label}</span>
                     <span className="ml-auto text-muted">
-                      {pct(spendOk ? (p.spend / (k?.investment || 1)) * 100 : (p.revenue / (k?.revenue || 1)) * 100)}
+                      {pct(spendOk ? (pl.spend / (k?.investment || 1)) * 100 : (pl.revenue / (k?.revenue || 1)) * 100)}
                     </span>
                   </li>
                 ))}
@@ -277,7 +371,9 @@ export default function Dashboard() {
             <tbody>
               {m?.campaigns.map((c) => (
                 <tr key={c.campaign}>
-                  <td className="max-w-[280px] truncate" title={c.campaign}>{c.campaign}</td>
+                  <td className="max-w-[280px] truncate" title={c.campaign}>
+                    {c.campaign}
+                  </td>
                   <td>
                     <span className="flex items-center gap-2 text-muted">
                       <span className="h-2 w-2 rounded-full" style={{ background: PLATFORM_COLOR[c.platform] ?? "#888" }} />
@@ -288,7 +384,7 @@ export default function Dashboard() {
                   <td className="text-right text-accent">{money(c.revenue, cur)}</td>
                   <td className="text-right">{money(c.aov, cur)}</td>
                   <td className="text-right">{pct(c.upsellRate, 0)}</td>
-                  <td className="text-right text-muted">{c.lastOrder.slice(8, 10)}/{c.lastOrder.slice(5, 7)}</td>
+                  <td className="text-right text-muted">{fmtDate(c.lastOrder)}</td>
                 </tr>
               ))}
             </tbody>
@@ -305,12 +401,7 @@ export default function Dashboard() {
               cur={cur}
               sub={k ? (k.cogsEstimated ? "Estimado: cadastre o custo por produto em Configurações" : pct((k.productCost / (k.revenue || 1)) * 100) + " da receita") : ""}
             />
-            <CostRow
-              label="Frete do fornecedor"
-              value={k?.shipping}
-              cur={cur}
-              sub={k && k.shipping ? "Tabela da Wiio em Configurações" : "Configure a tabela de frete em Configurações"}
-            />
+            <CostRow label="Frete do fornecedor" value={k?.shipping} cur={cur} sub={k && k.shipping ? "Tabela da Wiio em Configurações" : "Configure a tabela de frete em Configurações"} />
             <CostRow label="Taxas de pagamento" value={k?.fees} cur={cur} sub="Configurável em Configurações" />
             <CostRow label="Reembolsos" value={k?.refunds} cur={cur} sub={k ? pct(k.refundRate, 2) + " da receita" : ""} />
           </div>
@@ -327,14 +418,14 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {m?.products.map((p) => (
-                  <tr key={p.product}>
-                    <td>{p.product}</td>
-                    <td className="text-right">{int(p.orders)}</td>
-                    <td className="text-right">{int(p.units)}</td>
-                    <td className="text-right text-accent">{money(p.revenue, cur)}</td>
-                    <td className="text-right">{money(p.aov, cur)}</td>
-                    <td className="text-right text-muted">{money(p.cost, cur)}</td>
+                {m?.products.map((pr) => (
+                  <tr key={pr.product}>
+                    <td>{pr.product}</td>
+                    <td className="text-right">{int(pr.orders)}</td>
+                    <td className="text-right">{int(pr.units)}</td>
+                    <td className="text-right text-accent">{money(pr.revenue, cur)}</td>
+                    <td className="text-right">{money(pr.aov, cur)}</td>
+                    <td className="text-right text-muted">{money(pr.cost, cur)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -346,25 +437,277 @@ export default function Dashboard() {
   );
 }
 
+/* ------------------------------ data health ------------------------------ */
+
+const STATUS: Record<ReconRow["status"], { label: string; cls: string }> = {
+  ok: { label: "Bate", cls: "bg-accent/10 text-accent" },
+  warn: { label: "Diferença", cls: "bg-warn/10 text-warn" },
+  bad: { label: "Não bate", cls: "bg-bad/10 text-bad" },
+  nodata: { label: "Sem dados", cls: "bg-panel2 text-muted" },
+  nosales: { label: "Gasto sem venda", cls: "bg-bad/10 text-bad" },
+};
+
+function DataHealth({ m, cur }: { m: Payload; cur: string }) {
+  const recon = m.reconciliation;
+  const rtSilent = recon.length > 0 && recon.every((r) => r.rtConversions === 0) && recon.some((r) => r.shopifyOrders > 0);
+  const problems =
+    recon.filter((r) => r.status === "bad" || r.status === "warn" || r.status === "nosales").length + (m.untracked.length ? 1 : 0);
+
+  return (
+    <>
+      <h2 className="h-section flex items-center gap-2">
+        Conferência dos dados
+        <span className={`rounded px-1.5 py-0.5 text-[11px] font-normal ${problems ? "bg-warn/10 text-warn" : "bg-accent/10 text-accent"}`}>
+          {problems ? `${problems} ponto(s) para olhar` : "tudo certo"}
+        </span>
+      </h2>
+      <div className="grid gap-3 xl:grid-cols-[1fr_1fr]">
+        <div className="card overflow-x-auto">
+          <div className="flex items-center justify-between px-4 pt-4">
+            <div className="label">Shopify × RedTrack (vendas por plataforma)</div>
+          </div>
+          {recon.length === 0 ? (
+            <p className="px-4 pb-4 pt-2 text-sm text-muted">Conecte o RedTrack para conferir as vendas de cada plataforma.</p>
+          ) : (
+            <table className="tbl mt-2 w-full min-w-[520px]">
+              <thead>
+                <tr>
+                  <th>Plataforma</th>
+                  <th className="text-right">Shopify</th>
+                  <th className="text-right">RedTrack</th>
+                  <th className="text-right">Diferença</th>
+                  <th className="text-right">Receita Shopify</th>
+                  <th className="text-right">Receita RT</th>
+                  <th className="text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recon.map((r) => (
+                  <tr key={r.platform}>
+                    <td>{r.label}</td>
+                    <td className="text-right">{int(r.shopifyOrders)}</td>
+                    <td className="text-right">{int(r.rtConversions)}</td>
+                    <td className="text-right text-muted">
+                      {r.rtConversions - r.shopifyOrders > 0 ? "+" : ""}
+                      {int(r.rtConversions - r.shopifyOrders)}
+                    </td>
+                    <td className="text-right">{money(r.shopifyRevenue, cur)}</td>
+                    <td className="text-right text-muted">{money(r.rtRevenue, cur)}</td>
+                    <td className="text-right">
+                      <span className={`whitespace-nowrap rounded px-1.5 py-0.5 text-[11px] ${STATUS[r.status].cls}`}>{STATUS[r.status].label}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {rtSilent && (
+            <p className="m-4 rounded-lg border border-warn/30 bg-warn/5 px-3 py-2 text-xs text-warn">
+              O RedTrack não devolveu nenhuma conversão no período. Confira se o postback de venda da Shopify está ativo no
+              RedTrack. Campos recebidos: {m.redtrackFields.join(", ") || "nenhum"}.
+            </p>
+          )}
+          {recon.length > 0 && (
+            <p className="px-4 pb-4 text-[11px] text-faint">
+              &quot;Bate&quot; = diferença de até 1 venda ou 10%. Diferenças grandes costumam ser postback faltando, UTM errada no
+              anúncio ou venda atribuída a outra campanha.
+            </p>
+          )}
+        </div>
+
+        <div className="card overflow-x-auto">
+          <div className="flex items-center justify-between px-4 pt-4">
+            <div className="label">Vendas sem UTM</div>
+            <span className={`rounded px-1.5 py-0.5 text-[11px] ${m.untracked.length ? "bg-warn/10 text-warn" : "bg-accent/10 text-accent"}`}>
+              {m.untracked.length ? `${m.untracked.length} venda(s)` : "nenhuma"}
+            </span>
+          </div>
+          {m.untracked.length === 0 ? (
+            <p className="px-4 pb-4 pt-2 text-sm text-muted">Todas as vendas do período vieram com campanha identificada.</p>
+          ) : (
+            <table className="tbl mt-2 w-full min-w-[480px]">
+              <thead>
+                <tr>
+                  <th>Pedido</th>
+                  <th>Data</th>
+                  <th className="text-right">Valor</th>
+                  <th>Origem</th>
+                </tr>
+              </thead>
+              <tbody>
+                {m.untracked.slice(0, 30).map((o) => (
+                  <tr key={o.name}>
+                    <td className="font-medium">{o.name}</td>
+                    <td className="text-muted">{fmtDate(o.date)}</td>
+                    <td className="text-right">{money(o.total, cur, 2)}</td>
+                    <td className="max-w-[220px] truncate text-muted" title={o.campaign || o.referrer}>
+                      {o.campaign ? `campanha "${o.campaign}"` : o.referrer || "direto / sem referência"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* ------------------------------ upsell funnel ----------------------------- */
+
+function UpsellFunnel({ m, cur }: { m: Payload; cur: string }) {
+  const u = m.upsell;
+  const prev = m.previous?.upsell;
+  return (
+    <>
+      <h2 className="h-section">Upsells e funil</h2>
+      <div className="grid gap-3 lg:grid-cols-[320px_1fr]">
+        <div className="card card-pad space-y-4">
+          <div>
+            <div className="label">Produto principal (front-end)</div>
+            <div className="mt-1 font-medium">{u.front}</div>
+            <div className="text-xs text-faint">{int(u.frontOrders)} pedidos no período</div>
+          </div>
+          <Stat label="Pedidos com algum upsell" value={pct(u.anyRate)} change={prev ? { cur: u.anyRate, prev: prev.anyRate } : undefined} />
+          <Stat label="Upsell pós-compra (tag do app)" value={pct(u.postPurchaseRate)} change={prev ? { cur: u.postPurchaseRate, prev: prev.postPurchaseRate } : undefined} />
+          <div>
+            <div className="label mb-1.5">Produtos extras por pedido</div>
+            <div className="flex flex-wrap gap-1.5">
+              {u.depth.map((d) => (
+                <span key={d.extras} className="rounded bg-panel2 px-2 py-1 text-xs text-muted">
+                  {d.extras === 0 ? "só o principal" : `+${d.extras}`}: <b className="text-zinc-200">{int(d.orders)}</b>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="card card-pad">
+          <div className="label mb-3">Taxa de conversão de cada upsell</div>
+          {u.items.length === 0 ? (
+            <p className="text-sm text-muted">Nenhum produto extra vendido no período.</p>
+          ) : (
+            <div className="space-y-4">
+              {u.items.map((it, i) => {
+                const before = prev?.items.find((x) => x.product === it.product);
+                return (
+                  <div key={it.product}>
+                    <div className="flex flex-wrap items-baseline justify-between gap-2 text-sm">
+                      <span>
+                        <span className="mr-2 rounded bg-accent/10 px-1.5 py-0.5 text-[11px] text-accent">UP{i + 1}</span>
+                        {it.product}
+                      </span>
+                      <span className="flex items-baseline gap-3">
+                        <span className="text-lg font-semibold">{pct(it.rate)}</span>
+                        {prev && <Delta change={{ cur: it.rate, prev: before?.rate ?? 0 }} points />}
+                      </span>
+                    </div>
+                    <div className="mt-1.5 h-2 rounded-full bg-panel2">
+                      <div className="h-2 rounded-full bg-accent" style={{ width: `${Math.min(100, it.rate)}%` }} />
+                    </div>
+                    <div className="mt-1 text-xs text-faint">
+                      {int(it.orders)} de {int(u.frontOrders)} pedidos · {money(it.revenue, cur)} · {pct(it.share)} da receita
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          <p className="mt-4 text-[11px] text-faint">
+            Conversão = pedidos que levaram o produto ÷ pedidos do período. UP1, UP2… seguem a ordem de quem mais converte. Um
+            produto novo no funil aparece aqui sozinho.
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+/* --------------------------------- pieces -------------------------------- */
+
+type Change = { cur: number; prev: number };
+
+/** Change vs previous period. `points` shows percentage points (for rates); `invert` makes a rise red (costs). */
+function Delta({ change, invert, points }: { change: Change; invert?: boolean; points?: boolean }) {
+  const { cur, prev } = change;
+  let text: string;
+  let dir: number;
+  if (points) {
+    const d = cur - prev;
+    dir = Math.sign(Math.round(d * 10));
+    text = `${d > 0 ? "+" : ""}${d.toFixed(1)} p.p.`;
+  } else if (!prev) {
+    dir = cur ? 1 : 0;
+    text = cur ? "novo" : "0%";
+  } else {
+    const d = ((cur - prev) / Math.abs(prev)) * 100;
+    dir = Math.sign(Math.round(d * 10));
+    text = `${d > 0 ? "+" : ""}${d.toFixed(1)}%`;
+  }
+  const good = invert ? dir < 0 : dir > 0;
+  const cls = dir === 0 ? "text-muted" : good ? "text-accent" : "text-bad";
+  return (
+    <span className={`text-xs font-medium ${cls}`}>
+      {dir > 0 ? "▲" : dir < 0 ? "▼" : "•"} {text}
+    </span>
+  );
+}
+
 function Kpi({
   label,
   value,
   hint,
   tone,
   small,
+  change,
+  invert,
+  points,
 }: {
   label: string;
   value: string;
   hint?: string;
   tone?: "good" | "bad" | "warn";
   small?: boolean;
+  change?: Change;
+  invert?: boolean;
+  points?: boolean;
 }) {
   const color = tone === "good" ? "text-accent" : tone === "bad" ? "text-bad" : tone === "warn" ? "text-warn" : "text-zinc-100";
   return (
     <div className="card card-pad">
       <div className="label">{label}</div>
       <div className={`mt-2 font-semibold tracking-tight ${small ? "text-xl" : "text-2xl"} ${color}`}>{value}</div>
+      {change && value !== "—" && (
+        <div className="mt-1">
+          <Delta change={change} invert={invert} points={points} /> <span className="text-[11px] text-faint">vs comparação</span>
+        </div>
+      )}
       {hint && <div className="mt-1 text-xs text-faint">{hint}</div>}
+    </div>
+  );
+}
+
+function Stat({ label, value, change }: { label: string; value: string; change?: Change }) {
+  return (
+    <div>
+      <div className="label">{label}</div>
+      <div className="mt-1 flex items-baseline gap-2">
+        <span className="text-xl font-semibold text-accent">{value}</span>
+        {change && <Delta change={change} points />}
+      </div>
+    </div>
+  );
+}
+
+function Banner({ tone, action, children }: { tone: "warn" | "info"; action: { href: string; label: string }; children: React.ReactNode }) {
+  const cls = tone === "warn" ? "border-warn/30 bg-warn/5 text-warn" : "border-info/30 bg-info/5 text-info";
+  return (
+    <div className={`mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm ${cls}`}>
+      <span>{children}</span>
+      <Link href={action.href} className="btn-ghost">
+        {action.label}
+      </Link>
     </div>
   );
 }
