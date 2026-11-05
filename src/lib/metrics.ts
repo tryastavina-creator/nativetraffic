@@ -4,7 +4,7 @@ import { TRAFFIC_CONNECTORS, redtrack, shopify } from "./connectors";
 import { eachDay } from "./connectors/http";
 import { demoData } from "./demo";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
-import { getSettings, listConnections, type Settings } from "./store";
+import { getSettings, getSupplierCosts, listConnections, type Settings, type SupplierCost } from "./store";
 import type { DateRange, Order, SpendRow } from "./types";
 
 export type PlatformRow = {
@@ -53,6 +53,8 @@ export type Metrics = {
     trackedSales: number;
     upsellRate: number;
     cogsEstimated: boolean;
+    /** How each order's supplier cost was found: exact (imported export), table, or % estimate. */
+    costCoverage: { exact: number; table: number; estimated: number };
   };
   daily: { date: string; revenue: number; investment: number; profit: number; margin: number }[];
   platforms: PlatformRow[];
@@ -107,7 +109,7 @@ async function snapshotOrders(range: DateRange): Promise<Order[] | null> {
 }
 
 export async function computeMetrics(range: DateRange): Promise<Metrics> {
-  const [connections, settings] = await Promise.all([listConnections(), getSettings()]);
+  const [connections, settings, supplierCosts] = await Promise.all([listConnections(), getSettings(), getSupplierCosts()]);
   const byProvider = new Map(connections.map((c) => [c.provider, c]));
   const warnings: string[] = [];
 
@@ -185,6 +187,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     spend,
     rtRows: demo ? [] : rtRows,
     hasRedtrack: !!rt,
+    supplierCosts: demo ? {} : supplierCosts,
     settings,
     warnings,
     dataSources: {
@@ -203,6 +206,7 @@ export function aggregate(input: {
   spend: SpendRow[];
   rtRows?: SpendRow[];
   hasRedtrack?: boolean;
+  supplierCosts?: Record<string, SupplierCost>;
   settings: Settings;
   warnings: string[];
   dataSources: Metrics["dataSources"];
@@ -222,13 +226,16 @@ export function aggregate(input: {
   const knownUnitCost = (l: Order["lines"][number]) => l.unitCost || supplierCost(l.product);
   const lineCost = (l: Order["lines"][number]) =>
     l.quantity * (knownUnitCost(l) ?? (l.price * settings.defaultCogsPercent) / 100);
-  const shippingFor = (o: Order) => {
+  const exact = (o: Order) => input.supplierCosts?.[o.name ?? o.id];
+  const tableShipping = (o: Order) => {
     const units = sum(o.lines.map((l) => l.quantity));
     if (!units || !settings.shippingFirstItem) return 0;
     return settings.shippingFirstItem + (units - 1) * (settings.shippingExtraItem || 0);
   };
+  const shippingFor = (o: Order) => exact(o)?.shipping ?? tableShipping(o);
+  const productCostFor = (o: Order) => exact(o)?.product ?? sum(o.lines.map(lineCost));
   const feeFor = (o: Order) => o.total * (settings.paymentFeePercent / 100) + settings.paymentFeeFixed;
-  const costFor = (o: Order) => sum(o.lines.map(lineCost)) + shippingFor(o);
+  const costFor = (o: Order) => productCostFor(o) + shippingFor(o);
   const platformOf = (o: Order) => (o.isSubscription ? "subscription" : platformFromOrder(o));
   const isTracked = (p: string) => !["untracked", "subscription", "other"].includes(p);
 
@@ -240,7 +247,13 @@ export function aggregate(input: {
   const investment = sum(spend.map((s) => s.spend));
   const netProfit = revenue - refunds - productCost - shipping - fees - investment;
   const trackedSales = orders.filter((o) => isTracked(platformOf(o))).length;
-  const cogsEstimated = orders.some((o) => o.lines.some((l) => !knownUnitCost(l)));
+  const costCoverage = { exact: 0, table: 0, estimated: 0 };
+  for (const o of orders) {
+    if (exact(o)) costCoverage.exact++;
+    else if (o.lines.every((l) => knownUnitCost(l))) costCoverage.table++;
+    else costCoverage.estimated++;
+  }
+  const cogsEstimated = costCoverage.estimated > 0;
 
   const daily = eachDay(range.from, range.to).map((date) => {
     const os = orders.filter((o) => o.date === date);
@@ -437,6 +450,7 @@ export function aggregate(input: {
       trackedSales,
       upsellRate: div(orders.filter((o) => o.hasUpsell).length, orders.length) * 100,
       cogsEstimated,
+      costCoverage,
     },
     daily,
     platforms,

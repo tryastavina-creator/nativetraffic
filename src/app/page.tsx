@@ -399,7 +399,17 @@ export default function Dashboard() {
               label="Custo de produto (COGS)"
               value={k?.productCost}
               cur={cur}
-              sub={k ? (k.cogsEstimated ? "Estimado: cadastre o custo por produto em Configurações" : pct((k.productCost / (k.revenue || 1)) * 100) + " da receita") : ""}
+              sub={
+                k
+                  ? [
+                      k.costCoverage.exact ? `${k.costCoverage.exact} pedidos com custo exato da Wiio` : "",
+                      k.costCoverage.table ? `${k.costCoverage.table} pela tabela` : "",
+                      k.costCoverage.estimated ? `${k.costCoverage.estimated} estimados (envie a planilha da Wiio)` : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" · ") || pct((k.productCost / (k.revenue || 1)) * 100) + " da receita"
+                  : ""
+              }
             />
             <CostRow label="Frete do fornecedor" value={k?.shipping} cur={cur} sub={k && k.shipping ? "Tabela da Wiio em Configurações" : "Configure a tabela de frete em Configurações"} />
             <CostRow label="Taxas de pagamento" value={k?.fees} cur={cur} sub="Configurável em Configurações" />

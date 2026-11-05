@@ -27,7 +27,17 @@ export type Settings = {
   shippingExtraItem: number;
 };
 
-type FileShape = { connections: Record<string, string>; settings: Settings };
+/** Exact supplier cost of one order, from an imported supplier export. */
+export type SupplierCost = { product: number; shipping: number; total: number; date?: string };
+export type SupplierImport = { at: string; file: string; orders: number };
+
+type FileShape = {
+  connections: Record<string, string>;
+  settings: Settings;
+  /** Keyed by order number ("#1031"). */
+  supplierCosts: Record<string, SupplierCost>;
+  supplierImports: SupplierImport[];
+};
 
 const DEFAULT_SETTINGS: Settings = {
   currency: process.env.CURRENCY || "USD",
@@ -103,6 +113,8 @@ async function read(): Promise<FileShape> {
   return {
     connections: parsed.connections ?? {},
     settings: { ...DEFAULT_SETTINGS, ...parsed.settings },
+    supplierCosts: parsed.supplierCosts ?? {},
+    supplierImports: parsed.supplierImports ?? [],
   };
 }
 
@@ -156,6 +168,37 @@ export async function saveConnection(conn: Connection) {
 export async function deleteConnection(id: string) {
   const data = await read();
   delete data.connections[id];
+  await write(data);
+}
+
+export async function getSupplierCosts(): Promise<Record<string, SupplierCost>> {
+  return (await read()).supplierCosts;
+}
+
+export async function getSupplierImports(): Promise<SupplierImport[]> {
+  return (await read()).supplierImports;
+}
+
+/** Merges exact per-order costs and the derived cost table from a supplier export. */
+export async function saveSupplierImport(
+  costs: Record<string, SupplierCost>,
+  info: SupplierImport,
+  table: Partial<Settings>,
+) {
+  const data = await read();
+  data.supplierCosts = { ...data.supplierCosts, ...costs };
+  // Keep the newest 20k orders.
+  const keys = Object.keys(data.supplierCosts);
+  if (keys.length > 20000) {
+    const sorted = keys.sort((a, b) => (data.supplierCosts[a].date ?? "").localeCompare(data.supplierCosts[b].date ?? ""));
+    for (const k of sorted.slice(0, keys.length - 20000)) delete data.supplierCosts[k];
+  }
+  data.supplierImports = [info, ...data.supplierImports].slice(0, 30);
+  data.settings = {
+    ...data.settings,
+    ...table,
+    productCosts: { ...data.settings.productCosts, ...(table.productCosts ?? {}) },
+  };
   await write(data);
 }
 

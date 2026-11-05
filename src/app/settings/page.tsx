@@ -3,20 +3,54 @@ import { useEffect, useState } from "react";
 import type { Settings } from "@/lib/store";
 
 type CostRow = { product: string; cost: string };
+type ImportResult = {
+  orders: number;
+  changes: { item: string; from: number | null; to: number }[];
+  unresolved: string[];
+  error?: string;
+};
+type ImportInfo = { at: string; file: string; orders: number };
+const usd = (n: number) => `$${n.toFixed(2)}`;
 
 export default function SettingsPage() {
   const [s, setS] = useState<Settings | null>(null);
   const [costs, setCosts] = useState<CostRow[]>([]);
   const [saved, setSaved] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [result, setResult] = useState<ImportResult | null>(null);
+  const [history, setHistory] = useState<{ imports: ImportInfo[]; orders: number } | null>(null);
+
+  const applySettings = (data: Settings) => {
+    setS(data);
+    const rows = Object.entries(data.productCosts ?? {}).map(([product, cost]) => ({ product, cost: String(cost) }));
+    setCosts(rows.length ? rows : [{ product: "", cost: "" }]);
+  };
+  const loadHistory = () =>
+    fetch("/api/supplier")
+      .then((r) => r.json())
+      .then(setHistory)
+      .catch(() => {});
+
+  async function upload(file: File) {
+    setUploading(true);
+    setResult(null);
+    const fd = new FormData();
+    fd.append("file", file);
+    const r = await fetch("/api/supplier", { method: "POST", body: fd })
+      .then((r) => r.json())
+      .catch(() => ({ error: "Falha no envio" }));
+    setUploading(false);
+    setResult(r);
+    if (r.settings) applySettings(r.settings);
+    loadHistory();
+  }
 
   useEffect(() => {
     fetch("/api/settings")
       .then((r) => r.json())
-      .then((data: Settings) => {
-        setS(data);
-        const rows = Object.entries(data.productCosts ?? {}).map(([product, cost]) => ({ product, cost: String(cost) }));
-        setCosts(rows.length ? rows : [{ product: "", cost: "" }]);
-      });
+      .then(applySettings);
+    loadHistory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function save() {
@@ -59,6 +93,54 @@ export default function SettingsPage() {
 
       <h2 className="h-section">Fornecedor (Wiio)</h2>
       <div className="card card-pad space-y-5">
+        <div className="rounded-lg border border-dashed border-line bg-bg p-4">
+          <div className="text-sm font-medium">Importar planilha da Wiio</div>
+          <p className="mt-1 text-xs text-muted">
+            Exporte a lista de pedidos na Wiio (OrderList .xls) e envie aqui. O site guarda o custo exato de cada pedido e
+            atualiza a tabela abaixo sozinho; pedidos novos usam essa tabela até o próximo envio.
+          </p>
+          <label className="btn-ghost mt-3 inline-flex cursor-pointer">
+            {uploading ? "Lendo planilha…" : "Escolher arquivo .xls ou .csv"}
+            <input
+              id="supplier-file"
+              type="file"
+              accept=".xls,.csv"
+              className="hidden"
+              disabled={uploading}
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) upload(f);
+                e.target.value = "";
+              }}
+            />
+          </label>
+          {result?.error && <div className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-3 py-2 text-xs text-bad">{result.error}</div>}
+          {result && !result.error && (
+            <div className="mt-3 space-y-1.5 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-xs">
+              <div className="text-accent">{result.orders} pedidos importados com o custo exato.</div>
+              {result.changes.length > 0 ? (
+                <ul className="space-y-0.5 text-zinc-300">
+                  {result.changes.map((c) => (
+                    <li key={c.item}>
+                      {c.item}: {c.from === null ? "novo" : usd(c.from)} → <b>{usd(c.to)}</b>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="text-muted">Nenhum preço mudou desde o último envio.</div>
+              )}
+              {result.unresolved.length > 0 && (
+                <div className="text-warn">Sem custo identificado (preencha à mão): {result.unresolved.join(", ")}</div>
+              )}
+            </div>
+          )}
+          {history && history.imports.length > 0 && (
+            <p className="mt-3 text-[11px] text-faint">
+              Último envio: {new Date(history.imports[0].at).toLocaleString("pt-BR")} ({history.imports[0].file}) ·{" "}
+              {history.orders} pedidos com custo exato no total.
+            </p>
+          )}
+        </div>
         <div>
           <span className="mb-1.5 block text-xs text-zinc-300">Custo do produto por unidade</span>
           <div className="space-y-2">
