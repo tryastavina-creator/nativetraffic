@@ -6,7 +6,23 @@ import type { Credentials, DateRange, SpendRow, TestResult } from "../types";
 import { http, num } from "./http";
 
 /** Spend of one campaign, as reported by the traffic source itself. */
-export type SourceCampaign = { id: string; name: string; spend: number; clicks: number; conversions: number; status?: string };
+export type SourceCampaign = {
+  id: string;
+  name: string;
+  spend: number;
+  clicks: number;
+  conversions: number;
+  status?: string;
+  /** Landing URLs of the campaign's ads (RedTrack tracking links) — used to link it to the RedTrack campaign. */
+  urls?: string[];
+};
+
+/** Group ad landing URLs by campaign id. */
+const groupUrls = (rows: { campaign: string; url: string }[]) => {
+  const m = new Map<string, Set<string>>();
+  for (const r of rows) if (r.url) m.set(r.campaign, (m.get(r.campaign) ?? new Set()).add(r.url));
+  return m;
+};
 
 type Connector = {
   test: (c: Credentials) => Promise<TestResult>;
@@ -40,11 +56,18 @@ const taboola: Connector = {
   async campaigns(c, range) {
     const token = await taboolaToken(c);
     const qs = new URLSearchParams({ start_date: range.from, end_date: range.to });
-    const r = await http<{ results: Record<string, unknown>[] }>(
-      `https://backstage.taboola.com/backstage/api/1.0/${c.accountId}/reports/campaign-summary/dimensions/campaign_breakdown?${qs}`,
-      { headers: { Authorization: `Bearer ${token}` } },
-    );
+    const base = `https://backstage.taboola.com/backstage/api/1.0/${c.accountId}/reports`;
+    const [r, items] = await Promise.all([
+      http<{ results: Record<string, unknown>[] }>(`${base}/campaign-summary/dimensions/campaign_breakdown?${qs}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }),
+      http<{ results: Record<string, unknown>[] }>(`${base}/top-campaign-content/dimensions/item_breakdown?${qs}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      }).catch(() => ({ results: [] as Record<string, unknown>[] })),
+    ]);
+    const urls = groupUrls((items.results ?? []).map((x) => ({ campaign: String(x.campaign ?? ""), url: String(x.url ?? "") })));
     return (r.results ?? []).map((x) => ({
+      urls: [...(urls.get(String(x.campaign ?? "")) ?? [])],
       id: String(x.campaign ?? ""),
       name: String(x.campaign_name ?? x.campaign ?? ""),
       spend: num(x.spent),
@@ -252,7 +275,7 @@ const revcontent: Connector & {
     }));
   },
   async campaigns(c, range) {
-    const [perf, list] = await Promise.all([
+    const [perf, list, content] = await Promise.all([
       rcGet<RcPerf[]>(c, "/stats/api/v1.0/boosts/performance", {
         date_from: range.from,
         date_to: range.to,
@@ -260,12 +283,18 @@ const revcontent: Connector & {
         limit: "1000",
       }),
       rcGet<{ id: string; name: string; enabled: string; status: string }[]>(c, "/stats/api/v1.0/boosts", { limit: "1000" }),
+      rcGet<{ boost_id: string; target_url: string }[]>(c, "/stats/api/v1.0/boosts/content", {
+        date_from: range.from,
+        date_to: range.to,
+      }).catch(() => ({ success: false, data: [] as { boost_id: string; target_url: string }[] })),
     ]);
     const byId = new Map(list.data.map((b) => [String(b.id), b]));
+    const urls = groupUrls(content.data.map((x) => ({ campaign: String(x.boost_id), url: String(x.target_url ?? "") })));
     return perf.data
       .filter((x) => x.id)
       .map((x) => ({
         id: String(x.id),
+        urls: [...(urls.get(String(x.id)) ?? [])],
         name: byId.get(String(x.id))?.name ?? `Campanha ${x.id}`,
         status: byId.get(String(x.id))?.enabled ?? "",
         spend: num(x.cost),

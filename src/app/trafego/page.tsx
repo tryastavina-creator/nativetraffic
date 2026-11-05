@@ -32,6 +32,17 @@ export default function Trafego() {
   const [platform, setPlatform] = useState("all");
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "spend", dir: -1 });
 
+  const [reload, setReload] = useState(0);
+
+  async function link(source: string, target: string | null) {
+    await fetch("/api/traffic/link", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ source, target }),
+    });
+    setReload((n) => n + 1);
+  }
+
   useEffect(() => {
     const q = new URLSearchParams({ preset });
     if (preset === "custom") {
@@ -49,7 +60,7 @@ export default function Trafego() {
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [preset, applied]);
+  }, [preset, applied, reload]);
 
   const cur = data?.currency ?? "USD";
   const platforms = useMemo(() => [...new Set((data?.rows ?? []).map((r) => r.platform))], [data]);
@@ -119,6 +130,14 @@ export default function Trafego() {
         </div>
       )}
 
+      {!!data?.unlinked && (
+        <div className="mt-5 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
+          {data.unlinked} campanha(s) da fonte ainda não estão ligadas à campanha do RedTrack/Shopify. Use &quot;Ligar a…&quot;
+          na linha para o gasto cair na campanha certa. Enquanto isso, o total usa só o gasto da fonte (sem contar duas
+          vezes).
+        </div>
+      )}
+
       <div className={`transition-opacity ${loading ? "opacity-50" : ""}`}>
         <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
           <Tile label="Gasto" value={t ? money(t.spend, cur) : "—"} />
@@ -159,7 +178,14 @@ export default function Trafego() {
             </thead>
             <tbody>
               {rows.map((r) => (
-                <Row key={`${r.platform}-${r.campaign}`} r={r} cur={cur} showIc={showIc} />
+                <Row
+                  key={r.key}
+                  r={r}
+                  cur={cur}
+                  showIc={showIc}
+                  targets={(data?.linkTargets ?? []).filter((t) => t.platform === r.platform)}
+                  onLink={link}
+                />
               ))}
               {rows.length === 0 && (
                 <tr>
@@ -189,31 +215,74 @@ export default function Trafego() {
   );
 }
 
-function Row({ r, cur, showIc }: { r: TrafficRow; cur: string; showIc: boolean }) {
+function Row({
+  r,
+  cur,
+  showIc,
+  targets,
+  onLink,
+}: {
+  r: TrafficRow;
+  cur: string;
+  showIc: boolean;
+  targets: { key: string; name: string }[];
+  onLink: (source: string, target: string | null) => void;
+}) {
   const rtOk = r.rtConversions === r.rtExpected;
   return (
-    <tr>
-      <td className="max-w-[360px]">
+    <tr className={r.needsLink ? "bg-warn/[0.03]" : ""}>
+      <td className="max-w-[380px]">
         <div className="flex items-center gap-2">
           <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: PLATFORM_COLOR[r.platform] ?? "#888" }} />
           <span className="truncate" title={r.campaign}>
             {r.campaign}
           </span>
         </div>
-        <div className="pl-4 text-[11px] text-faint">
-          {r.label}
-          {r.missingCost && <span className="ml-2 text-warn">sem custo na fonte nem no RedTrack</span>}
-          {!r.matched && r.spend > 0 && <span className="ml-2 text-warn">sem vendas ligadas</span>}
+        <div className="space-x-2 pl-4 text-[11px] text-faint">
+          <span>{r.label}</span>
+          {r.linkedBy && r.sourceNames.length > 0 && (
+            <span title={r.sourceNames.join(" · ")}>
+              {r.linkedBy === "link" ? "ligada pelo link do RedTrack" : r.linkedBy === "manual" ? "ligada manualmente" : "ligada pelo código"}
+              {r.linkedBy === "manual" && (
+                <button className="ml-1 text-info hover:underline" onClick={() => r.sourceKeys.forEach((k) => onLink(k, null))}>
+                  desfazer
+                </button>
+              )}
+            </span>
+          )}
+          {r.missingCost && <span className="text-bad">sem custo: conecte a API do {r.label} em Integrações ou envie o custo ao RedTrack</span>}
+          {!r.counted && <span className="text-warn">gasto do RedTrack, falta ligar à campanha da fonte</span>}
           {r.matched && r.rtConversions > 0 && (
-            <span className={`ml-2 ${rtOk ? "" : "text-warn"}`}>
+            <span className={rtOk ? "" : "text-warn"}>
               RedTrack {int(r.rtConversions)} {rtOk ? "✓" : `(esperado ${int(r.rtExpected)})`}
             </span>
           )}
         </div>
+        {r.linkSource && (
+          <div className="mt-1 pl-4">
+            <select
+              aria-label="Ligar a campanha"
+              className="input w-auto max-w-full py-1 text-[11px]"
+              value=""
+              onChange={(e) => e.target.value && onLink(r.linkSource!, e.target.value)}
+            >
+              <option value="">Ligar a… (campanha no RedTrack / UTM)</option>
+              {targets.map((t) => (
+                <option key={t.key} value={t.key}>
+                  {t.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
       </td>
-      <td className="text-right text-bad">
+      <td className={`text-right ${r.counted ? "text-bad" : "text-warn italic"}`}>
         {r.spend ? money(r.spend, cur) : "—"}
-        {r.spendSource && <div className="text-[10px] text-faint">{r.spendSource === "fonte" ? `API ${r.label}` : "RedTrack"}</div>}
+        {r.spendSource && (
+          <div className="text-[10px] not-italic text-faint">
+            {r.spendSource === "fonte" ? `API ${r.label}` : r.counted ? "RedTrack" : "RedTrack · fora do total"}
+          </div>
+        )}
       </td>
       <td className="text-right">{int(r.clicks)}</td>
       <td className="text-right text-muted">{r.clicks && r.spend ? money(r.cpc, cur, 3) : "—"}</td>

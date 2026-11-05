@@ -27,6 +27,8 @@ export type Settings = {
   shippingExtraItem: number;
   /** RedTrack field that counts InitiateCheckout (e.g. "convtype2"); empty hides the IC column. */
   redtrackIcField: string;
+  /** Manual links "platform:sourceCampaignId" → campaign key of the RedTrack / utm_campaign it belongs to. */
+  campaignLinks: Record<string, string>;
 };
 
 /** Exact supplier cost of one order, from an imported supplier export. */
@@ -51,6 +53,7 @@ const DEFAULT_SETTINGS: Settings = {
   shippingFirstItem: 0,
   shippingExtraItem: 0,
   redtrackIcField: "",
+  campaignLinks: {},
 };
 
 function key(): Buffer {

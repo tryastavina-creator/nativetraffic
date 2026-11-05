@@ -40,13 +40,26 @@ export type TrafficRow = {
   matched: boolean;
   /** Clicks without any spend found: cost is missing at the source or in RedTrack. */
   missingCost: boolean;
+  /** false = RedTrack spend shown for a platform with API but not linked yet (kept out of totals). */
+  counted: boolean;
+  key: string;
+  linkedBy?: "manual" | "link" | "nome";
+  sourceNames: string[];
+  sourceKeys: string[];
+  linkSource?: string;
+  needsLink: boolean;
 };
 
 export type TrafficReport = {
   range: DateRange;
   currency: string;
   rows: TrafficRow[];
-  totals: Omit<TrafficRow, "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost">;
+  totals: Omit<
+    TrafficRow,
+    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink"
+  >;
+  linkTargets: { key: string; name: string; platform: string }[];
+  unlinked: number;
   hasRedtrack: boolean;
   icConfigured: boolean;
   hidden: number;
@@ -106,56 +119,94 @@ async function sourceCampaigns(range: DateRange, warnings: string[]) {
   return out;
 }
 
+type Src = SourceCampaign & { platform: string };
+
 type Bucket = {
+  key: string;
   name: string;
   platform: string;
-  src?: { spend: number; clicks: number };
+  srcs: Src[];
+  linkedBy?: "manual" | "link" | "nome";
   rt?: RtCampaign;
   shop?: CampaignRow;
 };
+
+/** Finds the RedTrack campaign whose id appears in one of the ad landing URLs (RedTrack tracking links). */
+function rtFromUrls(urls: string[] | undefined, rtById: Map<string, string>): string | undefined {
+  if (!urls?.length) return undefined;
+  for (const url of urls) {
+    const u = url.toLowerCase();
+    for (const [id, key] of rtById) if (id.length >= 6 && u.includes(id)) return key;
+  }
+  return undefined;
+}
 
 export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
   const [m, settings] = await Promise.all([computeMetrics(range), getSettings()]);
   const warnings = [...m.warnings];
   const [rts, srcs] = await Promise.all([rtCampaigns(range, settings.redtrackIcField, warnings), sourceCampaigns(range, warnings)]);
 
-  // Platforms whose spend comes from their own API (RedTrack cost ignored there to avoid double counting).
+  // Platforms whose spend comes from their own API.
   const directPlatforms = new Set(srcs.map((s) => s.platform));
   const buckets = new Map<string, Bucket>();
-  const bucket = (name: string, platform: string) => {
-    const k = campaignKey(name);
-    const b = buckets.get(k) ?? { name, platform };
-    if (!buckets.has(k)) buckets.set(k, b);
+  const bucket = (key: string, name: string, platform: string) => {
+    let b = buckets.get(key);
+    if (!b) {
+      b = { key, name, platform, srcs: [] };
+      buckets.set(key, b);
+    }
     return b;
   };
 
-  for (const s of srcs) {
-    if (!s.spend && !s.clicks) continue;
-    const b = bucket(s.name, s.platform);
-    b.src = { spend: (b.src?.spend ?? 0) + s.spend, clicks: (b.src?.clicks ?? 0) + s.clicks };
-  }
+  // 1) RedTrack campaigns (team naming, carry clicks / IC / purchases).
+  const rtById = new Map<string, string>();
   for (const r of rts ?? []) {
     const fromSource = platformFromUtm(r.source);
     const p = !["other", "untracked"].includes(fromSource) ? fromSource : platformFromUtm(r.name);
-    const b = bucket(r.name, p);
+    const key = campaignKey(r.name);
+    const b = bucket(key, r.name, p);
     b.rt = r;
-    b.name = r.name; // RedTrack follows the team's naming; the source may add suffixes.
     if (b.platform === "other" || b.platform === "untracked") b.platform = p;
+    if (r.id) rtById.set(r.id.toLowerCase(), key);
   }
+  // 2) Shopify sales by utm_campaign.
   for (const c of m.campaigns) {
     if (c.campaign === "(sem campanha)") continue;
-    const b = bucket(c.campaign, c.platform);
+    const b = bucket(campaignKey(c.campaign), c.campaign, c.platform);
     b.shop = c;
-    // Prefer the utm_campaign as display name: it is what Shopify and the team see.
     b.name = c.campaign;
+  }
+  // 3) Source campaigns: manual link > RedTrack id in the ad URL > same code/name > own row.
+  const links = settings.campaignLinks ?? {};
+  for (const s of srcs) {
+    if (!s.spend && !s.clicks) continue;
+    const sk = `${s.platform}:${s.id}`;
+    const manual = links[sk];
+    const byUrl = rtFromUrls(s.urls, rtById);
+    const byName = buckets.has(campaignKey(s.name)) ? campaignKey(s.name) : undefined;
+    const target = manual ?? byUrl ?? byName;
+    if (target) {
+      const b = buckets.get(target) ?? bucket(target, s.name, s.platform);
+      b.srcs.push(s);
+      b.linkedBy ??= manual ? "manual" : byUrl ? "link" : "nome";
+    } else {
+      bucket(`src:${sk}`, s.name, s.platform).srcs.push(s);
+    }
   }
 
   const rows: TrafficRow[] = [];
   let hidden = 0;
   for (const b of buckets.values()) {
     const direct = directPlatforms.has(b.platform);
-    const spend = direct ? (b.src?.spend ?? 0) : (b.rt?.spend ?? 0);
-    const clicks = b.rt?.clicks || b.src?.clicks || 0;
+    const srcSpend = b.srcs.reduce((a, s) => a + s.spend, 0);
+    const srcClicks = b.srcs.reduce((a, s) => a + s.clicks, 0);
+    // Spend never disappears: source API first; otherwise RedTrack. When the platform has an API but this
+    // campaign isn't linked to a source campaign yet, the RedTrack spend is shown but not added to totals
+    // (the same money is already in an unlinked source row).
+    const spend = b.srcs.length ? srcSpend : (b.rt?.spend ?? 0);
+    const spendSource: TrafficRow["spendSource"] = b.srcs.length ? "fonte" : spend ? "redtrack" : "";
+    const counted = !(spendSource === "redtrack" && direct);
+    const clicks = b.rt?.clicks || srcClicks;
     const s = b.shop;
     const sales = s?.orders ?? 0;
     const upsells = s?.upsells ?? 0;
@@ -163,9 +214,9 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     const costs = s ? s.refunds + s.supplierCost + s.fees : 0;
     const profit = revenue - costs - spend;
     const ic = b.rt && b.rt.ic !== null ? b.rt.ic : null;
-    const missingCost = !spend && clicks >= 100;
+    const missingCost = !spend && (clicks >= 100 || sales > 0);
+    const sourceOnly = b.key.startsWith("src:");
 
-    // Noise: no spend, no sale and only a handful of clicks (tests, old campaigns).
     if (!spend && !sales && !missingCost) {
       hidden++;
       continue;
@@ -174,7 +225,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       campaign: b.name,
       platform: b.platform,
       label: PLATFORM_LABEL[b.platform] ?? b.platform,
-      spendSource: spend ? (direct ? "fonte" : "redtrack") : "",
+      spendSource,
       spend,
       clicks,
       cpc: div(spend, clicks),
@@ -195,13 +246,27 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       aov: div(revenue, sales),
       matched: !!s,
       missingCost,
+      counted,
+      key: b.key,
+      linkedBy: b.linkedBy,
+      sourceNames: b.srcs.map((x) => x.name),
+      sourceKeys: b.srcs.map((x) => `${x.platform}:${x.id}`),
+      // A source-only row can be linked to a RedTrack/Shopify campaign; a RedTrack row of a platform with API
+      // and no source campaign is waiting for that link.
+      linkSource: sourceOnly ? `${b.srcs[0].platform}:${b.srcs[0].id}` : undefined,
+      needsLink: sourceOnly || (direct && !b.srcs.length && (spend > 0 || sales > 0)),
     });
   }
   rows.sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
 
+  // Campaigns a source row can be linked to (RedTrack/Shopify side; several source campaigns may feed one).
+  const linkTargets = [...buckets.values()]
+    .filter((b) => !b.key.startsWith("src:") && (b.rt || b.shop))
+    .map((b) => ({ key: b.key, name: b.name, platform: b.platform }));
+
   const t = rows.reduce(
     (a, r) => ({
-      spend: a.spend + r.spend,
+      spend: a.spend + (r.counted ? r.spend : 0),
       clicks: a.clicks + r.clicks,
       ic: r.ic === null ? a.ic : (a.ic ?? 0) + r.ic,
       sales: a.sales + r.sales,
@@ -210,7 +275,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       rtExpected: a.rtExpected + r.rtExpected,
       revenue: a.revenue + r.revenue,
       upsellRevenue: a.upsellRevenue + r.upsellRevenue,
-      profit: a.profit + r.profit,
+      profit: a.profit + r.profit + (r.counted ? 0 : r.spend),
     }),
     { spend: 0, clicks: 0, ic: null as number | null, sales: 0, upsells: 0, rtConversions: 0, rtExpected: 0, revenue: 0, upsellRevenue: 0, profit: 0 },
   );
@@ -230,6 +295,8 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       roi: div(t.profit, t.spend) * 100,
       aov: div(t.revenue, t.sales),
     },
+    linkTargets,
+    unlinked: rows.filter((r) => r.needsLink).length,
     hasRedtrack: rts !== null,
     icConfigured: !!settings.redtrackIcField,
     hidden,
