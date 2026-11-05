@@ -25,12 +25,20 @@ export async function POST(req: Request) {
 }
 
 async function upsert(req: Request) {
-  const body = (await req.json()) as { id?: string; provider: string; credentials: Record<string, string> };
+  const body = (await req.json()) as {
+    id?: string;
+    provider: string;
+    credentials: Record<string, string>;
+    /** true = add another account of the same source instead of replacing the first one. */
+    newAccount?: boolean;
+    accountName?: string;
+  };
   const def = getProvider(body.provider);
   if (!def) return NextResponse.json({ error: "Provedor desconhecido" }, { status: 400 });
 
   const id =
     body.id ??
+    (body.newAccount ? `${body.provider}:${Date.now().toString(36)}` : undefined) ??
     (body.provider === "mcp"
       ? `mcp:${(body.credentials.name || "server").toLowerCase().replace(/[^a-z0-9]+/g, "-")}`
       : body.provider);
@@ -73,7 +81,10 @@ async function upsert(req: Request) {
   const conn: Connection = {
     id,
     provider: body.provider,
-    label: body.provider === "mcp" ? credentials.name : def.name,
+    label:
+      body.provider === "mcp"
+        ? credentials.name
+        : body.accountName?.trim() || existing?.label || (id.includes(":") ? `${def.name} (outra conta)` : def.name),
     credentials,
     createdAt: existing?.createdAt ?? new Date().toISOString(),
   };

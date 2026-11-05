@@ -29,6 +29,10 @@ export type CampaignRow = {
   aov: number;
   upsellRate: number;
   lastOrder: string;
+  /** Costs of these orders, used by the Tráfego page to compute real profit per campaign. */
+  refunds: number;
+  supplierCost: number;
+  fees: number;
 };
 
 export type Metrics = {
@@ -150,15 +154,16 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     spend = rtRows;
     if (rtRows.length) spendSources.push("redtrack");
   } else {
-    const jobs = Object.entries(TRAFFIC_CONNECTORS)
-      .filter(([id]) => byProvider.has(id))
-      .map(async ([id, conn]) => {
+    // Every connected account of every traffic source (e.g. two Taboola accounts).
+    const jobs = connections
+      .filter((c) => TRAFFIC_CONNECTORS[c.provider])
+      .map(async (c) => {
         try {
-          const rows = await conn.fetchSpend(byProvider.get(id)!.credentials, range);
-          spendSources.push(id);
+          const rows = await TRAFFIC_CONNECTORS[c.provider].fetchSpend(c.credentials, range);
+          if (!spendSources.includes(c.provider)) spendSources.push(c.provider);
           return rows;
         } catch (e) {
-          warnings.push(`${PLATFORM_LABEL[id] ?? id}: ${(e as Error).message}`);
+          warnings.push(`${c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider}: ${(e as Error).message}`);
           return [];
         }
       });
@@ -304,6 +309,9 @@ export function aggregate(input: {
         aov: div(rev, os.length),
         upsellRate: div(os.filter((o) => o.hasUpsell).length, os.length) * 100,
         lastOrder: os.map((o) => o.date).sort().at(-1) ?? "",
+        refunds: sum(os.map((o) => o.refunded)),
+        supplierCost: sum(os.map(costFor)),
+        fees: sum(os.map(feeFor)),
       };
     })
     .sort((a, b) => b.revenue - a.revenue);

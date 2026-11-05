@@ -112,14 +112,17 @@ export const PROVIDERS: ProviderDef[] = [
     id: "revcontent",
     name: "Revcontent",
     category: "traffic",
-    description: "Gasto via Revcontent API (client credentials). Sem conexão direta, o custo vem do RedTrack.",
-    docsUrl: "https://help.revcontent.com/knowledge/revcontent-api",
+    description: "Gasto diário e por campanha via Revcontent Stats API.",
+    docsUrl: "https://api.revcontent.io/docs/stats/index.html",
     color: "#ff4f64",
     initials: "RC",
-    status: "beta",
     fields: [
-      { key: "clientId", label: "Client ID" },
-      { key: "clientSecret", label: "Client secret", type: "password" },
+      {
+        key: "clientId",
+        label: "Client ID",
+        help: "Revcontent → Account Settings → Stats API Credentials (fim da página).",
+      },
+      { key: "clientSecret", label: "Client secret", type: "password", help: "40 caracteres, na mesma seção." },
     ],
   },
   {

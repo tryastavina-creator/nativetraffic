@@ -203,6 +203,20 @@ export default function SettingsPage() {
           </select>
         </label>
         <label className="block">
+          <span className="mb-1.5 block text-xs text-zinc-300">Campo do RedTrack para InitiateCheckout (IC)</span>
+          <input
+            id="set-redtrackIcField"
+            className="input"
+            placeholder="ex.: convtype2"
+            value={s.redtrackIcField ?? ""}
+            onChange={(e) => setS({ ...s, redtrackIcField: e.target.value.trim() })}
+          />
+          <span className="mt-1 block text-[11px] text-faint">
+            No RedTrack, em Tools → Conversion types, veja o número do tipo InitiateCheckout. Se for o 2º da lista, use
+            convtype2. Vazio esconde a coluna IC na aba Tráfego.
+          </span>
+        </label>
+        <label className="block">
           <span className="mb-1.5 block text-xs text-zinc-300">Moeda</span>
           <input id="set-currency" className="input" value={s.currency} onChange={(e) => setS({ ...s, currency: e.target.value.toUpperCase() })} />
         </label>

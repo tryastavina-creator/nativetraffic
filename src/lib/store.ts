@@ -25,6 +25,8 @@ export type Settings = {
   /** Supplier shipping: first item of an order, and each extra item. */
   shippingFirstItem: number;
   shippingExtraItem: number;
+  /** RedTrack field that counts InitiateCheckout (e.g. "convtype2"); empty hides the IC column. */
+  redtrackIcField: string;
 };
 
 /** Exact supplier cost of one order, from an imported supplier export. */
@@ -48,6 +50,7 @@ const DEFAULT_SETTINGS: Settings = {
   productCosts: {},
   shippingFirstItem: 0,
   shippingExtraItem: 0,
+  redtrackIcField: "",
 };
 
 function key(): Buffer {

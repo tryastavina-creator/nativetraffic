@@ -63,3 +63,37 @@ export async function fetchSpend(c: Credentials, range: DateRange): Promise<Spen
     impressions: num(r.impressions),
   }));
 }
+
+export type RtCampaign = {
+  id: string;
+  name: string;
+  source: string;
+  spend: number;
+  clicks: number;
+  conversions: number;
+  revenue: number;
+  ic: number | null;
+};
+
+const NAME = ["campaign_title", "campaign_name", "campaign", "title", "name"];
+
+/** Cost, clicks, purchases, revenue and (optionally) InitiateCheckout per RedTrack campaign. */
+export async function fetchCampaigns(c: Credentials, range: DateRange, icField?: string): Promise<RtCampaign[]> {
+  const rows = await report(c, range, "campaign");
+  const k = {
+    cost: chooseKey(rows, COST),
+    revenue: chooseKey(rows, REVENUE),
+    conversions: chooseKey(rows, CONVERSIONS),
+  };
+  const nameKey = NAME.find((n) => rows.some((r) => typeof r[n] === "string" && r[n]));
+  return rows.map((r) => ({
+    id: String(r.campaign_id ?? r.id ?? r[nameKey ?? "campaign"] ?? ""),
+    name: String((nameKey && r[nameKey]) || r.campaign_id || "(sem nome)"),
+    source: String(r.source_title ?? r.source ?? ""),
+    spend: k.cost ? num(r[k.cost]) : 0,
+    clicks: num(r.clicks),
+    conversions: k.conversions ? num(r[k.conversions]) : 0,
+    revenue: k.revenue ? num(r[k.revenue]) : 0,
+    ic: icField ? num(r[icField]) : null,
+  }));
+}

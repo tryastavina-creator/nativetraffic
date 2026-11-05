@@ -156,6 +156,85 @@ const mgid: Connector = {
 };
 
 /* --------------------------------- Meta Ads --------------------------------- */
+/* -------------------------------- Revcontent -------------------------------- */
+// Official spec: https://api.revcontent.io/docs/stats/api_data.json
+const RC = "https://api.revcontent.io";
+const rcTokens = new Map<string, { token: string; expires: number }>();
+
+async function revcontentToken(c: Credentials) {
+  const cached = rcTokens.get(c.clientId);
+  if (cached && cached.expires > Date.now()) return cached.token;
+  const r = await http<{ access_token: string; expires_in?: number }>(`${RC}/oauth/token`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ grant_type: "client_credentials", client_id: c.clientId, client_secret: c.clientSecret }),
+  }).catch((e: Error) => {
+    if (/invalid_client/.test(e.message)) {
+      throw new Error(
+        "Client ID ou Client secret inválidos. Use os dados de Account Settings → Stats API Credentials na Revcontent.",
+      );
+    }
+    throw e;
+  });
+  rcTokens.set(c.clientId, { token: r.access_token, expires: Date.now() + ((r.expires_in ?? 86_400) - 600) * 1000 });
+  return r.access_token;
+}
+
+async function rcGet<T>(c: Credentials, path: string, params: Record<string, string> = {}) {
+  const qs = new URLSearchParams(params);
+  return http<{ success: boolean; data: T }>(`${RC}${path}${qs.size ? `?${qs}` : ""}`, {
+    headers: { Authorization: `Bearer ${await revcontentToken(c)}`, "Content-Type": "application/json" },
+  });
+}
+
+type RcPerf = { id?: string; date?: string; cost: string; clicks: string; impressions: string; conversions: string };
+
+const revcontent: Connector & {
+  campaigns: (c: Credentials, r: DateRange) => Promise<{ id: string; name: string; status: string; spend: number; clicks: number; conversions: number }[]>;
+} = {
+  async test(c) {
+    const r = await rcGet<{ id: string }[]>(c, "/stats/api/v1.0/boosts", { limit: "1000" });
+    return { ok: true, message: `Conectado (${r.data.length} campanhas)` };
+  },
+  async fetchSpend(c, range) {
+    const r = await rcGet<RcPerf[]>(c, "/stats/api/v1.0/boosts/performance", {
+      date_from: range.from,
+      date_to: range.to,
+      limit: "1000",
+    });
+    return r.data.map((x) => ({
+      date: (x.date ?? range.from).slice(0, 10),
+      platform: "revcontent",
+      spend: num(x.cost),
+      clicks: num(x.clicks),
+      impressions: num(x.impressions),
+      conversions: num(x.conversions),
+    }));
+  },
+  async campaigns(c, range) {
+    const [perf, list] = await Promise.all([
+      rcGet<RcPerf[]>(c, "/stats/api/v1.0/boosts/performance", {
+        date_from: range.from,
+        date_to: range.to,
+        all_boosts: "yes",
+        limit: "1000",
+      }),
+      rcGet<{ id: string; name: string; enabled: string; status: string }[]>(c, "/stats/api/v1.0/boosts", { limit: "1000" }),
+    ]);
+    const byId = new Map(list.data.map((b) => [String(b.id), b]));
+    return perf.data
+      .filter((x) => x.id)
+      .map((x) => ({
+        id: String(x.id),
+        name: byId.get(String(x.id))?.name ?? `Campanha ${x.id}`,
+        status: byId.get(String(x.id))?.enabled ?? "",
+        spend: num(x.cost),
+        clicks: num(x.clicks),
+        conversions: num(x.conversions),
+      }));
+  },
+};
+
 const meta: Connector = {
   async test(c) {
     const r = await http<{ name: string; currency: string }>(
@@ -237,11 +316,14 @@ const googleads: Connector = {
   },
 };
 
+export { revcontent };
+
 export const TRAFFIC_CONNECTORS: Record<string, Connector> = {
   taboola,
   outbrain,
   mediago,
   mgid,
+  revcontent,
   meta,
   googleads,
 };

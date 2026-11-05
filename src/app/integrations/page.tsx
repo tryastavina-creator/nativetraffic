@@ -9,7 +9,7 @@ type Data = {
   connections: Connection[];
   storage: { backend: "postgres" | "disk"; production: boolean; unreadable: number };
 };
-type Editing = { def: ProviderDef; conn?: Connection };
+type Editing = { def: ProviderDef; conn?: Connection; newAccount?: boolean };
 
 const ORDER: Category[] = ["store", "tracker", "traffic", "payments", "fulfillment"];
 
@@ -88,9 +88,20 @@ export default function Integrations() {
           <section key={cat}>
             <h2 className="h-section">{CATEGORY_LABEL[cat]}</h2>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {list.map((p) => (
-                <ProviderCard key={p.id} def={p} conn={byId.get(p.id)} onOpen={() => setEditing({ def: p, conn: byId.get(p.id) })} />
-              ))}
+              {list.flatMap((p) => [
+                <ProviderCard key={p.id} def={p} conn={byId.get(p.id)} onOpen={() => setEditing({ def: p, conn: byId.get(p.id) })} />,
+                // Extra accounts of the same source (e.g. a second Taboola account).
+                ...(data?.connections ?? [])
+                  .filter((c) => c.provider === p.id && c.id !== p.id)
+                  .map((c) => (
+                    <ProviderCard
+                      key={c.id}
+                      def={{ ...p, name: c.label ?? p.name }}
+                      conn={c}
+                      onOpen={() => setEditing({ def: p, conn: c })}
+                    />
+                  )),
+              ])}
             </div>
           </section>
         );
@@ -121,11 +132,13 @@ export default function Integrations() {
 
       {editing && (
         <ConnectDrawer
+          key={editing.conn?.id ?? `new-${editing.def.id}-${editing.newAccount ? "extra" : "main"}`}
           {...editing}
           onClose={() => setEditing(null)}
           onChanged={() => {
             load();
           }}
+          onAddAccount={() => setEditing({ def: editing.def, newAccount: true })}
         />
       )}
     </div>
@@ -183,9 +196,13 @@ function ProviderCard({ def, conn, onOpen }: { def: ProviderDef; conn?: Connecti
 function ConnectDrawer({
   def,
   conn,
+  newAccount,
   onClose,
   onChanged,
-}: Editing & { onClose: () => void; onChanged: () => void }) {
+  onAddAccount,
+}: Editing & { onClose: () => void; onChanged: () => void; onAddAccount: () => void }) {
+  const [accountName, setAccountName] = useState(conn?.label ?? "");
+  const multi = def.category === "traffic";
   const [values, setValues] = useState<Record<string, string>>(conn?.credentials ?? {});
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ ok: boolean; text: string; details?: unknown } | null>(
@@ -201,7 +218,7 @@ function ConnectDrawer({
     const r = await fetch("/api/integrations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: savedId, provider: def.id, credentials: values }),
+      body: JSON.stringify({ id: savedId, provider: def.id, credentials: values, newAccount: newAccount && !savedId, accountName }),
     }).then((r) => r.json());
     setBusy(false);
     if (r.error) return setMsg({ ok: false, text: r.error });
@@ -275,6 +292,22 @@ function ConnectDrawer({
             save();
           }}
         >
+          {multi && (
+            <label className="block">
+              <span className="mb-1.5 flex items-center gap-2 text-xs text-zinc-300">
+                Nome da conta <span className="text-faint">opcional</span>
+              </span>
+              <input
+                id="account-name"
+                className="input"
+                placeholder={`${def.name} principal`}
+                value={accountName}
+                onChange={(e) => setAccountName(e.target.value)}
+                autoComplete="off"
+              />
+              <span className="mt-1 block text-[11px] text-faint">Ajuda a diferenciar quando houver mais de uma conta.</span>
+            </label>
+          )}
           {def.fields.map((f) => (
             <label key={f.key} className="block">
               <span className="mb-1.5 flex items-center gap-2 text-xs text-zinc-300">
@@ -319,6 +352,11 @@ function ConnectDrawer({
             {conn && def.id === "mcp" && (
               <button type="button" disabled={busy} onClick={loadTools} className="btn-ghost">
                 Ver ferramentas
+              </button>
+            )}
+            {savedId && multi && (
+              <button type="button" onClick={onAddAccount} className="btn-ghost">
+                + Outra conta
               </button>
             )}
             {savedId && (
