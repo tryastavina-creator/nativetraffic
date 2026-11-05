@@ -34,7 +34,7 @@ export type CampaignRow = {
 export type Metrics = {
   range: DateRange;
   currency: string;
-  dataSources: { orders: string; spend: string[]; demo: boolean; hasSpend: boolean };
+  dataSources: { orders: string; spend: string[]; demo: boolean; hasSpend: boolean; hasOrders: boolean };
   warnings: string[];
   kpis: {
     investment: number;
@@ -149,10 +149,11 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     settings,
     warnings,
     dataSources: {
-      orders: demo ? "demo" : ordersSource,
+      orders: demo ? "demo" : ordersSource === "demo" ? "" : ordersSource,
       spend: demo ? ["demo"] : spendSources,
       demo,
       hasSpend: demo || spendSources.length > 0,
+      hasOrders: demo || ordersSource !== "demo",
     },
   });
 }
@@ -211,6 +212,7 @@ export function aggregate(input: {
         cpa: div(sp, os.length),
       };
     })
+    .filter((p) => p.orders > 0 || p.spend > 0)
     .sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
 
   const campMap = new Map<string, Order[]>();

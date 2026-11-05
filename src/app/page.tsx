@@ -41,6 +41,8 @@ export default function Dashboard() {
   const cur = m?.currency ?? "USD";
   const k = m?.kpis;
   const spendOk = m?.dataSources.hasSpend ?? true;
+  const ordersOk = m?.dataSources.hasOrders ?? true;
+  const noOrders = "Conecte a Shopify";
   const noSpend = "Aguardando custo de tráfego";
 
   return (
@@ -52,7 +54,7 @@ export default function Dashboard() {
             {m ? `${m.range.from} → ${m.range.to}` : "Carregando…"}
             {m && (
               <span className="ml-2">
-                · pedidos: <Source name={m.dataSources.orders} /> · custo:{" "}
+                · pedidos: {m.dataSources.orders ? <Source name={m.dataSources.orders} /> : "—"} · custo:{" "}
                 {m.dataSources.spend.length ? m.dataSources.spend.map((s) => <Source key={s} name={s} />) : "—"}
               </span>
             )}
@@ -77,6 +79,16 @@ export default function Dashboard() {
           </Link>
         </div>
       )}
+      {m && !m.dataSources.demo && !ordersOk && (
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm">
+          <span className="text-warn">
+            O custo de tráfego já está chegando. Falta conectar a Shopify para ver receita, ROAS, CPA e lucro.
+          </span>
+          <Link href="/integrations" className="btn-ghost">
+            Conectar Shopify →
+          </Link>
+        </div>
+      )}
       {m && !m.dataSources.demo && !spendOk && (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-info/30 bg-info/5 px-4 py-3 text-sm">
           <span className="text-info">
@@ -98,22 +110,22 @@ export default function Dashboard() {
         <h2 className="h-section">Resultado operacional</h2>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-5">
           <Kpi label="Investimento" value={k && spendOk ? money(k.investment, cur) : "—"} hint={spendOk ? "Gasto total em ads" : noSpend} />
-          <Kpi label="Receita" value={k ? money(k.revenue, cur) : "—"} hint="Receita bruta Shopify" tone="good" />
+          <Kpi label="Receita" value={k && ordersOk ? money(k.revenue, cur) : "—"} hint={ordersOk ? "Receita bruta Shopify" : noOrders} tone="good" />
           <Kpi
             label={spendOk ? "Lucro líquido" : "Lucro antes dos ads"}
-            value={k ? money(k.netProfit, cur) : "—"}
+            value={k && ordersOk ? money(k.netProfit, cur) : "—"}
             hint={spendOk ? "Receita − ads − COGS − taxas − reembolsos" : "Receita − COGS − taxas − reembolsos"}
             tone={k && k.netProfit < 0 ? "bad" : "good"}
           />
-          <Kpi label="Margem" value={k && spendOk ? pct(k.margin) : "—"} hint={spendOk ? "Lucro ÷ receita" : noSpend} tone={k && k.margin < 0 ? "bad" : "good"} />
-          <Kpi label="ROAS" value={k && spendOk ? `${k.roas.toFixed(2)}x` : "—"} hint={spendOk ? "Receita ÷ investimento" : noSpend} />
+          <Kpi label="Margem" value={k && spendOk && ordersOk ? pct(k.margin) : "—"} hint={spendOk ? "Lucro ÷ receita" : noSpend} tone={k && k.margin < 0 ? "bad" : "good"} />
+          <Kpi label="ROAS" value={k && spendOk && ordersOk ? `${k.roas.toFixed(2)}x` : "—"} hint={spendOk ? "Receita ÷ investimento" : noSpend} />
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-5">
-          <Kpi small label="Vendas" value={k ? int(k.sales) : "—"} hint={k ? `${int(k.trackedSales)} com UTM de tráfego` : ""} />
-          <Kpi small label="Ticket médio" value={k ? money(k.aov, cur, 2) : "—"} hint="Valor por pedido" />
-          <Kpi small label="CPA real" value={k && spendOk ? money(k.cpa, cur, 2) : "—"} hint={spendOk ? "Investimento ÷ vendas rastreadas" : noSpend} tone="warn" />
-          <Kpi small label="Upsell" value={k ? pct(k.upsellRate) : "—"} hint="Pedidos com upsell pós-compra" tone="good" />
+          <Kpi small label="Vendas" value={k && ordersOk ? int(k.sales) : "—"} hint={k ? `${int(k.trackedSales)} com UTM de tráfego` : ""} />
+          <Kpi small label="Ticket médio" value={k && ordersOk ? money(k.aov, cur, 2) : "—"} hint="Valor por pedido" />
+          <Kpi small label="CPA real" value={k && spendOk && ordersOk ? money(k.cpa, cur, 2) : "—"} hint={spendOk ? "Investimento ÷ vendas rastreadas" : noSpend} tone="warn" />
+          <Kpi small label="Upsell" value={k && ordersOk ? pct(k.upsellRate) : "—"} hint="Pedidos com upsell pós-compra" tone="good" />
           <Kpi
             small
             label="Reembolsos"
@@ -196,11 +208,11 @@ export default function Dashboard() {
                     <td className="text-right">{int(p.orders)}</td>
                     <td className="text-right text-bad">{p.spend ? money(p.spend, cur) : "—"}</td>
                     <td className="text-right text-accent">{money(p.revenue, cur)}</td>
-                    <td className={`text-right ${p.spend && p.roas < 1 ? "text-bad" : ""}`}>{p.spend ? `${p.roas.toFixed(2)}x` : "—"}</td>
+                    <td className={`text-right ${ordersOk && p.spend && p.roas < 1 ? "text-bad" : ""}`}>{p.spend && ordersOk ? `${p.roas.toFixed(2)}x` : "—"}</td>
                     <td className="text-right text-warn">{p.spend && p.orders ? money(p.cpa, cur, 2) : "—"}</td>
                     <td className="text-right">{p.orders ? money(p.aov, cur) : "—"}</td>
                     <td className="text-right text-muted">{pct(p.refundRate)}</td>
-                    <td className={`text-right font-medium ${p.profit < 0 ? "text-bad" : "text-accent"}`}>{spendOk ? money(p.profit, cur) : "—"}</td>
+                    <td className={`text-right font-medium ${p.profit < 0 ? "text-bad" : "text-accent"}`}>{spendOk && ordersOk ? money(p.profit, cur) : "—"}</td>
                   </tr>
                 ))}
               </tbody>
