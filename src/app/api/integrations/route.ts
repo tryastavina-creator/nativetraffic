@@ -1,14 +1,19 @@
 import { NextResponse } from "next/server";
 import { testConnection } from "@/lib/connectors";
 import { MCP_TEMPLATE, PROVIDERS, getProvider } from "@/lib/registry";
-import { deleteConnection, getConnection, listConnections, redact, saveConnection } from "@/lib/store";
+import { deleteConnection, getConnection, redact, saveConnection, storageStatus } from "@/lib/store";
 import type { Connection } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const connections = (await listConnections()).map(redact);
-  return NextResponse.json({ providers: PROVIDERS, mcpTemplate: MCP_TEMPLATE, connections });
+  const st = await storageStatus();
+  return NextResponse.json({
+    providers: PROVIDERS,
+    mcpTemplate: MCP_TEMPLATE,
+    connections: st.connections.map(redact),
+    storage: { backend: st.backend, production: st.production, unreadable: st.unreadable },
+  });
 }
 
 export async function POST(req: Request) {

@@ -114,7 +114,7 @@ export default function Dashboard() {
           <Kpi
             label={spendOk ? "Lucro líquido" : "Lucro antes dos ads"}
             value={k && ordersOk ? money(k.netProfit, cur) : "—"}
-            hint={spendOk ? "Receita − ads − COGS − taxas − reembolsos" : "Receita − COGS − taxas − reembolsos"}
+            hint={spendOk ? "Receita − ads − produto − frete − taxas − reembolsos" : "Receita − produto − frete − taxas − reembolsos"}
             tone={k && k.netProfit < 0 ? "bad" : "good"}
           />
           <Kpi label="Margem" value={k && spendOk && ordersOk ? pct(k.margin) : "—"} hint={spendOk ? "Lucro ÷ receita" : noSpend} tone={k && k.margin < 0 ? "bad" : "good"} />
@@ -303,7 +303,13 @@ export default function Dashboard() {
               label="Custo de produto (COGS)"
               value={k?.productCost}
               cur={cur}
-              sub={k ? (k.cogsEstimated ? "Estimado: cadastre o custo por item na Shopify" : pct((k.productCost / (k.revenue || 1)) * 100) + " da receita") : ""}
+              sub={k ? (k.cogsEstimated ? "Estimado: cadastre o custo por produto em Configurações" : pct((k.productCost / (k.revenue || 1)) * 100) + " da receita") : ""}
+            />
+            <CostRow
+              label="Frete do fornecedor"
+              value={k?.shipping}
+              cur={cur}
+              sub={k && k.shipping ? "Tabela da Wiio em Configurações" : "Configure a tabela de frete em Configurações"}
             />
             <CostRow label="Taxas de pagamento" value={k?.fees} cur={cur} sub="Configurável em Configurações" />
             <CostRow label="Reembolsos" value={k?.refunds} cur={cur} sub={k ? pct(k.refundRate, 2) + " da receita" : ""} />

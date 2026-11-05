@@ -48,6 +48,7 @@ export type Metrics = {
     refunds: number;
     refundRate: number;
     productCost: number;
+    shipping: number;
     fees: number;
     trackedSales: number;
     upsellRate: number;
@@ -168,21 +169,37 @@ export function aggregate(input: {
 }): Metrics {
   const { range, orders, spend, settings } = input;
 
+  const supplierCost = (product: string): number | undefined => {
+    const name = product.toLowerCase();
+    let best: [string, number] | undefined;
+    for (const [k, v] of Object.entries(settings.productCosts ?? {})) {
+      const key = k.toLowerCase().trim();
+      if (key && name.includes(key) && (!best || key.length > best[0].length)) best = [key, v];
+    }
+    return best?.[1];
+  };
+  const knownUnitCost = (l: Order["lines"][number]) => l.unitCost || supplierCost(l.product);
   const lineCost = (l: Order["lines"][number]) =>
-    l.quantity * (l.unitCost || (l.price * settings.defaultCogsPercent) / 100);
+    l.quantity * (knownUnitCost(l) ?? (l.price * settings.defaultCogsPercent) / 100);
+  const shippingFor = (o: Order) => {
+    const units = sum(o.lines.map((l) => l.quantity));
+    if (!units || !settings.shippingFirstItem) return 0;
+    return settings.shippingFirstItem + (units - 1) * (settings.shippingExtraItem || 0);
+  };
   const feeFor = (o: Order) => o.total * (settings.paymentFeePercent / 100) + settings.paymentFeeFixed;
-  const costFor = (o: Order) => sum(o.lines.map(lineCost));
+  const costFor = (o: Order) => sum(o.lines.map(lineCost)) + shippingFor(o);
   const platformOf = (o: Order) => (o.isSubscription ? "subscription" : platformFromOrder(o));
   const isTracked = (p: string) => !["untracked", "subscription", "other"].includes(p);
 
   const revenue = sum(orders.map((o) => o.total));
   const refunds = sum(orders.map((o) => o.refunded));
-  const productCost = sum(orders.map(costFor));
+  const shipping = sum(orders.map(shippingFor));
+  const productCost = sum(orders.map(costFor)) - shipping;
   const fees = sum(orders.map(feeFor));
   const investment = sum(spend.map((s) => s.spend));
-  const netProfit = revenue - refunds - productCost - fees - investment;
+  const netProfit = revenue - refunds - productCost - shipping - fees - investment;
   const trackedSales = orders.filter((o) => isTracked(platformOf(o))).length;
-  const cogsEstimated = orders.some((o) => o.lines.some((l) => !l.unitCost));
+  const cogsEstimated = orders.some((o) => o.lines.some((l) => !knownUnitCost(l)));
 
   const daily = eachDay(range.from, range.to).map((date) => {
     const os = orders.filter((o) => o.date === date);
@@ -269,6 +286,7 @@ export function aggregate(input: {
       refunds,
       refundRate: div(refunds, revenue) * 100,
       productCost,
+      shipping,
       fees,
       trackedSales,
       upsellRate: div(orders.filter((o) => o.hasUpsell).length, orders.length) * 100,

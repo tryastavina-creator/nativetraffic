@@ -3,7 +3,12 @@ import { useEffect, useMemo, useState } from "react";
 import { CATEGORY_LABEL } from "@/lib/registry";
 import type { Category, Connection, ProviderDef } from "@/lib/types";
 
-type Data = { providers: ProviderDef[]; mcpTemplate: ProviderDef; connections: Connection[] };
+type Data = {
+  providers: ProviderDef[];
+  mcpTemplate: ProviderDef;
+  connections: Connection[];
+  storage: { backend: "postgres" | "disk"; production: boolean; unreadable: number };
+};
 type Editing = { def: ProviderDef; conn?: Connection };
 
 const ORDER: Category[] = ["store", "tracker", "traffic", "payments", "fulfillment"];
@@ -31,6 +36,23 @@ export default function Integrations() {
           <span className="ml-2 rounded bg-accent/10 px-1.5 py-0.5 text-xs text-accent">{connectedCount} conectadas</span>
         </p>
       </header>
+
+      {data?.storage.backend === "disk" && data.storage.production && (
+        <div className="mt-5 rounded-xl border border-bad/30 bg-bad/5 px-4 py-3 text-sm text-bad">
+          As conexões estão sendo salvas no disco temporário do servidor e somem a cada novo deploy. No Railway, abra o
+          serviço do site → Variables → Add Reference → escolha <b>DATABASE_URL</b> do Postgres. Depois conecte as APIs de
+          novo.
+        </div>
+      )}
+      {!!data?.storage.unreadable && (
+        <div className="mt-5 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
+          {data.storage.unreadable} conexão(ões) salvas não puderam ser lidas porque a ENCRYPTION_KEY mudou. Volte a chave
+          anterior ou conecte essas APIs de novo.
+        </div>
+      )}
+      {data?.storage.backend === "postgres" && (
+        <p className="mt-3 text-xs text-faint">Conexões salvas no banco Postgres: continuam após cada deploy.</p>
+      )}
 
       {ORDER.map((cat) => {
         const list = data?.providers.filter((p) => p.category === cat) ?? [];
@@ -241,7 +263,7 @@ function ConnectDrawer({
 
           {def.id === "wio" && (
             <div className="rounded-lg border border-line bg-bg p-3 text-xs">
-              <div className="text-zinc-300">URL de webhook para cadastrar na WIO</div>
+              <div className="text-zinc-300">URL de webhook (se a Wiio oferecer webhooks)</div>
               <code className="mt-1 block break-all text-accent">{webhookUrl}</code>
               <div className="mt-1 text-faint">Envie eventos de pedido, reembolso e chargeback. Assinatura HMAC-SHA256 no header x-wio-signature.</div>
             </div>

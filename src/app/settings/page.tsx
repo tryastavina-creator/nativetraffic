@@ -2,19 +2,34 @@
 import { useEffect, useState } from "react";
 import type { Settings } from "@/lib/store";
 
+type CostRow = { product: string; cost: string };
+
 export default function SettingsPage() {
   const [s, setS] = useState<Settings | null>(null);
+  const [costs, setCosts] = useState<CostRow[]>([]);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    fetch("/api/settings").then((r) => r.json()).then(setS);
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((data: Settings) => {
+        setS(data);
+        const rows = Object.entries(data.productCosts ?? {}).map(([product, cost]) => ({ product, cost: String(cost) }));
+        setCosts(rows.length ? rows : [{ product: "", cost: "" }]);
+      });
   }, []);
 
   async function save() {
+    if (!s) return;
+    const productCosts: Record<string, number> = {};
+    for (const r of costs) {
+      const v = parseFloat(r.cost.replace(",", "."));
+      if (r.product.trim() && Number.isFinite(v)) productCosts[r.product.trim()] = v;
+    }
     const r = await fetch("/api/settings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(s),
+      body: JSON.stringify({ ...s, productCosts }),
     }).then((r) => r.json());
     setS(r);
     setSaved(true);
@@ -26,6 +41,7 @@ export default function SettingsPage() {
     <label className="block">
       <span className="mb-1.5 block text-xs text-zinc-300">{label}</span>
       <input
+        id={`set-${key}`}
         className="input"
         type="number"
         step="0.01"
@@ -41,13 +57,61 @@ export default function SettingsPage() {
       <h1 className="text-2xl font-semibold tracking-tight">Configurações</h1>
       <p className="mt-1 text-sm text-muted">Premissas usadas no cálculo do lucro.</p>
 
-      <div className="card card-pad mt-6 space-y-5">
-        {numField("paymentFeePercent", "Taxa do processador (%)", "Percentual cobrado pela WIO/gateway sobre cada pedido.")}
-        {numField("paymentFeeFixed", "Taxa fixa por pedido", "Valor fixo por transação.")}
-        {numField("defaultCogsPercent", "COGS padrão (% do preço)", "Usado quando a variante não tem custo cadastrado na Shopify.")}
+      <h2 className="h-section">Fornecedor (Wiio)</h2>
+      <div className="card card-pad space-y-5">
+        <div>
+          <span className="mb-1.5 block text-xs text-zinc-300">Custo do produto por unidade</span>
+          <div className="space-y-2">
+            {costs.map((row, i) => (
+              <div key={i} className="flex gap-2">
+                <input
+                  id={`cost-product-${i}`}
+                  className="input min-w-0 flex-1"
+                  placeholder="Nome do produto (ou parte dele)"
+                  value={row.product}
+                  onChange={(e) => setCosts(costs.map((r, j) => (j === i ? { ...r, product: e.target.value } : r)))}
+                />
+                <input
+                  id={`cost-value-${i}`}
+                  className="input w-24"
+                  placeholder="0.00"
+                  inputMode="decimal"
+                  value={row.cost}
+                  onChange={(e) => setCosts(costs.map((r, j) => (j === i ? { ...r, cost: e.target.value } : r)))}
+                />
+                <button
+                  type="button"
+                  aria-label="Remover produto"
+                  className="btn-ghost px-2.5"
+                  onClick={() => setCosts(costs.filter((_, j) => j !== i))}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+          <button type="button" className="mt-2 text-xs text-info hover:underline" onClick={() => setCosts([...costs, { product: "", cost: "" }])}>
+            + Adicionar produto
+          </button>
+          <span className="mt-1 block text-[11px] text-faint">
+            O nome precisa estar contido no título do produto na Shopify. Se a Shopify tiver custo por item cadastrado, ele tem prioridade.
+          </span>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {numField("shippingFirstItem", "Frete: primeiro item", "Cobrado pela Wiio por pedido.")}
+          {numField("shippingExtraItem", "Frete: cada item adicional", "Somado ao primeiro item.")}
+        </div>
+      </div>
+
+      <h2 className="h-section">Pagamento e tráfego</h2>
+      <div className="card card-pad space-y-5">
+        {numField("paymentFeePercent", "Taxa do gateway (%)", "Shopify Payments no plano Basic: 2,9%.")}
+        {numField("paymentFeeFixed", "Taxa fixa por pedido", "Shopify Payments: $0,30.")}
+        {numField("defaultCogsPercent", "Custo padrão (% do preço)", "Usado só para produtos sem custo cadastrado.")}
         <label className="block">
           <span className="mb-1.5 block text-xs text-zinc-300">Fonte do custo de tráfego</span>
           <select
+            id="set-spendSource"
             className="input"
             value={s.spendSource}
             onChange={(e) => setS({ ...s, spendSource: e.target.value as Settings["spendSource"] })}
@@ -58,12 +122,13 @@ export default function SettingsPage() {
         </label>
         <label className="block">
           <span className="mb-1.5 block text-xs text-zinc-300">Moeda</span>
-          <input className="input" value={s.currency} onChange={(e) => setS({ ...s, currency: e.target.value.toUpperCase() })} />
+          <input id="set-currency" className="input" value={s.currency} onChange={(e) => setS({ ...s, currency: e.target.value.toUpperCase() })} />
         </label>
-        <button onClick={save} className="btn-primary">
-          {saved ? "Salvo ✓" : "Salvar"}
-        </button>
       </div>
+
+      <button onClick={save} className="btn-primary mt-5">
+        {saved ? "Salvo ✓" : "Salvar"}
+      </button>
     </div>
   );
 }

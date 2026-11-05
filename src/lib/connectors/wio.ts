@@ -11,6 +11,9 @@ import type { Credentials, TestResult } from "../types";
 import { http } from "./http";
 
 export async function test(c: Credentials): Promise<TestResult> {
+  if (!c.baseUrl) {
+    return { ok: true, message: "Sem API: custos calculados pela tabela da Wiio em Configurações." };
+  }
   const url = new URL(c.ordersPath || "/v1/orders", c.baseUrl);
   url.searchParams.set("limit", "1");
   await http(url.toString(), {

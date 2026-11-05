@@ -20,6 +20,11 @@ export type Settings = {
   defaultCogsPercent: number;
   /** "traffic" = use each platform's API; "redtrack" = use RedTrack cost for everything. */
   spendSource: "traffic" | "redtrack";
+  /** Supplier (Wiio) unit cost by product title. Used when Shopify has no cost per item. */
+  productCosts: Record<string, number>;
+  /** Supplier shipping: first item of an order, and each extra item. */
+  shippingFirstItem: number;
+  shippingExtraItem: number;
 };
 
 type FileShape = { connections: Record<string, string>; settings: Settings };
@@ -30,6 +35,9 @@ const DEFAULT_SETTINGS: Settings = {
   paymentFeeFixed: 0.3,
   defaultCogsPercent: 18,
   spendSource: "traffic",
+  productCosts: {},
+  shippingFirstItem: 0,
+  shippingExtraItem: 0,
 };
 
 function key(): Buffer {
@@ -112,16 +120,27 @@ async function write(data: FileShape) {
 }
 
 export async function listConnections(): Promise<Connection[]> {
+  return (await storageStatus()).connections;
+}
+
+/** Where credentials live, and how many saved entries can't be decrypted (ENCRYPTION_KEY changed). */
+export async function storageStatus() {
   const data = await read();
-  const out: Connection[] = [];
+  const connections: Connection[] = [];
+  let unreadable = 0;
   for (const blob of Object.values(data.connections)) {
     try {
-      out.push(JSON.parse(decrypt(blob)) as Connection);
+      connections.push(JSON.parse(decrypt(blob)) as Connection);
     } catch {
-      // Unreadable entry (key changed) — skip it.
+      unreadable++;
     }
   }
-  return out;
+  return {
+    backend: process.env.DATABASE_URL ? ("postgres" as const) : ("disk" as const),
+    production: process.env.NODE_ENV === "production",
+    unreadable,
+    connections,
+  };
 }
 
 export async function getConnection(id: string): Promise<Connection | undefined> {
