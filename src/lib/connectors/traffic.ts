@@ -13,8 +13,12 @@ type Connector = {
 const today = () => new Date().toISOString().slice(0, 10);
 
 /* ---------------------------------- Taboola --------------------------------- */
-async function taboolaToken(c: Credentials) {
-  const r = await http<{ access_token: string }>("https://backstage.taboola.com/backstage/oauth/token", {
+const tbTokens = new Map<string, { token: string; expires: number }>();
+
+export async function taboolaToken(c: Credentials) {
+  const cached = tbTokens.get(c.clientId);
+  if (cached && cached.expires > Date.now()) return cached.token;
+  const r = await http<{ access_token: string; expires_in?: number }>("https://backstage.taboola.com/backstage/oauth/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
@@ -23,6 +27,7 @@ async function taboolaToken(c: Credentials) {
       grant_type: "client_credentials",
     }),
   });
+  tbTokens.set(c.clientId, { token: r.access_token, expires: Date.now() + ((r.expires_in ?? 3600) - 120) * 1000 });
   return r.access_token;
 }
 

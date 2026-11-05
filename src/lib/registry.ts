@@ -6,6 +6,7 @@ export const CATEGORY_LABEL: Record<Category, string> = {
   tracker: "Tracker / Atribuição",
   payments: "Processador de pedidos",
   fulfillment: "Fulfillment / Estoque",
+  ai: "Inteligência artificial",
   mcp: "Servidores MCP",
 };
 
@@ -187,6 +188,24 @@ export const PROVIDERS: ProviderDef[] = [
     ],
   },
 ];
+
+PROVIDERS.push({
+  id: "fal",
+  name: "fal.ai (Gemini imagens)",
+  category: "ai",
+  description: "Gera variações dos seus criativos com o modelo de imagem do Google Gemini (Nano Banana). $0,04 por imagem.",
+  docsUrl: "https://fal.ai/models/fal-ai/nano-banana/edit",
+  color: "#8b5cf6",
+  initials: "AI",
+  fields: [
+    {
+      key: "apiKey",
+      label: "API key",
+      type: "password",
+      help: "fal.ai → entre com Google → Dashboard → API Keys → Create key. Adicione créditos em Billing.",
+    },
+  ],
+});
 
 /** Template used when the user adds any remote MCP server (Shopify, RedTrack, etc.). */
 export const MCP_TEMPLATE: ProviderDef = {

@@ -1,4 +1,5 @@
 import type { Connection, TestResult } from "../types";
+import * as fal from "./fal";
 import * as mcp from "./mcp";
 import * as redtrack from "./redtrack";
 import * as shopify from "./shopify";
@@ -12,6 +13,7 @@ export async function testConnection(conn: Connection): Promise<TestResult> {
     if (conn.provider === "shopify") return await shopify.test(c);
     if (conn.provider === "redtrack") return await redtrack.test(c);
     if (conn.provider === "wio") return await wio.test(c);
+    if (conn.provider === "fal") return await fal.test(c);
     const t = TRAFFIC_CONNECTORS[conn.provider];
     if (t) return await t.test(c);
     return { ok: false, message: "Conector ainda não implementado — credenciais salvas." };
@@ -20,4 +22,4 @@ export async function testConnection(conn: Connection): Promise<TestResult> {
   }
 }
 
-export { mcp, redtrack, shopify, TRAFFIC_CONNECTORS, wio };
+export { fal, mcp, redtrack, shopify, TRAFFIC_CONNECTORS, wio };

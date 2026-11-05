@@ -1,6 +1,6 @@
 export type DateRange = { from: string; to: string }; // YYYY-MM-DD, inclusive
 
-export type Category = "store" | "traffic" | "tracker" | "payments" | "fulfillment" | "mcp";
+export type Category = "store" | "traffic" | "tracker" | "payments" | "fulfillment" | "ai" | "mcp";
 
 export type FieldDef = {
   key: string;

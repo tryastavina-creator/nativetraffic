@@ -11,7 +11,7 @@ type Data = {
 };
 type Editing = { def: ProviderDef; conn?: Connection; newAccount?: boolean };
 
-const ORDER: Category[] = ["store", "tracker", "traffic", "payments", "fulfillment"];
+const ORDER: Category[] = ["store", "tracker", "traffic", "payments", "fulfillment", "ai"];
 
 export default function Integrations() {
   const [data, setData] = useState<Data | null>(null);
