@@ -61,7 +61,10 @@ export default function Conferencia() {
   const cur = m?.currency ?? "USD";
   const recon = m?.reconciliation ?? [];
   const daily = (m?.reconDaily ?? []).filter((d) => d.shopifyOrders || d.rtConversions);
-  const totS = recon.reduce((a, r) => a + r.shopifyOrders, 0);
+  // RedTrack fires one purchase for the sale and one more for each post-purchase upsell.
+  const totS = recon.reduce((a, r) => a + r.shopifyOrders + r.shopifyUpsells, 0);
+  const totSales = recon.reduce((a, r) => a + r.shopifyOrders, 0);
+  const totUp = recon.reduce((a, r) => a + r.shopifyUpsells, 0);
   const totR = recon.reduce((a, r) => a + r.rtConversions, 0);
   const rtSilent = recon.length > 0 && totR === 0 && totS > 0;
   const map = m?.redtrackMapping ?? {};
@@ -105,7 +108,7 @@ export default function Conferencia() {
         {recon.length > 0 && (
           <>
             <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
-              <Tile label="Vendas Shopify (com UTM)" value={int(totS)} />
+              <Tile label="Shopify: vendas + upsells" value={`${int(totSales)} + ${int(totUp)} = ${int(totS)}`} />
               <Tile label="Conversões RedTrack" value={int(totR)} />
               <Tile label="Diferença" value={`${totR - totS > 0 ? "+" : ""}${int(totR - totS)}`} tone={Math.abs(totR - totS) <= 1 ? "good" : "bad"} />
               <Tile label="Vendas sem UTM" value={int(m?.untracked.length ?? 0)} tone={m?.untracked.length ? "warn" : "good"} />
@@ -124,7 +127,8 @@ export default function Conferencia() {
                 <thead>
                   <tr>
                     <th>Plataforma</th>
-                    <th className="text-right">Shopify</th>
+                    <th className="text-right">Vendas</th>
+                    <th className="text-right">Upsells</th>
                     <th className="text-right">RedTrack</th>
                     <th className="text-right">Diferença</th>
                     <th className="text-right">Receita Shopify</th>
@@ -137,9 +141,10 @@ export default function Conferencia() {
                     <tr key={r.platform}>
                       <td>{r.label}</td>
                       <td className="text-right">{int(r.shopifyOrders)}</td>
+                      <td className="text-right text-muted">{int(r.shopifyUpsells)}</td>
                       <td className="text-right">{int(r.rtConversions)}</td>
                       <td className="text-right">
-                        <Diff a={r.shopifyOrders} b={r.rtConversions} />
+                        <Diff a={r.shopifyOrders + r.shopifyUpsells} b={r.rtConversions} />
                       </td>
                       <td className="text-right">{money(r.shopifyRevenue, cur)}</td>
                       <td className="text-right text-muted">{money(r.rtRevenue, cur)}</td>
@@ -161,7 +166,7 @@ export default function Conferencia() {
                   <thead>
                     <tr>
                       <th>Dia</th>
-                      <th className="text-right">Shopify</th>
+                      <th className="text-right">Vendas + upsells</th>
                       <th className="text-right">RedTrack</th>
                       <th className="text-right">Diferença</th>
                       <th className="text-right">Receita Shopify</th>
@@ -172,10 +177,12 @@ export default function Conferencia() {
                     {daily.map((d) => (
                       <tr key={d.date}>
                         <td>{fmtDate(d.date)}</td>
-                        <td className="text-right">{int(d.shopifyOrders)}</td>
+                        <td className="text-right">
+                          {int(d.shopifyOrders)} + {int(d.shopifyUpsells)}
+                        </td>
                         <td className="text-right">{int(d.rtConversions)}</td>
                         <td className="text-right">
-                          <Diff a={d.shopifyOrders} b={d.rtConversions} />
+                          <Diff a={d.shopifyOrders + d.shopifyUpsells} b={d.rtConversions} />
                         </td>
                         <td className="text-right">{money(d.shopifyRevenue, cur)}</td>
                         <td className="text-right text-muted">{money(d.rtRevenue, cur)}</td>

@@ -196,11 +196,7 @@ export default function Dashboard() {
           conectados.
         </Banner>
       )}
-      {m?.warnings.map((w) => (
-        <div key={w} className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">
-          {w}
-        </div>
-      ))}
+      {!!m?.warnings.length && <p className="mt-3 text-xs text-faint">{m.warnings.join(" · ")}</p>}
 
       <div className={`transition-opacity ${loading ? "opacity-50" : ""}`}>
         <h2 className="h-section">Resultado operacional</h2>

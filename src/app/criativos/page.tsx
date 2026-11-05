@@ -72,11 +72,7 @@ export default function Criativos() {
           Para gerar variações, conecte a fal.ai (modelo de imagem do Gemini) em Integrações.
         </Notice>
       )}
-      {data?.warnings.map((w) => (
-        <div key={w} className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">
-          {w}
-        </div>
-      ))}
+      {!!data?.warnings.length && <p className="mt-3 text-xs text-faint">{data.warnings.join(" · ")}</p>}
 
       {data && data.accounts.length > 1 && (
         <div className="mt-5 flex flex-wrap gap-1">

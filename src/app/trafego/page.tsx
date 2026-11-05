@@ -13,7 +13,7 @@ const PRESETS = [
   ["custom", "Personalizado"],
 ] as const;
 
-type SortKey = "spend" | "profit" | "roi" | "roas" | "sales" | "cpa" | "revenue" | "clicks";
+type SortKey = "spend" | "profit" | "roi" | "roas" | "sales" | "upsells" | "cpa" | "revenue" | "clicks";
 
 const daysAgo = (n: number) => {
   const d = new Date();
@@ -107,11 +107,9 @@ export default function Trafego() {
       </header>
 
       {error && <div className="mt-5 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">{error}</div>}
-      {data?.warnings.map((w) => (
-        <div key={w} className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">
-          {w}
-        </div>
-      ))}
+      {!!data?.warnings.length && (
+        <p className="mt-3 text-xs text-faint">{data.warnings.join(" · ")}</p>
+      )}
       {data && !data.hasRedtrack && (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
           Conecte o RedTrack para ver gasto, cliques e lucro por campanha.
@@ -124,11 +122,11 @@ export default function Trafego() {
       <div className={`transition-opacity ${loading ? "opacity-50" : ""}`}>
         <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
           <Tile label="Gasto" value={t ? money(t.spend, cur) : "—"} />
-          <Tile label="Receita" value={t ? money(t.revenue, cur) : "—"} tone="good" />
-          <Tile label="Lucro real" value={t ? money(t.profit, cur) : "—"} tone={t && t.profit < 0 ? "bad" : "good"} />
-          <Tile label="ROI" value={t && t.spend ? pct(t.roi) : "—"} tone={t && t.roi < 0 ? "bad" : "good"} />
-          <Tile label="ROAS" value={t && t.spend ? `${t.roas.toFixed(2)}x` : "—"} />
-          <Tile label="CPA" value={t && t.sales ? money(t.cpa, cur, 2) : "—"} tone="warn" />
+          <Tile label="Vendas + upsells" value={t ? `${int(t.sales)} + ${int(t.upsells)}` : "—"} hint={t && t.sales ? `${pct(t.upsellRate)} levaram upsell` : ""} />
+          <Tile label="Receita" value={t ? money(t.revenue, cur) : "—"} tone="good" hint={t && t.upsellRevenue ? `${money(t.upsellRevenue, cur)} de upsell` : ""} />
+          <Tile label="CPA real" value={t && t.sales ? money(t.cpa, cur, 2) : "—"} tone="warn" hint="Gasto ÷ vendas" />
+          <Tile label="ROAS real" value={t && t.spend ? `${t.roas.toFixed(2)}x` : "—"} hint="Receita ÷ gasto" />
+          <Tile label="Lucro real" value={t ? money(t.profit, cur) : "—"} tone={t && t.profit < 0 ? "bad" : "good"} hint={t && t.spend ? `ROI ${pct(t.roi)}` : ""} />
         </div>
 
         <div className="mt-6 flex flex-wrap gap-1">
@@ -150,11 +148,12 @@ export default function Trafego() {
                 {showIc && <Th>IC</Th>}
                 {showIc && <Th>IC %</Th>}
                 <Th k="sales">Vendas</Th>
+                <Th k="upsells">Upsells</Th>
                 <Th>Conv. %</Th>
-                <Th k="cpa">CPA</Th>
+                <Th k="cpa">CPA real</Th>
                 <Th k="revenue">Receita</Th>
-                <Th k="roas">ROAS</Th>
-                <Th k="profit">Lucro</Th>
+                <Th k="roas">ROAS real</Th>
+                <Th k="profit">Lucro real</Th>
                 <Th k="roi">ROI</Th>
               </tr>
             </thead>
@@ -164,7 +163,7 @@ export default function Trafego() {
               ))}
               {rows.length === 0 && (
                 <tr>
-                  <td colSpan={13} className="py-8 text-center text-muted">
+                  <td colSpan={15} className="py-8 text-center text-muted">
                     Nenhuma campanha com gasto ou venda no período.
                   </td>
                 </tr>
@@ -173,8 +172,10 @@ export default function Trafego() {
           </table>
         </div>
         <p className="mt-3 text-[11px] text-faint">
-          Lucro = receita − custo Wiio − taxas − reembolsos − gasto. Vendas vêm da Shopify pelo utm_campaign; quando o nome da
-          campanha no RedTrack não bate com o utm_campaign, a linha aparece como &quot;sem vendas ligadas&quot;.
+          Gasto vem da API da fonte quando ela está conectada (senão, do RedTrack). Vendas e upsells vêm da Shopify pelo
+          código da campanha. CPA real = gasto ÷ vendas. Lucro real = receita − custo Wiio − taxas − reembolsos − gasto. O
+          RedTrack conta 1 compra por venda e mais 1 por upsell.
+          {!!data?.hidden && ` ${data.hidden} campanha(s) sem gasto e sem venda ocultas.`}
           {!showIc && (
             <>
               {" "}
@@ -189,6 +190,7 @@ export default function Trafego() {
 }
 
 function Row({ r, cur, showIc }: { r: TrafficRow; cur: string; showIc: boolean }) {
+  const rtOk = r.rtConversions === r.rtExpected;
   return (
     <tr>
       <td className="max-w-[360px]">
@@ -200,18 +202,28 @@ function Row({ r, cur, showIc }: { r: TrafficRow; cur: string; showIc: boolean }
         </div>
         <div className="pl-4 text-[11px] text-faint">
           {r.label}
+          {r.missingCost && <span className="ml-2 text-warn">sem custo na fonte nem no RedTrack</span>}
           {!r.matched && r.spend > 0 && <span className="ml-2 text-warn">sem vendas ligadas</span>}
-          {r.rtConversions !== r.sales && r.matched && (
-            <span className="ml-2">RedTrack: {int(r.rtConversions)} compras</span>
+          {r.matched && r.rtConversions > 0 && (
+            <span className={`ml-2 ${rtOk ? "" : "text-warn"}`}>
+              RedTrack {int(r.rtConversions)} {rtOk ? "✓" : `(esperado ${int(r.rtExpected)})`}
+            </span>
           )}
         </div>
       </td>
-      <td className="text-right text-bad">{r.spend ? money(r.spend, cur) : "—"}</td>
+      <td className="text-right text-bad">
+        {r.spend ? money(r.spend, cur) : "—"}
+        {r.spendSource && <div className="text-[10px] text-faint">{r.spendSource === "fonte" ? `API ${r.label}` : "RedTrack"}</div>}
+      </td>
       <td className="text-right">{int(r.clicks)}</td>
-      <td className="text-right text-muted">{r.clicks ? money(r.cpc, cur, 3) : "—"}</td>
+      <td className="text-right text-muted">{r.clicks && r.spend ? money(r.cpc, cur, 3) : "—"}</td>
       {showIc && <td className="text-right">{r.ic === null ? "—" : int(r.ic)}</td>}
       {showIc && <td className="text-right text-muted">{r.icRate === null ? "—" : pct(r.icRate)}</td>}
       <td className="text-right font-medium">{int(r.sales)}</td>
+      <td className="text-right">
+        {int(r.upsells)}
+        {r.sales > 0 && <div className="text-[10px] text-faint">{pct(r.upsellRate, 0)}</div>}
+      </td>
       <td className="text-right text-muted">{r.clicks ? pct(r.cvr, 2) : "—"}</td>
       <td className="text-right text-warn">{r.sales && r.spend ? money(r.cpa, cur, 2) : "—"}</td>
       <td className="text-right text-accent">{money(r.revenue, cur)}</td>
@@ -222,12 +234,13 @@ function Row({ r, cur, showIc }: { r: TrafficRow; cur: string; showIc: boolean }
   );
 }
 
-function Tile({ label, value, tone }: { label: string; value: string; tone?: "good" | "bad" | "warn" }) {
+function Tile({ label, value, tone, hint }: { label: string; value: string; tone?: "good" | "bad" | "warn"; hint?: string }) {
   const c = tone === "good" ? "text-accent" : tone === "bad" ? "text-bad" : tone === "warn" ? "text-warn" : "text-zinc-100";
   return (
     <div className="card card-pad">
       <div className="label">{label}</div>
       <div className={`mt-2 text-xl font-semibold ${c}`}>{value}</div>
+      {hint && <div className="mt-1 text-[11px] text-faint">{hint}</div>}
     </div>
   );
 }

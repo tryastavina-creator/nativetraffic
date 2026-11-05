@@ -1,4 +1,5 @@
 import type { Credentials, DateRange, Order, TestResult } from "../types";
+import { cached, hashKey } from "../cache";
 import { http, num } from "./http";
 
 const API_VERSION = "2025-10";
@@ -162,6 +163,11 @@ export function localDay(iso: string, timeZone: string) {
 export const UPSELL_TAG = /upsell|aftersell|zipify|ocu|order bump/i;
 
 export async function fetchOrders(c: Credentials, range: DateRange): Promise<Order[]> {
+  const key = hashKey("shopify", c.shop, c.clientId ?? "", c.accessToken ?? "", range);
+  return (await cached(key, () => fetchOrdersLive(c, range))).value;
+}
+
+async function fetchOrdersLive(c: Credentials, range: DateRange): Promise<Order[]> {
   const { shop } = await gql<{ shop: { ianaTimezone: string } }>(c, `{ shop { ianaTimezone } }`);
   const tz = shop.ianaTimezone || "UTC";
   // Widen the UTC window by a day each side, then keep only days inside the range in shop time.

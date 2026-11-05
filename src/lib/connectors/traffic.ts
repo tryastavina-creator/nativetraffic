@@ -5,9 +5,14 @@
 import type { Credentials, DateRange, SpendRow, TestResult } from "../types";
 import { http, num } from "./http";
 
+/** Spend of one campaign, as reported by the traffic source itself. */
+export type SourceCampaign = { id: string; name: string; spend: number; clicks: number; conversions: number; status?: string };
+
 type Connector = {
   test: (c: Credentials) => Promise<TestResult>;
   fetchSpend: (c: Credentials, r: DateRange) => Promise<SpendRow[]>;
+  /** Per-campaign spend for the period (sources that support it). */
+  campaigns?: (c: Credentials, r: DateRange) => Promise<SourceCampaign[]>;
 };
 
 const today = () => new Date().toISOString().slice(0, 10);
@@ -32,6 +37,21 @@ export async function taboolaToken(c: Credentials) {
 }
 
 const taboola: Connector = {
+  async campaigns(c, range) {
+    const token = await taboolaToken(c);
+    const qs = new URLSearchParams({ start_date: range.from, end_date: range.to });
+    const r = await http<{ results: Record<string, unknown>[] }>(
+      `https://backstage.taboola.com/backstage/api/1.0/${c.accountId}/reports/campaign-summary/dimensions/campaign_breakdown?${qs}`,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+    return (r.results ?? []).map((x) => ({
+      id: String(x.campaign ?? ""),
+      name: String(x.campaign_name ?? x.campaign ?? ""),
+      spend: num(x.spent),
+      clicks: num(x.clicks),
+      conversions: num(x.cpa_actions_num),
+    }));
+  },
   async test(c) {
     const token = await taboolaToken(c);
     const r = await http<{ name?: string }>(
@@ -66,6 +86,21 @@ async function outbrainToken(c: Credentials) {
 }
 
 const outbrain: Connector = {
+  async campaigns(c, range) {
+    const token = await outbrainToken(c);
+    const qs = new URLSearchParams({ from: range.from, to: range.to, limit: "500" });
+    const r = await http<{ results?: { metadata?: { id?: string; name?: string }; metrics?: Record<string, unknown> }[] }>(
+      `https://api.outbrain.com/amplify/v0.1/reports/marketers/${c.marketerId}/campaigns?${qs}`,
+      { headers: { "OB-TOKEN-V1": token } },
+    );
+    return (r.results ?? []).map((x) => ({
+      id: String(x.metadata?.id ?? ""),
+      name: String(x.metadata?.name ?? x.metadata?.id ?? ""),
+      spend: num(x.metrics?.spend),
+      clicks: num(x.metrics?.clicks),
+      conversions: num(x.metrics?.conversions),
+    }));
+  },
   async test(c) {
     const token = await outbrainToken(c);
     const r = await http<{ name: string }>(`https://api.outbrain.com/amplify/v0.1/marketers/${c.marketerId}`, {

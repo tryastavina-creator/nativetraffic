@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cached, friendlyError, hashKey } from "@/lib/cache";
 import { listCreatives, type Creative } from "@/lib/connectors/taboolaCreatives";
 import { rangeFromPreset } from "@/lib/metrics";
 import { listConnections } from "@/lib/store";
@@ -16,11 +17,12 @@ export async function GET(req: Request) {
   await Promise.all(
     accounts.map(async (a) => {
       try {
-        for (const cr of await listCreatives(a.credentials, range)) {
+        const list = (await cached(hashKey("creatives", a.id, a.credentials, range), () => listCreatives(a.credentials, range))).value;
+        for (const cr of list) {
           items.push({ ...cr, accountId: a.id, accountLabel: a.label ?? "Taboola", platform: "taboola" });
         }
       } catch (e) {
-        warnings.push(`${a.label ?? "Taboola"}: ${(e as Error).message}`);
+        warnings.push(friendlyError(a.label ?? "Taboola", e));
       }
     }),
   );

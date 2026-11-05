@@ -2,6 +2,7 @@ import "server-only";
 import { promises as fs } from "node:fs";
 import { TRAFFIC_CONNECTORS, redtrack, shopify } from "./connectors";
 import { eachDay } from "./connectors/http";
+import { cached, friendlyError, hashKey } from "./cache";
 import { demoData } from "./demo";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
 import { getSettings, getSupplierCosts, listConnections, type Settings, type SupplierCost } from "./store";
@@ -33,6 +34,10 @@ export type CampaignRow = {
   refunds: number;
   supplierCost: number;
   fees: number;
+  /** Orders that took a post-purchase upsell (RedTrack counts each as an extra purchase). */
+  upsells: number;
+  /** Revenue from products other than the front-end offer. */
+  upsellRevenue: number;
 };
 
 export type Metrics = {
@@ -68,7 +73,14 @@ export type Metrics = {
   untracked: { name: string; date: string; total: number; campaign: string; referrer: string }[];
   upsell: UpsellStats;
   reconciliation: ReconRow[];
-  reconDaily: { date: string; shopifyOrders: number; rtConversions: number; shopifyRevenue: number; rtRevenue: number }[];
+  reconDaily: {
+    date: string;
+    shopifyOrders: number;
+    shopifyUpsells: number;
+    rtConversions: number;
+    shopifyRevenue: number;
+    rtRevenue: number;
+  }[];
   redtrackMapping: { conversions?: string; revenue?: string; cost?: string };
 };
 
@@ -89,6 +101,8 @@ export type ReconRow = {
   label: string;
   shopifyOrders: number;
   shopifyRevenue: number;
+  /** Post-purchase upsells: RedTrack fires one extra purchase per upsell. */
+  shopifyUpsells: number;
   rtConversions: number;
   rtRevenue: number;
   rtSpend: number;
@@ -132,7 +146,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
       orders = await shopify.fetchOrders(shop.credentials, range);
       ordersSource = "shopify";
     } catch (e) {
-      warnings.push(`Shopify: ${(e as Error).message}`);
+      warnings.push(friendlyError("Shopify", e));
     }
   }
 
@@ -147,7 +161,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     try {
       rtRows = await redtrack.fetchSpend(rt.credentials, range);
     } catch (e) {
-      warnings.push(`RedTrack: ${(e as Error).message}`);
+      warnings.push(friendlyError("RedTrack", e));
     }
   }
   if (rt && settings.spendSource === "redtrack") {
@@ -159,11 +173,15 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
       .filter((c) => TRAFFIC_CONNECTORS[c.provider])
       .map(async (c) => {
         try {
-          const rows = await TRAFFIC_CONNECTORS[c.provider].fetchSpend(c.credentials, range);
+          const rows = (
+            await cached(hashKey("spend", c.id, c.credentials, range), () =>
+              TRAFFIC_CONNECTORS[c.provider].fetchSpend(c.credentials, range),
+            )
+          ).value;
           if (!spendSources.includes(c.provider)) spendSources.push(c.provider);
           return rows;
         } catch (e) {
-          warnings.push(`${c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider}: ${(e as Error).message}`);
+          warnings.push(friendlyError(c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider, e));
           return [];
         }
       });
@@ -291,6 +309,15 @@ export function aggregate(input: {
     .filter((p) => p.orders > 0 || p.spend > 0)
     .sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
 
+  // Front-end offer = product most orders start with; everything else is upsell/bump.
+  const firstCount = new Map<string, number>();
+  for (const o of orders) {
+    const f = o.lines[0]?.product;
+    if (f) firstCount.set(f, (firstCount.get(f) ?? 0) + 1);
+  }
+  const front = [...firstCount.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
+  const extraRevenue = (o: Order) => sum(o.lines.filter((l) => l.product !== front).map((l) => l.price * l.quantity));
+
   const campMap = new Map<string, Order[]>();
   for (const o of orders) {
     const key = o.utmCampaign || "(sem campanha)";
@@ -312,6 +339,8 @@ export function aggregate(input: {
         refunds: sum(os.map((o) => o.refunded)),
         supplierCost: sum(os.map(costFor)),
         fees: sum(os.map(feeFor)),
+        upsells: os.filter((o) => o.hasUpsell).length,
+        upsellRevenue: sum(os.map(extraRevenue)),
       };
     })
     .sort((a, b) => b.revenue - a.revenue);
@@ -344,12 +373,6 @@ export function aggregate(input: {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   // ---------- upsell funnel ----------
-  const firstCount = new Map<string, number>();
-  for (const o of orders) {
-    const f = o.lines[0]?.product;
-    if (f) firstCount.set(f, (firstCount.get(f) ?? 0) + 1);
-  }
-  const front = [...firstCount.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? "";
   const extrasOf = (o: Order) => [...new Set(o.lines.map((l) => l.product))].filter((p) => p !== front);
   const upItems = new Map<string, { orders: number; revenue: number }>();
   for (const o of orders) {
@@ -390,9 +413,11 @@ export function aggregate(input: {
           const os = orders.filter((o) => platformOf(o) === platform);
           const rs = rtRows.filter((r) => r.platform === platform);
           const shopifyOrders = os.length;
+          const shopifyUpsells = os.filter((o) => o.hasUpsell).length;
+          const expected = shopifyOrders + shopifyUpsells;
           const rtConversions = sum(rs.map((r) => r.conversions ?? 0));
-          const diffPct = shopifyOrders ? ((rtConversions - shopifyOrders) / shopifyOrders) * 100 : rtConversions ? 100 : 0;
-          const gap = Math.abs(rtConversions - shopifyOrders);
+          const diffPct = expected ? ((rtConversions - expected) / expected) * 100 : rtConversions ? 100 : 0;
+          const gap = Math.abs(rtConversions - expected);
           const rtSpend = sum(rs.map((r) => r.spend));
           const status: ReconRow["status"] =
             !shopifyOrders && !rtConversions
@@ -408,6 +433,7 @@ export function aggregate(input: {
             platform,
             label: PLATFORM_LABEL[platform] ?? platform,
             shopifyOrders,
+            shopifyUpsells,
             shopifyRevenue: sum(os.map((o) => o.total)),
             rtConversions,
             rtRevenue: sum(rs.map((r) => r.revenue ?? 0)),
@@ -430,6 +456,7 @@ export function aggregate(input: {
           return {
             date,
             shopifyOrders: os.length,
+            shopifyUpsells: os.filter((o) => o.hasUpsell).length,
             rtConversions: sum(rs.map((r) => r.conversions ?? 0)),
             shopifyRevenue: sum(os.map((o) => o.total)),
             rtRevenue: sum(rs.map((r) => r.revenue ?? 0)),

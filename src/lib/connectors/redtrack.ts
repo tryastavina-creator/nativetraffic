@@ -1,5 +1,6 @@
 import { platformFromUtm } from "../registry";
 import type { Credentials, DateRange, SpendRow, TestResult } from "../types";
+import { cached, hashKey } from "../cache";
 import { http, num } from "./http";
 
 const BASE = "https://api.redtrack.io";
@@ -27,11 +28,16 @@ export let lastMapping: { conversions?: string; revenue?: string; cost?: string 
 
 export async function test(c: Credentials): Promise<TestResult> {
   const today = new Date().toISOString().slice(0, 10);
-  await report(c, { from: today, to: today }, "date");
+  await reportLive(c, { from: today, to: today }, "date");
   return { ok: true, message: "API key válida" };
 }
 
+/** Cached: RedTrack rate-limits hard (429), and the dashboard asks for the same report often. */
 async function report(c: Credentials, range: DateRange, group: string): Promise<Row[]> {
+  return (await cached(hashKey("rt", c.apiKey, range, group), () => reportLive(c, range, group))).value;
+}
+
+async function reportLive(c: Credentials, range: DateRange, group: string): Promise<Row[]> {
   const qs = new URLSearchParams({
     api_key: c.apiKey,
     date_from: range.from,
