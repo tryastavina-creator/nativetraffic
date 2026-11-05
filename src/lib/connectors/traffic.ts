@@ -57,15 +57,23 @@ const taboola: Connector = {
     const token = await taboolaToken(c);
     const qs = new URLSearchParams({ start_date: range.from, end_date: range.to });
     const base = `https://backstage.taboola.com/backstage/api/1.0/${c.accountId}/reports`;
-    const [r, items] = await Promise.all([
+    const [r, items, camps] = await Promise.all([
       http<{ results: Record<string, unknown>[] }>(`${base}/campaign-summary/dimensions/campaign_breakdown?${qs}`, {
         headers: { Authorization: `Bearer ${token}` },
       }),
       http<{ results: Record<string, unknown>[] }>(`${base}/top-campaign-content/dimensions/item_breakdown?${qs}`, {
         headers: { Authorization: `Bearer ${token}` },
       }).catch(() => ({ results: [] as Record<string, unknown>[] })),
+      // Campaign objects carry tracking_code (appended to every ad URL; usually holds the RedTrack campaign id).
+      http<{ results: { id: string | number; tracking_code?: string }[] }>(
+        `https://backstage.taboola.com/backstage/api/1.0/${c.accountId}/campaigns/`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      ).catch(() => ({ results: [] as { id: string | number; tracking_code?: string }[] })),
     ]);
-    const urls = groupUrls((items.results ?? []).map((x) => ({ campaign: String(x.campaign ?? ""), url: String(x.url ?? "") })));
+    const urls = groupUrls([
+      ...(items.results ?? []).map((x) => ({ campaign: String(x.campaign ?? ""), url: String(x.url ?? "") })),
+      ...(camps.results ?? []).map((x) => ({ campaign: String(x.id), url: String(x.tracking_code ?? "") })),
+    ]);
     return (r.results ?? []).map((x) => ({
       urls: [...(urls.get(String(x.campaign ?? "")) ?? [])],
       id: String(x.campaign ?? ""),
@@ -283,13 +291,18 @@ const revcontent: Connector & {
         limit: "1000",
       }),
       rcGet<{ id: string; name: string; enabled: string; status: string }[]>(c, "/stats/api/v1.0/boosts", { limit: "1000" }),
-      rcGet<{ boost_id: string; target_url: string }[]>(c, "/stats/api/v1.0/boosts/content", {
+      rcGet<{ boost_id: string; target_url: string; utm_codes?: string }[]>(c, "/stats/api/v1.0/boosts/content", {
         date_from: range.from,
         date_to: range.to,
-      }).catch(() => ({ success: false, data: [] as { boost_id: string; target_url: string }[] })),
+      }).catch(() => ({ success: false, data: [] as { boost_id: string; target_url: string; utm_codes?: string }[] })),
     ]);
     const byId = new Map(list.data.map((b) => [String(b.id), b]));
-    const urls = groupUrls(content.data.map((x) => ({ campaign: String(x.boost_id), url: String(x.target_url ?? "") })));
+    const urls = groupUrls(
+      content.data.flatMap((x) => [
+        { campaign: String(x.boost_id), url: String(x.target_url ?? "") },
+        { campaign: String(x.boost_id), url: String(x.utm_codes ?? "") },
+      ]),
+    );
     return perf.data
       .filter((x) => x.id)
       .map((x) => ({

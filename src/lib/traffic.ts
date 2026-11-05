@@ -48,15 +48,22 @@ export type TrafficRow = {
   sourceKeys: string[];
   linkSource?: string;
   needsLink: boolean;
+  /**
+   * How sales reached this row in the API view: exact (one source campaign per RedTrack campaign),
+   * split by the source's own conversions or by clicks (several source campaigns feeding one), or none.
+   */
+  attribution?: "exata" | "conversoes" | "cliques" | "sem-ligacao" | "redtrack";
 };
 
 export type TrafficReport = {
   range: DateRange;
   currency: string;
   rows: TrafficRow[];
+  /** One row per campaign of the traffic sources' APIs (plus RedTrack-only platforms). Same totals as `rows`. */
+  apiRows: TrafficRow[];
   totals: Omit<
     TrafficRow,
-    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink"
+    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution"
   >;
   linkTargets: { key: string; name: string; platform: string }[];
   unlinked: number;
@@ -67,6 +74,20 @@ export type TrafficReport = {
 };
 
 const div = (a: number, b: number) => (b ? a / b : 0);
+
+/** Splits an integer count by shares (largest remainder), so the parts always add up to the total. */
+function allocate(total: number, shares: number[]): number[] {
+  const raw = shares.map((s) => s * total);
+  const out = raw.map(Math.floor);
+  let left = total - out.reduce((a, x) => a + x, 0);
+  const order = raw.map((r, i) => [r - Math.floor(r), i] as const).sort((a, b) => b[0] - a[0]);
+  for (const [, i] of order) {
+    if (left <= 0) break;
+    out[i]++;
+    left--;
+  }
+  return out;
+}
 const norm = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
 
 /**
@@ -127,6 +148,8 @@ type Bucket = {
   platform: string;
   srcs: Src[];
   linkedBy?: "manual" | "link" | "nome";
+  /** How each source campaign got linked (key "platform:id"). */
+  srcLinkedBy: Map<string, "manual" | "link" | "nome">;
   rt?: RtCampaign;
   shop?: CampaignRow;
 };
@@ -135,7 +158,10 @@ type Bucket = {
 function rtFromUrls(urls: string[] | undefined, rtById: Map<string, string>): string | undefined {
   if (!urls?.length) return undefined;
   for (const url of urls) {
-    const u = url.toLowerCase();
+    let u = url.toLowerCase();
+    try {
+      u = decodeURIComponent(u);
+    } catch {}
     for (const [id, key] of rtById) if (id.length >= 6 && u.includes(id)) return key;
   }
   return undefined;
@@ -152,7 +178,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
   const bucket = (key: string, name: string, platform: string) => {
     let b = buckets.get(key);
     if (!b) {
-      b = { key, name, platform, srcs: [] };
+      b = { key, name, platform, srcs: [], srcLinkedBy: new Map() };
       buckets.set(key, b);
     }
     return b;
@@ -188,7 +214,9 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     if (target) {
       const b = buckets.get(target) ?? bucket(target, s.name, s.platform);
       b.srcs.push(s);
-      b.linkedBy ??= manual ? "manual" : byUrl ? "link" : "nome";
+      const how = manual ? "manual" : byUrl ? "link" : "nome";
+      b.srcLinkedBy.set(sk, how);
+      b.linkedBy ??= how;
     } else {
       bucket(`src:${sk}`, s.name, s.platform).srcs.push(s);
     }
@@ -259,6 +287,129 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
   }
   rows.sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
 
+  // ---------- API view: one row per source campaign ----------
+  const apiRows: TrafficRow[] = [];
+  const build = (o: {
+    key: string;
+    name: string;
+    platform: string;
+    spend: number;
+    spendSource: TrafficRow["spendSource"];
+    counted: boolean;
+    clicks: number;
+    share: number;
+    shop?: CampaignRow;
+    sales: number;
+    upsells: number;
+    rt?: RtCampaign;
+    attribution: TrafficRow["attribution"];
+    linkSource?: string;
+    linkedBy?: Bucket["linkedBy"];
+    sourceKeys: string[];
+  }): TrafficRow => {
+    const s = o.shop;
+    const revenue = (s?.revenue ?? 0) * o.share;
+    const costs = s ? (s.refunds + s.supplierCost + s.fees) * o.share : 0;
+    const profit = revenue - costs - o.spend;
+    return {
+      campaign: o.name,
+      platform: o.platform,
+      label: PLATFORM_LABEL[o.platform] ?? o.platform,
+      spendSource: o.spendSource,
+      spend: o.spend,
+      clicks: o.clicks,
+      cpc: div(o.spend, o.clicks),
+      ic: null,
+      icRate: null,
+      sales: o.sales,
+      upsells: o.upsells,
+      upsellRate: div(o.upsells, o.sales) * 100,
+      rtConversions: o.share === 1 ? (o.rt?.conversions ?? 0) : 0,
+      rtExpected: o.sales + o.upsells,
+      cvr: div(o.sales, o.clicks) * 100,
+      cpa: div(o.spend, o.sales),
+      revenue,
+      upsellRevenue: (s?.upsellRevenue ?? 0) * o.share,
+      roas: div(revenue, o.spend),
+      profit,
+      roi: div(profit, o.spend) * 100,
+      aov: div(revenue, o.sales),
+      matched: !!s,
+      missingCost: !o.spend && (o.clicks >= 100 || o.sales > 0),
+      counted: o.counted,
+      key: o.key,
+      linkedBy: o.linkedBy,
+      sourceNames: [],
+      sourceKeys: o.sourceKeys,
+      linkSource: o.linkSource,
+      needsLink: o.attribution === "sem-ligacao",
+      attribution: o.attribution,
+    };
+  };
+
+  for (const b of buckets.values()) {
+    const direct = directPlatforms.has(b.platform);
+    if (b.srcs.length) {
+      const sourceOnly = b.key.startsWith("src:");
+      const salesTotal = b.shop?.orders ?? 0;
+      const upsellTotal = b.shop?.upsells ?? 0;
+      const conv = b.srcs.map((x) => x.conversions);
+      const clicks = b.srcs.map((x) => x.clicks);
+      const byConv = conv.reduce((a, x) => a + x, 0) > 0;
+      const weights = b.srcs.length === 1 ? [1] : byConv ? conv : clicks;
+      const shares = weights.map((w) => div(w, weights.reduce((a, x) => a + x, 0)));
+      const sales = allocate(salesTotal, shares);
+      const upsells = allocate(upsellTotal, shares);
+      b.srcs.forEach((x, i) => {
+        apiRows.push(
+          build({
+            key: `api:${x.platform}:${x.id}`,
+            name: x.name,
+            platform: x.platform,
+            spend: x.spend,
+            spendSource: "fonte",
+            counted: true,
+            clicks: x.clicks,
+            share: sourceOnly ? 0 : shares[i],
+            shop: sourceOnly ? undefined : b.shop,
+            sales: sourceOnly ? 0 : sales[i],
+            upsells: sourceOnly ? 0 : upsells[i],
+            rt: b.rt,
+            attribution: sourceOnly ? "sem-ligacao" : b.srcs.length === 1 ? "exata" : byConv ? "conversoes" : "cliques",
+            linkSource: sourceOnly ? `${x.platform}:${x.id}` : undefined,
+            linkedBy: sourceOnly ? undefined : b.srcLinkedBy.get(`${x.platform}:${x.id}`),
+            sourceKeys: [`${x.platform}:${x.id}`],
+          }),
+        );
+      });
+      continue;
+    }
+    // No source campaign: RedTrack campaign of a platform without API (counted), or of a platform with API
+    // that still needs a link (its sales show here so they are never lost; its spend stays out of totals).
+    const spend = b.rt?.spend ?? 0;
+    const sales = b.shop?.orders ?? 0;
+    if (!spend && !sales && !(b.rt && b.rt.clicks >= 100)) continue;
+    apiRows.push(
+      build({
+        key: `rt:${b.key}`,
+        name: b.name,
+        platform: b.platform,
+        spend,
+        spendSource: spend ? "redtrack" : "",
+        counted: !direct,
+        clicks: b.rt?.clicks ?? 0,
+        share: 1,
+        shop: b.shop,
+        sales,
+        upsells: b.shop?.upsells ?? 0,
+        rt: b.rt,
+        attribution: "redtrack",
+        sourceKeys: [],
+      }),
+    );
+  }
+  apiRows.sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
+
   // Campaigns a source row can be linked to (RedTrack/Shopify side; several source campaigns may feed one).
   const linkTargets = [...buckets.values()]
     .filter((b) => !b.key.startsWith("src:") && (b.rt || b.shop))
@@ -284,6 +435,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     range,
     currency: m.currency,
     rows,
+    apiRows,
     totals: {
       ...t,
       cpc: div(t.spend, t.clicks),

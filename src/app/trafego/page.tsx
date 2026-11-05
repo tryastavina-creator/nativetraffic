@@ -30,6 +30,7 @@ export default function Trafego() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [platform, setPlatform] = useState("all");
+  const [view, setView] = useState<"api" | "redtrack">("api");
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "spend", dir: -1 });
 
   const [reload, setReload] = useState(0);
@@ -63,11 +64,12 @@ export default function Trafego() {
   }, [preset, applied, reload]);
 
   const cur = data?.currency ?? "USD";
-  const platforms = useMemo(() => [...new Set((data?.rows ?? []).map((r) => r.platform))], [data]);
+  const source = useMemo(() => (view === "api" ? data?.apiRows : data?.rows) ?? [], [data, view]);
+  const platforms = useMemo(() => [...new Set(source.map((r) => r.platform))], [source]);
   const rows = useMemo(() => {
-    const list = (data?.rows ?? []).filter((r) => platform === "all" || r.platform === platform);
+    const list = source.filter((r) => platform === "all" || r.platform === platform);
     return [...list].sort((a, b) => (a[sort.key] - b[sort.key]) * sort.dir);
-  }, [data, platform, sort]);
+  }, [source, platform, sort]);
   const t = data?.totals;
   const showIc = !!data?.icConfigured;
 
@@ -148,10 +150,25 @@ export default function Trafego() {
           <Tile label="Lucro real" value={t ? money(t.profit, cur) : "—"} tone={t && t.profit < 0 ? "bad" : "good"} hint={t && t.spend ? `ROI ${pct(t.roi)}` : ""} />
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-1">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex gap-1 rounded-lg border border-line bg-panel p-1">
+            <button className={`chip ${view === "api" ? "chip-on" : ""}`} onClick={() => setView("api")}>
+              Campanhas da API
+            </button>
+            <button className={`chip ${view === "redtrack" ? "chip-on" : ""}`} onClick={() => setView("redtrack")}>
+              Campanhas do RedTrack
+            </button>
+          </div>
+          <span className="text-[11px] text-faint">
+            {view === "api"
+              ? "Cada linha é uma campanha real da Taboola, Revcontent… com as vendas atribuídas a ela."
+              : "Cada linha é uma campanha do RedTrack, com o gasto das campanhas da fonte ligadas a ela."}
+          </span>
+        </div>
+        <div className="mt-3 flex flex-wrap gap-1">
           {["all", ...platforms].map((p) => (
             <button key={p} onClick={() => setPlatform(p)} className={`chip border border-line ${platform === p ? "chip-on" : ""}`}>
-              {p === "all" ? "Todas" : (data?.rows.find((r) => r.platform === p)?.label ?? p)}
+              {p === "all" ? "Todas" : (source.find((r) => r.platform === p)?.label ?? p)}
             </button>
           ))}
         </div>
@@ -240,7 +257,25 @@ function Row({
         </div>
         <div className="space-x-2 pl-4 text-[11px] text-faint">
           <span>{r.label}</span>
-          {r.linkedBy && r.sourceNames.length > 0 && (
+          {r.attribution && r.attribution !== "sem-ligacao" && (
+            <span className={r.attribution === "conversoes" || r.attribution === "cliques" ? "text-warn" : ""}>
+              {r.attribution === "exata"
+                ? `vendas da campanha ${r.linkedBy === "manual" ? "(ligada manualmente)" : r.linkedBy === "link" ? "(ligada pelo link do RedTrack)" : "(ligada pelo código)"}`
+                : r.attribution === "conversoes"
+                  ? "vendas divididas pelas conversões da fonte (estimado)"
+                  : r.attribution === "cliques"
+                    ? "vendas divididas pelos cliques (estimado)"
+                    : r.counted
+                      ? "dados do RedTrack (fonte sem API)"
+                      : "campanha do RedTrack sem campanha da API ligada"}
+              {r.linkedBy === "manual" && r.sourceKeys.length > 0 && (
+                <button className="ml-1 text-info hover:underline" onClick={() => r.sourceKeys.forEach((k) => onLink(k, null))}>
+                  desfazer
+                </button>
+              )}
+            </span>
+          )}
+          {!r.attribution && r.linkedBy && r.sourceNames.length > 0 && (
             <span title={r.sourceNames.join(" · ")}>
               {r.linkedBy === "link" ? "ligada pelo link do RedTrack" : r.linkedBy === "manual" ? "ligada manualmente" : "ligada pelo código"}
               {r.linkedBy === "manual" && (
