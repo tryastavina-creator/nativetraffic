@@ -1,7 +1,8 @@
 /**
  * Naming convention (client-safe, no server imports).
- *   RedTrack campaign:  PRODUTO FONTE PAÍS                 e.g. "OMNIPRO TABOOLA US"
- *   Source campaign:    PRODUTO DEVICE LANCE PAÍS DATA     e.g. "OMNIPRO DESKTOP MAXCONV US 05.11.26"
+ *   RedTrack campaign:  [PRODUTO] [FONTE] [PAÍS]                 e.g. "[OMNIPRO] [TABOOLA] [US]"
+ *   Source campaign:    [PRODUTO] [DEVICE] [LANCE] [PAÍS] [DATA] e.g. "[OMNIPRO] [DESKTOP] [MAXCONV] [US] [05.11.26]"
+ * Brackets are optional when reading: "OMNIPRO TABOOLA US" is recognized too.
  * Product + source + country identify the same campaign everywhere, so a source campaign
  * links to its RedTrack campaign (and to the utm_campaign in Shopify) automatically.
  */
@@ -34,7 +35,7 @@ const COUNTRIES = new Set(
 const tokens = (name: string) =>
   name
     .toUpperCase()
-    .replace(/[|_]+/g, " ")
+    .replace(/[[\]|_]+/g, " ")
     .replace(/\s+-\s+/g, " ")
     .trim()
     .split(/\s+/)
@@ -89,13 +90,15 @@ export function parseSourceName(name: string): SourceName | null {
 /** Key shared by a RedTrack campaign, its utm_campaign and the source campaigns that feed it. */
 export const namingKey = (product: string, platform: string, country: string) => `pc:${normProduct(product)}|${platform}|${country}`;
 
+const bracket = (parts: string[]) => parts.map((p) => `[${p}]`).join(" ");
+
 export function buildRtName(product: string, platform: string, country: string) {
-  return [normProduct(product), SOURCE_NAME[platform] ?? platform.toUpperCase(), country.toUpperCase()].join(" ");
+  return bracket([normProduct(product), SOURCE_NAME[platform] ?? platform.toUpperCase(), country.toUpperCase()]);
 }
 
 export function buildSourceName(product: string, device: string, bid: string, country: string, date: Date = new Date()) {
   const dd = String(date.getDate()).padStart(2, "0");
   const mm = String(date.getMonth() + 1).padStart(2, "0");
   const yy = String(date.getFullYear()).slice(2);
-  return [normProduct(product), device.toUpperCase(), bid.toUpperCase(), country.toUpperCase(), `${dd}.${mm}.${yy}`].join(" ");
+  return bracket([normProduct(product), device.toUpperCase(), bid.toUpperCase(), country.toUpperCase(), `${dd}.${mm}.${yy}`]);
 }

@@ -59,7 +59,11 @@ export type TrafficRow = {
   /** API view: the source account and campaign id (for edit / duplicate). */
   accountId?: string;
   sourceId?: string;
+  /** Keys to ignore this row's spend ("src:platform:id" for source campaigns, "rtc:id" for RedTrack). */
+  excludeKeys: string[];
 };
+
+export type ExcludedCampaign = { key: string; label: string; platform: string; spend: number; clicks: number };
 
 export type TrafficReport = {
   range: DateRange;
@@ -69,8 +73,10 @@ export type TrafficReport = {
   apiRows: TrafficRow[];
   totals: Omit<
     TrafficRow,
-    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "namingOk" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution" | "accountId" | "sourceId"
+    "campaign" | "platform" | "label" | "matched" | "spendSource" | "missingCost" | "counted" | "namingOk" | "key" | "linkedBy" | "sourceNames" | "sourceKeys" | "linkSource" | "needsLink" | "attribution" | "accountId" | "sourceId" | "excludeKeys"
   >;
+  /** Campaigns the user ignores (other products): left out of every number, listed so they can be restored. */
+  excluded: ExcludedCampaign[];
   linkTargets: { key: string; name: string; platform: string }[];
   unlinked: number;
   hasRedtrack: boolean;
@@ -208,9 +214,23 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     return b;
   };
 
+  // 0) Ignored campaigns: kept out of every bucket.
+  const exKeys = new Set((settings.excludedCampaigns ?? []).map((e) => e.key.toLowerCase()));
+  const excluded = new Map<string, ExcludedCampaign>();
+  for (const e of settings.excludedCampaigns ?? [])
+    excluded.set(e.key.toLowerCase(), { key: e.key, label: e.label, platform: e.platform, spend: 0, clicks: 0 });
+  const skip = (key: string, spend: number, clicks: number) => {
+    const x = excluded.get(key.toLowerCase());
+    if (!x) return false;
+    x.spend += spend;
+    x.clicks += clicks;
+    return true;
+  };
+
   // 1) RedTrack campaigns (team naming, carry clicks / IC / purchases).
   const rtById = new Map<string, string>();
   for (const r of rts ?? []) {
+    if (r.id && exKeys.has(`rtc:${r.id}`.toLowerCase()) && skip(`rtc:${r.id}`, r.spend, r.clicks)) continue;
     const fromSource = platformFromUtm(r.source);
     const p = !["other", "untracked"].includes(fromSource) ? fromSource : platformFromUtm(r.name);
     const key = rtKey(r.name);
@@ -231,6 +251,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
   for (const s of srcs) {
     if (!s.spend && !s.clicks) continue;
     const sk = `${s.platform}:${s.id}`;
+    if (skip(`src:${sk}`, s.spend, s.clicks)) continue;
     const manual = links[sk];
     const byUrl = rtFromUrls(s.urls, rtById);
     // Naming convention: "PRODUTO DEVICE LANCE PAÍS DATA" on platform X → RedTrack "PRODUTO X PAÍS".
@@ -312,6 +333,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       // and no source campaign is waiting for that link.
       linkSource: sourceOnly ? `${b.srcs[0].platform}:${b.srcs[0].id}` : undefined,
       needsLink: sourceOnly || (direct && !b.srcs.length && (spend > 0 || sales > 0)),
+      excludeKeys: [...b.srcs.map((x) => `src:${x.platform}:${x.id}`), ...(b.rt?.id ? [`rtc:${b.rt.id}`] : [])],
     });
   }
   rows.sort((a, b) => b.spend - a.spend || b.revenue - a.revenue);
@@ -337,6 +359,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
     sourceKeys: string[];
     accountId?: string;
     sourceId?: string;
+    excludeKeys: string[];
   }): TrafficRow => {
     const s = o.shop;
     const revenue = (s?.revenue ?? 0) * o.share;
@@ -378,6 +401,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       attribution: o.attribution,
       accountId: o.accountId,
       sourceId: o.sourceId,
+      excludeKeys: o.excludeKeys,
     };
   };
 
@@ -415,6 +439,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
             sourceKeys: [`${x.platform}:${x.id}`],
             accountId: x.accountId,
             sourceId: x.id,
+            excludeKeys: [`src:${x.platform}:${x.id}`],
           }),
         );
       });
@@ -441,6 +466,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
         rt: b.rt,
         attribution: "redtrack",
         sourceKeys: [],
+        excludeKeys: b.rt?.id ? [`rtc:${b.rt.id}`] : [],
       }),
     );
   }
@@ -483,6 +509,7 @@ export async function computeTraffic(range: DateRange): Promise<TrafficReport> {
       roi: div(t.profit, t.spend) * 100,
       aov: div(t.revenue, t.sales),
     },
+    excluded: [...excluded.values()].sort((a, b) => b.spend - a.spend),
     linkTargets,
     unlinked: rows.filter((r) => r.needsLink).length,
     hasRedtrack: rts !== null,

@@ -317,7 +317,7 @@ export function CampaignStudio({
                       }}
                     />
                     <span className="mt-1 flex justify-between text-[11px] text-faint">
-                      <span>Padrão: PRODUTO DEVICE LANCE PAÍS DATA</span>
+                      <span>Padrão: [PRODUTO] [DEVICE] [LANCE] [PAÍS] [DATA]</span>
                       {nameEdited && mode !== "edit" && (
                         <button className="text-info hover:underline" onClick={() => setNameEdited(false)}>
                           usar nome do padrão

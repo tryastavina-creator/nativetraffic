@@ -135,6 +135,11 @@ export default function Dashboard() {
               <span className="ml-2">
                 · pedidos: {m.dataSources.orders ? <Source name={m.dataSources.orders} /> : "—"} · custo:{" "}
                 {m.dataSources.spend.length ? m.dataSources.spend.map((s) => <Source key={s} name={s} />) : "—"}
+                {!!m.excluded?.count && (
+                  <Link href="/trafego" className="ml-1 hover:text-zinc-200" title="Campanhas marcadas como &quot;Ignorar gasto&quot; na aba Tráfego">
+                    · {m.excluded.count} campanha(s) ignorada(s) (−{money(m.excluded.spend, m.currency)})
+                  </Link>
+                )}
               </span>
             )}
           </p>

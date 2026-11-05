@@ -55,6 +55,23 @@ export default function Trafego() {
     setReload((n) => n + 1);
   }
 
+  const [showExcluded, setShowExcluded] = useState(false);
+  async function exclude(keys: string[], exclude: boolean, label = "", platform = "") {
+    if (!keys.length) return;
+    // Optimistic: drop the row right away; the reload brings the recalculated totals.
+    if (exclude && data) {
+      const ks = new Set(keys);
+      const gone = (r: TrafficRow) => r.excludeKeys.some((k) => ks.has(k));
+      setData({ ...data, rows: data.rows.filter((r) => !gone(r)), apiRows: data.apiRows.filter((r) => !gone(r)) });
+    }
+    await fetch("/api/traffic/exclude", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ keys, exclude, label, platform }),
+    });
+    setReload((n) => n + 1);
+  }
+
   useEffect(() => {
     const q = new URLSearchParams({ preset });
     if (preset === "custom") {
@@ -321,6 +338,7 @@ export default function Trafego() {
                   onAction={(mode) => r.accountId && r.sourceId && setStudio({ mode, accountId: r.accountId, campaignId: r.sourceId })}
                   targets={(data?.linkTargets ?? []).filter((t) => t.platform === r.platform)}
                   onLink={link}
+                  onExclude={() => exclude(r.excludeKeys, true, r.campaign, r.platform)}
                 />
               ))}
               {rows.length === 0 && (
@@ -333,9 +351,51 @@ export default function Trafego() {
             </tbody>
           </table>
         </div>
+        {!!data?.excluded?.length && (
+          <div className="card mt-3 px-4 py-3 text-sm">
+            <button className="flex w-full items-center justify-between text-left" onClick={() => setShowExcluded((v) => !v)}>
+              <span>
+                <span className="text-zinc-200">Campanhas ignoradas ({data.excluded.length})</span>
+                <span className="ml-2 text-[12px] text-muted">
+                  {money(
+                    data.excluded.reduce((a, e) => a + e.spend, 0),
+                    cur,
+                  )}{" "}
+                  de gasto fora de todos os números (Tráfego e Dashboard)
+                </span>
+              </span>
+              <span className="text-muted">{showExcluded ? "▲" : "▼"}</span>
+            </button>
+            {showExcluded && (
+              <ul className="mt-3 divide-y divide-line">
+                {data.excluded.map((e) => (
+                  <li key={e.key} className="flex items-center justify-between gap-3 py-2">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: PLATFORM_COLOR[e.platform] ?? "#888" }} />
+                        <span className="truncate" title={e.label}>
+                          {e.label}
+                        </span>
+                      </div>
+                      <div className="pl-4 text-[11px] text-faint">
+                        {e.key.startsWith("rtc:") ? "campanha do RedTrack" : "campanha da fonte"} · {money(e.spend, cur)} no período
+                      </div>
+                    </div>
+                    <button
+                      className="shrink-0 rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100"
+                      onClick={() => exclude([e.key], false)}
+                    >
+                      Voltar a contar
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
         <p className="mt-3 text-[11px] text-faint">
           Gasto vem da API da fonte quando ela está conectada (senão, do RedTrack). Vendas e upsells vêm da Shopify. Campanhas
-          ligam sozinhas pela nomenclatura: RedTrack &quot;PRODUTO FONTE PAÍS&quot; e fonte &quot;PRODUTO DEVICE LANCE PAÍS DATA&quot;.
+          ligam sozinhas pela nomenclatura: RedTrack &quot;[PRODUTO] [FONTE] [PAÍS]&quot; e fonte &quot;[PRODUTO] [DEVICE] [LANCE] [PAÍS] [DATA]&quot;.
           CPA real = gasto ÷ vendas. Lucro real = receita − custo Wiio − taxas − reembolsos − gasto. Checkouts = InitiateCheckout
           do RedTrack. O RedTrack conta 1 compra por venda e mais 1 por upsell.
           {!!data?.hidden && ` ${data.hidden} campanha(s) sem gasto e sem venda ocultas.`}
@@ -427,6 +487,7 @@ function Row({
   onAction,
   targets,
   onLink,
+  onExclude,
 }: {
   r: TrafficRow;
   cur: string;
@@ -434,7 +495,9 @@ function Row({
   onAction: (mode: StudioMode) => void;
   targets: { key: string; name: string }[];
   onLink: (source: string, target: string | null) => void;
+  onExclude: () => void;
 }) {
+  const editable = !!(r.accountId && r.sourceId && (r.platform === "taboola" || r.platform === "revcontent"));
   const rtOk = r.rtConversions === r.rtExpected;
   return (
     <tr className={r.needsLink ? "bg-warn/[0.03]" : ""}>
@@ -448,7 +511,7 @@ function Row({
         <div className="space-x-2 pl-4 text-[11px] text-faint">
           <span>{r.label}</span>
           {!r.namingOk && (
-            <span className="text-faint" title="RedTrack: PRODUTO FONTE PAÍS · Fonte: PRODUTO DEVICE LANCE PAÍS DATA">
+            <span className="text-faint" title="RedTrack: [PRODUTO] [FONTE] [PAÍS] · Fonte: [PRODUTO] [DEVICE] [LANCE] [PAÍS] [DATA]">
               · nome fora do padrão
             </span>
           )}
@@ -505,14 +568,27 @@ function Row({
             </select>
           </div>
         )}
-        {r.accountId && r.sourceId && (r.platform === "taboola" || r.platform === "revcontent") && (
+        {(editable || r.excludeKeys.length > 0) && (
           <div className="mt-1.5 flex gap-1.5 pl-4">
-            <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("edit")}>
-              Editar
-            </button>
-            <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("duplicate")}>
-              Duplicar
-            </button>
+            {editable && (
+              <>
+                <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("edit")}>
+                  Editar
+                </button>
+                <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("duplicate")}>
+                  Duplicar
+                </button>
+              </>
+            )}
+            {r.excludeKeys.length > 0 && (
+              <button
+                className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:border-bad/40 hover:text-bad"
+                title="Tira o gasto desta campanha de todos os números (ex.: campanha de outro produto). Dá para voltar depois."
+                onClick={onExclude}
+              >
+                Ignorar gasto
+              </button>
+            )}
           </div>
         )}
       </td>

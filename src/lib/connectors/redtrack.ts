@@ -102,6 +102,19 @@ export type RtCampaign = {
   ic: number | null;
 };
 
+/** Cost per RedTrack campaign per day (used to take ignored campaigns out of the dashboard). */
+export async function fetchCampaignDaily(c: Credentials, range: DateRange) {
+  const rows = await report(c, range, "date,campaign");
+  const cost = chooseKey(rows, COST);
+  return rows.map((r) => ({
+    id: String(r.campaign_id ?? r.id ?? ""),
+    date: (r.date ?? range.from).slice(0, 10),
+    platform: platformFromUtm(r.source_title ?? r.source),
+    spend: cost ? num(r[cost]) : 0,
+    clicks: num(r.clicks),
+  }));
+}
+
 const NAME = ["campaign_title", "campaign_name", "campaign", "title", "name"];
 
 /** Cost, clicks, purchases, revenue and (optionally) InitiateCheckout per RedTrack campaign. */

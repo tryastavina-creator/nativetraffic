@@ -29,6 +29,11 @@ export type Settings = {
   redtrackIcField: string;
   /** Manual links "platform:sourceCampaignId" → campaign key of the RedTrack / utm_campaign it belongs to. */
   campaignLinks: Record<string, string>;
+  /**
+   * Campaigns whose spend must not count (e.g. other products running in the same account).
+   * key: "src:<platform>:<campaignId>" for a source campaign, "rtc:<redtrackCampaignId>" for a RedTrack one.
+   */
+  excludedCampaigns: { key: string; label: string; platform: string; accountId?: string; campaignId?: string; rtId?: string; at: string }[];
 };
 
 /** Exact supplier cost of one order, from an imported supplier export. */
@@ -128,6 +133,7 @@ const DEFAULT_SETTINGS: Settings = {
   shippingExtraItem: 0,
   redtrackIcField: "",
   campaignLinks: {},
+  excludedCampaigns: [],
 };
 
 function key(): Buffer {

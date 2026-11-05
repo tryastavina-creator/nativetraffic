@@ -29,7 +29,11 @@ type Connector = {
   fetchSpend: (c: Credentials, r: DateRange) => Promise<SpendRow[]>;
   /** Per-campaign spend for the period (sources that support it). */
   campaigns?: (c: Credentials, r: DateRange) => Promise<SourceCampaign[]>;
+  /** Spend per campaign per day (used to take ignored campaigns out of the dashboard). */
+  campaignDaily?: (c: Credentials, r: DateRange) => Promise<CampaignDay[]>;
 };
+
+export type CampaignDay = { id: string; date: string; spend: number; clicks: number };
 
 const today = () => new Date().toISOString().slice(0, 10);
 
@@ -90,6 +94,20 @@ const taboola: Connector = {
       { headers: { Authorization: `Bearer ${token}` } },
     ).catch(() => ({ name: c.accountId }));
     return { ok: true, message: `Conectado (${r.name ?? c.accountId})` };
+  },
+  async campaignDaily(c, range) {
+    const token = await taboolaToken(c);
+    const qs = new URLSearchParams({ start_date: range.from, end_date: range.to });
+    const r = await http<{ results: Record<string, unknown>[] }>(
+      `https://backstage.taboola.com/backstage/api/1.0/${c.accountId}/reports/campaign-summary/dimensions/campaign_day_breakdown?${qs}`,
+      { headers: { Authorization: `Bearer ${token}` } },
+    );
+    return (r.results ?? []).map((x) => ({
+      id: String(x.campaign ?? ""),
+      date: String(x.date ?? range.from).slice(0, 10),
+      spend: num(x.spent),
+      clicks: num(x.clicks),
+    }));
   },
   async fetchSpend(c, range) {
     const token = await taboolaToken(c);
@@ -281,6 +299,17 @@ const revcontent: Connector & {
       impressions: num(x.impressions),
       conversions: num(x.conversions),
     }));
+  },
+  async campaignDaily(c, range) {
+    const r = await rcGet<RcPerf[]>(c, "/stats/api/v1.0/boosts/performance", {
+      date_from: range.from,
+      date_to: range.to,
+      all_boosts: "yes",
+      limit: "1000",
+    });
+    return r.data
+      .filter((x) => x.id)
+      .map((x) => ({ id: String(x.id), date: (x.date ?? range.from).slice(0, 10), spend: num(x.cost), clicks: num(x.clicks) }));
   },
   async campaigns(c, range) {
     const [perf, list, content] = await Promise.all([

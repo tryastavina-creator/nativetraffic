@@ -46,6 +46,8 @@ export type Metrics = {
   currency: string;
   dataSources: { orders: string; spend: string[]; demo: boolean; hasSpend: boolean; hasOrders: boolean };
   warnings: string[];
+  /** Campaigns the user chose to ignore (other products): their spend is left out of every total. */
+  excluded: { count: number; spend: number };
   kpis: {
     investment: number;
     revenue: number;
@@ -222,6 +224,16 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     }
   }
 
+  // Ignored campaigns (e.g. other products sharing the ad account): subtract their spend day by day.
+  const excludedInfo = { count: (settings.excludedCampaigns ?? []).length, spend: 0 };
+  if (excludedInfo.count && spend.length) {
+    const minus = await excludedSpend(range, connections, settings, rt, new Set(spendSources));
+    for (const r of minus) {
+      excludedInfo.spend += r.spend;
+      spend.push({ ...r, spend: -r.spend, clicks: -(r.clicks ?? 0) });
+    }
+  }
+
   const demo = ordersSource === "demo" && spendSources.length === 0;
   if (demo) {
     const d = demoData(range);
@@ -239,6 +251,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     funnel: demo ? null : funnel,
     settings,
     warnings,
+    excluded: demo ? { count: 0, spend: 0 } : excludedInfo,
     dataSources: {
       orders: demo ? "demo" : ordersSource === "demo" ? "" : ordersSource,
       spend: demo ? ["demo"] : spendSources,
@@ -259,6 +272,7 @@ export function aggregate(input: {
   funnel?: Funnel | null;
   settings: Settings;
   warnings: string[];
+  excluded?: Metrics["excluded"];
   dataSources: Metrics["dataSources"];
 }): Metrics {
   const { range, orders, spend, settings } = input;
@@ -539,6 +553,7 @@ export function aggregate(input: {
     currency: settings.currency,
     dataSources: input.dataSources,
     warnings: input.warnings,
+    excluded: input.excluded ?? { count: 0, spend: 0 },
     kpis: {
       investment,
       revenue,
@@ -609,4 +624,67 @@ export function rangeFromPreset(preset: string, from?: string, to?: string): Dat
     default:
       return { from: back(13), to: now };
   }
+}
+
+type Conn = Awaited<ReturnType<typeof listConnections>>[number];
+type DayRow = { platform: string; id: string; date: string; spend: number; clicks: number };
+
+/** Daily spend of the ignored campaigns, from the same place the dashboard took that spend from. */
+async function excludedSpend(
+  range: DateRange,
+  connections: Conn[],
+  settings: Settings,
+  rt: Conn | undefined,
+  covered: Set<string>,
+): Promise<SpendRow[]> {
+  const ex = settings.excludedCampaigns ?? [];
+  const srcKeys = new Set(ex.map((e) => e.key).filter((k) => k.startsWith("src:")));
+  const rtIds = new Set(ex.map((e) => e.key).filter((k) => k.startsWith("rtc:")).map((k) => k.slice(4).toLowerCase()));
+  const rtMode = settings.spendSource === "redtrack";
+  const out: SpendRow[] = [];
+  const keep = (r: DayRow) => r.date >= range.from && r.date <= range.to;
+
+  if (process.env.NT_SNAPSHOT_CAMPAIGN_DAILY) {
+    const all = (JSON.parse(await fs.readFile(process.env.NT_SNAPSHOT_CAMPAIGN_DAILY, "utf8")) as (DayRow & { rt?: boolean })[]).filter(keep);
+    for (const r of all) {
+      const hit = r.rt
+        ? rtIds.has(r.id.toLowerCase()) && (rtMode || !covered.has(r.platform))
+        : !rtMode && srcKeys.has(`src:${r.platform}:${r.id}`);
+      if (hit) out.push({ date: r.date, platform: r.platform, spend: r.spend, clicks: r.clicks });
+    }
+    return out;
+  }
+
+  if (!rtMode && srcKeys.size) {
+    const platforms = new Set([...srcKeys].map((k) => k.split(":")[1]));
+    const jobs = uniqueAccounts(connections)
+      .filter((c) => platforms.has(c.provider) && TRAFFIC_CONNECTORS[c.provider]?.campaignDaily)
+      .map(async (c) => {
+        try {
+          const rows = (
+            await cached(hashKey("src-daily", c.id, c.credentials, range), () =>
+              TRAFFIC_CONNECTORS[c.provider].campaignDaily!(c.credentials, range),
+            )
+          ).value;
+          return rows
+            .filter((r) => srcKeys.has(`src:${c.provider}:${r.id}`))
+            .map((r) => ({ date: r.date, platform: c.provider, spend: r.spend, clicks: r.clicks }));
+        } catch {
+          return [];
+        }
+      });
+    out.push(...(await Promise.all(jobs)).flat());
+  }
+  if (rtIds.size && rt && !process.env.NT_SNAPSHOT_REDTRACK) {
+    try {
+      const rows = await redtrack.fetchCampaignDaily(rt.credentials, range);
+      // Only where the dashboard used RedTrack's cost (no direct API for that platform, or RedTrack mode).
+      for (const r of rows)
+        if (rtIds.has(r.id.toLowerCase()) && (rtMode || !covered.has(r.platform)))
+          out.push({ date: r.date, platform: r.platform, spend: r.spend, clicks: r.clicks });
+    } catch {
+      /* keep the dashboard working; the traffic tab still leaves them out */
+    }
+  }
+  return out;
 }
