@@ -38,12 +38,16 @@ export const CTAS: [string, string][] = [
 ];
 export const TITLE_MAX: Record<string, number> = { taboola: 150, revcontent: 80 };
 
-/** Fills empty descriptions with an aggressive one matching each headline. */
-export async function generateDescriptions(headlines: string[]): Promise<Record<string, string>> {
+/** Direct-response descriptions for the niche of each ad (headline + image + product), keyed by headline. */
+export async function generateDescriptions(
+  items: { headline: string; imageUrl?: string }[],
+  ctx: { product?: string; campaign?: string; variant?: number } = {},
+): Promise<Record<string, string>> {
+  const abs = (u?: string) => (u && u.startsWith("/") ? `${location.origin}${u}` : u);
   const r = await fetch("/api/creatives/describe", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ headlines }),
+    body: JSON.stringify({ items: items.map((i) => ({ headline: i.headline, imageUrl: abs(i.imageUrl) })), ...ctx }),
   })
     .then((x) => x.json())
     .catch(() => ({ results: [] }));
@@ -391,11 +395,32 @@ function BlocklistField({
   );
 }
 
-export function CreativePicker({ platform, picks, onChange }: { platform: Platform; picks: Pick[]; onChange: (p: Pick[]) => void }) {
+export function CreativePicker({
+  platform,
+  picks,
+  onChange,
+  context = {},
+}: {
+  platform: Platform;
+  picks: Pick[];
+  onChange: (p: Pick[]) => void;
+  /** Product / campaign name: helps find the niche for the descriptions. */
+  context?: { product?: string; campaign?: string };
+}) {
   const [data, setData] = useState<{ variants: CreativeVariant[]; combos: Ad[]; images: Group[]; headlines: Group[] } | null>(null);
   const [view, setView] = useState<"images" | "headlines" | "ads" | "variants">("images");
   const [target, setTarget] = useState<string | null>(null); // pick that receives a headline from the Headlines tab
   const [genBusy, setGenBusy] = useState(false);
+  const [round, setRound] = useState(0);
+  const [oneBusy, setOneBusy] = useState<string | null>(null);
+  async function redoOne(p: Pick) {
+    setOneBusy(p.key);
+    const v = round + 1;
+    setRound(v);
+    const got = await generateDescriptions([{ headline: p.headline, imageUrl: p.imageUrl }], { ...context, variant: v });
+    setOneBusy(null);
+    if (got[p.headline]) onChange(picks.map((x) => (x.key === p.key ? { ...x, description: got[p.headline] } : x)));
+  }
   useEffect(() => {
     fetch("/api/creatives?preset=30d")
       .then((r) => r.json())
@@ -417,10 +442,12 @@ export function CreativePicker({ platform, picks, onChange }: { platform: Platfo
   const count = (img: string) => picks.filter((x) => x.imageUrl === img).length;
 
   async function fillDescriptions(all: boolean) {
-    const need = picks.filter((p) => all || !p.description?.trim()).map((p) => p.headline);
+    const need = picks.filter((p) => all || !p.description?.trim()).map((p) => ({ headline: p.headline, imageUrl: p.imageUrl }));
     if (!need.length) return;
     setGenBusy(true);
-    const got = await generateDescriptions(need);
+    const v = all ? round + 1 : round;
+    setRound(v);
+    const got = await generateDescriptions(need, { ...context, variant: v });
     setGenBusy(false);
     onChange(picks.map((p) => (all || !p.description?.trim() ? { ...p, description: got[p.headline] ?? p.description } : p)));
   }
@@ -566,7 +593,17 @@ export function CreativePicker({ platform, picks, onChange }: { platform: Platfo
                       value={p.description ?? ""}
                       onChange={(e) => update(p.key, { description: e.target.value })}
                     />
-                    <span className="w-12 shrink-0 text-right text-[10px] text-faint">{(p.description ?? "").length}/250</span>
+                    <div className="flex w-12 shrink-0 flex-col items-end gap-1">
+                      <span className="text-[10px] text-faint">{(p.description ?? "").length}/250</span>
+                      <button
+                        className="text-[11px] text-info hover:underline disabled:opacity-50"
+                        disabled={oneBusy === p.key}
+                        title="Gerar outra descrição para este criativo"
+                        onClick={() => redoOne(p)}
+                      >
+                        {oneBusy === p.key ? "…" : "↻ outra"}
+                      </button>
+                    </div>
                   </div>
                   <div className="flex flex-wrap items-center gap-2">
                     {platform === "taboola" && (

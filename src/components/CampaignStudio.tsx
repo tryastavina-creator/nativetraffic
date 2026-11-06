@@ -717,10 +717,10 @@ export function CampaignStudio({
                             className="text-info hover:underline disabled:opacity-50"
                             disabled={descBusy}
                             onClick={async () => {
-                              const need = items.filter((i) => !i.newDesc.trim()).map((i) => i.newTitle);
+                              const need = items.filter((i) => !i.newDesc.trim()).map((i) => ({ headline: i.newTitle, imageUrl: i.thumbnail }));
                               if (!need.length) return;
                               setDescBusy(true);
-                              const got = await generateDescriptions(need);
+                              const got = await generateDescriptions(need, { product: setup.product, campaign: name });
                               setDescBusy(false);
                               setItems((cur) => cur.map((x) => (!x.newDesc.trim() && got[x.newTitle] ? { ...x, newDesc: got[x.newTitle] } : x)));
                             }}
@@ -806,7 +806,7 @@ export function CampaignStudio({
                 )}
 
                 <Section title={`${mode === "create" ? "Criativos" : "Criativos novos"} (${picks.length})`}>
-                  <CreativePicker platform={target.platform} picks={picks} onChange={setPicks} />
+                  <CreativePicker platform={target.platform} picks={picks} onChange={setPicks} context={{ product: setup.product, campaign: name }} />
                 </Section>
               </div>
 
