@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
 import { NextResponse } from "next/server";
+import { guardRoute } from "@/lib/auth";
 import { normProduct } from "@/lib/naming";
 import {
   getSettings,
@@ -59,11 +60,15 @@ async function imageFrom(b: { imageUrl?: string; imageData?: string }): Promise<
  *  PATCH { kind: "variant", id, product?, headline?, description? } · { kind: "headline", id, product?, text? }
  *  DELETE ?headline=<id>
  */
-export async function GET() {
+export async function GET(req: Request) {
+  const denied = await guardRoute(req);
+  if (denied) return denied;
   return NextResponse.json({ headlines: await listSavedHeadlines() });
 }
 
 export async function POST(req: Request) {
+  const denied = await guardRoute(req);
+  if (denied) return denied;
   const b = (await req.json()) as {
     kind?: string;
     imageUrl?: string;
@@ -87,11 +92,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, added: add.length });
   }
 
-  if (!headlines.length) return NextResponse.json({ error: "Escreva pelo menos uma headline para o criativo." }, { status: 400 });
   try {
     const img = await imageFrom(b);
     const assetId = await putAsset(img.bytes, img.mime);
-    const add: CreativeVariant[] = headlines.map((headline) => ({
+    // Image alone is fine (headline chosen when it goes into a campaign); each headline → one creative.
+    const add: CreativeVariant[] = (headlines.length ? headlines : [""]).map((headline) => ({
       id: id(),
       createdAt: now,
       origin: "spy",
@@ -109,7 +114,7 @@ export async function POST(req: Request) {
     }));
     await saveVariants(add);
     // The headlines also go to the headline library of the product.
-    await saveHeadlines(headlines.map((text) => ({ id: id(), text: text.slice(0, 150), product, description, note, createdAt: now })));
+    if (headlines.length) await saveHeadlines(headlines.map((text) => ({ id: id(), text: text.slice(0, 150), product, description, note, createdAt: now })));
     return NextResponse.json({ ok: true, added: add.length });
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: 400 });
@@ -117,6 +122,8 @@ export async function POST(req: Request) {
 }
 
 export async function PATCH(req: Request) {
+  const denied = await guardRoute(req);
+  if (denied) return denied;
   const b = (await req.json()) as { kind?: string; key?: string; id?: string; product?: string; headline?: string; text?: string; description?: string };
   const product = b.product !== undefined ? normProduct(b.product) : undefined;
   if (b.kind === "product" && b.key && /^(img|hl):/.test(b.key)) {
@@ -142,6 +149,8 @@ export async function PATCH(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  const denied = await guardRoute(req);
+  if (denied) return denied;
   const h = new URL(req.url).searchParams.get("headline");
   if (!h) return NextResponse.json({ error: "Pedido inválido." }, { status: 400 });
   await updateSavedHeadline(h, null);

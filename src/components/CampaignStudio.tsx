@@ -325,6 +325,7 @@ export function CampaignStudio({
           groupChosen: groupMode === "new" || (groupMode === "existing" && !!groupId),
         })
       : { errors: [] as string[], warnings: [] as string[] };
+  if (picks.some((p) => !p.headline.trim())) check.errors.push("Escreva a headline de todos os criativos escolhidos.");
 
   async function saveTemplate() {
     if (!setup || !target) return;

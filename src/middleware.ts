@@ -14,4 +14,9 @@ export async function middleware(req: NextRequest) {
   return NextResponse.redirect(url);
 }
 
-export const config = { runtime: "nodejs", matcher: ["/((?!_next/|favicon.ico).*)"] };
+// Upload routes (and public webhooks) stay out of the middleware: Next's Node middleware can break large
+// request bodies. They check the login themselves with guardRoute().
+export const config = {
+  runtime: "nodejs",
+  matcher: ["/((?!_next/|favicon.ico|api/creatives/library|api/supplier|api/webhooks/).*)"],
+};

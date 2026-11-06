@@ -416,6 +416,7 @@ function Budget({
   days,
   cur,
   onEdit,
+  caption,
 }: {
   budget: number;
   spend: number;
@@ -423,6 +424,8 @@ function Budget({
   cur: string;
   /** Campaign rows: edit the daily budget in place. */
   onEdit?: (daily: number) => Promise<string | null>;
+  /** Small caption under the value (e.g. the shared group's name). */
+  caption?: string;
 }) {
   const [editing, setEditing] = useState(false);
   const [val, setVal] = useState(String(budget || ""));
@@ -474,7 +477,7 @@ function Budget({
     );
   const edit = onEdit && (
     <button
-      className="ml-1 text-[10px] text-faint hover:text-info"
+      className="ml-1 rounded border border-line px-1 text-[10px] text-muted hover:border-info hover:text-info"
       title="Editar orçamento diário"
       onClick={() => {
         setVal(String(budget || ""));
@@ -485,7 +488,13 @@ function Budget({
       ✎
     </button>
   );
-  if (!budget) return <span className="text-faint">—{edit}</span>;
+  if (!budget)
+    return (
+      <span className="text-faint">
+        —{edit}
+        {caption && <span className="block text-[10px]">{caption}</span>}
+      </span>
+    );
   const pct = Math.min(100, (spend / (budget * days)) * 100);
   return (
     <div className="ml-auto w-24 text-right">
@@ -496,7 +505,9 @@ function Budget({
       <div className="mt-1 h-1 rounded-full bg-white/10">
         <div className={`h-1 rounded-full ${pct >= 90 ? "bg-warn" : "bg-accent"}`} style={{ width: `${pct}%` }} />
       </div>
-      <div className="text-[10px] text-faint">{pct.toFixed(0)}% usado</div>
+      <div className="text-[10px] text-faint">
+        {pct.toFixed(0)}% usado{caption ? ` · ${caption}` : ""}
+      </div>
     </div>
   );
 }
@@ -509,6 +520,7 @@ function Cells({
   count,
   small,
   onBudget,
+  budgetCaption,
 }: {
   x: Perf;
   cols: { id: ColId }[];
@@ -517,6 +529,7 @@ function Cells({
   count?: number;
   small?: boolean;
   onBudget?: (daily: number) => Promise<string | null>;
+  budgetCaption?: string;
 }) {
   const cell = "px-2.5 py-2.5 text-right tabular-nums whitespace-nowrap" + (small ? " text-[13px]" : "");
   return (
@@ -532,7 +545,7 @@ function Cells({
           case "budget":
             return (
               <td key={c.id} className={cell}>
-                <Budget budget={x.budget} spend={x.spend} days={days} cur={cur} onEdit={onBudget} />
+                <Budget budget={x.budget} spend={x.spend} days={days} cur={cur} onEdit={onBudget} caption={budgetCaption} />
               </td>
             );
           case "spend":
@@ -753,13 +766,18 @@ function CampaignRow({
   const [label, tone] = statusOf(c);
   const [menu, setMenu] = useState(false);
   const [panel, setPanel] = useState<"ads" | "sites" | null>(null);
-  const [budgetNow, setBudgetNow] = useState<number | undefined>(c.dailyBudget);
+  const inGroup = !c.dailyBudget && !!c.group?.shared;
+  const [budgetNow, setBudgetNow] = useState<number | undefined>(inGroup ? c.group?.dailyCap : c.dailyBudget);
   const x = useMemo(() => ({ ...c, budget: budgetNow ?? 0 }), [c, budgetNow]);
   const saveBudget = async (daily: number): Promise<string | null> => {
     const r = await fetch("/api/campaigns/insights", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ accountId: c.accountId, campaignId: c.id, kind: "budget", daily }),
+      body: JSON.stringify(
+        inGroup
+          ? { accountId: c.accountId, campaignId: c.id, kind: "groupBudget", id: c.group!.id, daily }
+          : { accountId: c.accountId, campaignId: c.id, kind: "budget", daily },
+      ),
     })
       .then((x) => x.json())
       .catch(() => ({ error: "Falha na conexão." }));
@@ -843,7 +861,15 @@ function CampaignRow({
           </div>
         </div>
       </td>
-      <Cells x={x} cols={cols} cur={cur} days={days} small onBudget={c.editable ? saveBudget : undefined} />
+      <Cells
+        x={x}
+        cols={cols}
+        cur={cur}
+        days={days}
+        small
+        onBudget={c.editable ? saveBudget : undefined}
+        budgetCaption={inGroup ? `grupo ${c.group!.name}` : undefined}
+      />
     </tr>
     {panel && (
       <tr className="border-b border-line/40 bg-black/20">

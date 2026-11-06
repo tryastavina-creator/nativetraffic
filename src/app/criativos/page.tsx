@@ -640,6 +640,7 @@ function Library({ variants, products, onChanged }: { variants: CreativeVariant[
                     <textarea
                       aria-label="Headline"
                       className="input min-h-[52px] py-1.5 text-xs"
+                      placeholder="Sem headline — escreva aqui ou na hora de subir"
                       defaultValue={v.headline}
                       maxLength={100}
                       disabled={v.status === "published"}
@@ -816,11 +817,28 @@ function AddCreative({
 
   function readFile(f?: File) {
     if (!f) return;
-    if (f.size > 8 * 1024 * 1024) return setError("Imagem maior que 8 MB.");
+    if (f.size > 25 * 1024 * 1024) return setError("Imagem maior que 25 MB.");
+    setError("");
     const r = new FileReader();
     r.onload = () => {
-      setImageData(String(r.result));
-      setImageUrl("");
+      const src = String(r.result);
+      // Resize to at most 1200px wide and re-encode as JPEG (~200 KB): uploads fast and never hits size limits.
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, 1200 / img.width);
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return setImageData(src);
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        setImageData(canvas.toDataURL("image/jpeg", 0.88));
+        setImageUrl("");
+      };
+      img.onerror = () => setError("Não consegui ler essa imagem. Use JPG, PNG ou WebP.");
+      img.src = src;
     };
     r.readAsDataURL(f);
   }
@@ -832,8 +850,15 @@ function AddCreative({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ kind, imageUrl: imageData ? undefined : imageUrl, imageData: imageData || undefined, headlines: lines, description, product, note }),
     })
-      .then((x) => x.json())
-      .catch(() => ({ error: "Falha na conexão." }));
+      .then(async (x) => {
+        const t = await x.text();
+        try {
+          return JSON.parse(t);
+        } catch {
+          return { error: x.status === 413 ? "Imagem grande demais para enviar." : `Erro ${x.status} ao salvar. Tente de novo.` };
+        }
+      })
+      .catch(() => ({ error: "Sem conexão com o servidor. Tente de novo." }));
     setBusy(false);
     if (r.error) return setError(r.error);
     onDone(kind);
@@ -850,7 +875,7 @@ function AddCreative({
         </div>
         <div className="flex gap-1">
           <button className={`chip border border-line ${kind === "creative" ? "chip-on" : ""}`} onClick={() => setKind("creative")}>
-            Criativo (imagem + headlines)
+            Imagem (headline opcional)
           </button>
           <button className={`chip border border-line ${kind === "headlines" ? "chip-on" : ""}`} onClick={() => setKind("headlines")}>
             Só headlines
@@ -900,7 +925,9 @@ function AddCreative({
         )}
 
         <label className="block">
-          <span className="mb-1.5 block text-xs text-zinc-300">Headlines (uma por linha{kind === "creative" ? " — cada uma vira um criativo com esta imagem" : ""})</span>
+          <span className="mb-1.5 block text-xs text-zinc-300">
+            {kind === "creative" ? "Headlines (opcional · uma por linha — cada uma vira um criativo com esta imagem)" : "Headlines (uma por linha)"}
+          </span>
           <textarea className="input h-28 text-sm" value={headlines} onChange={(e) => setHeadlines(e.target.value)} />
         </label>
         <label className="block">
@@ -929,10 +956,10 @@ function AddCreative({
           </button>
           <button
             className="btn-primary"
-            disabled={busy || !product.trim() || !lines.length || (kind === "creative" && !preview)}
+            disabled={busy || !product.trim() || (kind === "headlines" ? !lines.length : !preview)}
             onClick={save}
           >
-            {busy ? "Salvando…" : kind === "creative" ? `Salvar ${lines.length || ""} criativo(s)` : `Salvar ${lines.length || ""} headline(s)`}
+            {busy ? "Salvando…" : kind === "creative" ? (lines.length > 1 ? `Salvar ${lines.length} criativos` : "Salvar criativo") : `Salvar ${lines.length || ""} headline(s)`}
           </button>
         </div>
       </div>

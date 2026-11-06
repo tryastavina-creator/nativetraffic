@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { friendlyError } from "@/lib/cache";
-import { campaignAds, campaignSites, setAdActive, setDailyBudget, setSiteBlocked } from "@/lib/campaignInsights";
+import { campaignAds, campaignSites, setAdActive, setDailyBudget, setGroupDailyBudget, setSiteBlocked } from "@/lib/campaignInsights";
 import { rangeFromPreset } from "@/lib/metrics";
 import { resolveAccount } from "@/lib/campaigns";
-import { rememberEdit } from "@/lib/trafficTree";
+import { rememberEdit, rememberGroupEdit } from "@/lib/trafficTree";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +27,16 @@ export async function GET(req: Request) {
  */
 export async function POST(req: Request) {
   const b = (await req.json()) as { accountId?: string; campaignId?: string; kind?: string; id?: string; on?: boolean; daily?: number };
+  if (b.kind === "groupBudget") {
+    if (!b.accountId || !b.id) return NextResponse.json({ error: "Dados inválidos." }, { status: 400 });
+    try {
+      await setGroupDailyBudget(b.accountId, b.id, Number(b.daily));
+      rememberGroupEdit(b.id, Number(b.daily));
+      return NextResponse.json({ ok: true });
+    } catch (e) {
+      return NextResponse.json({ error: friendlyError("Fonte", e) }, { status: 400 });
+    }
+  }
   if (b.kind === "budget") {
     if (!b.accountId || !b.campaignId) return NextResponse.json({ error: "Dados inválidos." }, { status: 400 });
     try {

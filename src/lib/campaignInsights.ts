@@ -283,3 +283,20 @@ export async function setDailyBudget(accountId: string, campaignId: string, dail
     });
   }
 }
+
+/** New daily budget of a Taboola campaign group with shared budget (raises a lower monthly/total limit along). */
+export async function setGroupDailyBudget(accountId: string, groupId: string, daily: number) {
+  const acc = await account(accountId);
+  if (acc.provider !== "taboola") throw Object.assign(new Error("grupos de campanhas só existem na Taboola"), { friendly: true });
+  if (!(daily > 0)) throw Object.assign(new Error("informe um valor maior que zero"), { friendly: true });
+  const c = acc.credentials;
+  const g = await tbGet<Record<string, unknown>>(c, `/campaigns_group/${groupId}`);
+  const body: Record<string, unknown> = { daily_cap: daily, daily_ad_delivery_model: g.daily_ad_delivery_model ?? "STRICT" };
+  const model = String(g.spending_limit_model ?? "");
+  if ((model === "MONTHLY" || model === "ENTIRE") && num(g.spending_limit) <= daily) body.spending_limit = Math.round(daily * 31);
+  await http(`${TB}/${c.accountId}/campaigns_group/${groupId}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}

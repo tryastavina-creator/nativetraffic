@@ -68,3 +68,14 @@ export async function readSession(token?: string): Promise<string | null> {
   const [user, exp] = fromB64url(payload).split("|");
   return Number(exp) > Date.now() ? user : null;
 }
+
+/**
+ * Login check for the few API routes that run outside the middleware (large uploads: Next's Node middleware
+ * can break request bodies bigger than a few hundred KB). Returns a 401 response, or null when allowed.
+ */
+export async function guardRoute(req: Request): Promise<Response | null> {
+  if (!authRequired()) return null;
+  const raw = new RegExp(`(?:^|;\\s*)${COOKIE}=([^;]+)`).exec(req.headers.get("cookie") ?? "")?.[1];
+  const user = await readSession(raw ? decodeURIComponent(raw) : undefined);
+  return user ? null : Response.json({ error: "não autenticado" }, { status: 401 });
+}

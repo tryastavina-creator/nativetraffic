@@ -2,7 +2,7 @@ import "server-only";
 import { promises as fs } from "node:fs";
 import { cached, friendlyError, hashKey } from "./cache";
 import { campaignAccounts, resolveAccount } from "./campaigns";
-import { revcontentCampaigns, taboolaCampaigns, type SourceCampaignInfo } from "./connectors/campaignBuilder";
+import { revcontentCampaigns, taboolaCampaigns, taboolaGroup, type GroupDetail, type SourceCampaignInfo } from "./connectors/campaignBuilder";
 import { PLATFORM_LABEL } from "./registry";
 import { getSettings, listCampaignLog, listConnections } from "./store";
 import { computeTraffic, type ExcludedCampaign, type TrafficRow } from "./traffic";
@@ -37,6 +37,8 @@ export type TreeCampaign = Perf & {
   status: string;
   active: boolean | null;
   dailyBudget?: number;
+  /** Taboola campaign group; when its budget is shared, that is the budget shown and edited. */
+  group?: { id: string; name: string; shared: boolean; dailyCap?: number };
   attribution?: TrafficRow["attribution"];
   linkSource?: string;
   needsLink: boolean;
@@ -104,13 +106,18 @@ function within<T>(p: Promise<T>, ms: number, fallback: T): Promise<T> {
 
 /** Changes made from the screen (budget, on/off) shown at once, until the sources' lists catch up (10 min). */
 const edits = new Map<string, { at: number; dailyBudget?: number; active?: boolean }>();
+const groupEdits = new Map<string, { at: number; dailyCap: number }>();
+export function rememberGroupEdit(groupId: string, dailyCap: number) {
+  groupEdits.set(groupId, { at: Date.now(), dailyCap });
+}
 export function rememberEdit(platform: string, campaignId: string, patch: { dailyBudget?: number; active?: boolean }) {
   const k = `${platform}:${campaignId}`;
   edits.set(k, { ...edits.get(k), ...patch, at: Date.now() });
 }
 function applyEdits(t: TrafficTree): TrafficTree {
   for (const [k, e] of edits) if (Date.now() - e.at > 10 * 60_000) edits.delete(k);
-  if (!edits.size) return t;
+  for (const [k, e] of groupEdits) if (Date.now() - e.at > 10 * 60_000) groupEdits.delete(k);
+  if (!edits.size && !groupEdits.size) return t;
   return {
     ...t,
     platforms: t.platforms.map((p) => ({
@@ -118,6 +125,8 @@ function applyEdits(t: TrafficTree): TrafficTree {
       accounts: p.accounts.map((a) => ({
         ...a,
         campaigns: a.campaigns.map((c) => {
+          const ge = c.group ? groupEdits.get(c.group.id) : undefined;
+          if (ge && c.group) c = { ...c, group: { ...c.group, dailyCap: ge.dailyCap } };
           const e = edits.get(c.key);
           if (!e) return c;
           return {
@@ -156,6 +165,28 @@ async function buildTree(range: DateRange): Promise<TrafficTree> {
   const lists = await Promise.all(
     accounts.map(async (a) => ({ a, list: await within(campaignList(a.id, a.platform, warnings), 4000, [] as SourceCampaignInfo[]) })),
   );
+  // Groups used by the listed Taboola campaigns (their budget, when shared).
+  const groups = new Map<string, GroupDetail>();
+  await Promise.all(
+    lists
+      .filter(({ a }) => a.platform === "taboola")
+      .flatMap(({ a, list }) =>
+        [...new Set(list.map((c) => c.groupId).filter(Boolean) as string[])].map(async (gid) => {
+          const acc = await resolveAccount(a.id);
+          if (!acc) return;
+          const g = await within(
+            cached(hashKey("tb-group", a.id, gid), () => taboolaGroup(acc.credentials, gid), { ttl: 5 * 60_000 }).then((x) => x.value),
+            3000,
+            undefined,
+          );
+          if (g) groups.set(`${a.id}|${gid}`, g);
+        }),
+      ),
+  );
+  const groupOf = (accountId?: string, gid?: string) => {
+    const g = accountId && gid ? groups.get(`${accountId}|${gid}`) : undefined;
+    return g ? { id: g.id, name: g.name, shared: g.shared, dailyCap: g.dailyCap } : undefined;
+  };
   const owner = new Map<string, { accountId: string; info: SourceCampaignInfo }>();
   for (const { a, list } of lists) for (const c of list) owner.set(`${a.platform}:${c.id}`, { accountId: a.id, info: c });
 
@@ -185,6 +216,7 @@ async function buildTree(range: DateRange): Promise<TrafficTree> {
       status: o?.info.status ?? "",
       active,
       dailyBudget: o?.info.dailyBudget,
+      group: groupOf(o?.accountId, o?.info.groupId),
       spend: row.spend,
       clicks: row.clicks,
       sales: row.sales,
@@ -218,6 +250,7 @@ async function buildTree(range: DateRange): Promise<TrafficTree> {
         status: c.status,
         active: c.active,
         dailyBudget: c.dailyBudget,
+        group: groupOf(a.id, c.groupId),
         spend: 0,
         clicks: 0,
         sales: 0,
@@ -240,7 +273,11 @@ async function buildTree(range: DateRange): Promise<TrafficTree> {
   for (const [accountId, campaigns] of byAccount) {
     const platform = campaigns[0].platform;
     campaigns.sort((x, y) => y.spend - x.spend || Number(y.active) - Number(x.active) || x.name.localeCompare(y.name));
-    const acc: TreeAccount = { id: accountId, label: label.get(accountId) ?? PLATFORM_LABEL[accountId] ?? accountId, platform, campaigns, ...sum(campaigns) };
+    const totals = sum(campaigns);
+    const sharedCaps = new Map<string, number>();
+    for (const c of campaigns) if (c.group?.shared && c.active !== false && c.group.dailyCap) sharedCaps.set(c.group.id, c.group.dailyCap);
+    totals.budget += [...sharedCaps.values()].reduce((x, y) => x + y, 0);
+    const acc: TreeAccount = { id: accountId, label: label.get(accountId) ?? PLATFORM_LABEL[accountId] ?? accountId, platform, campaigns, ...totals };
     platforms.set(platform, [...(platforms.get(platform) ?? []), acc]);
   }
   const tree: TreePlatform[] = [...platforms.entries()]

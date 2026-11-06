@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { guardRoute } from "@/lib/auth";
 import { getSettings, getSupplierCosts, getSupplierImports, saveSupplierImport } from "@/lib/store";
 import { parseSupplierFile } from "@/lib/supplier";
 
@@ -7,13 +8,17 @@ export const dynamic = "force-dynamic";
 const MAX = 15 * 1024 * 1024;
 
 /** Import history and how many orders have an exact supplier cost. */
-export async function GET() {
+export async function GET(req: Request) {
+  const denied = await guardRoute(req);
+  if (denied) return denied;
   const [imports, costs] = await Promise.all([getSupplierImports(), getSupplierCosts()]);
   return NextResponse.json({ imports, orders: Object.keys(costs).length });
 }
 
 /** multipart/form-data with `file` (.xls or .csv exported from Wiio). */
 export async function POST(req: Request) {
+  const denied = await guardRoute(req);
+  if (denied) return denied;
   const form = await req.formData().catch(() => null);
   const file = form?.get("file");
   if (!(file instanceof File)) return NextResponse.json({ error: "Envie o arquivo da Wiio (.xls ou .csv)." }, { status: 400 });
