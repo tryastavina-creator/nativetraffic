@@ -21,6 +21,30 @@ const TB = "https://backstage.taboola.com/backstage/api/1.0";
 
 const tbHeaders = async (c: Credentials) => ({ Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" });
 
+/** Accounts a campaign can be created in. A network account only holds advertiser accounts. */
+export type TbAccount = { accountId: string; name: string; network: boolean };
+const tbAccounts = new Map<string, { at: number; list: TbAccount[] }>();
+
+export async function taboolaAdvertisers(c: Credentials): Promise<TbAccount[]> {
+  const key = `${c.clientId}:${c.accountId}`;
+  const hit = tbAccounts.get(key);
+  if (hit && Date.now() - hit.at < 3600_000) return hit.list;
+  let list: TbAccount[];
+  try {
+    const r = await http<{ results?: { account_id?: string; name?: string; type?: string }[] }>(`${TB}/${c.accountId}/advertisers`, {
+      headers: await tbHeaders(c),
+    });
+    list = (r.results ?? [])
+      .filter((a) => a.account_id && a.type !== "NETWORK")
+      .map((a) => ({ accountId: String(a.account_id), name: String(a.name ?? a.account_id), network: true }));
+  } catch {
+    list = [];
+  }
+  if (!list.length) list = [{ accountId: String(c.accountId), name: String(c.accountId), network: false }];
+  tbAccounts.set(key, { at: Date.now(), list });
+  return list;
+}
+
 export type SourceCampaignInfo = { id: string; name: string; status: string; active: boolean; groupId?: string };
 export type GroupInfo = { id: string; name: string; status: string };
 
@@ -118,20 +142,32 @@ export function taboolaCampaignBody(name: string, s: CampaignSetup, groupId?: st
     body.daily_cap = s.dailyCap;
     body.daily_ad_delivery_model = "STRICT";
   }
-  body.start_date = s.startDate && s.startDate > today() ? s.startDate : today();
-  body.end_date = s.endDate || "9999-12-31";
-  body.activity_schedule = taboolaSchedule(s.schedule);
+  // Only what differs from Taboola's defaults (starts now, no end, always on).
+  if (s.startDate && s.startDate > today()) body.start_date = s.startDate;
+  if (s.endDate) body.end_date = s.endDate;
+  if (s.schedule?.mode === "CUSTOM") body.activity_schedule = taboolaSchedule(s.schedule);
   if (s.trafficAllocation) body.traffic_allocation_mode = s.trafficAllocation;
   if (s.blockedSites?.length) body.publisher_targeting = { type: "EXCLUDE", value: uniq(s.blockedSites) };
   return body;
 }
 
 export async function taboolaCreateCampaign(c: Credentials, name: string, s: CampaignSetup, groupId?: string): Promise<SourceCampaignInfo> {
-  const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${c.accountId}/campaigns/`, {
-    method: "POST",
-    headers: await tbHeaders(c),
-    body: JSON.stringify(taboolaCampaignBody(name, s, groupId)),
-  });
+  const post = async (body: Record<string, unknown>) =>
+    http<{ id: number | string; name: string; status: string }>(`${TB}/${c.accountId}/campaigns/`, {
+      method: "POST",
+      headers: await tbHeaders(c),
+      body: JSON.stringify(body),
+    });
+  const body = taboolaCampaignBody(name, s, groupId);
+  let r;
+  try {
+    r = await post(body);
+  } catch (e) {
+    // "No spending limit" is only for eligible accounts (new accounts usually aren't): fall back to a monthly
+    // limit that never binds before the daily budget does.
+    if (!/^400\b/.test(String((e as Error).message)) || !/spending/i.test(String((e as Error).message)) || body.spending_limit_model === "MONTHLY") throw e;
+    r = await post({ ...body, spending_limit_model: "MONTHLY", spending_limit: Math.max(100, Math.round((s.dailyCap || 100) * 31)) });
+  }
   return { id: String(r.id), name: r.name, status: r.status, active: false };
 }
 
@@ -203,13 +239,19 @@ export async function taboolaFromTemplate(
   groupId: string | undefined,
 ): Promise<SourceCampaignInfo & { how: string }> {
   const tpl = await taboolaRaw(src, templateId);
-  const cross = String(src.accountId) !== String(dst.accountId);
+  // A campaign read through a network account belongs to one of its advertisers.
+  const owner = tpl.advertiser_id ? String(tpl.advertiser_id) : String(src.accountId);
+  src = { ...src, accountId: owner };
+  const cross = owner !== String(dst.accountId);
   const inheritBlocks = s.inheritBlocks !== false;
   const inheritBids = s.inheritBidModifiers === true;
   if (cross && tpl.campaign_group_id && !groupId) throw new Error("Escolha o grupo de campanhas da conta destino (o grupo da campanha modelo é de outra conta).");
 
   const overrides = taboolaCampaignBody(name, s, groupId);
   delete overrides.marketing_objective; // follows the template
+  overrides.start_date = s.startDate && s.startDate > today() ? s.startDate : today(); // the template's start is in the past
+  overrides.end_date = s.endDate || "9999-12-31"; // the template may have ended
+  overrides.activity_schedule = taboolaSchedule(s.schedule ?? { mode: "ALWAYS", days: [], fromHour: 0, untilHour: 24, timeZone: (tpl.activity_schedule as { time_zone?: string })?.time_zone });
   if (tpl.daily_ad_delivery_model) delete overrides.daily_ad_delivery_model; // keep the template's pacing
   const tplBlocks = ((tpl.publisher_targeting as { type?: string; value?: string[] } | null)?.type === "EXCLUDE"
     ? ((tpl.publisher_targeting as { value?: string[] }).value ?? [])
@@ -386,6 +428,8 @@ export async function revcontentTemplateBlocks(c: Credentials, templateId: strin
 export type ExistingItem = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string };
 export type CampaignDetail = {
   platform: "taboola" | "revcontent";
+  /** Taboola: advertiser account that owns the campaign (differs from the connection when it is a network). */
+  owner?: string;
   campaignId: string;
   name: string;
   setup: CampaignSetup;
@@ -400,10 +444,11 @@ const https = (u: string) => u.replace(/^http:\/\//, "https://");
 
 export async function taboolaDetail(c: Credentials, id: string): Promise<CampaignDetail> {
   const h = await tbHeaders(c);
-  const [x, items] = await Promise.all([
-    http<Record<string, unknown>>(`${TB}/${c.accountId}/campaigns/${id}/`, { headers: h }),
-    http<{ results: Record<string, unknown>[] }>(`${TB}/${c.accountId}/campaigns/${id}/items/`, { headers: h }).catch(() => ({ results: [] })),
-  ]);
+  const x = await http<Record<string, unknown>>(`${TB}/${c.accountId}/campaigns/${id}/`, { headers: h });
+  const owner = x.advertiser_id ? String(x.advertiser_id) : String(c.accountId);
+  const items = await http<{ results: Record<string, unknown>[] }>(`${TB}/${owner}/campaigns/${id}/items/`, { headers: h }).catch(() => ({
+    results: [] as Record<string, unknown>[],
+  }));
   const ct = x.country_targeting as { type?: string; value?: string[] } | undefined;
   const pt = x.platform_targeting as { type?: string; value?: string[] } | undefined;
   const list: ExistingItem[] = (items.results ?? []).map((i) => ({
@@ -416,6 +461,7 @@ export async function taboolaDetail(c: Credentials, id: string): Promise<Campaig
   }));
   return {
     platform: "taboola",
+    owner,
     campaignId: String(x.id),
     name: String(x.name ?? ""),
     groupId: x.campaign_group_id ? String(x.campaign_group_id) : undefined,
@@ -563,4 +609,17 @@ export async function taboolaDuplicateWith(
     body: JSON.stringify({ is_active: false }),
   }).catch(() => {});
   return { id: String(r.id), name: r.name, status: r.status, active: false };
+}
+
+/** Turns a just-created campaign and its new ads on (when the user chose "ativada"). */
+export async function taboolaActivate(c: Credentials, campaignId: string, itemIds: string[]) {
+  const h = await tbHeaders(c);
+  await http(`${TB}/${c.accountId}/campaigns/${campaignId}/`, { method: "POST", headers: h, body: JSON.stringify({ is_active: true }) });
+  for (const id of itemIds)
+    await http(`${TB}/${c.accountId}/campaigns/${campaignId}/items/${id}/`, { method: "POST", headers: h, body: JSON.stringify({ is_active: true }) });
+}
+
+export async function revcontentActivate(c: Credentials, boostId: string, contentIds: string[]) {
+  await rcPost(c, "/stats/api/v1.0/boosts", { id: Number(boostId), enabled: "on" });
+  for (const id of contentIds) await rcPost(c, `/stats/api/v1.0/boosts/${boostId}/content`, { boost_id: Number(boostId), id: Number(id), enabled: "on" });
 }

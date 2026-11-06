@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { builderMeta, type Platform } from "@/lib/campaigns";
-import { listCampaignLog, listConnections, uniqueAccounts } from "@/lib/store";
+import { builderMeta, campaignAccounts, type Platform } from "@/lib/campaigns";
+import { listCampaignLog } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
@@ -10,9 +10,8 @@ export async function GET(req: Request) {
   const platform = q.get("platform") as Platform | null;
   const accountId = q.get("accountId");
   if (!platform || !accountId) {
-    const conns = uniqueAccounts(await listConnections()).filter((c) => c.provider === "taboola" || c.provider === "revcontent");
     return NextResponse.json({
-      accounts: conns.map((c) => ({ id: c.id, label: c.label ?? c.provider, platform: c.provider })),
+      accounts: await campaignAccounts(),
       log: (await listCampaignLog()).slice(0, 50),
     });
   }

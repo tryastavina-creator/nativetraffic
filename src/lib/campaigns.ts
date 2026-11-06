@@ -6,6 +6,9 @@ import {
   revcontentCreateCampaign,
   revcontentTemplateBlocks,
   taboolaFromTemplate,
+  taboolaActivate,
+  revcontentActivate,
+  taboolaAdvertisers,
   revcontentDetail,
   revcontentDuplicate,
   revcontentUpdate,
@@ -33,6 +36,7 @@ import {
   getConnection,
   getSettings,
   listConnections,
+  uniqueAccounts,
   listTemplates,
   listVariants,
   updateVariant,
@@ -53,8 +57,35 @@ export function bidLabel(platform: Platform, s: CampaignSetup): string {
 /** Hosts the server may download an existing ad image from (to re-upload it). Prevents fetching arbitrary URLs. */
 const IMAGE_HOSTS = /(^|\.)taboola\.com$|(^|\.)revcontent\.com$|^revcontent\.s3\.amazonaws\.com$|(^|\.)fal\.media$|^storage\.googleapis\.com$/;
 
+/**
+ * Account ids are a connection id, or "connectionId::advertiserAccountId" for an advertiser inside a Taboola
+ * network connection (campaigns can only be created in advertiser accounts).
+ */
+export async function resolveAccount(id: string) {
+  const [connId, adv] = id.split("::");
+  const conn = await getConnection(connId);
+  if (!conn) return undefined;
+  return adv ? { ...conn, id, credentials: { ...conn.credentials, accountId: adv } } : conn;
+}
+
+/** Every account a campaign can be created in (Taboola networks expanded into their advertisers). */
+export async function campaignAccounts() {
+  const conns = uniqueAccounts(await listConnections()).filter((c) => c.provider === "taboola" || c.provider === "revcontent");
+  const out: { id: string; label: string; platform: Platform }[] = [];
+  for (const c of conns) {
+    if (c.provider !== "taboola") {
+      out.push({ id: c.id, label: c.label ?? c.provider, platform: "revcontent" });
+      continue;
+    }
+    const advs = await taboolaAdvertisers(c.credentials).catch(() => []);
+    if (!advs.length || !advs[0].network) out.push({ id: c.id, label: c.label ?? "Taboola", platform: "taboola" });
+    else for (const a of advs) out.push({ id: `${c.id}::${a.accountId}`, label: `${a.name} (${c.label ?? "rede"})`, platform: "taboola" });
+  }
+  return out;
+}
+
 async function connection(platform: Platform, accountId: string) {
-  const conn = await getConnection(accountId);
+  const conn = await resolveAccount(accountId);
   if (!conn || conn.provider !== platform) throw new Error("Conta da fonte não encontrada.");
   return conn;
 }
@@ -133,6 +164,7 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
   const conn = await connection(platform, accountId);
   const variants = await listVariants();
   const steps: string[] = [];
+  const ids: string[] = [];
   let ok = 0;
   for (const cr of creatives) {
     try {
@@ -148,7 +180,8 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
           status: "published",
           published: [...(v.published ?? []), { platform, itemId: r.itemId, at: new Date().toISOString(), status: r.status }],
         });
-        steps.push(`Anúncio ${r.itemId} (variação) criado pausado`);
+        ids.push(r.itemId);
+        steps.push(`Anúncio ${r.itemId} (variação) criado`);
       } else {
         let host = "";
         try {
@@ -174,14 +207,27 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
         } else {
           r = await publishRevcontent(conn.credentials, campaignId, url, cr.headline, "", cr.imageUrl);
         }
-        steps.push(`Anúncio ${r.itemId} (criativo existente) criado pausado`);
+        ids.push(r.itemId);
+        steps.push(`Anúncio ${r.itemId} (criativo existente) criado`);
       }
       ok++;
     } catch (e) {
       steps.push(`Falhou um criativo: ${friendlyError("", e).replace(/^: /, "")}`);
     }
   }
-  return { steps, ok };
+  return { steps, ok, ids };
+}
+
+/** "Ativada": campaign and its new ads switched on at the end (ads still go through the source's review). */
+async function activate(platform: Platform, accountId: string, campaignId: string, itemIds: string[], steps: string[]) {
+  const conn = await connection(platform, accountId);
+  try {
+    if (platform === "taboola") await taboolaActivate(conn.credentials, campaignId, itemIds);
+    else await revcontentActivate(conn.credentials, campaignId, itemIds);
+    steps.push(`Campanha ativada${itemIds.length ? ` com ${itemIds.length} anúncio(s) ligados (rodam depois da aprovação da fonte)` : ""}`);
+  } catch (e) {
+    steps.push(`Não consegui ativar (ficou pausada): ${friendlyError("", e).replace(/^: /, "")}`);
+  }
 }
 
 export type CreateInput = {
@@ -194,6 +240,8 @@ export type CreateInput = {
   url: string;
   rtCampaign?: string;
   creatives: CreativeInput[];
+  /** true = switch the campaign and its new ads on at the end; default paused. */
+  activate?: boolean;
 };
 
 export async function createCampaign(input: CreateInput, baseUrl: string) {
@@ -225,7 +273,7 @@ export async function createCampaign(input: CreateInput, baseUrl: string) {
     }
     let camp;
     if (tplRef) {
-      const src = await getConnection(tplRef.accountId);
+      const src = await resolveAccount(tplRef.accountId);
       if (!src || src.provider !== input.platform) throw new Error("A campanha modelo é de outra fonte ou de uma conta desconectada.");
       if (input.platform === "taboola") {
         const r = await taboolaFromTemplate(src.credentials, tplRef.campaignId, conn.credentials, input.name, input.setup, groupId);
@@ -243,10 +291,11 @@ export async function createCampaign(input: CreateInput, baseUrl: string) {
           : await revcontentCreateCampaign(conn.credentials, input.name, input.setup);
     }
     campaignId = camp.id;
-    steps.push(`Campanha "${input.name}" criada pausada (id ${camp.id})`);
+    steps.push(`Campanha "${input.name}" criada (id ${camp.id})`);
     if (input.setup.blockedSites?.length) steps.push(`${input.setup.blockedSites.length} site(s) da blocklist bloqueados`);
     const r = await addCreatives(input.platform, input.accountId, camp.id, input.url, input.creatives, baseUrl);
     steps.push(...r.steps);
+    if (input.activate) await activate(input.platform, input.accountId, camp.id, r.ids, steps);
     ok = true;
     await log("criada", input.platform, input.accountId, campaignId, input.name, input.rtCampaign, input.url, r.ok, steps, true);
     return { ok, campaignId, steps };
@@ -347,7 +396,7 @@ export async function campaignDetail(accountId: string, campaignId: string) {
   if (process.env.NT_SNAPSHOT_CAMPAIGN_DETAIL) {
     return { ...JSON.parse(await (await import("node:fs")).promises.readFile(process.env.NT_SNAPSHOT_CAMPAIGN_DETAIL, "utf8")), accountId };
   }
-  const conn = await getConnection(accountId);
+  const conn = await resolveAccount(accountId);
   if (!conn || (conn.provider !== "taboola" && conn.provider !== "revcontent")) throw new Error("Conta da fonte não encontrada.");
   const d = conn.provider === "taboola" ? await taboolaDetail(conn.credentials, campaignId) : await revcontentDetail(conn.credentials, campaignId);
   // Fill product / devices / country from the name when the API doesn't give them.
@@ -358,7 +407,8 @@ export async function campaignDetail(accountId: string, campaignId: string) {
     if (conn.provider === "revcontent" && d.setup.devices.length === 3 && p.device && p.device !== "ALL")
       d.setup.devices = p.device.split("/") as ("DESKTOP" | "MOBILE" | "TABLET")[];
   }
-  return { ...d, accountId };
+  const owner = d.owner && d.owner !== String(conn.credentials.accountId) ? `${accountId.split("::")[0]}::${d.owner}` : accountId;
+  return { ...d, accountId: owner };
 }
 
 export type ItemChange = { id: string; title?: string; active?: boolean };
@@ -376,7 +426,7 @@ export async function updateCampaign(
   },
   baseUrl: string,
 ) {
-  const conn = await getConnection(input.accountId);
+  const conn = await resolveAccount(input.accountId);
   if (!conn || (conn.provider !== "taboola" && conn.provider !== "revcontent")) throw new Error("Conta da fonte não encontrada.");
   const platform = conn.provider as Platform;
   const steps: string[] = [];
@@ -431,11 +481,12 @@ export async function copyCampaign(
     keep: { title: string; thumbnail: string }[];
     keepAll: boolean;
     creatives: CreativeInput[];
+    activate?: boolean;
   },
   baseUrl: string,
 ) {
-  const src = await getConnection(input.source.accountId);
-  const dst = await getConnection(input.target.accountId);
+  const src = await resolveAccount(input.source.accountId);
+  const dst = await resolveAccount(input.target.accountId);
   if (!src || !dst) throw new Error("Conta não encontrada.");
   const platform = dst.provider as Platform;
   const kept: CreativeInput[] = input.keep.map((k) => ({ kind: "ad", imageUrl: k.thumbnail, headline: k.title }));
@@ -449,11 +500,14 @@ export async function copyCampaign(
       steps.push(`Campanha duplicada pausada (id ${c.id})${input.keepAll ? " com todos os anúncios da original" : ""}`);
       const toAdd = [...(input.keepAll ? [] : kept), ...input.creatives];
       let items = 0;
+      let ids: string[] = [];
       if (toAdd.length) {
         const r = await addCreatives(platform, dst.id, c.id, input.url, toAdd, baseUrl);
         steps.push(...r.steps);
         items = r.ok;
+        ids = r.ids;
       }
+      if (input.activate) await activate(platform, dst.id, c.id, ids, steps);
       await log("duplicada", platform, dst.id, campaignId, input.name, input.rtCampaign, input.url, items, steps, true);
       return { ok: true, campaignId, steps };
     } catch (e) {
@@ -472,6 +526,7 @@ export async function copyCampaign(
       url: input.url,
       rtCampaign: input.rtCampaign,
       creatives: [...kept, ...input.creatives],
+      activate: input.activate,
     },
     baseUrl,
   );

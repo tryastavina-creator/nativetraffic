@@ -81,6 +81,7 @@ export function CampaignStudio({
   const [winners, setWinners] = useState<Winner[] | null>(null);
   const [tplLoading, setTplLoading] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [activate, setActivate] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; steps: string[] } | null>(null);
   const [error, setError] = useState("");
 
@@ -109,9 +110,16 @@ export function CampaignStudio({
       .catch((e: Error) => setLoadError(e.message));
   }, [mode, sourceAccountId, campaignId]);
 
+  useEffect(() => {
+    if (!accounts.length || accounts.some((a) => a.id === targetId)) return;
+    const fallback = accounts.find((a) => a.id === detail?.accountId) ?? accounts.find((a) => a.id.startsWith(`${targetId}::`)) ?? accounts[0];
+    if (fallback) setTargetId(fallback.id);
+  }, [accounts, targetId, detail]);
+
   const target = accounts.find((a) => a.id === targetId);
   const sourcePlatform = detail?.platform;
-  const sameAccount = mode === "duplicate" && targetId === sourceAccountId;
+  const sourceAcc = detail?.accountId ?? sourceAccountId;
+  const sameAccount = mode === "duplicate" && targetId === sourceAcc;
   const nativeDuplicate = sameAccount && target?.platform === "taboola";
 
   // Meta of the target account (groups, RedTrack campaigns, templates)
@@ -256,11 +264,11 @@ export function CampaignStudio({
           : { mode: "none" };
     const body =
       mode === "create"
-        ? { action: "create", platform: target.platform, accountId: target.id, name, setup, group, url, rtCampaign: rt?.title, creatives }
+        ? { action: "create", platform: target.platform, accountId: target.id, name, setup, group, url, rtCampaign: rt?.title, creatives, activate }
         : mode === "edit"
           ? {
               action: "update",
-              accountId: sourceAccountId,
+              accountId: sourceAcc,
               campaignId,
               name,
               setup,
@@ -277,7 +285,8 @@ export function CampaignStudio({
             }
           : {
               action: "copy",
-              source: { accountId: sourceAccountId, campaignId },
+              source: { accountId: sourceAcc, campaignId },
+              activate,
               target: { accountId: target.id },
               name,
               setup,
@@ -308,7 +317,7 @@ export function CampaignStudio({
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <h2 className="truncate text-lg font-semibold">{title}</h2>
-            <p className="text-xs text-muted">Tudo que for criado sobe pausado. Revise na fonte e ative quando estiver pronto.</p>
+            <p className="text-xs text-muted">Escolha no resumo se a campanha sobe pausada (padrão) ou já ativada.</p>
           </div>
           <button onClick={onClose} className="text-muted hover:text-zinc-100" aria-label="Fechar">
             ✕
@@ -331,7 +340,7 @@ export function CampaignStudio({
                       {accounts.map((a) => (
                         <option key={a.id} value={a.id}>
                           {PLATFORM_LABEL[a.platform]} · {a.label}
-                          {mode === "duplicate" && a.id === sourceAccountId ? " (mesma conta)" : ""}
+                          {mode === "duplicate" && a.id === sourceAcc ? " (mesma conta)" : ""}
                         </option>
                       ))}
                     </select>
@@ -629,14 +638,36 @@ export function CampaignStudio({
                     </ul>
                   )}
                   {error && <div className="rounded-lg border border-bad/30 bg-bad/5 px-3 py-2 text-xs text-bad">{error}</div>}
+                  {mode !== "edit" && (
+                    <div>
+                      <div className="mb-1.5 text-xs text-faint">Subir a campanha</div>
+                      <div className="grid grid-cols-2 gap-1">
+                        <button className={`chip justify-center border border-line ${!activate ? "chip-on" : ""}`} onClick={() => setActivate(false)}>
+                          Pausada
+                        </button>
+                        <button className={`chip justify-center border border-line ${activate ? "chip-on" : ""}`} onClick={() => setActivate(true)}>
+                          Ativada
+                        </button>
+                      </div>
+                      {activate && (
+                        <p className="mt-1.5 text-[11px] text-warn">
+                          Começa a gastar assim que a fonte aprovar os anúncios. Confira orçamento, link e país.
+                        </p>
+                      )}
+                    </div>
+                  )}
                   <button className="btn-primary w-full justify-center" disabled={busy || !name.trim() || check.errors.length > 0} onClick={run}>
                     {busy
                       ? "Enviando… (até 1 min por anúncio)"
                       : mode === "create"
-                        ? "Criar campanha pausada"
+                        ? activate
+                          ? "Criar e ativar campanha"
+                          : "Criar campanha pausada"
                         : mode === "edit"
                           ? "Salvar alterações"
-                          : "Criar cópia pausada"}
+                          : activate
+                            ? "Criar cópia ativada"
+                            : "Criar cópia pausada"}
                   </button>
                   {result && (
                     <ul className={`space-y-1 rounded-lg border px-3 py-2 text-xs ${result.ok ? "border-accent/30 text-accent" : "border-bad/30 text-bad"}`}>

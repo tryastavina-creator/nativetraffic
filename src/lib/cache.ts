@@ -80,6 +80,8 @@ export function friendlyError(source: string, e: unknown): string {
   // Messages written for the user by a connector go through as they are.
   if ((e as { friendly?: boolean })?.friendly) return `${source}: ${msg}`;
   if (isRateLimit(msg)) return `${source}: limite de consultas atingido, atualizando em instantes.`;
+  const api = apiMessage(msg);
+  if (api) return `${source}: ${api}`;
   if (/\b401\b|\b403\b|invalid_client|unauthorized|forbidden/i.test(msg)) {
     return `${source}: acesso recusado. Confira a conexão em Integrações.`;
   }
@@ -87,4 +89,24 @@ export function friendlyError(source: string, e: unknown): string {
   // Messages we wrote ourselves (no HTTP status, no JSON) are safe to show.
   if (!/^\d{3}\b|[{}<]/.test(msg) && msg.length < 200) return `${source}: ${msg}`;
   return `${source}: não foi possível atualizar agora.`;
+}
+
+/** "400 Bad Request: {"message":"…"}" → the API's own explanation (plain text only), for 400/403/404/409/422. */
+function apiMessage(msg: string): string | undefined {
+  const m = /^(400|403|404|409|422)\b[^:]*:\s*(\{[\s\S]*)$/.exec(msg);
+  if (!m) return undefined;
+  // The body may be cut short: fall back to the "message" field read directly.
+  const direct = /"(?:message|error_description|description)"\s*:\s*"((?:[^"\\]|\\.){3,})"/.exec(m[2])?.[1];
+  try {
+    const j = JSON.parse(m[2]) as Record<string, unknown>;
+    const text = [j.message, j.error_description, j.error, j.description, j.details]
+      .map((x) => (typeof x === "string" ? x : Array.isArray(x) ? x.filter((y) => typeof y === "string").join("; ") : ""))
+      .find((x) => x && x.trim());
+    if (!text) return undefined;
+    const clean = text.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+    return clean ? `${clean.slice(0, 240)} (${m[1]})` : undefined;
+  } catch {
+    const clean = direct?.replace(/\\"/g, '"').replace(/<[^>]*>/g, "").trim();
+    return clean ? `${clean.slice(0, 240)} (${m[1]})` : undefined;
+  }
 }

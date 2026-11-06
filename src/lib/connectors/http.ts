@@ -7,7 +7,7 @@ export async function http<T = unknown>(url: string, init: RequestInit = {}): Pr
       .replace(/<[^>]+>/g, " ")
       .replace(/\s+/g, " ")
       .trim();
-    throw new Error(`${res.status} ${res.statusText}: ${clean.slice(0, 300)}`);
+    throw new Error(`${res.status} ${res.statusText}: ${clean.slice(0, 600)}`);
   }
   try {
     return JSON.parse(text) as T;
