@@ -132,6 +132,7 @@ export default function Trafego() {
       save("nt_traffic_open", [...n]);
       return n;
     });
+  const rangeQuery = new URLSearchParams(preset === "custom" ? { preset, from, to } : { preset }).toString();
   const cols = COLS.filter((c) => !hidden.includes(c.id) && (c.id !== "ic" || data?.icConfigured));
   const cur = data?.currency ?? "USD";
   const days = data?.days ?? 1;
@@ -289,6 +290,7 @@ export default function Trafego() {
                   open={open}
                   toggle={toggleOpen}
                   targets={data.linkTargets}
+                  rangeQuery={rangeQuery}
                   onActive={setActive}
                   onStudio={(mode, c) => setStudio({ mode, accountId: c.accountId, campaignId: c.id })}
                   onExclude={(c) => exclude(c.excludeKeys, true, c.name, c.platform)}
@@ -494,7 +496,9 @@ function PlatformRows({
   onStudio,
   onExclude,
   onLink,
+  rangeQuery,
 }: {
+  rangeQuery: string;
   p: TreePlatform;
   cols: { id: ColId }[];
   cur: string;
@@ -550,6 +554,7 @@ function PlatformRows({
             onStudio={onStudio}
             onExclude={onExclude}
             onLink={onLink}
+            rangeQuery={rangeQuery}
           />
         ))}
     </>
@@ -568,7 +573,9 @@ function AccountRows({
   onStudio,
   onExclude,
   onLink,
+  rangeQuery,
 }: {
+  rangeQuery: string;
   a: TreeAccount;
   cols: { id: ColId }[];
   cur: string;
@@ -602,7 +609,19 @@ function AccountRows({
       </tr>
       {isOpen &&
         a.campaigns.map((c) => (
-          <CampaignRow key={c.key} c={c} cols={cols} cur={cur} days={days} targets={targets} onActive={onActive} onStudio={onStudio} onExclude={onExclude} onLink={onLink} />
+          <CampaignRow
+            key={c.key}
+            c={c}
+            cols={cols}
+            cur={cur}
+            days={days}
+            targets={targets}
+            onActive={onActive}
+            onStudio={onStudio}
+            onExclude={onExclude}
+            onLink={onLink}
+            rangeQuery={rangeQuery}
+          />
         ))}
     </>
   );
@@ -618,7 +637,9 @@ function CampaignRow({
   onStudio,
   onExclude,
   onLink,
+  rangeQuery,
 }: {
+  rangeQuery: string;
   c: TreeCampaign;
   cols: { id: ColId }[];
   cur: string;
@@ -631,8 +652,18 @@ function CampaignRow({
 }) {
   const [label, tone] = statusOf(c);
   const [menu, setMenu] = useState(false);
+  const [panel, setPanel] = useState<"ads" | "sites" | null>(null);
   const x = useMemo(() => ({ ...c, budget: c.dailyBudget ?? 0 }), [c]);
+  const tab = (k: "ads" | "sites", text: string) => (
+    <button
+      className={`rounded-md border px-2 py-0.5 text-[11px] ${panel === k ? "border-accent/60 text-accent" : "border-line text-muted hover:text-zinc-100"}`}
+      onClick={() => setPanel(panel === k ? null : k)}
+    >
+      {text} {panel === k ? "▴" : "▾"}
+    </button>
+  );
   return (
+    <>
     <tr className="group border-b border-line/40 bg-white/[0.015] hover:bg-white/[0.03]">
       <td className="py-2 pl-14 pr-3">
         <div className="flex items-center gap-3">
@@ -662,6 +693,12 @@ function CampaignRow({
               )}
               {(c.attribution === "conversoes" || c.attribution === "cliques") && <span className="text-faint">vendas estimadas</span>}
             </div>
+            {c.editable && (
+              <div className="mt-1.5 flex gap-1.5">
+                {tab("ads", "Criativos")}
+                {tab("sites", c.platform === "revcontent" ? "Widgets" : "Portais")}
+              </div>
+            )}
           </div>
           <div className="relative ml-auto shrink-0">
         <button className="rounded px-2 py-1 text-muted opacity-60 hover:bg-white/5 hover:text-zinc-100 group-hover:opacity-100" onClick={() => setMenu((v) => !v)} aria-label="Ações">
@@ -695,6 +732,151 @@ function CampaignRow({
       </td>
       <Cells x={x} cols={cols} cur={cur} days={days} small />
     </tr>
+    {panel && (
+      <tr className="border-b border-line/40 bg-black/20">
+        <td colSpan={cols.length + 1} className="px-4 py-3 pl-14">
+          <InsightPanel c={c} kind={panel} rangeQuery={rangeQuery} cur={cur} />
+        </td>
+      </tr>
+    )}
+    </>
+  );
+}
+
+type Ad = { id: string; title: string; description: string; thumbnail: string; status: string; active: boolean; spend: number; clicks: number; impressions: number; ctr: number; cpc: number; conversions: number; cpa: number };
+type Site = { id: string; name: string; spend: number; clicks: number; impressions: number; ctr: number; cpc: number; conversions: number; cpa: number; blocked: boolean };
+
+/** Ads or sites of one campaign, with the source's numbers and an on/off for each. */
+function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ads" | "sites"; rangeQuery: string; cur: string }) {
+  const [rows, setRows] = useState<(Ad | Site)[] | null>(null);
+  const [err, setErr] = useState("");
+  const [busy, setBusy] = useState<string | null>(null);
+  const [onlySpend, setOnlySpend] = useState(true);
+  useEffect(() => {
+    setRows(null);
+    setErr("");
+    fetch(`/api/campaigns/insights?${rangeQuery}&kind=${kind}&accountId=${encodeURIComponent(c.accountId)}&campaignId=${encodeURIComponent(c.id)}`)
+      .then((r) => r.json())
+      .then((j) => (j.error ? setErr(j.error) : setRows(kind === "ads" ? j.ads : j.sites)))
+      .catch(() => setErr("Falha na conexão."));
+  }, [c.accountId, c.id, kind, rangeQuery]);
+
+  async function toggle(id: string, on: boolean) {
+    setBusy(id);
+    const r = await fetch("/api/campaigns/insights", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ accountId: c.accountId, campaignId: c.id, kind: kind === "ads" ? "ad" : "site", id, on }),
+    })
+      .then((x) => x.json())
+      .catch(() => ({ error: "Falha na conexão." }));
+    setBusy(null);
+    if (r.error) return setErr(r.error);
+    setRows((cur) => cur && cur.map((x) => (x.id !== id ? x : kind === "ads" ? { ...(x as Ad), active: on } : { ...(x as Site), blocked: !on })));
+  }
+
+  if (err) return <p className="text-xs text-warn">{err}</p>;
+  if (!rows) return <p className="text-xs text-muted">Carregando {kind === "ads" ? "criativos" : "portais"}…</p>;
+  // Real sales of the campaign split by the source's conversions (else clicks) — an estimate per ad / site.
+  const conv = rows.reduce((a, r) => a + r.conversions, 0);
+  const clicks = rows.reduce((a, r) => a + r.clicks, 0);
+  const share = (r: Ad | Site) => (conv > 0 ? r.conversions / conv : clicks ? r.clicks / clicks : 0);
+  const list = kind === "sites" && onlySpend ? rows.filter((r) => r.spend > 0 || (r as Site).blocked) : rows;
+  const th = "px-2 py-1.5 text-right font-normal";
+  const td = "px-2 py-1.5 text-right tabular-nums";
+  return (
+    <div>
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-[11px] text-faint">
+        <span>
+          {kind === "ads" ? `${rows.length} criativo(s)` : `${rows.filter((r) => r.spend > 0).length} portal(is) com gasto`} · números da fonte no período · vendas
+          reais divididas pelas conversões da fonte (estimado)
+        </span>
+        {kind === "sites" && (
+          <label className="flex items-center gap-1.5">
+            <input type="checkbox" checked={onlySpend} onChange={(e) => setOnlySpend(e.target.checked)} /> só com gasto ou bloqueados
+          </label>
+        )}
+      </div>
+      <div className="max-h-[420px] overflow-auto rounded-lg border border-line">
+        <table className="w-full text-xs">
+          <thead className="sticky top-0 bg-panel text-[10px] uppercase tracking-wider text-faint">
+            <tr>
+              <th className="px-2 py-1.5 text-left font-normal">{kind === "ads" ? "Criativo" : c.platform === "revcontent" ? "Widget" : "Portal"}</th>
+              <th className={th}>Gasto</th>
+              <th className={th}>Cliques</th>
+              <th className={th}>CTR</th>
+              <th className={th}>CPC</th>
+              <th className={th}>Conv. fonte</th>
+              <th className={th}>CPA fonte</th>
+              <th className={th}>Vendas reais</th>
+              <th className={th}>ROAS</th>
+              <th className="px-2 py-1.5 text-right font-normal">{kind === "ads" ? "Ativo" : "Rodando"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {list.map((r) => {
+              const on = kind === "ads" ? (r as Ad).active : !(r as Site).blocked;
+              const sales = c.sales * share(r);
+              const roas = r.spend ? (c.revenue * share(r)) / r.spend : 0;
+              const bad = r.conversions === 0 && c.cpa > 0 && r.spend > c.cpa;
+              return (
+                <tr key={r.id} className={`border-t border-line/50 ${on ? "" : "opacity-50"}`}>
+                  <td className="px-2 py-1.5">
+                    {kind === "ads" ? (
+                      <div className="flex items-center gap-2">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={(r as Ad).thumbnail} alt="" className="h-9 w-16 shrink-0 rounded object-cover" />
+                        <div className="min-w-0">
+                          <div className="max-w-[340px] truncate" title={(r as Ad).title}>
+                            {(r as Ad).title}
+                          </div>
+                          <div className="max-w-[340px] truncate text-[10px] text-faint" title={(r as Ad).description}>
+                            {(r as Ad).status.toLowerCase().replace(/_/g, " ")}
+                            {(r as Ad).description ? ` · ${(r as Ad).description}` : ""}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <span className="block max-w-[340px] truncate" title={(r as Site).name}>
+                        {(r as Site).name}
+                      </span>
+                    )}
+                  </td>
+                  <td className={td}>{money(r.spend, cur)}</td>
+                  <td className={td}>{int(r.clicks)}</td>
+                  <td className={td}>{r.ctr.toFixed(2)}%</td>
+                  <td className={td}>{money(r.cpc, cur, 3)}</td>
+                  <td className={td}>{int(r.conversions)}</td>
+                  <td className={`${td} ${bad ? "text-bad" : ""}`}>{r.conversions ? money(r.cpa, cur, 2) : bad ? "sem conv." : "—"}</td>
+                  <td className={`${td} text-info`}>{sales ? sales.toFixed(1) : "0"}</td>
+                  <td className={td}>{r.spend ? `${roas.toFixed(2)}x` : "—"}</td>
+                  <td className="px-2 py-1.5 text-right">
+                    <button
+                      role="switch"
+                      aria-checked={on}
+                      disabled={busy === r.id}
+                      aria-label={kind === "ads" ? (on ? "Pausar criativo" : "Ativar criativo") : on ? "Bloquear portal" : "Desbloquear portal"}
+                      onClick={() => toggle(r.id, !on)}
+                      className={`relative inline-block h-4 w-8 rounded-full transition-colors disabled:opacity-50 ${on ? "bg-accent" : "bg-zinc-700"}`}
+                    >
+                      <span className={`absolute top-0.5 h-3 w-3 rounded-full bg-white transition-all ${on ? "left-[18px]" : "left-0.5"}`} />
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+            {!list.length && (
+              <tr>
+                <td colSpan={10} className="py-6 text-center text-muted">
+                  {kind === "ads" ? "Nenhum criativo." : "Nenhum portal com gasto no período."}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      {kind === "sites" && <p className="mt-1.5 text-[10px] text-faint">Desligar = bloquear o portal só nesta campanha.</p>}
+    </div>
   );
 }
 
