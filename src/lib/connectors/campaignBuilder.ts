@@ -100,7 +100,15 @@ async function withStart<T>(c: Credentials, chosen: string | undefined, send: (s
   throw last;
 }
 
-export type SourceCampaignInfo = { id: string; name: string; status: string; active: boolean; groupId?: string };
+export type SourceCampaignInfo = {
+  id: string;
+  name: string;
+  status: string;
+  active: boolean;
+  groupId?: string;
+  /** Daily budget (US$); undefined when the budget lives in a shared group or is unlimited. */
+  dailyBudget?: number;
+};
 export type GroupInfo = { id: string; name: string; status: string };
 
 // ---------------------------------- Taboola ----------------------------------
@@ -113,6 +121,7 @@ export async function taboolaCampaigns(c: Credentials): Promise<SourceCampaignIn
     status: String(x.status ?? ""),
     active: x.is_active === true,
     groupId: x.campaign_group_id ? String(x.campaign_group_id) : undefined,
+    dailyBudget: num(x.daily_cap) > 0 ? num(x.daily_cap) : undefined,
   }));
 }
 
@@ -440,8 +449,14 @@ export async function taboolaFromTemplate(
 // -------------------------------- Revcontent ---------------------------------
 
 export async function revcontentCampaigns(c: Credentials): Promise<SourceCampaignInfo[]> {
-  const r = await rcGet<{ id: string; name: string; enabled: string; status: string }[]>(c, "/stats/api/v1.0/boosts", { limit: "1000" });
-  return r.data.map((b) => ({ id: String(b.id), name: b.name, status: b.status, active: b.enabled === "active" }));
+  const r = await rcGet<{ id: string; name: string; enabled: string; status: string; budget?: string }[]>(c, "/stats/api/v1.0/boosts", { limit: "1000" });
+  return r.data.map((b) => ({
+    id: String(b.id),
+    name: b.name,
+    status: b.status,
+    active: b.enabled === "active",
+    dailyBudget: b.budget && b.budget !== "unlimited" && num(b.budget) > 0 ? num(b.budget) : undefined,
+  }));
 }
 
 /** Revcontent device ids by our names, from the /devices helper. */
@@ -792,4 +807,11 @@ export async function taboolaActivate(c: Credentials, campaignId: string, itemId
 export async function revcontentActivate(c: Credentials, boostId: string, contentIds: string[]) {
   await rcPost(c, "/stats/api/v1.0/boosts", { id: Number(boostId), enabled: "on" });
   for (const id of contentIds) await rcPost(c, `/stats/api/v1.0/boosts/${boostId}/content`, { boost_id: Number(boostId), id: Number(id), enabled: "on" });
+}
+
+/** Turns a campaign on or off (Tráfego toggle). */
+export async function setCampaignActive(platform: "taboola" | "revcontent", c: Credentials, campaignId: string, active: boolean) {
+  if (platform === "taboola")
+    await http(`${TB}/${c.accountId}/campaigns/${campaignId}/`, { method: "POST", headers: await tbHeaders(c), body: JSON.stringify({ is_active: active }) });
+  else await rcPost(c, "/stats/api/v1.0/boosts", { id: Number(campaignId), enabled: active ? "on" : "off" });
 }

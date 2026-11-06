@@ -1,166 +1,183 @@
 "use client";
-import Link from "next/link";
-import { Fragment, useEffect, useMemo, useState } from "react";
-import { PLATFORM_COLOR, int, money, pct } from "@/components/format";
-import { BIDS, buildRtName, buildSourceName, DEVICES, SOURCE_NAME } from "@/lib/naming";
-import type { TrafficReport, TrafficRow } from "@/lib/traffic";
+import { useEffect, useMemo, useState } from "react";
+import { PLATFORM_COLOR, int, money } from "@/components/format";
 import { CampaignHistory } from "@/components/campaignParts";
 import { CampaignStudio, type StudioMode } from "@/components/CampaignStudio";
 import type { CampaignLogEntry } from "@/lib/store";
+import type { Perf, TrafficTree, TreeAccount, TreeCampaign, TreePlatform } from "@/lib/trafficTree";
 
 const PRESETS = [
   ["today", "Hoje"],
   ["yesterday", "Ontem"],
-  ["7d", "7 dias"],
-  ["14d", "14 dias"],
-  ["30d", "30 dias"],
+  ["7d", "7D"],
+  ["14d", "14D"],
+  ["30d", "30D"],
+  ["month", "Mês"],
   ["custom", "Personalizado"],
 ] as const;
 
-type SortKey = "spend" | "profit" | "roi" | "roas" | "sales" | "upsells" | "cpa" | "revenue" | "clicks";
+type ColId = "accounts" | "budget" | "spend" | "revenue" | "sales" | "cpa" | "profit" | "roas" | "ic";
+const COLS: { id: ColId; group: string; label: string; w: string }[] = [
+  { id: "accounts", group: "", label: "Contas", w: "w-16" },
+  { id: "budget", group: "Investimento", label: "Orçamento/dia", w: "w-32" },
+  { id: "spend", group: "Investimento", label: "Gasto", w: "w-24" },
+  { id: "revenue", group: "Resultado", label: "Receita", w: "w-24" },
+  { id: "sales", group: "Conversões", label: "Vendas", w: "w-20" },
+  { id: "cpa", group: "Eficiência", label: "CPA", w: "w-24" },
+  { id: "profit", group: "Resultado", label: "Lucro real", w: "w-24" },
+  { id: "roas", group: "Eficiência", label: "ROAS", w: "w-20" },
+  { id: "ic", group: "Conversões", label: "Checkouts", w: "w-20" },
+];
+
+const STATUS: Record<string, [string, string]> = {
+  RUNNING: ["Ativa", "text-accent"],
+  ACTIVE: ["Ativa", "text-accent"],
+  PAUSED: ["Pausada", "text-muted"],
+  INACTIVE: ["Pausada", "text-muted"],
+  PENDING_APPROVAL: ["Em aprovação", "text-warn"],
+  PENDING: ["Em aprovação", "text-warn"],
+  PENDING_START_DATE: ["Agendada", "text-info"],
+  DEPLETED: ["Orçamento esgotado", "text-warn"],
+  DEPLETED_MONTHLY: ["Limite do mês atingido", "text-warn"],
+  REJECTED: ["Reprovada", "text-bad"],
+  EXPIRED: ["Encerrada", "text-muted"],
+  TERMINATED: ["Encerrada", "text-muted"],
+  FROZEN: ["Congelada", "text-bad"],
+};
+const statusOf = (c: TreeCampaign): [string, string] =>
+  STATUS[c.status.toUpperCase()] ?? (c.active === false ? ["Pausada", "text-muted"] : c.active ? ["Ativa", "text-accent"] : [c.status || "—", "text-muted"]);
 
 const daysAgo = (n: number) => {
   const d = new Date();
   d.setDate(d.getDate() - n);
   return d.toISOString().slice(0, 10);
 };
+const load = <T,>(k: string, fallback: T): T => {
+  try {
+    const v = localStorage.getItem(k);
+    return v ? (JSON.parse(v) as T) : fallback;
+  } catch {
+    return fallback;
+  }
+};
+const save = (k: string, v: unknown) => {
+  try {
+    localStorage.setItem(k, JSON.stringify(v));
+  } catch {}
+};
 
 export default function Trafego() {
-  const [preset, setPreset] = useState("7d");
+  const [preset, setPreset] = useState("today");
   const [from, setFrom] = useState(daysAgo(6));
   const [to, setTo] = useState(daysAgo(0));
   const [applied, setApplied] = useState(0);
-  const [data, setData] = useState<TrafficReport | null>(null);
+  const [reload, setReload] = useState(0);
+  const [data, setData] = useState<TrafficTree | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
-  const [platform, setPlatform] = useState("all");
-  const [view, setView] = useState<"api" | "redtrack">("api");
-  const [showNaming, setShowNaming] = useState(false);
+  const [open, setOpen] = useState<Set<string>>(new Set());
+  const [hidden, setHidden] = useState<ColId[]>([]);
+  const [showCols, setShowCols] = useState(false);
   const [studio, setStudio] = useState<{ mode: StudioMode; accountId?: string; campaignId?: string } | null>(null);
   const [history, setHistory] = useState<CampaignLogEntry[] | null>(null);
-  const openHistory = () =>
-    fetch("/api/campaigns/meta")
-      .then((r) => r.json())
-      .then((d) => setHistory(d.log ?? []));
-  const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "spend", dir: -1 });
-
-  const [reload, setReload] = useState(0);
-  // Campaigns created by the CRM (they only reach the source reports once they spend).
-  const [crmLog, setCrmLog] = useState<CampaignLogEntry[]>([]);
-  useEffect(() => {
-    fetch("/api/campaigns/meta")
-      .then((r) => r.json())
-      .then((d) => setCrmLog(d.log ?? []))
-      .catch(() => {});
-  }, [reload]);
-
-  async function link(source: string, target: string | null) {
-    await fetch("/api/traffic/link", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ source, target }),
-    });
-    setReload((n) => n + 1);
-  }
-
+  const [toast, setToast] = useState("");
   const [showExcluded, setShowExcluded] = useState(false);
-  async function exclude(keys: string[], exclude: boolean, label = "", platform = "") {
-    if (!keys.length) return;
-    // Optimistic: drop the row right away; the reload brings the recalculated totals.
-    if (exclude && data) {
-      const ks = new Set(keys);
-      const gone = (r: TrafficRow) => r.excludeKeys.some((k) => ks.has(k));
-      setData({ ...data, rows: data.rows.filter((r) => !gone(r)), apiRows: data.apiRows.filter((r) => !gone(r)) });
-    }
-    await fetch("/api/traffic/exclude", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ keys, exclude, label, platform }),
-    });
-    setReload((n) => n + 1);
-  }
 
   useEffect(() => {
-    const q = new URLSearchParams({ preset });
+    setPreset(load("nt_traffic_preset", "today"));
+    setHidden(load<ColId[]>("nt_traffic_hidden", []));
+    const o = load<string[] | null>("nt_traffic_open", null);
+    if (o) setOpen(new Set(o));
+  }, []);
+
+  useEffect(() => {
+    const q = new URLSearchParams({ preset, view: "tree" });
     if (preset === "custom") {
       q.set("from", from);
       q.set("to", to);
     }
+    let live = true;
     setLoading(true);
     setError("");
     fetch(`/api/traffic?${q}`)
       .then(async (r) => {
         const j = await r.json();
         if (!r.ok) throw new Error(j.error ?? "Erro ao carregar");
+        if (!live) return;
         setData(j);
+        // First visit: open the sources, and the accounts of sources with few accounts.
+        setOpen((cur) => {
+          if (cur.size || load<string[] | null>("nt_traffic_open", null)) return cur;
+          const next = new Set<string>();
+          for (const p of (j as TrafficTree).platforms) {
+            next.add(`p:${p.platform}`);
+            if (p.accounts.length <= 2) p.accounts.forEach((a) => next.add(`a:${a.id}`));
+          }
+          return next;
+        });
       })
-      .catch((e: Error) => setError(e.message))
-      .finally(() => setLoading(false));
+      .catch((e: Error) => live && setError(e.message))
+      .finally(() => live && setLoading(false));
+    return () => {
+      live = false;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preset, applied, reload]);
 
+  const toggleOpen = (k: string) =>
+    setOpen((cur) => {
+      const n = new Set(cur);
+      if (n.has(k)) n.delete(k);
+      else n.add(k);
+      save("nt_traffic_open", [...n]);
+      return n;
+    });
+  const cols = COLS.filter((c) => !hidden.includes(c.id) && (c.id !== "ic" || data?.icConfigured));
   const cur = data?.currency ?? "USD";
-  const source = useMemo(() => (view === "api" ? data?.apiRows : data?.rows) ?? [], [data, view]);
-  const platforms = useMemo(() => [...new Set(source.map((r) => r.platform))], [source]);
-  const rows = useMemo(() => {
-    const list = source.filter((r) => platform === "all" || r.platform === platform);
-    return [...list].sort((a, b) => (a[sort.key] - b[sort.key]) * sort.dir);
-  }, [source, platform, sort]);
+  const days = data?.days ?? 1;
   const t = data?.totals;
-  const showIc = !!data?.icConfigured;
-  const [order, setOrder] = useState<string[]>(COLS.map((c) => c.id));
-  const [hidden, setHidden] = useState<string[]>([]);
-  const [dragging, setDragging] = useState<string | null>(null);
-  const [showCols, setShowCols] = useState(false);
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("nt_traffic_cols") ?? "null");
-      if (saved?.order) setOrder([...saved.order.filter((id: string) => COLS.some((c) => c.id === id)), ...COLS.map((c) => c.id).filter((id) => !saved.order.includes(id))]);
-      if (saved?.hidden) setHidden(saved.hidden);
-    } catch {}
-  }, []);
-  const persist = (o: string[], h: string[]) => {
-    try {
-      localStorage.setItem("nt_traffic_cols", JSON.stringify({ order: o, hidden: h }));
-    } catch {}
-  };
-  const moveCol = (from: string, to: string) => {
-    if (from === to) return;
-    const o = order.filter((x) => x !== from);
-    o.splice(o.indexOf(to), 0, from);
-    setOrder(o);
-    persist(o, hidden);
-  };
-  const toggleCol = (id: string) => {
-    const h = hidden.includes(id) ? hidden.filter((x) => x !== id) : [...hidden, id];
-    setHidden(h);
-    persist(order, h);
-  };
-  const resetCols = () => {
-    const o = COLS.map((c) => c.id);
-    setOrder(o);
-    setHidden([]);
-    persist(o, []);
-  };
-  const visibleCols = order
-    .map((id) => COLS.find((c) => c.id === id)!)
-    .filter((c) => c && !hidden.includes(c.id) && (!c.ic || showIc));
 
-  const Th = ({ k, children }: { k?: SortKey; children: React.ReactNode }) => (
-    <th className="whitespace-nowrap text-right">
-      {k ? (
-        <button
-          className={`hover:text-zinc-200 ${sort.key === k ? "text-zinc-200" : ""}`}
-          onClick={() => setSort((s) => ({ key: k, dir: s.key === k ? (s.dir === 1 ? -1 : 1) : -1 }))}
-        >
-          {children}
-          {sort.key === k ? (sort.dir === -1 ? " ↓" : " ↑") : ""}
-        </button>
-      ) : (
-        children
-      )}
-    </th>
-  );
+  const openHistory = () =>
+    fetch("/api/campaigns/meta")
+      .then((r) => r.json())
+      .then((d) => setHistory(d.log ?? []));
+
+  async function setActive(c: TreeCampaign, active: boolean) {
+    if (!data) return;
+    const patch = (fn: (x: TreeCampaign) => TreeCampaign) =>
+      setData((d) =>
+        d && {
+          ...d,
+          platforms: d.platforms.map((p) => ({ ...p, accounts: p.accounts.map((a) => ({ ...a, campaigns: a.campaigns.map((x) => (x.key === c.key ? fn(x) : x)) })) })),
+        },
+      );
+    patch((x) => ({ ...x, active, status: active ? "RUNNING" : "PAUSED" }));
+    const r = await fetch("/api/campaigns/status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ accountId: c.accountId, campaignId: c.id, active }),
+    })
+      .then((x) => x.json())
+      .catch(() => ({ error: "Falha na conexão." }));
+    if (r.error) {
+      patch((x) => ({ ...x, active: c.active, status: c.status }));
+      setToast(r.error);
+    } else setToast(`${c.name}: ${active ? "ativada" : "pausada"}`);
+    setTimeout(() => setToast(""), 4000);
+  }
+
+  async function exclude(keys: string[], excludeIt: boolean, label = "", platform = "") {
+    await fetch("/api/traffic/exclude", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ keys, exclude: excludeIt, label, platform }),
+    });
+    setReload((n) => n + 1);
+  }
+  async function link(source: string, target: string | null) {
+    await fetch("/api/traffic/link", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ source, target }) });
+    setReload((n) => n + 1);
+  }
 
   return (
     <div className="mx-auto max-w-[1500px]">
@@ -175,23 +192,28 @@ export default function Trafego() {
               Histórico
             </button>
           </div>
-          <p className="mt-1 text-sm text-muted">
-            Lucro real de cada campanha: gasto e cliques do RedTrack, vendas e custos da Shopify e da Wiio.
-          </p>
+          <p className="mt-1 text-sm text-muted">Gasto das APIs das fontes, vendas e receita da Shopify, custos reais (Wiio, taxas, reembolsos).</p>
         </div>
         <div className="flex flex-col gap-2 xl:items-end">
           <div className="flex flex-wrap gap-1 rounded-lg border border-line bg-panel p-1">
             {PRESETS.map(([id, label]) => (
-              <button key={id} onClick={() => setPreset(id)} className={`chip ${preset === id ? "chip-on" : ""}`}>
+              <button
+                key={id}
+                onClick={() => {
+                  setPreset(id);
+                  save("nt_traffic_preset", id);
+                }}
+                className={`chip ${preset === id ? "chip-on" : ""}`}
+              >
                 {label}
               </button>
             ))}
           </div>
           {preset === "custom" && (
-            <div className="flex flex-wrap items-center gap-1.5 text-xs">
-              <input id="t-from" type="date" className="input w-auto py-1.5" value={from} max={to} onChange={(e) => setFrom(e.target.value)} />
+            <div className="flex items-center gap-1.5 text-xs">
+              <input type="date" className="input w-auto py-1.5" value={from} max={to} onChange={(e) => setFrom(e.target.value)} />
               <span className="text-faint">até</span>
-              <input id="t-to" type="date" className="input w-auto py-1.5" value={to} min={from} onChange={(e) => setTo(e.target.value)} />
+              <input type="date" className="input w-auto py-1.5" value={to} min={from} onChange={(e) => setTo(e.target.value)} />
               <button className="btn-primary py-1.5" onClick={() => setApplied((n) => n + 1)}>
                 Aplicar
               </button>
@@ -200,179 +222,104 @@ export default function Trafego() {
         </div>
       </header>
 
-      {error && <div className="mt-5 rounded-lg border border-bad/30 bg-bad/5 px-4 py-2 text-sm text-bad">{error}</div>}
-      {!!data?.warnings.length && (
-        <p className="mt-3 text-xs text-faint">{data.warnings.join(" · ")}</p>
-      )}
-      {data && !data.hasRedtrack && (
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
-          Conecte o RedTrack para ver gasto, cliques e lucro por campanha.
-          <Link href="/integrations" className="btn-ghost">
-            Conectar RedTrack →
-          </Link>
-        </div>
-      )}
-
-      {!!data?.unlinked && (
-        <div className="mt-5 rounded-xl border border-warn/30 bg-warn/5 px-4 py-3 text-sm text-warn">
-          {data.unlinked} campanha(s) da fonte ainda não estão ligadas à campanha do RedTrack/Shopify. Use &quot;Ligar a…&quot;
-          na linha para o gasto cair na campanha certa. Enquanto isso, o total usa só o gasto da fonte (sem contar duas
-          vezes).
-        </div>
-      )}
+      {error && <p className="mt-4 text-sm text-warn">{error}</p>}
+      {!!data?.warnings.length && <p className="mt-3 text-xs text-faint">{data.warnings.join(" · ")}</p>}
 
       <div className={`transition-opacity ${loading ? "opacity-50" : ""}`}>
-        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-6">
-          <Tile label="Gasto" value={t ? money(t.spend, cur) : "—"} />
-          <Tile label="Vendas + upsells" value={t ? `${int(t.sales)} + ${int(t.upsells)}` : "—"} hint={t && t.sales ? `${pct(t.upsellRate)} levaram upsell` : ""} />
-          <Tile label="Receita" value={t ? money(t.revenue, cur) : "—"} tone="good" hint={t && t.upsellRevenue ? `${money(t.upsellRevenue, cur)} de upsell` : ""} />
-          <Tile label="CPA real" value={t && t.sales ? money(t.cpa, cur, 2) : "—"} tone="warn" hint="Gasto ÷ vendas" />
-          <Tile label="ROAS real" value={t && t.spend ? `${t.roas.toFixed(2)}x` : "—"} hint="Receita ÷ gasto" />
-          <Tile label="Lucro real" value={t ? money(t.profit, cur) : "—"} tone={t && t.profit < 0 ? "bad" : "good"} hint={t && t.spend ? `ROI ${pct(t.roi)}` : ""} />
+        <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-5">
+          <Kpi label="Investimento" value={t ? money(t.spend, cur) : "—"} />
+          <Kpi label="Receita" value={t ? money(t.revenue, cur) : "—"} tone="good" />
+          <Kpi label="Lucro real" value={t ? money(t.profit, cur) : "—"} tone={t && t.profit < 0 ? "bad" : "good"} />
+          <Kpi label="ROAS" value={t && t.spend ? `${t.roas.toFixed(2)}x` : "—"} />
+          <Kpi label="CPA real" value={t && t.sales ? money(t.cpa, cur, 2) : "—"} hint={t ? `${int(t.sales)} vendas` : ""} />
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex gap-1 rounded-lg border border-line bg-panel p-1">
-            <button className={`chip ${view === "api" ? "chip-on" : ""}`} onClick={() => setView("api")}>
-              Campanhas da API
-            </button>
-            <button className={`chip ${view === "redtrack" ? "chip-on" : ""}`} onClick={() => setView("redtrack")}>
-              Campanhas do RedTrack
-            </button>
-          </div>
-          <button className="btn-ghost py-1.5 text-xs" onClick={() => setShowNaming((v) => !v)}>
-            {showNaming ? "Fechar gerador de nomes" : "Gerador de nomes"}
-          </button>
-          <span className="text-[11px] text-faint">
-            {view === "api"
-              ? "Cada linha é uma campanha real da Taboola, Revcontent… com as vendas atribuídas a ela."
-              : "Cada linha é uma campanha do RedTrack, com o gasto das campanhas da fonte ligadas a ela."}
-          </span>
-        </div>
-        {showNaming && <NamingGenerator />}
-        {studio && (
-          <CampaignStudio
-            mode={studio.mode}
-            accountId={studio.accountId}
-            campaignId={studio.campaignId}
-            onClose={() => setStudio(null)}
-            onDone={() => setReload((n) => n + 1)}
-          />
-        )}
-        {history && (
-          <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-6 backdrop-blur-sm" onClick={() => setHistory(null)}>
-            <div className="w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-              <div className="flex items-center justify-between">
-                <h2 className="font-semibold">Histórico de campanhas criadas pelo CRM</h2>
-                <button className="text-muted hover:text-zinc-100" onClick={() => setHistory(null)} aria-label="Fechar">
-                  ✕
-                </button>
-              </div>
-              <CampaignHistory
-                log={history}
-                onOpen={(accountId, campaignId) => {
-                  setHistory(null);
-                  setStudio({ mode: "edit", accountId, campaignId });
-                }}
-                onChanged={() => openHistory()}
-              />
-            </div>
-          </div>
-        )}
-        <div className="relative mt-3 flex flex-wrap items-center gap-1">
-          <button className="btn-ghost order-last ml-auto py-1 text-xs" onClick={() => setShowCols((v) => !v)}>
-            Colunas ({visibleCols.length})
+        <div className="relative mt-5 flex items-center justify-end gap-2">
+          <button className="btn-ghost py-1 text-xs" onClick={() => setShowCols((v) => !v)}>
+            Colunas
           </button>
           {showCols && (
-            <div className="absolute right-0 top-9 z-20 w-64 rounded-xl border border-line bg-panel p-3 shadow-xl">
-              <div className="mb-2 flex items-center justify-between text-xs">
-                <span className="text-zinc-300">Mostrar colunas</span>
-                <button className="text-info hover:underline" onClick={resetCols}>
-                  restaurar
-                </button>
-              </div>
-              <div className="grid grid-cols-2 gap-1">
-                {COLS.filter((c) => !c.ic || showIc).map((c) => (
-                  <label key={c.id} className="flex items-center gap-1.5 text-xs">
-                    <input type="checkbox" checked={!hidden.includes(c.id)} onChange={() => toggleCol(c.id)} />
-                    {c.label}
-                  </label>
-                ))}
-              </div>
-              <p className="mt-2 text-[10px] text-faint">Arraste o título da coluna na tabela para mudar a ordem. Fica salvo neste navegador.</p>
+            <div className="absolute right-0 top-9 z-20 w-56 rounded-xl border border-line bg-panel p-3 shadow-xl">
+              {COLS.map((c) => (
+                <label key={c.id} className="flex items-center gap-2 py-1 text-xs">
+                  <input
+                    type="checkbox"
+                    checked={!hidden.includes(c.id)}
+                    onChange={() => {
+                      const h = hidden.includes(c.id) ? hidden.filter((x) => x !== c.id) : [...hidden, c.id];
+                      setHidden(h);
+                      save("nt_traffic_hidden", h);
+                    }}
+                  />
+                  {c.label}
+                </label>
+              ))}
             </div>
           )}
-          {["all", ...platforms].map((p) => (
-            <button key={p} onClick={() => setPlatform(p)} className={`chip border border-line ${platform === p ? "chip-on" : ""}`}>
-              {p === "all" ? "Todas" : (source.find((r) => r.platform === p)?.label ?? p)}
-            </button>
-          ))}
         </div>
 
-        <NoSpendYet
-          log={crmLog}
-          known={new Set((data?.apiRows ?? []).flatMap((r) => r.sourceKeys.map((k) => k.split(":").slice(1).join(":"))))}
-          onOpen={(accountId, campaignId) => setStudio({ mode: "edit", accountId, campaignId })}
-        />
-        <div className="card mt-3 overflow-x-auto">
-          <table className="tbl w-full" style={{ minWidth: 380 + visibleCols.length * 96 }}>
+        <div className="card mt-2 overflow-x-auto">
+          <table className="w-full text-sm" style={{ minWidth: 340 + cols.length * 92 }}>
             <thead>
-              <tr>
-                <th className="text-left">Campanha</th>
-                {visibleCols.map((c) => (
-                  <th
-                    key={c.id}
-                    draggable
-                    onDragStart={(e) => {
-                      setDragging(c.id);
-                      e.dataTransfer.effectAllowed = "move";
-                    }}
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={() => dragging && moveCol(dragging, c.id)}
-                    onDragEnd={() => setDragging(null)}
-                    className={`cursor-grab whitespace-nowrap text-right select-none ${dragging === c.id ? "opacity-40" : ""}`}
-                    title="Arraste para mudar a ordem"
-                  >
-                    {c.sort ? (
-                      <button
-                        className={`hover:text-zinc-200 ${sort.key === c.sort ? "text-zinc-200" : ""}`}
-                        onClick={() => setSort((st) => ({ key: c.sort!, dir: st.key === c.sort ? (st.dir === 1 ? -1 : 1) : -1 }))}
-                      >
-                        {c.label}
-                        {sort.key === c.sort ? (sort.dir === -1 ? " ↓" : " ↑") : ""}
-                      </button>
-                    ) : (
-                      c.label
-                    )}
+              <tr className="text-[10px] uppercase tracking-wider text-faint">
+                <th className="px-4 pt-3 text-left font-medium">Fonte</th>
+                {cols.map((c) => (
+                  <th key={c.id} className="whitespace-nowrap px-2.5 pt-3 text-right font-medium">
+                    {c.group}
+                  </th>
+                ))}
+              </tr>
+              <tr className="border-b border-line text-[11px] text-muted">
+                <th className="px-4 pb-2 text-left font-normal">Fonte · conta · campanha</th>
+                {cols.map((c) => (
+                  <th key={c.id} className="whitespace-nowrap px-2.5 pb-2 text-right font-normal">
+                    {c.label}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {rows.map((r) => (
-                <Row
-                  key={r.key}
-                  r={r}
+              {data?.platforms.map((p) => (
+                <PlatformRows
+                  key={p.platform}
+                  p={p}
+                  cols={cols}
                   cur={cur}
-                  cols={visibleCols}
-                  onAction={(mode) => r.accountId && r.sourceId && setStudio({ mode, accountId: r.accountId, campaignId: r.sourceId })}
-                  targets={(data?.linkTargets ?? []).filter((t) => t.platform === r.platform)}
+                  days={days}
+                  open={open}
+                  toggle={toggleOpen}
+                  targets={data.linkTargets}
+                  onActive={setActive}
+                  onStudio={(mode, c) => setStudio({ mode, accountId: c.accountId, campaignId: c.id })}
+                  onExclude={(c) => exclude(c.excludeKeys, true, c.name, c.platform)}
                   onLink={link}
-                  onExclude={() => exclude(r.excludeKeys, true, r.campaign, r.platform)}
                 />
               ))}
-              {rows.length === 0 && (
+              {data && !data.platforms.length && (
                 <tr>
-                  <td colSpan={visibleCols.length + 1} className="py-8 text-center text-muted">
-                    Nenhuma campanha com gasto ou venda no período.
+                  <td colSpan={cols.length + 1} className="py-10 text-center text-muted">
+                    Nenhuma campanha com gasto ou ativa no período.
                   </td>
+                </tr>
+              )}
+              {t && (
+                <tr className="border-t border-line bg-white/[0.02] font-medium">
+                  <td className="px-4 py-3">
+                    TOTAL <span className="ml-1 text-[11px] font-normal text-faint">{t.campaigns} campanhas</span>
+                  </td>
+                  <Cells x={t} cols={cols} cur={cur} days={days} count={data?.platforms.reduce((a, p) => a + p.accounts.length, 0)} />
                 </tr>
               )}
             </tbody>
           </table>
         </div>
-        {!!data?.excluded?.length && (
-          <div className="card mt-3 px-4 py-3 text-sm">
+        <p className="mt-2 text-[11px] text-faint">
+          Lucro real = receita − custo do produto e frete (Wiio) − taxas − reembolsos − gasto. Só campanhas das APIs das fontes.
+          {data?.icConfigured ? " Checkouts = InitiateCheckout do RedTrack." : ""}
+        </p>
+
+        {!!data?.excluded.length && (
+          <div className="card mt-4 px-4 py-3 text-sm">
             <button className="flex w-full items-center justify-between text-left" onClick={() => setShowExcluded((v) => !v)}>
               <span>
                 <span className="text-zinc-200">Campanhas ignoradas ({data.excluded.length})</span>
@@ -381,7 +328,7 @@ export default function Trafego() {
                     data.excluded.reduce((a, e) => a + e.spend, 0),
                     cur,
                   )}{" "}
-                  de gasto fora de todos os números (Tráfego e Dashboard)
+                  fora de todos os números
                 </span>
               </span>
               <span className="text-muted">{showExcluded ? "▲" : "▼"}</span>
@@ -390,21 +337,8 @@ export default function Trafego() {
               <ul className="mt-3 divide-y divide-line">
                 {data.excluded.map((e) => (
                   <li key={e.key} className="flex items-center justify-between gap-3 py-2">
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: PLATFORM_COLOR[e.platform] ?? "#888" }} />
-                        <span className="truncate" title={e.label}>
-                          {e.label}
-                        </span>
-                      </div>
-                      <div className="pl-4 text-[11px] text-faint">
-                        {e.key.startsWith("rtc:") ? "campanha do RedTrack" : "campanha da fonte"} · {money(e.spend, cur)} no período
-                      </div>
-                    </div>
-                    <button
-                      className="shrink-0 rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100"
-                      onClick={() => exclude([e.key], false)}
-                    >
+                    <span className="truncate">{e.label}</span>
+                    <button className="shrink-0 rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => exclude([e.key], false)}>
                       Voltar a contar
                     </button>
                   </li>
@@ -413,347 +347,362 @@ export default function Trafego() {
             )}
           </div>
         )}
-        <p className="mt-3 text-[11px] text-faint">
-          Gasto vem da API da fonte quando ela está conectada (senão, do RedTrack). Vendas e upsells vêm da Shopify. Campanhas
-          ligam sozinhas pela nomenclatura: RedTrack &quot;[PRODUTO] [FONTE] [PAÍS]&quot; e fonte &quot;[PRODUTO] [DEVICE] [LANCE] [PAÍS] [DATA]&quot;.
-          CPA real = gasto ÷ vendas. Lucro real = receita − custo Wiio − taxas − reembolsos − gasto. Checkouts = InitiateCheckout
-          do RedTrack. O RedTrack conta 1 compra por venda e mais 1 por upsell.
-          {!!data?.hidden && ` ${data.hidden} campanha(s) sem gasto e sem venda ocultas.`}
-        </p>
       </div>
-    </div>
-  );
-}
 
-type Col = { id: string; label: string; sort?: SortKey; ic?: boolean; cell: (r: TrafficRow, cur: string) => React.ReactNode };
+      {toast && <div className="fixed bottom-6 right-6 z-50 rounded-lg border border-line bg-panel px-4 py-2 text-sm shadow-xl">{toast}</div>}
 
-const COLS: Col[] = [
-  {
-    id: "spend",
-    label: "Gasto",
-    sort: "spend",
-    cell: (r, cur) => (
-      <td className={`text-right ${r.counted ? "text-bad" : "text-warn italic"}`}>
-        {r.spend ? money(r.spend, cur) : "—"}
-        {r.spendSource && (
-          <div className="text-[10px] not-italic text-faint">
-            {r.spendSource === "fonte" ? `API ${r.label}` : r.counted ? "RedTrack" : "RedTrack · fora do total"}
-          </div>
-        )}
-      </td>
-    ),
-  },
-  { id: "clicks", label: "Cliques", sort: "clicks", cell: (r) => <td className="text-right">{int(r.clicks)}</td> },
-  { id: "cpc", label: "CPC", cell: (r, cur) => <td className="text-right text-muted">{r.clicks && r.spend ? money(r.cpc, cur, 3) : "—"}</td> },
-  {
-    id: "checkouts",
-    label: "Checkouts",
-    ic: true,
-    cell: (r) => (
-      <td className="text-right">
-        {r.ic === null ? "—" : int(r.ic)}
-        {r.icRate !== null && r.ic ? <div className="text-[10px] text-faint">{pct(r.icRate)} dos cliques</div> : null}
-      </td>
-    ),
-  },
-  {
-    id: "checkoutConv",
-    label: "Conv. checkout",
-    ic: true,
-    cell: (r) => <td className={`text-right ${r.ic && r.sales / r.ic < 0.2 ? "text-warn" : "text-muted"}`}>{r.ic ? pct((r.sales / r.ic) * 100) : "—"}</td>,
-  },
-  { id: "sales", label: "Vendas", sort: "sales", cell: (r) => <td className="text-right font-medium">{int(r.sales)}</td> },
-  {
-    id: "upsells",
-    label: "Upsells",
-    sort: "upsells",
-    cell: (r) => (
-      <td className="text-right">
-        {int(r.upsells)}
-        {r.sales > 0 && <div className="text-[10px] text-faint">{pct(r.upsellRate, 0)}</div>}
-      </td>
-    ),
-  },
-  { id: "cvr", label: "Conv. %", cell: (r) => <td className="text-right text-muted">{r.clicks ? pct(r.cvr, 2) : "—"}</td> },
-  { id: "cpa", label: "CPA real", sort: "cpa", cell: (r, cur) => <td className="text-right text-warn">{r.sales && r.spend ? money(r.cpa, cur, 2) : "—"}</td> },
-  { id: "aov", label: "Ticket médio", cell: (r, cur) => <td className="text-right">{r.sales ? money(r.aov, cur, 2) : "—"}</td> },
-  { id: "revenue", label: "Receita", sort: "revenue", cell: (r, cur) => <td className="text-right text-accent">{money(r.revenue, cur)}</td> },
-  {
-    id: "roas",
-    label: "ROAS real",
-    sort: "roas",
-    cell: (r) => <td className={`text-right ${r.spend && r.roas < 1 ? "text-bad" : ""}`}>{r.spend ? `${r.roas.toFixed(2)}x` : "—"}</td>,
-  },
-  {
-    id: "profit",
-    label: "Lucro real",
-    sort: "profit",
-    cell: (r, cur) => <td className={`text-right font-medium ${r.profit < 0 ? "text-bad" : "text-accent"}`}>{money(r.profit, cur)}</td>,
-  },
-  {
-    id: "margin",
-    label: "Margem",
-    cell: (r) => (
-      <td className={`text-right ${r.revenue && r.profit < 0 ? "text-bad" : "text-muted"}`}>{r.revenue ? pct((r.profit / r.revenue) * 100) : "—"}</td>
-    ),
-  },
-  { id: "roi", label: "ROI", sort: "roi", cell: (r) => <td className={`text-right ${r.roi < 0 ? "text-bad" : "text-accent"}`}>{r.spend ? pct(r.roi, 0) : "—"}</td> },
-];
-
-function Row({
-  r,
-  cur,
-  cols,
-  onAction,
-  targets,
-  onLink,
-  onExclude,
-}: {
-  r: TrafficRow;
-  cur: string;
-  cols: Col[];
-  onAction: (mode: StudioMode) => void;
-  targets: { key: string; name: string }[];
-  onLink: (source: string, target: string | null) => void;
-  onExclude: () => void;
-}) {
-  const editable = !!(r.accountId && r.sourceId && (r.platform === "taboola" || r.platform === "revcontent"));
-  const rtOk = r.rtConversions === r.rtExpected;
-  return (
-    <tr className={r.needsLink ? "bg-warn/[0.03]" : ""}>
-      <td className="max-w-[380px]">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: PLATFORM_COLOR[r.platform] ?? "#888" }} />
-          <span className="truncate" title={r.campaign}>
-            {r.campaign}
-          </span>
-        </div>
-        <div className="space-x-2 pl-4 text-[11px] text-faint">
-          <span>{r.label}</span>
-          {!r.namingOk && (
-            <span className="text-faint" title="RedTrack: [PRODUTO] [FONTE] [PAÍS] · Fonte: [PRODUTO] [DEVICE] [LANCE] [PAÍS] [DATA]">
-              · nome fora do padrão
-            </span>
-          )}
-          {r.attribution && r.attribution !== "sem-ligacao" && (
-            <span className={r.attribution === "conversoes" || r.attribution === "cliques" ? "text-warn" : ""}>
-              {r.attribution === "exata"
-                ? `vendas da campanha ${r.linkedBy === "manual" ? "(ligada manualmente)" : r.linkedBy === "link" ? "(ligada pelo link do RedTrack)" : r.linkedBy === "padrao" ? "(ligada pela nomenclatura)" : "(ligada pelo código)"}`
-                : r.attribution === "conversoes"
-                  ? "vendas divididas pelas conversões da fonte (estimado)"
-                  : r.attribution === "cliques"
-                    ? "vendas divididas pelos cliques (estimado)"
-                    : r.counted
-                      ? "dados do RedTrack (fonte sem API)"
-                      : "campanha do RedTrack sem campanha da API ligada"}
-              {r.linkedBy === "manual" && r.sourceKeys.length > 0 && (
-                <button className="ml-1 text-info hover:underline" onClick={() => r.sourceKeys.forEach((k) => onLink(k, null))}>
-                  desfazer
-                </button>
-              )}
-            </span>
-          )}
-          {!r.attribution && r.linkedBy && r.sourceNames.length > 0 && (
-            <span title={r.sourceNames.join(" · ")}>
-              {r.linkedBy === "link" ? "ligada pelo link do RedTrack" : r.linkedBy === "manual" ? "ligada manualmente" : r.linkedBy === "padrao" ? "ligada pela nomenclatura" : "ligada pelo código"}
-              {r.linkedBy === "manual" && (
-                <button className="ml-1 text-info hover:underline" onClick={() => r.sourceKeys.forEach((k) => onLink(k, null))}>
-                  desfazer
-                </button>
-              )}
-            </span>
-          )}
-          {r.missingCost && <span className="text-bad">sem custo: conecte a API do {r.label} em Integrações ou envie o custo ao RedTrack</span>}
-          {!r.counted && <span className="text-warn">gasto do RedTrack, falta ligar à campanha da fonte</span>}
-          {r.matched && r.rtConversions > 0 && (
-            <span className={rtOk ? "" : "text-warn"}>
-              RedTrack {int(r.rtConversions)} {rtOk ? "✓" : `(esperado ${int(r.rtExpected)})`}
-            </span>
-          )}
-        </div>
-        {r.linkSource && (
-          <div className="mt-1 pl-4">
-            <select
-              aria-label="Ligar a campanha"
-              className="input w-auto max-w-full py-1 text-[11px]"
-              value=""
-              onChange={(e) => e.target.value && onLink(r.linkSource!, e.target.value)}
-            >
-              <option value="">Ligar a… (campanha no RedTrack / UTM)</option>
-              {targets.map((t) => (
-                <option key={t.key} value={t.key}>
-                  {t.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-        {(editable || r.excludeKeys.length > 0) && (
-          <div className="mt-1.5 flex gap-1.5 pl-4">
-            {editable && (
-              <>
-                <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("edit")}>
-                  Editar
-                </button>
-                <button className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100" onClick={() => onAction("duplicate")}>
-                  Duplicar
-                </button>
-              </>
-            )}
-            {r.excludeKeys.length > 0 && (
-              <button
-                className="rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:border-bad/40 hover:text-bad"
-                title="Tira o gasto desta campanha de todos os números (ex.: campanha de outro produto). Dá para voltar depois."
-                onClick={onExclude}
-              >
-                Ignorar gasto
+      {studio && (
+        <CampaignStudio
+          mode={studio.mode}
+          accountId={studio.accountId}
+          campaignId={studio.campaignId}
+          onClose={() => setStudio(null)}
+          onDone={() => setReload((n) => n + 1)}
+        />
+      )}
+      {history && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-6 backdrop-blur-sm" onClick={() => setHistory(null)}>
+          <div className="w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between">
+              <h2 className="font-semibold">Histórico de campanhas criadas pelo CRM</h2>
+              <button className="text-muted hover:text-zinc-100" onClick={() => setHistory(null)} aria-label="Fechar">
+                ✕
               </button>
-            )}
+            </div>
+            <CampaignHistory
+              log={history}
+              onOpen={(accountId, campaignId) => {
+                setHistory(null);
+                setStudio({ mode: "edit", accountId, campaignId });
+              }}
+              onChanged={() => openHistory()}
+            />
           </div>
-        )}
-      </td>
-      {cols.map((c) => (
-        <Fragment key={c.id}>{c.cell(r, cur)}</Fragment>
-      ))}
-    </tr>
-  );
-}
-
-function Tile({ label, value, tone, hint }: { label: string; value: string; tone?: "good" | "bad" | "warn"; hint?: string }) {
-  const c = tone === "good" ? "text-accent" : tone === "bad" ? "text-bad" : tone === "warn" ? "text-warn" : "text-zinc-100";
-  return (
-    <div className="card card-pad">
-      <div className="label">{label}</div>
-      <div className={`mt-2 text-xl font-semibold ${c}`}>{value}</div>
-      {hint && <div className="mt-1 text-[11px] text-faint">{hint}</div>}
-    </div>
-  );
-}
-
-function NamingGenerator() {
-  const [product, setProduct] = useState("OMNIPRO");
-  const [source, setSource] = useState("taboola");
-  const [country, setCountry] = useState("US");
-  const [device, setDevice] = useState("DESKTOP");
-  const [bid, setBid] = useState<string>("MAXCONV");
-  const [copied, setCopied] = useState("");
-  const rt = buildRtName(product, source, country);
-  const src = buildSourceName(product, device, bid, country);
-  const copy = async (t: string) => {
-    try {
-      await navigator.clipboard.writeText(t);
-      setCopied(t);
-      setTimeout(() => setCopied(""), 1500);
-    } catch {}
-  };
-  const sel = "input w-auto py-1.5 text-xs";
-  return (
-    <div className="card card-pad mt-3 space-y-3 text-xs">
-      <div className="flex flex-wrap items-end gap-2">
-        <label className="block">
-          <span className="mb-1 block text-faint">Produto</span>
-          <input id="nm-product" className={sel} value={product} onChange={(e) => setProduct(e.target.value.toUpperCase())} />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-faint">Fonte</span>
-          <select id="nm-source" className={sel} value={source} onChange={(e) => setSource(e.target.value)}>
-            {Object.entries(SOURCE_NAME).map(([id, n]) => (
-              <option key={id} value={id}>
-                {n}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-faint">País</span>
-          <input id="nm-country" className={`${sel} w-16`} maxLength={2} value={country} onChange={(e) => setCountry(e.target.value.toUpperCase())} />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-faint">Device</span>
-          <select id="nm-device" className={sel} value={device} onChange={(e) => setDevice(e.target.value)}>
-            {Object.keys(DEVICES).map((d) => (
-              <option key={d}>{d}</option>
-            ))}
-          </select>
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-faint">Lance</span>
-          <select id="nm-bid" className={sel} value={bid} onChange={(e) => setBid(e.target.value)}>
-            {BIDS.map((b) => (
-              <option key={b}>{b}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-      {[
-        ["Campanha no RedTrack", rt],
-        ["Campanha na fonte", src],
-      ].map(([label, name]) => (
-        <div key={label} className="flex flex-wrap items-center gap-2">
-          <span className="w-44 text-faint">{label}</span>
-          <code className="rounded bg-bg px-2 py-1 text-accent">{name}</code>
-          <button className="text-info hover:underline" onClick={() => copy(name)}>
-            {copied === name ? "copiado ✓" : "copiar"}
-          </button>
         </div>
-      ))}
-      <p className="text-faint">
-        Mesmo produto, fonte e país nos dois nomes: a campanha da fonte liga sozinha à do RedTrack e às vendas da Shopify.
-      </p>
-    </div>
-  );
-}
-
-/** Campaigns created/duplicated by the CRM that have no spend or clicks yet (paused, new or in review). */
-function NoSpendYet({ log, known, onOpen }: { log: CampaignLogEntry[]; known: Set<string>; onOpen: (accountId: string, campaignId: string) => void }) {
-  const [open, setOpen] = useState(true);
-  const since = Date.now() - 30 * 86400_000;
-  const seen = new Set<string>();
-  const list = log.filter((l) => {
-    if (!l.campaignId || l.action === "criativos" || !l.ok || new Date(l.at).getTime() < since) return false;
-    if (known.has(l.campaignId) || seen.has(l.campaignId)) return false;
-    seen.add(l.campaignId);
-    return true;
-  });
-  if (!list.length) return null;
-  return (
-    <div className="card mt-3 px-4 py-3 text-sm">
-      <button className="flex w-full items-center justify-between text-left" onClick={() => setOpen((v) => !v)}>
-        <span>
-          <span className="text-zinc-200">Criadas pelo CRM, ainda sem gasto ({list.length})</span>
-          <span className="ml-2 text-[12px] text-muted">pausadas, em revisão ou recém-ativadas — entram na tabela quando começarem a gastar</span>
-        </span>
-        <span className="text-muted">{open ? "▲" : "▼"}</span>
-      </button>
-      {open && (
-        <ul className="mt-3 divide-y divide-line">
-          {list.map((l) => {
-            const fails = l.failed?.length ?? l.steps.filter((x) => /^Falhou/.test(x)).length;
-            return (
-              <li key={l.id} className="flex items-center justify-between gap-3 py-2">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: PLATFORM_COLOR[l.platform] ?? "#888" }} />
-                    <span className="truncate font-mono text-xs" title={l.campaignName}>
-                      {l.campaignName}
-                    </span>
-                  </div>
-                  <div className="pl-4 text-[11px] text-faint">
-                    {l.action} em {new Date(l.at).toLocaleString("pt-BR")} · id {l.campaignId} · {l.items} anúncio(s)
-                    {fails > 0 && <span className="text-bad"> · {fails} criativo(s) falharam (veja em Histórico)</span>}
-                  </div>
-                </div>
-                <button
-                  className="shrink-0 rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100"
-                  onClick={() => onOpen(l.accountId, l.campaignId)}
-                >
-                  Ver configurações e anúncios
-                </button>
-              </li>
-            );
-          })}
-        </ul>
       )}
     </div>
   );
 }
+
+function Kpi({ label, value, tone, hint }: { label: string; value: string; tone?: "good" | "bad"; hint?: string }) {
+  const c = tone === "good" ? "text-accent" : tone === "bad" ? "text-bad" : "text-zinc-100";
+  return (
+    <div className="card card-pad">
+      <div className="label">{label}</div>
+      <div className={`mt-1 text-2xl font-semibold tabular-nums ${c}`}>{value}</div>
+      {hint && <div className="mt-0.5 text-[11px] text-faint">{hint}</div>}
+    </div>
+  );
+}
+
+function RoasPill({ v, spend }: { v: number; spend: number }) {
+  if (!spend) return <span className="text-faint">—</span>;
+  const cls = v >= 2 ? "bg-accent/90 text-black" : v >= 1.4 ? "bg-accent/25 text-accent" : v >= 1 ? "bg-warn/25 text-warn" : "bg-bad/25 text-bad";
+  return <span className={`inline-block min-w-[48px] rounded-full px-2 py-0.5 text-center text-xs font-semibold tabular-nums ${cls}`}>{v.toFixed(2)}</span>;
+}
+
+function Budget({ budget, spend, days, cur }: { budget: number; spend: number; days: number; cur: string }) {
+  if (!budget) return <span className="text-faint">—</span>;
+  const pct = Math.min(100, (spend / (budget * days)) * 100);
+  return (
+    <div className="ml-auto w-24 text-right">
+      <div className="tabular-nums text-info">{money(budget, cur)}</div>
+      <div className="mt-1 h-1 rounded-full bg-white/10">
+        <div className={`h-1 rounded-full ${pct >= 90 ? "bg-warn" : "bg-accent"}`} style={{ width: `${pct}%` }} />
+      </div>
+      <div className="text-[10px] text-faint">{pct.toFixed(0)}% usado</div>
+    </div>
+  );
+}
+
+function Cells({ x, cols, cur, days, count, small }: { x: Perf; cols: { id: ColId }[]; cur: string; days: number; count?: number; small?: boolean }) {
+  const cell = "px-2.5 py-2.5 text-right tabular-nums whitespace-nowrap" + (small ? " text-[13px]" : "");
+  return (
+    <>
+      {cols.map((c) => {
+        switch (c.id) {
+          case "accounts":
+            return (
+              <td key={c.id} className={`${cell} text-muted`}>
+                {count ?? "–"}
+              </td>
+            );
+          case "budget":
+            return (
+              <td key={c.id} className={cell}>
+                <Budget budget={x.budget} spend={x.spend} days={days} cur={cur} />
+              </td>
+            );
+          case "spend":
+            return (
+              <td key={c.id} className={cell}>
+                {money(x.spend, cur)}
+              </td>
+            );
+          case "revenue":
+            return (
+              <td key={c.id} className={`${cell} text-accent`}>
+                {money(x.revenue, cur)}
+              </td>
+            );
+          case "sales":
+            return (
+              <td key={c.id} className={`${cell} text-info`}>
+                {int(x.sales)}
+                {x.upsells > 0 && <span className="text-[10px] text-faint"> +{int(x.upsells)}</span>}
+              </td>
+            );
+          case "cpa":
+            return (
+              <td key={c.id} className={`${cell} text-info`}>
+                {x.sales ? money(x.cpa, cur, 2) : "—"}
+              </td>
+            );
+          case "profit":
+            return (
+              <td key={c.id} className={`${cell} ${x.profit < 0 ? "text-bad" : x.profit > 0 ? "text-accent" : "text-muted"}`}>
+                {money(x.profit, cur)}
+              </td>
+            );
+          case "roas":
+            return (
+              <td key={c.id} className={cell}>
+                <RoasPill v={x.roas} spend={x.spend} />
+              </td>
+            );
+          case "ic":
+            return (
+              <td key={c.id} className={`${cell} text-info`}>
+                {x.ic === null ? "—" : int(x.ic)}
+              </td>
+            );
+        }
+      })}
+    </>
+  );
+}
+
+function PlatformRows({
+  p,
+  cols,
+  cur,
+  days,
+  open,
+  toggle,
+  targets,
+  onActive,
+  onStudio,
+  onExclude,
+  onLink,
+}: {
+  p: TreePlatform;
+  cols: { id: ColId }[];
+  cur: string;
+  days: number;
+  open: Set<string>;
+  toggle: (k: string) => void;
+  targets: { key: string; name: string; platform: string }[];
+  onActive: (c: TreeCampaign, active: boolean) => void;
+  onStudio: (mode: StudioMode, c: TreeCampaign) => void;
+  onExclude: (c: TreeCampaign) => void;
+  onLink: (source: string, target: string | null) => void;
+}) {
+  const pk = `p:${p.platform}`;
+  const isOpen = open.has(pk);
+  const running = p.accounts.some((a) => a.campaigns.some((c) => c.active));
+  return (
+    <>
+      <tr className="cursor-pointer border-b border-line hover:bg-white/[0.02]" onClick={() => toggle(pk)}>
+        <td className="px-4 py-3">
+          <div className="flex items-center gap-3">
+            <span className="w-3 text-muted">{isOpen ? "▾" : "▸"}</span>
+            <span
+              className="flex h-7 w-7 items-center justify-center rounded-md text-[11px] font-bold text-black"
+              style={{ background: PLATFORM_COLOR[p.platform] ?? "#888" }}
+            >
+              {p.label.slice(0, 1)}
+            </span>
+            <span className="font-semibold">{p.label}</span>
+            <span className={`h-1.5 w-1.5 rounded-full ${running ? "bg-accent" : "bg-zinc-600"}`} title={running ? "Com campanhas ativas" : "Nada ativo"} />
+          </div>
+        </td>
+        <Cells x={p} cols={cols} cur={cur} days={days} count={p.accounts.length} />
+      </tr>
+      {isOpen && (
+        <tr>
+          <td colSpan={cols.length + 1} className="px-4 pb-1 pt-2 text-[10px] uppercase tracking-wider text-faint">
+            <span className="pl-7">Contas · {p.label}</span> <span className="ml-1">{p.accounts.length}</span>
+          </td>
+        </tr>
+      )}
+      {isOpen &&
+        p.accounts.map((a) => (
+          <AccountRows
+            key={a.id}
+            a={a}
+            cols={cols}
+            cur={cur}
+            days={days}
+            open={open}
+            toggle={toggle}
+            targets={targets.filter((t) => t.platform === p.platform)}
+            onActive={onActive}
+            onStudio={onStudio}
+            onExclude={onExclude}
+            onLink={onLink}
+          />
+        ))}
+    </>
+  );
+}
+
+function AccountRows({
+  a,
+  cols,
+  cur,
+  days,
+  open,
+  toggle,
+  targets,
+  onActive,
+  onStudio,
+  onExclude,
+  onLink,
+}: {
+  a: TreeAccount;
+  cols: { id: ColId }[];
+  cur: string;
+  days: number;
+  open: Set<string>;
+  toggle: (k: string) => void;
+  targets: { key: string; name: string }[];
+  onActive: (c: TreeCampaign, active: boolean) => void;
+  onStudio: (mode: StudioMode, c: TreeCampaign) => void;
+  onExclude: (c: TreeCampaign) => void;
+  onLink: (source: string, target: string | null) => void;
+}) {
+  const ak = `a:${a.id}`;
+  const isOpen = open.has(ak);
+  const active = a.campaigns.filter((c) => c.active).length;
+  return (
+    <>
+      <tr className="cursor-pointer border-b border-line/60 hover:bg-white/[0.02]" onClick={() => toggle(ak)}>
+        <td className="py-2.5 pl-9 pr-3">
+          <div className="flex items-center gap-2">
+            <span className="w-3 text-muted">{isOpen ? "▾" : "▸"}</span>
+            <span className={`h-1.5 w-1.5 rounded-full ${active ? "bg-accent" : "bg-zinc-600"}`} />
+            <span className="font-medium">{a.label}</span>
+            <span className="rounded border border-line px-1.5 text-[9px] uppercase tracking-wider text-faint">conta</span>
+          </div>
+          <div className="pl-7 text-[11px] text-faint">
+            {a.campaigns.length} campanha(s){active ? ` · ${active} ativa(s)` : ""}
+          </div>
+        </td>
+        <Cells x={a} cols={cols} cur={cur} days={days} count={1} small />
+      </tr>
+      {isOpen &&
+        a.campaigns.map((c) => (
+          <CampaignRow key={c.key} c={c} cols={cols} cur={cur} days={days} targets={targets} onActive={onActive} onStudio={onStudio} onExclude={onExclude} onLink={onLink} />
+        ))}
+    </>
+  );
+}
+
+function CampaignRow({
+  c,
+  cols,
+  cur,
+  days,
+  targets,
+  onActive,
+  onStudio,
+  onExclude,
+  onLink,
+}: {
+  c: TreeCampaign;
+  cols: { id: ColId }[];
+  cur: string;
+  days: number;
+  targets: { key: string; name: string }[];
+  onActive: (c: TreeCampaign, active: boolean) => void;
+  onStudio: (mode: StudioMode, c: TreeCampaign) => void;
+  onExclude: (c: TreeCampaign) => void;
+  onLink: (source: string, target: string | null) => void;
+}) {
+  const [label, tone] = statusOf(c);
+  const [menu, setMenu] = useState(false);
+  const x = useMemo(() => ({ ...c, budget: c.dailyBudget ?? 0 }), [c]);
+  return (
+    <tr className="group border-b border-line/40 bg-white/[0.015] hover:bg-white/[0.03]">
+      <td className="py-2 pl-14 pr-3">
+        <div className="flex items-center gap-3">
+          {c.editable && c.active !== null ? (
+            <button
+              role="switch"
+              aria-checked={!!c.active}
+              aria-label={c.active ? "Pausar campanha" : "Ativar campanha"}
+              onClick={() => onActive(c, !c.active)}
+              className={`relative h-5 w-9 shrink-0 rounded-full transition-colors ${c.active ? "bg-accent" : "bg-zinc-700"}`}
+            >
+              <span className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-all ${c.active ? "left-[18px]" : "left-0.5"}`} />
+            </button>
+          ) : (
+            <span className="w-9" />
+          )}
+          <div className="min-w-0">
+            <div className="max-w-[280px] truncate font-mono text-[12px] xl:max-w-[340px]" title={c.name}>
+              {c.name}
+            </div>
+            <div className="flex items-center gap-2 text-[11px]">
+              {label !== "—" && <span className={tone}>● {label}</span>}
+              {c.needsLink && (
+                <span className="text-warn" title="Vendas ainda não ligadas a esta campanha">
+                  sem vendas ligadas
+                </span>
+              )}
+              {(c.attribution === "conversoes" || c.attribution === "cliques") && <span className="text-faint">vendas estimadas</span>}
+            </div>
+          </div>
+          <div className="relative ml-auto shrink-0">
+        <button className="rounded px-2 py-1 text-muted opacity-60 hover:bg-white/5 hover:text-zinc-100 group-hover:opacity-100" onClick={() => setMenu((v) => !v)} aria-label="Ações">
+          ⋯
+        </button>
+        {menu && (
+          <div className="absolute left-0 top-8 z-30 w-56 rounded-xl border border-line bg-panel p-1.5 text-left text-xs shadow-xl" onMouseLeave={() => setMenu(false)}>
+            {c.editable && (
+              <>
+                <MenuItem onClick={() => onStudio("edit", c)}>Configurações e anúncios</MenuItem>
+                <MenuItem onClick={() => onStudio("duplicate", c)}>Duplicar</MenuItem>
+              </>
+            )}
+            <MenuItem onClick={() => onExclude(c)}>Ignorar gasto (outro produto)</MenuItem>
+            {c.linkSource && (
+              <div className="px-2 py-1.5">
+                <select className="input w-full py-1 text-[11px]" value="" onChange={(e) => e.target.value && onLink(c.linkSource!, e.target.value)}>
+                  <option value="">Ligar vendas a…</option>
+                  {targets.map((t) => (
+                    <option key={t.key} value={t.key}>
+                      {t.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
+        )}
+          </div>
+        </div>
+      </td>
+      <Cells x={x} cols={cols} cur={cur} days={days} small />
+    </tr>
+  );
+}
+
+function MenuItem({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button className="block w-full rounded-md px-2 py-1.5 text-left hover:bg-white/5" onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
