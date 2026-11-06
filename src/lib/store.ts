@@ -129,6 +129,8 @@ export type CampaignLogEntry = {
   items: number;
   steps: string[];
   ok: boolean;
+  /** Creatives that did not go up, with the reason (and the ad id when Taboola created it but was still crawling). */
+  failed?: { creative: { kind: "variant"; variantId: string; headline?: string } | { kind: "ad"; imageUrl: string; headline: string }; error: string; itemId?: string; label: string }[];
 };
 
 /** Where a variant came from: the ad it was generated from. */
@@ -403,6 +405,12 @@ export async function deleteTemplate(id: string) {
 
 export async function listCampaignLog(): Promise<CampaignLogEntry[]> {
   return (await read()).campaignLog;
+}
+
+export async function updateCampaignLog(id: string, patch: Partial<CampaignLogEntry>) {
+  const data = await read();
+  data.campaignLog = data.campaignLog.map((e) => (e.id === id ? { ...e, ...patch } : e));
+  await write(data);
 }
 
 export async function addCampaignLog(e: CampaignLogEntry) {

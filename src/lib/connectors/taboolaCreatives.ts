@@ -114,6 +114,8 @@ export async function publishTaboola(
   title: string,
   image: { bytes: Buffer; mime: string } | { hostedUrl: string },
   aiGenerated = true,
+  /** Resume an ad created earlier that was still being crawled. */
+  existingItemId?: string,
 ): Promise<{ itemId: string; status: string }> {
   const auth = { Authorization: `Bearer ${await taboolaToken(c)}` };
   let thumbnail: string;
@@ -127,9 +129,11 @@ export async function publishTaboola(
 
   const headers = { ...auth, "Content-Type": "application/json" };
   const base = `${API}/${c.accountId}/campaigns/${campaignId}/items/`;
-  const created = await http<Item>(base, { method: "POST", headers, body: JSON.stringify({ url: landingUrl }) });
+  const created = existingItemId
+    ? await http<Item>(`${base}${existingItemId}/`, { headers })
+    : await http<Item>(base, { method: "POST", headers, body: JSON.stringify({ url: landingUrl }) });
   // Pause right away so it never serves before review.
-  await http(`${base}${created.id}/`, { method: "POST", headers, body: JSON.stringify({ is_active: false }) }).catch(() => {});
+  if (!existingItemId) await http(`${base}${created.id}/`, { method: "POST", headers, body: JSON.stringify({ is_active: false }) }).catch(() => {});
 
   let item = created;
   for (let i = 0; i < 20 && item.status === "CRAWLING"; i++) {
@@ -137,7 +141,10 @@ export async function publishTaboola(
     item = await http<Item>(`${base}${created.id}/`, { headers });
   }
   if (item.status === "CRAWLING") {
-    throw new Error(`O anúncio ${created.id} foi criado pausado, mas a Taboola ainda está lendo o link. Tente de novo em alguns minutos.`);
+    throw Object.assign(new Error(`a Taboola ainda está lendo o link do anúncio ${created.id} (pode levar alguns minutos); use "Tentar de novo"`), {
+      itemId: String(created.id),
+      friendly: true,
+    });
   }
   const done = await http<Item>(`${base}${created.id}/`, {
     method: "POST",

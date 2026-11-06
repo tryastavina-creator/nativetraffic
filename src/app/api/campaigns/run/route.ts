@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { addToCampaign, copyCampaign, createCampaign, duplicateCampaign, updateCampaign } from "@/lib/campaigns";
+import { addToCampaign, copyCampaign, createCampaign, duplicateCampaign, retryFailed, updateCampaign } from "@/lib/campaigns";
 import { baseUrl } from "@/lib/shopifyOAuth";
 
 export const dynamic = "force-dynamic";
@@ -26,6 +26,10 @@ export async function POST(req: Request) {
   if (b.action === "update") {
     if (!b.accountId || !b.campaignId || !b.name?.trim()) return NextResponse.json({ error: "Faltam dados da campanha." }, { status: 400 });
     return NextResponse.json(await updateCampaign({ itemChanges: [], creatives: [], ...b }, base));
+  }
+  if (b.action === "retry") {
+    if (!b.logId) return NextResponse.json({ error: "Registro inválido." }, { status: 400 });
+    return NextResponse.json(await retryFailed(b.logId, base));
   }
   if (b.action === "copy") {
     if (!b.source?.accountId || !b.target?.accountId || !b.name?.trim()) {

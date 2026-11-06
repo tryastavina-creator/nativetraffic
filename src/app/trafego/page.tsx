@@ -45,6 +45,14 @@ export default function Trafego() {
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "spend", dir: -1 });
 
   const [reload, setReload] = useState(0);
+  // Campaigns created by the CRM (they only reach the source reports once they spend).
+  const [crmLog, setCrmLog] = useState<CampaignLogEntry[]>([]);
+  useEffect(() => {
+    fetch("/api/campaigns/meta")
+      .then((r) => r.json())
+      .then((d) => setCrmLog(d.log ?? []))
+      .catch(() => {});
+  }, [reload]);
 
   async function link(source: string, target: string | null) {
     await fetch("/api/traffic/link", {
@@ -260,7 +268,14 @@ export default function Trafego() {
                   ✕
                 </button>
               </div>
-              <CampaignHistory log={history} />
+              <CampaignHistory
+                log={history}
+                onOpen={(accountId, campaignId) => {
+                  setHistory(null);
+                  setStudio({ mode: "edit", accountId, campaignId });
+                }}
+                onChanged={() => openHistory()}
+              />
             </div>
           </div>
         )}
@@ -294,6 +309,11 @@ export default function Trafego() {
           ))}
         </div>
 
+        <NoSpendYet
+          log={crmLog}
+          known={new Set((data?.apiRows ?? []).flatMap((r) => r.sourceKeys.map((k) => k.split(":").slice(1).join(":"))))}
+          onOpen={(accountId, campaignId) => setStudio({ mode: "edit", accountId, campaignId })}
+        />
         <div className="card mt-3 overflow-x-auto">
           <table className="tbl w-full" style={{ minWidth: 380 + visibleCols.length * 96 }}>
             <thead>
@@ -680,6 +700,60 @@ function NamingGenerator() {
       <p className="text-faint">
         Mesmo produto, fonte e país nos dois nomes: a campanha da fonte liga sozinha à do RedTrack e às vendas da Shopify.
       </p>
+    </div>
+  );
+}
+
+/** Campaigns created/duplicated by the CRM that have no spend or clicks yet (paused, new or in review). */
+function NoSpendYet({ log, known, onOpen }: { log: CampaignLogEntry[]; known: Set<string>; onOpen: (accountId: string, campaignId: string) => void }) {
+  const [open, setOpen] = useState(true);
+  const since = Date.now() - 30 * 86400_000;
+  const seen = new Set<string>();
+  const list = log.filter((l) => {
+    if (!l.campaignId || l.action === "criativos" || !l.ok || new Date(l.at).getTime() < since) return false;
+    if (known.has(l.campaignId) || seen.has(l.campaignId)) return false;
+    seen.add(l.campaignId);
+    return true;
+  });
+  if (!list.length) return null;
+  return (
+    <div className="card mt-3 px-4 py-3 text-sm">
+      <button className="flex w-full items-center justify-between text-left" onClick={() => setOpen((v) => !v)}>
+        <span>
+          <span className="text-zinc-200">Criadas pelo CRM, ainda sem gasto ({list.length})</span>
+          <span className="ml-2 text-[12px] text-muted">pausadas, em revisão ou recém-ativadas — entram na tabela quando começarem a gastar</span>
+        </span>
+        <span className="text-muted">{open ? "▲" : "▼"}</span>
+      </button>
+      {open && (
+        <ul className="mt-3 divide-y divide-line">
+          {list.map((l) => {
+            const fails = l.failed?.length ?? l.steps.filter((x) => /^Falhou/.test(x)).length;
+            return (
+              <li key={l.id} className="flex items-center justify-between gap-3 py-2">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 shrink-0 rounded-full" style={{ background: PLATFORM_COLOR[l.platform] ?? "#888" }} />
+                    <span className="truncate font-mono text-xs" title={l.campaignName}>
+                      {l.campaignName}
+                    </span>
+                  </div>
+                  <div className="pl-4 text-[11px] text-faint">
+                    {l.action} em {new Date(l.at).toLocaleString("pt-BR")} · id {l.campaignId} · {l.items} anúncio(s)
+                    {fails > 0 && <span className="text-bad"> · {fails} criativo(s) falharam (veja em Histórico)</span>}
+                  </div>
+                </div>
+                <button
+                  className="shrink-0 rounded-md border border-line px-2 py-0.5 text-[11px] text-muted hover:text-zinc-100"
+                  onClick={() => onOpen(l.accountId, l.campaignId)}
+                >
+                  Ver configurações e anúncios
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

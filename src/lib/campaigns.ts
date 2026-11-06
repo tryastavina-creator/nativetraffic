@@ -38,9 +38,12 @@ import {
   getSettings,
   listConnections,
   uniqueAccounts,
+  listCampaignLog,
+  updateCampaignLog,
   listTemplates,
   listVariants,
   updateVariant,
+  type CampaignLogEntry,
   type CampaignSetup,
 } from "./store";
 
@@ -160,14 +163,28 @@ async function resolveBlocks(platform: Platform, s: CampaignSetup): Promise<Camp
   return { ...s, blockedSites: sites };
 }
 
+type Failed = NonNullable<CampaignLogEntry["failed"]>[number];
+/** Failures of the last addCreatives per campaign, picked up by log(). */
+const pendingFailures = new Map<string, Failed[]>();
+
 /** Uploads each creative as a new PAUSED ad. Returns one log line per creative. */
-async function addCreatives(platform: Platform, accountId: string, campaignId: string, url: string, creatives: CreativeInput[], baseUrl: string) {
+async function addCreatives(
+  platform: Platform,
+  accountId: string,
+  campaignId: string,
+  url: string,
+  creatives: CreativeInput[],
+  baseUrl: string,
+  resume: Record<number, string> = {},
+) {
   const conn = await connection(platform, accountId);
   const variants = await listVariants();
   const steps: string[] = [];
   const ids: string[] = [];
+  const failed: Failed[] = [];
   let ok = 0;
-  for (const cr of creatives) {
+  for (const [idx, cr] of creatives.entries()) {
+    const label = (cr.kind === "variant" ? (cr.headline ?? variants.find((x) => x.id === cr.variantId)?.headline ?? "variação") : cr.headline).slice(0, 70);
     try {
       if (cr.kind === "variant") {
         const v = variants.find((x) => x.id === cr.variantId);
@@ -175,7 +192,15 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
         const headline = (cr.headline ?? v.headline).trim();
         const r =
           platform === "taboola"
-            ? await publishTaboola(conn.credentials, campaignId, url, headline, (await getAsset(v.assetId)) ?? (() => { throw new Error("imagem não encontrada"); })())
+            ? await publishTaboola(
+                conn.credentials,
+                campaignId,
+                url,
+                headline,
+                (await getAsset(v.assetId)) ?? (() => { throw new Error("imagem da variação não encontrada no banco"); })(),
+                true,
+                resume[idx],
+              )
             : await publishRevcontent(conn.credentials, campaignId, url, headline, v.source.brand ?? "", `${baseUrl}/api/assets/${v.assetId}`);
         await updateVariant(v.id, {
           status: "published",
@@ -188,11 +213,11 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
         try {
           host = new URL(cr.imageUrl).hostname;
         } catch {}
-        if (!IMAGE_HOSTS.test(host)) throw new Error("imagem de origem não reconhecida");
+        if (!IMAGE_HOSTS.test(host)) throw new Error(`a imagem vem de um endereço não permitido (${host || "link inválido"})`);
         let r;
         if (platform === "taboola") {
           if (/(^|\.)taboola\.com$/.test(host)) {
-            r = await publishTaboola(conn.credentials, campaignId, url, cr.headline, { hostedUrl: cr.imageUrl }, false);
+            r = await publishTaboola(conn.credentials, campaignId, url, cr.headline, { hostedUrl: cr.imageUrl }, false, resume[idx]);
           } else {
             const img = await fetch(cr.imageUrl, { cache: "no-store" });
             if (!img.ok) throw new Error(`não consegui baixar a imagem (${img.status})`);
@@ -203,6 +228,7 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
               cr.headline,
               { bytes: Buffer.from(await img.arrayBuffer()), mime: img.headers.get("content-type") ?? "image/jpeg" },
               false,
+              resume[idx],
             );
           }
         } else {
@@ -213,10 +239,33 @@ async function addCreatives(platform: Platform, accountId: string, campaignId: s
       }
       ok++;
     } catch (e) {
-      steps.push(`Falhou um criativo: ${friendlyError("", e).replace(/^: /, "")}`);
+      const error = friendlyError("", e).replace(/^: /, "");
+      const itemId = (e as { itemId?: string }).itemId ?? resume[idx];
+      failed.push({ creative: cr, error, itemId, label });
+      steps.push(`Falhou o criativo "${label}": ${error}`);
     }
   }
-  return { steps, ok, ids };
+  pendingFailures.set(campaignId, failed);
+  return { steps, ok, ids, failed };
+}
+
+/** Retries the creatives that failed in a history entry (resuming ads Taboola was still crawling). */
+export async function retryFailed(logId: string, baseUrl: string) {
+  const e = (await listCampaignLog()).find((x) => x.id === logId);
+  if (!e?.failed?.length) return { ok: false, steps: ["Nada para tentar de novo nesse registro."] };
+  if (!e.url) return { ok: false, steps: ["Esse registro não tem o link do RedTrack."] };
+  const resume: Record<number, string> = {};
+  e.failed.forEach((f, i) => f.itemId && (resume[i] = f.itemId));
+  const r = await addCreatives(e.platform as Platform, e.accountId, e.campaignId, e.url, e.failed.map((f) => f.creative), baseUrl, resume);
+  pendingFailures.delete(e.campaignId);
+  const stamp = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
+  await updateCampaignLog(e.id, {
+    failed: r.failed,
+    items: e.items + r.ok,
+    ok: e.ok || r.ok > 0,
+    steps: [...e.steps, `Nova tentativa (${stamp}):`, ...r.steps],
+  });
+  return { ok: r.failed.length === 0, steps: r.steps };
 }
 
 /** "Ativada": campaign and its new ads switched on at the end (ads still go through the source's review). */
@@ -376,7 +425,10 @@ async function log(
   steps: string[],
   ok: boolean,
 ) {
+  const failed = pendingFailures.get(campaignId);
+  pendingFailures.delete(campaignId);
   await addCampaignLog({
+    ...(failed?.length ? { failed } : {}),
     id: randomBytes(6).toString("hex"),
     at: new Date().toISOString(),
     action,

@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 /** Shared pieces of the campaign studio (setup form, creative picker, history). */
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { COUNTRY_TZ } from "@/lib/campaignRules";
 import { normProduct } from "@/lib/naming";
 import type { Blocklist, CampaignLogEntry, CampaignSchedule, CampaignSetup, CreativeVariant } from "@/lib/store";
@@ -421,8 +421,32 @@ export function CreativePicker({ platform, picks, onChange }: { platform: Platfo
   );
 }
 
-export function CampaignHistory({ log }: { log: CampaignLogEntry[] }) {
+export function CampaignHistory({
+  log,
+  onOpen,
+  onChanged,
+}: {
+  log: CampaignLogEntry[];
+  onOpen?: (accountId: string, campaignId: string) => void;
+  onChanged?: () => void;
+}) {
+  const [open, setOpen] = useState<string | null>(log.find((l) => l.failed?.length || l.steps.some((x) => /Falhou/.test(x)))?.id ?? null);
+  const [busy, setBusy] = useState<string | null>(null);
+  const [msg, setMsg] = useState<Record<string, string[]>>({});
   if (!log.length) return <div className="card card-pad mt-4 text-sm text-muted">Nenhuma campanha criada pelo CRM ainda.</div>;
+  async function retry(id: string) {
+    setBusy(id);
+    const r = await fetch("/api/campaigns/run", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "retry", logId: id }),
+    })
+      .then((x) => x.json())
+      .catch(() => ({ steps: ["Falha na conexão."] }));
+    setBusy(null);
+    setMsg((m) => ({ ...m, [id]: r.steps ?? [r.error ?? "Erro"] }));
+    onChanged?.();
+  }
   return (
     <div className="card mt-4 overflow-x-auto">
       <table className="tbl w-full min-w-[760px]">
@@ -438,20 +462,69 @@ export function CampaignHistory({ log }: { log: CampaignLogEntry[] }) {
           </tr>
         </thead>
         <tbody>
-          {log.map((l) => (
-            <tr key={l.id} title={l.steps.join("\n")}>
-              <td className="text-muted">{new Date(l.at).toLocaleString("pt-BR")}</td>
-              <td>{l.action}</td>
-              <td>{PLATFORM_LABEL[l.platform] ?? l.platform}</td>
-              <td className="font-mono text-xs">
-                {l.campaignName}
-                {l.campaignId && <div className="text-[10px] text-faint">id {l.campaignId}</div>}
-              </td>
-              <td className="text-muted">{l.rtCampaign ?? "—"}</td>
-              <td className="text-right">{l.items}</td>
-              <td className={`text-right ${l.ok ? "text-accent" : "text-bad"}`}>{l.ok ? "ok" : "erro"}</td>
-            </tr>
-          ))}
+          {log.map((l) => {
+            const fails = l.failed?.length ?? l.steps.filter((x) => /^Falhou/.test(x)).length;
+            return (
+              <Fragment key={l.id}>
+                <tr className="cursor-pointer" onClick={() => setOpen(open === l.id ? null : l.id)}>
+                  <td className="text-muted">{new Date(l.at).toLocaleString("pt-BR")}</td>
+                  <td>{l.action}</td>
+                  <td>{PLATFORM_LABEL[l.platform] ?? l.platform}</td>
+                  <td className="font-mono text-xs">
+                    {l.campaignName}
+                    {l.campaignId && <div className="text-[10px] text-faint">id {l.campaignId}</div>}
+                  </td>
+                  <td className="text-muted">{l.rtCampaign ?? "—"}</td>
+                  <td className="text-right">
+                    {l.items}
+                    {fails > 0 && <span className="text-bad"> · {fails} falhou</span>}
+                  </td>
+                  <td className={`text-right ${l.ok && !fails ? "text-accent" : l.ok ? "text-warn" : "text-bad"}`}>
+                    {l.ok ? (fails ? "parcial" : "ok") : "erro"} {open === l.id ? "▲" : "▼"}
+                  </td>
+                </tr>
+                {open === l.id && (
+                  <tr>
+                    <td colSpan={7} className="bg-black/20">
+                      <ul className="space-y-1 text-xs">
+                        {l.steps.map((x, i) => (
+                          <li key={i} className={/Falhou|Erro|Não consegui|não enviados/.test(x) ? "text-bad" : "text-muted"}>
+                            {x}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {!!l.failed?.length && (
+                          <button className="btn-primary py-1 text-xs" disabled={busy === l.id} onClick={() => retry(l.id)}>
+                            {busy === l.id ? "Enviando… (até 1 min por anúncio)" : `Tentar de novo os ${l.failed.length} que falharam`}
+                          </button>
+                        )}
+                        {l.campaignId && onOpen && (
+                          <button className="btn-ghost py-1 text-xs" onClick={() => onOpen(l.accountId, l.campaignId)}>
+                            Abrir campanha (configurações e anúncios)
+                          </button>
+                        )}
+                      </div>
+                      {!l.failed?.length && fails > 0 && (
+                        <p className="mt-2 text-[11px] text-faint">
+                          Esse envio é de antes do botão de nova tentativa: abra a campanha e adicione o criativo de novo em &quot;Criativos novos&quot;.
+                        </p>
+                      )}
+                      {msg[l.id] && (
+                        <ul className="mt-2 space-y-1 text-xs">
+                          {msg[l.id].map((x, i) => (
+                            <li key={i} className={/Falhou|Erro|Nada/.test(x) ? "text-bad" : "text-accent"}>
+                              {x}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            );
+          })}
         </tbody>
       </table>
     </div>
