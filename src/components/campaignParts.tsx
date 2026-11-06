@@ -194,7 +194,7 @@ export function SetupForm({
       )}
 
       {/* Dates */}
-      <Field label="Início">
+      <Field label="Início (vazio ou hoje = agora)">
         <input id="cp-start" className="input" type="date" value={setup.startDate ?? ""} onChange={(e) => set({ startDate: e.target.value || undefined })} />
       </Field>
       <Field label="Fim (vazio = sem data final)">

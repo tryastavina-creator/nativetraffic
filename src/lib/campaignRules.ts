@@ -6,7 +6,8 @@ import type { CampaignSetup } from "./store";
 
 export type Check = { errors: string[]; warnings: string[] };
 
-const today = () => new Date().toISOString().slice(0, 10);
+/** Earliest "today" anywhere (UTC-12): a date before it is surely in the past for any account. */
+const today = () => new Date(Date.now() - 12 * 3600_000).toISOString().slice(0, 10);
 
 /** Time zone of the country the campaign runs in (dayparting default). */
 export const COUNTRY_TZ: Record<string, string> = {
@@ -61,9 +62,11 @@ export function checkSetup(
     if ((s.bidStrategy === "FIXED" || s.bidStrategy === "SMART") && !(Number(s.cpc) > 0)) errors.push("Taboola: informe o CPC.");
     if (s.bidStrategy === "TARGET_CPA" && !(Number(s.cpaGoal) > 0)) errors.push("Taboola: informe o CPA alvo.");
     const limited = s.spendingLimitModel && s.spendingLimitModel !== "NONE";
-    if (!(Number(s.dailyCap) > 0) && !(limited && Number(s.spendingLimit) > 0)) errors.push("Taboola: informe o orçamento diário.");
-    if (limited && !(Number(s.spendingLimit) > 0)) errors.push("Taboola: informe o limite do orçamento ou escolha \"sem limite\".");
-    if (limited && Number(s.dailyCap) > Number(s.spendingLimit)) errors.push("Taboola: o orçamento diário é maior que o limite total.");
+    if (!s.groupShared) {
+      if (!(Number(s.dailyCap) > 0) && !(limited && Number(s.spendingLimit) > 0)) errors.push("Taboola: informe o orçamento diário.");
+      if (limited && !(Number(s.spendingLimit) > 0)) errors.push("Taboola: informe o limite do orçamento ou escolha \"sem limite\".");
+      if (limited && Number(s.dailyCap) > Number(s.spendingLimit)) errors.push("Taboola: o orçamento diário é maior que o limite total.");
+    }
     if (s.bidStrategy === "MAX_CONVERSIONS" && Number(s.dailyCap) > 0 && Number(s.dailyCap) < 20)
       warnings.push("Taboola: Max Conversions aprende mal com menos de US$20/dia.");
     if (ctx.groupNeeded && !ctx.groupChosen) errors.push("Taboola: escolha o grupo de campanhas da conta destino.");

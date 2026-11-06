@@ -98,6 +98,8 @@ export type CampaignSetup = {
   /** With a template campaign: keep its blocked sites (default yes) and per-site bid adjustments (default no). */
   inheritBlocks?: boolean;
   inheritBidModifiers?: boolean;
+  /** Taboola: the campaign goes into a group whose budget is shared (it then has no budget of its own). */
+  groupShared?: boolean;
   /** Read-only info about the template (shown in the form). */
   templateInfo?: { blockedSites: number; bidModifiers: number; timeZone?: string };
 };

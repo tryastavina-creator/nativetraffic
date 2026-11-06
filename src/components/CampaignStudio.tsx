@@ -9,7 +9,7 @@
  */
 import { useEffect, useMemo, useState } from "react";
 import { checkSetup } from "@/lib/campaignRules";
-import { buildRtName, buildSourceName, parseRtName } from "@/lib/naming";
+import { buildRtName, buildSourceName, normProduct, parseRtName } from "@/lib/naming";
 import { translateSetup } from "@/lib/setupTranslate";
 import type { Blocklist, CampaignSetup, CampaignTemplate } from "@/lib/store";
 import {
@@ -73,7 +73,29 @@ export function CampaignStudio({
   const [items, setItems] = useState<(Item & { keep: boolean; newTitle: string; newActive: boolean })[]>([]);
   const [groupMode, setGroupMode] = useState<"existing" | "new" | "none">("existing");
   const [groupId, setGroupId] = useState("");
-  const [groupLimit, setGroupLimit] = useState({ spendingLimitModel: "MONTHLY", spendingLimit: 5000 });
+  type NewGroupForm = {
+    name: string;
+    budgetMode: "group" | "campaign";
+    spendingLimitModel: "MONTHLY" | "ENTIRE";
+    spendingLimit: number;
+    dailyCap: number;
+    distribution: "AUTOMATIC" | "CUSTOM";
+    kpi: "" | "ROAS" | "CPA";
+    kpiGoal: number;
+    kpiThreshold: number;
+  };
+  const [newGroup, setNewGroup] = useState<NewGroupForm>({
+    name: "",
+    budgetMode: "campaign",
+    spendingLimitModel: "MONTHLY",
+    spendingLimit: 9000,
+    dailyCap: 300,
+    distribution: "AUTOMATIC",
+    kpi: "",
+    kpiGoal: 0,
+    kpiThreshold: 0,
+  });
+  const [groupInfo, setGroupInfo] = useState<{ shared: boolean; spendingLimitModel?: string; spendingLimit?: number; dailyCap?: number; distribution?: string; kpi?: string; kpiGoal?: number } | null>(null);
   const [rtId, setRtId] = useState("");
   const [url, setUrl] = useState("");
   const [picks, setPicks] = useState<Pick[]>([]);
@@ -130,10 +152,36 @@ export function CampaignStudio({
       .then((r) => r.json())
       .then((m: Meta) => {
         setMeta(m);
-        setGroupMode(m.groups.length ? "existing" : "new");
-        setGroupId((g) => g || m.groups[0]?.id || "");
+        setGroupId((g) => {
+          if (g && m.groups.some((x) => x.id === g)) return g;
+          return "";
+        });
+        setGroupMode((cur) => (cur === "none" ? cur : "new"));
       });
   }, [target]);
+
+  // Existing group whose name mentions the product → use it; otherwise create a new one.
+  const product = setup?.product ?? "";
+  useEffect(() => {
+    if (!meta || groupId) return;
+    const p = normProduct(product);
+    const match = p ? meta.groups.find((g) => normProduct(g.name).includes(p) && !/TERMINATED|EXPIRED/.test(g.status)) : undefined;
+    if (match) {
+      setGroupMode("existing");
+      setGroupId(match.id);
+    }
+  }, [meta, product, groupId]);
+  // Budget / KPI of the chosen existing group
+  useEffect(() => {
+    setGroupInfo(null);
+    if (groupMode !== "existing" || !groupId || !target || target.platform !== "taboola") return;
+    fetch(`/api/campaigns/group?accountId=${encodeURIComponent(target.id)}&id=${encodeURIComponent(groupId)}`)
+      .then((r) => r.json())
+      .then((g) => !g.error && setGroupInfo(g))
+      .catch(() => {});
+  }, [groupMode, groupId, target]);
+  const groupShared = groupMode === "new" ? newGroup.budgetMode === "group" : groupMode === "existing" ? !!groupInfo?.shared : false;
+  const groupName = newGroup.name || (setup ? buildRtName(setup.product, "taboola", setup.countries[0] ?? "US") : "");
 
   // Campaigns that worked (template candidates) for the target source
   const targetPlatform = target?.platform;
@@ -228,12 +276,12 @@ export function CampaignStudio({
   const tpl = setup?.templateCampaign;
   const check =
     setup && target
-      ? checkSetup(target.platform, setup, {
+      ? checkSetup(target.platform, { ...setup, groupShared: showGroup && groupShared }, {
           url: mode === "edit" && !picks.length ? undefined : url,
           creatives: mode === "create" ? picks.length : undefined,
           name,
-          groupNeeded: mode === "create" && target.platform === "taboola" && !!tpl && tpl.accountId !== target.id,
-          groupChosen: groupMode !== "none",
+          groupNeeded: showGroup && (groupMode === "existing" || (mode === "create" && !!tpl && tpl.accountId !== target.id)),
+          groupChosen: groupMode === "new" || (groupMode === "existing" && !!groupId),
         })
       : { errors: [] as string[], warnings: [] as string[] };
 
@@ -260,11 +308,18 @@ export function CampaignStudio({
       : groupMode === "existing"
         ? { mode: "existing", id: groupId }
         : groupMode === "new"
-          ? { mode: "new", name: buildRtName(setup.product, "taboola", setup.countries[0] ?? "US"), marketingObjective: setup.marketingObjective ?? "ONLINE_PURCHASES", ...groupLimit }
+          ? {
+              mode: "new",
+              ...newGroup,
+              name: groupName,
+              marketingObjective: setup.marketingObjective ?? "ONLINE_PURCHASES",
+              startDate: setup.startDate,
+              endDate: setup.endDate,
+            }
           : { mode: "none" };
     const body =
       mode === "create"
-        ? { action: "create", platform: target.platform, accountId: target.id, name, setup, group, url, rtCampaign: rt?.title, creatives, activate }
+        ? { action: "create", platform: target.platform, accountId: target.id, name, setup: { ...setup, groupShared }, group, url, rtCampaign: rt?.title, creatives, activate }
         : mode === "edit"
           ? {
               action: "update",
@@ -438,7 +493,7 @@ export function CampaignStudio({
                     platform={target.platform}
                     setup={setup}
                     onChange={setSetup}
-                    showBudget
+                    showBudget={!(showGroup && groupShared)}
                     conversions={meta?.conversions ?? []}
                     blocklists={meta?.blocklists ?? []}
                     onBlocklists={(b) => meta && setMeta({ ...meta, blocklists: b })}
@@ -482,6 +537,7 @@ export function CampaignStudio({
                     </div>
                     {groupMode === "existing" && (
                       <select id="st-group" className="input mt-3" value={groupId} onChange={(e) => setGroupId(e.target.value)}>
+                        <option value="">Escolha o grupo…</option>
                         {meta.groups.map((g) => (
                           <option key={g.id} value={g.id}>
                             {g.name} · {g.status.toLowerCase()}
@@ -489,30 +545,107 @@ export function CampaignStudio({
                         ))}
                       </select>
                     )}
+                    {groupMode === "existing" && groupInfo && (
+                      <p className="mt-2 text-[11px] text-muted">
+                        {groupInfo.shared
+                          ? `Orçamento do grupo: ${groupInfo.spendingLimitModel === "ENTIRE" ? "total" : "mensal"} US$${groupInfo.spendingLimit}${groupInfo.dailyCap ? ` · até US$${groupInfo.dailyCap}/dia` : ""} · ${groupInfo.distribution === "AUTOMATIC" ? "a Taboola divide entre as campanhas" : "você define por campanha"}. A campanha nova não leva orçamento próprio.`
+                          : "Grupo sem orçamento compartilhado: o orçamento fica em cada campanha (configure acima)."}
+                        {groupInfo.kpi ? ` Meta do grupo: ${groupInfo.kpi} ${groupInfo.kpiGoal ?? ""}.` : ""}
+                      </p>
+                    )}
                     {groupMode === "new" && (
-                      <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                        <Field label="Nome do grupo">
-                          <input className="input" readOnly value={buildRtName(setup.product, "taboola", setup.countries[0] ?? "US")} />
-                        </Field>
-                        <Field label="Orçamento do grupo">
-                          <select
-                            className="input"
-                            value={groupLimit.spendingLimitModel}
-                            onChange={(e) => setGroupLimit({ ...groupLimit, spendingLimitModel: e.target.value })}
-                          >
-                            <option value="MONTHLY">Mensal</option>
-                            <option value="ENTIRE">Total</option>
-                            <option value="NONE">Sem limite</option>
-                          </select>
-                        </Field>
-                        <Field label="Limite (US$)">
-                          <input
-                            className="input"
-                            type="number"
-                            value={groupLimit.spendingLimit}
-                            onChange={(e) => setGroupLimit({ ...groupLimit, spendingLimit: Number(e.target.value) })}
-                          />
-                        </Field>
+                      <div className="mt-3 space-y-3">
+                        <div className="grid gap-3 sm:grid-cols-3">
+                          <Field label="Nome do grupo" className="sm:col-span-2">
+                            <input className="input font-mono text-xs" value={groupName} onChange={(e) => setNewGroup({ ...newGroup, name: e.target.value })} />
+                          </Field>
+                          <Field label="Meta do grupo (KPI)">
+                            <select className="input" value={newGroup.kpi} onChange={(e) => setNewGroup({ ...newGroup, kpi: e.target.value as NewGroupForm["kpi"] })}>
+                              <option value="">Sem meta</option>
+                              <option value="ROAS">ROAS</option>
+                              <option value="CPA">CPA</option>
+                            </select>
+                          </Field>
+                        </div>
+                        {newGroup.kpi && (
+                          <div className="grid gap-3 sm:grid-cols-3">
+                            <Field label={newGroup.kpi === "ROAS" ? "ROAS alvo (ex.: 1.5)" : "CPA alvo (US$)"}>
+                              <input
+                                className="input"
+                                type="number"
+                                step="0.01"
+                                value={newGroup.kpiGoal || ""}
+                                onChange={(e) => setNewGroup({ ...newGroup, kpiGoal: Number(e.target.value) })}
+                              />
+                            </Field>
+                            <Field label={newGroup.kpi === "ROAS" ? "ROAS mínimo aceitável" : "CPA máximo aceitável (US$)"}>
+                              <input
+                                className="input"
+                                type="number"
+                                step="0.01"
+                                value={newGroup.kpiThreshold || ""}
+                                onChange={(e) => setNewGroup({ ...newGroup, kpiThreshold: Number(e.target.value) })}
+                              />
+                            </Field>
+                          </div>
+                        )}
+                        <div>
+                          <span className="mb-1.5 block text-xs text-zinc-300">Orçamento</span>
+                          <div className="flex flex-wrap gap-1">
+                            <button
+                              className={`chip border border-line ${newGroup.budgetMode === "campaign" ? "chip-on" : ""}`}
+                              onClick={() => setNewGroup({ ...newGroup, budgetMode: "campaign" })}
+                            >
+                              Cada campanha tem o seu
+                            </button>
+                            <button
+                              className={`chip border border-line ${newGroup.budgetMode === "group" ? "chip-on" : ""}`}
+                              onClick={() => setNewGroup({ ...newGroup, budgetMode: "group" })}
+                            >
+                              Compartilhado no grupo
+                            </button>
+                          </div>
+                        </div>
+                        {newGroup.budgetMode === "group" && (
+                          <div className="grid gap-3 sm:grid-cols-3">
+                            <Field label="Limite do grupo">
+                              <select
+                                className="input"
+                                value={newGroup.spendingLimitModel}
+                                onChange={(e) => setNewGroup({ ...newGroup, spendingLimitModel: e.target.value as "MONTHLY" | "ENTIRE" })}
+                              >
+                                <option value="MONTHLY">Mensal</option>
+                                <option value="ENTIRE">Total</option>
+                              </select>
+                            </Field>
+                            <Field label="Valor do limite (US$)">
+                              <input
+                                className="input"
+                                type="number"
+                                value={newGroup.spendingLimit}
+                                onChange={(e) => setNewGroup({ ...newGroup, spendingLimit: Number(e.target.value) })}
+                              />
+                            </Field>
+                            <Field label="Máximo por dia (US$)">
+                              <input className="input" type="number" value={newGroup.dailyCap} onChange={(e) => setNewGroup({ ...newGroup, dailyCap: Number(e.target.value) })} />
+                            </Field>
+                            <Field label="Divisão entre as campanhas" className="sm:col-span-3">
+                              <select
+                                className="input"
+                                value={newGroup.distribution}
+                                onChange={(e) => setNewGroup({ ...newGroup, distribution: e.target.value as "AUTOMATIC" | "CUSTOM" })}
+                              >
+                                <option value="AUTOMATIC">Automática (a Taboola manda o dinheiro para a campanha que performa melhor)</option>
+                                <option value="CUSTOM">Manual (você define em cada campanha)</option>
+                              </select>
+                            </Field>
+                          </div>
+                        )}
+                        <p className="text-[11px] text-faint">
+                          {newGroup.budgetMode === "group"
+                            ? "Com orçamento no grupo, a campanha não leva orçamento próprio. Na divisão automática a Taboola recomenda Maximizar conversões."
+                            : "O grupo só organiza (e pode ter meta); o orçamento diário fica em cada campanha, como configurado acima."}
+                        </p>
                       </div>
                     )}
                     <p className="mt-2 text-[11px] text-faint">Na Taboola o grupo só é escolhido na criação; depois não dá para trocar.</p>

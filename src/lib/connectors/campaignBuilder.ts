@@ -22,7 +22,7 @@ const TB = "https://backstage.taboola.com/backstage/api/1.0";
 const tbHeaders = async (c: Credentials) => ({ Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" });
 
 /** Accounts a campaign can be created in. A network account only holds advertiser accounts. */
-export type TbAccount = { accountId: string; name: string; network: boolean };
+export type TbAccount = { accountId: string; name: string; network: boolean; timeZone?: string };
 const tbAccounts = new Map<string, { at: number; list: TbAccount[] }>();
 
 export async function taboolaAdvertisers(c: Credentials): Promise<TbAccount[]> {
@@ -31,18 +31,73 @@ export async function taboolaAdvertisers(c: Credentials): Promise<TbAccount[]> {
   if (hit && Date.now() - hit.at < 3600_000) return hit.list;
   let list: TbAccount[];
   try {
-    const r = await http<{ results?: { account_id?: string; name?: string; type?: string }[] }>(`${TB}/${c.accountId}/advertisers`, {
-      headers: await tbHeaders(c),
-    });
+    const r = await http<{ results?: { account_id?: string; name?: string; type?: string; time_zone_name?: string }[] }>(
+      `${TB}/${c.accountId}/advertisers`,
+      { headers: await tbHeaders(c) },
+    );
     list = (r.results ?? [])
       .filter((a) => a.account_id && a.type !== "NETWORK")
-      .map((a) => ({ accountId: String(a.account_id), name: String(a.name ?? a.account_id), network: true }));
+      .map((a) => ({ accountId: String(a.account_id), name: String(a.name ?? a.account_id), network: true, timeZone: a.time_zone_name }));
   } catch {
     list = [];
   }
   if (!list.length) list = [{ accountId: String(c.accountId), name: String(c.accountId), network: false }];
   tbAccounts.set(key, { at: Date.now(), list });
   return list;
+}
+
+const tzCache = new Map<string, string>();
+/** Time zone of a Taboola account (dates like start_date are read in it). */
+export async function taboolaTimeZone(c: Credentials): Promise<string | undefined> {
+  const k = String(c.accountId);
+  if (tzCache.has(k)) return tzCache.get(k) || undefined;
+  let tz: string | undefined;
+  for (const a of tbAccounts.values()) tz ??= a.list.find((x) => x.accountId === k)?.timeZone;
+  if (!tz) {
+    const me = await http<{ account_id?: string; time_zone_name?: string }>(`${TB}/users/current/account`, { headers: await tbHeaders(c) }).catch(() => ({}) as { account_id?: string; time_zone_name?: string });
+    tz = me.time_zone_name;
+  }
+  tzCache.set(k, tz ?? "");
+  return tz;
+}
+
+/** YYYY-MM-DD "today" in a time zone (falls back to UTC). */
+export function todayIn(tz?: string, plusDays = 0) {
+  const d = new Date(Date.now() + plusDays * 86400_000);
+  try {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: tz || "UTC", year: "numeric", month: "2-digit", day: "2-digit" }).format(d);
+  } catch {
+    return d.toISOString().slice(0, 10);
+  }
+}
+
+/**
+ * Start date Taboola accepts: the chosen day, never before today in the account's time zone. Sent explicitly
+ * because a campaign in an older group would otherwise inherit a start in the past.
+ */
+async function startDates(c: Credentials, chosen?: string): Promise<string[]> {
+  const tz = await taboolaTimeZone(c).catch(() => undefined);
+  // Known zone: today there. Unknown: earliest possible "today" first, moving forward only if refused.
+  const base = tz ? [todayIn(tz), todayIn(tz, 1)] : [todayIn("Etc/GMT+12"), todayIn("UTC"), todayIn("Pacific/Kiritimati")];
+  // "Today" (in the user's own calendar) means now: only a later day is a real scheduled start.
+  const later = chosen && chosen > todayIn("Pacific/Kiritimati") ? chosen : undefined;
+  return [...new Set(base.map((d) => (later && later > d ? later : d)))].sort();
+}
+const pastStart = (e: unknown) => /^400\b/.test(String((e as Error).message)) && /start.?date/i.test(String((e as Error).message)) && /past/i.test(String((e as Error).message));
+
+/** POST with start_date, moving it forward only if Taboola says it is in its past (time zone drift). */
+async function withStart<T>(c: Credentials, chosen: string | undefined, send: (start: string) => Promise<T>): Promise<T> {
+  const dates = await startDates(c, chosen);
+  let last: unknown;
+  for (const d of dates) {
+    try {
+      return await send(d);
+    } catch (e) {
+      last = e;
+      if (!pastStart(e)) throw e;
+    }
+  }
+  throw last;
 }
 
 export type SourceCampaignInfo = { id: string; name: string; status: string; active: boolean; groupId?: string };
@@ -61,6 +116,36 @@ export async function taboolaCampaigns(c: Credentials): Promise<SourceCampaignIn
   }));
 }
 
+export type GroupDetail = GroupInfo & {
+  spendingLimitModel?: string;
+  spendingLimit?: number;
+  dailyCap?: number;
+  distribution?: string;
+  kpi?: string;
+  kpiGoal?: number;
+  /** Budget lives in the group (campaigns may omit theirs). */
+  shared: boolean;
+};
+
+export async function taboolaGroup(c: Credentials, id: string): Promise<GroupDetail> {
+  const g = await http<Record<string, unknown>>(`${TB}/${c.accountId}/campaigns_group/${id}`, { headers: await tbHeaders(c) });
+  const model = g.spending_limit_model ? String(g.spending_limit_model) : undefined;
+  const limit = g.spending_limit != null ? num(g.spending_limit) : undefined;
+  const kd = g.kpi_data as { kpi_goal_value?: number } | undefined;
+  return {
+    id: String(g.id),
+    name: String(g.name ?? ""),
+    status: String(g.status ?? ""),
+    spendingLimitModel: model,
+    spendingLimit: limit,
+    dailyCap: g.daily_cap != null ? num(g.daily_cap) : undefined,
+    distribution: g.budget_distribution_method ? String(g.budget_distribution_method) : undefined,
+    kpi: g.kpi ? String(g.kpi) : undefined,
+    kpiGoal: kd?.kpi_goal_value != null ? num(kd.kpi_goal_value) : undefined,
+    shared: !!model && model !== "NONE" && !!limit,
+  };
+}
+
 export async function taboolaGroups(c: Credentials): Promise<GroupInfo[]> {
   const r = await http<{ results: { id: number | string; name: string; status: string }[] }>(`${TB}/${c.accountId}/campaigns_group`, {
     headers: await tbHeaders(c),
@@ -68,21 +153,74 @@ export async function taboolaGroups(c: Credentials): Promise<GroupInfo[]> {
   return (r.results ?? []).map((g) => ({ id: String(g.id), name: g.name, status: g.status }));
 }
 
-export type NewGroup = { name: string; marketingObjective: string; spendingLimitModel: string; spendingLimit: number; dailyCap?: number };
+/**
+ * New campaign group (official fields): budget either shared by the group (monthly / total limit + daily cap,
+ * split by Taboola automatically or by you) or kept in each campaign; optional success KPI (ROAS, CPA…).
+ */
+export type NewGroup = {
+  name: string;
+  marketingObjective: string;
+  /** "group" = shared budget in the group · "campaign" = each campaign has its own. */
+  budgetMode: "group" | "campaign";
+  spendingLimitModel: "MONTHLY" | "ENTIRE" | "NONE";
+  spendingLimit: number;
+  dailyCap?: number;
+  /** AUTOMATIC = Taboola splits the group budget across campaigns (needs a limited budget). */
+  distribution: "AUTOMATIC" | "CUSTOM";
+  kpi?: "" | "ROAS" | "CPA" | "CPC" | "CTR" | "CPM";
+  kpiGoal?: number;
+  kpiThreshold?: number;
+  startDate?: string;
+  endDate?: string;
+  active?: boolean;
+};
 
-export async function taboolaCreateGroup(c: Credentials, g: NewGroup): Promise<GroupInfo> {
-  const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${c.accountId}/campaigns_group`, {
-    method: "POST",
-    headers: await tbHeaders(c),
-    body: JSON.stringify({
-      name: g.name,
-      marketing_objective: g.marketingObjective,
-      spending_limit_model: g.spendingLimitModel,
-      spending_limit: g.spendingLimit,
-      ...(g.dailyCap ? { daily_cap: g.dailyCap, daily_ad_delivery_model: "STRICT" } : {}),
-    }),
+export function taboolaGroupBody(g: NewGroup, start: string): Record<string, unknown> {
+  const shared = g.budgetMode === "group";
+  const body: Record<string, unknown> = {
+    name: g.name,
+    marketing_objective: g.marketingObjective || "ONLINE_PURCHASES",
+    start_date: start,
+    is_active: g.active !== false,
+  };
+  if (g.endDate) body.end_date = g.endDate;
+  if (shared) {
+    body.spending_limit_model = g.spendingLimitModel === "NONE" ? "MONTHLY" : g.spendingLimitModel;
+    body.spending_limit = g.spendingLimit;
+    body.budget_distribution_method = g.distribution;
+    if (g.dailyCap) {
+      body.daily_cap = g.dailyCap;
+      body.daily_ad_delivery_model = "STRICT";
+    }
+  } else {
+    body.spending_limit_model = "NONE";
+    body.spending_limit = 0;
+    body.budget_distribution_method = "CUSTOM";
+  }
+  if (g.kpi && g.kpiGoal) {
+    body.kpi = g.kpi;
+    body.kpi_data = { kpi_goal_value: g.kpiGoal, kpi_threshold_value: g.kpiThreshold || g.kpiGoal };
+  }
+  return body;
+}
+
+export async function taboolaCreateGroup(c: Credentials, g: NewGroup): Promise<GroupInfo & { note?: string }> {
+  const post = (body: Record<string, unknown>) =>
+    tbHeaders(c).then((headers) =>
+      http<{ id: number | string; name: string; status: string }>(`${TB}/${c.accountId}/campaigns_group`, { method: "POST", headers, body: JSON.stringify(body) }),
+    );
+  let note: string | undefined;
+  const r = await withStart(c, g.startDate, async (start) => {
+    try {
+      return await post(taboolaGroupBody(g, start));
+    } catch (e) {
+      // "No limit" groups are only for eligible accounts: keep budgets per campaign with a monthly cap that never binds first.
+      if (g.budgetMode !== "campaign" || !/^400\b/.test(String((e as Error).message)) || !/spending/i.test(String((e as Error).message))) throw e;
+      note = "a conta não aceita grupo sem limite: o grupo ficou com limite mensal alto e o orçamento continua em cada campanha";
+      return post({ ...taboolaGroupBody(g, start), spending_limit_model: "MONTHLY", spending_limit: 1_000_000 });
+    }
   });
-  return { id: String(r.id), name: r.name, status: r.status };
+  return { id: String(r.id), name: r.name, status: r.status, note };
 }
 
 const TB_DEVICE: Record<string, string> = { DESKTOP: "DESK", MOBILE: "PHON", TABLET: "TBLT" };
@@ -133,14 +271,16 @@ export function taboolaCampaignBody(name: string, s: CampaignSetup, groupId?: st
   if (s.bidStrategy === "TARGET_CPA") body.cpa_goal = s.cpaGoal;
   if (s.trackingCode) body.tracking_code = s.trackingCode;
   if (groupId) body.campaign_group_id = Number(groupId);
-  // In a group with shared budget the campaign may omit its own limit.
-  if (s.spendingLimitModel && (!groupId || s.spendingLimit)) {
-    body.spending_limit_model = s.spendingLimitModel;
-    if (s.spendingLimitModel !== "NONE") body.spending_limit = s.spendingLimit;
-  }
-  if (s.dailyCap) {
-    body.daily_cap = s.dailyCap;
-    body.daily_ad_delivery_model = "STRICT";
+  // In a group with a shared budget the campaign omits its own (Taboola allocates it).
+  if (!(groupId && s.groupShared)) {
+    if (s.spendingLimitModel && (!groupId || s.spendingLimit || s.spendingLimitModel === "NONE")) {
+      body.spending_limit_model = s.spendingLimitModel;
+      if (s.spendingLimitModel !== "NONE") body.spending_limit = s.spendingLimit;
+    }
+    if (s.dailyCap) {
+      body.daily_cap = s.dailyCap;
+      body.daily_ad_delivery_model = "STRICT";
+    }
   }
   // Only what differs from Taboola's defaults (starts now, no end, always on).
   if (s.startDate && s.startDate > today()) body.start_date = s.startDate;
@@ -158,16 +298,18 @@ export async function taboolaCreateCampaign(c: Credentials, name: string, s: Cam
       headers: await tbHeaders(c),
       body: JSON.stringify(body),
     });
-  const body = taboolaCampaignBody(name, s, groupId);
-  let r;
-  try {
-    r = await post(body);
-  } catch (e) {
-    // "No spending limit" is only for eligible accounts (new accounts usually aren't): fall back to a monthly
-    // limit that never binds before the daily budget does.
-    if (!/^400\b/.test(String((e as Error).message)) || !/spending/i.test(String((e as Error).message)) || body.spending_limit_model === "MONTHLY") throw e;
-    r = await post({ ...body, spending_limit_model: "MONTHLY", spending_limit: Math.max(100, Math.round((s.dailyCap || 100) * 31)) });
-  }
+  const r = await withStart(c, s.startDate, async (start) => {
+    const body: Record<string, unknown> = { ...taboolaCampaignBody(name, s, groupId), start_date: start };
+    try {
+      return await post(body);
+    } catch (e) {
+      // "No spending limit" is only for eligible accounts (new accounts usually aren't): fall back to a monthly
+      // limit that never binds before the daily budget does.
+      const m = String((e as Error).message);
+      if (!/^400\b/.test(m) || !/spending/i.test(m) || !body.spending_limit_model || body.spending_limit_model === "MONTHLY") throw e;
+      return post({ ...body, spending_limit_model: "MONTHLY", spending_limit: Math.max(100, Math.round((s.dailyCap || 100) * 31)) });
+    }
+  });
   return { id: String(r.id), name: r.name, status: r.status, active: false };
 }
 
@@ -249,7 +391,7 @@ export async function taboolaFromTemplate(
 
   const overrides = taboolaCampaignBody(name, s, groupId);
   delete overrides.marketing_objective; // follows the template
-  overrides.start_date = s.startDate && s.startDate > today() ? s.startDate : today(); // the template's start is in the past
+  // the template's start is in the past: today in the destination account's zone (set below)
   overrides.end_date = s.endDate || "9999-12-31"; // the template may have ended
   overrides.activity_schedule = taboolaSchedule(s.schedule ?? { mode: "ALWAYS", days: [], fromHour: 0, untilHour: 24, timeZone: (tpl.activity_schedule as { time_zone?: string })?.time_zone });
   if (tpl.daily_ad_delivery_model) delete overrides.daily_ad_delivery_model; // keep the template's pacing
@@ -260,11 +402,12 @@ export async function taboolaFromTemplate(
 
   try {
     const q = cross ? `?destination_account=${encodeURIComponent(String(dst.accountId))}` : "";
-    const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${src.accountId}/campaigns/${templateId}/duplicate/${q}`, {
+    const r = await withStart(dst, s.startDate, async (start) => http<{ id: number | string; name: string; status: string }>(`${TB}/${src.accountId}/campaigns/${templateId}/duplicate/${q}`, {
       method: "POST",
       headers: await tbHeaders(src),
       body: JSON.stringify({
         ...overrides,
+        start_date: start,
         is_active: false,
         duplicate_settings: {
           include_items: false,
@@ -273,7 +416,7 @@ export async function taboolaFromTemplate(
           include_third_party_tracking: true,
         },
       }),
-    });
+    }));
     await http(`${TB}/${dst.accountId}/campaigns/${r.id}/`, { method: "POST", headers: await tbHeaders(dst), body: JSON.stringify({ is_active: false }) }).catch(() => {});
     return { id: String(r.id), name: r.name, status: r.status, active: false, how: cross ? "duplicada da campanha modelo para a outra conta" : "duplicada da campanha modelo" };
   } catch (e) {
@@ -282,6 +425,7 @@ export async function taboolaFromTemplate(
     const body: Record<string, unknown> = {};
     for (const k of PORTABLE) if (tpl[k] !== undefined && tpl[k] !== null) body[k] = cleanTargeting(tpl[k]);
     Object.assign(body, overrides, { is_active: false });
+    body.start_date = (await startDates(dst, s.startDate))[0];
     if (!s.blockedSites?.length && inheritBlocks && tplBlocks.length) body.publisher_targeting = { type: "EXCLUDE", value: tplBlocks };
     if (inheritBids && tpl.publisher_bid_modifier) body.publisher_bid_modifier = tpl.publisher_bid_modifier;
     const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${dst.accountId}/campaigns/`, {

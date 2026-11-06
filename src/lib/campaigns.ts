@@ -16,6 +16,7 @@ import {
   taboolaCampaigns,
   taboolaCreateCampaign,
   taboolaCreateGroup,
+  taboolaGroup,
   taboolaDetail,
   taboolaDuplicate,
   taboolaDuplicateWith,
@@ -264,12 +265,15 @@ export async function createCampaign(input: CreateInput, baseUrl: string) {
   try {
     let groupId: string | undefined;
     if (input.platform === "taboola" && input.group?.mode === "new") {
-      const g = await taboolaCreateGroup(conn.credentials, input.group);
+      const g = await taboolaCreateGroup(conn.credentials, { ...input.group, active: true });
       groupId = g.id;
-      steps.push(`Grupo "${g.name}" criado (id ${g.id})`);
+      input = { ...input, setup: { ...input.setup, groupShared: input.group.budgetMode === "group" } };
+      steps.push(`Grupo "${g.name}" criado (id ${g.id})${g.note ? ` — ${g.note}` : ""}`);
     } else if (input.platform === "taboola" && input.group?.mode === "existing") {
       groupId = input.group.id;
-      steps.push(`Usando o grupo ${groupId}`);
+      const g = await taboolaGroup(conn.credentials, groupId).catch(() => undefined);
+      input = { ...input, setup: { ...input.setup, groupShared: !!g?.shared } };
+      steps.push(`Grupo "${g?.name ?? groupId}"${g?.shared ? " (orçamento do grupo)" : ""}`);
     }
     let camp;
     if (tplRef) {
