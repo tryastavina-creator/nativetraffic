@@ -50,7 +50,10 @@ import {
 export type Platform = "taboola" | "revcontent";
 
 /** A creative to put in a campaign: a generated variant from the library, or an ad that is already running. */
-export type CreativeInput = { kind: "variant"; variantId: string; headline?: string } | { kind: "ad"; imageUrl: string; headline: string };
+export type CreativeInput = (
+  | { kind: "variant"; variantId: string; headline?: string }
+  | { kind: "ad"; imageUrl: string; headline: string }
+) & { description?: string; cta?: string };
 
 /** Bid label used in the source campaign name (PRODUTO DEVICE LANCE PAÍS DATA). */
 export function bidLabel(platform: Platform, s: CampaignSetup): string {
@@ -200,8 +203,9 @@ async function addCreatives(
                 (await getAsset(v.assetId)) ?? (() => { throw new Error("imagem da variação não encontrada no banco"); })(),
                 true,
                 resume[idx],
+                cr,
               )
-            : await publishRevcontent(conn.credentials, campaignId, url, headline, v.source.brand ?? "", `${baseUrl}/api/assets/${v.assetId}`);
+            : await publishRevcontent(conn.credentials, campaignId, url, headline, v.source.brand ?? "", `${baseUrl}/api/assets/${v.assetId}`, cr);
         await updateVariant(v.id, {
           status: "published",
           published: [...(v.published ?? []), { platform, itemId: r.itemId, at: new Date().toISOString(), status: r.status }],
@@ -217,7 +221,7 @@ async function addCreatives(
         let r;
         if (platform === "taboola") {
           if (/(^|\.)taboola\.com$/.test(host)) {
-            r = await publishTaboola(conn.credentials, campaignId, url, cr.headline, { hostedUrl: cr.imageUrl }, false, resume[idx]);
+            r = await publishTaboola(conn.credentials, campaignId, url, cr.headline, { hostedUrl: cr.imageUrl }, false, resume[idx], cr);
           } else {
             const img = await fetch(cr.imageUrl, { cache: "no-store" });
             if (!img.ok) throw new Error(`não consegui baixar a imagem (${img.status})`);
@@ -229,10 +233,11 @@ async function addCreatives(
               { bytes: Buffer.from(await img.arrayBuffer()), mime: img.headers.get("content-type") ?? "image/jpeg" },
               false,
               resume[idx],
+              cr,
             );
           }
         } else {
-          r = await publishRevcontent(conn.credentials, campaignId, url, cr.headline, "", cr.imageUrl);
+          r = await publishRevcontent(conn.credentials, campaignId, url, cr.headline, "", cr.imageUrl, cr);
         }
         ids.push(r.itemId);
         steps.push(`Anúncio ${r.itemId} (criativo existente) criado`);
@@ -467,7 +472,7 @@ export async function campaignDetail(accountId: string, campaignId: string) {
   return { ...d, accountId: owner };
 }
 
-export type ItemChange = { id: string; title?: string; active?: boolean };
+export type ItemChange = { id: string; title?: string; active?: boolean; description?: string; cta?: string };
 
 export async function updateCampaign(
   input: {
@@ -499,7 +504,16 @@ export async function updateCampaign(
     try {
       if (platform === "taboola") await taboolaUpdateItem(conn.credentials, input.campaignId, ch.id, ch);
       else await revcontentUpdateItem(conn.credentials, input.campaignId, ch.id, ch);
-      steps.push(`Anúncio ${ch.id}: ${[ch.title !== undefined ? "headline nova" : "", ch.active !== undefined ? (ch.active ? "ativado" : "pausado") : ""].filter(Boolean).join(", ")}`);
+      steps.push(
+        `Anúncio ${ch.id}: ${[
+          ch.title !== undefined ? "headline nova" : "",
+          ch.description !== undefined ? "descrição" : "",
+          ch.cta !== undefined ? (ch.cta ? `CTA ${ch.cta}` : "sem CTA") : "",
+          ch.active !== undefined ? (ch.active ? "ativado" : "pausado") : "",
+        ]
+          .filter(Boolean)
+          .join(", ")}`,
+      );
     } catch (e) {
       ok = false;
       steps.push(`Falhou no anúncio ${ch.id}: ${friendlyError("", e).replace(/^: /, "")}`);
@@ -534,7 +548,7 @@ export async function copyCampaign(
     url: string;
     rtCampaign?: string;
     /** Ads of the source to carry over (with possibly edited headlines). */
-    keep: { title: string; thumbnail: string }[];
+    keep: { title: string; thumbnail: string; description?: string; cta?: string }[];
     keepAll: boolean;
     creatives: CreativeInput[];
     activate?: boolean;
@@ -545,7 +559,7 @@ export async function copyCampaign(
   const dst = await resolveAccount(input.target.accountId);
   if (!src || !dst) throw new Error("Conta não encontrada.");
   const platform = dst.provider as Platform;
-  const kept: CreativeInput[] = input.keep.map((k) => ({ kind: "ad", imageUrl: k.thumbnail, headline: k.title }));
+  const kept: CreativeInput[] = input.keep.map((k) => ({ kind: "ad", imageUrl: k.thumbnail, headline: k.title, description: k.description, cta: k.cta }));
 
   if (src.id === dst.id && platform === "taboola") {
     const steps: string[] = [];

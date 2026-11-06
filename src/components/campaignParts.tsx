@@ -7,8 +7,52 @@ import { normProduct } from "@/lib/naming";
 import type { Blocklist, CampaignLogEntry, CampaignSchedule, CampaignSetup, CreativeVariant } from "@/lib/store";
 
 export type Platform = "taboola" | "revcontent";
-export type Pick = { key: string; kind: "variant" | "ad"; variantId?: string; imageUrl: string; headline: string; label: string };
-type Ad = { platform: string; itemId: string; title: string; thumbnail: string; campaignName: string; spend: number; roas: number; key: string };
+export type Pick = {
+  key: string;
+  kind: "variant" | "ad";
+  variantId?: string;
+  imageUrl: string;
+  headline: string;
+  label: string;
+  description?: string;
+  /** Taboola CTA button ("" = none). */
+  cta?: string;
+};
+type Perf = { spend: number; roas: number; profit: number; cpa: number; sales: number; ctr: number };
+type Ad = Perf & { platform: string; itemId: string; title: string; thumbnail: string; campaignName: string; key: string };
+type Group = Perf & { key: string; image: string; title: string; ads: number; platforms: string[] };
+
+/** Taboola call-to-action buttons. */
+export const CTAS: [string, string][] = [
+  ["", "Sem CTA"],
+  ["LEARN_MORE", "Learn More"],
+  ["SHOP_NOW", "Shop Now"],
+  ["READ_MORE", "Read More"],
+  ["GET_OFFER", "Get Offer"],
+  ["CLICK_HERE", "Click Here"],
+  ["TRY_NOW", "Try Now"],
+  ["SIGN_UP", "Sign Up"],
+  ["SEE_MORE", "See More"],
+  ["BUY_NOW", "Buy Now"],
+  ["ORDER_NOW", "Order Now"],
+];
+export const TITLE_MAX: Record<string, number> = { taboola: 150, revcontent: 80 };
+
+/** Fills empty descriptions with an aggressive one matching each headline. */
+export async function generateDescriptions(headlines: string[]): Promise<Record<string, string>> {
+  const r = await fetch("/api/creatives/describe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ headlines }),
+  })
+    .then((x) => x.json())
+    .catch(() => ({ results: [] }));
+  return Object.fromEntries(((r.results ?? []) as { headline: string; description: string }[]).map((x) => [x.headline, x.description]));
+}
+
+const money0 = (n: number) => `${n < 0 ? "-" : ""}$${Math.abs(Math.round(n)).toLocaleString("en-US")}`;
+const perfLine = (x: Perf) =>
+  `lucro ${money0(x.profit)} · ROAS ${x.roas.toFixed(2)}x${x.sales ? ` · CPA ${money0(x.cpa)}` : ""} · CTR ${x.ctr.toFixed(2)}%`;
 
 export const PLATFORM_LABEL: Record<string, string> = { taboola: "Taboola", revcontent: "Revcontent" };
 
@@ -348,73 +392,202 @@ function BlocklistField({
 }
 
 export function CreativePicker({ platform, picks, onChange }: { platform: Platform; picks: Pick[]; onChange: (p: Pick[]) => void }) {
-  const [data, setData] = useState<{ variants: CreativeVariant[]; combos: Ad[] } | null>(null);
-  const [view, setView] = useState<"variants" | "ads">("variants");
+  const [data, setData] = useState<{ variants: CreativeVariant[]; combos: Ad[]; images: Group[]; headlines: Group[] } | null>(null);
+  const [view, setView] = useState<"images" | "headlines" | "ads" | "variants">("images");
+  const [target, setTarget] = useState<string | null>(null); // pick that receives a headline from the Headlines tab
+  const [genBusy, setGenBusy] = useState(false);
   useEffect(() => {
     fetch("/api/creatives?preset=30d")
       .then((r) => r.json())
-      .then(setData);
+      .then(setData)
+      .catch(() => setData({ variants: [], combos: [], images: [], headlines: [] }));
   }, []);
-  const toggle = (p: Pick) => onChange(picks.some((x) => x.key === p.key) ? picks.filter((x) => x.key !== p.key) : [...picks, p]);
+  const max = TITLE_MAX[platform] ?? 100;
+  const byProfit = <T extends Perf>(xs: T[]) => [...xs].sort((a, b) => b.profit - a.profit || b.roas - a.roas);
   const variants = (data?.variants ?? []).filter((v) => v.status !== "archived");
-  const ads = [...(data?.combos ?? [])].sort((a, b) => b.roas - a.roas);
+  const images = byProfit(data?.images ?? []);
+  const headlines = byProfit(data?.headlines ?? []);
+  const ads = byProfit(data?.combos ?? []);
+  const add = (p: Omit<Pick, "key">) => {
+    const key = `${p.kind}:${p.imageUrl}:${Date.now()}:${Math.random().toString(36).slice(2, 6)}`;
+    onChange([...picks, { ...p, key, headline: p.headline.slice(0, max), cta: p.cta ?? "" }]);
+    setTarget(key);
+  };
+  const update = (key: string, patch: Partial<Pick>) => onChange(picks.map((x) => (x.key === key ? { ...x, ...patch } : x)));
+  const count = (img: string) => picks.filter((x) => x.imageUrl === img).length;
+
+  async function fillDescriptions(all: boolean) {
+    const need = picks.filter((p) => all || !p.description?.trim()).map((p) => p.headline);
+    if (!need.length) return;
+    setGenBusy(true);
+    const got = await generateDescriptions(need);
+    setGenBusy(false);
+    onChange(picks.map((p) => (all || !p.description?.trim() ? { ...p, description: got[p.headline] ?? p.description } : p)));
+  }
+
+  const tabs: [typeof view, string][] = [
+    ["images", `Imagens que performam (${images.length})`],
+    ["headlines", `Headlines que performam (${headlines.length})`],
+    ["ads", `Anúncios prontos (${ads.length})`],
+    ["variants", `Variações geradas (${variants.length})`],
+  ];
 
   return (
     <div>
-      <div className="flex gap-1">
-        <button className={`chip border border-line ${view === "variants" ? "chip-on" : ""}`} onClick={() => setView("variants")}>
-          Variações geradas ({variants.length})
-        </button>
-        <button className={`chip border border-line ${view === "ads" ? "chip-on" : ""}`} onClick={() => setView("ads")}>
-          Anúncios que já rodam ({ads.length})
-        </button>
+      <div className="flex flex-wrap gap-1">
+        {tabs.map(([id, label]) => (
+          <button key={id} className={`chip border border-line ${view === id ? "chip-on" : ""}`} onClick={() => setView(id)}>
+            {label}
+          </button>
+        ))}
       </div>
-      <div className="mt-3 grid max-h-[420px] gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
-        {view === "variants" &&
-          variants.map((v) => {
-            const p: Pick = { key: `v:${v.id}`, kind: "variant", variantId: v.id, imageUrl: `/api/assets/${v.assetId}`, headline: v.headline, label: v.source.campaignName };
-            const on = picks.some((x) => x.key === p.key);
-            return (
-              <button key={v.id} onClick={() => toggle(p)} className={`overflow-hidden rounded-lg border text-left ${on ? "border-accent" : "border-line"}`}>
-                <img src={p.imageUrl} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
-                <div className="line-clamp-2 p-2 text-[11px]">{v.headline}</div>
-              </button>
-            );
-          })}
+      <p className="mt-2 text-[11px] text-faint">
+        {view === "images"
+          ? "Clique numa imagem para adicionar (vem com a headline que mais rodou com ela; troque à vontade). Dá para usar a mesma imagem com headlines diferentes."
+          : view === "headlines"
+            ? picks.length
+              ? "Clique numa headline para colocar no criativo marcado abaixo (●)."
+              : "Escolha primeiro uma imagem; depois clique aqui para trocar a headline dela."
+            : view === "ads"
+              ? "Imagem + headline exatamente como já rodam, ordenados por lucro (últimos 30 dias)."
+              : "Variações geradas na aba Criativos."}
+      </p>
+      <div className="mt-2 grid max-h-[380px] gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
+        {!data && <p className="text-xs text-muted sm:col-span-3">Carregando criativos dos últimos 30 dias…</p>}
+        {view === "images" &&
+          images.map((g) => (
+            <button
+              key={g.key}
+              onClick={() => add({ kind: "ad", imageUrl: g.image, headline: g.title, label: perfLine(g) })}
+              className={`relative overflow-hidden rounded-lg border text-left ${count(g.image) ? "border-accent" : "border-line"}`}
+            >
+              <img src={g.image} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
+              {count(g.image) > 0 && <span className="absolute right-1 top-1 rounded bg-accent px-1.5 text-[10px] font-semibold text-black">{count(g.image)}×</span>}
+              <div className="p-2 text-[11px]">
+                <div className="text-faint">{perfLine(g)}</div>
+                <div className="text-faint">{g.ads} anúncio(s)</div>
+              </div>
+            </button>
+          ))}
+        {view === "headlines" &&
+          headlines.map((g) => (
+            <button
+              key={g.key}
+              disabled={!picks.length}
+              onClick={() => target && update(target, { headline: g.title.slice(0, max) })}
+              className="rounded-lg border border-line p-2 text-left text-[11px] hover:border-accent disabled:opacity-50 sm:col-span-3"
+            >
+              <div className="text-zinc-200">{g.title}</div>
+              <div className="text-faint">{perfLine(g)}</div>
+            </button>
+          ))}
         {view === "ads" &&
-          ads.map((a) => {
-            const p: Pick = { key: `a:${a.key}`, kind: "ad", imageUrl: a.thumbnail, headline: a.title, label: `${PLATFORM_LABEL[a.platform] ?? a.platform} · ROAS ${a.roas.toFixed(2)}x` };
-            const on = picks.some((x) => x.key === p.key);
-            return (
-              <button key={a.key} onClick={() => toggle(p)} className={`overflow-hidden rounded-lg border text-left ${on ? "border-accent" : "border-line"}`}>
-                <img src={a.thumbnail} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
-                <div className="p-2 text-[11px]">
-                  <div className="line-clamp-2">{a.title}</div>
-                  <div className="text-faint">{p.label}</div>
-                </div>
-              </button>
-            );
-          })}
-        {data && view === "variants" && !variants.length && <p className="text-xs text-muted sm:col-span-3">Nenhuma variação. Gere na aba Criativos.</p>}
+          ads.map((a) => (
+            <button
+              key={a.key}
+              onClick={() => add({ kind: "ad", imageUrl: a.thumbnail, headline: a.title, label: `${PLATFORM_LABEL[a.platform] ?? a.platform} · ${perfLine(a)}` })}
+              className={`overflow-hidden rounded-lg border text-left ${count(a.thumbnail) ? "border-accent" : "border-line"}`}
+            >
+              <img src={a.thumbnail} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
+              <div className="p-2 text-[11px]">
+                <div className="line-clamp-2">{a.title}</div>
+                <div className="text-faint">{perfLine(a)}</div>
+              </div>
+            </button>
+          ))}
+        {view === "variants" &&
+          variants.map((v) => (
+            <button
+              key={v.id}
+              onClick={() => add({ kind: "variant", variantId: v.id, imageUrl: `/api/assets/${v.assetId}`, headline: v.headline, label: v.source.campaignName })}
+              className={`overflow-hidden rounded-lg border text-left ${count(`/api/assets/${v.assetId}`) ? "border-accent" : "border-line"}`}
+            >
+              <img src={`/api/assets/${v.assetId}`} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
+              <div className="line-clamp-2 p-2 text-[11px]">{v.headline}</div>
+            </button>
+          ))}
+        {data && view === "variants" && !variants.length && (
+          <p className="text-xs text-muted sm:col-span-3">Nenhuma variação gerada ainda. Use as imagens e headlines que performam, ou gere variações na aba Criativos.</p>
+        )}
       </div>
+
       {picks.length > 0 && (
-        <div className="mt-3 space-y-2">
-          <div className="label">Headlines dos escolhidos</div>
-          {picks.map((p, i) => (
-            <div key={p.key} className="flex items-center gap-2">
-              <img src={p.imageUrl} alt="" className="h-9 w-16 shrink-0 rounded object-cover" />
-              <input
-                aria-label="Headline"
-                className="input py-1.5 text-xs"
-                maxLength={platform === "revcontent" ? 80 : 100}
-                value={p.headline}
-                onChange={(e) => onChange(picks.map((x, j) => (j === i ? { ...x, headline: e.target.value } : x)))}
-              />
-              <button className="text-xs text-bad" onClick={() => onChange(picks.filter((_, j) => j !== i))} aria-label="Remover">
-                ✕
+        <div className="mt-4 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="label">Criativos escolhidos ({picks.length})</div>
+            <div className="flex flex-wrap items-center gap-2 text-[11px]">
+              <button className="text-info hover:underline disabled:opacity-50" disabled={genBusy} onClick={() => fillDescriptions(false)}>
+                {genBusy ? "Gerando…" : "Gerar descrições que faltam"}
               </button>
+              <button className="text-info hover:underline disabled:opacity-50" disabled={genBusy} onClick={() => fillDescriptions(true)}>
+                Refazer todas
+              </button>
+              {platform === "taboola" && (
+                <select
+                  aria-label="CTA para todos"
+                  className="input w-auto py-1 text-[11px]"
+                  value=""
+                  onChange={(e) => onChange(picks.map((p) => ({ ...p, cta: e.target.value === "-" ? "" : e.target.value })))}
+                >
+                  <option value="">CTA em todos…</option>
+                  {CTAS.map(([v, l]) => (
+                    <option key={v || "-"} value={v || "-"}>
+                      {l}
+                    </option>
+                  ))}
+                </select>
+              )}
+            </div>
+          </div>
+          {picks.map((p) => (
+            <div key={p.key} className={`rounded-lg border p-2 ${target === p.key ? "border-accent/60" : "border-line"}`} onClick={() => setTarget(p.key)}>
+              <div className="flex items-start gap-2">
+                <img src={p.imageUrl} alt="" className="h-14 w-24 shrink-0 rounded object-cover" />
+                <div className="min-w-0 flex-1 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] ${target === p.key ? "text-accent" : "text-faint"}`}>●</span>
+                    <input
+                      aria-label="Headline"
+                      className="input py-1.5 text-xs"
+                      maxLength={max}
+                      value={p.headline}
+                      onChange={(e) => update(p.key, { headline: e.target.value })}
+                    />
+                    <span className="w-12 shrink-0 text-right text-[10px] text-faint">
+                      {p.headline.length}/{max}
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <textarea
+                      aria-label="Descrição"
+                      className="input h-14 py-1.5 text-xs"
+                      maxLength={250}
+                      placeholder="Descrição (aparece embaixo da headline) — use “Gerar descrições”"
+                      value={p.description ?? ""}
+                      onChange={(e) => update(p.key, { description: e.target.value })}
+                    />
+                    <span className="w-12 shrink-0 text-right text-[10px] text-faint">{(p.description ?? "").length}/250</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {platform === "taboola" && (
+                      <select aria-label="CTA" className="input w-auto py-1 text-[11px]" value={p.cta ?? ""} onChange={(e) => update(p.key, { cta: e.target.value })}>
+                        {CTAS.map(([v, l]) => (
+                          <option key={v || "-"} value={v}>
+                            {l}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                    <span className="truncate text-[10px] text-faint">{p.label}</span>
+                  </div>
+                </div>
+                <button className="text-xs text-bad" onClick={() => onChange(picks.filter((x) => x.key !== p.key))} aria-label="Remover">
+                  ✕
+                </button>
+              </div>
             </div>
           ))}
+          {picks.some((p) => !p.description?.trim()) && <p className="text-[11px] text-warn">Há criativos sem descrição.</p>}
         </div>
       )}
     </div>

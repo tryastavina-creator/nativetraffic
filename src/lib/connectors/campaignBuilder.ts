@@ -569,7 +569,17 @@ export async function revcontentTemplateBlocks(c: Credentials, templateId: strin
 
 // ------------------------------ read / edit existing ------------------------------
 
-export type ExistingItem = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string };
+export type ExistingItem = {
+  id: string;
+  title: string;
+  thumbnail: string;
+  url: string;
+  active: boolean;
+  status: string;
+  description?: string;
+  /** Taboola CTA type ("" = none). */
+  cta?: string;
+};
 export type CampaignDetail = {
   platform: "taboola" | "revcontent";
   /** Taboola: advertiser account that owns the campaign (differs from the connection when it is a network). */
@@ -598,6 +608,8 @@ export async function taboolaDetail(c: Credentials, id: string): Promise<Campaig
   const list: ExistingItem[] = (items.results ?? []).map((i) => ({
     id: String(i.id),
     title: String(i.title ?? ""),
+    description: i.description ? String(i.description) : "",
+    cta: (i.cta as { cta_type?: string } | null)?.cta_type && (i.cta as { cta_type?: string }).cta_type !== "NONE" ? String((i.cta as { cta_type?: string }).cta_type) : "",
     thumbnail: https(String(i.thumbnail_url ?? "")),
     url: String(i.url ?? ""),
     active: i.is_active === true,
@@ -648,9 +660,16 @@ export async function taboolaUpdate(c: Credentials, id: string, name: string, s:
   await http(`${TB}/${c.accountId}/campaigns/${id}/`, { method: "POST", headers: await tbHeaders(c), body: JSON.stringify(body) });
 }
 
-export async function taboolaUpdateItem(c: Credentials, campaignId: string, itemId: string, p: { title?: string; active?: boolean }) {
+export async function taboolaUpdateItem(
+  c: Credentials,
+  campaignId: string,
+  itemId: string,
+  p: { title?: string; active?: boolean; description?: string; cta?: string },
+) {
   const body: Record<string, unknown> = {};
   if (p.title !== undefined) body.title = p.title;
+  if (p.description !== undefined) body.description = p.description.slice(0, 250);
+  if (p.cta !== undefined) body.cta = { cta_type: p.cta || "NONE" };
   if (p.active !== undefined) body.is_active = p.active;
   await http(`${TB}/${c.accountId}/campaigns/${campaignId}/items/${itemId}/`, {
     method: "POST",
@@ -673,6 +692,7 @@ export async function revcontentDetail(c: Credentials, id: string): Promise<Camp
     .map((i) => ({
       id: String(i.content_id),
       title: String(i.headline ?? ""),
+      description: i.description ? String(i.description) : "",
       thumbnail: https(String(i.image_url ?? "")),
       url: String(i.target_url ?? ""),
       active: i.enabled === "active",
@@ -723,11 +743,17 @@ export async function revcontentUpdate(c: Credentials, id: string, name: string,
   });
 }
 
-export async function revcontentUpdateItem(c: Credentials, boostId: string, contentId: string, p: { title?: string; active?: boolean }) {
+export async function revcontentUpdateItem(
+  c: Credentials,
+  boostId: string,
+  contentId: string,
+  p: { title?: string; active?: boolean; description?: string },
+) {
   await rcPost(c, `/stats/api/v1.0/boosts/${boostId}/content`, {
     boost_id: Number(boostId),
     id: Number(contentId),
     ...(p.title !== undefined ? { headline: p.title.slice(0, 80) } : {}),
+    ...(p.description !== undefined ? { description: p.description.slice(0, 250) } : {}),
     ...(p.active !== undefined ? { enabled: p.active ? "on" : "off" } : {}),
   });
 }

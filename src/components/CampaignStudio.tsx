@@ -14,7 +14,10 @@ import { translateSetup } from "@/lib/setupTranslate";
 import type { Blocklist, CampaignSetup, CampaignTemplate } from "@/lib/store";
 import {
   BID_LABEL,
+  CTAS,
   CreativePicker,
+  generateDescriptions,
+  TITLE_MAX,
   DEFAULT_SETUP,
   Field,
   PLATFORM_LABEL,
@@ -38,7 +41,7 @@ type Meta = {
   warnings: string[];
 };
 type Winner = { accountId: string; campaignId: string; name: string; spend: number; sales: number; cpa: number; roas: number; profit: number };
-type Item = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string };
+type Item = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string; description?: string; cta?: string };
 type Detail = { platform: Platform; campaignId: string; name: string; setup: CampaignSetup; groupId?: string; items: Item[]; url: string; accountId: string };
 
 export type StudioMode = "create" | "edit" | "duplicate";
@@ -70,7 +73,10 @@ export function CampaignStudio({
   const [setup, setSetup] = useState<CampaignSetup | null>(null);
   const [name, setName] = useState("");
   const [nameEdited, setNameEdited] = useState(mode === "edit");
-  const [items, setItems] = useState<(Item & { keep: boolean; newTitle: string; newActive: boolean })[]>([]);
+  const [items, setItems] = useState<(Item & { keep: boolean; newTitle: string; newActive: boolean; newDesc: string; newCta: string })[]>([]);
+  const [descBusy, setDescBusy] = useState(false);
+  const itemChanged = (i: (typeof items)[number]) =>
+    i.newTitle !== i.title || i.newActive !== i.active || i.newDesc !== (i.description ?? "") || i.newCta !== (i.cta ?? "");
   const [groupMode, setGroupMode] = useState<"existing" | "new" | "none">("existing");
   const [groupId, setGroupId] = useState("");
   type NewGroupForm = {
@@ -125,7 +131,16 @@ export function CampaignStudio({
         const j = await r.json();
         if (!r.ok) throw new Error(j.error);
         setDetail(j);
-        setItems(j.items.map((i: Item) => ({ ...i, keep: i.active || j.items.length <= 6, newTitle: i.title, newActive: i.active })));
+        setItems(
+          j.items.map((i: Item) => ({
+            ...i,
+            keep: i.active || j.items.length <= 6,
+            newTitle: i.title,
+            newActive: i.active,
+            newDesc: i.description ?? "",
+            newCta: i.cta ?? "",
+          })),
+        );
         setUrl(j.url);
         if (mode === "edit") setName(j.name);
       })
@@ -270,7 +285,9 @@ export function CampaignStudio({
 
   const rt = meta?.rtCampaigns.find((c) => c.id === rtId);
   const creatives = picks.map((p) =>
-    p.kind === "variant" ? { kind: "variant", variantId: p.variantId, headline: p.headline } : { kind: "ad", imageUrl: p.imageUrl, headline: p.headline },
+    p.kind === "variant"
+      ? { kind: "variant", variantId: p.variantId, headline: p.headline, description: p.description, cta: p.cta }
+      : { kind: "ad", imageUrl: p.imageUrl, headline: p.headline, description: p.description, cta: p.cta },
   );
   const showGroup = target?.platform === "taboola" && (mode === "create" || (mode === "duplicate" && !nativeDuplicate));
   const tpl = setup?.templateCampaign;
@@ -331,10 +348,12 @@ export function CampaignStudio({
               rtCampaign: rt?.title,
               creatives,
               itemChanges: items
-                .filter((i) => i.newTitle !== i.title || i.newActive !== i.active)
+                .filter(itemChanged)
                 .map((i) => ({
                   id: i.id,
                   ...(i.newTitle !== i.title ? { title: i.newTitle } : {}),
+                  ...(i.newDesc !== (i.description ?? "") ? { description: i.newDesc } : {}),
+                  ...(i.newCta !== (i.cta ?? "") ? { cta: i.newCta } : {}),
                   ...(i.newActive !== i.active ? { active: i.newActive } : {}),
                 })),
             }
@@ -349,7 +368,9 @@ export function CampaignStudio({
               url,
               rtCampaign: rt?.title,
               keepAll: items.length > 0 && items.every((i) => i.keep && i.newTitle === i.title),
-              keep: items.filter((i) => i.keep && i.thumbnail).map((i) => ({ title: i.newTitle, thumbnail: i.thumbnail })),
+              keep: items
+                .filter((i) => i.keep && i.thumbnail)
+                .map((i) => ({ title: i.newTitle, thumbnail: i.thumbnail, description: i.newDesc, cta: i.newCta })),
               creatives,
             };
     const r = await fetch("/api/campaigns/run", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
@@ -687,39 +708,100 @@ export function CampaignStudio({
                 </Section>
 
                 {mode !== "create" && (
-                  <Section title={mode === "edit" ? `Anúncios da campanha (${items.length})` : `Anúncios da original (${keptCount} de ${items.length} na cópia)`}>
+                  <Section
+                    title={mode === "edit" ? `Anúncios da campanha (${items.length})` : `Anúncios da original (${keptCount} de ${items.length} na cópia)`}
+                    right={
+                      items.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-2 text-[11px]">
+                          <button
+                            className="text-info hover:underline disabled:opacity-50"
+                            disabled={descBusy}
+                            onClick={async () => {
+                              const need = items.filter((i) => !i.newDesc.trim()).map((i) => i.newTitle);
+                              if (!need.length) return;
+                              setDescBusy(true);
+                              const got = await generateDescriptions(need);
+                              setDescBusy(false);
+                              setItems((cur) => cur.map((x) => (!x.newDesc.trim() && got[x.newTitle] ? { ...x, newDesc: got[x.newTitle] } : x)));
+                            }}
+                          >
+                            {descBusy ? "Gerando…" : "Gerar descrições que faltam"}
+                          </button>
+                          {target.platform === "taboola" && (
+                            <select
+                              aria-label="CTA em todos os anúncios"
+                              className="input w-auto py-1 text-[11px]"
+                              value=""
+                              onChange={(e) => setItems(items.map((x) => ({ ...x, newCta: e.target.value === "-" ? "" : e.target.value })))}
+                            >
+                              <option value="">CTA em todos…</option>
+                              {CTAS.map(([v, l]) => (
+                                <option key={v || "-"} value={v || "-"}>
+                                  {l}
+                                </option>
+                              ))}
+                            </select>
+                          )}
+                        </div>
+                      )
+                    }
+                  >
                     {items.length === 0 && <p className="text-sm text-muted">A campanha não tem anúncios.</p>}
                     <div className="space-y-2">
-                      {items.map((i, idx) => (
-                        <div key={i.id} className={`flex items-center gap-3 rounded-lg border p-2 ${mode === "duplicate" && !i.keep ? "border-line opacity-50" : "border-line"}`}>
-                          {mode === "duplicate" ? (
-                            <input
-                              type="checkbox"
-                              aria-label="Levar para a cópia"
-                              checked={i.keep}
-                              onChange={(e) => setItems(items.map((x, j) => (j === idx ? { ...x, keep: e.target.checked } : x)))}
-                            />
-                          ) : null}
-                          <img src={i.thumbnail} alt="" className="h-10 w-16 shrink-0 rounded object-cover" />
-                          <input
-                            aria-label="Headline"
-                            className="input py-1.5 text-xs"
-                            value={i.newTitle}
-                            maxLength={target.platform === "revcontent" ? 80 : 100}
-                            onChange={(e) => setItems(items.map((x, j) => (j === idx ? { ...x, newTitle: e.target.value } : x)))}
-                          />
-                          {mode === "edit" && (
-                            <button
-                              className={`chip shrink-0 border border-line ${i.newActive ? "chip-on" : ""}`}
-                              onClick={() => setItems(items.map((x, j) => (j === idx ? { ...x, newActive: !x.newActive } : x)))}
-                            >
-                              {i.newActive ? "ativo" : "pausado"}
-                            </button>
-                          )}
-                          <span className="hidden w-20 shrink-0 text-right text-[10px] text-faint sm:block">{i.status.toLowerCase()}</span>
-                        </div>
-                      ))}
+                      {items.map((i, idx) => {
+                        const set = (patch: Partial<(typeof items)[number]>) => setItems(items.map((x, j) => (j === idx ? { ...x, ...patch } : x)));
+                        const max = TITLE_MAX[target.platform] ?? 100;
+                        return (
+                          <div key={i.id} className={`rounded-lg border p-2 ${mode === "duplicate" && !i.keep ? "border-line opacity-50" : itemChanged(i) ? "border-info/50" : "border-line"}`}>
+                            <div className="flex items-start gap-3">
+                              {mode === "duplicate" ? (
+                                <input type="checkbox" className="mt-2" aria-label="Levar para a cópia" checked={i.keep} onChange={(e) => set({ keep: e.target.checked })} />
+                              ) : null}
+                              <img src={i.thumbnail} alt="" className="h-14 w-24 shrink-0 rounded object-cover" />
+                              <div className="min-w-0 flex-1 space-y-1.5">
+                                <div className="flex items-center gap-2">
+                                  <input aria-label="Headline" className="input py-1.5 text-xs" value={i.newTitle} maxLength={max} onChange={(e) => set({ newTitle: e.target.value })} />
+                                  <span className="w-12 shrink-0 text-right text-[10px] text-faint">
+                                    {i.newTitle.length}/{max}
+                                  </span>
+                                </div>
+                                <div className="flex items-start gap-2">
+                                  <textarea
+                                    aria-label="Descrição"
+                                    className="input h-14 py-1.5 text-xs"
+                                    maxLength={250}
+                                    placeholder="Sem descrição — use “Gerar descrições que faltam”"
+                                    value={i.newDesc}
+                                    onChange={(e) => set({ newDesc: e.target.value })}
+                                  />
+                                  <span className="w-12 shrink-0 text-right text-[10px] text-faint">{i.newDesc.length}/250</span>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-2">
+                                  {target.platform === "taboola" && (
+                                    <select aria-label="CTA" className="input w-auto py-1 text-[11px]" value={i.newCta} onChange={(e) => set({ newCta: e.target.value })}>
+                                      {CTAS.map(([v, l]) => (
+                                        <option key={v || "-"} value={v}>
+                                          {l}
+                                        </option>
+                                      ))}
+                                    </select>
+                                  )}
+                                  {mode === "edit" && (
+                                    <button className={`chip shrink-0 border border-line ${i.newActive ? "chip-on" : ""}`} onClick={() => set({ newActive: !i.newActive })}>
+                                      {i.newActive ? "ativo" : "pausado"}
+                                    </button>
+                                  )}
+                                  <span className="text-[10px] text-faint">{i.status.toLowerCase().replace(/_/g, " ")}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
+                    {mode === "edit" && items.some(itemChanged) && (
+                      <p className="mt-2 text-[11px] text-info">Alterações nos anúncios são enviadas em “Salvar alterações”. Mudar texto manda o anúncio para revisão de novo.</p>
+                    )}
                   </Section>
                 )}
 
@@ -750,7 +832,7 @@ export function CampaignStudio({
                   {mode === "edit" && (
                     <SummaryRow
                       k="Anúncios alterados"
-                      v={String(items.filter((i) => i.newTitle !== i.title || i.newActive !== i.active).length)}
+                      v={String(items.filter(itemChanged).length)}
                     />
                   )}
                   {mode === "duplicate" && <SummaryRow k="Anúncios levados" v={`${keptCount} de ${items.length}`} />}

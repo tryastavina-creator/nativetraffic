@@ -17,6 +17,9 @@ import { RC, rcGet, revcontentToken, taboolaToken } from "./traffic";
 
 const API = "https://backstage.taboola.com/backstage/api/1.0";
 
+/** Ad text beyond the headline: description (Taboola + Revcontent, ≤250) and Taboola's CTA button (empty = none). */
+export type AdExtra = { description?: string; cta?: string };
+
 export type Creative = {
   platform: "taboola" | "revcontent";
   itemId: string;
@@ -116,6 +119,7 @@ export async function publishTaboola(
   aiGenerated = true,
   /** Resume an ad created earlier that was still being crawled. */
   existingItemId?: string,
+  extra: AdExtra = {},
 ): Promise<{ itemId: string; status: string }> {
   const auth = { Authorization: `Bearer ${await taboolaToken(c)}` };
   let thumbnail: string;
@@ -153,6 +157,8 @@ export async function publishTaboola(
       title,
       thumbnail_url: thumbnail,
       is_active: false,
+      ...(extra.description?.trim() ? { description: extra.description.trim().slice(0, 250) } : {}),
+      ...(extra.cta ? { cta: { cta_type: extra.cta } } : {}),
       ...(aiGenerated ? { ai_disclosure: { status: "AI_GENERATED" } } : {}),
     }),
   });
@@ -167,6 +173,7 @@ export async function publishRevcontent(
   headline: string,
   brand: string,
   publicImageUrl: string,
+  extra: AdExtra = {},
 ): Promise<{ itemId: string; status: string }> {
   const headers = { Authorization: `Bearer ${await revcontentToken(c)}`, "Content-Type": "application/json" };
   const added = await http<{ success: boolean; creative: { id: number | string; status: string } }>(
@@ -179,6 +186,7 @@ export async function publishRevcontent(
         target_url: landingUrl,
         image: publicImageUrl,
         headline: headline.slice(0, 80),
+        ...(extra.description?.trim() ? { description: extra.description.trim().slice(0, 250) } : {}),
         brand_name: (brand || "Sponsored").slice(0, 30),
       }),
     },
