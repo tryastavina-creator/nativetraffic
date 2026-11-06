@@ -425,15 +425,27 @@ export function CreativePicker({
     setOneBusy(null);
     if (got[p.headline]) onChange(picks.map((x) => (x.key === p.key ? { ...x, description: got[p.headline] } : x)));
   }
+  const [perfLoading, setPerfLoading] = useState(true);
   useEffect(() => {
+    // The library (added creatives, variants, saved headlines) is instant; the sources' performance comes after.
+    fetch("/api/creatives?only=library")
+      .then((r) => r.json())
+      .then((lib) => {
+        setData((d) => ({ combos: [], images: [], headlines: [], ...d, variants: lib.variants ?? [], savedHeadlines: lib.savedHeadlines ?? [] }));
+        // Open on the library while the performance numbers are still loading.
+        if ((lib.variants ?? []).some((v: CreativeVariant) => v.status !== "archived")) setView((v) => (v === "images" ? "variants" : v));
+      })
+      .catch(() => setData((d) => d ?? { variants: [], combos: [], images: [], headlines: [], savedHeadlines: [] }));
     fetch("/api/creatives?preset=30d")
       .then((r) => r.json())
-      .then(setData)
-      .catch(() => setData({ variants: [], combos: [], images: [], headlines: [], savedHeadlines: [] }));
+      .then((perf) => setData((d) => ({ ...perf, variants: perf.variants ?? d?.variants ?? [], savedHeadlines: perf.savedHeadlines ?? d?.savedHeadlines ?? [] })))
+      .catch(() => {})
+      .finally(() => setPerfLoading(false));
   }, []);
   const max = TITLE_MAX[platform] ?? 100;
   const byProfit = <T extends Perf>(xs: T[]) => [...xs].sort((a, b) => b.profit - a.profit || b.roas - a.roas);
   const variants = (data?.variants ?? []).filter((v) => v.status !== "archived" && fits(v.product));
+  const hiddenOther = (data?.variants ?? []).filter((v) => v.status !== "archived" && !fits(v.product)).length;
   const images = byProfit((data?.images ?? []).filter((g) => fits(g.product)));
   const saved = (data?.savedHeadlines ?? []).filter((h) => fits(h.product));
   const headlines = byProfit((data?.headlines ?? []).filter((g) => fits(g.product)));
@@ -470,6 +482,7 @@ export function CreativePicker({
         <label className="mb-2 flex items-center gap-2 text-[11px] text-muted">
           <input type="checkbox" checked={onlyProduct} onChange={(e) => setOnlyProduct(e.target.checked)} />
           Só criativos do produto {campaignProduct} (e os sem produto)
+          {onlyProduct && hiddenOther > 0 && <span className="text-warn">· {hiddenOther} da biblioteca são de outros produtos (desmarque para ver)</span>}
         </label>
       )}
       <div className="flex flex-wrap gap-1">
@@ -491,7 +504,10 @@ export function CreativePicker({
               : "Criativos adicionados (spy) e variações geradas na aba Criativos — já vêm com a descrição salva."}
       </p>
       <div className="mt-2 grid max-h-[380px] gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
-        {!data && <p className="text-xs text-muted sm:col-span-3">Carregando criativos dos últimos 30 dias…</p>}
+        {!data && <p className="text-xs text-muted sm:col-span-3">Carregando a biblioteca…</p>}
+        {data && perfLoading && view !== "variants" && (
+          <p className="text-xs text-muted sm:col-span-3">Carregando o desempenho dos últimos 30 dias… a Biblioteca já está pronta.</p>
+        )}
         {view === "images" &&
           images.map((g) => (
             <button

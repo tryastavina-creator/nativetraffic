@@ -185,3 +185,16 @@ export async function computeCreatives(range: DateRange) {
     warnings: [...new Set(warnings)],
   };
 }
+
+/**
+ * Same as computeCreatives, served from a stale-while-revalidate cache (the screen gets the last result at once;
+ * a fresh one is built in the background). Product choices are part of the key.
+ */
+export async function cachedCreatives(range: DateRange) {
+  const st = await getSettings();
+  const r = await cached(hashKey("creatives-all", range, st.creativeProducts ?? {}), () => computeCreatives(range), {
+    ttl: 3 * 60_000,
+    maxStale: 24 * 3600_000,
+  });
+  return r.value;
+}
