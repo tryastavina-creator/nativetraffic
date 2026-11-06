@@ -36,6 +36,8 @@ export type Settings = {
   excludedCampaigns: { key: string; label: string; platform: string; accountId?: string; campaignId?: string; rtId?: string; at: string }[];
   /** Site / widget blocklists reused when creating campaigns. */
   blocklists: Blocklist[];
+  /** Product chosen by hand for a creative: "img:<image key>" / "hl:<headline key>" → product. */
+  creativeProducts: Record<string, string>;
 };
 
 /** Exact supplier cost of one order, from an imported supplier export. */
@@ -54,6 +56,7 @@ type FileShape = {
   campaignTemplates: CampaignTemplate[];
   /** Every campaign created/duplicated/edited from the CRM. */
   campaignLog: CampaignLogEntry[];
+  savedHeadlines?: SavedHeadline[];
   /** API session tokens kept between restarts (encrypted), e.g. Outbrain's 30-day OB-TOKEN-V1. */
   tokens?: Record<string, string>;
 };
@@ -159,7 +162,17 @@ export type CreativeVariant = {
   prompt: string;
   status: "new" | "published" | "archived";
   published?: { platform: string; itemId: string; at: string; status: string }[];
+  /** "ai" = generated here · "spy" = found in a spy tool / elsewhere and added by hand. */
+  origin?: "ai" | "spy";
+  /** Product the creative is for (e.g. OMNIPRO). */
+  product?: string;
+  description?: string;
+  /** Where it came from (spy tool, competitor, link…). */
+  note?: string;
 };
+
+/** Headline saved to the library (from a spy tool, a competitor, an idea…). */
+export type SavedHeadline = { id: string; text: string; product: string; description?: string; note?: string; createdAt: string };
 
 const DEFAULT_SETTINGS: Settings = {
   currency: process.env.CURRENCY || "USD",
@@ -174,6 +187,7 @@ const DEFAULT_SETTINGS: Settings = {
   campaignLinks: {},
   excludedCampaigns: [],
   blocklists: [],
+  creativeProducts: {},
 };
 
 function key(): Buffer {
@@ -245,6 +259,7 @@ async function read(): Promise<FileShape> {
     campaignTemplates: parsed.campaignTemplates ?? [],
     campaignLog: parsed.campaignLog ?? [],
     tokens: parsed.tokens ?? {},
+    savedHeadlines: parsed.savedHeadlines ?? [],
   };
 }
 
@@ -420,6 +435,21 @@ export async function addCampaignLog(e: CampaignLogEntry) {
 }
 
 // ------------------------------- creative variants -------------------------------
+
+export async function listSavedHeadlines(): Promise<SavedHeadline[]> {
+  return (await read()).savedHeadlines ?? [];
+}
+
+export async function saveHeadlines(add: SavedHeadline[]) {
+  const data = await read();
+  await write({ ...data, savedHeadlines: [...add, ...(data.savedHeadlines ?? [])].slice(0, 3000) });
+}
+
+export async function updateSavedHeadline(id: string, patch: Partial<SavedHeadline> | null) {
+  const data = await read();
+  const list = (data.savedHeadlines ?? []).flatMap((h) => (h.id !== id ? [h] : patch ? [{ ...h, ...patch }] : []));
+  await write({ ...data, savedHeadlines: list });
+}
 
 export async function listVariants(): Promise<CreativeVariant[]> {
   return (await read()).variants;

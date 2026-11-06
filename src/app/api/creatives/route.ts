@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { computeCreatives } from "@/lib/creatives";
 import { rangeFromPreset } from "@/lib/metrics";
-import { listVariants } from "@/lib/store";
+import { listSavedHeadlines, listVariants } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +9,6 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request) {
   const q = new URL(req.url).searchParams;
   const range = rangeFromPreset(q.get("preset") ?? "7d", q.get("from") ?? undefined, q.get("to") ?? undefined);
-  const [data, variants] = await Promise.all([computeCreatives(range), listVariants()]);
-  return NextResponse.json({ ...data, variants });
+  const [data, variants, savedHeadlines] = await Promise.all([computeCreatives(range), listVariants(), listSavedHeadlines()]);
+  return NextResponse.json({ ...data, variants, savedHeadlines });
 }
