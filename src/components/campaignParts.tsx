@@ -2,8 +2,9 @@
 /* eslint-disable @next/next/no-img-element */
 /** Shared pieces of the campaign studio (setup form, creative picker, history). */
 import { useEffect, useState } from "react";
+import { COUNTRY_TZ } from "@/lib/campaignRules";
 import { normProduct } from "@/lib/naming";
-import type { CampaignLogEntry, CampaignSetup, CreativeVariant } from "@/lib/store";
+import type { Blocklist, CampaignLogEntry, CampaignSchedule, CampaignSetup, CreativeVariant } from "@/lib/store";
 
 export type Platform = "taboola" | "revcontent";
 export type Pick = { key: string; kind: "variant" | "ad"; variantId?: string; imageUrl: string; headline: string; label: string };
@@ -17,11 +18,12 @@ export const DEFAULT_SETUP: Record<Platform, CampaignSetup> = {
     countries: ["US"],
     devices: ["DESKTOP"],
     bidStrategy: "MAX_CONVERSIONS",
-    spendingLimitModel: "MONTHLY",
-    spendingLimit: 3000,
+    spendingLimitModel: "NONE",
     dailyCap: 100,
     marketingObjective: "ONLINE_PURCHASES",
     brandingText: "PrevenMD",
+    trackingCode: "utm_source=taboola&utm_medium=referral",
+    trafficAllocation: "OPTIMIZED",
   },
   revcontent: {
     product: "OMNIPRO",
@@ -37,20 +39,41 @@ export const DEFAULT_SETUP: Record<Platform, CampaignSetup> = {
 
 export const BID_LABEL: Record<string, string> = { MAX_CONVERSIONS: "MAXCONV", TARGET_CPA: "TCPA", SMART: "SMARTBID", FIXED: "CPC", cpc: "CPC", cpa: "CPA" };
 
+const DAYS: [string, string][] = [
+  ["MONDAY", "Seg"],
+  ["TUESDAY", "Ter"],
+  ["WEDNESDAY", "Qua"],
+  ["THURSDAY", "Qui"],
+  ["FRIDAY", "Sex"],
+  ["SATURDAY", "Sáb"],
+  ["SUNDAY", "Dom"],
+];
+const TIMEZONES = [...new Set(["America/New_York", "America/Chicago", "America/Los_Angeles", ...Object.values(COUNTRY_TZ), "UTC"])];
+const hours = Array.from({ length: 25 }, (_, h) => h);
+
 export function SetupForm({
   platform,
   setup,
   onChange,
   showBudget,
+  conversions = [],
+  blocklists = [],
+  onBlocklists,
 }: {
   platform: Platform;
   setup: CampaignSetup;
   onChange: (s: CampaignSetup) => void;
   showBudget: boolean;
+  conversions?: { id: string; name: string }[];
+  blocklists?: Blocklist[];
+  onBlocklists?: (b: Blocklist[]) => void;
 }) {
   const set = (p: Partial<CampaignSetup>) => onChange({ ...setup, ...p });
   const toggleDevice = (d: "DESKTOP" | "MOBILE" | "TABLET") =>
     set({ devices: setup.devices.includes(d) ? setup.devices.filter((x) => x !== d) : [...setup.devices, d] });
+  const sc: CampaignSchedule = setup.schedule ?? { mode: "ALWAYS", days: DAYS.map((d) => d[0]), fromHour: 6, untilHour: 22 };
+  const tz = sc.timeZone || setup.templateInfo?.timeZone || COUNTRY_TZ[setup.countries[0] ?? ""] || "America/New_York";
+  const setSc = (p: Partial<CampaignSchedule>) => set({ schedule: { ...sc, timeZone: tz, ...p } });
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       <Field label="Produto">
@@ -106,29 +129,34 @@ export function SetupForm({
           </Field>
           {showBudget && (
             <>
-              <Field label="Orçamento">
-                <select id="cp-model" className="input" value={setup.spendingLimitModel} onChange={(e) => set({ spendingLimitModel: e.target.value })}>
-                  <option value="MONTHLY">Mensal</option>
-                  <option value="ENTIRE">Total</option>
-                  <option value="NONE">Sem limite</option>
-                </select>
-              </Field>
-              {setup.spendingLimitModel !== "NONE" && (
-                <Field label="Limite (US$)">
-                  <input
-                    id="cp-limit"
-                    className="input"
-                    type="number"
-                    value={setup.spendingLimit ?? ""}
-                    onChange={(e) => set({ spendingLimit: Number(e.target.value) })}
-                  />
-                </Field>
-              )}
-              <Field label="Limite diário (US$)">
+              <Field label="Orçamento diário (US$)">
                 <input id="cp-daily" className="input" type="number" value={setup.dailyCap ?? ""} onChange={(e) => set({ dailyCap: Number(e.target.value) })} />
               </Field>
+              <Field label="Limite de gasto">
+                <select id="cp-model" className="input" value={setup.spendingLimitModel ?? "NONE"} onChange={(e) => set({ spendingLimitModel: e.target.value })}>
+                  <option value="NONE">Nenhum (só o diário)</option>
+                  <option value="MONTHLY">Mensal</option>
+                  <option value="ENTIRE">Total da campanha</option>
+                </select>
+              </Field>
+              {setup.spendingLimitModel && setup.spendingLimitModel !== "NONE" && (
+                <Field label="Limite (US$)">
+                  <input id="cp-limit" className="input" type="number" value={setup.spendingLimit ?? ""} onChange={(e) => set({ spendingLimit: Number(e.target.value) })} />
+                </Field>
+              )}
             </>
           )}
+          <Field label="Entrega dos anúncios">
+            <select
+              id="cp-alloc"
+              className="input"
+              value={setup.trafficAllocation ?? "OPTIMIZED"}
+              onChange={(e) => set({ trafficAllocation: e.target.value as "OPTIMIZED" | "EVEN" })}
+            >
+              <option value="OPTIMIZED">Priorizar os melhores</option>
+              <option value="EVEN">Teste A/B (igual entre todos)</option>
+            </select>
+          </Field>
         </>
       ) : (
         <>
@@ -138,12 +166,24 @@ export function SetupForm({
               <option value="cpa">CPA</option>
             </select>
           </Field>
+          {setup.bidStrategy === "cpa" && (
+            <Field label="Pixel de conversão">
+              <select id="cp-conv" className="input" value={setup.conversionId ?? ""} onChange={(e) => set({ conversionId: e.target.value || undefined })}>
+                <option value="">Escolha…</option>
+                {conversions.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          )}
           <Field label="Lance web (US$)">
             <input id="cp-cpc" className="input" type="number" step="0.01" value={setup.cpc ?? ""} onChange={(e) => set({ cpc: Number(e.target.value) })} />
           </Field>
           {showBudget && (
-            <Field label="Orçamento (US$)">
-              <input id="cp-budget" className="input" type="number" value={setup.budget ?? ""} onChange={(e) => set({ budget: Number(e.target.value) })} />
+            <Field label="Orçamento diário (US$, mín. 50)">
+              <input id="cp-budget" className="input" type="number" value={setup.budget ?? ""} onChange={(e) => set({ budget: Number(e.target.value) || undefined })} />
             </Field>
           )}
           <label className="flex items-center gap-2 text-sm sm:col-span-3">
@@ -152,15 +192,157 @@ export function SetupForm({
           </label>
         </>
       )}
-      <Field label="Código de rastreio (UTM, opcional)" className="sm:col-span-3">
+
+      {/* Dates */}
+      <Field label="Início">
+        <input id="cp-start" className="input" type="date" value={setup.startDate ?? ""} onChange={(e) => set({ startDate: e.target.value || undefined })} />
+      </Field>
+      <Field label="Fim (vazio = sem data final)">
+        <input id="cp-end" className="input" type="date" value={setup.endDate ?? ""} onChange={(e) => set({ endDate: e.target.value || undefined })} />
+      </Field>
+      <div />
+
+      {/* Dayparting */}
+      <div className="rounded-lg border border-line p-3 sm:col-span-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-xs text-zinc-300">Horário</span>
+          <button className={`chip border border-line ${sc.mode === "ALWAYS" ? "chip-on" : ""}`} onClick={() => setSc({ mode: "ALWAYS" })}>
+            Sempre ligado
+          </button>
+          <button className={`chip border border-line ${sc.mode === "CUSTOM" ? "chip-on" : ""}`} onClick={() => setSc({ mode: "CUSTOM" })}>
+            Dias e horas
+          </button>
+        </div>
+        {sc.mode === "CUSTOM" && (
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+            {platform === "taboola" &&
+              DAYS.map(([d, l]) => (
+                <button
+                  key={d}
+                  className={`chip border border-line ${sc.days.includes(d) ? "chip-on" : ""}`}
+                  onClick={() => setSc({ days: sc.days.includes(d) ? sc.days.filter((x) => x !== d) : [...sc.days, d] })}
+                >
+                  {l}
+                </button>
+              ))}
+            <span className="ml-1 text-muted">das</span>
+            <select aria-label="Hora inicial" className="input w-auto py-1" value={sc.fromHour} onChange={(e) => setSc({ fromHour: Number(e.target.value) })}>
+              {hours.slice(0, 24).map((h) => (
+                <option key={h} value={h}>
+                  {String(h).padStart(2, "0")}:00
+                </option>
+              ))}
+            </select>
+            <span className="text-muted">às</span>
+            <select aria-label="Hora final" className="input w-auto py-1" value={sc.untilHour} onChange={(e) => setSc({ untilHour: Number(e.target.value) })}>
+              {hours.slice(1).map((h) => (
+                <option key={h} value={h}>
+                  {String(h).padStart(2, "0")}:00
+                </option>
+              ))}
+            </select>
+            {platform === "taboola" && (
+              <select aria-label="Fuso" className="input w-auto py-1" value={tz} onChange={(e) => setSc({ timeZone: e.target.value })}>
+                {[...new Set([tz, ...TIMEZONES])].map((z) => (
+                  <option key={z} value={z}>
+                    {z}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+        )}
+        {platform === "revcontent" && sc.mode === "CUSTOM" && (
+          <p className="mt-2 text-[11px] text-faint">Na Revcontent o horário vale todos os dias, no fuso da conta.</p>
+        )}
+      </div>
+
+      <Field label="Código de rastreio (UTM)" className="sm:col-span-3">
         <input
           id="cp-tracking"
           className="input font-mono text-xs"
-          placeholder="ex.: utm_source=taboola&utm_campaign={campaign_name}"
+          placeholder={platform === "taboola" ? "utm_source=taboola&utm_medium=referral" : "utm_source=revcontent"}
           value={setup.trackingCode ?? ""}
           onChange={(e) => set({ trackingCode: e.target.value })}
         />
       </Field>
+
+      <BlocklistField platform={platform} setup={setup} onChange={onChange} blocklists={blocklists} onBlocklists={onBlocklists} />
+    </div>
+  );
+}
+
+function BlocklistField({
+  platform,
+  setup,
+  onChange,
+  blocklists,
+  onBlocklists,
+}: {
+  platform: Platform;
+  setup: CampaignSetup;
+  onChange: (s: CampaignSetup) => void;
+  blocklists: Blocklist[];
+  onBlocklists?: (b: Blocklist[]) => void;
+}) {
+  const [text, setText] = useState((setup.blockedSites ?? []).join("\n"));
+  const ids = setup.blocklistIds ?? [];
+  const parse = (t: string) => [...new Set(t.split(/[\s,;]+/).map((x) => x.trim()).filter(Boolean))];
+  const total = new Set([...parse(text), ...blocklists.filter((b) => ids.includes(b.id)).flatMap((b) => b.sites)]).size;
+  async function saveList() {
+    const name = prompt("Nome da blocklist (ex.: Sites ruins UK):");
+    if (!name) return;
+    const r = await fetch("/api/campaigns/blocklists", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, platform, sites: parse(text) }),
+    }).then((x) => x.json());
+    if (r.blocklists) {
+      onBlocklists?.(r.blocklists.filter((b: Blocklist) => b.platform === platform));
+      setText("");
+      onChange({ ...setup, blockedSites: [], blocklistIds: [...ids, r.blocklist.id] });
+    }
+  }
+  return (
+    <div className="rounded-lg border border-line p-3 sm:col-span-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="text-xs text-zinc-300">
+          Blocklist {platform === "taboola" ? "(sites)" : "(ids de widget)"} · {total} bloqueio(s) além do modelo
+        </span>
+        {parse(text).length > 0 && (
+          <button className="text-[11px] text-info hover:underline" onClick={saveList}>
+            Salvar como lista
+          </button>
+        )}
+      </div>
+      {blocklists.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1">
+          {blocklists.map((b) => (
+            <button
+              key={b.id}
+              className={`chip border border-line ${ids.includes(b.id) ? "chip-on" : ""}`}
+              onClick={() => onChange({ ...setup, blocklistIds: ids.includes(b.id) ? ids.filter((x) => x !== b.id) : [...ids, b.id] })}
+            >
+              {b.name} ({b.sites.length})
+            </button>
+          ))}
+        </div>
+      )}
+      <textarea
+        id="cp-blocks"
+        className="input mt-2 h-20 font-mono text-xs"
+        placeholder={platform === "taboola" ? "Cole os sites para bloquear (um por linha), ex.: msn-uk, aol-android-channel" : "Cole os ids de widget, ex.: 123456, 987654"}
+        value={text}
+        onChange={(e) => {
+          setText(e.target.value);
+          onChange({ ...setup, blockedSites: parse(e.target.value) });
+        }}
+      />
+      <p className="mt-1 text-[11px] text-faint">
+        {platform === "taboola"
+          ? "Use o nome do site como aparece no relatório da Taboola (coluna site). Os bloqueios da conta (nível conta) já valem sozinhos para todas as campanhas."
+          : "Ids de widget do relatório da Revcontent."}
+      </p>
     </div>
   );
 }

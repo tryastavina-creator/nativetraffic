@@ -34,6 +34,8 @@ export type Settings = {
    * key: "src:<platform>:<campaignId>" for a source campaign, "rtc:<redtrackCampaignId>" for a RedTrack one.
    */
   excludedCampaigns: { key: string; label: string; platform: string; accountId?: string; campaignId?: string; rtId?: string; at: string }[];
+  /** Site / widget blocklists reused when creating campaigns. */
+  blocklists: Blocklist[];
 };
 
 /** Exact supplier cost of one order, from an imported supplier export. */
@@ -77,7 +79,38 @@ export type CampaignSetup = {
   pacing?: boolean;
   bidAppleNews?: number;
   bidEmail?: number;
+  /** Revcontent: conversion pixel id (required when optimizing for CPA). */
+  conversionId?: string;
+  /** YYYY-MM-DD; empty = today. */
+  startDate?: string;
+  /** YYYY-MM-DD; empty = no end date. */
+  endDate?: string;
+  /** Dayparting: same hours on the chosen days, in the given time zone. */
+  schedule?: CampaignSchedule;
+  /** Taboola: OPTIMIZED (prioritize top performing ads) | EVEN (A/B testing). */
+  trafficAllocation?: "OPTIMIZED" | "EVEN";
+  /** Sites (Taboola) / widget ids (Revcontent) to block, on top of what the template campaign already blocks. */
+  blockedSites?: string[];
+  /** Saved blocklists applied to the campaign. */
+  blocklistIds?: string[];
+  /** Successful campaign used as the base: its settings, blocks and tracking are copied. */
+  templateCampaign?: { accountId: string; campaignId: string; name: string };
+  /** With a template campaign: keep its blocked sites (default yes) and per-site bid adjustments (default no). */
+  inheritBlocks?: boolean;
+  inheritBidModifiers?: boolean;
+  /** Read-only info about the template (shown in the form). */
+  templateInfo?: { blockedSites: number; bidModifiers: number; timeZone?: string };
 };
+
+export type CampaignSchedule = {
+  mode: "ALWAYS" | "CUSTOM";
+  days: string[];
+  fromHour: number;
+  untilHour: number;
+  timeZone?: string;
+};
+
+export type Blocklist = { id: string; name: string; platform: "taboola" | "revcontent"; sites: string[]; updatedAt: string };
 
 export type CampaignTemplate = { id: string; name: string; platform: "taboola" | "revcontent"; setup: CampaignSetup; updatedAt: string };
 
@@ -136,6 +169,7 @@ const DEFAULT_SETTINGS: Settings = {
   redtrackIcField: "",
   campaignLinks: {},
   excludedCampaigns: [],
+  blocklists: [],
 };
 
 function key(): Buffer {

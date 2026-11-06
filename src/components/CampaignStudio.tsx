@@ -8,9 +8,10 @@
  * Everything new is created paused.
  */
 import { useEffect, useMemo, useState } from "react";
+import { checkSetup } from "@/lib/campaignRules";
 import { buildRtName, buildSourceName, parseRtName } from "@/lib/naming";
 import { translateSetup } from "@/lib/setupTranslate";
-import type { CampaignSetup, CampaignTemplate } from "@/lib/store";
+import type { Blocklist, CampaignSetup, CampaignTemplate } from "@/lib/store";
 import {
   BID_LABEL,
   CreativePicker,
@@ -27,13 +28,24 @@ import {
 type Account = { id: string; label: string; platform: Platform };
 type Group = { id: string; name: string; status: string };
 type RtCampaign = { id: string; title: string; status: string; url: string };
-type Meta = { campaigns: unknown[]; groups: Group[]; rtCampaigns: RtCampaign[]; templates: CampaignTemplate[]; warnings: string[] };
+type Meta = {
+  campaigns: unknown[];
+  groups: Group[];
+  rtCampaigns: RtCampaign[];
+  templates: CampaignTemplate[];
+  conversions?: { id: string; name: string }[];
+  blocklists?: Blocklist[];
+  warnings: string[];
+};
+type Winner = { accountId: string; campaignId: string; name: string; spend: number; sales: number; cpa: number; roas: number; profit: number };
 type Item = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string };
 type Detail = { platform: Platform; campaignId: string; name: string; setup: CampaignSetup; groupId?: string; items: Item[]; url: string; accountId: string };
 
 export type StudioMode = "create" | "edit" | "duplicate";
 
-const deviceLabel = (d: string[]) => (d.length === 1 ? d[0] : "ALL");
+const deviceLabel = (d: string[]) =>
+  d.length === 1 ? d[0] : d.length >= 3 ? "ALL" : ["DESKTOP", "MOBILE", "TABLET"].filter((x) => d.includes(x)).join("/");
+const usd = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
 const autoName = (s: CampaignSetup) => buildSourceName(s.product || "PRODUTO", deviceLabel(s.devices), BID_LABEL[s.bidStrategy] ?? s.bidStrategy, s.countries[0] ?? "US");
 
 export function CampaignStudio({
@@ -66,6 +78,8 @@ export function CampaignStudio({
   const [url, setUrl] = useState("");
   const [picks, setPicks] = useState<Pick[]>([]);
   const [templateId, setTemplateId] = useState("");
+  const [winners, setWinners] = useState<Winner[] | null>(null);
+  const [tplLoading, setTplLoading] = useState(false);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; steps: string[] } | null>(null);
   const [error, setError] = useState("");
@@ -113,6 +127,50 @@ export function CampaignStudio({
       });
   }, [target]);
 
+  // Campaigns that worked (template candidates) for the target source
+  const targetPlatform = target?.platform;
+  useEffect(() => {
+    if (mode !== "create" || !targetPlatform) return;
+    setWinners(null);
+    fetch(`/api/campaigns/winners?platform=${targetPlatform}`)
+      .then((r) => r.json())
+      .then((d) => setWinners(d.winners ?? []))
+      .catch(() => setWinners([]));
+  }, [mode, targetPlatform]);
+
+  async function applyTemplate(w: Winner | null) {
+    if (!target) return;
+    if (!w) {
+      setSetup(DEFAULT_SETUP[target.platform]);
+      return;
+    }
+    setTplLoading(true);
+    try {
+      const d = await fetch(`/api/campaigns/detail?accountId=${encodeURIComponent(w.accountId)}&campaignId=${encodeURIComponent(w.campaignId)}`).then((r) => r.json());
+      if (d.error) throw new Error(d.error);
+      setSetup({
+        ...DEFAULT_SETUP[target.platform],
+        ...d.setup,
+        startDate: undefined,
+        templateCampaign: { accountId: w.accountId, campaignId: w.campaignId, name: w.name },
+        inheritBlocks: true,
+        inheritBidModifiers: false,
+        blockedSites: [],
+        blocklistIds: [],
+      });
+      if (w.accountId === target.id && d.groupId) {
+        setGroupMode("existing");
+        setGroupId(d.groupId);
+      }
+      if (d.url && !url) setUrl(d.url);
+      setNameEdited(false);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setTplLoading(false);
+    }
+  }
+
   // Setup: from the source (translated to the target source) or the default of the target
   useEffect(() => {
     if (!target) return;
@@ -134,12 +192,13 @@ export function CampaignStudio({
       return p && buildRtName(p.product, p.source, p.country) === want;
     });
   }, [setup, target, meta]);
+  // Follow the suggestion (product / country changed) until the user picks a RedTrack campaign by hand.
+  const [rtAuto, setRtAuto] = useState(true);
   useEffect(() => {
-    if (!rtId && suggestedRt) {
-      setRtId(suggestedRt.id);
-      if (!url) setUrl(suggestedRt.url);
-    }
-  }, [suggestedRt, rtId, url]);
+    if (!rtAuto || !suggestedRt || suggestedRt.id === rtId) return;
+    setRtId(suggestedRt.id);
+    if (mode === "create" || !url) setUrl(suggestedRt.url);
+  }, [suggestedRt, rtId, rtAuto, mode, url]);
 
   // Copying to another traffic source: the link must be the RedTrack campaign of that source.
   useEffect(() => {
@@ -158,6 +217,17 @@ export function CampaignStudio({
     p.kind === "variant" ? { kind: "variant", variantId: p.variantId, headline: p.headline } : { kind: "ad", imageUrl: p.imageUrl, headline: p.headline },
   );
   const showGroup = target?.platform === "taboola" && (mode === "create" || (mode === "duplicate" && !nativeDuplicate));
+  const tpl = setup?.templateCampaign;
+  const check =
+    setup && target
+      ? checkSetup(target.platform, setup, {
+          url: mode === "edit" && !picks.length ? undefined : url,
+          creatives: mode === "create" ? picks.length : undefined,
+          name,
+          groupNeeded: mode === "create" && target.platform === "taboola" && !!tpl && tpl.accountId !== target.id,
+          groupChosen: groupMode !== "none",
+        })
+      : { errors: [] as string[], warnings: [] as string[] };
 
   async function saveTemplate() {
     if (!setup || !target) return;
@@ -277,6 +347,57 @@ export function CampaignStudio({
                   </Section>
                 )}
 
+                {mode === "create" && (
+                  <Section title="Campanha modelo (uma que deu bom)">
+                    <select
+                      id="st-winner"
+                      className="input"
+                      value={tpl ? `${tpl.accountId}|${tpl.campaignId}` : ""}
+                      onChange={(e) => applyTemplate(winners?.find((w) => `${w.accountId}|${w.campaignId}` === e.target.value) ?? null)}
+                    >
+                      <option value="">{winners === null ? "Carregando campanhas…" : "Sem modelo (do zero)"}</option>
+                      {(winners ?? []).map((w) => (
+                        <option key={`${w.accountId}|${w.campaignId}`} value={`${w.accountId}|${w.campaignId}`}>
+                          {w.name} · lucro {usd(w.profit)} · ROAS {w.roas.toFixed(2)}x · CPA {w.sales ? usd(w.cpa) : "—"} ·{" "}
+                          {accounts.find((a) => a.id === w.accountId)?.label ?? w.accountId}
+                        </option>
+                      ))}
+                    </select>
+                    {tplLoading && <p className="mt-2 text-xs text-muted">Lendo o setup da campanha…</p>}
+                    {tpl && setup && (
+                      <div className="mt-3 space-y-2 text-xs">
+                        <p className="text-muted">
+                          {target.platform === "taboola"
+                            ? "A campanha nova copia o setup do modelo (SpendGuard, regras de conversão, brand safety, horário, rastreio e segmentação), sem os anúncios e sem o histórico. Ajuste abaixo o que muda (país, orçamento, datas…)."
+                            : "Copia lance, orçamento, pacing, países, horário, rastreio e pixel do modelo. Ajuste abaixo o que muda."}
+                        </p>
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            checked={setup.inheritBlocks !== false}
+                            onChange={(e) => setSetup({ ...setup, inheritBlocks: e.target.checked })}
+                          />
+                          Levar os sites bloqueados do modelo ({setup.templateInfo?.blockedSites ?? 0})
+                        </label>
+                        {target.platform === "taboola" && (
+                          <label className="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              checked={!!setup.inheritBidModifiers}
+                              onChange={(e) => setSetup({ ...setup, inheritBidModifiers: e.target.checked })}
+                            />
+                            Levar os ajustes de lance por site ({setup.templateInfo?.bidModifiers ?? 0}) — só valem para CPC fixo / Smart
+                          </label>
+                        )}
+                        {target.platform === "taboola" && tpl.accountId !== target.id && (
+                          <p className="text-warn">Modelo de outra conta: escolha abaixo o grupo de campanhas da conta destino.</p>
+                        )}
+                      </div>
+                    )}
+                    {winners && !winners.length && <p className="mt-2 text-[11px] text-faint">Nenhuma campanha com gasto nos últimos 30 dias nesta fonte.</p>}
+                  </Section>
+                )}
+
                 <Section
                   title="Configurações"
                   right={
@@ -304,7 +425,15 @@ export function CampaignStudio({
                     </div>
                   }
                 >
-                  <SetupForm platform={target.platform} setup={setup} onChange={setSetup} showBudget />
+                  <SetupForm
+                    platform={target.platform}
+                    setup={setup}
+                    onChange={setSetup}
+                    showBudget
+                    conversions={meta?.conversions ?? []}
+                    blocklists={meta?.blocklists ?? []}
+                    onBlocklists={(b) => meta && setMeta({ ...meta, blocklists: b })}
+                  />
                   <label className="mt-4 block">
                     <span className="mb-1.5 block text-xs text-zinc-300">Nome da campanha na fonte</span>
                     <input
@@ -387,6 +516,7 @@ export function CampaignStudio({
                     className="input"
                     value={rtId}
                     onChange={(e) => {
+                      setRtAuto(false);
                       setRtId(e.target.value);
                       const u = meta?.rtCampaigns.find((c) => c.id === e.target.value)?.url;
                       if (u) setUrl(u);
@@ -483,8 +613,23 @@ export function CampaignStudio({
                   )}
                   {mode === "duplicate" && <SummaryRow k="Anúncios levados" v={`${keptCount} de ${items.length}`} />}
                   <SummaryRow k="Criativos novos" v={String(picks.length)} />
+                  {tpl && <SummaryRow k="Modelo" v={tpl.name} mono />}
+                  {(check.errors.length > 0 || check.warnings.length > 0) && (
+                    <ul className="space-y-1 rounded-lg border border-line px-3 py-2 text-xs">
+                      {check.errors.map((x) => (
+                        <li key={x} className="text-bad">
+                          • {x}
+                        </li>
+                      ))}
+                      {check.warnings.map((x) => (
+                        <li key={x} className="text-warn">
+                          • {x}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {error && <div className="rounded-lg border border-bad/30 bg-bad/5 px-3 py-2 text-xs text-bad">{error}</div>}
-                  <button className="btn-primary w-full justify-center" disabled={busy || !name.trim()} onClick={run}>
+                  <button className="btn-primary w-full justify-center" disabled={busy || !name.trim() || check.errors.length > 0} onClick={run}>
                     {busy
                       ? "Enviando… (até 1 min por anúncio)"
                       : mode === "create"

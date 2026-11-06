@@ -11,8 +11,9 @@
  *  - POST /boosts/add (name, budget, default_bids, optimize, country_targeting/codes, device_targeting ids…)
  *  - POST /boosts { id, enabled: "off" } to pause; no duplicate endpoint → new boost with the source's bids/budget
  */
-import type { CampaignSetup } from "../store";
+import type { CampaignSchedule, CampaignSetup } from "../store";
 import type { Credentials } from "../types";
+import { isoCountry } from "../naming";
 import { http, num } from "./http";
 import { RC, rcGet, revcontentToken, taboolaToken } from "./traffic";
 
@@ -61,6 +62,36 @@ export async function taboolaCreateGroup(c: Credentials, g: NewGroup): Promise<G
 }
 
 const TB_DEVICE: Record<string, string> = { DESKTOP: "DESK", MOBILE: "PHON", TABLET: "TBLT" };
+export const WEEK = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
+
+/** Taboola activity_schedule from our schedule (same hours on each chosen day). */
+export function taboolaSchedule(sc?: CampaignSchedule) {
+  if (!sc || sc.mode !== "CUSTOM") return { mode: "ALWAYS", rules: [], ...(sc?.timeZone ? { time_zone: sc.timeZone } : {}) };
+  const days = sc.days.length ? sc.days : WEEK;
+  return {
+    mode: "CUSTOM",
+    rules: days.map((day) => ({ type: "INCLUDE", day, from_hour: String(sc.fromHour), until_hour: String(sc.untilHour) })),
+    ...(sc.timeZone ? { time_zone: sc.timeZone } : {}),
+  };
+}
+
+/** Our schedule from Taboola's activity_schedule (INCLUDE rules; first rule's hours). */
+export function fromTaboolaSchedule(a: unknown): CampaignSchedule | undefined {
+  const x = a as { mode?: string; rules?: { type?: string; day?: string; from_hour?: string | number; until_hour?: string | number }[]; time_zone?: string } | undefined;
+  if (!x) return undefined;
+  const inc = (x.rules ?? []).filter((r) => r.type !== "EXCLUDE" && r.day);
+  if (x.mode !== "CUSTOM" || !inc.length) return { mode: "ALWAYS", days: WEEK, fromHour: 0, untilHour: 24, timeZone: x.time_zone };
+  return {
+    mode: "CUSTOM",
+    days: WEEK.filter((d) => inc.some((r) => r.day === d)),
+    fromHour: Number(inc[0].from_hour ?? 0),
+    untilHour: Number(inc[0].until_hour ?? 24),
+    timeZone: x.time_zone,
+  };
+}
+
+const today = () => new Date().toISOString().slice(0, 10);
+const uniq = (xs: string[]) => [...new Set(xs.map((x) => x.trim()).filter(Boolean))];
 
 /** Campaign body from a setup (pure, exported for tests). */
 export function taboolaCampaignBody(name: string, s: CampaignSetup, groupId?: string): Record<string, unknown> {
@@ -70,7 +101,7 @@ export function taboolaCampaignBody(name: string, s: CampaignSetup, groupId?: st
     bid_strategy: s.bidStrategy,
     marketing_objective: s.marketingObjective || "ONLINE_PURCHASES",
     is_active: false,
-    country_targeting: s.countries.length ? { type: "INCLUDE", value: s.countries } : { type: "ALL", value: [] },
+    country_targeting: s.countries.length ? { type: "INCLUDE", value: [...new Set(s.countries.map(isoCountry))] } : { type: "ALL", value: [] },
     platform_targeting:
       s.devices.length && s.devices.length < 3 ? { type: "INCLUDE", value: s.devices.map((d) => TB_DEVICE[d]) } : { type: "ALL", value: [] },
   };
@@ -87,6 +118,11 @@ export function taboolaCampaignBody(name: string, s: CampaignSetup, groupId?: st
     body.daily_cap = s.dailyCap;
     body.daily_ad_delivery_model = "STRICT";
   }
+  body.start_date = s.startDate && s.startDate > today() ? s.startDate : today();
+  body.end_date = s.endDate || "9999-12-31";
+  body.activity_schedule = taboolaSchedule(s.schedule);
+  if (s.trafficAllocation) body.traffic_allocation_mode = s.trafficAllocation;
+  if (s.blockedSites?.length) body.publisher_targeting = { type: "EXCLUDE", value: uniq(s.blockedSites) };
   return body;
 }
 
@@ -118,6 +154,103 @@ export async function taboolaDuplicate(
   return { id: String(r.id), name: r.name, status: r.status, active: false };
 }
 
+/** Full campaign object as Taboola returns it. */
+export async function taboolaRaw(c: Credentials, id: string) {
+  return http<Record<string, unknown>>(`${TB}/${c.accountId}/campaigns/${id}/`, { headers: await tbHeaders(c) });
+}
+
+/** Fields that mean the same thing in any account (no ids of the source account). */
+const PORTABLE = [
+  "branding_text",
+  "tracking_code",
+  "bid_strategy",
+  "cpc",
+  "cpa_goal",
+  "daily_cap",
+  "daily_ad_delivery_model",
+  "spending_limit",
+  "spending_limit_model",
+  "marketing_objective",
+  "country_targeting",
+  "sub_country_targeting",
+  "platform_targeting",
+  "os_targeting",
+  "browser_targeting",
+  "connection_type_targeting",
+  "activity_schedule",
+  "traffic_allocation_mode",
+  "external_brand_safety",
+];
+const cleanTargeting = (v: unknown) => {
+  if (!v || typeof v !== "object" || Array.isArray(v)) return v;
+  const o = { ...(v as Record<string, unknown>) };
+  delete o.href;
+  return o;
+};
+
+/**
+ * New campaign based on a successful one ("template"): Taboola's own duplicate (keeps SpendGuard, conversion
+ * rules, brand safety, schedule… everything the API knows), without its ads, with our overrides on top.
+ * Works into another account of the same network (destination_account). If the network doesn't allow it,
+ * falls back to a new campaign with every portable field of the template.
+ */
+export async function taboolaFromTemplate(
+  src: Credentials,
+  templateId: string,
+  dst: Credentials,
+  name: string,
+  s: CampaignSetup,
+  groupId: string | undefined,
+): Promise<SourceCampaignInfo & { how: string }> {
+  const tpl = await taboolaRaw(src, templateId);
+  const cross = String(src.accountId) !== String(dst.accountId);
+  const inheritBlocks = s.inheritBlocks !== false;
+  const inheritBids = s.inheritBidModifiers === true;
+  if (cross && tpl.campaign_group_id && !groupId) throw new Error("Escolha o grupo de campanhas da conta destino (o grupo da campanha modelo é de outra conta).");
+
+  const overrides = taboolaCampaignBody(name, s, groupId);
+  delete overrides.marketing_objective; // follows the template
+  if (tpl.daily_ad_delivery_model) delete overrides.daily_ad_delivery_model; // keep the template's pacing
+  const tplBlocks = ((tpl.publisher_targeting as { type?: string; value?: string[] } | null)?.type === "EXCLUDE"
+    ? ((tpl.publisher_targeting as { value?: string[] }).value ?? [])
+    : []) as string[];
+  if (s.blockedSites?.length) overrides.publisher_targeting = { type: "EXCLUDE", value: uniq([...(inheritBlocks ? tplBlocks : []), ...s.blockedSites]) };
+
+  try {
+    const q = cross ? `?destination_account=${encodeURIComponent(String(dst.accountId))}` : "";
+    const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${src.accountId}/campaigns/${templateId}/duplicate/${q}`, {
+      method: "POST",
+      headers: await tbHeaders(src),
+      body: JSON.stringify({
+        ...overrides,
+        is_active: false,
+        duplicate_settings: {
+          include_items: false,
+          include_blocked_publishers: inheritBlocks,
+          include_publisher_bid_modifiers: inheritBids,
+          include_third_party_tracking: true,
+        },
+      }),
+    });
+    await http(`${TB}/${dst.accountId}/campaigns/${r.id}/`, { method: "POST", headers: await tbHeaders(dst), body: JSON.stringify({ is_active: false }) }).catch(() => {});
+    return { id: String(r.id), name: r.name, status: r.status, active: false, how: cross ? "duplicada da campanha modelo para a outra conta" : "duplicada da campanha modelo" };
+  } catch (e) {
+    if (!cross) throw e;
+    // Network doesn't allow cross-account duplicate with these credentials: rebuild from the template's fields.
+    const body: Record<string, unknown> = {};
+    for (const k of PORTABLE) if (tpl[k] !== undefined && tpl[k] !== null) body[k] = cleanTargeting(tpl[k]);
+    Object.assign(body, overrides, { is_active: false });
+    if (!s.blockedSites?.length && inheritBlocks && tplBlocks.length) body.publisher_targeting = { type: "EXCLUDE", value: tplBlocks };
+    if (inheritBids && tpl.publisher_bid_modifier) body.publisher_bid_modifier = tpl.publisher_bid_modifier;
+    const r = await http<{ id: number | string; name: string; status: string }>(`${TB}/${dst.accountId}/campaigns/`, {
+      method: "POST",
+      headers: await tbHeaders(dst),
+      body: JSON.stringify(body),
+    });
+    return { id: String(r.id), name: r.name, status: r.status, active: false, how: "criada na outra conta com o setup da campanha modelo" };
+  }
+}
+
 // -------------------------------- Revcontent ---------------------------------
 
 export async function revcontentCampaigns(c: Credentials): Promise<SourceCampaignInfo[]> {
@@ -134,19 +267,47 @@ async function revcontentDeviceIds(c: Credentials, devices: string[]): Promise<s
   return r.data.filter((x) => want.some((re) => re.test(String(x.name ?? x.device ?? "")))).map((x) => String(x.id));
 }
 
+/** Our device names for Revcontent device ids. */
+async function revcontentDeviceNames(c: Credentials, ids: string[]): Promise<("DESKTOP" | "MOBILE" | "TABLET")[]> {
+  if (!ids.length) return [];
+  type Device = { id: string | number; name?: string; device?: string };
+  const r = await rcGet<Device[]>(c, "/stats/api/v1.0/devices").catch(() => ({ success: false, data: [] as Device[] }));
+  const out = new Set<"DESKTOP" | "MOBILE" | "TABLET">();
+  for (const d of r.data) {
+    if (!ids.map(String).includes(String(d.id))) continue;
+    const n = String(d.name ?? d.device ?? "");
+    if (/desk|pc|computer/i.test(n)) out.add("DESKTOP");
+    else if (/tablet/i.test(n)) out.add("TABLET");
+    else if (/mobile|phone|smart/i.test(n)) out.add("MOBILE");
+  }
+  return [...out];
+}
+
 /** Boost body from a setup (pure, exported for tests). */
+/** Revcontent schedule = hours of the day the campaign is on (no per-day rules). */
+export function revcontentHours(sc?: CampaignSchedule): number[] | undefined {
+  if (!sc || sc.mode !== "CUSTOM") return undefined;
+  const out: number[] = [];
+  for (let h = sc.fromHour; h < sc.untilHour && h < 24; h++) out.push(h);
+  return out.length && out.length < 24 ? out : undefined;
+}
+
 export function revcontentBoostBody(name: string, s: CampaignSetup, deviceIds: string[]): Record<string, unknown> {
   const web = s.cpc ?? 0.1;
+  const hours = revcontentHours(s.schedule);
+  const cpa = s.bidStrategy === "cpa" && !!s.conversionId;
   return {
     name,
     bid_type: "cpc",
-    budget: s.budget ? s.budget : "unlimited",
-    pacing: s.pacing ? "on" : "off",
-    optimize: s.bidStrategy === "cpa" ? "cpa" : "cpc",
-    start_date: "immediately",
-    end_date: "never",
+    budget: s.budget ? Math.max(50, s.budget) : "unlimited",
+    ...(s.budget ? { pacing: s.pacing ? "on" : "off" } : {}),
+    optimize: cpa ? "cpa" : "cpc",
+    ...(cpa ? { conversion: { id: s.conversionId } } : {}),
+    ...(hours ? { schedule: hours } : {}),
+    start_date: s.startDate && s.startDate > today() ? `${s.startDate} 00:00:00` : "immediately",
+    end_date: s.endDate ? `${s.endDate} 23:59:59` : "never",
     country_targeting: s.countries.length ? "include" : "all",
-    ...(s.countries.length ? { country_codes: s.countries } : {}),
+    ...(s.countries.length ? { country_codes: [...new Set(s.countries.map(isoCountry))] } : {}),
     ...(deviceIds.length ? { device_targeting: deviceIds } : {}),
     ...(s.trackingCode ? { tracking_code: s.trackingCode.slice(0, 255) } : {}),
     default_bids: { web, email: s.bidEmail ?? web, apple_news: s.bidAppleNews ?? web },
@@ -167,22 +328,57 @@ export async function revcontentCreateCampaign(c: Credentials, name: string, s: 
   const id = String(Array.isArray(r.data) ? r.data[0]?.id : r.data?.id);
   if (!id || id === "undefined") throw new Error("A Revcontent não devolveu o id da campanha criada.");
   await rcPost(c, "/stats/api/v1.0/boosts", { id: Number(id), enabled: "off" });
+  if (s.blockedSites?.length) await revcontentBlock(c, id, s.blockedSites).catch(() => {});
   return { id, name, status: "inactive", active: false };
+}
+
+/** Widget ids blocked on a Revcontent campaign. */
+export async function revcontentBlocked(c: Credentials, boostId: string): Promise<string[]> {
+  const r = await rcGet<{ id: string | number }[]>(c, `/stats/api/v1.0/boosts/${boostId}/targets/blacklist/widgets`).catch(() => ({
+    success: false,
+    data: [] as { id: string | number }[],
+  }));
+  return r.data.map((x) => String(x.id));
+}
+
+export async function revcontentBlock(c: Credentials, boostId: string, widgets: string[]) {
+  const ids = uniq(widgets).filter((w) => /^\d+$/.test(w));
+  for (let i = 0; i < ids.length; i += 200) {
+    await rcPost(c, `/stats/api/v1.0/boosts/${boostId}/targets/blacklist/widgets/add`, { boost_id: Number(boostId), id: ids.slice(i, i + 200).join(",") });
+  }
+}
+
+/** Conversion pixels of the Revcontent account (needed to optimize for CPA). */
+export async function revcontentConversions(c: Credentials): Promise<{ id: string; name: string }[]> {
+  const r = await rcGet<{ id: string | number; name: string }[]>(c, "/stats/api/v1.0/conversions").catch(() => ({
+    success: false,
+    data: [] as { id: string | number; name: string }[],
+  }));
+  return r.data.map((x) => ({ id: String(x.id), name: x.name }));
 }
 
 /** Revcontent has no duplicate endpoint: new boost with the source's bid, budget and pacing. */
 export async function revcontentDuplicate(c: Credentials, sourceId: string, name: string, fallback: CampaignSetup): Promise<SourceCampaignInfo> {
-  const r = await rcGet<{ id: string; default_bid?: string; budget?: string; pacing?: string }[]>(c, "/stats/api/v1.0/boosts", {
-    boost_id: sourceId,
-  });
-  const src = r.data[0];
+  const d = await revcontentDetail(c, sourceId);
+  const blocked = fallback.inheritBlocks === false ? [] : await revcontentBlocked(c, sourceId);
   const setup: CampaignSetup = {
     ...fallback,
-    cpc: src?.default_bid ? num(src.default_bid) : fallback.cpc,
-    budget: src?.budget && src.budget !== "unlimited" ? num(src.budget) : fallback.budget,
-    pacing: src?.pacing ? src.pacing === "on" || src.pacing === "1" : fallback.pacing,
+    cpc: d.setup.cpc ?? fallback.cpc,
+    budget: d.setup.budget ?? fallback.budget,
+    pacing: d.setup.pacing,
+    countries: fallback.countries.length ? fallback.countries : d.setup.countries,
+    conversionId: fallback.conversionId ?? d.setup.conversionId,
+    schedule: fallback.schedule ?? d.setup.schedule,
+    trackingCode: fallback.trackingCode ?? d.setup.trackingCode,
+    blockedSites: uniq([...blocked, ...(fallback.blockedSites ?? [])]),
   };
   return revcontentCreateCampaign(c, name, setup);
+}
+
+/** Copies a Revcontent template campaign's blocked widgets into the setup (when asked). */
+export async function revcontentTemplateBlocks(c: Credentials, templateId: string, s: CampaignSetup): Promise<string[]> {
+  if (s.inheritBlocks === false) return s.blockedSites ?? [];
+  return uniq([...(await revcontentBlocked(c, templateId)), ...(s.blockedSites ?? [])]);
 }
 
 // ------------------------------ read / edit existing ------------------------------
@@ -238,6 +434,17 @@ export async function taboolaDetail(c: Credentials, id: string): Promise<Campaig
       marketingObjective: String(x.marketing_objective ?? "ONLINE_PURCHASES"),
       brandingText: String(x.branding_text ?? ""),
       trackingCode: x.tracking_code ? String(x.tracking_code) : undefined,
+      schedule: fromTaboolaSchedule(x.activity_schedule),
+      trafficAllocation: x.traffic_allocation_mode === "EVEN" ? "EVEN" : "OPTIMIZED",
+      endDate: x.end_date && String(x.end_date) < "9999" && String(x.end_date) >= today() ? String(x.end_date) : undefined,
+      templateInfo: {
+        blockedSites:
+          (x.publisher_targeting as { type?: string; value?: string[] } | null)?.type === "EXCLUDE"
+            ? ((x.publisher_targeting as { value?: string[] }).value ?? []).length
+            : 0,
+        bidModifiers: ((x.publisher_bid_modifier as { values?: unknown[] } | null)?.values ?? []).length,
+        timeZone: (x.activity_schedule as { time_zone?: string } | undefined)?.time_zone,
+      },
     },
   };
 }
@@ -246,6 +453,8 @@ export async function taboolaUpdate(c: Credentials, id: string, name: string, s:
   const body = taboolaCampaignBody(name, s);
   delete body.is_active; // keep the current on/off state
   delete body.marketing_objective; // fixed after creation on most accounts
+  if (!s.startDate || s.startDate <= today()) delete body.start_date; // never move a running campaign's start
+  if (!s.blockedSites?.length) delete body.publisher_targeting; // keep the blocks it already has
   await http(`${TB}/${c.accountId}/campaigns/${id}/`, { method: "POST", headers: await tbHeaders(c), body: JSON.stringify(body) });
 }
 
@@ -280,6 +489,10 @@ export async function revcontentDetail(c: Credentials, id: string): Promise<Camp
       status: String(i.admin_status ?? ""),
     }));
   const budget = String(x.budget ?? "");
+  const devNames = await revcontentDeviceNames(c, (x.device_targeting as string[] | undefined) ?? []);
+  const hours = Array.isArray(x.schedule) ? (x.schedule as (string | number)[]).map(Number).sort((a, b) => a - b) : [];
+  const pixels = (x.pixels as { id?: string | number }[] | undefined) ?? [];
+  const blocked = await revcontentBlocked(c, id);
   return {
     platform: "revcontent",
     campaignId: id,
@@ -288,13 +501,17 @@ export async function revcontentDetail(c: Credentials, id: string): Promise<Camp
     items,
     setup: {
       product: "",
-      countries: [],
-      devices: ["DESKTOP"],
-      bidStrategy: "cpc",
+      countries: x.country_targeting === "include" ? ((x.country_codes as string[] | undefined) ?? []) : [],
+      devices: devNames.length ? devNames : ["DESKTOP", "MOBILE", "TABLET"],
+      bidStrategy: x.optimize === "cpa" ? "cpa" : "cpc",
+      conversionId: pixels[0]?.id != null ? String(pixels[0].id) : undefined,
       cpc: x.default_bid != null ? num(x.default_bid) : undefined,
       budget: budget && budget !== "unlimited" ? num(budget) : undefined,
       pacing: String(x.pacing ?? "") === "on" || x.pacing === 1 || x.pacing === "1",
-      brandingText: items.length ? "" : "",
+      brandingText: "",
+      trackingCode: x.utm_codes ? String(x.utm_codes).slice(0, 255) : undefined,
+      schedule: hours.length && hours.length < 24 ? { mode: "CUSTOM", days: WEEK, fromHour: hours[0], untilHour: hours[hours.length - 1] + 1 } : undefined,
+      templateInfo: { blockedSites: blocked.length, bidModifiers: 0 },
     },
   };
 }
@@ -307,8 +524,10 @@ export async function revcontentUpdate(c: Credentials, id: string, name: string,
     name,
     budget_type: s.budget ? "daily" : "unlimited",
     ...(s.budget ? { budget_amount: Math.max(50, s.budget), pacing: s.pacing ? "on" : "off" } : {}),
-    optimize: s.bidStrategy === "cpa" ? "cpa" : "cpc",
-    ...(s.countries.length ? { country_targeting: "include", country_codes: s.countries } : { country_targeting: "all" }),
+    optimize: s.bidStrategy === "cpa" && s.conversionId ? "cpa" : "cpc",
+    ...(s.bidStrategy === "cpa" && s.conversionId ? { conversion: { id: s.conversionId } } : {}),
+    ...(revcontentHours(s.schedule) ? { schedule: revcontentHours(s.schedule) } : {}),
+    ...(s.countries.length ? { country_targeting: "include", country_codes: [...new Set(s.countries.map(isoCountry))] } : { country_targeting: "all" }),
     ...(deviceIds.length ? { device_targeting: deviceIds } : {}),
     default_bids: { web, email: s.bidEmail ?? web, apple_news: s.bidAppleNews ?? web },
   });

@@ -2,7 +2,10 @@ import "server-only";
 import { randomBytes } from "node:crypto";
 import {
   revcontentCampaigns,
+  revcontentConversions,
   revcontentCreateCampaign,
+  revcontentTemplateBlocks,
+  taboolaFromTemplate,
   revcontentDetail,
   revcontentDuplicate,
   revcontentUpdate,
@@ -18,14 +21,17 @@ import {
   taboolaUpdateItem,
   type NewGroup,
 } from "./connectors/campaignBuilder";
-import { parseSourceName } from "./naming";
+import { isoCountry, parseSourceName } from "./naming";
 import { listCampaigns as listRtCampaigns } from "./connectors/redtrack";
 import { publishRevcontent, publishTaboola } from "./connectors/taboolaCreatives";
 import { friendlyError } from "./cache";
+import { checkSetup } from "./campaignRules";
+import { computeTraffic } from "./traffic";
 import {
   addCampaignLog,
   getAsset,
   getConnection,
+  getSettings,
   listConnections,
   listTemplates,
   listVariants,
@@ -62,7 +68,7 @@ export async function builderMeta(platform: Platform, accountId: string) {
   const warnings: string[] = [];
   const conn = await connection(platform, accountId);
   const rt = (await listConnections()).find((c) => c.provider === "redtrack");
-  const [campaigns, groups, rtCampaigns, templates] = await Promise.all([
+  const [campaigns, groups, rtCampaigns, templates, conversions, settings] = await Promise.all([
     (platform === "taboola" ? taboolaCampaigns(conn.credentials) : revcontentCampaigns(conn.credentials)).catch((e) => {
       warnings.push(friendlyError(conn.label ?? platform, e));
       return [];
@@ -80,8 +86,46 @@ export async function builderMeta(platform: Platform, accountId: string) {
         })
       : Promise.resolve([]),
     listTemplates(),
+    platform === "revcontent" ? revcontentConversions(conn.credentials) : Promise.resolve([]),
+    getSettings(),
   ]);
-  return { campaigns, groups, rtCampaigns, templates: templates.filter((t) => t.platform === platform), warnings };
+  return {
+    campaigns,
+    groups,
+    rtCampaigns,
+    conversions,
+    blocklists: (settings.blocklists ?? []).filter((b) => b.platform === platform),
+    templates: templates.filter((t) => t.platform === platform),
+    warnings,
+  };
+}
+
+/** Campaigns that worked (last 30 days, by real profit), to use as the template of a new one. */
+export async function winners(platform: Platform) {
+  const to = new Date().toISOString().slice(0, 10);
+  const from = new Date(Date.now() - 29 * 86400_000).toISOString().slice(0, 10);
+  const r = await computeTraffic({ from, to });
+  return r.apiRows
+    .filter((x) => x.platform === platform && x.accountId && x.sourceId && x.spend > 0)
+    .map((x) => ({
+      accountId: x.accountId!,
+      campaignId: x.sourceId!,
+      name: x.campaign,
+      spend: x.spend,
+      sales: x.sales,
+      cpa: x.cpa,
+      roas: x.roas,
+      profit: x.profit,
+    }))
+    .sort((a, b) => b.profit - a.profit || b.roas - a.roas)
+    .slice(0, 40);
+}
+
+/** Saved blocklists + typed sites, deduplicated. */
+async function resolveBlocks(platform: Platform, s: CampaignSetup): Promise<CampaignSetup> {
+  const lists = ((await getSettings()).blocklists ?? []).filter((b) => b.platform === platform && s.blocklistIds?.includes(b.id));
+  const sites = [...new Set([...(s.blockedSites ?? []), ...lists.flatMap((b) => b.sites)].map((x) => x.trim()).filter(Boolean))];
+  return { ...s, blockedSites: sites };
 }
 
 /** Uploads each creative as a new PAUSED ad. Returns one log line per creative. */
@@ -157,6 +201,18 @@ export async function createCampaign(input: CreateInput, baseUrl: string) {
   const steps: string[] = [];
   let campaignId = "";
   let ok = false;
+  const tplRef = input.setup.templateCampaign;
+  const cross = !!tplRef && tplRef.accountId !== input.accountId;
+  const check = checkSetup(input.platform, input.setup, {
+    url: input.url,
+    name: input.name,
+    groupNeeded: input.platform === "taboola" && cross,
+    groupChosen: input.group?.mode === "existing" || input.group?.mode === "new",
+  });
+  if (check.errors.length) {
+    return { ok: false, campaignId: "", steps: ["Nada foi criado. Corrija antes:", ...check.errors] };
+  }
+  input = { ...input, setup: await resolveBlocks(input.platform, input.setup) };
   try {
     let groupId: string | undefined;
     if (input.platform === "taboola" && input.group?.mode === "new") {
@@ -167,12 +223,28 @@ export async function createCampaign(input: CreateInput, baseUrl: string) {
       groupId = input.group.id;
       steps.push(`Usando o grupo ${groupId}`);
     }
-    const camp =
-      input.platform === "taboola"
-        ? await taboolaCreateCampaign(conn.credentials, input.name, input.setup, groupId)
-        : await revcontentCreateCampaign(conn.credentials, input.name, input.setup);
+    let camp;
+    if (tplRef) {
+      const src = await getConnection(tplRef.accountId);
+      if (!src || src.provider !== input.platform) throw new Error("A campanha modelo é de outra fonte ou de uma conta desconectada.");
+      if (input.platform === "taboola") {
+        const r = await taboolaFromTemplate(src.credentials, tplRef.campaignId, conn.credentials, input.name, input.setup, groupId);
+        camp = r;
+        steps.push(`Base: "${tplRef.name}" (${r.how}, sem os anúncios dela)`);
+      } else {
+        const blocked = await revcontentTemplateBlocks(src.credentials, tplRef.campaignId, input.setup);
+        camp = await revcontentCreateCampaign(conn.credentials, input.name, { ...input.setup, blockedSites: blocked });
+        steps.push(`Base: "${tplRef.name}" (setup copiado${blocked.length ? `, ${blocked.length} widgets bloqueados` : ""})`);
+      }
+    } else {
+      camp =
+        input.platform === "taboola"
+          ? await taboolaCreateCampaign(conn.credentials, input.name, input.setup, groupId)
+          : await revcontentCreateCampaign(conn.credentials, input.name, input.setup);
+    }
     campaignId = camp.id;
     steps.push(`Campanha "${input.name}" criada pausada (id ${camp.id})`);
+    if (input.setup.blockedSites?.length) steps.push(`${input.setup.blockedSites.length} site(s) da blocklist bloqueados`);
     const r = await addCreatives(input.platform, input.accountId, camp.id, input.url, input.creatives, baseUrl);
     steps.push(...r.steps);
     ok = true;
@@ -282,8 +354,9 @@ export async function campaignDetail(accountId: string, campaignId: string) {
   const p = parseSourceName(d.name);
   if (p) {
     d.setup.product = p.product;
-    if (!d.setup.countries.length) d.setup.countries = [p.country];
-    if (conn.provider === "revcontent" && p.device && p.device !== "ALL") d.setup.devices = [p.device as "DESKTOP"];
+    if (!d.setup.countries.length) d.setup.countries = [isoCountry(p.country)];
+    if (conn.provider === "revcontent" && d.setup.devices.length === 3 && p.device && p.device !== "ALL")
+      d.setup.devices = p.device.split("/") as ("DESKTOP" | "MOBILE" | "TABLET")[];
   }
   return { ...d, accountId };
 }
