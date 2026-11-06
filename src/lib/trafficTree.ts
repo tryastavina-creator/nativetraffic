@@ -4,7 +4,7 @@ import { cached, friendlyError, hashKey } from "./cache";
 import { campaignAccounts, resolveAccount } from "./campaigns";
 import { revcontentCampaigns, taboolaCampaigns, type SourceCampaignInfo } from "./connectors/campaignBuilder";
 import { PLATFORM_LABEL } from "./registry";
-import { listCampaignLog } from "./store";
+import { getSettings, listCampaignLog, listConnections } from "./store";
 import { computeTraffic, type ExcludedCampaign, type TrafficRow } from "./traffic";
 import type { DateRange } from "./types";
 
@@ -97,13 +97,36 @@ async function campaignList(accountId: string, platform: string, warnings: strin
   }
 }
 
-export async function computeTrafficTree(range: DateRange): Promise<TrafficTree> {
-  const [r, accounts, log] = await Promise.all([computeTraffic(range), campaignAccounts().catch(() => []), listCampaignLog().catch(() => [])]);
+/** Resolves with the fallback after `ms`; the work keeps running (and fills its cache for the next load). */
+function within<T>(p: Promise<T>, ms: number, fallback: T): Promise<T> {
+  return Promise.race([p.catch(() => fallback), new Promise<T>((r) => setTimeout(() => r(fallback), ms))]);
+}
+
+/**
+ * Served from a stale-while-revalidate cache: the screen gets the last result at once and a fresh one is built
+ * in the background. The key includes the settings that change the result (ignored / linked campaigns).
+ */
+export async function computeTrafficTree(range: DateRange): Promise<TrafficTree & { cachedAt: string }> {
+  const st = await getSettings();
+  const version = hashKey(st.excludedCampaigns, st.campaignLinks, st.creativeProducts ?? {});
+  const r = await cached(hashKey("tree", range, version), () => buildTree(range), { ttl: 90_000, maxStale: 24 * 3600_000 });
+  return { ...r.value, cachedAt: new Date(r.at).toISOString() };
+}
+
+async function buildTree(range: DateRange): Promise<TrafficTree> {
+  // Account / campaign lists only add status and budget: never let them hold the screen for long.
+  const [r, accounts, log] = await Promise.all([
+    computeTraffic(range),
+    within(campaignAccounts(), 4000, [] as Awaited<ReturnType<typeof campaignAccounts>>),
+    listCampaignLog().catch(() => []),
+  ]);
   const warnings = [...r.warnings];
   const days = Math.max(1, Math.round((Date.parse(range.to) - Date.parse(range.from)) / 86400_000) + 1);
 
   // Campaign → account, from each account's campaign list (also gives status and budget).
-  const lists = await Promise.all(accounts.map(async (a) => ({ a, list: await campaignList(a.id, a.platform, warnings) })));
+  const lists = await Promise.all(
+    accounts.map(async (a) => ({ a, list: await within(campaignList(a.id, a.platform, warnings), 4000, [] as SourceCampaignInfo[]) })),
+  );
   const owner = new Map<string, { accountId: string; info: SourceCampaignInfo }>();
   for (const { a, list } of lists) for (const c of list) owner.set(`${a.platform}:${c.id}`, { accountId: a.id, info: c });
 
@@ -183,6 +206,7 @@ export async function computeTrafficTree(range: DateRange): Promise<TrafficTree>
     }
 
   const label = new Map(accounts.map((a) => [a.id, a.label]));
+  for (const c of await listConnections().catch(() => [])) if (!label.has(c.id)) label.set(c.id, c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider);
   const platforms = new Map<string, TreeAccount[]>();
   for (const [accountId, campaigns] of byAccount) {
     const platform = campaigns[0].platform;

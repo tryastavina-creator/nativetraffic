@@ -99,12 +99,19 @@ export default function Trafego() {
     let live = true;
     setLoading(true);
     setError("");
+    // Last numbers of this period show at once; the fresh ones replace them when they arrive.
+    const memo = `nt_tree_${preset}`;
+    if (preset !== "custom") {
+      const last = load<TrafficTree | null>(memo, null);
+      if (last?.platforms) setData(last);
+    }
     fetch(`/api/traffic?${q}`)
       .then(async (r) => {
         const j = await r.json();
         if (!r.ok) throw new Error(j.error ?? "Erro ao carregar");
         if (!live) return;
         setData(j);
+        if (preset !== "custom") save(memo, j);
         // First visit: open the sources, and the accounts of sources with few accounts.
         setOpen((cur) => {
           if (cur.size || load<string[] | null>("nt_traffic_open", null)) return cur;
