@@ -201,7 +201,7 @@ async function addCreatives(
                 url,
                 headline,
                 (await getAsset(v.assetId)) ?? (() => { throw new Error("imagem da variação não encontrada no banco"); })(),
-                true,
+                v.origin !== "spy", // AI disclosure only for images generated here
                 resume[idx],
                 cr,
               )

@@ -19,8 +19,9 @@ export type Pick = {
   cta?: string;
 };
 type Perf = { spend: number; roas: number; profit: number; cpa: number; sales: number; ctr: number };
-type Ad = Perf & { platform: string; itemId: string; title: string; thumbnail: string; campaignName: string; key: string };
-type Group = Perf & { key: string; image: string; title: string; ads: number; platforms: string[] };
+type Ad = Perf & { platform: string; itemId: string; title: string; thumbnail: string; campaignName: string; key: string; product?: string };
+type Group = Perf & { key: string; image: string; title: string; ads: number; platforms: string[]; product?: string };
+type Saved = { id: string; text: string; product: string; description?: string };
 
 /** Taboola call-to-action buttons. */
 export const CTAS: [string, string][] = [
@@ -407,7 +408,10 @@ export function CreativePicker({
   /** Product / campaign name: helps find the niche for the descriptions. */
   context?: { product?: string; campaign?: string };
 }) {
-  const [data, setData] = useState<{ variants: CreativeVariant[]; combos: Ad[]; images: Group[]; headlines: Group[] } | null>(null);
+  const [data, setData] = useState<{ variants: CreativeVariant[]; combos: Ad[]; images: Group[]; headlines: Group[]; savedHeadlines?: Saved[] } | null>(null);
+  const campaignProduct = normProduct(context.product ?? "");
+  const [onlyProduct, setOnlyProduct] = useState(true);
+  const fits = (p?: string) => !onlyProduct || !campaignProduct || !p || normProduct(p) === campaignProduct;
   const [view, setView] = useState<"images" | "headlines" | "ads" | "variants">("images");
   const [target, setTarget] = useState<string | null>(null); // pick that receives a headline from the Headlines tab
   const [genBusy, setGenBusy] = useState(false);
@@ -425,14 +429,15 @@ export function CreativePicker({
     fetch("/api/creatives?preset=30d")
       .then((r) => r.json())
       .then(setData)
-      .catch(() => setData({ variants: [], combos: [], images: [], headlines: [] }));
+      .catch(() => setData({ variants: [], combos: [], images: [], headlines: [], savedHeadlines: [] }));
   }, []);
   const max = TITLE_MAX[platform] ?? 100;
   const byProfit = <T extends Perf>(xs: T[]) => [...xs].sort((a, b) => b.profit - a.profit || b.roas - a.roas);
-  const variants = (data?.variants ?? []).filter((v) => v.status !== "archived");
-  const images = byProfit(data?.images ?? []);
-  const headlines = byProfit(data?.headlines ?? []);
-  const ads = byProfit(data?.combos ?? []);
+  const variants = (data?.variants ?? []).filter((v) => v.status !== "archived" && fits(v.product));
+  const images = byProfit((data?.images ?? []).filter((g) => fits(g.product)));
+  const saved = (data?.savedHeadlines ?? []).filter((h) => fits(h.product));
+  const headlines = byProfit((data?.headlines ?? []).filter((g) => fits(g.product)));
+  const ads = byProfit((data?.combos ?? []).filter((a) => fits(a.product)));
   const add = (p: Omit<Pick, "key">) => {
     const key = `${p.kind}:${p.imageUrl}:${Date.now()}:${Math.random().toString(36).slice(2, 6)}`;
     onChange([...picks, { ...p, key, headline: p.headline.slice(0, max), cta: p.cta ?? "" }]);
@@ -454,13 +459,19 @@ export function CreativePicker({
 
   const tabs: [typeof view, string][] = [
     ["images", `Imagens que performam (${images.length})`],
-    ["headlines", `Headlines que performam (${headlines.length})`],
+    ["headlines", `Headlines (${headlines.length + saved.length})`],
     ["ads", `Anúncios prontos (${ads.length})`],
-    ["variants", `Variações geradas (${variants.length})`],
+    ["variants", `Biblioteca (${variants.length})`],
   ];
 
   return (
     <div>
+      {campaignProduct && (
+        <label className="mb-2 flex items-center gap-2 text-[11px] text-muted">
+          <input type="checkbox" checked={onlyProduct} onChange={(e) => setOnlyProduct(e.target.checked)} />
+          Só criativos do produto {campaignProduct} (e os sem produto)
+        </label>
+      )}
       <div className="flex flex-wrap gap-1">
         {tabs.map(([id, label]) => (
           <button key={id} className={`chip border border-line ${view === id ? "chip-on" : ""}`} onClick={() => setView(id)}>
@@ -477,7 +488,7 @@ export function CreativePicker({
               : "Escolha primeiro uma imagem; depois clique aqui para trocar a headline dela."
             : view === "ads"
               ? "Imagem + headline exatamente como já rodam, ordenados por lucro (últimos 30 dias)."
-              : "Variações geradas na aba Criativos."}
+              : "Criativos adicionados (spy) e variações geradas na aba Criativos — já vêm com a descrição salva."}
       </p>
       <div className="mt-2 grid max-h-[380px] gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
         {!data && <p className="text-xs text-muted sm:col-span-3">Carregando criativos dos últimos 30 dias…</p>}
@@ -508,6 +519,18 @@ export function CreativePicker({
               <div className="text-faint">{perfLine(g)}</div>
             </button>
           ))}
+        {view === "headlines" &&
+          saved.map((h) => (
+            <button
+              key={h.id}
+              disabled={!picks.length}
+              onClick={() => target && update(target, { headline: h.text.slice(0, max), ...(h.description ? { description: h.description } : {}) })}
+              className="rounded-lg border border-line p-2 text-left text-[11px] hover:border-accent disabled:opacity-50 sm:col-span-3"
+            >
+              <div className="text-zinc-200">{h.text}</div>
+              <div className="text-faint">salva · {h.product}</div>
+            </button>
+          ))}
         {view === "ads" &&
           ads.map((a) => (
             <button
@@ -526,11 +549,26 @@ export function CreativePicker({
           variants.map((v) => (
             <button
               key={v.id}
-              onClick={() => add({ kind: "variant", variantId: v.id, imageUrl: `/api/assets/${v.assetId}`, headline: v.headline, label: v.source.campaignName })}
+              onClick={() =>
+                add({
+                  kind: "variant",
+                  variantId: v.id,
+                  imageUrl: `/api/assets/${v.assetId}`,
+                  headline: v.headline,
+                  description: v.description,
+                  label: `${v.origin === "spy" ? "adicionado" : "variação"}${v.product ? ` · ${v.product}` : ""} · ${v.source.campaignName}`,
+                })
+              }
               className={`overflow-hidden rounded-lg border text-left ${count(`/api/assets/${v.assetId}`) ? "border-accent" : "border-line"}`}
             >
               <img src={`/api/assets/${v.assetId}`} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
-              <div className="line-clamp-2 p-2 text-[11px]">{v.headline}</div>
+              <div className="p-2 text-[11px]">
+                <div className="line-clamp-2">{v.headline}</div>
+                <div className="text-faint">
+                  {v.origin === "spy" ? "adicionado" : "variação"}
+                  {v.product ? ` · ${v.product}` : ""}
+                </div>
+              </div>
             </button>
           ))}
         {data && view === "variants" && !variants.length && (

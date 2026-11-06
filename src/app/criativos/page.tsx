@@ -5,13 +5,16 @@ import { useEffect, useMemo, useState } from "react";
 import { int, money, pct } from "@/components/format";
 import { estimateCost, IMAGE_MODELS, STYLES, VARY_MODES, type ImageModelId, type StyleId, type VaryMode } from "@/lib/creativeOptions";
 import type { CreativeRow, GroupRow, Perf } from "@/lib/creatives";
-import type { CreativeVariant, VariantSource } from "@/lib/store";
+import type { CreativeVariant, SavedHeadline, VariantSource } from "@/lib/store";
+import { generateDescriptions } from "@/components/campaignParts";
 
 type Payload = {
   combos: CreativeRow[];
   images: GroupRow[];
   headlines: GroupRow[];
   variants: CreativeVariant[];
+  savedHeadlines: SavedHeadline[];
+  products: string[];
   accounts: { id: string; label: string; platform: string }[];
   hasImageAi: boolean;
   warnings: string[];
@@ -73,6 +76,8 @@ export default function Criativos() {
   const [loading, setLoading] = useState(true);
   const [studio, setStudio] = useState<CreativeRow | null>(null);
   const [reload, setReload] = useState(0);
+  const [prod, setProd] = useState<string>(""); // "" = todos · "-" = sem produto
+  const [adding, setAdding] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -82,8 +87,29 @@ export default function Criativos() {
       .finally(() => setLoading(false));
   }, [preset, reload]);
 
-  const variants = data?.variants ?? [];
+  const allVariants = data?.variants ?? [];
+  const products = useMemo(
+    () =>
+      [
+        ...new Set([
+          ...(data?.products ?? []),
+          ...allVariants.map((v) => v.product ?? "").filter(Boolean),
+          ...(data?.savedHeadlines ?? []).map((h) => h.product).filter(Boolean),
+        ]),
+      ].sort(),
+    [data, allVariants],
+  );
+  const inProd = (p?: string) => !prod || (prod === "-" ? !p : p === prod);
+  const variants = allVariants.filter((v) => inProd(v.product));
+  const images = (data?.images ?? []).filter((g) => inProd(g.product));
+  const combos = (data?.combos ?? []).filter((r) => inProd(r.product));
+  const headlines = (data?.headlines ?? []).filter((g) => inProd(g.product));
+  const saved = (data?.savedHeadlines ?? []).filter((h) => inProd(h.product));
   const newCount = variants.filter((v) => v.status === "new").length;
+  async function setProduct(key: string, product: string) {
+    await fetch("/api/creatives/library", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ kind: "product", key, product }) });
+    setReload((n) => n + 1);
+  }
 
   return (
     <div className="mx-auto max-w-[1500px]">
@@ -91,8 +117,11 @@ export default function Criativos() {
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">Criativos</h1>
           <p className="mt-1 text-sm text-muted">
-            Resultado por imagem, por headline e pelo combo das duas. Gere variações e suba na mesma campanha, sempre pausadas.
+            Resultado por imagem, por headline e pelo combo das duas, separado por produto. Adicione criativos do spy e gere variações.
           </p>
+          <button className="btn-primary mt-3 py-1.5 text-xs" onClick={() => setAdding(true)}>
+            + Adicionar criativo ou headlines
+          </button>
         </div>
         <div className="flex flex-wrap gap-1 rounded-lg border border-line bg-panel p-1">
           {PRESETS.map(([id, label]) => (
@@ -119,10 +148,10 @@ export default function Criativos() {
         <div className="flex gap-1 rounded-lg border border-line bg-panel p-1">
           {(
             [
-              ["images", `Imagens${data ? ` (${data.images.length})` : ""}`],
-              ["headlines", `Headlines${data ? ` (${data.headlines.length})` : ""}`],
-              ["combos", `Combos${data ? ` (${data.combos.length})` : ""}`],
-              ["variants", `Variações${newCount ? ` · ${newCount} novas` : ""}`],
+              ["images", `Imagens${data ? ` (${images.length})` : ""}`],
+              ["headlines", `Headlines${data ? ` (${headlines.length + saved.length})` : ""}`],
+              ["combos", `Combos${data ? ` (${combos.length})` : ""}`],
+              ["variants", `Biblioteca${newCount ? ` · ${newCount} novos` : ""}`],
             ] as [Tab, string][]
           ).map(([id, label]) => (
             <button key={id} onClick={() => setTab(id)} className={`chip ${tab === id ? "chip-on" : ""}`}>
@@ -144,12 +173,24 @@ export default function Criativos() {
         )}
       </div>
 
+      <div className="mt-3 flex flex-wrap items-center gap-1 text-xs">
+        <span className="mr-1 text-faint">Produto:</span>
+        {[["", "Todos"], ...products.map((p) => [p, p]), ["-", "Sem produto"]].map(([id, label]) => (
+          <button key={id || "all"} onClick={() => setProd(id)} className={`chip border border-line ${prod === id ? "chip-on" : ""}`}>
+            {label}
+          </button>
+        ))}
+      </div>
+
       <div className={`mt-4 ${loading ? "opacity-50" : ""}`}>
         {tab === "images" && data && (
           <Grid>
-            {sortRows(data.images, sort).map((g) => (
+            {sortRows(images, sort).map((g) => (
               <Card
                 key={g.key}
+                product={g.product}
+                products={products}
+                onProduct={(p) => setProduct(`img:${g.key}`, p)}
                 image={g.image}
                 title={g.title}
                 meta={`${g.ads} anúncio(s) · ${g.campaigns.slice(0, 2).join(", ")}${g.campaigns.length > 2 ? "…" : ""}`}
@@ -163,9 +204,12 @@ export default function Criativos() {
 
         {tab === "combos" && data && (
           <Grid>
-            {sortRows(data.combos, sort).map((r) => (
+            {sortRows(combos, sort).map((r) => (
               <Card
                 key={r.key}
+                product={r.product}
+                products={products}
+                onProduct={(p) => setProduct(`img:${imageKey(r.thumbnail)}`, p)}
                 image={r.thumbnail}
                 title={r.title}
                 meta={`${PLATFORM_LABEL[r.platform]} · ${r.campaignName}`}
@@ -183,6 +227,7 @@ export default function Criativos() {
               <thead>
                 <tr>
                   <th>Headline</th>
+                  <th>Produto</th>
                   <th className="text-right">Anúncios</th>
                   <th className="text-right">Gasto</th>
                   <th className="text-right">CTR</th>
@@ -193,11 +238,14 @@ export default function Criativos() {
                 </tr>
               </thead>
               <tbody>
-                {sortRows(data.headlines, sort).map((g) => (
+                {sortRows(headlines, sort).map((g) => (
                   <tr key={g.key}>
                     <td className="max-w-[460px]">
                       <div className="line-clamp-2">{g.title}</div>
                       <div className="text-[11px] text-faint">{g.platforms.map((p) => PLATFORM_LABEL[p]).join(", ")}</div>
+                    </td>
+                    <td>
+                      <ProductSelect value={g.product} products={products} onChange={(p) => setProduct(`hl:${g.key}`, p)} />
                     </td>
                     <td className="text-right">{int(g.ads)}</td>
                     <td className="text-right text-bad">{money(g.spend, "USD")}</td>
@@ -213,7 +261,9 @@ export default function Criativos() {
           </div>
         )}
 
-        {tab === "variants" && <Library variants={variants} onChanged={() => setReload((n) => n + 1)} />}
+        {tab === "headlines" && data && <SavedHeadlines list={saved} products={products} onChanged={() => setReload((n) => n + 1)} />}
+
+        {tab === "variants" && <Library variants={variants} products={products} onChanged={() => setReload((n) => n + 1)} />}
 
         {data && tab !== "variants" && (
           <p className="mt-3 text-[11px] text-faint">
@@ -223,6 +273,18 @@ export default function Criativos() {
         )}
       </div>
 
+      {adding && (
+        <AddCreative
+          products={products}
+          defaultProduct={prod && prod !== "-" ? prod : ""}
+          onClose={() => setAdding(false)}
+          onDone={(kind) => {
+            setAdding(false);
+            setTab(kind === "headlines" ? "headlines" : "variants");
+            setReload((n) => n + 1);
+          }}
+        />
+      )}
       {studio && (
         <Studio
           item={studio}
@@ -251,6 +313,9 @@ function Card({
   perf,
   canGenerate,
   onGenerate,
+  product,
+  products,
+  onProduct,
 }: {
   image: string;
   title: string;
@@ -258,12 +323,18 @@ function Card({
   perf: Perf;
   canGenerate: boolean;
   onGenerate: () => void;
+  product: string;
+  products: string[];
+  onProduct: (p: string) => void;
 }) {
   return (
     <div className="card overflow-hidden">
       <div className="relative aspect-[16/9] bg-panel2">
         {image && <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" />}
         {perf.estimated && <span className="absolute left-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-warn">estimado</span>}
+        <div className="absolute right-2 top-2">
+          <ProductSelect value={product} products={products} onChange={onProduct} overlay />
+        </div>
       </div>
       <div className="space-y-3 p-4">
         <div>
@@ -468,7 +539,7 @@ const STATUS_LABEL = { new: "nova", published: "no ar (pausada)", archived: "arq
 const styleLabel = (id: string) => STYLES.find((s) => s.id === id)?.label ?? id;
 const modeLabel = (id: string) => VARY_MODES.find((s) => s.id === id)?.label ?? id;
 
-function Library({ variants, onChanged }: { variants: CreativeVariant[]; onChanged: () => void }) {
+function Library({ variants, products, onChanged }: { variants: CreativeVariant[]; products: string[]; onChanged: () => void }) {
   const [filter, setFilter] = useState<"new" | "published" | "archived">("new");
   const [busy, setBusy] = useState<string | null>(null);
   const [notes, setNotes] = useState<Record<string, { ok: boolean; text: string }>>({});
@@ -476,7 +547,7 @@ function Library({ variants, onChanged }: { variants: CreativeVariant[]; onChang
   const groups = useMemo(() => {
     const g = new Map<string, CreativeVariant[]>();
     for (const v of variants.filter((x) => x.status === filter)) {
-      const k = `${v.source.platform}:${v.source.itemId}`;
+      const k = v.origin === "spy" ? `spy:${v.assetId}` : `${v.source.platform}:${v.source.itemId}`;
       g.set(k, [...(g.get(k) ?? []), v]);
     }
     return [...g.values()];
@@ -514,19 +585,41 @@ function Library({ variants, onChanged }: { variants: CreativeVariant[]; onChang
 
       {groups.length === 0 && (
         <div className="card card-pad mt-4 text-sm text-muted">
-          Nenhuma variação aqui. Em Imagens ou Combos, clique em &quot;Criar variações&quot; num criativo.
+          Nada aqui. Adicione criativos do spy em &quot;+ Adicionar criativo&quot; ou gere variações em Imagens / Combos. Para subir numa campanha, use
+          &quot;Criar campanha&quot; ou &quot;Configurações e anúncios&quot; na aba Tráfego (Variações geradas).
         </div>
       )}
 
       {groups.map((vs) => {
         const s = vs[0].source;
+        const spy = vs[0].origin === "spy";
         return (
-          <div key={`${s.platform}:${s.itemId}`} className="mt-6">
-            <div className="mb-2 text-xs text-faint">
-              {PLATFORM_LABEL[s.platform]} · {s.campaignName} · {vs.length} variação(ões)
+          <div key={spy ? vs[0].assetId : `${s.platform}:${s.itemId}`} className="mt-6">
+            <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-faint">
+              {spy ? (
+                <span className="rounded bg-info/15 px-1.5 py-0.5 text-[10px] text-info">ADICIONADO · {s.campaignName}</span>
+              ) : (
+                <span>
+                  {PLATFORM_LABEL[s.platform]} · {s.campaignName}
+                </span>
+              )}
+              <span>· {vs.length} {spy ? "headline(s)" : "variação(ões)"}</span>
+              <ProductSelect
+                value={vs[0].product ?? ""}
+                products={products}
+                onChange={async (p) => {
+                  for (const v of vs)
+                    await fetch("/api/creatives/library", {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ kind: "variant", id: v.id, product: p }),
+                    });
+                  onChanged();
+                }}
+              />
             </div>
             <div className="flex gap-3 overflow-x-auto pb-2">
-              <div className="w-60 shrink-0 overflow-hidden rounded-xl border border-dashed border-accent/50">
+              <div className={`w-60 shrink-0 overflow-hidden rounded-xl border border-dashed border-accent/50 ${spy ? "hidden" : ""}`}>
                 <div className="relative">
                   <img src={s.imageUrl} alt="" className="aspect-[16/9] w-full object-cover" />
                   <span className="absolute right-2 top-2 rounded bg-accent px-1.5 py-0.5 text-[10px] font-semibold text-black">ORIGINAL</span>
@@ -540,7 +633,7 @@ function Library({ variants, onChanged }: { variants: CreativeVariant[]; onChang
                   <div className="relative">
                     <img src={`/api/assets/${v.assetId}`} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
                     <span className="absolute left-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-accent">
-                      {STATUS_LABEL[v.status]} · variação {i + 1}
+                      {STATUS_LABEL[v.status]} · {spy ? `headline ${i + 1}` : `variação ${i + 1}`}
                     </span>
                   </div>
                   <div className="space-y-2 p-3 text-xs">
@@ -552,10 +645,13 @@ function Library({ variants, onChanged }: { variants: CreativeVariant[]; onChang
                       disabled={v.status === "published"}
                       onBlur={(e) => e.target.value !== v.headline && patch(v.id, { headline: e.target.value })}
                     />
-                    <div className="flex flex-wrap gap-1">
-                      <span className="rounded bg-info/10 px-1.5 py-0.5 text-[10px] text-info">{modeLabel(v.mode)}</span>
-                      <span className="rounded bg-warn/10 px-1.5 py-0.5 text-[10px] text-warn">{styleLabel(v.style)}</span>
-                    </div>
+                    {v.description && <div className="line-clamp-3 text-[11px] text-muted">{v.description}</div>}
+                    {!spy && (
+                      <div className="flex flex-wrap gap-1">
+                        <span className="rounded bg-info/10 px-1.5 py-0.5 text-[10px] text-info">{modeLabel(v.mode)}</span>
+                        <span className="rounded bg-warn/10 px-1.5 py-0.5 text-[10px] text-warn">{styleLabel(v.style)}</span>
+                      </div>
+                    )}
                     {v.published?.map((p) => (
                       <div key={p.itemId} className="text-[11px] text-accent">
                         Anúncio {p.itemId} · {p.status}
@@ -563,7 +659,7 @@ function Library({ variants, onChanged }: { variants: CreativeVariant[]; onChang
                     ))}
                     {notes[v.id] && <div className={`text-[11px] ${notes[v.id].ok ? "text-accent" : "text-bad"}`}>{notes[v.id].text}</div>}
                     <div className="flex flex-wrap gap-1.5 pt-1">
-                      {v.status !== "published" && (
+                      {v.status !== "published" && !spy && (
                         <button className="btn-primary px-2.5 py-1.5 text-xs" disabled={busy === v.id} onClick={() => publish(v)}>
                           {busy === v.id ? "Subindo…" : `Subir pausado na ${PLATFORM_LABEL[s.platform]}`}
                         </button>
@@ -609,6 +705,237 @@ function Notice({ href, action, children }: { href: string; action: string; chil
       <Link href={href} className="btn-ghost">
         {action}
       </Link>
+    </div>
+  );
+}
+
+const imageKey = (u: string) => u.replace(/^https?:\/\//, "").replace(/[?#].*$/, "").toLowerCase();
+
+function ProductSelect({ value, products, onChange, overlay }: { value: string; products: string[]; onChange: (p: string) => void; overlay?: boolean }) {
+  return (
+    <select
+      aria-label="Produto"
+      className={`rounded border px-1.5 py-0.5 text-[10px] font-semibold ${overlay ? "border-black/30 bg-black/70 text-white" : "border-line bg-panel"} ${value ? "" : "text-warn"}`}
+      value={value}
+      onChange={(e) => {
+        let p = e.target.value;
+        if (p === "__new") p = (prompt("Nome do produto (ex.: SPINEEASE):") ?? "").trim().toUpperCase();
+        if (p !== "__new") onChange(p);
+      }}
+    >
+      <option value="">{value ? "— sem produto —" : "sem produto"}</option>
+      {[...new Set([...products, ...(value ? [value] : [])])].map((p) => (
+        <option key={p} value={p}>
+          {p}
+        </option>
+      ))}
+      <option value="__new">+ novo produto…</option>
+    </select>
+  );
+}
+
+function SavedHeadlines({ list, products, onChanged }: { list: SavedHeadline[]; products: string[]; onChanged: () => void }) {
+  if (!list.length) return null;
+  return (
+    <div className="card mt-4 overflow-x-auto">
+      <div className="px-4 pt-3 text-sm font-medium">Headlines salvas ({list.length})</div>
+      <table className="tbl w-full min-w-[700px]">
+        <thead>
+          <tr>
+            <th>Headline</th>
+            <th>Produto</th>
+            <th>Origem</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {list.map((h) => (
+            <tr key={h.id}>
+              <td className="max-w-[520px]">
+                <div>{h.text}</div>
+                {h.description && <div className="text-[11px] text-faint">{h.description}</div>}
+              </td>
+              <td>
+                <ProductSelect
+                  value={h.product}
+                  products={products}
+                  onChange={async (p) => {
+                    await fetch("/api/creatives/library", {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ kind: "headline", id: h.id, product: p }),
+                    });
+                    onChanged();
+                  }}
+                />
+              </td>
+              <td className="text-[11px] text-muted">{h.note ?? "—"}</td>
+              <td className="text-right">
+                <button
+                  className="text-xs text-bad hover:underline"
+                  onClick={async () => {
+                    await fetch(`/api/creatives/library?headline=${h.id}`, { method: "DELETE" });
+                    onChanged();
+                  }}
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Adds a creative found elsewhere (spy tool, competitor…) or a batch of headlines, tied to a product. */
+function AddCreative({
+  products,
+  defaultProduct,
+  onClose,
+  onDone,
+}: {
+  products: string[];
+  defaultProduct: string;
+  onClose: () => void;
+  onDone: (kind: "creative" | "headlines") => void;
+}) {
+  const [kind, setKind] = useState<"creative" | "headlines">("creative");
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageData, setImageData] = useState("");
+  const [headlines, setHeadlines] = useState("");
+  const [description, setDescription] = useState("");
+  const [product, setProductName] = useState(defaultProduct || products[0] || "");
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [genBusy, setGenBusy] = useState(false);
+  const [error, setError] = useState("");
+  const preview = imageData || imageUrl;
+  const lines = headlines.split("\n").map((x) => x.trim()).filter(Boolean);
+
+  function readFile(f?: File) {
+    if (!f) return;
+    if (f.size > 8 * 1024 * 1024) return setError("Imagem maior que 8 MB.");
+    const r = new FileReader();
+    r.onload = () => {
+      setImageData(String(r.result));
+      setImageUrl("");
+    };
+    r.readAsDataURL(f);
+  }
+  async function save() {
+    setBusy(true);
+    setError("");
+    const r = await fetch("/api/creatives/library", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kind, imageUrl: imageData ? undefined : imageUrl, imageData: imageData || undefined, headlines: lines, description, product, note }),
+    })
+      .then((x) => x.json())
+      .catch(() => ({ error: "Falha na conexão." }));
+    setBusy(false);
+    if (r.error) return setError(r.error);
+    onDone(kind);
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-6 backdrop-blur-sm" onClick={onClose}>
+      <div className="card card-pad w-full max-w-2xl space-y-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold">Adicionar à biblioteca</h2>
+          <button className="text-muted hover:text-zinc-100" onClick={onClose} aria-label="Fechar">
+            ✕
+          </button>
+        </div>
+        <div className="flex gap-1">
+          <button className={`chip border border-line ${kind === "creative" ? "chip-on" : ""}`} onClick={() => setKind("creative")}>
+            Criativo (imagem + headlines)
+          </button>
+          <button className={`chip border border-line ${kind === "headlines" ? "chip-on" : ""}`} onClick={() => setKind("headlines")}>
+            Só headlines
+          </button>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block">
+            <span className="mb-1.5 block text-xs text-zinc-300">Produto</span>
+            <input className="input" list="nt-products" value={product} onChange={(e) => setProductName(e.target.value.toUpperCase())} placeholder="ex.: OMNIPRO" />
+            <datalist id="nt-products">
+              {products.map((p) => (
+                <option key={p} value={p} />
+              ))}
+            </datalist>
+          </label>
+          <label className="block">
+            <span className="mb-1.5 block text-xs text-zinc-300">De onde veio (opcional)</span>
+            <input className="input" value={note} onChange={(e) => setNote(e.target.value)} placeholder="ex.: AdPlexity · concorrente X" />
+          </label>
+        </div>
+
+        {kind === "creative" && (
+          <div className="grid gap-3 sm:grid-cols-[1fr_200px]">
+            <div className="space-y-2">
+              <label className="block">
+                <span className="mb-1.5 block text-xs text-zinc-300">Link da imagem</span>
+                <input
+                  className="input font-mono text-xs"
+                  placeholder="https://… (o link precisa abrir a imagem direto)"
+                  value={imageUrl}
+                  onChange={(e) => {
+                    setImageUrl(e.target.value.trim());
+                    setImageData("");
+                  }}
+                />
+              </label>
+              <label className="block text-xs text-muted">
+                ou envie o arquivo (JPG, PNG, WebP · até 8 MB)
+                <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="mt-1 block text-xs" onChange={(e) => readFile(e.target.files?.[0])} />
+              </label>
+            </div>
+            <div className="flex aspect-[16/9] items-center justify-center overflow-hidden rounded-lg border border-line bg-panel2 text-[11px] text-faint">
+              {preview ? <img src={preview} alt="" className="h-full w-full object-cover" /> : "prévia"}
+            </div>
+          </div>
+        )}
+
+        <label className="block">
+          <span className="mb-1.5 block text-xs text-zinc-300">Headlines (uma por linha{kind === "creative" ? " — cada uma vira um criativo com esta imagem" : ""})</span>
+          <textarea className="input h-28 text-sm" value={headlines} onChange={(e) => setHeadlines(e.target.value)} />
+        </label>
+        <label className="block">
+          <span className="mb-1.5 flex items-center justify-between text-xs text-zinc-300">
+            Descrição (opcional)
+            <button
+              className="text-[11px] text-info hover:underline disabled:opacity-50"
+              disabled={!lines.length || genBusy}
+              onClick={async () => {
+                setGenBusy(true);
+                const got = await generateDescriptions([{ headline: lines[0], imageUrl: imageUrl || undefined }], { product });
+                setGenBusy(false);
+                if (got[lines[0]]) setDescription(got[lines[0]]);
+              }}
+            >
+              {genBusy ? "Gerando…" : "Gerar pela 1ª headline"}
+            </button>
+          </span>
+          <textarea className="input h-16 text-xs" maxLength={250} value={description} onChange={(e) => setDescription(e.target.value)} />
+        </label>
+
+        {error && <p className="text-sm text-bad">{error}</p>}
+        <div className="flex justify-end gap-2">
+          <button className="btn-ghost" onClick={onClose}>
+            Cancelar
+          </button>
+          <button
+            className="btn-primary"
+            disabled={busy || !product.trim() || !lines.length || (kind === "creative" && !preview)}
+            onClick={save}
+          >
+            {busy ? "Salvando…" : kind === "creative" ? `Salvar ${lines.length || ""} criativo(s)` : `Salvar ${lines.length || ""} headline(s)`}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
