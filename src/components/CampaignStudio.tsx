@@ -41,7 +41,30 @@ type Meta = {
   warnings: string[];
 };
 type Winner = { accountId: string; campaignId: string; name: string; spend: number; sales: number; cpa: number; roas: number; profit: number };
-type Item = { id: string; title: string; thumbnail: string; url: string; active: boolean; status: string; description?: string; cta?: string };
+type Item = {
+  id: string;
+  title: string;
+  thumbnail: string;
+  url: string;
+  active: boolean;
+  status: string;
+  description?: string;
+  cta?: string;
+  /** false = the source doesn't accept edits now (in review / rejected). */
+  editable?: boolean;
+  rejectReason?: string;
+};
+const STATUS_PT: Record<string, string> = {
+  running: "rodando",
+  paused: "pausado",
+  pending: "em revisão",
+  pending_approval: "em revisão",
+  crawling: "lendo o link",
+  rejected: "reprovado",
+  stopped: "parado",
+  need_to_edit: "precisa de ajuste",
+  crawling_error: "erro ao ler o link",
+};
 type Detail = { platform: Platform; campaignId: string; name: string; setup: CampaignSetup; groupId?: string; items: Item[]; url: string; accountId: string };
 
 export type StudioMode = "create" | "edit" | "duplicate";
@@ -75,8 +98,9 @@ export function CampaignStudio({
   const [nameEdited, setNameEdited] = useState(mode === "edit");
   const [items, setItems] = useState<(Item & { keep: boolean; newTitle: string; newActive: boolean; newDesc: string; newCta: string })[]>([]);
   const [descBusy, setDescBusy] = useState(false);
+  const locked = (i: { editable?: boolean }) => mode === "edit" && i.editable === false;
   const itemChanged = (i: (typeof items)[number]) =>
-    i.newTitle !== i.title || i.newActive !== i.active || i.newDesc !== (i.description ?? "") || i.newCta !== (i.cta ?? "");
+    !locked(i) && (i.newTitle !== i.title || i.newActive !== i.active || i.newDesc !== (i.description ?? "") || i.newCta !== (i.cta ?? ""));
   const [groupMode, setGroupMode] = useState<"existing" | "new" | "none">("existing");
   const [groupId, setGroupId] = useState("");
   type NewGroupForm = {
@@ -717,12 +741,12 @@ export function CampaignStudio({
                             className="text-info hover:underline disabled:opacity-50"
                             disabled={descBusy}
                             onClick={async () => {
-                              const need = items.filter((i) => !i.newDesc.trim()).map((i) => ({ headline: i.newTitle, imageUrl: i.thumbnail }));
+                              const need = items.filter((i) => !locked(i) && !i.newDesc.trim()).map((i) => ({ headline: i.newTitle, imageUrl: i.thumbnail }));
                               if (!need.length) return;
                               setDescBusy(true);
                               const got = await generateDescriptions(need, { product: setup.product, campaign: name });
                               setDescBusy(false);
-                              setItems((cur) => cur.map((x) => (!x.newDesc.trim() && got[x.newTitle] ? { ...x, newDesc: got[x.newTitle] } : x)));
+                              setItems((cur) => cur.map((x) => (!locked(x) && !x.newDesc.trim() && got[x.newTitle] ? { ...x, newDesc: got[x.newTitle] } : x)));
                             }}
                           >
                             {descBusy ? "Gerando…" : "Gerar descrições que faltam"}
@@ -732,7 +756,7 @@ export function CampaignStudio({
                               aria-label="CTA em todos os anúncios"
                               className="input w-auto py-1 text-[11px]"
                               value=""
-                              onChange={(e) => setItems(items.map((x) => ({ ...x, newCta: e.target.value === "-" ? "" : e.target.value })))}
+                              onChange={(e) => setItems(items.map((x) => (locked(x) ? x : { ...x, newCta: e.target.value === "-" ? "" : e.target.value })))}
                             >
                               <option value="">CTA em todos…</option>
                               {CTAS.map(([v, l]) => (
@@ -748,7 +772,11 @@ export function CampaignStudio({
                   >
                     {items.length === 0 && <p className="text-sm text-muted">A campanha não tem anúncios.</p>}
                     <div className="space-y-2">
+                      {items.some(locked) && items.some((i) => !locked(i)) && (
+                        <div className="text-[10px] uppercase tracking-wider text-faint">Rodando ou pausados · dá para editar</div>
+                      )}
                       {items.map((i, idx) => {
+                        if (locked(i)) return null;
                         const set = (patch: Partial<(typeof items)[number]>) => setItems(items.map((x, j) => (j === idx ? { ...x, ...patch } : x)));
                         const max = TITLE_MAX[target.platform] ?? 100;
                         return (
@@ -791,7 +819,7 @@ export function CampaignStudio({
                                       {i.newActive ? "ativo" : "pausado"}
                                     </button>
                                   )}
-                                  <span className="text-[10px] text-faint">{i.status.toLowerCase().replace(/_/g, " ")}</span>
+                                  <span className="text-[10px] text-faint">{STATUS_PT[i.status.toLowerCase()] ?? i.status.toLowerCase().replace(/_/g, " ")}</span>
                                 </div>
                               </div>
                             </div>
@@ -799,6 +827,34 @@ export function CampaignStudio({
                         );
                       })}
                     </div>
+                    {items.some(locked) && (
+                      <div className="mt-4">
+                        <div className="text-[10px] uppercase tracking-wider text-faint">
+                          Em revisão ou reprovados · a Taboola não deixa editar estes ({items.filter(locked).length})
+                        </div>
+                        <div className="mt-2 space-y-1.5">
+                          {items.filter(locked).map((i) => {
+                            const st = i.status.toLowerCase();
+                            return (
+                              <div key={i.id} className="flex items-start gap-3 rounded-lg border border-line/60 p-2 opacity-80">
+                                <img src={i.thumbnail} alt="" className="h-10 w-16 shrink-0 rounded object-cover" />
+                                <div className="min-w-0 flex-1 text-xs">
+                                  <div className="truncate">{i.title}</div>
+                                  {i.description && <div className="truncate text-[11px] text-faint">{i.description}</div>}
+                                  <div className={`text-[11px] ${st === "rejected" ? "text-bad" : "text-warn"}`}>
+                                    {STATUS_PT[st] ?? st.replace(/_/g, " ")}
+                                    {i.rejectReason ? ` — motivo: ${i.rejectReason}` : ""}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <p className="mt-1.5 text-[11px] text-faint">
+                          Para mudar um reprovado, suba de novo como criativo novo (abaixo) com o ajuste; os em revisão liberam a edição quando forem aprovados.
+                        </p>
+                      </div>
+                    )}
                     {mode === "edit" && items.some(itemChanged) && (
                       <p className="mt-2 text-[11px] text-info">Alterações nos anúncios são enviadas em “Salvar alterações”. Mudar texto manda o anúncio para revisão de novo.</p>
                     )}

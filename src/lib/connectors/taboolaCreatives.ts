@@ -133,6 +133,48 @@ export async function publishTaboola(
 
   const headers = { ...auth, "Content-Type": "application/json" };
   const base = `${API}/${c.accountId}/campaigns/${campaignId}/items/`;
+
+  // Preferred: create the ad complete in one call (items/mass), so it never has to be edited while Taboola
+  // is crawling or reviewing it (edits are only accepted on RUNNING / PAUSED ads).
+  if (!existingItemId) {
+    const full: Record<string, unknown> = {
+      url: landingUrl,
+      title,
+      thumbnail_url: thumbnail,
+      ...(extra.description?.trim() ? { description: extra.description.trim().slice(0, 250) } : {}),
+      ...(extra.cta ? { cta: { cta_type: extra.cta } } : {}),
+      ...(aiGenerated ? { ai_disclosure: { status: "AI_GENERATED" } } : {}),
+    };
+    const mass = (body: Record<string, unknown>) =>
+      http<{ results?: Item[] } | Item[]>(`${base}mass`, { method: "POST", headers, body: JSON.stringify({ collection: [body] }) });
+    let created: Item | undefined;
+    try {
+      // Some accounts don't take is_active / ai_disclosure on creation: retry with fewer fields on a 400.
+      const noAi = { ...full };
+      delete noAi.ai_disclosure;
+      const attempts = [{ ...full, is_active: false }, full, ...(aiGenerated ? [noAi] : [])];
+      let r: Awaited<ReturnType<typeof mass>> | undefined;
+      for (const [n, body] of attempts.entries()) {
+        try {
+          r = await mass(body);
+          break;
+        } catch (e) {
+          if (!/^400\b/.test(String((e as Error).message)) || n === attempts.length - 1) throw e;
+        }
+      }
+      if (!r) throw new Error("A Taboola não criou o anúncio.");
+      created = (Array.isArray(r) ? r : (r.results ?? []))[0];
+    } catch (e) {
+      // Endpoint not available on this account → classic flow below.
+      if (!/^(404|405)\b/.test(String((e as Error).message))) throw e;
+    }
+    if (created?.id) {
+      // Paused right away when Taboola allows it (it may only allow it after review).
+      if (created.is_active !== false)
+        await http(`${base}${created.id}/`, { method: "POST", headers, body: JSON.stringify({ is_active: false }) }).catch(() => {});
+      return { itemId: String(created.id), status: `${created.status ?? "CRAWLING"} · ${String(created.approval_state ?? "pending").toLowerCase()}` };
+    }
+  }
   const created = existingItemId
     ? await http<Item>(`${base}${existingItemId}/`, { headers })
     : await http<Item>(base, { method: "POST", headers, body: JSON.stringify({ url: landingUrl }) });
@@ -141,6 +183,11 @@ export async function publishTaboola(
 
   let item = created;
   for (let i = 0; i < 20 && item.status === "CRAWLING"; i++) {
+    await new Promise((r) => setTimeout(r, 3000));
+    item = await http<Item>(`${base}${created.id}/`, { headers });
+  }
+  // Edits are refused while the ad is not RUNNING / PAUSED: wait a bit longer for it.
+  for (let i = 0; i < 10 && !["RUNNING", "PAUSED"].includes(String(item.status).toUpperCase()) && item.status !== "CRAWLING"; i++) {
     await new Promise((r) => setTimeout(r, 3000));
     item = await http<Item>(`${base}${created.id}/`, { headers });
   }

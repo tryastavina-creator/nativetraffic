@@ -594,6 +594,10 @@ export type ExistingItem = {
   description?: string;
   /** Taboola CTA type ("" = none). */
   cta?: string;
+  /** Taboola only accepts edits on RUNNING / PAUSED ads. */
+  editable?: boolean;
+  /** Why the source rejected it. */
+  rejectReason?: string;
 };
 export type CampaignDetail = {
   platform: "taboola" | "revcontent";
@@ -624,6 +628,8 @@ export async function taboolaDetail(c: Credentials, id: string): Promise<Campaig
     id: String(i.id),
     title: String(i.title ?? ""),
     description: i.description ? String(i.description) : "",
+    editable: ["RUNNING", "PAUSED"].includes(String(i.status ?? "").toUpperCase()),
+    rejectReason: (i.policy_review as { reject_reason?: string } | null)?.reject_reason ?? undefined,
     cta: (i.cta as { cta_type?: string } | null)?.cta_type && (i.cta as { cta_type?: string }).cta_type !== "NONE" ? String((i.cta as { cta_type?: string }).cta_type) : "",
     thumbnail: https(String(i.thumbnail_url ?? "")),
     url: String(i.url ?? ""),
