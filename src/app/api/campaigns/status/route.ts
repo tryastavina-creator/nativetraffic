@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { friendlyError } from "@/lib/cache";
 import { resolveAccount } from "@/lib/campaigns";
 import { setCampaignActive } from "@/lib/connectors/campaignBuilder";
+import { rememberEdit } from "@/lib/trafficTree";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,7 @@ export async function POST(req: Request) {
   }
   try {
     await setCampaignActive(acc.provider, acc.credentials, campaignId, active);
+    rememberEdit(acc.provider, campaignId, { active });
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json({ error: friendlyError(acc.label ?? acc.provider, e) }, { status: 400 });

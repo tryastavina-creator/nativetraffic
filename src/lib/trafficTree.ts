@@ -102,6 +102,35 @@ function within<T>(p: Promise<T>, ms: number, fallback: T): Promise<T> {
   return Promise.race([p.catch(() => fallback), new Promise<T>((r) => setTimeout(() => r(fallback), ms))]);
 }
 
+/** Changes made from the screen (budget, on/off) shown at once, until the sources' lists catch up (10 min). */
+const edits = new Map<string, { at: number; dailyBudget?: number; active?: boolean }>();
+export function rememberEdit(platform: string, campaignId: string, patch: { dailyBudget?: number; active?: boolean }) {
+  const k = `${platform}:${campaignId}`;
+  edits.set(k, { ...edits.get(k), ...patch, at: Date.now() });
+}
+function applyEdits(t: TrafficTree): TrafficTree {
+  for (const [k, e] of edits) if (Date.now() - e.at > 10 * 60_000) edits.delete(k);
+  if (!edits.size) return t;
+  return {
+    ...t,
+    platforms: t.platforms.map((p) => ({
+      ...p,
+      accounts: p.accounts.map((a) => ({
+        ...a,
+        campaigns: a.campaigns.map((c) => {
+          const e = edits.get(c.key);
+          if (!e) return c;
+          return {
+            ...c,
+            ...(e.dailyBudget !== undefined ? { dailyBudget: e.dailyBudget } : {}),
+            ...(e.active !== undefined ? { active: e.active, status: e.active ? "RUNNING" : "PAUSED" } : {}),
+          };
+        }),
+      })),
+    })),
+  };
+}
+
 /**
  * Served from a stale-while-revalidate cache: the screen gets the last result at once and a fresh one is built
  * in the background. The key includes the settings that change the result (ignored / linked campaigns).
@@ -110,7 +139,7 @@ export async function computeTrafficTree(range: DateRange): Promise<TrafficTree 
   const st = await getSettings();
   const version = hashKey(st.excludedCampaigns, st.campaignLinks, st.creativeProducts ?? {});
   const r = await cached(hashKey("tree", range, version), () => buildTree(range), { ttl: 90_000, maxStale: 24 * 3600_000 });
-  return { ...r.value, cachedAt: new Date(r.at).toISOString() };
+  return { ...applyEdits(r.value), cachedAt: new Date(r.at).toISOString() };
 }
 
 async function buildTree(range: DateRange): Promise<TrafficTree> {

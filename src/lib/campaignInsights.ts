@@ -18,6 +18,11 @@ const div = (a: number, b: number) => (b ? a / b : 0);
 export type AdInsight = {
   id: string;
   title: string;
+  /** Approval by the source (approved / pending / rejected). */
+  approval?: string;
+  rejectReason?: string;
+  /** The source accepts pause / edits now (Taboola: only RUNNING or PAUSED ads). */
+  editable: boolean;
   description: string;
   thumbnail: string;
   status: string;
@@ -83,7 +88,10 @@ export async function campaignAds(accountId: string, campaignId: string, range: 
             title: String(i.title ?? ""),
             description: String(i.description ?? ""),
             thumbnail: https(String(i.thumbnail_url ?? "")),
-            status: String(i.approval_state ?? i.status ?? ""),
+            status: String(i.status ?? ""),
+            approval: String(i.approval_state ?? ""),
+            rejectReason: (i.policy_review as { reject_reason?: string } | null)?.reject_reason ?? undefined,
+            editable: ["RUNNING", "PAUSED"].includes(String(i.status ?? "").toUpperCase()),
             active: i.is_active === true,
             spend,
             clicks,
@@ -118,6 +126,8 @@ export async function campaignAds(accountId: string, campaignId: string, range: 
             description: String(i.description ?? ""),
             thumbnail: https(String(i.image_url ?? "")),
             status: String(i.admin_status ?? ""),
+            approval: String(i.admin_status ?? ""),
+            editable: i.admin_status !== "rejected",
             active: i.enabled === "active" || i.enabled === "on",
             spend,
             clicks,
@@ -209,6 +219,10 @@ export async function setAdActive(accountId: string, campaignId: string, adId: s
       method: "POST",
       headers: { Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" },
       body: JSON.stringify({ is_active: active }),
+    }).catch((e) => {
+      if (/status=RUNNING or status=PAUSED/i.test(String((e as Error).message)))
+        throw Object.assign(new Error("esse anúncio ainda está em revisão ou foi reprovado — a Taboola só deixa pausar depois de aprovado"), { friendly: true });
+      throw e;
     });
   } else {
     await http(`${RC}/stats/api/v1.0/boosts/${campaignId}/content`, {
@@ -241,6 +255,31 @@ export async function setSiteBlocked(accountId: string, campaignId: string, site
       method: "POST",
       headers: { Authorization: `Bearer ${await revcontentToken(acc.credentials)}`, "Content-Type": "application/json" },
       body: JSON.stringify({ boost_id: Number(campaignId), id: site }),
+    });
+  }
+}
+
+/** New daily budget of a campaign (Taboola daily cap · Revcontent daily budget, min US$50). */
+export async function setDailyBudget(accountId: string, campaignId: string, daily: number) {
+  const acc = await account(accountId);
+  if (!(daily > 0)) throw Object.assign(new Error("informe um valor maior que zero"), { friendly: true });
+  if (acc.provider === "taboola") {
+    const { c, raw } = await tbOwner(acc.credentials, campaignId);
+    const body: Record<string, unknown> = { daily_cap: daily, daily_ad_delivery_model: raw.daily_ad_delivery_model ?? "STRICT" };
+    // A total/monthly limit below the new daily budget would block it: raise it along.
+    const model = String(raw.spending_limit_model ?? "");
+    if ((model === "MONTHLY" || model === "ENTIRE") && num(raw.spending_limit) < daily) body.spending_limit = Math.round(daily * 31);
+    await http(`${TB}/${c.accountId}/campaigns/${campaignId}/`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } else {
+    if (daily < 50) throw Object.assign(new Error("na Revcontent o orçamento diário mínimo é US$50"), { friendly: true });
+    await http(`${RC}/stats/api/v1.0/boosts/${campaignId}/settings`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${await revcontentToken(acc.credentials)}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ boost_id: Number(campaignId), budget_type: "daily", budget_amount: daily }),
     });
   }
 }

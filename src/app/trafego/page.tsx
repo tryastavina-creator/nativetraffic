@@ -410,12 +410,89 @@ function RoasPill({ v, spend }: { v: number; spend: number }) {
   return <span className={`inline-block min-w-[48px] rounded-full px-2 py-0.5 text-center text-xs font-semibold tabular-nums ${cls}`}>{v.toFixed(2)}</span>;
 }
 
-function Budget({ budget, spend, days, cur }: { budget: number; spend: number; days: number; cur: string }) {
-  if (!budget) return <span className="text-faint">—</span>;
+function Budget({
+  budget,
+  spend,
+  days,
+  cur,
+  onEdit,
+}: {
+  budget: number;
+  spend: number;
+  days: number;
+  cur: string;
+  /** Campaign rows: edit the daily budget in place. */
+  onEdit?: (daily: number) => Promise<string | null>;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [val, setVal] = useState(String(budget || ""));
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState("");
+  if (onEdit && editing)
+    return (
+      <div className="ml-auto flex w-32 flex-col items-end gap-1">
+        <div className="flex items-center gap-1">
+          <span className="text-faint">$</span>
+          <input
+            autoFocus
+            type="number"
+            min={1}
+            className="input w-20 py-0.5 text-right text-xs"
+            value={val}
+            onChange={(e) => setVal(e.target.value)}
+            onKeyDown={async (e) => {
+              if (e.key === "Escape") setEditing(false);
+              if (e.key !== "Enter") return;
+              setBusy(true);
+              const r = await onEdit(Number(val));
+              setBusy(false);
+              if (r) setErr(r);
+              else setEditing(false);
+            }}
+          />
+        </div>
+        <div className="flex gap-2 text-[10px]">
+          <button
+            className="text-accent disabled:opacity-50"
+            disabled={busy}
+            onClick={async () => {
+              setBusy(true);
+              const r = await onEdit(Number(val));
+              setBusy(false);
+              if (r) setErr(r);
+              else setEditing(false);
+            }}
+          >
+            {busy ? "salvando…" : "salvar"}
+          </button>
+          <button className="text-muted" onClick={() => setEditing(false)}>
+            cancelar
+          </button>
+        </div>
+        {err && <div className="max-w-[160px] text-right text-[10px] text-bad">{err}</div>}
+      </div>
+    );
+  const edit = onEdit && (
+    <button
+      className="ml-1 text-[10px] text-faint hover:text-info"
+      title="Editar orçamento diário"
+      onClick={() => {
+        setVal(String(budget || ""));
+        setErr("");
+        setEditing(true);
+      }}
+    >
+      ✎
+    </button>
+  );
+  if (!budget) return <span className="text-faint">—{edit}</span>;
   const pct = Math.min(100, (spend / (budget * days)) * 100);
   return (
     <div className="ml-auto w-24 text-right">
-      <div className="tabular-nums text-info">{money(budget, cur)}</div>
+      <div className="tabular-nums text-info">
+        {money(budget, cur)}
+        {edit}
+      </div>
       <div className="mt-1 h-1 rounded-full bg-white/10">
         <div className={`h-1 rounded-full ${pct >= 90 ? "bg-warn" : "bg-accent"}`} style={{ width: `${pct}%` }} />
       </div>
@@ -424,7 +501,23 @@ function Budget({ budget, spend, days, cur }: { budget: number; spend: number; d
   );
 }
 
-function Cells({ x, cols, cur, days, count, small }: { x: Perf; cols: { id: ColId }[]; cur: string; days: number; count?: number; small?: boolean }) {
+function Cells({
+  x,
+  cols,
+  cur,
+  days,
+  count,
+  small,
+  onBudget,
+}: {
+  x: Perf;
+  cols: { id: ColId }[];
+  cur: string;
+  days: number;
+  count?: number;
+  small?: boolean;
+  onBudget?: (daily: number) => Promise<string | null>;
+}) {
   const cell = "px-2.5 py-2.5 text-right tabular-nums whitespace-nowrap" + (small ? " text-[13px]" : "");
   return (
     <>
@@ -439,7 +532,7 @@ function Cells({ x, cols, cur, days, count, small }: { x: Perf; cols: { id: ColI
           case "budget":
             return (
               <td key={c.id} className={cell}>
-                <Budget budget={x.budget} spend={x.spend} days={days} cur={cur} />
+                <Budget budget={x.budget} spend={x.spend} days={days} cur={cur} onEdit={onBudget} />
               </td>
             );
           case "spend":
@@ -660,7 +753,20 @@ function CampaignRow({
   const [label, tone] = statusOf(c);
   const [menu, setMenu] = useState(false);
   const [panel, setPanel] = useState<"ads" | "sites" | null>(null);
-  const x = useMemo(() => ({ ...c, budget: c.dailyBudget ?? 0 }), [c]);
+  const [budgetNow, setBudgetNow] = useState<number | undefined>(c.dailyBudget);
+  const x = useMemo(() => ({ ...c, budget: budgetNow ?? 0 }), [c, budgetNow]);
+  const saveBudget = async (daily: number): Promise<string | null> => {
+    const r = await fetch("/api/campaigns/insights", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ accountId: c.accountId, campaignId: c.id, kind: "budget", daily }),
+    })
+      .then((x) => x.json())
+      .catch(() => ({ error: "Falha na conexão." }));
+    if (r.error) return r.error;
+    setBudgetNow(daily);
+    return null;
+  };
   const tab = (k: "ads" | "sites", text: string) => (
     <button
       className={`rounded-md border px-2 py-0.5 text-[11px] ${panel === k ? "border-accent/60 text-accent" : "border-line text-muted hover:text-zinc-100"}`}
@@ -737,7 +843,7 @@ function CampaignRow({
           </div>
         </div>
       </td>
-      <Cells x={x} cols={cols} cur={cur} days={days} small />
+      <Cells x={x} cols={cols} cur={cur} days={days} small onBudget={c.editable ? saveBudget : undefined} />
     </tr>
     {panel && (
       <tr className="border-b border-line/40 bg-black/20">
@@ -750,7 +856,7 @@ function CampaignRow({
   );
 }
 
-type Ad = { id: string; title: string; description: string; thumbnail: string; status: string; active: boolean; spend: number; clicks: number; impressions: number; ctr: number; cpc: number; conversions: number; cpa: number };
+type Ad = { id: string; title: string; description: string; thumbnail: string; status: string; approval?: string; rejectReason?: string; editable: boolean; active: boolean; spend: number; clicks: number; impressions: number; ctr: number; cpc: number; conversions: number; cpa: number };
 type Site = { id: string; name: string; spend: number; clicks: number; impressions: number; ctr: number; cpc: number; conversions: number; cpa: number; blocked: boolean };
 
 /** Ads or sites of one campaign, with the source's numbers and an on/off for each. */
@@ -758,6 +864,7 @@ function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ad
   const [rows, setRows] = useState<(Ad | Site)[] | null>(null);
   const [err, setErr] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
+  const [actionErr, setActionErr] = useState("");
   const [onlySpend, setOnlySpend] = useState(true);
   useEffect(() => {
     setRows(null);
@@ -778,7 +885,8 @@ function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ad
       .then((x) => x.json())
       .catch(() => ({ error: "Falha na conexão." }));
     setBusy(null);
-    if (r.error) return setErr(r.error);
+    if (r.error) return setActionErr(r.error.replace(/^Fonte: /, ""));
+    setActionErr("");
     setRows((cur) => cur && cur.map((x) => (x.id !== id ? x : kind === "ads" ? { ...(x as Ad), active: on } : { ...(x as Site), blocked: !on })));
   }
 
@@ -793,6 +901,7 @@ function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ad
   const td = "px-2 py-1.5 text-right tabular-nums";
   return (
     <div>
+      {actionErr && <p className="mb-2 rounded-md border border-warn/30 bg-warn/5 px-2 py-1 text-[11px] text-warn">{actionErr}</p>}
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-[11px] text-faint">
         <span>
           {kind === "ads" ? `${rows.length} criativo(s)` : `${rows.filter((r) => r.spend > 0).length} portal(is) com gasto`} · números da fonte no período · vendas
@@ -837,9 +946,9 @@ function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ad
                           <div className="max-w-[340px] truncate" title={(r as Ad).title}>
                             {(r as Ad).title}
                           </div>
-                          <div className="max-w-[340px] truncate text-[10px] text-faint" title={(r as Ad).description}>
-                            {(r as Ad).status.toLowerCase().replace(/_/g, " ")}
-                            {(r as Ad).description ? ` · ${(r as Ad).description}` : ""}
+                          <div className="max-w-[340px] truncate text-[10px]" title={(r as Ad).rejectReason ?? (r as Ad).description}>
+                            <AdStatus ad={r as Ad} />
+                            {(r as Ad).description ? <span className="text-faint"> · {(r as Ad).description}</span> : null}
                           </div>
                         </div>
                       </div>
@@ -861,7 +970,8 @@ function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ad
                     <button
                       role="switch"
                       aria-checked={on}
-                      disabled={busy === r.id}
+                      title={kind === "ads" && !(r as Ad).editable ? "Em revisão ou reprovado: a Taboola só deixa pausar depois de aprovado" : undefined}
+                      disabled={busy === r.id || (kind === "ads" && !(r as Ad).editable)}
                       aria-label={kind === "ads" ? (on ? "Pausar criativo" : "Ativar criativo") : on ? "Bloquear portal" : "Desbloquear portal"}
                       onClick={() => toggle(r.id, !on)}
                       className={`relative inline-block h-4 w-8 rounded-full transition-colors disabled:opacity-50 ${on ? "bg-accent" : "bg-zinc-700"}`}
@@ -884,6 +994,28 @@ function InsightPanel({ c, kind, rangeQuery, cur }: { c: TreeCampaign; kind: "ad
       </div>
       {kind === "sites" && <p className="mt-1.5 text-[10px] text-faint">Desligar = bloquear o portal só nesta campanha.</p>}
     </div>
+  );
+}
+
+const AD_STATUS: Record<string, [string, string]> = {
+  RUNNING: ["rodando", "text-accent"],
+  PAUSED: ["pausado", "text-muted"],
+  PENDING: ["em revisão", "text-warn"],
+  PENDING_APPROVAL: ["em revisão", "text-warn"],
+  CRAWLING: ["lendo o link", "text-warn"],
+  REJECTED: ["reprovado", "text-bad"],
+  STOPPED: ["parado", "text-muted"],
+  NEED_TO_EDIT: ["precisa de ajuste", "text-bad"],
+  CRAWLING_ERROR: ["erro ao ler o link", "text-bad"],
+};
+function AdStatus({ ad }: { ad: Ad }) {
+  const rejected = /reject/i.test(ad.approval ?? "") || /reject/i.test(ad.status);
+  const [label, tone] = rejected ? ["reprovado", "text-bad"] : (AD_STATUS[ad.status.toUpperCase()] ?? [ad.status.toLowerCase().replace(/_/g, " "), "text-faint"]);
+  return (
+    <span className={tone}>
+      {label}
+      {ad.rejectReason ? ` — ${ad.rejectReason}` : ""}
+    </span>
   );
 }
 
