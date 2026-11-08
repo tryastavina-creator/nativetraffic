@@ -6,7 +6,7 @@ import { cached, friendlyError, hashKey } from "./cache";
 import { demoData } from "./demo";
 import type { Funnel } from "./connectors/shopify";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
-import { getSettings, getSupplierCosts, listConnections, uniqueAccounts, type Settings, type SupplierCost } from "./store";
+import { getSettings, getSupplierCosts, getSupplierImports, listConnections, uniqueAccounts, type Settings, type SupplierCost } from "./store";
 import type { DateRange, Order, SpendRow } from "./types";
 
 export type PlatformRow = {
@@ -48,6 +48,8 @@ export type Metrics = {
   warnings: string[];
   /** Campaigns the user chose to ignore (other products): their spend is left out of every total. */
   excluded: { count: number; spend: number };
+  /** Wiio costs: exact up to `coveredTo` (last upload), learned averages after that. */
+  supplier: { lastUploadAt?: string; lastFile?: string; coveredTo?: string; daysSinceUpload?: number; model?: Settings["supplierModel"] };
   kpis: {
     investment: number;
     revenue: number;
@@ -148,7 +150,20 @@ async function snapshotOrders(range: DateRange): Promise<Order[] | null> {
 }
 
 export async function computeMetrics(range: DateRange): Promise<Metrics> {
-  const [connections, settings, supplierCosts] = await Promise.all([listConnections(), getSettings(), getSupplierCosts()]);
+  const [connections, settings, supplierCosts, imports] = await Promise.all([
+    listConnections(),
+    getSettings(),
+    getSupplierCosts(),
+    getSupplierImports(),
+  ]);
+  const lastImport = imports[0];
+  const supplierInfo: Metrics["supplier"] = {
+    lastUploadAt: lastImport?.at,
+    lastFile: lastImport?.file,
+    coveredTo: settings.supplierModel?.coveredTo ?? lastImport?.to,
+    daysSinceUpload: lastImport ? Math.floor((Date.now() - Date.parse(lastImport.at)) / 86400_000) : undefined,
+    model: settings.supplierModel,
+  };
   const byProvider = new Map(connections.map((c) => [c.provider, c]));
   const warnings: string[] = [];
 
@@ -248,6 +263,7 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     rtRows: demo ? [] : rtRows,
     hasRedtrack: !!rt,
     supplierCosts: demo ? {} : supplierCosts,
+    supplier: demo ? {} : supplierInfo,
     funnel: demo ? null : funnel,
     settings,
     warnings,
@@ -273,6 +289,7 @@ export function aggregate(input: {
   settings: Settings;
   warnings: string[];
   excluded?: Metrics["excluded"];
+  supplier?: Metrics["supplier"];
   dataSources: Metrics["dataSources"];
 }): Metrics {
   const { range, orders, spend, settings } = input;
@@ -288,8 +305,10 @@ export function aggregate(input: {
     return best?.[1];
   };
   const knownUnitCost = (l: Order["lines"][number]) => l.unitCost || supplierCost(l.product);
+  // Unknown product: the average unit cost learned from the Wiio uploads, else the default % of the price.
+  const model = settings.supplierModel;
   const lineCost = (l: Order["lines"][number]) =>
-    l.quantity * (knownUnitCost(l) ?? (l.price * settings.defaultCogsPercent) / 100);
+    l.quantity * (knownUnitCost(l) ?? (model?.avgProductPerUnit || (l.price * settings.defaultCogsPercent) / 100));
   const exact = (o: Order) => input.supplierCosts?.[o.name ?? o.id];
   const tableShipping = (o: Order) => {
     const units = sum(o.lines.map((l) => l.quantity));
@@ -554,6 +573,7 @@ export function aggregate(input: {
     dataSources: input.dataSources,
     warnings: input.warnings,
     excluded: input.excluded ?? { count: 0, spend: 0 },
+    supplier: input.supplier ?? {},
     kpis: {
       investment,
       revenue,

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { guardRoute } from "@/lib/auth";
-import { getSettings, getSupplierCosts, getSupplierImports, saveSupplierImport } from "@/lib/store";
-import { parseSupplierFile } from "@/lib/supplier";
+import { getSettings, getSupplierCosts, getSupplierImports, saveSupplierImport, type SupplierImport } from "@/lib/store";
+import { learnCosts, parseSupplierFile } from "@/lib/supplier";
 
 export const dynamic = "force-dynamic";
 
@@ -11,8 +11,8 @@ const MAX = 15 * 1024 * 1024;
 export async function GET(req: Request) {
   const denied = await guardRoute(req);
   if (denied) return denied;
-  const [imports, costs] = await Promise.all([getSupplierImports(), getSupplierCosts()]);
-  return NextResponse.json({ imports, orders: Object.keys(costs).length });
+  const [imports, costs, settings] = await Promise.all([getSupplierImports(), getSupplierCosts(), getSettings()]);
+  return NextResponse.json({ imports, orders: Object.keys(costs).length, model: settings.supplierModel ?? null });
 }
 
 /** multipart/form-data with `file` (.xls or .csv exported from Wiio). */
@@ -51,9 +51,22 @@ export async function POST(req: Request) {
   }
 
   const count = Object.keys(parsed.orders).length;
-  await saveSupplierImport(parsed.orders, { at: new Date().toISOString(), file: file.name, orders: count }, parsed.table);
+  const today = new Date().toISOString().slice(0, 10);
+  const dates = Object.values(parsed.orders)
+    .map((o) => o.date)
+    .filter((d): d is string => !!d && d <= today)
+    .sort();
+  const info: SupplierImport = { at: new Date().toISOString(), file: file.name, orders: count, from: dates[0], to: dates[dates.length - 1] };
+  // Saving relearns the cost table from every upload; the dashboard, Tráfego and Criativos recompute on their
+  // next load (their caches are keyed on the supplier model).
+  const model = await saveSupplierImport(parsed.orders, info, parsed.table, (all) => learnCosts(all));
   return NextResponse.json({
     orders: count,
+    from: info.from,
+    to: info.to,
+    newOrders: info.newOrders,
+    updatedOrders: info.updatedOrders,
+    model: model ?? null,
     rows: parsed.rows,
     table: parsed.table,
     changes,

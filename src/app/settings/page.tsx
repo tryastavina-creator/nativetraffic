@@ -1,16 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
-import type { Settings } from "@/lib/store";
+import type { Settings, SupplierModel } from "@/lib/store";
 
 type CostRow = { product: string; cost: string };
 type ImportResult = {
   orders: number;
+  from?: string;
+  to?: string;
+  newOrders?: number;
+  updatedOrders?: number;
+  model?: SupplierModel | null;
   changes: { item: string; from: number | null; to: number }[];
   unresolved: string[];
   error?: string;
 };
-type ImportInfo = { at: string; file: string; orders: number };
+type ImportInfo = { at: string; file: string; orders: number; from?: string; to?: string; newOrders?: number; updatedOrders?: number };
 const usd = (n: number) => `$${n.toFixed(2)}`;
+const br = (d?: string) => (d ? d.split("-").reverse().join("/") : "—");
 
 export default function SettingsPage() {
   const [s, setS] = useState<Settings | null>(null);
@@ -18,7 +24,7 @@ export default function SettingsPage() {
   const [saved, setSaved] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<ImportResult | null>(null);
-  const [history, setHistory] = useState<{ imports: ImportInfo[]; orders: number } | null>(null);
+  const [history, setHistory] = useState<{ imports: ImportInfo[]; orders: number; model: SupplierModel | null } | null>(null);
 
   const applySettings = (data: Settings) => {
     setS(data);
@@ -96,8 +102,9 @@ export default function SettingsPage() {
         <div className="rounded-lg border border-dashed border-line bg-bg p-4">
           <div className="text-sm font-medium">Importar planilha da Wiio</div>
           <p className="mt-1 text-xs text-muted">
-            Exporte a lista de pedidos na Wiio (OrderList .xls) e envie aqui. O site guarda o custo exato de cada pedido e
-            atualiza a tabela abaixo sozinho; pedidos novos usam essa tabela até o próximo envio.
+            Exporte a lista de pedidos na Wiio (OrderList .xls ou .csv) e envie aqui sempre que puder. Cada pedido do arquivo passa a usar
+            o custo exato, todas as métricas (Dashboard, Tráfego, Criativos) são recalculadas e a tabela de custos aprende com todos os
+            envios — os pedidos que ainda não chegaram num arquivo usam essa média.
           </p>
           <label className="btn-ghost mt-3 inline-flex cursor-pointer">
             {uploading ? "Lendo planilha…" : "Escolher arquivo .xls ou .csv"}
@@ -117,7 +124,18 @@ export default function SettingsPage() {
           {result?.error && <div className="mt-3 rounded-lg border border-bad/30 bg-bad/5 px-3 py-2 text-xs text-bad">{result.error}</div>}
           {result && !result.error && (
             <div className="mt-3 space-y-1.5 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-xs">
-              <div className="text-accent">{result.orders} pedidos importados com o custo exato.</div>
+              <div className="text-accent">
+                {result.orders} pedidos com custo exato
+                {result.from ? ` (de ${br(result.from)} a ${br(result.to)})` : ""}
+                {result.newOrders !== undefined ? ` · ${result.newOrders} novos, ${result.updatedOrders} atualizados` : ""}. Métricas recalculadas.
+              </div>
+              {result.model && (
+                <div className="text-zinc-300">
+                  Aprendido com {result.model.orders} pedidos: custo médio por pedido <b>{usd(result.model.avgTotalPerOrder)}</b> (produto{" "}
+                  {usd(result.model.avgProductPerOrder)} + frete {usd(result.model.avgShippingPerOrder)}) · {usd(result.model.avgProductPerUnit)} por unidade ·{" "}
+                  {result.model.avgUnitsPerOrder.toFixed(2)} unidades por pedido.
+                </div>
+              )}
               {result.changes.length > 0 ? (
                 <ul className="space-y-0.5 text-zinc-300">
                   {result.changes.map((c) => (
@@ -135,10 +153,51 @@ export default function SettingsPage() {
             </div>
           )}
           {history && history.imports.length > 0 && (
-            <p className="mt-3 text-[11px] text-faint">
-              Último envio: {new Date(history.imports[0].at).toLocaleString("pt-BR")} ({history.imports[0].file}) ·{" "}
-              {history.orders} pedidos com custo exato no total.
-            </p>
+            <div className="mt-4 space-y-2 text-[11px]">
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className={`rounded px-1.5 py-0.5 font-medium ${
+                    (Date.now() - Date.parse(history.imports[0].at)) / 86400_000 > 3 ? "bg-warn/15 text-warn" : "bg-accent/15 text-accent"
+                  }`}
+                >
+                  Custos exatos até {br(history.model?.coveredTo ?? history.imports[0].to)}
+                </span>
+                <span className="text-faint">
+                  último envio {new Date(history.imports[0].at).toLocaleString("pt-BR")} · {history.orders} pedidos com custo exato no total
+                </span>
+              </div>
+              {history.model && (
+                <div className="text-muted">
+                  Média aprendida ({history.model.orders} pedidos, últimos 30 dias valem mais): {usd(history.model.avgTotalPerOrder)} por pedido ·{" "}
+                  {usd(history.model.avgProductPerUnit)} por unidade · frete {usd(history.model.avgShippingPerOrder)} por pedido.
+                </div>
+              )}
+              <table className="w-full text-left">
+                <thead className="text-faint">
+                  <tr>
+                    <th className="py-1 font-normal">Envio</th>
+                    <th className="py-1 font-normal">Arquivo</th>
+                    <th className="py-1 font-normal">Pedidos de</th>
+                    <th className="py-1 text-right font-normal">Pedidos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {history.imports.slice(0, 8).map((i) => (
+                    <tr key={i.at} className="border-t border-line/50">
+                      <td className="py-1">{new Date(i.at).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })}</td>
+                      <td className="max-w-[140px] truncate py-1" title={i.file}>
+                        {i.file}
+                      </td>
+                      <td className="py-1">{i.from ? `${br(i.from)} → ${br(i.to)}` : "—"}</td>
+                      <td className="py-1 text-right">
+                        {i.orders}
+                        {i.newOrders !== undefined ? <span className="text-faint"> ({i.newOrders} novos)</span> : null}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
         <div>

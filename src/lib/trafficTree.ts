@@ -4,7 +4,7 @@ import { cached, friendlyError, hashKey } from "./cache";
 import { campaignAccounts, resolveAccount } from "./campaigns";
 import { revcontentCampaigns, taboolaCampaigns, taboolaGroup, type GroupDetail, type SourceCampaignInfo } from "./connectors/campaignBuilder";
 import { PLATFORM_LABEL } from "./registry";
-import { getSettings, listCampaignLog, listConnections } from "./store";
+import { getSettings, getSupplierImports, listCampaignLog, listConnections } from "./store";
 import { computeTraffic, type ExcludedCampaign, type TrafficRow } from "./traffic";
 import type { DateRange } from "./types";
 
@@ -58,6 +58,8 @@ export type TrafficTree = {
   excluded: ExcludedCampaign[];
   icConfigured: boolean;
   warnings: string[];
+  /** Wiio costs are exact up to this order date (last upload); later orders use the learned averages. */
+  supplier?: { coveredTo?: string; lastUploadAt?: string };
 };
 
 const div = (a: number, b: number) => (b ? a / b : 0);
@@ -146,7 +148,7 @@ function applyEdits(t: TrafficTree): TrafficTree {
  */
 export async function computeTrafficTree(range: DateRange): Promise<TrafficTree & { cachedAt: string }> {
   const st = await getSettings();
-  const version = hashKey(st.excludedCampaigns, st.campaignLinks, st.creativeProducts ?? {});
+  const version = hashKey(st.excludedCampaigns, st.campaignLinks, st.creativeProducts ?? {}, st.supplierModel?.updatedAt ?? "", st.productCosts);
   const r = await cached(hashKey("tree", range, version), () => buildTree(range), { ttl: 90_000, maxStale: 24 * 3600_000 });
   return { ...applyEdits(r.value), cachedAt: new Date(r.at).toISOString() };
 }
@@ -297,5 +299,9 @@ async function buildTree(range: DateRange): Promise<TrafficTree> {
     excluded: r.excluded,
     icConfigured: r.icConfigured,
     warnings: [...new Set(warnings)],
+    supplier: await Promise.all([getSettings(), getSupplierImports()]).then(([st, imp]) => ({
+      coveredTo: st.supplierModel?.coveredTo ?? imp[0]?.to,
+      lastUploadAt: imp[0]?.at,
+    })),
   };
 }

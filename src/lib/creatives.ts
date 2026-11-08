@@ -192,7 +192,7 @@ export async function computeCreatives(range: DateRange) {
  */
 export async function cachedCreatives(range: DateRange) {
   const st = await getSettings();
-  const r = await cached(hashKey("creatives-all", range, st.creativeProducts ?? {}), () => computeCreatives(range), {
+  const r = await cached(hashKey("creatives-all", range, st.creativeProducts ?? {}, st.supplierModel?.updatedAt ?? "", st.productCosts), () => computeCreatives(range), {
     ttl: 3 * 60_000,
     maxStale: 24 * 3600_000,
   });

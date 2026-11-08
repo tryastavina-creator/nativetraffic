@@ -325,6 +325,16 @@ export default function Trafego() {
         <p className="mt-2 text-[11px] text-faint">
           Lucro real = receita − custo do produto e frete (Wiio) − taxas − reembolsos − gasto. Só campanhas das APIs das fontes.
           {data?.icConfigured ? " Checkouts = InitiateCheckout do RedTrack." : ""}
+          {data?.supplier?.lastUploadAt ? (
+            <a href="/settings" className="ml-1 hover:text-zinc-200">
+              Custos Wiio exatos até {data.supplier.coveredTo ? data.supplier.coveredTo.split("-").reverse().slice(0, 2).join("/") : "—"} (depois, média
+              aprendida).
+            </a>
+          ) : (
+            <a href="/settings" className="ml-1 text-warn hover:text-zinc-200">
+              Envie a planilha da Wiio para o custo exato.
+            </a>
+          )}
         </p>
 
         {!!data?.excluded.length && (

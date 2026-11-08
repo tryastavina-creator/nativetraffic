@@ -38,11 +38,44 @@ export type Settings = {
   blocklists: Blocklist[];
   /** Product chosen by hand for a creative: "img:<image key>" / "hl:<headline key>" → product. */
   creativeProducts: Record<string, string>;
+  /** Learned from every Wiio upload. */
+  supplierModel?: SupplierModel;
 };
 
 /** Exact supplier cost of one order, from an imported supplier export. */
-export type SupplierCost = { product: number; shipping: number; total: number; date?: string };
-export type SupplierImport = { at: string; file: string; orders: number };
+export type SupplierCost = {
+  product: number;
+  shipping: number;
+  total: number;
+  date?: string;
+  /** Products of the order (one entry per unit), to keep learning unit costs across uploads. */
+  items?: string[];
+};
+export type SupplierImport = {
+  at: string;
+  file: string;
+  orders: number;
+  /** Order dates covered by this file. */
+  from?: string;
+  to?: string;
+  newOrders?: number;
+  updatedOrders?: number;
+};
+
+/** What the uploads taught about costs (all files, recent orders weigh more). */
+export type SupplierModel = {
+  updatedAt: string;
+  /** Orders with exact cost that the model learned from. */
+  orders: number;
+  /** Exact costs exist up to this order date; later orders use the model. */
+  coveredFrom?: string;
+  coveredTo?: string;
+  avgProductPerOrder: number;
+  avgShippingPerOrder: number;
+  avgTotalPerOrder: number;
+  avgProductPerUnit: number;
+  avgUnitsPerOrder: number;
+};
 
 type FileShape = {
   connections: Record<string, string>;
@@ -348,8 +381,11 @@ export async function saveSupplierImport(
   costs: Record<string, SupplierCost>,
   info: SupplierImport,
   table: Partial<Settings>,
+  learn?: (all: Record<string, SupplierCost>) => { table: Partial<Settings>; model: SupplierModel } | null,
 ) {
   const data = await read();
+  info.newOrders = Object.keys(costs).filter((k) => !data.supplierCosts[k]).length;
+  info.updatedOrders = Object.keys(costs).length - info.newOrders;
   data.supplierCosts = { ...data.supplierCosts, ...costs };
   // Keep the newest 20k orders.
   const keys = Object.keys(data.supplierCosts);
@@ -358,12 +394,17 @@ export async function saveSupplierImport(
     for (const k of sorted.slice(0, keys.length - 20000)) delete data.supplierCosts[k];
   }
   data.supplierImports = [info, ...data.supplierImports].slice(0, 30);
+  // Every upload adds to what we know: the cost table is relearned from all stored orders.
+  const learned = learn?.(data.supplierCosts);
+  const t = learned?.table ?? table;
   data.settings = {
     ...data.settings,
-    ...table,
-    productCosts: { ...data.settings.productCosts, ...(table.productCosts ?? {}) },
+    ...t,
+    productCosts: { ...data.settings.productCosts, ...(t.productCosts ?? {}) },
+    ...(learned ? { supplierModel: learned.model } : {}),
   };
   await write(data);
+  return learned?.model;
 }
 
 export async function getSettings(): Promise<Settings> {

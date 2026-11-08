@@ -149,6 +149,21 @@ export default function Dashboard() {
               <span className="ml-2">
                 · pedidos: {m.dataSources.orders ? <Source name={m.dataSources.orders} /> : "—"} · custo:{" "}
                 {m.dataSources.spend.length ? m.dataSources.spend.map((s) => <Source key={s} name={s} />) : "—"}
+                {m.supplier?.lastUploadAt && (
+                  <Link
+                    href="/settings"
+                    className={`ml-1 hover:text-zinc-200 ${(m.supplier.daysSinceUpload ?? 0) > 3 ? "text-warn" : ""}`}
+                    title={`Último envio da Wiio: ${new Date(m.supplier.lastUploadAt).toLocaleString("pt-BR")}. Pedidos depois dessa data usam a média aprendida.`}
+                  >
+                    · custos Wiio exatos até {m.supplier.coveredTo ? m.supplier.coveredTo.split("-").reverse().slice(0, 2).join("/") : "—"}
+                    {(m.supplier.daysSinceUpload ?? 0) > 3 ? ` (envio há ${m.supplier.daysSinceUpload} dias)` : ""}
+                  </Link>
+                )}
+                {!m.supplier?.lastUploadAt && !m.dataSources.demo && (
+                  <Link href="/settings" className="ml-1 text-warn hover:text-zinc-200">
+                    · envie a planilha da Wiio para custos exatos
+                  </Link>
+                )}
                 {!!m.excluded?.count && (
                   <Link href="/trafego" className="ml-1 hover:text-zinc-200" title="Campanhas marcadas como &quot;Ignorar gasto&quot; na aba Tráfego">
                     · {m.excluded.count} campanha(s) ignorada(s) (−{money(m.excluded.spend, m.currency)})
