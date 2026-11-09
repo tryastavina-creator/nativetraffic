@@ -18,5 +18,5 @@ export async function middleware(req: NextRequest) {
 // request bodies. They check the login themselves with guardRoute().
 export const config = {
   runtime: "nodejs",
-  matcher: ["/((?!_next/|favicon.ico|api/creatives/library|api/supplier|api/webhooks/).*)"],
+  matcher: ["/((?!_next/|favicon.ico|api/creatives/library|api/supplier|api/esteira|api/webhooks/).*)"],
 };

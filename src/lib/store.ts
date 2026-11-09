@@ -296,6 +296,37 @@ async function read(): Promise<FileShape> {
   };
 }
 
+// ------------------------------- separate documents -------------------------------
+// Data that changes often and has nothing to do with credentials (e.g. the product pipeline) lives in its own
+// key, so it neither bloats nor races with the main state. Postgres row in app_state, or data/<key>.json locally.
+
+export async function readDoc<T>(docKey: string, fallback: T): Promise<T> {
+  if (!/^[a-z0-9_-]+$/.test(docKey) || docKey === "state") throw new Error("chave inválida");
+  const p = db();
+  let raw: string | null = null;
+  if (p) {
+    const sql = await p;
+    raw = (await sql<{ value: string }[]>`SELECT value FROM app_state WHERE key = ${docKey}`)[0]?.value ?? null;
+  } else {
+    raw = await fs.readFile(path.join(process.cwd(), "data", `${docKey}.json`), "utf8").catch(() => null);
+  }
+  return raw ? (JSON.parse(raw) as T) : fallback;
+}
+
+export async function writeDoc(docKey: string, value: unknown) {
+  if (!/^[a-z0-9_-]+$/.test(docKey) || docKey === "state") throw new Error("chave inválida");
+  const json = JSON.stringify(value);
+  const p = db();
+  if (p) {
+    const sql = await p;
+    await sql`INSERT INTO app_state (key, value) VALUES (${docKey}, ${json})
+              ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value`;
+    return;
+  }
+  await fs.mkdir(path.join(process.cwd(), "data"), { recursive: true });
+  await fs.writeFile(path.join(process.cwd(), "data", `${docKey}.json`), json, { mode: 0o600 });
+}
+
 /** Saved API session token (decrypted), or undefined. */
 export async function getToken(key: string): Promise<{ token: string; expires: number } | undefined> {
   const blob = (await read()).tokens?.[key];
@@ -559,7 +590,7 @@ export async function getAsset(id: string): Promise<{ bytes: Buffer; mime: strin
   }
 }
 
-async function deleteAsset(id: string) {
+export async function deleteAsset(id: string) {
   if (!/^[a-f0-9]{32}$/.test(id)) return;
   const p = db();
   if (p) {
