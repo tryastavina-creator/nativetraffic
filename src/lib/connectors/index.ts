@@ -14,7 +14,6 @@ export async function testConnection(conn: Connection): Promise<TestResult> {
     if (conn.provider === "redtrack") return await redtrack.test(c);
     if (conn.provider === "wio") return await wio.test(c);
     if (conn.provider === "fal") return await fal.test(c);
-    if (conn.provider === "anthropic") return await (await import("../analyst")).testAnthropic(c.apiKey);
     const t = TRAFFIC_CONNECTORS[conn.provider];
     if (t) return await t.test(c);
     return { ok: false, message: "Conector ainda não implementado — credenciais salvas." };
