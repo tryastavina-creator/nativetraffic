@@ -26,6 +26,7 @@ const I = {
   menu: "M4 6h16M4 12h16M4 18h16",
   close: "M6 6l12 12M18 6L6 18",
   chevron: "M6 9l6 6 6-6",
+  star: "M12 3l1.9 4.6L19 9l-4 3.4L16.2 18 12 15.3 7.8 18 9 12.4 5 9l5.1-1.4z",
 };
 
 const SECTIONS: Section[] = [
@@ -35,6 +36,7 @@ const SECTIONS: Section[] = [
     items: [
       { label: "Tráfego", icon: I.chart, children: [{ href: "/trafego", label: "Native Ads", icon: I.waves }] },
       { href: "/criativos", label: "Criativos", icon: I.image },
+      { href: "/analista", label: "Analista (IA)", icon: I.star },
     ],
   },
   {

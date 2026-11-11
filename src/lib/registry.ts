@@ -219,6 +219,24 @@ PROVIDERS.push({
   ],
 });
 
+PROVIDERS.push({
+  id: "anthropic",
+  name: "Claude (analista de tráfego)",
+  category: "ai",
+  description: "Agente especialista em native ads: analisa seus melhores e piores anúncios e escreve os prompts para o Gemini criar os próximos.",
+  docsUrl: "https://platform.claude.com/settings/keys",
+  color: "#d97757",
+  initials: "C",
+  fields: [
+    {
+      key: "apiKey",
+      label: "API key da Anthropic",
+      type: "password",
+      help: "platform.claude.com → Settings → API Keys → Create key. Adicione créditos em Billing.",
+    },
+  ],
+});
+
 /** Template used when the user adds any remote MCP server (Shopify, RedTrack, etc.). */
 export const MCP_TEMPLATE: ProviderDef = {
   id: "mcp",

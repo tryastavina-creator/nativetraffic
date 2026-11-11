@@ -90,6 +90,8 @@ type FileShape = {
   /** Every campaign created/duplicated/edited from the CRM. */
   campaignLog: CampaignLogEntry[];
   savedHeadlines?: SavedHeadline[];
+  /** Last analyses of the native-ads analyst. */
+  analyses?: { id: string; at: string; product: string | null; data: unknown }[];
   /** API session tokens kept between restarts (encrypted), e.g. Outbrain's 30-day OB-TOKEN-V1. */
   tokens?: Record<string, string>;
 };
@@ -507,6 +509,15 @@ export async function addCampaignLog(e: CampaignLogEntry) {
 }
 
 // ------------------------------- creative variants -------------------------------
+
+export async function listAnalyses() {
+  return (await read()).analyses ?? [];
+}
+
+export async function saveAnalysis(a: { id: string; at: string; product: string | null; data: unknown }) {
+  const data = await read();
+  await write({ ...data, analyses: [a, ...(data.analyses ?? [])].slice(0, 20) });
+}
 
 export async function listSavedHeadlines(): Promise<SavedHeadline[]> {
   return (await read()).savedHeadlines ?? [];
