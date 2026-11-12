@@ -70,11 +70,23 @@ export async function readSession(token?: string): Promise<string | null> {
 }
 
 /**
+ * Agent access: with NT_AGENT_TOKEN set in the server, a request carrying "Authorization: Bearer <token>"
+ * (only /api/ routes) is allowed — lets the assistant read the CRM data and add creatives without a browser login.
+ */
+export function agentAllowed(path: string, authorization: string | null): boolean {
+  const token = process.env.NT_AGENT_TOKEN;
+  if (!token || token.length < 24 || !path.startsWith("/api/") || !authorization) return false;
+  const m = /^Bearer\s+(.+)$/i.exec(authorization.trim());
+  return !!m && safeEqual(m[1], token);
+}
+
+/**
  * Login check for the few API routes that run outside the middleware (large uploads: Next's Node middleware
  * can break request bodies bigger than a few hundred KB). Returns a 401 response, or null when allowed.
  */
 export async function guardRoute(req: Request): Promise<Response | null> {
   if (!authRequired()) return null;
+  if (agentAllowed(new URL(req.url).pathname, req.headers.get("authorization"))) return null;
   const raw = new RegExp(`(?:^|;\\s*)${COOKIE}=([^;]+)`).exec(req.headers.get("cookie") ?? "")?.[1];
   const user = await readSession(raw ? decodeURIComponent(raw) : undefined);
   return user ? null : Response.json({ error: "não autenticado" }, { status: 401 });
