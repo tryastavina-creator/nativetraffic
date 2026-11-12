@@ -78,6 +78,7 @@ export default function Criativos() {
   const [reload, setReload] = useState(0);
   const [prod, setProd] = useState<string>(""); // "" = todos · "-" = sem produto
   const [adding, setAdding] = useState(false);
+  const [winnersOpen, setWinnersOpen] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -119,9 +120,14 @@ export default function Criativos() {
           <p className="mt-1 text-sm text-muted">
             Resultado por imagem, por headline e pelo combo das duas, separado por produto. Adicione criativos do spy e gere variações.
           </p>
-          <button className="btn-primary mt-3 py-1.5 text-xs" onClick={() => setAdding(true)}>
-            + Adicionar criativo ou headlines
-          </button>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button className="btn-primary py-1.5 text-xs" disabled={!data?.hasImageAi} onClick={() => setWinnersOpen(true)} title={data?.hasImageAi ? "" : "Conecte a fal.ai em Integrações"}>
+              ⚡ Variações agressivas dos vencedores
+            </button>
+            <button className="btn-ghost py-1.5 text-xs" onClick={() => setAdding(true)}>
+              + Adicionar criativo ou headlines
+            </button>
+          </div>
         </div>
         <div className="flex flex-wrap gap-1 rounded-lg border border-line bg-panel p-1">
           {PRESETS.map(([id, label]) => (
@@ -273,6 +279,18 @@ export default function Criativos() {
         )}
       </div>
 
+      {winnersOpen && (
+        <WinnersModal
+          products={products}
+          defaultProduct={prod && prod !== "-" ? prod : ""}
+          onClose={() => setWinnersOpen(false)}
+          onDone={() => {
+            setWinnersOpen(false);
+            setTab("variants");
+            setReload((n) => n + 1);
+          }}
+        />
+      )}
       {adding && (
         <AddCreative
           products={products}
@@ -962,6 +980,149 @@ function AddCreative({
             {busy ? "Salvando…" : kind === "creative" ? (lines.length > 1 ? `Salvar ${lines.length} criativos` : "Salvar criativo") : `Salvar ${lines.length || ""} headline(s)`}
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/** Generates aggressive variants of the images that made the most profit, straight into the library. */
+function WinnersModal({ products, defaultProduct, onClose, onDone }: { products: string[]; defaultProduct: string; onClose: () => void; onDone: () => void }) {
+  const [product, setProduct] = useState(defaultProduct);
+  const [preset, setPreset] = useState("30d");
+  const [winners, setWinners] = useState(3);
+  const [perWinner, setPerWinner] = useState(3);
+  const [model, setModel] = useState<ImageModelId>("nano-banana");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [done, setDone] = useState<{ created: number; results: { headline: string; roas: number; why: string; created: number; failed: number }[] } | null>(null);
+  const price = IMAGE_MODELS.find((m) => m.id === model)?.price ?? 0.04;
+  const total = winners * perWinner;
+
+  async function run() {
+    setBusy(true);
+    setError("");
+    const r = await fetch("/api/creatives/winners", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product, preset, winners, perWinner, model }),
+    })
+      .then(async (x) => {
+        const t = await x.text();
+        try {
+          return JSON.parse(t);
+        } catch {
+          return { error: `Erro ${x.status}. Tente de novo.` };
+        }
+      })
+      .catch(() => ({ error: "Sem conexão com o servidor." }));
+    setBusy(false);
+    if (r.error) return setError(r.error);
+    setDone(r);
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-6 backdrop-blur-sm" onClick={busy ? undefined : onClose}>
+      <div className="card card-pad w-full max-w-xl space-y-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold">⚡ Variações agressivas dos vencedores</h2>
+          {!busy && (
+            <button className="text-muted hover:text-zinc-100" onClick={onClose} aria-label="Fechar">
+              ✕
+            </button>
+          )}
+        </div>
+        <p className="text-xs text-muted">
+          Pega as imagens que mais deram lucro, a IA analisa por que cada uma vence e cria versões mais fortes em estilos diferentes (foto de celular,
+          estúdio, reportagem, contraste, emoção em close, família), sempre com o produto bem visível. Tudo vai para a Biblioteca com a headline
+          vencedora e uma descrição nova.
+        </p>
+        {!done && (
+          <>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <label className="block">
+                <span className="mb-1.5 block text-xs text-zinc-300">Produto</span>
+                <select className="input" value={product} onChange={(e) => setProduct(e.target.value)}>
+                  <option value="">Todos</option>
+                  {products.map((p) => (
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-xs text-zinc-300">Vencedores dos últimos</span>
+                <select className="input" value={preset} onChange={(e) => setPreset(e.target.value)}>
+                  <option value="7d">7 dias</option>
+                  <option value="14d">14 dias</option>
+                  <option value="30d">30 dias</option>
+                </select>
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-xs text-zinc-300">Quantos vencedores</span>
+                <select className="input" value={winners} onChange={(e) => setWinners(Number(e.target.value))}>
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <option key={n} value={n}>
+                      {n}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block">
+                <span className="mb-1.5 block text-xs text-zinc-300">Variações por vencedor</span>
+                <select className="input" value={perWinner} onChange={(e) => setPerWinner(Number(e.target.value))}>
+                  {[2, 3, 4].map((n) => (
+                    <option key={n} value={n}>
+                      {n} estilos diferentes
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block sm:col-span-2">
+                <span className="mb-1.5 block text-xs text-zinc-300">Modelo</span>
+                <select className="input" value={model} onChange={(e) => setModel(e.target.value as ImageModelId)}>
+                  {IMAGE_MODELS.map((m) => (
+                    <option key={m.id} value={m.id}>
+                      {m.label} — {m.note} (US${m.price.toFixed(2)}/imagem)
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+            {error && <p className="text-sm text-bad">{error}</p>}
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-faint">
+                {total} imagens · ~US${(total * price).toFixed(2)} na fal.ai
+              </span>
+              <button className="btn-primary" disabled={busy} onClick={run}>
+                {busy ? "Analisando e gerando… (1–3 min)" : `Gerar ${total} variações`}
+              </button>
+            </div>
+          </>
+        )}
+        {done && (
+          <div className="space-y-3">
+            <p className="text-sm text-accent">{done.created} variações criadas na Biblioteca.</p>
+            <ul className="space-y-2 text-xs">
+              {done.results.map((r, i) => (
+                <li key={i} className="rounded-lg border border-line p-2">
+                  <div className="font-medium">
+                    {r.headline} <span className="text-faint">· ROAS {r.roas.toFixed(2)}</span>
+                  </div>
+                  {r.why && <div className="mt-0.5 text-muted">Por que vence: {r.why}</div>}
+                  <div className="mt-0.5 text-faint">
+                    {r.created} criadas{r.failed ? ` · ${r.failed} falharam` : ""}
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div className="flex justify-end">
+              <button className="btn-primary" onClick={onDone}>
+                Ver na Biblioteca
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
