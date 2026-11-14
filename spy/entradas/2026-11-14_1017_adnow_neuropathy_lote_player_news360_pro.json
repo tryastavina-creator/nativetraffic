@@ -1,0 +1,59 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "news360.pro",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "AdNow"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Да вас не боли кичма и да вам не трну руке, одмах престаните да једете ово."
+  ],
+  "max_gravity": 359,
+  "gravity_por_rede": {
+    "adnow": {
+      "network": "AdNow",
+      "gravity": 359,
+      "ad_id": "5159939489",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-07-24",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "escalando": [
+      "5159939489"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "nao_legivel",
+    "cloaking": "403 Forbidden (Cloudflare/nginx)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5159939489",
+      "network": "AdNow",
+      "gravity": 359,
+      "ad_strength": 19193,
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 112,
+      "movimento": "escalando",
+      "headline": "Да вас не боли кичма и да вам не трну руке, одмах престаните да једете ово.",
+      "idioma_inferido": "ru",
+      "geo_hint": "RS",
+      "views": "A+E",
+      "angle_id": "NEURO-A8",
+      "phash": "85db2a1468777479",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_skandalno_net_2026_07_24_dc071cb9.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

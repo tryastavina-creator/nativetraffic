@@ -1,0 +1,114 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "adskeeper.co.uk",
+  "status": "lancando",
+  "tipo_player": "dominio_da_rede_ou_tracker",
+  "flag": "dominio_da_rede_ou_tracker",
+  "redes": [
+    "AdsKeeper",
+    "Mgid"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 3,
+  "headlines": [
+    "Læge: høretab eller tinnitus? Gør dette straks",
+    "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+    "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!"
+  ],
+  "max_gravity": 205,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 94,
+      "ad_id": "4991476020",
+      "last_seen": "2026-11-12"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 205,
+      "ad_id": "5637859545",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-06-11",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "testando": [
+      "4991476020"
+    ],
+    "parado": [
+      "5011499860"
+    ],
+    "lancando": [
+      "5637859545"
+    ]
+  },
+  "dominios_ligados": [
+    "chudopolsko.info",
+    "pgsrc.com",
+    "wonderbanana.com"
+  ],
+  "funil": {
+    "leitura": "dominio_da_rede",
+    "cloaking": "Redireciona para www.adskeeper.com (site da rede). Tracker, não loja."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5637859545",
+      "network": "AdsKeeper",
+      "gravity": 205,
+      "ad_strength": 410,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!",
+      "idioma_inferido": "es",
+      "geo_hint": "CL",
+      "views": "A",
+      "angle_id": "HEAR-A6",
+      "phash": "9ee5614c7098b4bd",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_gujratkhabar_com_2026_11_13_c956aa90.webp",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "4991476020",
+      "network": "Mgid",
+      "gravity": 94,
+      "ad_strength": 8174,
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-11-12",
+      "dias_entre_primeira_e_ultima": 154,
+      "movimento": "testando",
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "idioma_inferido": "da",
+      "geo_hint": "DK",
+      "views": "A",
+      "angle_id": "HEAR-A1",
+      "phash": "a7e57ce28082476f",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_lajmin_net_2026_06_11_7667b9e8.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    },
+    {
+      "ad_id": "5011499860",
+      "network": "Mgid",
+      "gravity": 30,
+      "ad_strength": 4899,
+      "first_seen": "2026-06-17",
+      "last_seen": "2026-11-08",
+      "dias_entre_primeira_e_ultima": 144,
+      "movimento": "parado",
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "idioma_inferido": "fr",
+      "geo_hint": "BE",
+      "views": "B",
+      "angle_id": "HEAR-A1",
+      "phash": "ef89c69807f89760",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_06_17_17f660b7.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

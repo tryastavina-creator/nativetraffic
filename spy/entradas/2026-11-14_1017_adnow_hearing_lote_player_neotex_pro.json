@@ -1,0 +1,58 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "neotex.pro",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "AdNow"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Korki z wosku same wypadną! A słuch będzie taki jak w wieku 20 lat! Pomoże stara metoda babci..."
+  ],
+  "max_gravity": 4335,
+  "gravity_por_rede": {
+    "adnow": {
+      "network": "AdNow",
+      "gravity": 4335,
+      "ad_id": "3867227242",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2025-09-27",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "escalando": [
+      "3867227242"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "nao_legivel",
+    "cloaking": "HTTPS devolveu 522 Connection timed out (Cloudflare). Oferta, preço e checkout não foram legíveis."
+  },
+  "anuncios": [
+    {
+      "ad_id": "3867227242",
+      "network": "AdNow",
+      "gravity": 4335,
+      "ad_strength": 856836,
+      "first_seen": "2025-09-27",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 412,
+      "movimento": "escalando",
+      "headline": "Korki z wosku same wypadną! A słuch będzie taki jak w wieku 20 lat! Pomoże stara metoda babci...",
+      "idioma_inferido": "pl",
+      "geo_hint": "PL",
+      "views": "A+E",
+      "angle_id": "HEAR-A8",
+      "phash": "d3825d1c7af27849",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_com_pravda_rs_2025_09_27_e2dbd1b1.webp",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

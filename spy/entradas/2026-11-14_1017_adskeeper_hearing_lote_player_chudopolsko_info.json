@@ -1,0 +1,101 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "chudopolsko.info",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 3,
+  "headlines": [
+    "Chirurgul dezvăluie: o soluție rapidă pentru pierderea auzului și tinitus!",
+    "La 78 de ani aud perfect fără aparat auditiv: vă voi arăta cum fac",
+    "W wieku 78 lat słyszę doskоnale bez aparatu słuchowego: pokażę, jak to robię"
+  ],
+  "max_gravity": 655,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 655,
+      "ad_id": "5612348941",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-07",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5641121990",
+      "5612348941",
+      "5640676466"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "wonderbanana.com"
+  ],
+  "funil": {
+    "leitura": "casca_js",
+    "cloaking": "Idêntica à de wonderbanana.com (HTML + /build/bundle.min.js). Oferta não legível."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5612348941",
+      "network": "AdsKeeper",
+      "gravity": 655,
+      "ad_strength": 7218,
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 7,
+      "movimento": "lancando",
+      "headline": "La 78 de ani aud perfect fără aparat auditiv: vă voi arăta cum fac",
+      "idioma_inferido": "ro",
+      "geo_hint": "RO",
+      "views": "A",
+      "angle_id": "HEAR-A7",
+      "phash": "be0c29c70db264f9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_vedeteblog_com_2026_11_07_eb21e981.webp",
+      "search_term": "hearing"
+    },
+    {
+      "ad_id": "5640676466",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "W wieku 78 lat słyszę doskоnale bez aparatu słuchowego: pokażę, jak to robię",
+      "idioma_inferido": "pl",
+      "geo_hint": "PL",
+      "views": "C",
+      "angle_id": "HEAR-A7",
+      "phash": "be0c29c30db266f9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_14_79a1d021.webp",
+      "search_term": "hearing"
+    },
+    {
+      "ad_id": "5641121990",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Chirurgul dezvăluie: o soluție rapidă pentru pierderea auzului și tinitus!",
+      "idioma_inferido": "ro",
+      "geo_hint": "RO",
+      "views": "C",
+      "angle_id": "HEAR-A6",
+      "phash": "9ecd614e7418b4bc",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_14_3dbe989a.webp",
+      "search_term": "tinnitus"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
