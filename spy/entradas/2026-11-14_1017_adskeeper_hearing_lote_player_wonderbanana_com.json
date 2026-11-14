@@ -1,0 +1,81 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "wonderbanana.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "A los 78 años escucho perfectamente sin aparato auditivo: les voy a mostrar cómo lo hago",
+    "¡Un cirujano revela: una solución rápida para la pérdida auditiva y el zumbido de oídos!"
+  ],
+  "max_gravity": 688,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 688,
+      "ad_id": "5610497481",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-07",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5640846034",
+      "5610497481"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "chudopolsko.info"
+  ],
+  "funil": {
+    "leitura": "casca_js",
+    "cloaking": "HTTP 200 com HTML mínimo e um único script /build/bundle.min.js (casca vazia). Mesma casca de chudopolsko.info. Oferta não legível — cloaking ou app JS que não carrega fora do clique."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5610497481",
+      "network": "AdsKeeper",
+      "gravity": 688,
+      "ad_strength": 3316,
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 7,
+      "movimento": "lancando",
+      "headline": "A los 78 años escucho perfectamente sin aparato auditivo: les voy a mostrar cómo lo hago",
+      "idioma_inferido": "es",
+      "geo_hint": "MX",
+      "views": "A+E",
+      "angle_id": "HEAR-A7",
+      "phash": "be0c29c30db266f9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_afondoedomex_com_2026_11_07_908a1a14.webp",
+      "search_term": "hearing"
+    },
+    {
+      "ad_id": "5640846034",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "¡Un cirujano revela: una solución rápida para la pérdida auditiva y el zumbido de oídos!",
+      "idioma_inferido": "es",
+      "geo_hint": "MX",
+      "views": "C",
+      "angle_id": "HEAR-A6",
+      "phash": "9ecd614e7418b4bc",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_afondoedomex_com_2026_11_14_20f3563c.webp",
+      "search_term": "tinnitus"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

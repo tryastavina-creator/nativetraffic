@@ -1,0 +1,58 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "candy.ai",
+  "status": "parado",
+  "tipo_player": "captura_suspeita",
+  "flag": "lander_suspeita_ou_captura_errada",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Pieczenie, drętwienie kończyn i utrata czucia znikną — przyjmuj 1 tabletkę przed snem!"
+  ],
+  "max_gravity": 44,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 44,
+      "ad_id": "5277119743",
+      "last_seen": "2026-11-09"
+    }
+  },
+  "first_seen": "2026-08-25",
+  "last_seen": "2026-11-09",
+  "movimentos": {
+    "parado": [
+      "5277119743"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "oferta_nao_relacionada",
+    "cloaking": "Site de companhia/chat com IA; anúncio de neuropatia com este lander provavelmente é captura errada. Última vista 2026-11-09 (parado)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5277119743",
+      "network": "AdsKeeper",
+      "gravity": 44,
+      "ad_strength": 1748,
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-09",
+      "dias_entre_primeira_e_ultima": 76,
+      "movimento": "parado",
+      "headline": "Pieczenie, drętwienie kończyn i utrata czucia znikną — przyjmuj 1 tabletkę przed snem!",
+      "geo_hint": "PL",
+      "views": "A",
+      "angle_id": "NEURO-OUTRO",
+      "phash": "bb93cc60a4e3b06e",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_08_25_c57fc39e.webp",
+      "search_term": "numbness"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

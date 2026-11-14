@@ -1,0 +1,97 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "dailycarepro.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Neurolodzy pilnie wzywają seniorów z neuropatią: Przestańcie jeść te 3 pokarmy",
+    "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5640668900",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5640668900",
+      "5641199160",
+      "5640666792"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "evidwell.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5640666792",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Neurolodzy pilnie wzywają seniorów z neuropatią: Przestańcie jeść te 3 pokarmy",
+      "idioma_inferido": "pl",
+      "geo_hint": "PL",
+      "views": "C+F",
+      "angle_id": "NEURO-A8",
+      "phash": "8e4be104ec52cebb",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_25e093be.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5640668900",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić",
+      "idioma_inferido": "pl",
+      "geo_hint": "PL",
+      "views": "C+F",
+      "angle_id": "NEURO-A8",
+      "phash": "8e4be104ec52cebb",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_68ca5878.webp",
+      "search_term": "neuropathy (Translated Text); nerve"
+    },
+    {
+      "ad_id": "5641199160",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić",
+      "idioma_inferido": "pl",
+      "geo_hint": "PL",
+      "views": "C+F",
+      "angle_id": "NEURO-A8",
+      "phash": "c1787894bcce7463",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_f46db9e6.webp",
+      "search_term": "neuropathy (Translated Text); nerve"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
