@@ -1,0 +1,2018 @@
+{
+  "nicho": "hearing",
+  "data_coleta": "2026-11-14",
+  "primeira_rodada": true,
+  "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+  "regras": {
+    "parado": "última vista há mais de 3 dias (antes de 2026-11-11)",
+    "lancando": "ativo e first_seen há até 7 dias (a partir de 2026-11-07)",
+    "escalando": "ativo, gravidade alta na rede (Taboola/MGID/AdsKeeper ≥300, Outbrain ≥150, Revcontent ≥400) e 7+ dias entre primeira e última vista ou 3+ variações",
+    "volumando": "ativo, gravidade 100–300 (Outbrain 80–149), sem atingir escalando",
+    "testando": "o restante dos anúncios ativos",
+    "nota": "A classificação do player é a classe ativa mais forte (escalando > volumando > lancando > testando); se todos os anúncios estão parados, o player está parado. Um player pode ter anúncios em mais de uma classe."
+  },
+  "resumo": {
+    "escalando": [
+      "naturegrove24.com"
+    ],
+    "volumando": [
+      "pgsrc.com",
+      "candyai.gg"
+    ],
+    "lancando": [
+      "pgsrc.com"
+    ],
+    "testando": [
+      "adskeeper.co.uk"
+    ],
+    "parado": [
+      "pawer-growls-palps.rest",
+      "lphst.com"
+    ]
+  },
+  "tendencias": [
+    "O único ângulo em escalando nesta coleta é o imperativo eslovaco ('Musíš to urobiť…') na MGID, com criativos lifestyle de pessoa 55+ aplicando gotas no jardim e overlay anatômico, no domínio naturegrove24.com.",
+    "O ângulo de autoridade médica (FR e DA, tradução praticamente palavra a palavra) está volumando na MGID via pgsrc.com desde junho, com muitas variações de imagem: anatomia, metáfora de zumbido (insetos) e, nos testes de novembro, remédios caseiros (alho, batata).",
+    "Na Taboola, naturegrove24.com testou o gancho de preço 'experimente por 1 EUR/1 euro' com a mesma família visual de praia; chegou a gravidade 111–120, mas a última vista foi em 2026-11-07 a 2026-11-09 (parado nesta rodada).",
+    "O ângulo de biólogo (indonésio em pawer-growls-palps.rest, neerlandês em lphst.com) não está ativo: pawer teve última vista em 2026-11-09 e lphst em 2026-08-26."
+  ],
+  "testes_promissores": [
+    {
+      "ad_id": "5626467889",
+      "lander_domain": "pgsrc.com",
+      "rede": "Mgid",
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "gravity": 0,
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "lancando",
+      "porque": "Único anúncio desta coleta ainda em lançamento. Mesma headline médica em dinamarquês, mas a imagem é um close de um dente de alho no canal da orelha — gancho de curiosidade/remédio caseiro, não a ilustração médica clássica."
+    },
+    {
+      "ad_id": "5587465685",
+      "lander_domain": "pgsrc.com",
+      "rede": "Mgid",
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "gravity": 52,
+      "first_seen": "2026-11-01",
+      "last_seen": "2026-11-02",
+      "movimento": "parado",
+      "porque": "Entre os testes F (gravidade 0–60, primeira vista nos últimos 14 dias), foi o de maior gravidade (52) no período, com imagem de um homem surpreso segurando metades de batata ao lado das orelhas. Já está parado (última vista em 2026-11-02), mas o ângulo de curiosidade vale atenção se voltar."
+    },
+    {
+      "ad_id": "5614079344",
+      "lander_domain": "pgsrc.com",
+      "rede": "Mgid",
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "gravity": 50,
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "porque": "Teste recente (primeira vista em 2026-11-08) com gravidade 50, já parado em 2026-11-09. Faz parte da leva de testes dinamarqueses de pgsrc no começo de novembro."
+    },
+    {
+      "ad_id": "5612864496",
+      "lander_domain": "naturegrove24.com",
+      "rede": "AdsKeeper",
+      "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+      "gravity": 0,
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-07",
+      "movimento": "parado",
+      "porque": "Primeira aparição do ângulo que já escala na MGID, agora na AdsKeeper. Gravidade 0 e última vista no mesmo dia: teste de rede, ainda sem tração visível."
+    },
+    {
+      "ad_id": "5597824745",
+      "lander_domain": "pawer-growls-palps.rest",
+      "rede": "Mgid",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "gravity": 1,
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "porque": "Única peça F deste player nesta coleta. O player inteiro já está parado."
+    }
+  ],
+  "players": [
+    {
+      "nicho": "hearing",
+      "data_coleta": "2026-11-14",
+      "primeira_rodada": true,
+      "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+      "lander_domain": "naturegrove24.com",
+      "status": "escalando",
+      "ativo": true,
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-14",
+      "redes": [
+        "AdsKeeper",
+        "Mgid",
+        "Taboola"
+      ],
+      "n_anuncios": 12,
+      "n_headlines": 3,
+      "headlines": [
+        "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+        "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
+        "Šum v ušiach alebo strata sluchu? Vyskúšajte to za 1 euro"
+      ],
+      "angles": [
+        "HEAR-A2",
+        "HEAR-A4"
+      ],
+      "max_gravity": 625,
+      "gravity_por_rede": {
+        "mgid": {
+          "rede": "Mgid",
+          "gravity": 625,
+          "ad_id": "5283780296",
+          "last_seen": "2026-11-14"
+        },
+        "taboola": {
+          "rede": "Taboola",
+          "gravity": 120,
+          "ad_id": "5575039798",
+          "last_seen": "2026-11-07"
+        },
+        "adskeeper": {
+          "rede": "AdsKeeper",
+          "gravity": 0,
+          "ad_id": "5612864496",
+          "last_seen": "2026-11-07"
+        }
+      },
+      "historico_gravity": [
+        {
+          "data": "2026-11-14",
+          "max_gravity": 625,
+          "por_rede": {
+            "mgid": {
+              "rede": "Mgid",
+              "gravity": 625,
+              "ad_id": "5283780296",
+              "last_seen": "2026-11-14"
+            },
+            "taboola": {
+              "rede": "Taboola",
+              "gravity": 120,
+              "ad_id": "5575039798",
+              "last_seen": "2026-11-07"
+            },
+            "adskeeper": {
+              "rede": "AdsKeeper",
+              "gravity": 0,
+              "ad_id": "5612864496",
+              "last_seen": "2026-11-07"
+            }
+          },
+          "nota": "primeira rodada; sem histórico anterior"
+        }
+      ],
+      "movimentos": {
+        "escalando": [
+          "5283780296",
+          "5296392585"
+        ],
+        "volumando": [
+          "5277858275",
+          "5288989793"
+        ],
+        "parado": [
+          "5575039798",
+          "5490132485",
+          "5539816618",
+          "5607611327",
+          "5612864496",
+          "5607611708",
+          "5319202204"
+        ],
+        "testando": [
+          "5277868478"
+        ]
+      },
+      "dominios_ligados": [
+        "candyai.gg"
+      ],
+      "evidencias_ligacao": [
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5283780296",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5277858275",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5296392585",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5288989793",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5612864496",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5277868478",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "candyai.gg",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5319202204",
+          "ad_id_b": "5285005751",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        }
+      ],
+      "funil": {
+        "leitura": "nao_legivel",
+        "cloaking": "Acesso direto a https://naturegrove24.com/ (e www, /en, /sk) devolveu 403 Forbidden (Cloudflare + nginx). /index.html devolveu 404. A oferta não foi legível nesta rodada.",
+        "nota": "Os anúncios da Taboola deste domínio estão tagueados no Anstrex como Nutraceuticals, mas isso não confirma o produto."
+      },
+      "anuncios": [
+        {
+          "ad_id": "5283780296",
+          "ad_url": "https://native.anstrex.com/creative/panel/5283780296",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_musbizu_com_ng_2026_08_26_2524a64a.webp",
+          "gravity": 625,
+          "ad_strength": 8094,
+          "first_seen": "2026-08-26",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 80,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "A+E+G",
+          "angle_id": "HEAR-A2",
+          "movimento": "escalando",
+          "tags": null
+        },
+        {
+          "ad_id": "5296392585",
+          "ad_url": "https://native.anstrex.com/creative/panel/5296392585",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mirroruttarakhand_com_2026_08_29_bb7e64fb.webp",
+          "gravity": 351,
+          "ad_strength": 5990,
+          "first_seen": "2026-08-29",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 77,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "A+E+G",
+          "angle_id": "HEAR-A2",
+          "movimento": "escalando",
+          "tags": null
+        },
+        {
+          "ad_id": "5277858275",
+          "ad_url": "https://native.anstrex.com/creative/panel/5277858275",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jeuxdefriv250_net_2026_08_25_b1fa1980.webp",
+          "gravity": 162,
+          "ad_strength": 16079,
+          "first_seen": "2026-08-25",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 81,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "A+D+G",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5288989793",
+          "ad_url": "https://native.anstrex.com/creative/panel/5288989793",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jaideemesuk_com_2026_08_27_d91fe5ea.webp",
+          "gravity": 155,
+          "ad_strength": 2900,
+          "first_seen": "2026-08-27",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 79,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "A+D+G",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5575039798",
+          "ad_url": "https://native.anstrex.com/creative/panel/5575039798",
+          "rede": "Taboola",
+          "headline": "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_29_17959753.png",
+          "gravity": 120,
+          "ad_strength": 17338,
+          "first_seen": "2026-10-29",
+          "last_seen": "2026-11-07",
+          "dias_entre_primeira_e_ultima": 9,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "A+B+D",
+          "angle_id": "HEAR-A4",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5607611327",
+          "ad_url": "https://native.anstrex.com/creative/panel/5607611327",
+          "rede": "Taboola",
+          "headline": "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_06_c37ed795.png",
+          "gravity": 116,
+          "ad_strength": 4682,
+          "first_seen": "2026-11-06",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 3,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "B+D",
+          "angle_id": "HEAR-A4",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5607611708",
+          "ad_url": "https://native.anstrex.com/creative/panel/5607611708",
+          "rede": "Taboola",
+          "headline": "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_06_2de2677c.png",
+          "gravity": 111,
+          "ad_strength": 1482,
+          "first_seen": "2026-11-06",
+          "last_seen": "2026-11-07",
+          "dias_entre_primeira_e_ultima": 1,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "D",
+          "angle_id": "HEAR-A4",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5277868478",
+          "ad_url": "https://native.anstrex.com/creative/panel/5277868478",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nendidau_com_2026_08_25_fc150954.webp",
+          "gravity": 88,
+          "ad_strength": 10510,
+          "first_seen": "2026-08-25",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 81,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "G",
+          "angle_id": "HEAR-A2",
+          "movimento": "testando",
+          "tags": null
+        },
+        {
+          "ad_id": "5319202204",
+          "ad_url": "https://native.anstrex.com/creative/panel/5319202204",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ukrcup_top_2026_09_02_7800a1a3.webp",
+          "gravity": 36,
+          "ad_strength": 680,
+          "first_seen": "2026-09-02",
+          "last_seen": "2026-11-01",
+          "dias_entre_primeira_e_ultima": 60,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "G",
+          "angle_id": "HEAR-A2",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5490132485",
+          "ad_url": "https://native.anstrex.com/creative/panel/5490132485",
+          "rede": "Taboola",
+          "headline": "Šum v ušiach alebo strata sluchu? Vyskúšajte to za 1 euro",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_08_fdfdf557.png",
+          "gravity": 1,
+          "ad_strength": 18003,
+          "first_seen": "2026-10-08",
+          "last_seen": "2026-10-22",
+          "dias_entre_primeira_e_ultima": 14,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "B",
+          "angle_id": "HEAR-A4",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5539816618",
+          "ad_url": "https://native.anstrex.com/creative/panel/5539816618",
+          "rede": "Taboola",
+          "headline": "Šum v ušiach alebo strata sluchu? Vyskúšajte to za 1 euro",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_20_cac8e7ad.png",
+          "gravity": 1,
+          "ad_strength": 6805,
+          "first_seen": "2026-10-20",
+          "last_seen": "2026-10-26",
+          "dias_entre_primeira_e_ultima": 6,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "B",
+          "angle_id": "HEAR-A4",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5612864496",
+          "ad_url": "https://native.anstrex.com/creative/panel/5612864496",
+          "rede": "AdsKeeper",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_laprensamx_com_2026_11_07_818d9856.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-07",
+          "last_seen": "2026-11-07",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "C+F",
+          "angle_id": "HEAR-A2",
+          "movimento": "parado",
+          "tags": null
+        }
+      ]
+    },
+    {
+      "nicho": "hearing",
+      "data_coleta": "2026-11-14",
+      "primeira_rodada": true,
+      "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+      "lander_domain": "pgsrc.com",
+      "status": "volumando",
+      "ativo": true,
+      "first_seen": "2026-06-10",
+      "last_seen": "2026-11-14",
+      "redes": [
+        "AdsKeeper",
+        "Mgid"
+      ],
+      "n_anuncios": 26,
+      "n_headlines": 2,
+      "headlines": [
+        "Læge: høretab eller tinnitus? Gør dette straks",
+        "Médecin : perte auditive ou acouphènes ? Faites ceci vite"
+      ],
+      "angles": [
+        "HEAR-A1"
+      ],
+      "max_gravity": 215,
+      "gravity_por_rede": {
+        "mgid": {
+          "rede": "Mgid",
+          "gravity": 215,
+          "ad_id": "5004621414",
+          "last_seen": "2026-11-14"
+        },
+        "adskeeper": {
+          "rede": "AdsKeeper",
+          "gravity": 25,
+          "ad_id": "5592636323",
+          "last_seen": "2026-11-02"
+        }
+      },
+      "historico_gravity": [
+        {
+          "data": "2026-11-14",
+          "max_gravity": 215,
+          "por_rede": {
+            "mgid": {
+              "rede": "Mgid",
+              "gravity": 215,
+              "ad_id": "5004621414",
+              "last_seen": "2026-11-14"
+            },
+            "adskeeper": {
+              "rede": "AdsKeeper",
+              "gravity": 25,
+              "ad_id": "5592636323",
+              "last_seen": "2026-11-02"
+            }
+          },
+          "nota": "primeira rodada; sem histórico anterior"
+        }
+      ],
+      "movimentos": {
+        "testando": [
+          "5008732589",
+          "5004245736",
+          "5003793281"
+        ],
+        "volumando": [
+          "5012503218",
+          "5004621414",
+          "5127311921",
+          "5100989569",
+          "5004240689",
+          "4991265195"
+        ],
+        "parado": [
+          "5015796159",
+          "5037231537",
+          "5015418369",
+          "4989690874",
+          "5616322128",
+          "5614079344",
+          "5593968249",
+          "5592708498",
+          "5592636323",
+          "5591877273",
+          "5588180325",
+          "5596994098",
+          "5587465685",
+          "5595015769",
+          "5583963378",
+          "5060772616"
+        ],
+        "lancando": [
+          "5626467889"
+        ]
+      },
+      "dominios_ligados": [
+        "adskeeper.co.uk"
+      ],
+      "evidencias_ligacao": [
+        {
+          "tipo": "phash",
+          "hamming": 0,
+          "dominio": "adskeeper.co.uk",
+          "ad_id_a": "5004245736",
+          "ad_id_b": "4991476020",
+          "interpretacao": "Imagens idênticas (hamming 0), mas adskeeper.co.uk é o site da rede, não uma lander de oferta. Provável tracker/captura do Anstrex, não lateralização de loja."
+        },
+        {
+          "tipo": "phash",
+          "hamming": 0,
+          "dominio": "adskeeper.co.uk",
+          "ad_id_a": "5015796159",
+          "ad_id_b": "5011499860",
+          "interpretacao": "Imagens idênticas (hamming 0), mas adskeeper.co.uk é o site da rede, não uma lander de oferta. Provável tracker/captura do Anstrex, não lateralização de loja."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5008732589",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5004245736",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5012503218",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5003793281",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5004621414",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5015796159",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5037231537",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5015418369",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4989690874",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5626467889",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5616322128",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5614079344",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5127311921",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5100989569",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5004240689",
+          "ad_id_b": "5011499860"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991265195",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5593968249",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5592708498",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5592636323",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5591877273",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5588180325",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5596994098",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5587465685",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5595015769",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "5583963378",
+          "ad_id_b": "4991476020"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "adskeeper.co.uk",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5060772616",
+          "ad_id_b": "5011499860"
+        }
+      ],
+      "funil": {
+        "leitura": "white_page",
+        "cloaking": "A raiz devolveu uma página branca com o texto 'Hostname.one', uma imagem SVG embutida e meta robots noindex,nofollow. Sem links, formulários ou oferta visível. HTML quase idêntico ao de lphst.com (diferença só no beacon do Cloudflare). Sinal clássico de cloaking/white page para tráfego que não vem do clique.",
+        "nota": "Vários anúncios recentes deste domínio estão tagueados no Anstrex como Nutraceuticals. Oferta, preço e checkout não foram legíveis."
+      },
+      "anuncios": [
+        {
+          "ad_id": "5004621414",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004621414",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_15_cd11be64.webp",
+          "gravity": 215,
+          "ad_strength": 2618,
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 152,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "A+D+G",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5127311921",
+          "ad_url": "https://native.anstrex.com/creative/panel/5127311921",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_07_15_1dab04b7.webp",
+          "gravity": 211,
+          "ad_strength": 3030,
+          "first_seen": "2026-07-15",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 122,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "D",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5100989569",
+          "ad_url": "https://native.anstrex.com/creative/panel/5100989569",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_prigotovkino_com_2026_07_09_7f51fe0c.webp",
+          "gravity": 187,
+          "ad_strength": 2970,
+          "first_seen": "2026-07-09",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 128,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "D",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5004240689",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004240689",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ikampinos_pl_2026_06_15_b925797b.webp",
+          "gravity": 172,
+          "ad_strength": 1620,
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 152,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "D",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5012503218",
+          "ad_url": "https://native.anstrex.com/creative/panel/5012503218",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_alienigenasdopassado_com_br_2026_06_17_eb052319.webp",
+          "gravity": 140,
+          "ad_strength": 7891,
+          "first_seen": "2026-06-17",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 150,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "A+D+G",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "4991265195",
+          "ad_url": "https://native.anstrex.com/creative/panel/4991265195",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_11_94c81033.webp",
+          "gravity": 104,
+          "ad_strength": 15026,
+          "first_seen": "2026-06-11",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 156,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "D+G",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "tags": null
+        },
+        {
+          "ad_id": "5008732589",
+          "ad_url": "https://native.anstrex.com/creative/panel/5008732589",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_16_96f1af33.webp",
+          "gravity": 99,
+          "ad_strength": 2409,
+          "first_seen": "2026-06-16",
+          "last_seen": "2026-11-13",
+          "dias_entre_primeira_e_ultima": 150,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "A",
+          "angle_id": "HEAR-A1",
+          "movimento": "testando",
+          "tags": null
+        },
+        {
+          "ad_id": "5004245736",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004245736",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_detikriau_id_2026_06_15_e0ea18ab.webp",
+          "gravity": 84,
+          "ad_strength": 10287,
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-12",
+          "dias_entre_primeira_e_ultima": 150,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "A+B+G",
+          "angle_id": "HEAR-A1",
+          "movimento": "testando",
+          "tags": null
+        },
+        {
+          "ad_id": "5003793281",
+          "ad_url": "https://native.anstrex.com/creative/panel/5003793281",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_mp3_pet_2026_06_14_18f27a41.webp",
+          "gravity": 80,
+          "ad_strength": 22948,
+          "first_seen": "2026-06-14",
+          "last_seen": "2026-11-13",
+          "dias_entre_primeira_e_ultima": 152,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "A+B+G",
+          "angle_id": "HEAR-A1",
+          "movimento": "testando",
+          "tags": null
+        },
+        {
+          "ad_id": "5037231537",
+          "ad_url": "https://native.anstrex.com/creative/panel/5037231537",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_06_24_235b1d51.webp",
+          "gravity": 75,
+          "ad_strength": 2971,
+          "first_seen": "2026-06-24",
+          "last_seen": "2026-11-08",
+          "dias_entre_primeira_e_ultima": 137,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "B+G",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5587465685",
+          "ad_url": "https://native.anstrex.com/creative/panel/5587465685",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_chap_vn_2026_11_01_7d05f8d5.webp",
+          "gravity": 52,
+          "ad_strength": 190,
+          "first_seen": "2026-11-01",
+          "last_seen": "2026-11-02",
+          "dias_entre_primeira_e_ultima": 1,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5614079344",
+          "ad_url": "https://native.anstrex.com/creative/panel/5614079344",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tutdobre_com_ua_2026_11_08_8d4328e9.webp",
+          "gravity": 50,
+          "ad_strength": 100,
+          "first_seen": "2026-11-08",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 1,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "C+F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5060772616",
+          "ad_url": "https://native.anstrex.com/creative/panel/5060772616",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infokita_click_2026_06_29_d4dce503.webp",
+          "gravity": 36,
+          "ad_strength": 2880,
+          "first_seen": "2026-06-29",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 133,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "G",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5592636323",
+          "ad_url": "https://native.anstrex.com/creative/panel/5592636323",
+          "rede": "AdsKeeper",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_leernovelasonline_com_2026_11_02_f78d47ab.webp",
+          "gravity": 25,
+          "ad_strength": 50,
+          "first_seen": "2026-11-02",
+          "last_seen": "2026-11-02",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5015796159",
+          "ad_url": "https://native.anstrex.com/creative/panel/5015796159",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_18_d40ab66b.webp",
+          "gravity": 22,
+          "ad_strength": 7365,
+          "first_seen": "2026-06-18",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 144,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "B",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5592708498",
+          "ad_url": "https://native.anstrex.com/creative/panel/5592708498",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_cinca_news_2026_11_03_4d7f6d4d.webp",
+          "gravity": 21,
+          "ad_strength": 205,
+          "first_seen": "2026-11-03",
+          "last_seen": "2026-11-08",
+          "dias_entre_primeira_e_ultima": 5,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5015418369",
+          "ad_url": "https://native.anstrex.com/creative/panel/5015418369",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_18_3b00e772.webp",
+          "gravity": 20,
+          "ad_strength": 6555,
+          "first_seen": "2026-06-18",
+          "last_seen": "2026-10-26",
+          "dias_entre_primeira_e_ultima": 130,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "B",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "4989690874",
+          "ad_url": "https://native.anstrex.com/creative/panel/4989690874",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_stilemilan_it_2026_06_10_d9dc8b79.webp",
+          "gravity": 17,
+          "ad_strength": 4166,
+          "first_seen": "2026-06-10",
+          "last_seen": "2026-10-31",
+          "dias_entre_primeira_e_ultima": 143,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "B",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5583963378",
+          "ad_url": "https://native.anstrex.com/creative/panel/5583963378",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_7elwa_com_2026_10_31_f1a0c6bf.webp",
+          "gravity": 1,
+          "ad_strength": 60,
+          "first_seen": "2026-10-31",
+          "last_seen": "2026-10-31",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5593968249",
+          "ad_url": "https://native.anstrex.com/creative/panel/5593968249",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_corongnias_com_2026_11_03_d7372960.webp",
+          "gravity": 1,
+          "ad_strength": 30,
+          "first_seen": "2026-11-03",
+          "last_seen": "2026-11-03",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5588180325",
+          "ad_url": "https://native.anstrex.com/creative/panel/5588180325",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_11_01_1c74034b.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-01",
+          "last_seen": "2026-11-01",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5591877273",
+          "ad_url": "https://native.anstrex.com/creative/panel/5591877273",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_11_02_4bcd282c.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-02",
+          "last_seen": "2026-11-02",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5595015769",
+          "ad_url": "https://native.anstrex.com/creative/panel/5595015769",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_prostir_top_2026_11_03_99bab436.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-03",
+          "last_seen": "2026-11-03",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5596994098",
+          "ad_url": "https://native.anstrex.com/creative/panel/5596994098",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_indovideotube_com_2026_11_04_14c4cb13.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-04",
+          "last_seen": "2026-11-04",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5616322128",
+          "ad_url": "https://native.anstrex.com/creative/panel/5616322128",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_indovideotube_com_2026_11_08_5ac73fa8.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-08",
+          "last_seen": "2026-11-08",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "C+F",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": "Nutraceuticals"
+        },
+        {
+          "ad_id": "5626467889",
+          "ad_url": "https://native.anstrex.com/creative/panel/5626467889",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bazzing_it_2026_11_11_b71f87c2.webp",
+          "gravity": 0,
+          "ad_strength": 0,
+          "first_seen": "2026-11-11",
+          "last_seen": "2026-11-11",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "C+F",
+          "angle_id": "HEAR-A1",
+          "movimento": "lancando",
+          "tags": "Nutraceuticals"
+        }
+      ]
+    },
+    {
+      "nicho": "hearing",
+      "data_coleta": "2026-11-14",
+      "primeira_rodada": true,
+      "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+      "lander_domain": "candyai.gg",
+      "status": "volumando",
+      "ativo": true,
+      "first_seen": "2026-08-27",
+      "last_seen": "2026-11-14",
+      "redes": [
+        "Mgid"
+      ],
+      "n_anuncios": 1,
+      "n_headlines": 1,
+      "headlines": [
+        "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach"
+      ],
+      "angles": [
+        "HEAR-A2"
+      ],
+      "max_gravity": 240,
+      "gravity_por_rede": {
+        "mgid": {
+          "rede": "Mgid",
+          "gravity": 240,
+          "ad_id": "5285005751",
+          "last_seen": "2026-11-14"
+        }
+      },
+      "historico_gravity": [
+        {
+          "data": "2026-11-14",
+          "max_gravity": 240,
+          "por_rede": {
+            "mgid": {
+              "rede": "Mgid",
+              "gravity": 240,
+              "ad_id": "5285005751",
+              "last_seen": "2026-11-14"
+            }
+          },
+          "nota": "primeira rodada; sem histórico anterior"
+        }
+      ],
+      "movimentos": {
+        "volumando": [
+          "5285005751"
+        ]
+      },
+      "dominios_ligados": [
+        "naturegrove24.com"
+      ],
+      "evidencias_ligacao": [
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5283780296",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5277858275",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5296392585",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5288989793",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5612864496",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5277868478",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "naturegrove24.com",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "headline_outro": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "ad_id_a": "5285005751",
+          "ad_id_b": "5319202204",
+          "interpretacao": "Headline exatamente igual, mas as imagens não são similares (phash distância mínima 20, acima do limite 8) e candyai.gg redireciona para uma oferta não relacionada. Não confirma o mesmo anunciante rodando dois domínios de hearing."
+        }
+      ],
+      "flag": "lander_suspeita_ou_captura_errada",
+      "funil": {
+        "leitura": "oferta_nao_relacionada",
+        "cloaking": "https://candyai.gg/ redireciona (301) para https://candy.ai/, um site de companhia/chat com IA, sem relação com audição ou zumbido.",
+        "nota": "O Anstrex gravou candyai.gg como lander de um anúncio eslovaco com a mesma headline do naturegrove24.com, mas a imagem é outra (ilustração, phash distância 20) e o destino não é uma oferta de hearing. Tratar como captura suspeita/errada do domínio da lander, não como loja lateralizada confirmada."
+      },
+      "anuncios": [
+        {
+          "ad_id": "5285005751",
+          "ad_url": "https://native.anstrex.com/creative/panel/5285005751",
+          "rede": "Mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_08_27_86a9b522.webp",
+          "gravity": 240,
+          "ad_strength": 2518,
+          "first_seen": "2026-08-27",
+          "last_seen": "2026-11-14",
+          "dias_entre_primeira_e_ultima": 79,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "views": "A+D+G",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "tags": null
+        }
+      ]
+    },
+    {
+      "nicho": "hearing",
+      "data_coleta": "2026-11-14",
+      "primeira_rodada": true,
+      "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+      "lander_domain": "adskeeper.co.uk",
+      "status": "testando",
+      "ativo": true,
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-11-12",
+      "redes": [
+        "Mgid"
+      ],
+      "n_anuncios": 2,
+      "n_headlines": 2,
+      "headlines": [
+        "Læge: høretab eller tinnitus? Gør dette straks",
+        "Médecin : perte auditive ou acouphènes ? Faites ceci vite"
+      ],
+      "angles": [
+        "HEAR-A1"
+      ],
+      "max_gravity": 94,
+      "gravity_por_rede": {
+        "mgid": {
+          "rede": "Mgid",
+          "gravity": 94,
+          "ad_id": "4991476020",
+          "last_seen": "2026-11-12"
+        }
+      },
+      "historico_gravity": [
+        {
+          "data": "2026-11-14",
+          "max_gravity": 94,
+          "por_rede": {
+            "mgid": {
+              "rede": "Mgid",
+              "gravity": 94,
+              "ad_id": "4991476020",
+              "last_seen": "2026-11-12"
+            }
+          },
+          "nota": "primeira rodada; sem histórico anterior"
+        }
+      ],
+      "movimentos": {
+        "testando": [
+          "4991476020"
+        ],
+        "parado": [
+          "5011499860"
+        ]
+      },
+      "dominios_ligados": [
+        "pgsrc.com"
+      ],
+      "evidencias_ligacao": [
+        {
+          "tipo": "phash",
+          "hamming": 0,
+          "dominio": "pgsrc.com",
+          "ad_id_a": "5004245736",
+          "ad_id_b": "4991476020",
+          "interpretacao": "Imagens idênticas (hamming 0), mas adskeeper.co.uk é o site da rede, não uma lander de oferta. Provável tracker/captura do Anstrex, não lateralização de loja."
+        },
+        {
+          "tipo": "phash",
+          "hamming": 0,
+          "dominio": "pgsrc.com",
+          "ad_id_a": "5015796159",
+          "ad_id_b": "5011499860",
+          "interpretacao": "Imagens idênticas (hamming 0), mas adskeeper.co.uk é o site da rede, não uma lander de oferta. Provável tracker/captura do Anstrex, não lateralização de loja."
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5015796159"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "4989690874"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5626467889"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5616322128"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5614079344"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5127311921"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5100989569"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "4991265195"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5593968249"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5592708498"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5592636323"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5591877273"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5588180325"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5596994098"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5587465685"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5595015769"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "headline_outro": "Læge: høretab eller tinnitus? Gør dette straks",
+          "ad_id_a": "4991476020",
+          "ad_id_b": "5583963378"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5008732589"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5004245736"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5012503218"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5003793281"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5004621414"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5037231537"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5015418369"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5004240689"
+        },
+        {
+          "tipo": "headline_quase_identica",
+          "dominio": "pgsrc.com",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "headline_outro": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "ad_id_a": "5011499860",
+          "ad_id_b": "5060772616"
+        }
+      ],
+      "flag": "dominio_da_rede_ou_tracker",
+      "funil": {
+        "leitura": "dominio_da_rede",
+        "cloaking": "https://adskeeper.co.uk/ redireciona (302) para https://www.adskeeper.com/, o site institucional da rede AdsKeeper.",
+        "nota": "Dois anúncios desta coleta têm adskeeper.co.uk como lander_domain, com imagens idênticas (phash hamming 0) a criativos de pgsrc.com e headlines traduzidas do mesmo ângulo médico. O mais provável é o Anstrex ter gravado o domínio de clique/tracker da rede, não uma segunda loja. Não contar como lateralização de domínio de oferta."
+      },
+      "anuncios": [
+        {
+          "ad_id": "4991476020",
+          "ad_url": "https://native.anstrex.com/creative/panel/4991476020",
+          "rede": "Mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_lajmin_net_2026_06_11_7667b9e8.webp",
+          "gravity": 94,
+          "ad_strength": 8174,
+          "first_seen": "2026-06-11",
+          "last_seen": "2026-11-12",
+          "dias_entre_primeira_e_ultima": 154,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "views": "A",
+          "angle_id": "HEAR-A1",
+          "movimento": "testando",
+          "tags": null
+        },
+        {
+          "ad_id": "5011499860",
+          "ad_url": "https://native.anstrex.com/creative/panel/5011499860",
+          "rede": "Mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_06_17_17f660b7.webp",
+          "gravity": 30,
+          "ad_strength": 4899,
+          "first_seen": "2026-06-17",
+          "last_seen": "2026-11-08",
+          "dias_entre_primeira_e_ultima": 144,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "views": "B",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "tags": null
+        }
+      ]
+    },
+    {
+      "nicho": "hearing",
+      "data_coleta": "2026-11-14",
+      "primeira_rodada": true,
+      "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+      "lander_domain": "pawer-growls-palps.rest",
+      "status": "parado",
+      "ativo": false,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-09",
+      "redes": [
+        "Mgid"
+      ],
+      "n_anuncios": 6,
+      "n_headlines": 1,
+      "headlines": [
+        "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!"
+      ],
+      "angles": [
+        "HEAR-A3"
+      ],
+      "max_gravity": 92,
+      "gravity_por_rede": {
+        "mgid": {
+          "rede": "Mgid",
+          "gravity": 92,
+          "ad_id": "5535935953",
+          "last_seen": "2026-11-09"
+        }
+      },
+      "historico_gravity": [
+        {
+          "data": "2026-11-14",
+          "max_gravity": 92,
+          "por_rede": {
+            "mgid": {
+              "rede": "Mgid",
+              "gravity": 92,
+              "ad_id": "5535935953",
+              "last_seen": "2026-11-09"
+            }
+          },
+          "nota": "primeira rodada; sem histórico anterior"
+        }
+      ],
+      "movimentos": {
+        "parado": [
+          "5535749041",
+          "5535935953",
+          "5536767717",
+          "5537925488",
+          "5536766670",
+          "5597824745"
+        ]
+      },
+      "dominios_ligados": [],
+      "evidencias_ligacao": [],
+      "funil": {
+        "leitura": "advertorial_legivel",
+        "tipo_presell": "Advertorial longo em indonésio (título 'Bidang Otolaringologi'), com formulário de pedido na própria página.",
+        "narrador": "Stefano Tomassini, apresentado como professor/especialista com mais de 20 anos, história da sogra na Itália e depoimentos com nomes italianos. O texto traz aviso de que o advertorial é ficção e de que o produto é suplemento alimentar, não medicamento.",
+        "mecanismo": "Fórmula natural em comprimidos que agiria como ativador externo para regenerar células e tecidos do ouvido (que, segundo o texto, não se regeneram sozinhos); combate zumbido e seria alternativa ao aparelho auditivo.",
+        "produto": "Longvita (comprimidos / 'pil').",
+        "preco_e_kits": "Dois valores visíveis na página: 980000 IDR (riscado no fluxo do texto) e 490000 IDR, com menção a desconto de 60%. Não apareceu grade de kits ou pacotes com vários frascos.",
+        "garantia": "Não foi encontrada uma garantia de reembolso com prazo em dias. O texto chama de 'jaminan keamanan' o pagamento contra entrega (COD) ao entregador. Há um arquivo de imagem chamado border-warranty.jpg, mas isso não descreve os termos.",
+        "plataforma": "Advertorial CPA/COD com formulário on-page (nome e telefone; action vazio, envio por ajax). Scripts relativos includes/js (metrics, events-mgr, ajax_send, back-spt). Não foi identificada a plataforma pelo nome. Formulário não foi enviado.",
+        "dominio_checkout": "Nenhum domínio de checkout separado foi observado; o pedido é no próprio pawer-growls-palps.rest.",
+        "cloaking": "Nesta visita direta a página completa abriu (HTTP 200), sem white page. Há desalinhamento de geo no texto: a história e a oferta 'só na Itália' convivem com idioma indonésio, preço em IDR e exemplo de telefone +62.",
+        "nota": "Cabeçalho traz o link de disclosure 'Divulgare'. Pagamento descrito como COD (paga ao courier depois da entrega)."
+      },
+      "anuncios": [
+        {
+          "ad_id": "5535935953",
+          "ad_url": "https://native.anstrex.com/creative/panel/5535935953",
+          "rede": "Mgid",
+          "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_trendolizer_com_2026_10_19_3034bf36.webp",
+          "gravity": 92,
+          "ad_strength": 3302,
+          "first_seen": "2026-10-19",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 21,
+          "idioma_inferido": "id",
+          "geo_hint": "ID",
+          "views": "A+B",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5536767717",
+          "ad_url": "https://native.anstrex.com/creative/panel/5536767717",
+          "rede": "Mgid",
+          "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_sentiasapanas_com_2026_10_20_f2fd2bb1.webp",
+          "gravity": 91,
+          "ad_strength": 3480,
+          "first_seen": "2026-10-20",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 20,
+          "idioma_inferido": "id",
+          "geo_hint": "ID",
+          "views": "A+B",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5536766670",
+          "ad_url": "https://native.anstrex.com/creative/panel/5536766670",
+          "rede": "Mgid",
+          "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_harveycliniccare_com_2026_10_20_bfc0320b.webp",
+          "gravity": 90,
+          "ad_strength": 6730,
+          "first_seen": "2026-10-20",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 20,
+          "idioma_inferido": "id",
+          "geo_hint": "ID",
+          "views": "B",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5535749041",
+          "ad_url": "https://native.anstrex.com/creative/panel/5535749041",
+          "rede": "Mgid",
+          "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_revistadebricolaje_com_2026_10_19_7dfabd51.webp",
+          "gravity": 82,
+          "ad_strength": 6140,
+          "first_seen": "2026-10-19",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 21,
+          "idioma_inferido": "id",
+          "geo_hint": "ID",
+          "views": "A",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5537925488",
+          "ad_url": "https://native.anstrex.com/creative/panel/5537925488",
+          "rede": "Mgid",
+          "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nendidau_com_2026_10_20_3ae03466.webp",
+          "gravity": 53,
+          "ad_strength": 4960,
+          "first_seen": "2026-10-20",
+          "last_seen": "2026-11-09",
+          "dias_entre_primeira_e_ultima": 20,
+          "idioma_inferido": "id",
+          "geo_hint": "ID",
+          "views": "B",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        },
+        {
+          "ad_id": "5597824745",
+          "ad_url": "https://native.anstrex.com/creative/panel/5597824745",
+          "rede": "Mgid",
+          "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_koreanindo_net_2026_11_04_149af645.webp",
+          "gravity": 1,
+          "ad_strength": 180,
+          "first_seen": "2026-11-04",
+          "last_seen": "2026-11-04",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "id",
+          "geo_hint": "ID",
+          "views": "F",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        }
+      ]
+    },
+    {
+      "nicho": "hearing",
+      "data_coleta": "2026-11-14",
+      "primeira_rodada": true,
+      "diff_desde_ontem": "Esta é a primeira rodada; não há comparação com ontem.",
+      "lander_domain": "lphst.com",
+      "status": "parado",
+      "ativo": false,
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-08-26",
+      "redes": [
+        "Mgid"
+      ],
+      "n_anuncios": 1,
+      "n_headlines": 1,
+      "headlines": [
+        "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!"
+      ],
+      "angles": [
+        "HEAR-A3"
+      ],
+      "max_gravity": 37,
+      "gravity_por_rede": {
+        "mgid": {
+          "rede": "Mgid",
+          "gravity": 37,
+          "ad_id": "4772804679",
+          "last_seen": "2026-08-26"
+        }
+      },
+      "historico_gravity": [
+        {
+          "data": "2026-11-14",
+          "max_gravity": 37,
+          "por_rede": {
+            "mgid": {
+              "rede": "Mgid",
+              "gravity": 37,
+              "ad_id": "4772804679",
+              "last_seen": "2026-08-26"
+            }
+          },
+          "nota": "primeira rodada; sem histórico anterior"
+        }
+      ],
+      "movimentos": {
+        "parado": [
+          "4772804679"
+        ]
+      },
+      "dominios_ligados": [],
+      "evidencias_ligacao": [],
+      "funil": {
+        "leitura": "white_page",
+        "cloaking": "Mesma white page 'Hostname.one' (noindex) observada em pgsrc.com, HTML estruturalmente idêntico. Oferta não legível. Isso indica a mesma plataforma de cloaking/hospedagem, não prova por si só que é o mesmo anunciante.",
+        "nota": "Último anúncio desta coleta foi visto em 2026-08-26 (parado). Headline no ângulo do biólogo, em neerlandês."
+      },
+      "anuncios": [
+        {
+          "ad_id": "4772804679",
+          "ad_url": "https://native.anstrex.com/creative/panel/4772804679",
+          "rede": "Mgid",
+          "headline": "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp",
+          "gravity": 37,
+          "ad_strength": 16463,
+          "first_seen": "2026-04-21",
+          "last_seen": "2026-08-26",
+          "dias_entre_primeira_e_ultima": 127,
+          "idioma_inferido": "nl",
+          "geo_hint": "NL",
+          "views": "G",
+          "angle_id": "HEAR-A3",
+          "movimento": "parado",
+          "tags": null
+        }
+      ]
+    }
+  ]
+}
