@@ -1,0 +1,147 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "beauty-ri.click",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 3,
+  "headlines": [
+    "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+    "1/2 šálku každé ráno rychle odstraňuje neuropatii!",
+    "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!"
+  ],
+  "max_gravity": 700,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 700,
+      "ad_id": "5007948473",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-06-11",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "parado": [
+      "4992170785",
+      "5008751157",
+      "4999590779"
+    ],
+    "escalando": [
+      "5007948473"
+    ],
+    "volumando": [
+      "4990347890"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "green-ri.click",
+    "linfaflowstore.online",
+    "myvita.day",
+    "solveclocktext.space",
+    "washbosswhale.beauty"
+  ],
+  "funil": {
+    "leitura": "corpo_vazio",
+    "cloaking": "HTTP 200 Cloudflare com corpo vazio."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5007948473",
+      "network": "Mgid",
+      "gravity": 700,
+      "ad_strength": 54476,
+      "first_seen": "2026-06-16",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 151,
+      "movimento": "escalando",
+      "headline": "1/2 šálku každé ráno rychle odstraňuje neuropatii!",
+      "idioma_inferido": "cs",
+      "geo_hint": "CZ",
+      "views": "G",
+      "angle_id": "NEURO-A3",
+      "phash": "cfc66633831b3964",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_malaysianupdate_my_2026_06_16_6b6d73af.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "4990347890",
+      "network": "Mgid",
+      "gravity": 134,
+      "ad_strength": 3920,
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 156,
+      "movimento": "volumando",
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "idioma_inferido": "hu",
+      "geo_hint": "HU",
+      "views": "G",
+      "angle_id": "NEURO-A3",
+      "phash": "a15bf70f5319c18c",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_streszczenie_com_pl_2026_06_11_cea71819.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "4992170785",
+      "network": "Mgid",
+      "gravity": 1,
+      "ad_strength": 114207,
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-10-29",
+      "dias_entre_primeira_e_ultima": 140,
+      "movimento": "parado",
+      "headline": "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+      "idioma_inferido": "ro",
+      "geo_hint": "RO",
+      "views": "B",
+      "angle_id": "NEURO-A3",
+      "phash": "cfc66633831b3964",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_friv-2020_com_2026_06_11_a24d27ee.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "4999590779",
+      "network": "Mgid",
+      "gravity": 1,
+      "ad_strength": 26349,
+      "first_seen": "2026-06-13",
+      "last_seen": "2026-10-23",
+      "dias_entre_primeira_e_ultima": 132,
+      "movimento": "parado",
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "idioma_inferido": "hu",
+      "geo_hint": "HU",
+      "views": "B",
+      "angle_id": "NEURO-A3",
+      "phash": "dea2c07d994937c2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_media-investigasi_com_2026_06_13_0e205044.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5008751157",
+      "network": "Mgid",
+      "gravity": 1,
+      "ad_strength": 15536,
+      "first_seen": "2026-06-16",
+      "last_seen": "2026-10-23",
+      "dias_entre_primeira_e_ultima": 129,
+      "movimento": "parado",
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "idioma_inferido": "hu",
+      "geo_hint": "HU",
+      "views": "B",
+      "angle_id": "NEURO-A3",
+      "phash": "fea6c01d9b259368",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tutdobre_com_ua_2026_06_16_747e9c84.webp",
+      "search_term": "neuropathy (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

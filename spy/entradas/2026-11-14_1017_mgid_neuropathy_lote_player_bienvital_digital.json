@@ -1,0 +1,113 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "bienvital.digital",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 2,
+  "headlines": [
+    "Kribbeln in den Füßen: Der einfache Trick, der Menschen über 60 überrascht hat",
+    "Taubheitsgefühl in den Füßen: Was Ihnen niemand darüber erzählt"
+  ],
+  "max_gravity": 120,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 120,
+      "ad_id": "5636022337",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "lancando": [
+      "5636022337",
+      "5635052169",
+      "5637749513",
+      "5637129565"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5636022337",
+      "network": "Mgid",
+      "gravity": 120,
+      "ad_strength": 240,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Taubheitsgefühl in den Füßen: Was Ihnen niemand darüber erzählt",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "A+C+D",
+      "angle_id": "NEURO-OUTRO",
+      "phash": "fe930258f0b4ec74",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_embajadadebrasil_org_2026_11_13_b7045c97.webp",
+      "search_term": "numbness"
+    },
+    {
+      "ad_id": "5635052169",
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Taubheitsgefühl in den Füßen: Was Ihnen niemand darüber erzählt",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "C",
+      "angle_id": "NEURO-OUTRO",
+      "phash": "fcdb824a5894b4ec",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_trickvila_com_2026_11_13_21eaff6d.webp",
+      "search_term": "numbness"
+    },
+    {
+      "ad_id": "5637129565",
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Kribbeln in den Füßen: Der einfache Trick, der Menschen über 60 überrascht hat",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "C",
+      "angle_id": "NEURO-OUTRO",
+      "phash": "aef168a7c14f1634",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_hospitalroosevelt_com_2026_11_13_7049695a.webp",
+      "search_term": "tingling"
+    },
+    {
+      "ad_id": "5637749513",
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Taubheitsgefühl in den Füßen: Was Ihnen niemand darüber erzählt",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "C",
+      "angle_id": "NEURO-OUTRO",
+      "phash": "e9a90c94777058fa",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_salud180_com_2026_11_13_0862f547.webp",
+      "search_term": "numbness"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
