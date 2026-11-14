@@ -1,0 +1,124 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "lifetechadviser.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Outbrain",
+    "Taboola"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 4,
+  "headlines": [
+    "La neuropatia non è causata da una carenza di vitamina B. Scopri il vero nemico della neuropatia",
+    "La neuropatía no se debe a la falta de vitamina B. Descubre al verdadero enemigo.",
+    "Neuropati beror inte på brist på vitamin B. Möt dess verkliga fiende",
+    "נוירופתיה לא נגרמת מחוסר בוויטמין B. גלה את האויב האמיתי של הנוירופתיה"
+  ],
+  "max_gravity": 16,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 16,
+      "ad_id": "3867404982",
+      "last_seen": "2026-10-22"
+    },
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5641090224",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2025-09-26",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "parado": [
+      "3867404982",
+      "3866408823",
+      "3895713799"
+    ],
+    "lancando": [
+      "5641090224"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "3867404982",
+      "network": "Taboola",
+      "gravity": 16,
+      "ad_strength": 20368,
+      "first_seen": "2025-09-27",
+      "last_seen": "2026-10-22",
+      "dias_entre_primeira_e_ultima": 390,
+      "movimento": "parado",
+      "headline": "La neuropatía no se debe a la falta de vitamina B. Descubre al verdadero enemigo.",
+      "idioma_inferido": "es",
+      "geo_hint": "RO",
+      "views": "B",
+      "angle_id": "NEURO-A10",
+      "phash": "ebca9ca432368b33",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_ciudad_com_ar_2025_09_27_92e4e8cf.jpg",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "3866408823",
+      "network": "Taboola",
+      "gravity": 1,
+      "ad_strength": 18617,
+      "first_seen": "2025-09-26",
+      "last_seen": "2026-10-30",
+      "dias_entre_primeira_e_ultima": 399,
+      "movimento": "parado",
+      "headline": "נוירופתיה לא נגרמת מחוסר בוויטמין B. גלה את האויב האמיתי של הנוירופתיה",
+      "idioma_inferido": "he",
+      "geo_hint": "SG",
+      "views": "B",
+      "angle_id": "NEURO-A10",
+      "phash": "be3643c19d5a4ae1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_sport5_co_il_2025_09_26_36da3ca4.jpg",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "3895713799",
+      "network": "Taboola",
+      "gravity": 1,
+      "ad_strength": 14637,
+      "first_seen": "2025-11-06",
+      "last_seen": "2026-10-23",
+      "dias_entre_primeira_e_ultima": 351,
+      "movimento": "parado",
+      "headline": "Neuropati beror inte på brist på vitamin B. Möt dess verkliga fiende",
+      "idioma_inferido": "sv",
+      "geo_hint": "SE",
+      "views": "B",
+      "angle_id": "NEURO-A10",
+      "phash": "f7330bfc0ca7404b",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_hamariweb_com_2025_11_06_419fe4a4.png",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5641090224",
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "La neuropatia non è causata da una carenza di vitamina B. Scopri il vero nemico della neuropatia",
+      "idioma_inferido": "ro",
+      "geo_hint": "CH",
+      "views": "C+F",
+      "angle_id": "NEURO-A10",
+      "phash": "86967ac0f99d9178",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_unionesarda_it_2026_11_14_f7a701db.webp",
+      "search_term": "neuropathy (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

@@ -1,0 +1,68 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hearclear.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Marketing VF / MVF Global — agenda consulta com especialista",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Personer født mellem 1944 og 1969 er berettiget til høreapparater, hvis de er..."
+  ],
+  "max_gravity": 956,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 956,
+      "ad_id": "5549396075",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-10-23",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "escalando": [
+      "5549396075"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "lead_gen_legivel",
+    "tipo_player": "lead_gen",
+    "tipo_presell": "Portal de conteúdo + agendamento de consulta gratuita.",
+    "narrador": "Editorial HearClear (Marketing VF Ltd / MVF Global, sedes em Londres e Austin).",
+    "mecanismo": "Conecta o visitante a um especialista na região.",
+    "produto": "Serviço de lead-gen para soluções auditivas (não vende um SKU próprio visível na raiz).",
+    "preco_e_kits": "Não há preço de aparelho na raiz; a CTA é 'Book your appointment' / consulta grátis.",
+    "garantia": "Não aplicável / não lida.",
+    "plataforma": "WordPress/conteúdo MVF (www2.mvfglobal.com).",
+    "dominio_checkout": "Agendamento no próprio hearclear.com.",
+    "cloaking": "Site abriu no acesso direto."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5549396075",
+      "network": "Taboola",
+      "gravity": 956,
+      "ad_strength": 5967,
+      "first_seen": "2026-10-23",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 21,
+      "movimento": "escalando",
+      "headline": "Personer født mellem 1944 og 1969 er berettiget til høreapparater, hvis de er...",
+      "idioma_inferido": "da",
+      "geo_hint": "DK",
+      "views": "A+E",
+      "angle_id": "HEAR-A5",
+      "phash": "f1c9127af406e46d",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tipsbladet_dk_2026_10_23_08e41a48.jpg",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

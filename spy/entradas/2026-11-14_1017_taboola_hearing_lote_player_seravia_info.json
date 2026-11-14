@@ -1,0 +1,59 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "seravia.info",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "¿Sufrеs dе tinnitus? Lо quе muсhos haсen а diariо sin darsе cuentа"
+  ],
+  "max_gravity": 410,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 410,
+      "ad_id": "5216700834",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-08-11",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "5216700834"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "raiz_sem_oferta",
+    "cloaking": "A raiz (https://seravia.info/, og:url /es) é um blog de estilo de vida e turismo em Berlim. Não apareceu a oferta de tinnitus do anúncio. Sem preço de produto (o '1 Eur' no texto não estava ligado a uma oferta auditiva). Caminho específico do anúncio não estava nesta coleta."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5216700834",
+      "network": "Taboola",
+      "gravity": 410,
+      "ad_strength": 1144,
+      "first_seen": "2026-08-11",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 95,
+      "movimento": "escalando",
+      "headline": "¿Sufrеs dе tinnitus? Lо quе muсhos haсen а diariо sin darsе cuentа",
+      "idioma_inferido": "ru",
+      "geo_hint": "MX",
+      "views": "A+E",
+      "angle_id": "HEAR-A9",
+      "phash": "e39546e40cae6bc9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_unotv_com_2026_08_11_e098fca9.jpg",
+      "tags": "Health & Wellness",
+      "search_term": "tinnitus"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
