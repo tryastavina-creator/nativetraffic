@@ -1,0 +1,69 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "buyhears.com",
+  "status": "escalando",
+  "tipo_player": "marca_dtc",
+  "tipo_nota": "Hears — tampões auriculares de alta fidelidade (GiddyUp)",
+  "redes": [
+    "Revcontent"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Muchos creen que son audífonos, pero esto es lo que realmente hacen"
+  ],
+  "max_gravity": 40371,
+  "gravity_por_rede": {
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 40371,
+      "ad_id": "5187552178",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-07-31",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "5187552178"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "advertorial_legivel",
+    "tipo_player": "marca_dtc",
+    "tipo_presell": "Advertorial D2C (Craft CMS) com redirect JS da raiz para /offer-01-j/.",
+    "narrador": "Marca Hears, em parceria com a curadora GiddyUp.",
+    "mecanismo": "Tampões de alta fidelidade com filtros que atenuam até 20 dB sem abafar a voz/música (segunda membrana).",
+    "produto": "Hears (tampões reutilizáveis, 4 tamanhos de ponteira + estojo). Não é aparelho auditivo — o anúncio joga exatamente com essa confusão.",
+    "preco_e_kits": "A página pede 'BUY NOW & SAVE 40%'. O valor em dólares não apareceu no texto visível desta visita, então o preço fica em branco.",
+    "garantia": "Teste de 100 dias com reembolso integral. Frete grátis em pedidos elegíveis nos EUA.",
+    "plataforma": "Craft CMS + GiddyUp. Checkout no próprio buyhears.com (botão de compra na página; formulário não foi enviado).",
+    "dominio_checkout": "buyhears.com (nenhum domínio de checkout separado observado).",
+    "cloaking": "A raiz só redireciona por JS para /offer-01-j/; a oferta abre nesse caminho."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5187552178",
+      "network": "Revcontent",
+      "gravity": 40371,
+      "ad_strength": 2542954,
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 106,
+      "movimento": "escalando",
+      "headline": "Muchos creen que son audífonos, pero esto es lo que realmente hacen",
+      "idioma_inferido": "es",
+      "geo_hint": "MX",
+      "views": "A+E",
+      "angle_id": "HEAR-A12",
+      "phash": "a73d9236d8d23097",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_allstarbio_com_2026_07_31_615f2c6e.jpg",
+      "tags": "E-commerce & Retail",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

@@ -1,0 +1,69 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audionovabrasil.com.br",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "AudioNova (Sonova)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Aparelho auditivo suíço chega no Brasil com vagas para teste grátis por 7 dias!"
+  ],
+  "max_gravity": 5922,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 5922,
+      "ad_id": "4984876651",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-06-09",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "4984876651"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_varejo_legivel",
+    "tipo_player": "marca_varejo",
+    "tipo_presell": "Landing de marca AudioNova (Sonova) para agendar teste grátis em loja (URL final /agende-teste-gratis-pvs-lojas/).",
+    "narrador": "Marca institucional.",
+    "mecanismo": "Aparelhos Phonak (Infinio Ultra Sphere com IA; Lyric 100% invisível).",
+    "produto": "Aparelhos auditivos AudioNova/Phonak, mais de 300 unidades no Brasil.",
+    "preco_e_kits": "Promoção de Black Friday (03/11 a 28/11/2026): até 50% em compra bilateral; teste grátis 7 dias; parcelamento em até 18x (sujeito a análise). Preço de tabela dos aparelhos não estava visível.",
+    "garantia": "Não foi lido um prazo específico de garantia do aparelho nesta página.",
+    "plataforma": "Site próprio da rede, formulário de lead (nome, e-mail, telefone, CEP) para envia-lead.php. Formulário não enviado.",
+    "dominio_checkout": "Lead na própria lander / loja física; não há checkout online de produto observado.",
+    "cloaking": "Página institucional abriu no acesso direto (HTTP 200)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "4984876651",
+      "network": "Taboola",
+      "gravity": 5922,
+      "ad_strength": 448654,
+      "first_seen": "2026-06-09",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 158,
+      "movimento": "escalando",
+      "headline": "Aparelho auditivo suíço chega no Brasil com vagas para teste grátis por 7 dias!",
+      "idioma_inferido": "pt",
+      "geo_hint": "MX",
+      "views": "A+E",
+      "angle_id": "HEAR-A5",
+      "phash": "c001363cf34ed97e",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_macworld_com_2026_06_09_13c1879d.png",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
