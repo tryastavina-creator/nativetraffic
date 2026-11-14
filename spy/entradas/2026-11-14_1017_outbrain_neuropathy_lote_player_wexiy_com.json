@@ -1,0 +1,81 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "wexiy.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!"
+  ],
+  "max_gravity": 243,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 243,
+      "ad_id": "5624517524",
+      "last_seen": "2026-11-12"
+    }
+  },
+  "first_seen": "2026-11-10",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5625350060",
+      "5624517524"
+    ]
+  },
+  "dominios_ligados": [
+    "liyng.com"
+  ],
+  "funil": {
+    "leitura": "nao_legivel",
+    "cloaking": "Mesmo padrão de TLS de liyng.com. Oferta não legível."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5624517524",
+      "network": "Outbrain",
+      "gravity": 243,
+      "ad_strength": 1960,
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-12",
+      "dias_entre_primeira_e_ultima": 2,
+      "movimento": "lancando",
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "D",
+      "angle_id": "NEURO-A5",
+      "phash": "edc69230cb956cc9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_10_177c961e.webp",
+      "tags": "E-commerce & Retail",
+      "search_term": "nerve"
+    },
+    {
+      "ad_id": "5625350060",
+      "network": "Outbrain",
+      "gravity": 161,
+      "ad_strength": 1680,
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 4,
+      "movimento": "lancando",
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "D",
+      "angle_id": "NEURO-A5",
+      "phash": "b192ce6c32936dcc",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_10_8c205f2d.webp",
+      "tags": "E-commerce & Retail",
+      "search_term": "nerve"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

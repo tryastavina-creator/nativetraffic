@@ -1,0 +1,80 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "trendy-info.jp",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Popin"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "50代から始める1日5秒習慣の耳鳴り対策",
+    "耳鳴りに1日たった5秒の「裏技」が話題！"
+  ],
+  "max_gravity": 172,
+  "gravity_por_rede": {
+    "popin": {
+      "network": "Popin",
+      "gravity": 172,
+      "ad_id": "5622729007",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-10",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5622729007",
+      "5622035185"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "raiz_vazia",
+    "cloaking": "WordPress '最新トレンド情報' com a mensagem de que o artigo não foi encontrado. Oferta do anúncio não estava na raiz."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5622729007",
+      "network": "Popin",
+      "gravity": 172,
+      "ad_strength": 753,
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 4,
+      "movimento": "lancando",
+      "headline": "耳鳴りに1日たった5秒の「裏技」が話題！",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "D",
+      "angle_id": "HEAR-A11",
+      "phash": "8e0f7ce32558ecc8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_10_cf57a7ed.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "5622035185",
+      "network": "Popin",
+      "gravity": 153,
+      "ad_strength": 771,
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 4,
+      "movimento": "lancando",
+      "headline": "50代から始める1日5秒習慣の耳鳴り対策",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "D",
+      "angle_id": "HEAR-A11",
+      "phash": "8e0f7ce32558ecc8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_biteki_com_2026_11_10_2d402db0.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tinnitus"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

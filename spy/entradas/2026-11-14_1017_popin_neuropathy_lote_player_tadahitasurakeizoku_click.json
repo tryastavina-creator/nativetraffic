@@ -1,0 +1,163 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "tadahitasurakeizoku.click",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Popin"
+  ],
+  "n_anuncios": 6,
+  "n_headlines": 3,
+  "headlines": [
+    "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+    "全身麻痺！その手足のピリピリを放置していると危険",
+    "製薬会社が解説「手足のピリピリ専用治療薬」"
+  ],
+  "max_gravity": 135,
+  "gravity_por_rede": {
+    "popin": {
+      "network": "Popin",
+      "gravity": 135,
+      "ad_id": "5613865034",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-06",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "5606166261"
+    ],
+    "lancando": [
+      "5626736028",
+      "5613481192",
+      "5613865034",
+      "5614273484",
+      "5613864848"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "placeholder",
+    "cloaking": "Página padrão da Xserver (servidor recém-contratado), não a oferta japonesa do anúncio."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5613865034",
+      "network": "Popin",
+      "gravity": 135,
+      "ad_strength": 775,
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 6,
+      "movimento": "lancando",
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "D",
+      "angle_id": "NEURO-A9",
+      "phash": "a69c41c67967934d",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_352d0be9.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    },
+    {
+      "ad_id": "5626736028",
+      "network": "Popin",
+      "gravity": 125,
+      "ad_strength": 360,
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 2,
+      "movimento": "lancando",
+      "headline": "全身麻痺！その手足のピリピリを放置していると危険",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "A",
+      "angle_id": "NEURO-A9",
+      "phash": "c96d588636622f97",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_labaq_com_2026_11_11_7dede0b8.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    },
+    {
+      "ad_id": "5614273484",
+      "network": "Popin",
+      "gravity": 123,
+      "ad_strength": 650,
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 6,
+      "movimento": "lancando",
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "D",
+      "angle_id": "NEURO-A9",
+      "phash": "ba3b3fc24358863c",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_a5265af2.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    },
+    {
+      "ad_id": "5613864848",
+      "network": "Popin",
+      "gravity": 117,
+      "ad_strength": 570,
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 5,
+      "movimento": "lancando",
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "D",
+      "angle_id": "NEURO-A9",
+      "phash": "b787622f1dc068cd",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_9ef20c3c.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    },
+    {
+      "ad_id": "5606166261",
+      "network": "Popin",
+      "gravity": 114,
+      "ad_strength": 620,
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 8,
+      "movimento": "volumando",
+      "headline": "製薬会社が解説「手足のピリピリ専用治療薬」",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "A",
+      "angle_id": "NEURO-A9",
+      "phash": "b787622f1dc068cd",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_06_1c5b1f12.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    },
+    {
+      "ad_id": "5613481192",
+      "network": "Popin",
+      "gravity": 107,
+      "ad_strength": 507,
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 6,
+      "movimento": "lancando",
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "idioma_inferido": "ja",
+      "geo_hint": "JP",
+      "views": "D",
+      "angle_id": "NEURO-A9",
+      "phash": "8d99d377a42c5a32",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_f3749e71.jpg",
+      "tags": "Nutraceuticals",
+      "search_term": "tingling"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
