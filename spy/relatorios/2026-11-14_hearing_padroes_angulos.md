@@ -1,102 +1,100 @@
 # Padrões e ângulos — hearing
 
-Coleta de 2026-11-14. Primeira rodada, 48 anúncios únicos (busca Translated Text: "tinnitus OR hearing"). Gravidade julgada dentro de cada rede. Ofertas só entram aqui quando foram lidas na lander; campos desconhecidos ficam em branco.
+Coleta de 2026-11-14, 2ª passagem (100 anúncios únicos; termos `tinnitus` e `hearing` além da busca estreita da manhã). Gravidade julgada dentro de cada rede. AdNow e Popin usam piso de escalando ≥300.
 
-## Taxonomia
+## O que mudou nesta passagem
 
-| ID | Ângulo | Anúncios | Por que funciona |
-|----|--------|----------|------------------|
-| HEAR-A2 | Imperativo direto por sintoma | 8 | A ordem na 2ª pessoa (“você precisa fazer isto se tem perda auditiva ou zumbido”) reconhece o sintoma e esconde o “isto”. A imagem lifestyle 55+ com gotas e overlay anatômico vende um ritual simples e quase spa, não um aparelho. É o único ângulo em escalando (MGID 625 e 351, naturegrove24.com). |
-| HEAR-A1 | Autoridade médica + urgência | 28 | “Médico/Læge + pergunta + faça isto já” transfere autoridade e aperta o tempo. A mesma frase roda em francês e dinamarquês. As imagens mudam muito (anatomia, insetos do zumbido, alho, batata), o que sugere que o anunciante escala a headline e testa o visual. Volumando na MGID até 215, com histórico desde junho. |
-| HEAR-A4 | Oferta de 1 euro + sintoma | 5 | Tira o risco (“experimente por 1 EUR”). Visual da mesma família do A2, em praia tropical. Na Taboola chegou a gravidade 111–120, mas a última vista foi entre 2026-11-07 e 2026-11-09 (parado nesta rodada). Os cards vieram tagueados como Nutraceuticals. |
-| HEAR-A3 | Autoridade de biólogo + faça isto | 7 | Troca o médico por biólogo, o que antecipa um “mecanismo natural”. Imagens mais cruas (pera de borracha, colher de alho, seringa). Pawer chegou a gravidade 92 na MGID e já está parado; lphst parou em agosto. |
+A 1ª leitura (48 anúncios) só via MGID/Taboola/AdsKeeper no cluster naturegrove/pgsrc/pawer. Com os termos soltos apareceram Revcontent (buyhears 40371), Taboola de varejo (AudioNova 5922, hear-pro 958, hearclear 956), AdNow (neotex 4335), Outbrain de marcas (GAES, Audibene, GEERS) e o DR hearease (525), e AdsKeeper de testemunho/cirurgião (wonderbanana 688, chudopolsko 655).
+
+## Taxonomia (ângulos com mais anúncios ou mais potencial)
+
+| ID | Ângulo | N | Potencial |
+|----|--------|---|-----------|
+| HEAR-A5 | Aparelho / teste grátis / elegibilidade | 21 | Alto na Taboola e Outbrain (varejo e lead-gen). AudioNova 5922 é o caso mais forte desta rede. |
+| HEAR-A1 | Autoridade médica + urgência | 30 | Continua volumando na MGID (pgsrc até 215) e gerando testes (alho, batata). |
+| HEAR-A9 | Causa oculta do zumbido | 11 | hearease.site já escala na Outbrain (525) com isca de cebola e oferta de travesseiro Derila. |
+| HEAR-A2 | Imperativo direto | 8 | Ainda o que escala na MGID (625 e 351, naturegrove). |
+| HEAR-A7 / A6 | Testemunho dos 78 anos / cirurgião revela | 3+4 | Escalando na AdsKeeper, lateralizado em dois domínios. |
+| HEAR-A12 | Não é aparelho, é outra coisa | 1 | Maior gravidade da Revcontent (buyhears 40371). |
+| HEAR-A8 | Cera / método da avó | 1 | Único AdNow (neotex 4335). |
+| HEAR-A4 | Trial de 1 euro | 6 | Taboola do naturegrove, já parado nesta janela. |
+| HEAR-A3 | Biólogo | 9 | pawer parado; lphst voltou a volumando (231). |
 
 ## Por que os anúncios mais fortes funcionam
 
-### naturegrove24.com — “Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach” (MGID, gravidade 625 e 351)
+### buyhears.com — “Muchos creen que son audífonos…” (Revcontent, 40371)
 
-- **Gancho:** imperativo + dois sintomas (perda auditiva ou zumbido), sem preço e sem marca.
-- **Emoção:** urgência e reconhecimento (“isso é comigo”), com a imagem suavizando o medo.
-- **Imagem:** homem ~60 anos, jardim, olhos fechados, conta-gotas com líquido verde e corte anatômico da orelha. A peça de gravidade 351 é o mesmo enquadramento, recorte um pouco mais fechado (phash distância 12, acima do limite 8 — variação, não cópia idêntica). Há também versão com mulher no jardim (gravidade 162).
-- **Lander:** naturegrove24.com bloqueou o acesso direto (403). O encaixe com a lander não pôde ser lido. Os anúncios Taboola do mesmo domínio usam gancho de 1 euro e tag Nutraceuticals, o que é só uma pista de oferta, não uma confirmação.
+- **Gancho:** corrige a expectativa (parece aparelho, não é).
+- **Imagem:** retrato lifestyle de um homem jovem com um intra-auricular transparente — visual de fone/aparelho premium, não de 55+.
+- **Lander:** tampões Hears (proteção 20 dB, 100 dias de garantia, “save 40%”; preço em dólar não visível). Encaixe honesto com a headline, incomum no native de “aparelho milagroso”.
 
-### pgsrc.com — “Médecin : perte auditive ou acouphènes ? Faites ceci vite” / “Læge: høretab eller tinnitus? Gør dette straks” (MGID, gravidade 215 e 211)
+### audionovabrasil.com.br — “Aparelho auditivo suíço… teste grátis por 7 dias” (Taboola, 5922)
 
-- **Gancho:** autoridade médica + pergunta binária + comando urgente. As duas headlines são tradução quase literal uma da outra.
-- **Emoção:** confiança na figura do médico + medo de deixar o zumbido/perda piorar.
-- **Imagem:** a peça de gravidade 215 é uma ilustração em corte da orelha (cera, canal, cóclea). A de gravidade 211 é uma metáfora forte do zumbido: perfil de um adulto com um enxame de moscas/abelhas em volta da orelha. Nos testes de novembro entram remédios caseiros (alho no canal, batata nas orelhas).
-- **Lander:** white page Hostname.one no acesso direto; oferta não legível. Vários testes recentes estão tagueados como Nutraceuticals.
+- **Gancho:** origem suíça + vagas + teste grátis por 7 dias (baixa barreira).
+- **Imagem:** dois aparelhos Phonak prateados na palma da mão — prova de produto, não mistério.
+- **Lander:** site da AudioNova (Sonova), Black Friday com até 50%, lead para loja. Marca/varejo, não nutra.
 
-### pawer-growls-palps.rest — “Ahli Biologi: …” (MGID, gravidade até 92, parado)
+### neotex.pro — “Korki z wosku same wypadną…” (AdNow, 4335)
 
-- **Gancho:** autoridade de biólogo + “se você tem o sintoma, faça isto”.
-- **Emoção:** curiosidade (por que um biólogo?) e esperança de método natural.
-- **Imagem:** close da pera de borracha azul no ouvido, ou colher com alho e óleo — visual de “truque caseiro”.
-- **Lander:** advertorial Longvita (ver funil abaixo), narrado por um “professor” italiano, pedido COD. O anúncio promete um gesto simples; a lander entrega um suplemento em comprimidos. O encaixe é o clássico de native nutra (curiosidade no ad, história longa na página), mas o produto da lander (pílula) não aparece na thumbnail.
+- **Gancho:** método da avó + promessa de audição como aos 20 anos + nojo da cera.
+- **Imagem:** pinça tirando pedaços amarelos do canal — para o scroll com nojo/curiosidade.
+- **Lander:** 522 nesta visita; oferta não lida.
+
+### naturegrove24.com — “Musíš to urobiť…” (MGID, 625 e 351)
+
+Permanece o criativo lifestyle 55+ com gotas e overlay anatômico, único escalando da MGID. Lander ainda 403.
+
+### wonderbanana / chudopolsko — testemunho dos 78 anos e cirurgião (AdsKeeper, 688 e 655)
+
+Mesma família de imagem (dedo no ouvido) e headlines traduzidas; landers com a mesma casca JS vazia. Primeira vista em 07/11, já com gravidade alta na rede.
+
+### hearease.site — “Trovata la causa di acufeni e vertigini” (Outbrain, 525)
+
+Headline de revelação; thumbnail de anéis de cebola roxa (isca); lander é o travesseiro cervical Derila Ergo, garantia de 30 noites, desconto de 70% (preço do produto não visível). Quatro variações desde 12/11.
 
 ## Três ângulos com mais potencial — headlines e prompts
 
-### 1) HEAR-A2 — Imperativo direto (o que já escala)
+### 1) HEAR-A5 — Teste grátis de aparelho (o que escala na Taboola)
 
-Variações de headline (manter o mistério do “isto”; testar PT e as línguas em que o ângulo já roda):
+- Aparelho auditivo suíço: vagas para teste grátis por 7 dias
+- Os aposentados de [cidade] estão testando este aparelho de graça
+- Nasceu entre 1944 e 1969? Veja se você tem direito a um aparelho
 
-- Você precisa fazer isto se tem perda auditiva ou zumbido
-- Se o ouvido zumbe ou a audição caiu, faça isto agora
-- Não ignore o zumbido: faça isto antes de pensar no aparelho
-- Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach (já escala; manter como controle)
+**Prompt:** Photorealistic close-up of a Caucasian adult's open palm holding two small silver Phonak-style receiver-in-canal hearing aids with thin clear tubes and grey earpieces, natural indoor light, shallow depth of field, product photography, no logos, no text  
+**Negative:** text, typography, watermark, logo, brand name, extra fingers, deformed hand, cartoon, studio glare, hearing aid in ear, child
 
-**Prompt de imagem:** Photorealistic lifestyle photo of a relaxed man in his mid-60s with grey hair and beard, sitting on a beige outdoor sofa in a sunny European garden with hydrangeas and a small pond, eyes closed, applying green herbal oil into his ear with a white glass dropper, a semi-transparent anatomical overlay of the inner ear on the side of his head, natural daylight, shallow depth of field, authentic 55+ health advertorial, 35mm, high detail
+### 2) HEAR-A12 — “Não é um aparelho” (o que escala na Revcontent)
 
-**Negative prompt:** text, typography, watermark, logo, extra fingers, deformed ear, missing ear, teenager, child, studio backdrop, cartoon, illustration, 3d render, gore, blood, hearing aid, headphones, earbuds, oversaturated, stock photo watermark, uncanny face, extra limbs
+- Muitos pensam que são aparelhos auditivos — veja o que realmente fazem
+- Parece um aparelho, mas protege a audição sem abafar o som
 
-Variação: a mesma cena com uma mulher ~60 anos em jardim com glicínias, jarra pequena de óleo no lugar do conta-gotas (já aparece em criativos ativos deste player).
+**Prompt:** Photorealistic beauty portrait of a man in his early 30s with curly dark hair and light stubble, wearing a cream t-shirt, looking slightly off camera, a discreet translucent in-ear earplug visible in his left ear, clean light-grey studio background, luxury lifestyle advertising, 85mm  
+**Negative:** text, watermark, logo, hearing aid battery door, obvious medical device branding, teenager, extra ear, deformed ear, busy background
 
-### 2) HEAR-A1 — Autoridade médica (o que mais testa e já volumando)
+### 3) HEAR-A7 + A6 — Testemunho 78 anos / cirurgião revela (AdsKeeper)
 
-Variações:
+- Aos 78 anos escuto perfeitamente sem aparelho: vou mostrar como faço
+- Um cirurgião revela: solução rápida para perda auditiva e zumbido
 
-- Médico: perda auditiva ou zumbido? Faça isto já
-- Læge: høretab eller tinnitus? Gør dette straks (já volumando; controle)
-- Otorrino: esse zumbido pode parar hoje? Veja isto
-- Se o médico falou em aparelho, leia isto antes
+**Prompt:** Tight photorealistic close-up of an older adult ear, a finger gently pressing the tragus / entrance of the ear canal, natural skin texture, indoor light, documentary feel, no jewelry  
+**Negative:** gore, injury, text, watermark, logo, cartoon, extra fingers, child, oversharpened
 
-**Prompt A (anatomia, estilo da peça de gravidade 215):** Clean flat medical illustration, cross-section of a human ear on a light green background, showing ear canal, yellowish earwax buildup, eardrum, cochlea and inner ear in simple educational textbook style, no people, no text, vector-like clarity
-
-**Negative prompt A:** photorealistic photo, gore, surgery, blood, text, labels, letters, watermark, logo, child’s ear, distorted anatomy, 3d render noise
-
-**Prompt B (metáfora do zumbido, estilo da peça de gravidade 211):** Stylized painted profile of a calm older adult facing left against a deep blue background, a cluster of dark blue flies circling the ear with a soft yellow glow, metaphor for tinnitus, editorial illustration, no text
-
-**Negative prompt B:** photoreal, horror, gore, decaying skin, extra eyes, text, watermark, logo, headphones, hearing aid
-
-**Prompt C (teste de curiosidade que está lançando):** Macro photorealistic close-up of an adult ear, a single peeled garlic clove resting at the entrance of the ear canal, natural skin texture, soft indoor light, no hands, documentary feel
-
-**Negative prompt C:** gore, injury, pus, text, watermark, logo, cartoon, extra ears, child, oversharpened
-
-### 3) HEAR-A4 — Trial de 1 euro (já tirou gravidade na Taboola)
-
-Variações:
-
-- Zumbido ou perda auditiva? Experimente isto por 1 euro
-- Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR (já usada)
-- Barulho no ouvido? Teste por 1 EUR hoje
-- Perda auditiva: o teste de 1 euro que está circulando
-
-**Prompt de imagem:** Photorealistic lifestyle photo of a woman in her early 60s with short wavy blonde hair, wearing a white linen shirt, reclining on a rattan lounge chair on a tropical beach with limestone cliffs and turquoise water, eyes closed, applying green drops into her ear with a dropper, semi-transparent anatomical overlay of the inner ear, bright natural sun, calm luxury, 55+ advertorial, no typography
-
-**Negative prompt:** text, price tag, euro sign, typography, watermark, logo, bikini model, teenager, deformed ear, extra fingers, cartoon, hearing aid, oversaturated sky, stock watermark
-
-Não colocar o “1 euro” dentro da imagem: o preço já está na headline.
+(O A2 do naturegrove e o A9/Derila também valem teste; prompts do A2 já estão no relatório da 1ª passagem.)
 
 ## Funis (somente leitura)
 
-Nenhum formulário foi enviado e nenhum pedido foi feito.
+Nenhum formulário foi enviado.
 
-- **naturegrove24.com:** 403 no acesso direto. Oferta, preço, garantia, plataforma e checkout não legíveis.
-- **pgsrc.com e lphst.com:** white page Hostname.one (cloaking). Oferta não legível. Os dois compartilham o mesmo template, o que sugere a mesma plataforma de cloaking, não necessariamente o mesmo anunciante.
-- **pawer-growls-palps.rest:** advertorial Longvita, narrador Stefano Tomassini (“professor”), mecanismo de regeneração celular do ouvido, produto em comprimidos, 980000 IDR / 490000 IDR, pagamento COD ao courier, sem prazo de reembolso legível, checkout no próprio domínio. Texto ambientado na Itália com preço e telefone da Indonésia.
+- **buyhears.com:** Hears, tampões, 100 dias de garantia, 40% off (preço omitido). Checkout no próprio domínio.
+- **audionovabrasil.com.br:** AudioNova, teste 7 dias, até 50% Black Friday, lead para loja.
+- **bonne-audition.fr /silk-ix/:** Audibene + Signia Silk IX, teste 30 dias.
+- **gaes.es, geers.de, geers.pl, vivason.fr:** sites de varejo (Amplifon/Sonova/VivaSon).
+- **hearease.site:** Derila Ergo, 30 noites, 70% off (preço do travesseiro omitido).
+- **neotex.pro, hear-pro.com, wonderbanana, chudopolsko, naturegrove, pgsrc, lphst, seravia (raiz):** oferta não legível ou página errada/vazia.
+- **hearclear.com:** lead-gen MVF.
+- **candyai.gg / adskeeper.co.uk:** não são lojas de hearing.
 
 ## Notas
 
-- Esta é a primeira rodada: não há histórico de gravidade anterior nem diff “desde ontem”.
-- `idioma_inferido` veio só da headline; `geo_hint` é a bandeira do Anstrex, só pista.
-- Thumbnails baixadas em `/workspace/spy/hearing/imagens/`; o nome de arquivo no Anstrex traz o publisher, não a lander.
+- `idioma_inferido` veio só da headline; `geo_hint` é bandeira do Anstrex.
+- Thumbnails em `/workspace/spy/hearing/imagens/` (100 arquivos).
