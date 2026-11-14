@@ -1,0 +1,155 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "pawer-growls-palps.rest",
+  "status": "parado",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 6,
+  "n_headlines": 1,
+  "headlines": [
+    "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!"
+  ],
+  "max_gravity": 92,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 92,
+      "ad_id": "5535935953",
+      "last_seen": "2026-11-09"
+    }
+  },
+  "first_seen": "2026-10-19",
+  "last_seen": "2026-11-09",
+  "movimentos": {
+    "parado": [
+      "5535749041",
+      "5535935953",
+      "5536767717",
+      "5537925488",
+      "5536766670",
+      "5597824745"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "advertorial_legivel",
+    "tipo_presell": "Advertorial Longvita (já lido na 1ª passagem).",
+    "produto": "Longvita (comprimidos), 980000 / 490000 IDR, COD.",
+    "cloaking": "Advertorial abriu no acesso direto na 1ª passagem. Player agora parado (última vista 2026-11-09)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5535935953",
+      "network": "Mgid",
+      "gravity": 92,
+      "ad_strength": 3302,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-09",
+      "dias_entre_primeira_e_ultima": 21,
+      "movimento": "parado",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "idioma_inferido": "ro",
+      "geo_hint": "ID",
+      "views": "A+B",
+      "angle_id": "HEAR-A3",
+      "phash": "bb3f4ce433463618",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_trendolizer_com_2026_10_19_3034bf36.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    },
+    {
+      "ad_id": "5536767717",
+      "network": "Mgid",
+      "gravity": 91,
+      "ad_strength": 3480,
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-09",
+      "dias_entre_primeira_e_ultima": 20,
+      "movimento": "parado",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "idioma_inferido": "ro",
+      "geo_hint": "ID",
+      "views": "A+B",
+      "angle_id": "HEAR-A3",
+      "phash": "9d3f6ed4994a121c",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_sentiasapanas_com_2026_10_20_f2fd2bb1.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    },
+    {
+      "ad_id": "5536766670",
+      "network": "Mgid",
+      "gravity": 90,
+      "ad_strength": 6730,
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-09",
+      "dias_entre_primeira_e_ultima": 20,
+      "movimento": "parado",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "idioma_inferido": "ro",
+      "geo_hint": "ID",
+      "views": "B",
+      "angle_id": "HEAR-A3",
+      "phash": "e6c996e12973836c",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_harveycliniccare_com_2026_10_20_bfc0320b.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    },
+    {
+      "ad_id": "5535749041",
+      "network": "Mgid",
+      "gravity": 82,
+      "ad_strength": 6140,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-09",
+      "dias_entre_primeira_e_ultima": 21,
+      "movimento": "parado",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "idioma_inferido": "ro",
+      "geo_hint": "ID",
+      "views": "A",
+      "angle_id": "HEAR-A3",
+      "phash": "ecc987e82972c32d",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_revistadebricolaje_com_2026_10_19_7dfabd51.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    },
+    {
+      "ad_id": "5537925488",
+      "network": "Mgid",
+      "gravity": 53,
+      "ad_strength": 4960,
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-09",
+      "dias_entre_primeira_e_ultima": 20,
+      "movimento": "parado",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "idioma_inferido": "ro",
+      "geo_hint": "ID",
+      "views": "B",
+      "angle_id": "HEAR-A3",
+      "phash": "869b5c27b115bf21",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nendidau_com_2026_10_20_3ae03466.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    },
+    {
+      "ad_id": "5597824745",
+      "network": "Mgid",
+      "gravity": 1,
+      "ad_strength": 180,
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-04",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "parado",
+      "headline": "Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!",
+      "idioma_inferido": "ro",
+      "geo_hint": "ID",
+      "views": "F",
+      "angle_id": "HEAR-A3",
+      "phash": "e6c987e83870f22d",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_koreanindo_net_2026_11_04_149af645.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

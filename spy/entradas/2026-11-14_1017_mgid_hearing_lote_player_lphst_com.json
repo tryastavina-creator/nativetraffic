@@ -1,0 +1,119 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "lphst.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 3,
+  "headlines": [
+    "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+    "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+    "Un chirurgien révèle : remède rapide contre surdité et acouphènes"
+  ],
+  "max_gravity": 231,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 231,
+      "ad_id": "4818259313",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-04-21",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "parado": [
+      "4772804679"
+    ],
+    "volumando": [
+      "4828973348",
+      "4818259313",
+      "4818265293"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "white_page",
+    "cloaking": "Mesma white page Hostname.one de pgsrc.com. Oferta não legível. Nesta 2ª passagem o domínio voltou a ficar ativo na MGID (gravidade até 231)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "4818259313",
+      "network": "Mgid",
+      "gravity": 231,
+      "ad_strength": 8357,
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 196,
+      "movimento": "volumando",
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "idioma_inferido": "fr",
+      "geo_hint": "BE",
+      "views": "D",
+      "angle_id": "HEAR-A3",
+      "phash": "857cf8e2958da6a2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_8eadc2be.webp",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "4828973348",
+      "network": "Mgid",
+      "gravity": 209,
+      "ad_strength": 8017,
+      "first_seen": "2026-05-05",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 193,
+      "movimento": "volumando",
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "idioma_inferido": "fr",
+      "geo_hint": "BE",
+      "views": "A",
+      "angle_id": "HEAR-A6",
+      "phash": "857cf8e2958da6a2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gameower_it_2026_05_05_09779d67.webp",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "4818265293",
+      "network": "Mgid",
+      "gravity": 185,
+      "ad_strength": 5230,
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 196,
+      "movimento": "volumando",
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "idioma_inferido": "fr",
+      "geo_hint": "BE",
+      "views": "D",
+      "angle_id": "HEAR-A3",
+      "phash": "9779f9829481b6a6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ichi_pro_2026_05_02_314ebb3e.webp",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "4772804679",
+      "network": "Mgid",
+      "gravity": 37,
+      "ad_strength": 16463,
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-08-26",
+      "dias_entre_primeira_e_ultima": 127,
+      "movimento": "parado",
+      "headline": "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+      "idioma_inferido": "nl",
+      "geo_hint": "NL",
+      "views": "G",
+      "angle_id": "HEAR-A3",
+      "phash": "c47b5b515497a12b",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp",
+      "search_term": "tinnitus OR hearing (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

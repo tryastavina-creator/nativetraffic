@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "geers.pl",
+  "status": "lancando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GEERS / Dobry Słuch (Sonova)",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Poznan: Bezpłatne badanie słuchu – zarezerwuj termin"
+  ],
+  "max_gravity": 220,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 220,
+      "ad_id": "5637120740",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "lancando": [
+      "5637120740"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_varejo_legivel",
+    "tipo_player": "marca_varejo",
+    "tipo_presell": "Site institucional GEERS Dobry Słuch (Sonova), Polônia, +240 lojas.",
+    "produto": "Aparelhos Phonak (Audeo EON, Infinio, Lyric/AudioNova V) e implantes. CTA de teste e agendamento.",
+    "plataforma": "Site corporativo.",
+    "cloaking": "Site abriu normalmente."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5637120740",
+      "network": "Mgid",
+      "gravity": 220,
+      "ad_strength": 440,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Poznan: Bezpłatne badanie słuchu – zarezerwuj termin",
+      "idioma_inferido": "pl",
+      "geo_hint": "PL",
+      "views": "D",
+      "angle_id": "HEAR-A5",
+      "phash": "ee9d13e2bcc23483",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_iochota_pl_2026_11_13_9b7f0461.webp",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
