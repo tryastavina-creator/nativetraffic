@@ -1,0 +1,165 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "solveclocktext.space",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 6,
+  "n_headlines": 5,
+  "headlines": [
+    "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+    "Neurológusok: 2 gyógynövény gyorsan megszünteti a neuropátiát!",
+    "Neuropatia zniknie w ciągu 2 dni! Dostępne w każdej aptece, a nazywa się...",
+    "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+    "Хората с невропатия – прочетете го, преди да го изтриете!"
+  ],
+  "max_gravity": 684,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 684,
+      "ad_id": "5535890565",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-10-19",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "5535890565",
+      "5537142056",
+      "5535463577"
+    ],
+    "volumando": [
+      "5537561346",
+      "5535258990",
+      "5535564880"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "beauty-ri.click",
+    "green-ri.click",
+    "linfaflowstore.online",
+    "washbosswhale.beauty"
+  ],
+  "funil": {
+    "leitura": "corpo_vazio",
+    "cloaking": "HTTP 200 Cloudflare com corpo vazio."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5535890565",
+      "network": "Mgid",
+      "gravity": 684,
+      "ad_strength": 10413,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 26,
+      "movimento": "escalando",
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "idioma_inferido": "hr",
+      "geo_hint": "BA",
+      "views": "A+E",
+      "angle_id": "NEURO-A2",
+      "phash": "a15bf70f5319c18c",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_pravda-tv_com_2026_10_19_313d42c7.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5537142056",
+      "network": "Mgid",
+      "gravity": 572,
+      "ad_strength": 5650,
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 25,
+      "movimento": "escalando",
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "idioma_inferido": "hr",
+      "geo_hint": "BA",
+      "views": "A+E",
+      "angle_id": "NEURO-A2",
+      "phash": "a15af40ee25f4743",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_faiththaistory_com_2026_10_20_ca957de4.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5535463577",
+      "network": "Mgid",
+      "gravity": 349,
+      "ad_strength": 4583,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 25,
+      "movimento": "escalando",
+      "headline": "Хората с невропатия – прочетете го, преди да го изтриете!",
+      "idioma_inferido": "bg",
+      "geo_hint": "BG",
+      "views": "A+E",
+      "angle_id": "NEURO-A2",
+      "phash": "85d06ea372b6b1b4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_gotvq_eu_2026_10_19_6972d548.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5537561346",
+      "network": "Mgid",
+      "gravity": 286,
+      "ad_strength": 6093,
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 25,
+      "movimento": "volumando",
+      "headline": "Neuropatia zniknie w ciągu 2 dni! Dostępne w każdej aptece, a nazywa się...",
+      "idioma_inferido": "ro",
+      "geo_hint": "PL",
+      "views": "A+D",
+      "angle_id": "NEURO-OUTRO",
+      "phash": "f8d0af78873ad302",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_10_20_7d3af0d6.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5535258990",
+      "network": "Mgid",
+      "gravity": 226,
+      "ad_strength": 6549,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 26,
+      "movimento": "volumando",
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "idioma_inferido": "hr",
+      "geo_hint": "HR",
+      "views": "D",
+      "angle_id": "NEURO-A4",
+      "phash": "c6e063d5b16c29da",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_10_19_172d79be.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5535564880",
+      "network": "Mgid",
+      "gravity": 172,
+      "ad_strength": 3078,
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 26,
+      "movimento": "volumando",
+      "headline": "Neurológusok: 2 gyógynövény gyorsan megszünteti a neuropátiát!",
+      "idioma_inferido": "hu",
+      "geo_hint": "HU",
+      "views": "D",
+      "angle_id": "NEURO-A4",
+      "phash": "c7e666b3c3582926",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_deguate_com_gt_2026_10_19_f93c8ae7.webp",
+      "search_term": "neuropathy (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

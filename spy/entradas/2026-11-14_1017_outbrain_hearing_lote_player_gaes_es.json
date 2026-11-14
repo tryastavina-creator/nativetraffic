@@ -1,0 +1,85 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "gaes.es",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GAES (Amplifon)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "La audición se pone a prueba cada día, descubre más.",
+    "¿Subes mucho el volumen de la tele? Revisa tu audición."
+  ],
+  "max_gravity": 907,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 907,
+      "ad_id": "4891781158",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-04-16",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "4891781158",
+      "4750389061"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_varejo_legivel",
+    "tipo_player": "marca_varejo",
+    "tipo_presell": "Site institucional da GAES (marca Amplifon).",
+    "narrador": "Marca, mais de 70 anos.",
+    "produto": "Aparelhos e implantes cocleares GAES/Amplifon; teste/prova gratuita, centros, financiamento.",
+    "preco_e_kits": "Há páginas de preço e promoções; valores específicos não foram extraídos da home.",
+    "garantia": "Serviços pós-venda mencionados (GAES Card).",
+    "plataforma": "Site corporativo Amplifon.",
+    "dominio_checkout": "Loja/centro e agendamento no próprio gaes.es.",
+    "cloaking": "Site abriu normalmente."
+  },
+  "anuncios": [
+    {
+      "ad_id": "4891781158",
+      "network": "Outbrain",
+      "gravity": 907,
+      "ad_strength": 211876,
+      "first_seen": "2026-05-19",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 179,
+      "movimento": "escalando",
+      "headline": "La audición se pone a prueba cada día, descubre más.",
+      "geo_hint": "ES",
+      "views": "A+E",
+      "angle_id": "HEAR-A10",
+      "phash": "f785acc9c8e920f1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mundodeportivo_com_2026_05_19_6d9c4b81.jpg",
+      "search_term": "hearing"
+    },
+    {
+      "ad_id": "4750389061",
+      "network": "Outbrain",
+      "gravity": 236,
+      "ad_strength": 155035,
+      "first_seen": "2026-04-16",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 211,
+      "movimento": "escalando",
+      "headline": "¿Subes mucho el volumen de la tele? Revisa tu audición.",
+      "geo_hint": "ES",
+      "views": "D",
+      "angle_id": "HEAR-A10",
+      "phash": "c0fbeec075e74a01",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mundodeportivo_com_2026_04_16_6d51e7c6.png",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
