@@ -1,0 +1,58 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "seniorwellnessdigest.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Neuropathie (brennende Füße)? Machen Sie das sofort"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5640011868",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5640011868"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "evidwell.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5640011868",
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "C+F",
+      "angle_id": "NEURO-A1",
+      "phash": "d61e3c8503cff492",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tek_id_2026_11_14_6314c165.webp",
+      "search_term": "neuropathy (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

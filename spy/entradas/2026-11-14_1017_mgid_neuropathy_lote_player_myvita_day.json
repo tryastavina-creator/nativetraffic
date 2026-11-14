@@ -1,0 +1,82 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "myvita.day",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!"
+  ],
+  "max_gravity": 1584,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 1584,
+      "ad_id": "5396712497",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-09-18",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "5398184405",
+      "5396712497"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "beauty-ri.click",
+    "green-ri.click",
+    "washbosswhale.beauty"
+  ],
+  "funil": {
+    "leitura": "corpo_vazio",
+    "cloaking": "HTTPS 200 Cloudflare com corpo vazio (www e http também falharam ou devolveram 500). Cloaking clássico. Oferta não legível."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5396712497",
+      "network": "Mgid",
+      "gravity": 1584,
+      "ad_strength": 33996,
+      "first_seen": "2026-09-18",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 57,
+      "movimento": "escalando",
+      "headline": "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+      "idioma_inferido": "cs",
+      "geo_hint": "CZ",
+      "views": "A+E+G",
+      "angle_id": "NEURO-A2",
+      "phash": "dea2c07d994937c2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_09_18_1cc5514f.webp",
+      "search_term": "neuropathy (Translated Text)"
+    },
+    {
+      "ad_id": "5398184405",
+      "network": "Mgid",
+      "gravity": 443,
+      "ad_strength": 13060,
+      "first_seen": "2026-09-18",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 57,
+      "movimento": "escalando",
+      "headline": "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+      "idioma_inferido": "cs",
+      "geo_hint": "CZ",
+      "views": "A+E",
+      "angle_id": "NEURO-A2",
+      "phash": "fea6c01d9b259368",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_09_18_f5b8d4ee.webp",
+      "search_term": "neuropathy (Translated Text)"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
