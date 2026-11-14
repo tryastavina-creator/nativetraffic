@@ -1,0 +1,107 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "geers.de",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GEERS (Sonova)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Der Ferrari unter den Hörgeräten kommt aus der Schweiz",
+    "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren"
+  ],
+  "max_gravity": 300,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 300,
+      "ad_id": "5635515842",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5641148101",
+      "5641147866",
+      "5635515842"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_varejo_legivel",
+    "tipo_player": "marca_varejo",
+    "tipo_presell": "Site institucional GEERS (Sonova), Alemanha.",
+    "produto": "Aparelhos (destaque Phonak EON / Infinio); teste auditivo gratuito, +700 lojas.",
+    "preco_e_kits": "Home menciona até 1.500 € de subsídio da caixa; ação com desconto no copagamento em alguns Phonak (validade até 30/09/2026) e copagamento legal de 10 € / preço privado 741 € por aparelho, conforme o rodapé da promoção.",
+    "garantia": "Serviços GEERS (seguro, etc.) mencionados no menu.",
+    "plataforma": "Site corporativo Sonova/GEERS.",
+    "dominio_checkout": "Agendamento em termin.geers.de / lojas.",
+    "cloaking": "Site abriu normalmente."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5635515842",
+      "network": "Outbrain",
+      "gravity": 300,
+      "ad_strength": 600,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Der Ferrari unter den Hörgeräten kommt aus der Schweiz",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "D",
+      "angle_id": "HEAR-A5",
+      "phash": "ba05b1c3def640b4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sauerlandkurier_de_2026_11_13_588168f3.webp",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    },
+    {
+      "ad_id": "5641147866",
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren",
+      "geo_hint": "DE",
+      "views": "C",
+      "angle_id": "HEAR-A5",
+      "phash": "c9ace9233720365f",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_buzzfeed_at_2026_11_14_e049260a.webp",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    },
+    {
+      "ad_id": "5641148101",
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_strength": 0,
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Der Ferrari unter den Hörgeräten kommt aus der Schweiz",
+      "idioma_inferido": "de",
+      "geo_hint": "DE",
+      "views": "C",
+      "angle_id": "HEAR-A5",
+      "phash": "bd04b2c9dff240b2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_buzzfeed_at_2026_11_14_2b554028.webp",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

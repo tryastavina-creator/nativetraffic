@@ -1,0 +1,62 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "vivason.fr",
+  "status": "lancando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "VivaSon",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Black Friday appareil auditif : chargeur et accessoire TV offerts"
+  ],
+  "max_gravity": 245,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 245,
+      "ad_id": "5632988662",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-11-12",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "lancando": [
+      "5632988662"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_varejo_legivel",
+    "tipo_player": "marca_varejo",
+    "tipo_presell": "Site da rede francesa VivaSon (70 anos, aparelhos classe 1 a 950 € 100% Santé, outras faixas 950–1195 €+).",
+    "cloaking": "Site abriu normalmente."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5632988662",
+      "network": "Outbrain",
+      "gravity": 245,
+      "ad_strength": 820,
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 1,
+      "movimento": "lancando",
+      "headline": "Black Friday appareil auditif : chargeur et accessoire TV offerts",
+      "idioma_inferido": "fr",
+      "geo_hint": "FR",
+      "views": "D",
+      "angle_id": "HEAR-A5",
+      "phash": "d8bee1c336cc25c2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_cosmopolitan_fr_2026_11_12_00bfd959.webp",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

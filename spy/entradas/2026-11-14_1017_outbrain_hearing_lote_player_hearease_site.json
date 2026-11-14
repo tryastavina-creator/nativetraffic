@@ -1,0 +1,127 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hearease.site",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 1,
+  "headlines": [
+    "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà"
+  ],
+  "max_gravity": 525,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 525,
+      "ad_id": "5632726234",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-11-12",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5634125014",
+      "5632726234",
+      "5638493000",
+      "5634427215"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "advertorial_legivel",
+    "tipo_presell": "Advertorial em italiano (HearEase / DailyLifeInsider) sobre zumbido e vertigem causados pelo pescoço.",
+    "narrador": "Relato em primeira pessoa (homem exausto); disclaimer de que as pessoas nas fotos são modelos e de que o site é publicidade.",
+    "mecanismo": "O travesseiro alinharia a cervical, aliviando compressão de nervos e o labirinto.",
+    "produto": "Travesseiro Derila Ergo (bem-estar, não dispositivo médico).",
+    "preco_e_kits": "A página fala em desconto de 70% e compara consultas (200–300 €), aparelhos (1.000 €) etc. Esses valores são da história, não o preço do travesseiro. O preço do Derila não estava visível no texto.",
+    "garantia": "Garantia de satisfação de 30 noites.",
+    "plataforma": "Advertorial com carrinho em cart/cart.html. og:url apontava para dailylifeinsider.com/derila-ergot-251113-fr-s/. Endereço comercial em Cerignola (Itália) no rodapé. Formulário/carrinho não enviados.",
+    "dominio_checkout": "cart/cart.html no próprio fluxo; og:url em dailylifeinsider.com sugere a mesma rede.",
+    "cloaking": "A raiz de hearease.site já abriu o advertorial (HTTP 200)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5632726234",
+      "network": "Outbrain",
+      "gravity": 525,
+      "ad_strength": 1500,
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 1,
+      "movimento": "lancando",
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "idioma_inferido": "it",
+      "geo_hint": "IT",
+      "views": "A+E",
+      "angle_id": "HEAR-A9",
+      "phash": "97fe160fb809a92a",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_iltempo_it_2026_11_12_ab9d2e51.webp",
+      "tags": "Nutraceuticals",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "5638493000",
+      "network": "Outbrain",
+      "gravity": 180,
+      "ad_strength": 360,
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "idioma_inferido": "it",
+      "geo_hint": "IT",
+      "views": "A",
+      "angle_id": "HEAR-A9",
+      "phash": "cb88949907e69ccf",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_stol_it_2026_11_13_4bfc7bc4.webp",
+      "tags": "Nutraceuticals",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "5634125014",
+      "network": "Outbrain",
+      "gravity": 165,
+      "ad_strength": 480,
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 2,
+      "movimento": "lancando",
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "idioma_inferido": "it",
+      "geo_hint": "IT",
+      "views": "A",
+      "angle_id": "HEAR-A9",
+      "phash": "db84948847b69f8b",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_quattroruote_it_2026_11_12_5f2170b4.webp",
+      "tags": "Nutraceuticals",
+      "search_term": "tinnitus"
+    },
+    {
+      "ad_id": "5634427215",
+      "network": "Outbrain",
+      "gravity": 150,
+      "ad_strength": 300,
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-12",
+      "dias_entre_primeira_e_ultima": 0,
+      "movimento": "lancando",
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "idioma_inferido": "it",
+      "geo_hint": "IT",
+      "views": "D",
+      "angle_id": "HEAR-A9",
+      "phash": "cccd9284ef7091d6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_ilgiornaleditalia_it_2026_11_12_47357e6b.webp",
+      "tags": "Nutraceuticals",
+      "search_term": "tinnitus"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
