@@ -1,0 +1,59 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "eidikosvarikoias.gr",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Το κόλπο για τη βελτίωση της ακοής που προκαλεί &al"
+  ],
+  "max_gravity": 294,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 294,
+      "ad_id": "5423757466",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-09-24",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "5423757466"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "nao_legivel",
+    "cloaking": "HTTP 522 (Cloudflare). Oferta não legível."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5423757466",
+      "network": "Taboola",
+      "gravity": 294,
+      "ad_strength": 7935,
+      "first_seen": "2026-09-24",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 51,
+      "movimento": "volumando",
+      "headline": "Το κόλπο για τη βελτίωση της ακοής που προκαλεί &al",
+      "idioma_inferido": "el",
+      "geo_hint": "GR",
+      "views": "D",
+      "angle_id": "HEAR-OUTRO",
+      "phash": "b9272e13ce0167bc",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_calcalist_co_il_2026_09_24_ddcc742d.png",
+      "tags": "Health & Wellness",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

@@ -1,0 +1,59 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "wellnessgaze.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Revcontent"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Tinnitus? Do This When The Ringing Won't Stop"
+  ],
+  "max_gravity": 181,
+  "gravity_por_rede": {
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 181,
+      "ad_id": "3889376335",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2025-10-28",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "3889376335"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "blog_leadgen",
+    "cloaking": "Blog de listicles de saúde com disclaimer de anúncio/lead-gen. Produto específico do anúncio de tinnitus/neuropathy não estava na raiz."
+  },
+  "anuncios": [
+    {
+      "ad_id": "3889376335",
+      "network": "Revcontent",
+      "gravity": 181,
+      "ad_strength": 24579,
+      "first_seen": "2025-10-28",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 382,
+      "movimento": "volumando",
+      "headline": "Tinnitus? Do This When The Ringing Won't Stop",
+      "idioma_inferido": "es",
+      "geo_hint": "US",
+      "views": "D",
+      "angle_id": "HEAR-OUTRO",
+      "phash": "b2e0694f0f1bcee0",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_chron_com_2025_10_28_f9f1922c.jpg",
+      "tags": "Health & Wellness",
+      "search_term": "tinnitus"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}

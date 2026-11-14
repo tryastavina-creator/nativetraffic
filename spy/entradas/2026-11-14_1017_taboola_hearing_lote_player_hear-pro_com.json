@@ -1,0 +1,58 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hear-pro.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Los jubilados de Madrid están probando este audífono gratis (¡compruébalo!)"
+  ],
+  "max_gravity": 958,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 958,
+      "ad_id": "5518768148",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-10-14",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "escalando": [
+      "5518768148"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "nao_legivel",
+    "cloaking": "A raiz devolve uma página quase vazia com o título 'Content delivery network', autor meta Medgen, scripts da Insider e iubenda. A oferta não foi legível (provável cloaking ou carregamento só via JS de clique)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5518768148",
+      "network": "Taboola",
+      "gravity": 958,
+      "ad_strength": 6336,
+      "first_seen": "2026-10-14",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 31,
+      "movimento": "escalando",
+      "headline": "Los jubilados de Madrid están probando este audífono gratis (¡compruébalo!)",
+      "idioma_inferido": "es",
+      "geo_hint": "ES",
+      "views": "A+E",
+      "angle_id": "HEAR-A5",
+      "phash": "b6ca996d32249ce6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_publico_es_2026_10_14_e0e3777b.png",
+      "search_term": "hearing"
+    }
+  ],
+  "diff_desde_ontem": "Primeira entrega deste domínio neste formato, na coleta de 2026-11-14."
+}
