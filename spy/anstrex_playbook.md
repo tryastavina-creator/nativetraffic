@@ -27,7 +27,7 @@
 - Nunca comprar, nunca enviar dados pessoais, nunca inventar números.
 
 ## Atualização 2026-11-14 (2a tentativa, funcionou)
-- Basic search + Translated Text aceita OR numa caixa só: "tinnitus OR hearing" trouxe tinnitus e perda auditiva em vários idiomas.
+- Basic search + Translated Text: o operador OR se comporta como AND (confirmado na coleta de neuropathy e na 2ª passagem de hearing). "tinnitus OR hearing" só trouxe anúncios com as duas palavras. Buscar um termo por vez e deduplicar por ad id.
 - Gravidade = ícone de foguete no card; Ad-Strength = ícone de gráfico. Statistics tem só gráficos de impressões/rank; Landing Pages lista domínios.
 - Dias rodando por anúncio não aparecem em lugar nenhum; só pelo slider Days Running (os limites do slider acompanham o resultado filtrado). Números do slider são editáveis (clicar, digitar, Enter), aplica sozinho.
 - Date Range filtra por ÚLTIMA vez visto. Para "visto pela primeira vez nos últimos N dias": Sort = Date First Seen (desc) e cortar pela data do card.
@@ -43,3 +43,23 @@
 - adskeeper.co.uk redireciona para o site da rede AdsKeeper; candyai.gg redireciona para candy.ai (oferta não relacionada a audição). O campo lander_domain do Anstrex pode gravar tracker da rede ou uma captura errada — não tratar automaticamente como loja do anunciante.
 - Thumbnails com a mesma headline podem ter phash bem diferente (o anunciante testa muitas imagens). Lateralização só com hamming ≤8 ou headline quase idêntica, e mesmo assim cruzar com o que a lander realmente é.
 - Dias rodando por anúncio continuam ausentes; usar apenas dias_entre_primeira_e_ultima (last_seen - first_seen), nunca inventar "days running".
+
+## IMPORTANTE (2026-11-14, neuropathy)
+- O "OR" da Basic search se comporta como AND: "neuropathy" = 27, "nerve" = 26, "neuropathy OR nerve" = 0. A busca "tinnitus OR hearing" de hearing só pegou anúncios com as DUAS palavras.
+- Fazer uma busca por termo e deduplicar por ad id. Termos base: hearing: tinnitus | hearing | "hearing loss" | "hearing aid" | ears; neuropathy: neuropathy | nerve | numbness | tingling | "burning feet".
+- Busca, sort e sliders persistem entre buscas; os limites dos sliders voltam ao intervalo do novo resultado. Ajustar mín. e máx. de gravidade em passos separados e conferir.
+
+
+## Análise (2026-11-14, hearing — 2ª passagem, 100 anúncios)
+- A 1ª passagem (48 anúncios) ficou estreita por causa do OR=AND. Buscas soltas em "tinnitus" e "hearing" acrescentaram 52 anúncios, inclusive Revcontent, Taboola, Outbrain, AdsKeeper, AdNow e Popin.
+- AdNow e Popin não tinham piso de "escalando" no briefing. Usei o mesmo da Taboola/MGID/AdsKeeper (≥300) e registrei isso nos arquivos.
+- naturegrove24.com segue o mais forte na MGID (625 e 351). Na Revcontent, buyhears.com chegou a 40371 (produto Hears, tampões D2C, não aparelho auditivo). Na Taboola, audionovabrasil.com.br (marca AudioNova/Sonova) chegou a 5922. No AdNow, neotex.pro chegou a 4335 (página 522 nesta visita).
+- Marcas/varejo (ainda concorrentes, salvo o usuário dizer o contrário): GAES/Amplifon, GEERS/Sonova, AudioNova, Vivason, Audibene, Philips, e bonne-audition.fr (landing da Audibene para o Signia Silk IX). hearclear.com é lead-gen da Marketing VF (MVF).
+- wonderbanana.com e chudopolsko.info compartilham imagens (phash 0–2) e a mesma casca JS (`/build/bundle.min.js`); adskeeper.co.uk entra no mesmo cluster de imagem (hamming 6) como tracker.
+- hearease.site abriu advertorial do travesseiro Derila Ergo (og:url em dailylifeinsider.com). seravia.info na raiz é um blog de Berlim, sem a oferta do anúncio. vária landers DR devolveram corpo vazio (Cloudflare) ou 403/522.
+
+## Análise (2026-11-14, nicho neuropathy)
+- 137 anúncios. Na MGID, a maior gravidade (5847) está gravada em adskeeper.co.uk com a headline alemã "Neuropathie (brennende Füße)? Machen Sie das sofort", a mesma de evidwell.com (1231); evidwell na raiz é um WordPress "Hello world!".
+- Cluster de lateralização forte (phash 0) entre myvita.day, green-ri.click, beauty-ri.click, washbosswhale.beauty, solveclocktext.space, linfaflowstore.online e adskeeper.co.uk, mesmo com headlines diferentes (1/2 xícara, "leia antes que apaguem", 2 plantas). Vários desses domínios devolveram HTTP 200 com corpo vazio (cloaking).
+- liyng.com escala na Outbrain (até 3487) com "Ständig taube Füße? Nervenschädigung bei Diabetes…", 18 variações desde 2026-11-10; a mesma headline está em wexiy.com (phash mínimo 14, acima de 8). TLS de liyng.com e wexiy.com falhou nesta visita.
+- science-actualite.com volumando/escalando na Outbrain (498); a raiz mostrou artigo de pele/nutrientes (noindex) com links para biovancia.com, não a oferta de neuropatia.

@@ -1,27 +1,28 @@
 # Movimentos — hearing
 
-Coleta de 2026-11-14. Primeira rodada: não há o que entrou ou saiu desde ontem.
+Coleta de 2026-11-14, 2ª passagem (100 anúncios). Sem comparação com ontem. Em relação à 1ª passagem de hoje, a busca por termo solto trouxe as redes e as marcas que faltavam; lphst.com deixou de estar parado.
 
 ## Resumo por classe
 
-- **Escalando:** naturegrove24.com (MGID, gravidade 625 e 351, headline eslovaca do imperativo, 7 variações dessa headline só neste domínio).
-- **Volumando:** pgsrc.com (MGID, gravidade máxima 215 no ângulo do médico FR/DA); candyai.gg (um anúncio MGID com gravidade 240 e a headline do naturegrove — lander suspeita, ver mapa).
-- **Lançando:** 1 anúncio de pgsrc.com (MGID, dinamarquês, gravidade 0, primeira vista em 2026-11-11, imagem de alho no ouvido).
-- **Testando:** adskeeper.co.uk (gravidade 94, mas o domínio é o da rede, não uma loja); naturegrove24.com também tem 1 anúncio MGID ativo em testando (gravidade 88).
-- **Parado:** pawer-growls-palps.rest (última vista 2026-11-09) e lphst.com (2026-08-26). Também pararam as peças Taboola de 1 euro do naturegrove e a maior parte dos testes de novembro do pgsrc.
+- **Escalando:** buyhears.com (40371), audionovabrasil.com.br (5922), neotex.pro (4335), hear-pro.com (958), hearclear.com (956), gaes.es (907), wonderbanana.com (688), bonne-audition.fr (675), chudopolsko.info (655), naturegrove24.com (625), hearease.site (525), seravia.info (410), geers.de (300)
+- **Volumando:** eidikosvarikoias.gr (294), candyai.gg (240), lphst.com (231), pgsrc.com (215), wellnessgaze.com (181)
+- **Lancando:** vivason.fr (245), geers.pl (220), adskeeper.co.uk (205), trendy-info.jp (172), deutscher-gesundheits-fachkreis.de (0), dailylifeinsider.com (0), audibene.nl (0), checkfox.de (0), apparecchiacustici.philips (0), audibene.de (0), perfectadd.art (0)
+- **Parado:** pawer-growls-palps.rest (92)
 
 ## Tendências
 
-- O único ângulo em escalando nesta coleta é o imperativo eslovaco ('Musíš to urobiť…') na MGID, com criativos lifestyle de pessoa 55+ aplicando gotas no jardim e overlay anatômico, no domínio naturegrove24.com.
-- O ângulo de autoridade médica (FR e DA, tradução praticamente palavra a palavra) está volumando na MGID via pgsrc.com desde junho, com muitas variações de imagem: anatomia, metáfora de zumbido (insetos) e, nos testes de novembro, remédios caseiros (alho, batata).
-- Na Taboola, naturegrove24.com testou o gancho de preço 'experimente por 1 EUR/1 euro' com a mesma família visual de praia; chegou a gravidade 111–120, mas a última vista foi em 2026-11-07 a 2026-11-09 (parado nesta rodada).
-- O ângulo de biólogo (indonésio em pawer-growls-palps.rest, neerlandês em lphst.com) não está ativo: pawer teve última vista em 2026-11-09 e lphst em 2026-08-26.
+- Na Revcontent, buyhears.com (tampões Hears, DTC) é o anúncio de maior gravidade desta coleta nessa rede (40371), ativo desde julho, com visual lifestyle que parece um intra-auricular.
+- Na Taboola, o varejo de aparelhos escala com força: AudioNova Brasil 5922 (teste grátis 7 dias, Phonak na palma), hear-pro 958 e hearclear 956 (lead-gen). seravia.info (tinnitus, 410) é DR, não varejo.
+- No AdNow, neotex.pro (cera / método da avó, 4335) é o único anúncio da rede nesta coleta; a lander deu 522.
+- Na Outbrain, marcas e lead-gen de aparelho (GAES 907, Audibene/bonne-audition 675, GEERS 300) convivem com o DR hearease.site (525, travesseiro Derila, 4 variações desde 12/11).
+- Na AdsKeeper, um anunciante escala com o testemunho 'aos 78 anos escuto sem aparelho' e o 'cirurgião revela', lateralizado entre wonderbanana.com (688) e chudopolsko.info (655), primeiro visto em 07/11.
+- Na MGID, o líder continua sendo naturegrove24.com (625 e 351, imperativo eslovaco). pgsrc.com segue volumando no ângulo médico FR/DA (máx. 215). lphst.com, que estava parado na 1ª passagem, voltou a volumando (231) com headlines de biólogo/cirurgião em francês.
+- Popin entra com trendy-info.jp (hábito de 5 segundos, gravidade 172, lançando).
 
 ## Testes promissores
 
-- `5626467889` · Mgid · pgsrc.com · gravidade 0 · 2026-11-11 a 2026-11-11 · lancando. Único anúncio desta coleta ainda em lançamento. Mesma headline médica em dinamarquês, mas a imagem é um close de um dente de alho no canal da orelha — gancho de curiosidade/remédio caseiro, não a ilustração médica clássica.
-- `5587465685` · Mgid · pgsrc.com · gravidade 52 · 2026-11-01 a 2026-11-02 · parado. Entre os testes F (gravidade 0–60, primeira vista nos últimos 14 dias), foi o de maior gravidade (52) no período, com imagem de um homem surpreso segurando metades de batata ao lado das orelhas. Já está parado (última vista em 2026-11-02), mas o ângulo de curiosidade vale atenção se voltar.
-- `5614079344` · Mgid · pgsrc.com · gravidade 50 · 2026-11-08 a 2026-11-09 · parado. Teste recente (primeira vista em 2026-11-08) com gravidade 50, já parado em 2026-11-09. Faz parte da leva de testes dinamarqueses de pgsrc no começo de novembro.
-- `5612864496` · AdsKeeper · naturegrove24.com · gravidade 0 · 2026-11-07 a 2026-11-07 · parado. Primeira aparição do ângulo que já escala na MGID, agora na AdsKeeper. Gravidade 0 e última vista no mesmo dia: teste de rede, ainda sem tração visível.
-- `5597824745` · Mgid · pawer-growls-palps.rest · gravidade 1 · 2026-11-04 a 2026-11-04 · parado. Única peça F deste player nesta coleta. O player inteiro já está parado.
-
+- `5626467889` · Mgid · pgsrc.com · gravidade 0. Único lançamento da 1ª passagem ainda no ar (alho no ouvido, headline médica DA, 11/11).
+- `5640846034` · AdsKeeper · wonderbanana.com · gravidade 0. Teste de 14/11 do ângulo 'cirurgião revela' no mesmo domínio que já escala o testemunho dos 78 anos (688).
+- `5640676466` · AdsKeeper · chudopolsko.info · gravidade 0. Tradução PL do testemunho dos 78 anos, primeira vista em 14/11, no domínio lateralizado.
+- `5641121990` · AdsKeeper · chudopolsko.info · gravidade 0. Tradução RO do 'cirurgião revela', 14/11, mesma imagem do teste de wonderbanana (phash 0).
+- `5632726234` · Outbrain · hearease.site · gravidade 525. Ângulo novo (causa do zumbido/vertigem) com 4 variações desde 12/11; a thumbnail é isca de cebola, a lander é o travesseiro Derila Ergo.

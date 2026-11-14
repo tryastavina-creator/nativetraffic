@@ -1,89 +1,50 @@
 # Mapa de players — hearing
 
-Coleta de 2026-11-14. Primeira rodada: não há diff com ontem.
+Coleta de 2026-11-14, 2ª passagem (100 anúncios). A 1ª passagem (48) ficou estreita porque o OR da Basic search se comporta como AND.
 
-Só concorrentes. Nenhum domínio próprio foi configurado. Gravidade comparada só dentro da mesma rede. Geo é pista. Sem `lander_url` e sem dias rodando (uso `dias_entre_primeira_e_ultima`).
+Gravidade comparada só dentro da mesma rede. Geo é pista. Marcas/varejo e lead-gen entram como concorrentes. AdNow e Popin usam piso de escalando ≥300.
 
-| Domínio | Status | Anúncios | Headlines | Redes | Max gravidade (rede) | Última vez visto | Nota |
-|---------|--------|----------|-----------|-------|----------------------|------------------|------|
-| naturegrove24.com | escalando | 12 | 3 | AdsKeeper, Mgid, Taboola | Mgid 625, Taboola 120, AdsKeeper 0 | 2026-11-14 | Único em escalando (MGID 625 e 351). |
-| pgsrc.com | volumando | 26 | 2 | AdsKeeper, Mgid | Mgid 215, AdsKeeper 25 | 2026-11-14 | Volumando na MGID (máx. 215); 1 anúncio lançando. Lander com white page. |
-| candyai.gg | volumando | 1 | 1 | Mgid | Mgid 240 | 2026-11-14 | Lander redireciona para candy.ai (oferta não relacionada). Captura suspeita. |
-| adskeeper.co.uk | testando | 2 | 2 | Mgid | Mgid 94 | 2026-11-12 | Redireciona para o site da rede AdsKeeper (tracker, não loja). |
-| pawer-growls-palps.rest | parado | 6 | 1 | Mgid | Mgid 92 | 2026-11-09 | Parado (última vista 2026-11-09). Advertorial Longvita legível. |
-| lphst.com | parado | 1 | 1 | Mgid | Mgid 37 | 2026-08-26 | Parado desde 2026-08-26. Mesma white page Hostname.one que pgsrc.com. |
-
-## Por player
-
-### naturegrove24.com — escalando
-
-- Primeira vista nesta coleta: 2026-08-25; última: 2026-11-14.
-- 12 anúncios, 3 headlines, redes: AdsKeeper, Mgid, Taboola.
-- Movimento dos anúncios: escalando (2), volumando (2), parado (7), testando (1).
-- Headlines:
-  - Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach
-  - Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR
-  - Šum v ušiach alebo strata sluchu? Vyskúšajte to za 1 euro
-- Domínios ligados no registro: candyai.gg (ver interpretação no JSON; nem toda ligação é lateralização confirmada).
-- Funil: Acesso direto a https://naturegrove24.com/ (e www, /en, /sk) devolveu 403 Forbidden (Cloudflare + nginx). /index.html devolveu 404. A oferta não foi legível nesta rodada.
-
-### pgsrc.com — volumando
-
-- Primeira vista nesta coleta: 2026-06-10; última: 2026-11-14.
-- 26 anúncios, 2 headlines, redes: AdsKeeper, Mgid.
-- Movimento dos anúncios: testando (3), volumando (6), parado (16), lancando (1).
-- Headlines:
-  - Læge: høretab eller tinnitus? Gør dette straks
-  - Médecin : perte auditive ou acouphènes ? Faites ceci vite
-- Domínios ligados no registro: adskeeper.co.uk (ver interpretação no JSON; nem toda ligação é lateralização confirmada).
-- Funil: A raiz devolveu uma página branca com o texto 'Hostname.one', uma imagem SVG embutida e meta robots noindex,nofollow. Sem links, formulários ou oferta visível. HTML quase idêntico ao de lphst.com (diferença só no beacon do Cloudflare). Sinal clássico de cloaking/white page para tráfego que não vem do clique.
-
-### candyai.gg — volumando
-
-- Primeira vista nesta coleta: 2026-08-27; última: 2026-11-14.
-- 1 anúncios, 1 headlines, redes: Mgid.
-- Movimento dos anúncios: volumando (1).
-- Headlines:
-  - Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach
-- Domínios ligados no registro: naturegrove24.com (ver interpretação no JSON; nem toda ligação é lateralização confirmada).
-- Funil: https://candyai.gg/ redireciona (301) para https://candy.ai/, um site de companhia/chat com IA, sem relação com audição ou zumbido.
-- Flag: `lander_suspeita_ou_captura_errada`.
-
-### adskeeper.co.uk — testando
-
-- Primeira vista nesta coleta: 2026-06-11; última: 2026-11-12.
-- 2 anúncios, 2 headlines, redes: Mgid.
-- Movimento dos anúncios: testando (1), parado (1).
-- Headlines:
-  - Læge: høretab eller tinnitus? Gør dette straks
-  - Médecin : perte auditive ou acouphènes ? Faites ceci vite
-- Domínios ligados no registro: pgsrc.com (ver interpretação no JSON; nem toda ligação é lateralização confirmada).
-- Funil: https://adskeeper.co.uk/ redireciona (302) para https://www.adskeeper.com/, o site institucional da rede AdsKeeper.
-- Flag: `dominio_da_rede_ou_tracker`.
-
-### pawer-growls-palps.rest — parado
-
-- Primeira vista nesta coleta: 2026-10-19; última: 2026-11-09.
-- 6 anúncios, 1 headlines, redes: Mgid.
-- Movimento dos anúncios: parado (6).
-- Headlines:
-  - Ahli Biologi: Jika Anda Mengalami Gangguan Pendengaran atau Tinitus, Lakukan Ini!
-- Funil: Nesta visita direta a página completa abriu (HTTP 200), sem white page. Há desalinhamento de geo no texto: a história e a oferta 'só na Itália' convivem com idioma indonésio, preço em IDR e exemplo de telefone +62.
-
-### lphst.com — parado
-
-- Primeira vista nesta coleta: 2026-04-21; última: 2026-08-26.
-- 1 anúncios, 1 headlines, redes: Mgid.
-- Movimento dos anúncios: parado (1).
-- Headlines:
-  - Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!
-- Funil: Mesma white page 'Hostname.one' (noindex) observada em pgsrc.com, HTML estruturalmente idêntico. Oferta não legível. Isso indica a mesma plataforma de cloaking/hospedagem, não prova por si só que é o mesmo anunciante.
+| Domínio | Tipo | Status | Anúncios | Redes | Max gravidade (rede) | Última vista | Nota |
+|---------|------|--------|----------|-------|----------------------|--------------|------|
+| buyhears.com | marca_dtc | escalando | 1 | Revcontent | Revcontent 40371 | 2026-11-14 | DTC Hears (tampões), não aparelho. |
+| audionovabrasil.com.br | marca_varejo | escalando | 1 | Taboola | Taboola 5922 | 2026-11-14 | Marca AudioNova/Sonova, teste 7 dias. |
+| neotex.pro | oferta_resposta_direta | escalando | 1 | AdNow | AdNow 4335 | 2026-11-13 | AdNow 4335; lander 522 nesta visita. |
+| hear-pro.com | oferta_resposta_direta | escalando | 1 | Taboola | Taboola 958 | 2026-11-14 | Lander CDN/Medgen, oferta não legível. |
+| hearclear.com | lead_gen | escalando | 1 | Taboola | Taboola 956 | 2026-11-13 | Lead-gen MVF, consulta grátis. |
+| gaes.es | marca_varejo | escalando | 2 | Outbrain | Outbrain 907 | 2026-11-14 | Marca GAES/Amplifon. |
+| wonderbanana.com | oferta_resposta_direta | escalando | 2 | AdsKeeper | AdsKeeper 688 | 2026-11-14 | Lateralizado com chudopolsko.info (phash 0–2). |
+| bonne-audition.fr | lead_gen_marca | escalando | 8 | Outbrain | Outbrain 675 | 2026-11-14 | Landing Audibene / Signia Silk IX. |
+| chudopolsko.info | oferta_resposta_direta | escalando | 3 | AdsKeeper | AdsKeeper 655 | 2026-11-14 | Mesmo anunciante que wonderbanana. |
+| naturegrove24.com | oferta_resposta_direta | escalando | 13 | AdsKeeper, Mgid, Taboola | Mgid 625, Taboola 120, AdsKeeper 0 | 2026-11-14 | Mais forte da MGID (625/351). |
+| hearease.site | oferta_resposta_direta | escalando | 4 | Outbrain | Outbrain 525 | 2026-11-14 | Advertorial Derila Ergo (travesseiro). |
+| seravia.info | oferta_resposta_direta | escalando | 1 | Taboola | Taboola 410 | 2026-11-14 | Raiz é blog de Berlim; oferta do ad não vista. |
+| geers.de | marca_varejo | escalando | 3 | Outbrain | Outbrain 300 | 2026-11-14 | Marca GEERS/Sonova. |
+| eidikosvarikoias.gr | oferta_resposta_direta | volumando | 1 | Taboola | Taboola 294 | 2026-11-14 |  |
+| candyai.gg | captura_suspeita | volumando | 1 | Mgid | Mgid 240 | 2026-11-14 | Redireciona para candy.ai. Captura suspeita. |
+| lphst.com | oferta_resposta_direta | volumando | 4 | Mgid | Mgid 231 | 2026-11-14 | Voltou a ficar ativo (231). White page Hostname.one. |
+| pgsrc.com | oferta_resposta_direta | volumando | 28 | AdsKeeper, Mgid | Mgid 215, AdsKeeper 25 | 2026-11-14 | Ângulo médico FR/DA, white page. |
+| wellnessgaze.com | oferta_resposta_direta | volumando | 1 | Revcontent | Revcontent 181 | 2026-11-14 |  |
+| vivason.fr | marca_varejo | lancando | 1 | Outbrain | Outbrain 245 | 2026-11-13 | VivaSon |
+| geers.pl | marca_varejo | lancando | 1 | Mgid | Mgid 220 | 2026-11-13 | GEERS / Dobry Słuch (Sonova) |
+| adskeeper.co.uk | dominio_da_rede_ou_tracker | lancando | 3 | AdsKeeper, Mgid | Mgid 94, AdsKeeper 205 | 2026-11-13 | Site da rede, não loja. |
+| trendy-info.jp | oferta_resposta_direta | lancando | 2 | Popin | Popin 172 | 2026-11-14 |  |
+| apparecchiacustici.philips | marca_varejo | lancando | 1 | Outbrain | Outbrain 0 | 2026-11-14 | Philips |
+| audibene.de | marca_varejo | lancando | 1 | Taboola | Taboola 0 | 2026-11-14 | Audibene |
+| audibene.nl | marca_varejo | lancando | 1 | Mgid | Mgid 0 | 2026-11-14 | Audibene |
+| checkfox.de | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 0 | 2026-11-14 |  |
+| dailylifeinsider.com | oferta_resposta_direta | lancando | 4 | Outbrain, Taboola | Outbrain 0, Taboola 0 | 2026-11-14 |  |
+| deutscher-gesundheits-fachkreis.de | oferta_resposta_direta | lancando | 2 | Outbrain | Outbrain 0 | 2026-11-14 |  |
+| perfectadd.art | oferta_resposta_direta | lancando | 1 | Outbrain | Outbrain 0 | 2026-11-14 |  |
+| pawer-growls-palps.rest | oferta_resposta_direta | parado | 6 | Mgid | Mgid 92 | 2026-11-09 | Parado; Longvita lido na 1ª passagem. |
 
 ## Lateralização
 
-- **pgsrc.com e adskeeper.co.uk:** duas pares de thumbnails com phash hamming 0 (imagens idênticas) e headlines que são tradução uma da outra (médico FR / médico DA). adskeeper.co.uk, porém, abre o site da rede AdsKeeper. Interpretação: tracker ou captura do Anstrex, não um segundo domínio de oferta.
-- **naturegrove24.com e candyai.gg:** headline eslovaca exatamente igual. Imagens não similares (distância mínima de phash = 20, acima de 8). candyai.gg cai em candy.ai, oferta de chat com IA. Não dá para afirmar o mesmo anunciante rodando dois domínios de hearing; a lander provavelmente está errada no Anstrex.
-- **pgsrc.com e lphst.com:** mesma white page Hostname.one (HTML quase idêntico). Isso aponta para a mesma plataforma de cloaking/hospedagem, não para a mesma imagem ou headline. As headlines são de ângulos diferentes (médico vs. biólogo) e o phash mínimo entre os criativos desta coleta é 22.
-- **pawer-growls-palps.rest e lphst.com:** mesmo ângulo de autoridade de biólogo (indonésio vs. neerlandês), mas imagens diferentes (phash mínimo 26). Pode ser cópia do ângulo ou a mesma rede de ofertas em praças distintas; não há evidência de imagem ou headline quase idêntica para cravar o mesmo anunciante.
-- Variações da mesma headline no mesmo domínio (naturegrove, pgsrc, pawer) são testes de imagem do próprio player, não lateralização.
+- **wonderbanana.com e chudopolsko.info:** imagens idênticas ou quase (phash 0 e 2) e headlines traduzidas (testemunho dos 78 anos e “cirurgião revela”). A casca da lander também é a mesma (`/build/bundle.min.js`). Mesmo anunciante rodando dois domínios (ES/RO/PL). **adskeeper.co.uk** entra no mesmo cluster de imagem (hamming 6) — tracker da rede, não uma terceira loja.
+- **pgsrc.com e adskeeper.co.uk:** permanece o par já descrito na 1ª passagem (imagens idênticas, headlines FR/DA traduzidas; adskeeper é o site da rede).
+- **naturegrove24.com e candyai.gg:** headline eslovaca igual, imagens diferentes (phash 20) e destino candy.ai. Continua sem confirmar lateralização de oferta de hearing.
+- **hearease.site e dailylifeinsider.com:** o og:url do advertorial Derila em hearease apontava para dailylifeinsider.com. dailylifeinsider entra nesta coleta com testes de gravidade 0 em vários idiomas. Ligação de rede de advertorial, não de phash ≤8 entre os criativos desta coleta.
+- **pgsrc.com e lphst.com:** mesma white page Hostname.one (plataforma de cloaking), não a mesma imagem.
 
+## Marcas e varejo
+
+Tratados como concorrentes, com o tipo marcado: AudioNova, GAES, GEERS, Vivason, Audibene, Philips, e a landing bonne-audition.fr (Audibene/Signia). hearclear.com é lead-gen (MVF). buyhears.com é marca DTC de tampões, não de aparelho.
