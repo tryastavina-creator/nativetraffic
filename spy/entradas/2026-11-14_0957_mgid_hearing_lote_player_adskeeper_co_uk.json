@@ -1,0 +1,78 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "adskeeper.co.uk",
+  "status": "testando",
+  "flag": "dominio_da_rede_ou_tracker",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Læge: høretab eller tinnitus? Gør dette straks",
+    "Médecin : perte auditive ou acouphènes ? Faites ceci vite"
+  ],
+  "max_gravity": 94,
+  "gravity_por_rede": {
+    "mgid": {
+      "rede": "Mgid",
+      "gravity": 94,
+      "ad_id": "4991476020",
+      "last_seen": "2026-11-12"
+    }
+  },
+  "first_seen": "2026-06-11",
+  "last_seen": "2026-11-12",
+  "movimentos": {
+    "testando": [
+      "4991476020"
+    ],
+    "parado": [
+      "5011499860"
+    ]
+  },
+  "funil": {
+    "leitura": "dominio_da_rede",
+    "cloaking": "https://adskeeper.co.uk/ redireciona (302) para https://www.adskeeper.com/, o site institucional da rede AdsKeeper.",
+    "nota": "Dois anúncios desta coleta têm adskeeper.co.uk como lander_domain, com imagens idênticas (phash hamming 0) a criativos de pgsrc.com e headlines traduzidas do mesmo ângulo médico. O mais provável é o Anstrex ter gravado o domínio de clique/tracker da rede, não uma segunda loja. Não contar como lateralização de domínio de oferta."
+  },
+  "anuncios": [
+    {
+      "ad_id": "4991476020",
+      "ad_url": "https://native.anstrex.com/creative/panel/4991476020",
+      "rede": "Mgid",
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_lajmin_net_2026_06_11_7667b9e8.webp",
+      "gravity": 94,
+      "ad_strength": 8174,
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-11-12",
+      "dias_entre_primeira_e_ultima": 154,
+      "idioma_inferido": "da",
+      "geo_hint": "DK",
+      "views": "A",
+      "angle_id": "HEAR-A1",
+      "movimento": "testando"
+    },
+    {
+      "ad_id": "5011499860",
+      "ad_url": "https://native.anstrex.com/creative/panel/5011499860",
+      "rede": "Mgid",
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_06_17_17f660b7.webp",
+      "gravity": 30,
+      "ad_strength": 4899,
+      "first_seen": "2026-06-17",
+      "last_seen": "2026-11-08",
+      "dias_entre_primeira_e_ultima": 144,
+      "idioma_inferido": "fr",
+      "geo_hint": "BE",
+      "views": "B",
+      "angle_id": "HEAR-A1",
+      "movimento": "parado"
+    }
+  ],
+  "diff_desde_ontem": "Esta é a primeira rodada; não há o que entrou ou saiu desde a última rodada."
+}

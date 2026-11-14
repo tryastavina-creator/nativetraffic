@@ -1,0 +1,57 @@
+{
+  "data_coleta": "2026-11-14",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "candyai.gg",
+  "status": "volumando",
+  "flag": "lander_suspeita_ou_captura_errada",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach"
+  ],
+  "max_gravity": 240,
+  "gravity_por_rede": {
+    "mgid": {
+      "rede": "Mgid",
+      "gravity": 240,
+      "ad_id": "5285005751",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-08-27",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "5285005751"
+    ]
+  },
+  "funil": {
+    "leitura": "oferta_nao_relacionada",
+    "cloaking": "https://candyai.gg/ redireciona (301) para https://candy.ai/, um site de companhia/chat com IA, sem relação com audição ou zumbido.",
+    "nota": "O Anstrex gravou candyai.gg como lander de um anúncio eslovaco com a mesma headline do naturegrove24.com, mas a imagem é outra (ilustração, phash distância 20) e o destino não é uma oferta de hearing. Tratar como captura suspeita/errada do domínio da lander, não como loja lateralizada confirmada."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5285005751",
+      "ad_url": "https://native.anstrex.com/creative/panel/5285005751",
+      "rede": "Mgid",
+      "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_08_27_86a9b522.webp",
+      "gravity": 240,
+      "ad_strength": 2518,
+      "first_seen": "2026-08-27",
+      "last_seen": "2026-11-14",
+      "dias_entre_primeira_e_ultima": 79,
+      "idioma_inferido": "sk",
+      "geo_hint": "SK",
+      "views": "A+D+G",
+      "angle_id": "HEAR-A2",
+      "movimento": "volumando"
+    }
+  ],
+  "diff_desde_ontem": "Esta é a primeira rodada; não há o que entrou ou saiu desde a última rodada."
+}
