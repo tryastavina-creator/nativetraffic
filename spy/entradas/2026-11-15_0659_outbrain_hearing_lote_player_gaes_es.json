@@ -1,0 +1,104 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "gaes.es",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GAES (Amplifon)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 4,
+  "headlines": [
+    "Prueba GRATIS audífonos personalizados que se adaptan a ti",
+    "La audición se pone a prueba cada día, descubre más.",
+    "Buscan españoles para probar los audífonos \"casi invisibles\"",
+    "¿Subes mucho el volumen de la tele? Revisa tu audición."
+  ],
+  "max_gravity": 489,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 489,
+      "ad_id": "4891781158",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-04-16",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "testando": [
+      "4881189697"
+    ],
+    "escalando": [
+      "4891781158",
+      "5319426720",
+      "4750389061"
+    ],
+    "volumando": [
+      "4905161819"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "4891781158",
+      "network": "Outbrain",
+      "gravity": 489,
+      "headline": "La audición se pone a prueba cada día, descubre más.",
+      "first_seen": "2026-05-19",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mundodeportivo_com_2026_05_19_6d9c4b81.jpg"
+    },
+    {
+      "ad_id": "4750389061",
+      "network": "Outbrain",
+      "gravity": 236,
+      "headline": "¿Subes mucho el volumen de la tele? Revisa tu audición.",
+      "first_seen": "2026-04-16",
+      "last_seen": "2026-11-13",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mundodeportivo_com_2026_04_16_6d51e7c6.png"
+    },
+    {
+      "ad_id": "5319426720",
+      "network": "Outbrain",
+      "gravity": 153,
+      "headline": "Buscan españoles para probar los audífonos \"casi invisibles\"",
+      "first_seen": "2026-09-02",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_diariosur_es_2026_09_02_21020526.png"
+    },
+    {
+      "ad_id": "4905161819",
+      "network": "Outbrain",
+      "gravity": 135,
+      "headline": "¿Subes mucho el volumen de la tele? Revisa tu audición.",
+      "first_seen": "2026-05-23",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_xataka_com_2026_05_23_a679a86b.png"
+    },
+    {
+      "ad_id": "4881189697",
+      "network": "Outbrain",
+      "gravity": 79,
+      "headline": "Prueba GRATIS audífonos personalizados que se adaptan a ti",
+      "first_seen": "2026-05-17",
+      "last_seen": "2026-11-12",
+      "movimento": "testando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eleconomista_es_2026_05_17_5c2aee18.png"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 907→489; n anúncios agora 5."
+}

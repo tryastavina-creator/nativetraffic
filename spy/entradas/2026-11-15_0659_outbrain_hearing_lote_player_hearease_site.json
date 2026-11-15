@@ -1,0 +1,148 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hearease.site",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 9,
+  "n_headlines": 2,
+  "headlines": [
+    "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+    "Se soffrite di un calo dell'udito, leggete questo articolo oggi stesso!"
+  ],
+  "max_gravity": 263,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 263,
+      "ad_id": "5632726234",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-11-10",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5632726234",
+      "5637092869",
+      "5638493000",
+      "5635509291",
+      "5634416989",
+      "5634125014",
+      "5634427215"
+    ],
+    "parado": [
+      "5623248397",
+      "5623517837"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5632726234",
+      "network": "Outbrain",
+      "gravity": 263,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_iltempo_it_2026_11_12_ab9d2e51.webp"
+    },
+    {
+      "ad_id": "5634416989",
+      "network": "Outbrain",
+      "gravity": 199,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_altervista_org_2026_11_12_285c126e.webp"
+    },
+    {
+      "ad_id": "5638493000",
+      "network": "Outbrain",
+      "gravity": 180,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_stol_it_2026_11_13_4bfc7bc4.webp"
+    },
+    {
+      "ad_id": "5634125014",
+      "network": "Outbrain",
+      "gravity": 165,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_quattroruote_it_2026_11_12_5f2170b4.webp"
+    },
+    {
+      "ad_id": "5637092869",
+      "network": "Outbrain",
+      "gravity": 150,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gazzettadiparma_it_2026_11_13_37511b47.webp"
+    },
+    {
+      "ad_id": "5635509291",
+      "network": "Outbrain",
+      "gravity": 150,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_allfreesewing_com_2026_11_13_64882ab6.webp"
+    },
+    {
+      "ad_id": "5634427215",
+      "network": "Outbrain",
+      "gravity": 150,
+      "headline": "Trovata la causa di acufeni e vertigini! La soluzione vi sorprenderà",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-12",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_ilgiornaleditalia_it_2026_11_12_47357e6b.webp"
+    },
+    {
+      "ad_id": "5623248397",
+      "network": "Outbrain",
+      "gravity": 105,
+      "headline": "Se soffrite di un calo dell'udito, leggete questo articolo oggi stesso!",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gazzettadiparma_it_2026_11_10_b44b34b7.webp"
+    },
+    {
+      "ad_id": "5623517837",
+      "network": "Outbrain",
+      "gravity": 86,
+      "headline": "Se soffrite di un calo dell'udito, leggete questo articolo oggi stesso!",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gazzettadiparma_it_2026_11_10_bb20a530.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 525→263; n anúncios agora 9."
+}
