@@ -1,27 +1,27 @@
 # Movimentos — neuropathy
 
-Coleta de 2026-11-14, primeira rodada, 137 anúncios. Sem comparação com ontem.
+Coleta de 2026-11-15, comparado com 2026-11-14.
 
-## Resumo por classe
-
-- **Escalando:** adskeeper.co.uk (5847), liyng.com (3487), myvita.day (1584), evidwell.com (1231), washbosswhale.beauty (1006), beauty-ri.click (700), solveclocktext.space (684), green-ri.click (586), science-actualite.com (498), news360.pro (359)
-- **Volumando:** wellnessgaze.com (320), tadahitasurakeizoku.click (135)
-- **Lancando:** wexiy.com (243), doctornewseu.com (135), bienvital.digital (120), lifetechadviser.com (16), dailycarepro.com (0), seniorwellnessdigest.com (0), daetumblejauks.top (0), vitalpfad.shop (0), healingdaily.site (0), nervenratgeber.de (0), apothekenblatt.de (0), portalsaudenews.com (0)
-- **Parado:** gesundheits-beratung.net (118), natural-my.click (75), candy.ai (44), linfaflowstore.online (1)
+- **Escalando:** adskeeper.co.uk (5847), liyng.com (3487), myvita.day (1584), evidwell.com (1231), washbosswhale.beauty (1006), beauty-ri.click (700), solveclocktext.space (684), green-ri.click (586), wellnessgaze.com (520), science-actualite.com (498), healthweekly.info (484), news360.pro (359), integratedsupplementlatam.fun (330), wexiy.com (264)
+- **Volumando:** tadahitasurakeizoku.click (197)
+- **Lancando:** healthvanta.org (230), heartlandhealthjournal.com (175), doctornewseu.com (135), bienvital.digital (120), globallaunch.store (105), healingdaily.site (90), lifetechadviser.com (65), thejornalwest.com (0), healthnervess.online (0), trylevinasilka.com (0), dailycarepro.com (0), seniorwellnessdigest.com (0), daetumblejauks.top (0), vitalpfad.shop (0), nervenratgeber.de (0), apothekenblatt.de (0), portalsaudenews.com (0)
+- **Parado:** smoothspine.com (420), gesundheits-beratung.net (118), natural-my.click (75), agewelljournal.com (52), candy.ai (44), wellnesswiredaily.com (7), nervehealthtodayy.com (1), getorevive.com (1), linfaflowstore.online (1)
 
 ## Tendências
+- wellnessgaze.com saiu de volumando (320) para escalando na Revcontent (520, acima do piso 400 da rede), com dezenas de variações do ângulo When The Burning, Tingling and Numbness Won't Stop. A rechecagem R mostrou que o mesmo domínio também roda diabetes/emagrecimento (excluídos).
+- Novo player healthweekly.info escala na Revcontent (484) com Neurologists Beg Seniors Stop Doing This Now; healthvanta.org lança a mesma headline (230). As duas landers falharam (TLS/500 e 403).
+- integratedsupplementlatam.fun escala na Outbrain (330, 16 anúncios desde 13/11, vitaminas / every night before sleep). globallaunch.store lança headlines próximas (105). As duas raízes são a mesma página padrão da Hostinger (MD5 idêntico).
+- wexiy.com passou de lançando para escalando (243 para 264 Outbrain) com a mesma headline DE da liyng.com. A liyng segue com máx. histórico 3487. A visão R da liyng trouxe anúncios de sapatos a 59 euros, excluídos do nicho.
+- tadahitasurakeizoku.click subiu de 135 para 197 na Popin e segue volumando. evidwell e adskeeper mantêm no histórico os máximos 1231 e 5847 (não reapareceram hoje); evidwell teve novas variações até 460.
+- smoothspine.com chegou a 420 na Revcontent mas está parado (última vista 10/11).
 
-- Na MGID, a maior gravidade (5847) está gravada em adskeeper.co.uk com 'Neuropathie (brennende Füße)? Machen Sie das sofort' e a imagem da meia de alumínio; a mesma peça roda em evidwell.com (1231). Tratar adskeeper como tracker e evidwell como lander candidata (raiz ainda placeholder).
-- Um segundo bloco MGID — 'leia antes que apaguem', '1/2 xícara' e '2 plantas' — é um único anunciante com muitos domínios (myvita.day 1584, washbosswhale 1006, beauty-ri 700, solveclocktext 684, green-ri 586), imagens idênticas e landers vazias no acesso direto.
-- Na Outbrain, liyng.com disparou desde 10/11 com 18 variações da mesma headline de pés dormentes na diabetes (até 3487). wexiy.com repete o texto. A thumbnail é uma bota de inverno; a oferta não foi lida (TLS falhou).
-- science-actualite.com sustenta o ângulo francês de formigamento (498, desde agosto); a raiz não mostrou essa oferta.
-- Na Revcontent, wellnessgaze.com volumando (máx. 320, abaixo do piso 400), 16 anúncios em inglês desde 2025, blog de lead-gen na raiz.
-- AdNow: news360.pro 359 (sérvio cirílico, 'pare de comer isto'), 403 nesta visita. Popin: tadahitasurakeizoku.click até 135, raiz placeholder da Xserver.
+## Testes promissórios
+- healingdaily.site: 11+ anúncios Outbrain desde 14/11, máx. 90, headline DE Die Wahrheit über Neuropathie; phash 4 com wellnesswiredaily.com (NewsMax 7, já parado).
+- thejornalwest.com, healthnervess.online e trylevinasilka.com: testes de gravidade 0 em 15/11 (3 everyday foods, When Neuropathy Hits, symptoms intensify after dark).
+- heartlandhealthjournal.com: 6 anúncios Revcontent (máx. 175, 13/11) com aviso de dormência permanente; a raiz é um blog de artigos, sem produto visível.
+- getorevive.com (parado, gravidade 1, 03/11) ecoa a headline Won't Stop, Rub This do cluster globallaunch / wellnessgaze.
 
-## Testes promissores
-
-- `5641220098` · AdsKeeper · evidwell.com · gravidade 0. Teste de 14/11 da headline alemã que já escala (5847/1231), agora na AdsKeeper.
-- `5640011868` · Mgid · seniorwellnessdigest.com · gravidade 0. Mesma headline alemã em um terceiro domínio, primeira vista em 14/11.
-- `5640668900` · AdsKeeper · dailycarepro.com · gravidade 0. Leva de testes PL 'neurologista pede que parem', 14/11, também gravada em adskeeper.co.uk.
-- `5639419096` · Taboola · vitalpfad.shop · gravidade 0. Teste DE 'Neuropathie (Nervenschmerzen)? Probieren Sie das heute Abend', 14/11, Taboola.
-- `5638221984` · Taboola · portalsaudenews.com · gravidade 0. Teste PT 'formigamento e queimação nos pés? faça isso antes de dormir', 13/11.
+## Diff vs 14/11 (resumo)
+- Anúncios novos no nicho: 112; atualizados: 36; só no histórico: 101.
+- Players novos: healthweekly.info (escalando 484), integratedsupplementlatam.fun (escalando 330), healthvanta.org (lancando 230), heartlandhealthjournal.com (lancando 175), globallaunch.store (lancando 105), thejornalwest.com (lancando 0), healthnervess.online (lancando 0), trylevinasilka.com (lancando 0), smoothspine.com (parado 420), agewelljournal.com (parado 52), wellnesswiredaily.com (parado 7), nervehealthtodayy.com (parado 1), getorevive.com (parado 1).
+- Classes: wellnessgaze.com volumando→escalando; wexiy.com lancando→escalando.
