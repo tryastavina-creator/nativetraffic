@@ -1,28 +1,29 @@
 # Movimentos — hearing
 
-Coleta de 2026-11-14, 2ª passagem (100 anúncios). Sem comparação com ontem. Em relação à 1ª passagem de hoje, a busca por termo solto trouxe as redes e as marcas que faltavam; lphst.com deixou de estar parado.
+Coleta de 2026-11-15, comparado com 2026-11-14.
 
-## Resumo por classe
-
-- **Escalando:** buyhears.com (40371), audionovabrasil.com.br (5922), neotex.pro (4335), hear-pro.com (958), hearclear.com (956), gaes.es (907), wonderbanana.com (688), bonne-audition.fr (675), chudopolsko.info (655), naturegrove24.com (625), hearease.site (525), seravia.info (410), geers.de (300)
-- **Volumando:** eidikosvarikoias.gr (294), candyai.gg (240), lphst.com (231), pgsrc.com (215), wellnessgaze.com (181)
-- **Lancando:** vivason.fr (245), geers.pl (220), adskeeper.co.uk (205), trendy-info.jp (172), deutscher-gesundheits-fachkreis.de (0), dailylifeinsider.com (0), audibene.nl (0), checkfox.de (0), apparecchiacustici.philips (0), audibene.de (0), perfectadd.art (0)
-- **Parado:** pawer-growls-palps.rest (92)
+- **Escalando:** buyhears.com (40371), audionovabrasil.com.br (5922), neotex.pro (4335), hear-pro.com (958), hearclear.com (956), wonderbanana.com (688), bonne-audition.fr (675), chudopolsko.info (655), naturegrove24.com (625), gaes.es (489), hear.com (466), auditorey.co (428), connecthearing.ca (426), seravia.info (395), bookappointmentonline.com (360), geers.de (300), gesund-vital-ratgeber.org (296), healthmatters24.com (281), hearease.site (263)
+- **Volumando:** news360.pro (257), lphst.com (230), eidikosvarikoias.gr (217), pgsrc.com (211), adskeeper.co.uk (205), curiositaviva.com (197), candyai.gg (187), wellnessgaze.com (181), drugie-ucho.pl (137), life-dzen.com (132)
+- **Lancando:** auditorey.com (407), herelnd.com (280), livenfermstizzy.top (255), vivason.fr (255), geers.pl (220), trendy-info.jp (172), hertsad.co.uk (75), dailylifeinsider.com (0), santeflux.com (0), deutscher-gesundheits-fachkreis.de (0), basis-rases-wacky.rest (0), smarthealthmag.com (0), kalmeda.de (0), audibene.nl (0), afftrack.one (0), audibene.de (0), checkfox.de (0), apparecchiacustici.philips (0), perfectadd.art (0)
+- **Parado:** pawer-growls-palps.rest (92), revue-bien-etre.com (1), rrisinsh.com (1), gutes-hoeren.de (1), centros-auditivos.es (1)
 
 ## Tendências
+- Novos players de marca/lead-gen entram com força na Taboola e na Revcontent: hear.com (466 Taboola / 446 Revcontent, teste sem risco, aparelhos alemães, elegibilidade por cidade), Auditorey (428 AU e 407 NZ, mesmo lander www2.auditorey.com) e Connect Hearing Canadá (426, Sonova/Phonak).
+- bookappointmentonline.com (360, anúncio de teste grátis da Amplifon em Toronto) também escala na Taboola, mas a lander não abriu (TLS/404/500).
+- O criativo de 1 euro de naturegrove24.com saltou de 181 para 520 na MGID; o anúncio 625 não reapareceu hoje e permanece no histórico (máx. do player segue 625).
+- GAES caiu de 907 para 489 na Outbrain e hearease.site de 525 para 263; os dois continuam escalando nessa rede (piso 150).
+- buyhears.com (40371) e AudioNova (5922) não reapareceram na coleta de hoje; foram mantidos no histórico com última vista em 14/11. A rechecagem R da AudioNova mostrou anúncios de tênis (516) e ar-portátil (482), excluídos do nicho.
+- Novo DR eslovaco/checo: healthmatters24.com (Outbrain 281, método Babkina, lander 403) e livenfermstizzy.top (MGID 255, advertorial Otorincaps).
 
-- Na Revcontent, buyhears.com (tampões Hears, DTC) é o anúncio de maior gravidade desta coleta nessa rede (40371), ativo desde julho, com visual lifestyle que parece um intra-auricular.
-- Na Taboola, o varejo de aparelhos escala com força: AudioNova Brasil 5922 (teste grátis 7 dias, Phonak na palma), hear-pro 958 e hearclear 956 (lead-gen). seravia.info (tinnitus, 410) é DR, não varejo.
-- No AdNow, neotex.pro (cera / método da avó, 4335) é o único anúncio da rede nesta coleta; a lander deu 522.
-- Na Outbrain, marcas e lead-gen de aparelho (GAES 907, Audibene/bonne-audition 675, GEERS 300) convivem com o DR hearease.site (525, travesseiro Derila, 4 variações desde 12/11).
-- Na AdsKeeper, um anunciante escala com o testemunho 'aos 78 anos escuto sem aparelho' e o 'cirurgião revela', lateralizado entre wonderbanana.com (688) e chudopolsko.info (655), primeiro visto em 07/11.
-- Na MGID, o líder continua sendo naturegrove24.com (625 e 351, imperativo eslovaco). pgsrc.com segue volumando no ângulo médico FR/DA (máx. 215). lphst.com, que estava parado na 1ª passagem, voltou a volumando (231) com headlines de biólogo/cirurgião em francês.
-- Popin entra com trendy-info.jp (hábito de 5 segundos, gravidade 172, lançando).
+## Testes promissórios
+- santeflux.com: 3 testes Taboola de gravidade 0 em 14/11 com When Tinnitus Won't Stop (headline próxima da de wellnessgaze).
+- basis-rases-wacky.rest: teste AdsKeeper de 15/11 do ângulo cirurgião revela, headline idêntica à do cluster wonderbanana.
+- kalmeda.de: teste Outbrain de 14/11 da app de zumbido (terapia grátis em 3 passos).
+- dailylifeinsider.com: novas traduções de gravidade 0 (DA, IT, FR, PL, TR) do testemunho lutei anos contra o zumbido.
+- afftrack.one: dois testes Outbrain de 15/11 de lista de preços de aparelhos 2026 (domínio parece tracker).
+- herelnd.com: 4 anúncios MGID em hebraico (médico/cirurgião, 280 e 155) desde 13/11; a raiz é white page noindex.
 
-## Testes promissores
-
-- `5626467889` · Mgid · pgsrc.com · gravidade 0. Único lançamento da 1ª passagem ainda no ar (alho no ouvido, headline médica DA, 11/11).
-- `5640846034` · AdsKeeper · wonderbanana.com · gravidade 0. Teste de 14/11 do ângulo 'cirurgião revela' no mesmo domínio que já escala o testemunho dos 78 anos (688).
-- `5640676466` · AdsKeeper · chudopolsko.info · gravidade 0. Tradução PL do testemunho dos 78 anos, primeira vista em 14/11, no domínio lateralizado.
-- `5641121990` · AdsKeeper · chudopolsko.info · gravidade 0. Tradução RO do 'cirurgião revela', 14/11, mesma imagem do teste de wonderbanana (phash 0).
-- `5632726234` · Outbrain · hearease.site · gravidade 525. Ângulo novo (causa do zumbido/vertigem) com 4 variações desde 12/11; a thumbnail é isca de cebola, a lander é o travesseiro Derila Ergo.
+## Diff vs 14/11 (resumo)
+- Anúncios novos no nicho: 110; atualizados: 17; só no histórico: 83.
+- Players novos: hear.com (escalando 466), auditorey.co (escalando 428), connecthearing.ca (escalando 426), bookappointmentonline.com (escalando 360), gesund-vital-ratgeber.org (escalando 296), healthmatters24.com (escalando 281), news360.pro (volumando 257), curiositaviva.com (volumando 197), drugie-ucho.pl (volumando 137), life-dzen.com (volumando 132), auditorey.com (lancando 407), herelnd.com (lancando 280), livenfermstizzy.top (lancando 255), hertsad.co.uk (lancando 75), santeflux.com (lancando 0), basis-rases-wacky.rest (lancando 0), smarthealthmag.com (lancando 0), kalmeda.de (lancando 0), afftrack.one (lancando 0), revue-bien-etre.com (parado 1), rrisinsh.com (parado 1), gutes-hoeren.de (parado 1), centros-auditivos.es (parado 1).
+- Classes: adskeeper.co.uk lancando→volumando.

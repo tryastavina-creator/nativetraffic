@@ -1,11 +1,6 @@
 {
   "nicho": "hearing",
-  "data_coleta": "2026-11-14",
-  "dominios_proprios": [],
-  "marcas": [],
-  "status": "Nenhum domínio próprio ou marca foi configurado ainda. Esta seção permanece vazia.",
-  "anuncios_ativos": [],
-  "gravidade_por_rede": {},
-  "concorrentes_que_copiam": [],
-  "landers_quebradas": []
+  "data_coleta": "2026-11-15",
+  "dominios": [],
+  "nota": "Nenhum domínio próprio configurado."
 }
