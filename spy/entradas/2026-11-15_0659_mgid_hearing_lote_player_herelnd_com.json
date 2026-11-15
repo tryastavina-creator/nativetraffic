@@ -1,0 +1,89 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "herelnd.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 2,
+  "headlines": [
+    "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+    "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!"
+  ],
+  "max_gravity": 280,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 280,
+      "ad_id": "5636707785",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643669324",
+      "5640008164",
+      "5644734623",
+      "5636707785"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "white_page",
+    "nota": "HTTP 200 com página branca, meta robots noindex,nofollow — sinal de cloaking/white page. Oferta não lida."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5636707785",
+      "network": "Mgid",
+      "gravity": 280,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_vse-knigi_org_2026_11_13_b617212a.webp"
+    },
+    {
+      "ad_id": "5640008164",
+      "network": "Mgid",
+      "gravity": 155,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_queroreceitasoberana_com_br_2026_11_14_b9ea4dea.webp"
+    },
+    {
+      "ad_id": "5643669324",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infoburgas_com_2026_11_15_bbb95e7a.webp"
+    },
+    {
+      "ad_id": "5644734623",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_kaltengtoday_com_2026_11_15_7a0b179c.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

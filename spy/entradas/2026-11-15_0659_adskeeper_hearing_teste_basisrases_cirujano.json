@@ -1,0 +1,33 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "teste_promissor",
+  "visao": "A+C+F",
+  "ad_id": "5644551063",
+  "ad_url": "https://native.anstrex.com/creative/panel/5644551063",
+  "rede": "AdsKeeper",
+  "rede_slug": "adskeeper",
+  "headline": "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_15_d5b87dbf.webp",
+  "lander_domain": "basis-rases-wacky.rest",
+  "gravity": 0,
+  "ad_strength": 0,
+  "first_seen": "2026-11-15",
+  "last_seen": "2026-11-15",
+  "dias_entre_primeira_e_ultima": "",
+  "idioma_inferido": "es",
+  "geo_hint": "CL",
+  "tags": "",
+  "search_term": "tinnitus (Translated Text)",
+  "angle_id": "HEAR-A6",
+  "movimento": "lancando",
+  "por_que": "Teste AdsKeeper de gravidade 0 em 15/11 com a headline Un cirujano revela, idêntica à do cluster wonderbanana/chudopolsko/adskeeper. Provável nova lander do mesmo anunciante (domínio .rest).",
+  "n_anuncios_do_player": 1,
+  "n_headlines_do_player": 1,
+  "dominios_ligados": [
+    "wonderbanana.com",
+    "chudopolsko.info",
+    "adskeeper.co.uk"
+  ]
+}
