@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "basis-rases-wacky.rest",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5644551063",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-15",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5644551063"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "wonderbanana.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5644551063",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_15_d5b87dbf.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

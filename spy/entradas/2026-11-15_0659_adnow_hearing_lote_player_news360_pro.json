@@ -1,0 +1,62 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "news360.pro",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdNow"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
+    "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos."
+  ],
+  "max_gravity": 257,
+  "gravity_por_rede": {
+    "adnow": {
+      "network": "AdNow",
+      "gravity": 257,
+      "ad_id": "5059609664",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-06-29",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "volumando": [
+      "5062055168",
+      "5059609664"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5059609664",
+      "network": "AdNow",
+      "gravity": 257,
+      "headline": "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos.",
+      "first_seen": "2026-06-29",
+      "last_seen": "2026-11-13",
+      "movimento": "volumando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_skandalno_net_2026_06_29_a2448f86.webp"
+    },
+    {
+      "ad_id": "5062055168",
+      "network": "AdNow",
+      "gravity": 197,
+      "headline": "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
+      "first_seen": "2026-06-30",
+      "last_seen": "2026-11-13",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_fumara_gr_2026_06_30_178b1bfa.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
