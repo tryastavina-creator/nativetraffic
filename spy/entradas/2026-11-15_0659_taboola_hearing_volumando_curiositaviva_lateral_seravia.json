@@ -1,0 +1,31 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "volumando",
+  "visao": "D",
+  "ad_id": "5599095808",
+  "ad_url": "https://native.anstrex.com/creative/panel/5599095808",
+  "rede": "Taboola",
+  "rede_slug": "taboola",
+  "headline": "Аcufеne? Gli esрerti parlano di un dettaglio сhe quasi nessunо рrende sul seriо.",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_social-magazine_it_2026_11_04_1ae68b5f.jpg",
+  "lander_domain": "curiositaviva.com",
+  "gravity": 197,
+  "ad_strength": 1534,
+  "first_seen": "2026-11-04",
+  "last_seen": "2026-11-15",
+  "dias_entre_primeira_e_ultima": 11,
+  "idioma_inferido": "ru",
+  "geo_hint": "IT",
+  "tags": "Health & Wellness",
+  "search_term": "hearing (Translated Text)",
+  "angle_id": "HEAR-OUTRO",
+  "movimento": "volumando",
+  "por_que": "Player novo. Taboola 197, headline IT de acufene / especialistas falam de um detalhe, com letras cirílicas disfarçadas. Imagem idêntica (phash 0) à de seravia.info. A raiz é um blog de lifestyle em Parma, sem a oferta do anúncio — o mesmo padrão da seravia (blog de Berlim).",
+  "n_anuncios_do_player": 1,
+  "n_headlines_do_player": 1,
+  "dominios_ligados": [
+    "seravia.info"
+  ]
+}

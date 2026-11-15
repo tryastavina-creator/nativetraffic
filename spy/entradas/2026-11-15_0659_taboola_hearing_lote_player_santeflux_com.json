@@ -1,0 +1,76 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "santeflux.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Ringing Ears? MD's: When Tinnitus Won't Stop, Do This (Watch)",
+    "Severe Tinnitus Has Been Linked to a Common Habit"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5640961373",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5640961373",
+      "5640581455",
+      "5640495647"
+    ]
+  },
+  "dominios_ligados": [
+    "wellnessgaze.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5640961373",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ringing Ears? MD's: When Tinnitus Won't Stop, Do This (Watch)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fox5dc_com_2026_11_14_150a7ea0.jpg"
+    },
+    {
+      "ad_id": "5640581455",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ringing Ears? MD's: When Tinnitus Won't Stop, Do This (Watch)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sportsjoe_ie_2026_11_14_684f78d2.jpg"
+    },
+    {
+      "ad_id": "5640495647",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Severe Tinnitus Has Been Linked to a Common Habit",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_armaghi_com_2026_11_14_d19a6ed4.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
