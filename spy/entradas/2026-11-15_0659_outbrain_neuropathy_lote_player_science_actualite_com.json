@@ -1,0 +1,321 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "science-actualite.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 23,
+  "n_headlines": 3,
+  "headlines": [
+    "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+    "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+    "Picotements dans les pieds ou les mains ? Faites ceci chaque matin"
+  ],
+  "max_gravity": 498,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 498,
+      "ad_id": "5304640173",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-08-03",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643325078",
+      "5635467265",
+      "5640286622",
+      "5639777452",
+      "5637009844",
+      "5635738562",
+      "5644547912",
+      "5640287963",
+      "5636758980",
+      "5635468095"
+    ],
+    "parado": [
+      "5622384143",
+      "5611623884"
+    ],
+    "escalando": [
+      "5366689683",
+      "5377362031",
+      "5568289134",
+      "5361547771",
+      "5195258704",
+      "5304640173",
+      "5277765630",
+      "5492288163",
+      "5291904741"
+    ],
+    "volumando": [
+      "5368304601",
+      "5375515663"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5304640173",
+      "network": "Outbrain",
+      "gravity": 498,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-08-30",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_cosmopolitan_fr_2026_08_30_ce70d5f3.webp"
+    },
+    {
+      "ad_id": "5277765630",
+      "network": "Outbrain",
+      "gravity": 356,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_08_25_9206a97a.webp"
+    },
+    {
+      "ad_id": "5361547771",
+      "network": "Outbrain",
+      "gravity": 263,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-09-10",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_journaldesfemmes_fr_2026_09_10_a8653c07.webp"
+    },
+    {
+      "ad_id": "5377362031",
+      "network": "Outbrain",
+      "gravity": 190,
+      "headline": "Picotements dans les pieds ou les mains ? Faites ceci chaque matin",
+      "first_seen": "2026-09-14",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_09_14_41a6936d.webp"
+    },
+    {
+      "ad_id": "5195258704",
+      "network": "Outbrain",
+      "gravity": 187,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-08-03",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_08_03_516d7cb4.webp"
+    },
+    {
+      "ad_id": "5492288163",
+      "network": "Outbrain",
+      "gravity": 173,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-10-08",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_10_08_d8ab8820.webp"
+    },
+    {
+      "ad_id": "5291904741",
+      "network": "Outbrain",
+      "gravity": 163,
+      "headline": "Picotements dans les pieds ou les mains ? Faites ceci chaque matin",
+      "first_seen": "2026-08-28",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_cosmopolitan_fr_2026_08_28_a52ade0b.webp"
+    },
+    {
+      "ad_id": "5366689683",
+      "network": "Outbrain",
+      "gravity": 158,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-09-11",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_09_11_6a60140b.webp"
+    },
+    {
+      "ad_id": "5568289134",
+      "network": "Outbrain",
+      "gravity": 155,
+      "headline": "Picotements dans les pieds ou les mains ? Faites ceci chaque matin",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_10_27_9925fdf8.webp"
+    },
+    {
+      "ad_id": "5368304601",
+      "network": "Outbrain",
+      "gravity": 133,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-09-12",
+      "last_seen": "2026-11-12",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_cosmopolitan_fr_2026_09_12_212c0357.webp"
+    },
+    {
+      "ad_id": "5375515663",
+      "network": "Outbrain",
+      "gravity": 124,
+      "headline": "Picotements dans les pieds ou les mains ? Faites ceci chaque matin",
+      "first_seen": "2026-09-13",
+      "last_seen": "2026-11-14",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_marieclaire_fr_2026_09_13_d123cfdd.webp"
+    },
+    {
+      "ad_id": "5635738562",
+      "network": "Outbrain",
+      "gravity": 90,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_infoconcert_com_2026_11_13_c17c875f.webp"
+    },
+    {
+      "ad_id": "5611623884",
+      "network": "Outbrain",
+      "gravity": 25,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-07",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bfmtv_com_2026_11_07_399c6ace.webp"
+    },
+    {
+      "ad_id": "5622384143",
+      "network": "Outbrain",
+      "gravity": 4,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_revolution-energetique_com_2026_11_10_d5269583.webp"
+    },
+    {
+      "ad_id": "5643325078",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_commentcamarche_net_2026_11_15_dfe69c4c.webp"
+    },
+    {
+      "ad_id": "5635467265",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lequipe_fr_2026_11_13_7f7f7e8b.webp"
+    },
+    {
+      "ad_id": "5640286622",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_commentcamarche_net_2026_11_14_864a952e.webp"
+    },
+    {
+      "ad_id": "5639777452",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_commentcamarche_net_2026_11_14_12543359.webp"
+    },
+    {
+      "ad_id": "5637009844",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La clé pour soulager les sensations de fourmillements, picotements, engourdissements et brûlures",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_latribune_fr_2026_11_13_c8c5b224.webp"
+    },
+    {
+      "ad_id": "5644547912",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lebonbon_fr_2026_11_15_d7255fbf.webp"
+    },
+    {
+      "ad_id": "5640287963",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_commentcamarche_net_2026_11_14_8cd50fc3.webp"
+    },
+    {
+      "ad_id": "5636758980",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_consoglobe_com_2026_11_13_2214d947.webp"
+    },
+    {
+      "ad_id": "5635468095",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Picotements dans les pieds ou les mains ? Truc simple pour les soulager",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lequipe_fr_2026_11_13_4b5a4633.webp"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 23."
+}

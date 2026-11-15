@@ -1,0 +1,241 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "integratedsupplementlatam.fun",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 16,
+  "n_headlines": 6,
+  "headlines": [
+    "Neuropathy? Doctors Plead: Do This Every Night Before Sleep",
+    "Neurologists: Here’s How to Ease Neuropathy Overnight— Try This Tonight",
+    "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+    "Neuropathy? Try This Tonight (Before Bed)",
+    "This Vitamin Helps Calm Burning Feet After 50 — Leaving Doctors Speechless",
+    "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This"
+  ],
+  "max_gravity": 330,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 330,
+      "ad_id": "5638142413",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643509153",
+      "5644670116",
+      "5643508315",
+      "5644551457",
+      "5638142413",
+      "5638145912",
+      "5641452102",
+      "5640126608",
+      "5642960639",
+      "5640364665",
+      "5640126561",
+      "5644052906",
+      "5643492513",
+      "5642965686",
+      "5638120256",
+      "5643506986"
+    ]
+  },
+  "dominios_ligados": [
+    "getorevive.com",
+    "globallaunch.store",
+    "wellnessgaze.com"
+  ],
+  "funil": {
+    "leitura": "placeholder_hostinger",
+    "nota": "HTTP 200, página padrão da Hostinger (Está tudo pronto!). Corpo idêntico (mesmo MD5) ao de globallaunch.store. Oferta não lida; mesmo infra de hospedagem."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5638142413",
+      "network": "Outbrain",
+      "gravity": 330,
+      "headline": "Neuropathy? Doctors Plead: Do This Every Night Before Sleep",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_huffpost_com_2026_11_13_e715d5ba.webp"
+    },
+    {
+      "ad_id": "5638145912",
+      "network": "Outbrain",
+      "gravity": 270,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eastlothiancourier_com_2026_11_13_0d0c2df1.webp"
+    },
+    {
+      "ad_id": "5640126608",
+      "network": "Outbrain",
+      "gravity": 270,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_irvinetimes_com_2026_11_14_9580a28a.webp"
+    },
+    {
+      "ad_id": "5640364665",
+      "network": "Outbrain",
+      "gravity": 270,
+      "headline": "Neuropathy? Doctors Plead: Do This Every Night Before Sleep",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_foxnews_com_2026_11_14_6acc0c65.webp"
+    },
+    {
+      "ad_id": "5641452102",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_cagesideseats_com_2026_11_14_14464948.webp"
+    },
+    {
+      "ad_id": "5642960639",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "Neuropathy? Try This Tonight (Before Bed)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_decider_com_2026_11_14_f2d30d0c.webp"
+    },
+    {
+      "ad_id": "5640126561",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "This Vitamin Helps Calm Burning Feet After 50 — Leaving Doctors Speechless",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_irvinetimes_com_2026_11_14_085d7984.webp"
+    },
+    {
+      "ad_id": "5638120256",
+      "network": "Outbrain",
+      "gravity": 160,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_9news_com_au_2026_11_13_638ecea0.webp"
+    },
+    {
+      "ad_id": "5643509153",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy? Doctors Plead: Do This Every Night Before Sleep",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_nwemail_co_uk_2026_11_15_4b01b936.webp"
+    },
+    {
+      "ad_id": "5644670116",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neurologists: Here’s How to Ease Neuropathy Overnight— Try This Tonight",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_thenews_com_pk_2026_11_15_bf5f0e5c.webp"
+    },
+    {
+      "ad_id": "5643508315",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_globaltrademag_com_2026_11_15_e2e174b5.webp"
+    },
+    {
+      "ad_id": "5644551457",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_nine_com_au_2026_11_15_76566a28.webp"
+    },
+    {
+      "ad_id": "5644052906",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_oxfordmail_co_uk_2026_11_15_28273309.webp"
+    },
+    {
+      "ad_id": "5643492513",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_9now_com_au_2026_11_15_7a61e6c3.webp"
+    },
+    {
+      "ad_id": "5642965686",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "1 Vitamin You Need After 50 for Neuropathy and Nerve Pain",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_oxfordmail_co_uk_2026_11_14_d94e0c99.jpg"
+    },
+    {
+      "ad_id": "5643506986",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_thenational_scot_2026_11_15_3dc1694d.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
