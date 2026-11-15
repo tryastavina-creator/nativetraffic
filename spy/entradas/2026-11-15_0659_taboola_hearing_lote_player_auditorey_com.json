@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "auditorey.com",
+  "status": "lancando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Teste de aparelhos (AU/NZ) — confirmar na lander",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Wanted: New Zealanders who want to try high-tech hearing devices"
+  ],
+  "max_gravity": 407,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 407,
+      "ad_id": "5635106026",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5635106026"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_lead_gen_legivel",
+    "nota": "Mesmo destino que auditorey.co: https://www2.auditorey.com (teste grátis, fitting grátis, trial sem obrigação). Mesmo anunciante."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5635106026",
+      "network": "Taboola",
+      "gravity": 407,
+      "headline": "Wanted: New Zealanders who want to try high-tech hearing devices",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_1news_co_nz_2026_11_13_599c40b7.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

@@ -1,0 +1,78 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "auditorey.co",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Teste de aparelhos (AU/NZ) — confirmar na lander",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 3,
+  "headlines": [
+    "Sunday: We're Looking for People to try Revolutionary Hearing Aids for 14 Days",
+    "We're looking for people in Australia who want to try the latest high-tech hearing devices",
+    "Gov't Pays For New Hearing Aids"
+  ],
+  "max_gravity": 428,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 428,
+      "ad_id": "5632382490",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-08",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643291874",
+      "5632382490",
+      "5613726862"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_lead_gen_legivel",
+    "nota": "auditorey.co (Heroku 302) e auditorey.com apontam para o mesmo destino https://www2.auditorey.com. Teste de audição complementar, adaptação grátis do aparelho, trials sem obrigação. Mesmo anunciante para AU e NZ. Preço não visível na raiz."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5632382490",
+      "network": "Taboola",
+      "gravity": 428,
+      "headline": "We're looking for people in Australia who want to try the latest high-tech hearing devices",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_businessinsider_com_2026_11_12_178f375a.png"
+    },
+    {
+      "ad_id": "5613726862",
+      "network": "Taboola",
+      "gravity": 316,
+      "headline": "Gov't Pays For New Hearing Aids",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_newatlas_com_2026_11_08_e84dd877.png"
+    },
+    {
+      "ad_id": "5643291874",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Sunday: We're Looking for People to try Revolutionary Hearing Aids for 14 Days",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_bigfooty_com_2026_11_15_11ffe79d.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

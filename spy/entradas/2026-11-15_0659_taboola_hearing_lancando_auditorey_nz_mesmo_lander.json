@@ -1,0 +1,31 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "tendencia_nova",
+  "visao": "E",
+  "ad_id": "5635106026",
+  "ad_url": "https://native.anstrex.com/creative/panel/5635106026",
+  "rede": "Taboola",
+  "rede_slug": "taboola",
+  "headline": "Wanted: New Zealanders who want to try high-tech hearing devices",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_1news_co_nz_2026_11_13_599c40b7.jpg",
+  "lander_domain": "auditorey.com",
+  "gravity": 407,
+  "ad_strength": 1600,
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-15",
+  "dias_entre_primeira_e_ultima": 2,
+  "idioma_inferido": "",
+  "geo_hint": "NZ",
+  "tags": "Health & Wellness",
+  "search_term": "hearing (Translated Text)",
+  "angle_id": "HEAR-OUTRO",
+  "movimento": "lancando",
+  "por_que": "Taboola 407, first_seen 13/11, Wanted: New Zealanders who want to try high-tech hearing devices. O anúncio é lançamento (1 variação, 2 dias); o domínio irmão auditorey.co já escala. Os dois TLDs caem em www2.auditorey.com. Mesmo anunciante.",
+  "n_anuncios_do_player": 1,
+  "n_headlines_do_player": 1,
+  "dominios_ligados": [
+    "auditorey.co"
+  ]
+}

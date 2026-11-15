@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "bookappointmentonline.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Agenda de consulta; o anúncio cita Amplifon em Toronto",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Toronto: Amplifon is looking for people to join a free hearing test"
+  ],
+  "max_gravity": 360,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 360,
+      "ad_id": "5535957823",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-10-19",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "escalando": [
+      "5535957823"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "nao_legivel",
+    "nota": "TLS unexpected eof em https://bookappointmentonline.com/; www devolveu 404; http devolveu 500. Oferta não lida. O anúncio cita Amplifon em Toronto e teste grátis."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5535957823",
+      "network": "Taboola",
+      "gravity": 360,
+      "headline": "Toronto: Amplifon is looking for people to join a free hearing test",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_thebeaverton_com_2026_10_19_fa18bae2.png"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
