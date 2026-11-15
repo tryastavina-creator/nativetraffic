@@ -1,7 +1,7 @@
 # Anstrex Native playbook (v0.1, 2026-11-14)
 
 ## Acesso
-- native.anstrex.com/listing (login em app.anstrex.com/login; credencial no cofre do bot, id omitido neste repo público).
+- native.anstrex.com/listing (login em app.anstrex.com/login, credencial no cofre do bot, id omitido neste repo público).
 - Cloudflare bloqueia o navegador da nuvem no login; a sessão atual foi aberta pelo usuário na minha tela. Sessão expira à noite: o chat principal reloga e roda a coleta.
 
 ## Entrega
@@ -63,3 +63,13 @@
 - Cluster de lateralização forte (phash 0) entre myvita.day, green-ri.click, beauty-ri.click, washbosswhale.beauty, solveclocktext.space, linfaflowstore.online e adskeeper.co.uk, mesmo com headlines diferentes (1/2 xícara, "leia antes que apaguem", 2 plantas). Vários desses domínios devolveram HTTP 200 com corpo vazio (cloaking).
 - liyng.com escala na Outbrain (até 3487) com "Ständig taube Füße? Nervenschädigung bei Diabetes…", 18 variações desde 2026-11-10; a mesma headline está em wexiy.com (phash mínimo 14, acima de 8). TLS de liyng.com e wexiy.com falhou nesta visita.
 - science-actualite.com volumando/escalando na Outbrain (498); a raiz mostrou artigo de pele/nutrientes (noindex) com links para biovancia.com, não a oferta de neuropatia.
+
+## Coleta (2026-11-15)
+
+- Sliders (Days Running, Gravity, Ad-Strength) e o sort persistem entre buscas. Ao trocar o termo, conferir de novo os limites — eles podem herdar o intervalo anterior ou resetar para o novo resultado.
+- No painel do criativo, esperar o bloco "Site and Landing Page Information" carregar antes de anotar o domínio da lander (o drawer abre antes desse bloco).
+- A busca por Landing Page Domain (visão R nesta coleta) devolve também anúncios de outras categorias no mesmo domínio. Excluir os que estão claramente fora do nicho (ex.: tênis e ar-portátil na AudioNova; próstata/articulação no pgsrc; sapatos na liyng; diabetes/emagrecimento no wellnessgaze; anúncios de farmácia fora do tema no healthweekly; "hold their nerve" em jornal de futebol; cálcio na Amazon). Não usar a gravidade desses anúncios como gravidade do nicho.
+- Headlines nativas às vezes trocam letras latinas por cirílicas de aparência igual. Tratar como a mesma headline depois de normalizar.
+- NewsMax apareceu no nicho neuropathy (1 anúncio, gravidade 7). Piso de escalando adotado: ≥300, igual Taboola/MGID/AdsKeeper/AdNow/Popin, até haver briefing específico.
+- auditorey.co e auditorey.com redirecionam para o mesmo https://www2.auditorey.com.
+- integratedsupplementlatam.fun e globallaunch.store devolveram a mesma página padrão da Hostinger (MD5 idêntico) nesta visita.
