@@ -1,0 +1,31 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "achado",
+  "prioridade": "mais_escalado",
+  "visao": "E+R",
+  "ad_id": "5632462653",
+  "ad_url": "https://native.anstrex.com/creative/panel/5632462653",
+  "rede": "Revcontent",
+  "rede_slug": "revcontent",
+  "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_newson6_com_2026_11_12_dbefa078.jpg",
+  "lander_domain": "healthweekly.info",
+  "gravity": 484,
+  "ad_strength": 2353,
+  "first_seen": "2026-11-12",
+  "last_seen": "2026-11-14",
+  "dias_entre_primeira_e_ultima": 2,
+  "idioma_inferido": "en",
+  "geo_hint": "US",
+  "tags": "Nutraceuticals",
+  "search_term": "neuropathy (Translated Text);healthweekly.info (Landing Page Domain)",
+  "angle_id": "NEURO-A11",
+  "movimento": "escalando",
+  "por_que": "Player novo. Revcontent 484 (acima do piso 400), headline Neurologists Beg Seniors With Neuropathy: Stop Doing This Now, várias variações desde 12/11 (484, 455, 365, 250, 221). O anúncio em si é lançamento; o player entra como escalando (3+ variações + alta gravidade). Lander: TLS eof / http 500; oferta não lida. Headline idêntica à de healthvanta.org (230).",
+  "n_anuncios_do_player": 7,
+  "n_headlines_do_player": 2,
+  "dominios_ligados": [
+    "healthvanta.org"
+  ]
+}

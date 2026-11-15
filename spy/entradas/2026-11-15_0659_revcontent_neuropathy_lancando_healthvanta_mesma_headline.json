@@ -1,0 +1,31 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "achado",
+  "prioridade": "tendencia_nova",
+  "visao": "A",
+  "ad_id": "5641806053",
+  "ad_url": "https://native.anstrex.com/creative/panel/5641806053",
+  "rede": "Revcontent",
+  "rede_slug": "revcontent",
+  "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_capoliticalreview_com_2026_11_14_a9004961.jpg",
+  "lander_domain": "healthvanta.org",
+  "gravity": 230,
+  "ad_strength": 460,
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-15",
+  "dias_entre_primeira_e_ultima": 1,
+  "idioma_inferido": "en",
+  "geo_hint": "US",
+  "tags": "Nutraceuticals",
+  "search_term": "nerve (Translated Text)",
+  "angle_id": "NEURO-A11",
+  "movimento": "lancando",
+  "por_que": "Player novo. Revcontent 230, first_seen 14/11, a mesma headline de healthweekly.info. Lançando (1 anúncio, 1 dia). Lander 403 Apache; oferta não lida. Lateralização por headline.",
+  "n_anuncios_do_player": 1,
+  "n_headlines_do_player": 1,
+  "dominios_ligados": [
+    "healthweekly.info"
+  ]
+}
