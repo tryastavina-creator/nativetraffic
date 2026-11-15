@@ -1,0 +1,136 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "healthweekly.info",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Revcontent"
+  ],
+  "n_anuncios": 7,
+  "n_headlines": 2,
+  "headlines": [
+    "Neurologist Begs People With Neuropathy: Stop Doing This Now!",
+    "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now"
+  ],
+  "max_gravity": 484,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5643631514",
+      "last_seen": "2026-11-15"
+    },
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 484,
+      "ad_id": "5632462653",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-10-05",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643631514",
+      "5632462653",
+      "5634239191",
+      "5632466959",
+      "5634078013",
+      "5634239162"
+    ],
+    "volumando": [
+      "5476223300"
+    ]
+  },
+  "dominios_ligados": [
+    "healthvanta.org"
+  ],
+  "funil": {
+    "leitura": "nao_legivel",
+    "nota": "TLS unexpected eof em https; http devolveu 500. Oferta não lida. Headline idêntica à de healthvanta.org."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5632462653",
+      "network": "Revcontent",
+      "gravity": 484,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_newson6_com_2026_11_12_dbefa078.jpg"
+    },
+    {
+      "ad_id": "5634239191",
+      "network": "Revcontent",
+      "gravity": 455,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_resistthemainstream_com_2026_11_12_9f914c63.jpg"
+    },
+    {
+      "ad_id": "5632466959",
+      "network": "Revcontent",
+      "gravity": 365,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_thelibertydaily_com_2026_11_12_963e720c.jpg"
+    },
+    {
+      "ad_id": "5634078013",
+      "network": "Revcontent",
+      "gravity": 250,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_kake_com_2026_11_12_df7c3d29.jpg"
+    },
+    {
+      "ad_id": "5476223300",
+      "network": "Revcontent",
+      "gravity": 221,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-10-05",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_thegatewaypundit_com_2026_10_05_6174efef.jpg"
+    },
+    {
+      "ad_id": "5634239162",
+      "network": "Revcontent",
+      "gravity": 183,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_resistthemainstream_com_2026_11_12_c4326562.jpg"
+    },
+    {
+      "ad_id": "5643631514",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neurologist Begs People With Neuropathy: Stop Doing This Now!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_huffpost_com_2026_11_15_44af3903.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

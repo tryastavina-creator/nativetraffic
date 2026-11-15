@@ -1,0 +1,54 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "healthvanta.org",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Revcontent"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now"
+  ],
+  "max_gravity": 230,
+  "gravity_por_rede": {
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 230,
+      "ad_id": "5641806053",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5641806053"
+    ]
+  },
+  "dominios_ligados": [
+    "healthweekly.info"
+  ],
+  "funil": {
+    "leitura": "nao_legivel",
+    "nota": "HTTP 403 Apache. Oferta não lida. Mesma headline de healthweekly.info (Neurologists Beg Seniors With Neuropathy: Stop Doing This Now)."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5641806053",
+      "network": "Revcontent",
+      "gravity": 230,
+      "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_capoliticalreview_com_2026_11_14_a9004961.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
