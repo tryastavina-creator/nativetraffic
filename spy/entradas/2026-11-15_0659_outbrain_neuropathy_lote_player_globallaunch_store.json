@@ -1,0 +1,163 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "globallaunch.store",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Taboola"
+  ],
+  "n_anuncios": 9,
+  "n_headlines": 3,
+  "headlines": [
+    "Neuropathy: 1/2 Cup Each Morning Relieves Nerve Pain",
+    "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+    "If you suffer from neuropathy (nerve pain), do this today."
+  ],
+  "max_gravity": 105,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 105,
+      "ad_id": "5630096042",
+      "last_seen": "2026-11-11"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5642263512",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-11",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643852815",
+      "5643852045",
+      "5641712191",
+      "5642263512",
+      "5643868041",
+      "5643864188",
+      "5626472040",
+      "5637022691"
+    ],
+    "parado": [
+      "5630096042"
+    ]
+  },
+  "dominios_ligados": [
+    "getorevive.com",
+    "integratedsupplementlatam.fun",
+    "wellnessgaze.com"
+  ],
+  "funil": {
+    "leitura": "placeholder_hostinger",
+    "nota": "HTTP 200, página padrão da Hostinger, MD5 idêntico ao de integratedsupplementlatam.fun. Oferta não lida."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5630096042",
+      "network": "Outbrain",
+      "gravity": 105,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_rhyljournal_co_uk_2026_11_11_611ea3fc.webp"
+    },
+    {
+      "ad_id": "5626472040",
+      "network": "Outbrain",
+      "gravity": 80,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_foxnews_com_2026_11_11_0ce6931c.webp"
+    },
+    {
+      "ad_id": "5637022691",
+      "network": "Outbrain",
+      "gravity": 80,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_oxfordmail_co_uk_2026_11_13_70ae7168.webp"
+    },
+    {
+      "ad_id": "5643852815",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy: 1/2 Cup Each Morning Relieves Nerve Pain",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_foxnews_com_2026_11_15_0fefb482.webp"
+    },
+    {
+      "ad_id": "5643852045",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_foxnews_com_2026_11_15_fabb7d48.webp"
+    },
+    {
+      "ad_id": "5641712191",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy: 1/2 Cup Each Morning Relieves Nerve Pain",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_thenational_scot_2026_11_14_9fe8ee74.webp"
+    },
+    {
+      "ad_id": "5642263512",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "If you suffer from neuropathy (nerve pain), do this today.",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_7news_com_au_2026_11_14_7b44f271.png"
+    },
+    {
+      "ad_id": "5643868041",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy: 1/2 Cup Each Morning Relieves Nerve Pain",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_thenorthernecho_co_uk_2026_11_15_d25c623d.webp"
+    },
+    {
+      "ad_id": "5643864188",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy? When Burning, Tingling and Numbness Won't Stop, Do This",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_huffpost_com_2026_11_15_993d082e.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
