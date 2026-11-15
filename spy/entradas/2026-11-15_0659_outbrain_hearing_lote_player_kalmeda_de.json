@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "kalmeda.de",
+  "status": "lancando",
+  "tipo_player": "marca_dtc",
+  "tipo_nota": "App Kalmeda (terapia de zumbido)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen."
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5643188267",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "lancando": [
+      "5643188267"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5643188267",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen.",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_14_ccbea53a.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
