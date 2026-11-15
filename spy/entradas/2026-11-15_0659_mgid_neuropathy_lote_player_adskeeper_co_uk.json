@@ -1,0 +1,197 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "adskeeper.co.uk",
+  "status": "escalando",
+  "tipo_player": "dominio_da_rede_ou_tracker",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 11,
+  "n_headlines": 9,
+  "headlines": [
+    "Neuropathie (brennende Füße)? Machen Sie das sofort",
+    "Brennende Füße und Kribbeln? Starten Sie jetzt mit der Lösung",
+    "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+    "Cei care au neuropatie - Citesc înainte să o șteargă!",
+    "По 1/2 чаша всяка сутрин бързо премахва невропатията!",
+    "Они који имају неуропатију - прочитајте пре него што је обришу!",
+    "Neuropatia i uszkodzenie nerwów? Zrób to natychmiast",
+    "Neurolodzy pilnie wzywają seniorów z neuropatią: Przestańcie jeść te 3 pokarmy",
+    "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić"
+  ],
+  "max_gravity": 5847,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 5847,
+      "ad_id": "5599346445",
+      "last_seen": "2026-11-14"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5640244520",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-06-12",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5643966988",
+      "5640698848",
+      "5640244520",
+      "5640244361",
+      "5640241767"
+    ],
+    "escalando": [
+      "5599413395",
+      "5599346445",
+      "5602090949"
+    ],
+    "parado": [
+      "4994036927",
+      "5072194280",
+      "5203966643"
+    ]
+  },
+  "dominios_ligados": [
+    "beauty-ri.click",
+    "dailycarepro.com",
+    "evidwell.com",
+    "green-ri.click",
+    "myvita.day",
+    "seniorwellnessdigest.com",
+    "solveclocktext.space",
+    "washbosswhale.beauty"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5599346445",
+      "network": "Mgid",
+      "gravity": 5847,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_04_346b36aa.webp"
+    },
+    {
+      "ad_id": "5602090949",
+      "network": "Mgid",
+      "gravity": 1516,
+      "headline": "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+      "first_seen": "2026-11-05",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_djs_sk_2026_11_05_97a7c0c5.webp"
+    },
+    {
+      "ad_id": "5599413395",
+      "network": "Mgid",
+      "gravity": 425,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-13",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_04_0e7a7aeb.webp"
+    },
+    {
+      "ad_id": "5640698848",
+      "network": "Mgid",
+      "gravity": 325,
+      "headline": "Brennende Füße und Kribbeln? Starten Sie jetzt mit der Lösung",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_vse-knigi_org_2026_11_14_f12fd369.webp"
+    },
+    {
+      "ad_id": "5072194280",
+      "network": "Mgid",
+      "gravity": 64,
+      "headline": "По 1/2 чаша всяка сутрин бързо премахва невропатията!",
+      "first_seen": "2026-07-02",
+      "last_seen": "2026-11-07",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_bgseriali_com_2026_07_02_5b4110a1.webp"
+    },
+    {
+      "ad_id": "4994036927",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Cei care au neuropatie - Citesc înainte să o șteargă!",
+      "first_seen": "2026-06-12",
+      "last_seen": "2026-10-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_vedeteblog_com_2026_06_12_bce378eb.webp"
+    },
+    {
+      "ad_id": "5203966643",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Они који имају неуропатију - прочитајте пре него што је обришу!",
+      "first_seen": "2026-08-05",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_08_05_953ee938.webp"
+    },
+    {
+      "ad_id": "5643966988",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_nastol_com_ua_2026_11_15_10dcdd45.webp"
+    },
+    {
+      "ad_id": "5640244520",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Neuropatia i uszkodzenie nerwów? Zrób to natychmiast",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_afb03027.webp"
+    },
+    {
+      "ad_id": "5640244361",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Neurolodzy pilnie wzywają seniorów z neuropatią: Przestańcie jeść te 3 pokarmy",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_df385ccc.webp"
+    },
+    {
+      "ad_id": "5640241767",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_8f57cd19.webp"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 11."
+}
