@@ -1,0 +1,138 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "tadahitasurakeizoku.click",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Popin"
+  ],
+  "n_anuncios": 8,
+  "n_headlines": 4,
+  "headlines": [
+    "神経修復！ピリピリする手先は神経の傷。実は",
+    "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+    "製薬会社が解説「手足のピリピリ専用治療薬」",
+    "全身麻痺！その手足のピリピリを放置していると危険"
+  ],
+  "max_gravity": 197,
+  "gravity_por_rede": {
+    "popin": {
+      "network": "Popin",
+      "gravity": 197,
+      "ad_id": "5613865034",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-06",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "volumando": [
+      "5606579021",
+      "5606166574",
+      "5606166261"
+    ],
+    "lancando": [
+      "5613865034",
+      "5613481192",
+      "5626736028",
+      "5614273484",
+      "5613864848"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5613865034",
+      "network": "Popin",
+      "gravity": 197,
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_352d0be9.jpg"
+    },
+    {
+      "ad_id": "5606166574",
+      "network": "Popin",
+      "gravity": 147,
+      "headline": "神経修復！ピリピリする手先は神経の傷。実は",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_06_a4b797f5.jpg"
+    },
+    {
+      "ad_id": "5613481192",
+      "network": "Popin",
+      "gravity": 128,
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_f3749e71.jpg"
+    },
+    {
+      "ad_id": "5626736028",
+      "network": "Popin",
+      "gravity": 125,
+      "headline": "全身麻痺！その手足のピリピリを放置していると危険",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_labaq_com_2026_11_11_7dede0b8.jpg"
+    },
+    {
+      "ad_id": "5606579021",
+      "network": "Popin",
+      "gravity": 124,
+      "headline": "神経修復！ピリピリする手先は神経の傷。実は",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_curazy_com_2026_11_06_8b1c8dce.jpg"
+    },
+    {
+      "ad_id": "5614273484",
+      "network": "Popin",
+      "gravity": 123,
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_a5265af2.jpg"
+    },
+    {
+      "ad_id": "5613864848",
+      "network": "Popin",
+      "gravity": 117,
+      "headline": "「手先がピリピリしてスマホが持てない」病院が教えない治し方",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_08_9ef20c3c.jpg"
+    },
+    {
+      "ad_id": "5606166261",
+      "network": "Popin",
+      "gravity": 114,
+      "headline": "製薬会社が解説「手足のピリピリ専用治療薬」",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-14",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_06_1c5b1f12.jpg"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 135→197; n anúncios agora 8."
+}
