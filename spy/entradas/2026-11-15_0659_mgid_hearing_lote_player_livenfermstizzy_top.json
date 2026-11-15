@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "livenfermstizzy.top",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi"
+  ],
+  "max_gravity": 255,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 255,
+      "ad_id": "5627022023",
+      "last_seen": "2026-11-12"
+    }
+  },
+  "first_seen": "2026-11-11",
+  "last_seen": "2026-11-12",
+  "movimentos": {
+    "lancando": [
+      "5627022023"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "advertorial_legivel",
+    "nota": "Advertorial em BCMS: entrevista com dr. Franco Rizzo (também grafado Franca Rizza) de Roma. Produto nomeado na página como Otorincaps, ainda não nas farmácias, formulário de pedido e menção a 50% de desconto. Preço em valor absoluto não estava visível. Sem envio de formulário."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5627022023",
+      "network": "Mgid",
+      "gravity": 255,
+      "headline": "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_media-investigasi_com_2026_11_11_29414038.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

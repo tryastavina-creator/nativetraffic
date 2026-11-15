@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "life-dzen.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Sluh se poboljšao za 87% u samo jednoj sedmici korištenja!"
+  ],
+  "max_gravity": 132,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 132,
+      "ad_id": "4839477175",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-05-08",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "volumando": [
+      "4839477175"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "4839477175",
+      "network": "Mgid",
+      "gravity": 132,
+      "headline": "Sluh se poboljšao za 87% u samo jednoj sedmici korištenja!",
+      "first_seen": "2026-05-08",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_acidcow_com_2026_05_08_11c438ad.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
