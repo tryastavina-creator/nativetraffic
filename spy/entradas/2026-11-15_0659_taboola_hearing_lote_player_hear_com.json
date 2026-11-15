@@ -1,0 +1,274 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hear.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen_marca",
+  "tipo_nota": "hear.com (marca/lead-gen de aparelhos, grupo WS Audiology / Sivantos — confirmar na lander)",
+  "redes": [
+    "AdsKeeper",
+    "Taboola",
+    "Revcontent"
+  ],
+  "n_anuncios": 17,
+  "n_headlines": 13,
+  "headlines": [
+    "The Cost Of Hearing Aids In Thrissur Might Surprise You!",
+    "German Hearing Aids In Delhi At 0% EMI",
+    "The Cost Of Hearing Aids In Nellore Might Surprise You!",
+    "Living in New Delhi? Don't Buy Hearing Aids Before Reading This",
+    "The Cost Of Hearing Aids In Delhi Might Surprise You!",
+    "The Cost Of Hearing Aids In Kanpur Might Surprise You!",
+    "New Delhi – Born Before 1975? You're Eligible For Trial Of German Hearing Aid.",
+    "Pune – Born before 1976? You're eligible for trial of German hearing aid.",
+    "Americans Over 55 Are Ditching Hearing Aids for This New Device",
+    "The cost of hearing aids in Pune might surprise you",
+    "The cost of hearing aids in New Delhi might surprise you",
+    "Indians over 65 are switching from hearing aids to this new device.",
+    "The cost of hearing aids in Mumbai might surprise you"
+  ],
+  "max_gravity": 466,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5644606381",
+      "last_seen": "2026-11-15"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 466,
+      "ad_id": "5570641043",
+      "last_seen": "2026-11-15"
+    },
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 446,
+      "ad_id": "5633951220",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-09-20",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5644606381",
+      "5644056933",
+      "5643709237",
+      "5643495879",
+      "5644605974",
+      "5644038446",
+      "5643708463",
+      "5644166307",
+      "5643705129",
+      "5633951220",
+      "5633950148"
+    ],
+    "escalando": [
+      "5570641043",
+      "5425783435",
+      "5404589758"
+    ],
+    "volumando": [
+      "5536144992",
+      "5472822500",
+      "5543560543"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "leitura": "site_marca_legivel",
+    "nota": "Redirect www.hear.com (CloudFront/S3, Gatsby). Marca/lead-gen: World's Leading Online Provider of Hearing Aids, fundadores Marco Vietor e Paul Crusius, 670,000+ happy customers, teste sem risco (no-risk trial), guia grátis de preços, Check If You Qualify, telefone 786-526-0602. Preço do aparelho não estava visível na raiz. Nav menciona German Hearing Aids e HORIZON."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5570641043",
+      "network": "Taboola",
+      "gravity": 466,
+      "headline": "Pune – Born before 1976? You're eligible for trial of German hearing aid.",
+      "first_seen": "2026-10-28",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_rediff_com_2026_10_28_d16a179e.png"
+    },
+    {
+      "ad_id": "5633951220",
+      "network": "Revcontent",
+      "gravity": 446,
+      "headline": "Americans Over 55 Are Ditching Hearing Aids for This New Device",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_cbsnews_com_2026_11_12_e307e8a6.jpg"
+    },
+    {
+      "ad_id": "5425783435",
+      "network": "Taboola",
+      "gravity": 417,
+      "headline": "The cost of hearing aids in Pune might surprise you",
+      "first_seen": "2026-09-24",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5633950148",
+      "network": "Revcontent",
+      "gravity": 400,
+      "headline": "Americans Over 55 Are Ditching Hearing Aids for This New Device",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-13",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_cbsnews_com_2026_11_12_bb358b92.jpg"
+    },
+    {
+      "ad_id": "5404589758",
+      "network": "Taboola",
+      "gravity": 398,
+      "headline": "The cost of hearing aids in New Delhi might surprise you",
+      "first_seen": "2026-09-20",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_dinamalar_com_2026_09_20_dbb697f0.png"
+    },
+    {
+      "ad_id": "5536144992",
+      "network": "Taboola",
+      "gravity": 238,
+      "headline": "Indians over 65 are switching from hearing aids to this new device.",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_rediff_com_2026_10_19_6084d006.jpg"
+    },
+    {
+      "ad_id": "5472822500",
+      "network": "Taboola",
+      "gravity": 176,
+      "headline": "The cost of hearing aids in Mumbai might surprise you",
+      "first_seen": "2026-10-04",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_rediff_com_2026_10_04_10d08a97.png"
+    },
+    {
+      "ad_id": "5543560543",
+      "network": "Revcontent",
+      "gravity": 149,
+      "headline": "Americans Over 55 Are Ditching Hearing Aids for This New Device",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-13",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_seizethedeal_com_2026_10_21_8dbda20e.jpg"
+    },
+    {
+      "ad_id": "5644606381",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "The Cost Of Hearing Aids In Thrissur Might Surprise You!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_downloads-anymovies_co_2026_11_15_0952b6f7.webp"
+    },
+    {
+      "ad_id": "5644056933",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "German Hearing Aids In Delhi At 0% EMI",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_11_15_e911df0a.webp"
+    },
+    {
+      "ad_id": "5643709237",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "The Cost Of Hearing Aids In Nellore Might Surprise You!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_downloads-anymovies_co_2026_11_15_6f9ee9fc.webp"
+    },
+    {
+      "ad_id": "5643495879",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Living in New Delhi? Don't Buy Hearing Aids Before Reading This",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_rediff_com_2026_11_15_8ae65422.gif"
+    },
+    {
+      "ad_id": "5644605974",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "The Cost Of Hearing Aids In Thrissur Might Surprise You!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_downloads-anymovies_co_2026_11_15_edc54aa9.webp"
+    },
+    {
+      "ad_id": "5644038446",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "The Cost Of Hearing Aids In Delhi Might Surprise You!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_15_11f6278c.webp"
+    },
+    {
+      "ad_id": "5643708463",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "The Cost Of Hearing Aids In Kanpur Might Surprise You!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_downloads-anymovies_co_2026_11_15_5d2c7d73.webp"
+    },
+    {
+      "ad_id": "5644166307",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "New Delhi – Born Before 1975? You're Eligible For Trial Of German Hearing Aid.",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_11_15_69d8bfbd.webp"
+    },
+    {
+      "ad_id": "5643705129",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "The Cost Of Hearing Aids In Nellore Might Surprise You!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_downloads-anymovies_co_2026_11_15_ddbd7a77.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}

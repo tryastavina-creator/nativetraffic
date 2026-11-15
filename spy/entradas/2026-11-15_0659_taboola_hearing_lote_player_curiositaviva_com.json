@@ -1,0 +1,54 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "curiositaviva.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Аcufеne? Gli esрerti parlano di un dettaglio сhe quasi nessunо рrende sul seriо."
+  ],
+  "max_gravity": 197,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 197,
+      "ad_id": "5599095808",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-04",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "volumando": [
+      "5599095808"
+    ]
+  },
+  "dominios_ligados": [
+    "seravia.info"
+  ],
+  "funil": {
+    "leitura": "blog_sem_oferta_na_raiz",
+    "nota": "Blog de lifestyle em italiano (Parma). A raiz não mostrou a oferta de zumbido do anúncio. Imagem idêntica (phash 0) à de seravia.info, com headline traduzida e caracteres disfarçados."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5599095808",
+      "network": "Taboola",
+      "gravity": 197,
+      "headline": "Аcufеne? Gli esрerti parlano di un dettaglio сhe quasi nessunо рrende sul seriо.",
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_social-magazine_it_2026_11_04_1ae68b5f.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-15."
+}
