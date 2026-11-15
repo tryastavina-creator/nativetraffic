@@ -1,0 +1,31 @@
+{
+  "data_coleta": "2026-11-15",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "mais_escalado",
+  "visao": "E",
+  "ad_id": "5632382490",
+  "ad_url": "https://native.anstrex.com/creative/panel/5632382490",
+  "rede": "Taboola",
+  "rede_slug": "taboola",
+  "headline": "We're looking for people in Australia who want to try the latest high-tech hearing devices",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_businessinsider_com_2026_11_12_178f375a.png",
+  "lander_domain": "auditorey.co",
+  "gravity": 428,
+  "ad_strength": 1075,
+  "first_seen": "2026-11-12",
+  "last_seen": "2026-11-15",
+  "dias_entre_primeira_e_ultima": 3,
+  "idioma_inferido": "en",
+  "geo_hint": "AU",
+  "tags": "Health & Wellness",
+  "search_term": "hearing (Translated Text)",
+  "angle_id": "HEAR-A5",
+  "movimento": "escalando",
+  "por_que": "Player novo. Taboola 428, recrutamento na Austrália para testar aparelhos high-tech. O player tem 3 anúncios (inclui Gov't Pays For New Hearing Aids, 316) desde 08/11 e entra como escalando. auditorey.co redireciona para www2.auditorey.com — o mesmo destino de auditorey.com (NZ, 407). Teste e fitting grátis, trial sem obrigação. Preço não visível.",
+  "n_anuncios_do_player": 3,
+  "n_headlines_do_player": 3,
+  "dominios_ligados": [
+    "auditorey.com"
+  ]
+}
