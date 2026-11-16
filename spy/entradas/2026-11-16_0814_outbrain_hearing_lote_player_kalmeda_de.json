@@ -1,0 +1,88 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "kalmeda.de",
+  "status": "lancando",
+  "tipo_player": "marca_dtc",
+  "tipo_nota": "App Kalmeda (terapia de zumbido)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 4,
+  "headlines": [
+    "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+    "Tinnitus erkennen & verstehen. Hol dir jetzt kostenlose Infos.",
+    "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+    "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen."
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5646077316",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5646077316",
+      "5648665120",
+      "5648922903",
+      "5643188267"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5646077316",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_15_e701581a.webp"
+    },
+    {
+      "ad_id": "5648665120",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus erkennen & verstehen. Hol dir jetzt kostenlose Infos.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_16_7d0f197c.webp"
+    },
+    {
+      "ad_id": "5648922903",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_come-on_de_2026_11_16_1c341b94.webp"
+    },
+    {
+      "ad_id": "5643188267",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen.",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_14_ccbea53a.webp"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 4."
+}

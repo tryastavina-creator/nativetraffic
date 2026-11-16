@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "buzzandblink.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζο&u"
+  ],
+  "max_gravity": 114,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 114,
+      "ad_id": "5511964636",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-10-13",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "5511964636"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "buzzandblink.com redirecionou para /en e devolveu 500. Oferta não lida."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5511964636",
+      "network": "Outbrain",
+      "gravity": 114,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζο&u",
+      "first_seen": "2026-10-13",
+      "last_seen": "2026-11-14",
+      "movimento": "volumando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_iatropedia_gr_2026_10_13_c5c39d16.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-16."
+}
