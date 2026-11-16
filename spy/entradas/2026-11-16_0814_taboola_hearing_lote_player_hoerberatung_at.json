@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hoerberatung.at",
+  "status": "volumando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "www.hoerberatung.at redireciona para www.hansaton.at (mesmo grupo)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Wien: Unglaublicher Ansturm auf Mini-Hörgeräte aus der Schweiz"
+  ],
+  "max_gravity": 100,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 100,
+      "ad_id": "5060475100",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-06-29",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "5060475100"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "mesmo_grupo_hansaton",
+    "resumo": "O apex hoerberatung.at falhou TLS. www.hoerberatung.at responde 302 para https://www.hansaton.at — mesmo anunciante/grupo, não um DR aparte."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5060475100",
+      "network": "Taboola",
+      "gravity": 100,
+      "headline": "Wien: Unglaublicher Ansturm auf Mini-Hörgeräte aus der Schweiz",
+      "first_seen": "2026-06-29",
+      "last_seen": "2026-11-14",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ensonhaber_com_2026_06_29_25e170eb.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-16."
+}
