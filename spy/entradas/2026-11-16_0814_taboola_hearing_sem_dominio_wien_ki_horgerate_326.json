@@ -10,19 +10,22 @@
   "rede_slug": "taboola",
   "headline": "Wien: Ansturm auf KI-Hörgeräte – Das ist die Revolution",
   "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_birgun_net_2026_09_22_32b7a17c.jpg",
-  "lander_domain": "",
+  "lander_domain": "hansaton.at",
   "gravity": 326,
   "ad_strength": 5138,
   "first_seen": "2026-09-22",
   "last_seen": "2026-11-16",
-  "dias_entre_primeira_e_ultima": "55",
+  "dias_entre_primeira_e_ultima": 55,
   "idioma_inferido": "de",
   "geo_hint": "AT",
   "tags": "Health & Wellness",
   "search_term": "hearing (Translated Text)",
   "angle_id": "HEAR-A5",
   "movimento": "escalando",
-  "por_que": "Anúncio novo no master, Taboola 326 (acima do piso 300), Wien: Ansturm auf KI-Hörgeräte – Das ist die Revolution, first_seen 22/09, last_seen 16/11. Domínio não coletado. Não atribuir por semelhança com outros anúncios de Viena/aparelhos suíços.",
-  "n_anuncios_do_player": "",
-  "n_headlines_do_player": ""
+  "por_que": "Player novo. Taboola 326 (piso 300), Wien: Ansturm auf KI-Hörgeräte – Das ist die Revolution, first_seen 22/09, last_seen 16/11 — entra como escalando (1 anúncio, mais de 7 dias). hansaton.at é marca varejo (grupo Sonova): mais de 120 lojas na Áustria, teste online, trial (probetragen), telefone 0800880888. Nenhum preço em euro visível na homepage. www.hoerberatung.at (player volumando 100) redireciona para este site.",
+  "n_anuncios_do_player": 1,
+  "n_headlines_do_player": 1,
+  "dominios_ligados": [
+    "hoerberatung.at"
+  ]
 }
