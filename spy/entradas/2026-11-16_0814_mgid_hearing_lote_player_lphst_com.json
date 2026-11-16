@@ -1,0 +1,91 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "lphst.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 3,
+  "headlines": [
+    "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+    "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+    "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!"
+  ],
+  "max_gravity": 502,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 502,
+      "ad_id": "4828973348",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-04-21",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "escalando": [
+      "4828973348"
+    ],
+    "volumando": [
+      "4818259313",
+      "4818265293"
+    ],
+    "parado": [
+      "4772804679"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "4828973348",
+      "network": "Mgid",
+      "gravity": 502,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-05-05",
+      "last_seen": "2026-11-16",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gameower_it_2026_05_05_09779d67.webp"
+    },
+    {
+      "ad_id": "4818265293",
+      "network": "Mgid",
+      "gravity": 167,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ichi_pro_2026_05_02_314ebb3e.webp"
+    },
+    {
+      "ad_id": "4818259313",
+      "network": "Mgid",
+      "gravity": 160,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_8eadc2be.webp"
+    },
+    {
+      "ad_id": "4772804679",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-11-07",
+      "movimento": "parado",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 230→502; n anúncios agora 4."
+}

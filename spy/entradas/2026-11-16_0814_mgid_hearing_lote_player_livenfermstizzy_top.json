@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "livenfermstizzy.top",
+  "status": "parado",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi"
+  ],
+  "max_gravity": 255,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 255,
+      "ad_id": "5627022023",
+      "last_seen": "2026-11-12"
+    }
+  },
+  "first_seen": "2026-11-11",
+  "last_seen": "2026-11-12",
+  "movimentos": {
+    "parado": [
+      "5627022023"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5627022023",
+      "network": "Mgid",
+      "gravity": 255,
+      "headline": "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_media-investigasi_com_2026_11_11_29414038.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→parado; n anúncios agora 1."
+}

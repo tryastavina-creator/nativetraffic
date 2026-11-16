@@ -1,0 +1,477 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "pgsrc.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 35,
+  "n_headlines": 6,
+  "headlines": [
+    "Chirurgien révèle : aide rapide pour audition et acouphènes",
+    "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+    "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
+    "Læge: høretab eller tinnitus? Gør dette straks",
+    "Kirurg: »7-sekunders øre-reset-metode« vil afhjælpe dit høretab og din tinnitus",
+    "Toplæge: Nem metode lindrer høretab og øresusen!"
+  ],
+  "max_gravity": 264,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 264,
+      "ad_id": "5004242051",
+      "last_seen": "2026-11-16"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 195,
+      "ad_id": "5012503218",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-06-10",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "volumando": [
+      "5004242051",
+      "5012503218",
+      "5011358426",
+      "5004621414",
+      "5132119064",
+      "5100989569",
+      "5127311921",
+      "5004240689",
+      "4991265195"
+    ],
+    "parado": [
+      "5004245736",
+      "5015796159",
+      "5037231537",
+      "5015418369",
+      "4989690874",
+      "5626467889",
+      "5616322128",
+      "5614079344",
+      "5593968249",
+      "5592708498",
+      "5592636323",
+      "5591877273",
+      "5588180325",
+      "5596994098",
+      "5587465685",
+      "5595015769",
+      "5583963378",
+      "5060772616"
+    ],
+    "lancando": [
+      "5642968472",
+      "5641861731",
+      "5643710005",
+      "5643709618",
+      "5639991247",
+      "5640727632"
+    ],
+    "testando": [
+      "5008732589",
+      "5003793281"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5004242051",
+      "network": "Mgid",
+      "gravity": 264,
+      "headline": "Chirurgien révèle : aide rapide pour audition et acouphènes",
+      "first_seen": "2026-06-15",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_15_b2618f98.webp"
+    },
+    {
+      "ad_id": "5012503218",
+      "network": "AdsKeeper",
+      "gravity": 195,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-17",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_alienigenasdopassado_com_br_2026_06_17_eb052319.webp"
+    },
+    {
+      "ad_id": "5011358426",
+      "network": "Mgid",
+      "gravity": 179,
+      "headline": "Chirurgien révèle : aide rapide pour audition et acouphènes",
+      "first_seen": "2026-06-17",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_trendru_info_2026_06_17_1f9d04ff.webp"
+    },
+    {
+      "ad_id": "5004621414",
+      "network": "AdsKeeper",
+      "gravity": 167,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-15",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_15_cd11be64.webp"
+    },
+    {
+      "ad_id": "5132119064",
+      "network": "Mgid",
+      "gravity": 151,
+      "headline": "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
+      "first_seen": "2026-07-16",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nonsolomarescialli_it_2026_07_16_60706ce8.webp"
+    },
+    {
+      "ad_id": "5100989569",
+      "network": "Mgid",
+      "gravity": 139,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-07-09",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_prigotovkino_com_2026_07_09_7f51fe0c.webp"
+    },
+    {
+      "ad_id": "5127311921",
+      "network": "Mgid",
+      "gravity": 134,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-07-15",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_07_15_1dab04b7.webp"
+    },
+    {
+      "ad_id": "5004240689",
+      "network": "Mgid",
+      "gravity": 121,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-15",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ikampinos_pl_2026_06_15_b925797b.webp"
+    },
+    {
+      "ad_id": "4991265195",
+      "network": "Mgid",
+      "gravity": 107,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_11_94c81033.webp"
+    },
+    {
+      "ad_id": "5008732589",
+      "network": "Mgid",
+      "gravity": 99,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-16",
+      "last_seen": "2026-11-13",
+      "movimento": "testando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_16_96f1af33.webp"
+    },
+    {
+      "ad_id": "5004245736",
+      "network": "Mgid",
+      "gravity": 84,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-15",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_detikriau_id_2026_06_15_e0ea18ab.webp"
+    },
+    {
+      "ad_id": "5003793281",
+      "network": "Mgid",
+      "gravity": 80,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-14",
+      "last_seen": "2026-11-13",
+      "movimento": "testando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_mp3_pet_2026_06_14_18f27a41.webp"
+    },
+    {
+      "ad_id": "5037231537",
+      "network": "Mgid",
+      "gravity": 75,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-24",
+      "last_seen": "2026-11-08",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_06_24_235b1d51.webp"
+    },
+    {
+      "ad_id": "5587465685",
+      "network": "Mgid",
+      "gravity": 52,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-01",
+      "last_seen": "2026-11-02",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_chap_vn_2026_11_01_7d05f8d5.webp"
+    },
+    {
+      "ad_id": "5614079344",
+      "network": "Mgid",
+      "gravity": 50,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tutdobre_com_ua_2026_11_08_8d4328e9.webp"
+    },
+    {
+      "ad_id": "5060772616",
+      "network": "Mgid",
+      "gravity": 36,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-29",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infokita_click_2026_06_29_d4dce503.webp"
+    },
+    {
+      "ad_id": "5592636323",
+      "network": "AdsKeeper",
+      "gravity": 25,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_leernovelasonline_com_2026_11_02_f78d47ab.webp"
+    },
+    {
+      "ad_id": "5015796159",
+      "network": "Mgid",
+      "gravity": 22,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-06-18",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_18_d40ab66b.webp"
+    },
+    {
+      "ad_id": "5592708498",
+      "network": "Mgid",
+      "gravity": 21,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-03",
+      "last_seen": "2026-11-08",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_cinca_news_2026_11_03_4d7f6d4d.webp"
+    },
+    {
+      "ad_id": "5015418369",
+      "network": "Mgid",
+      "gravity": 20,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-18",
+      "last_seen": "2026-10-26",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_18_3b00e772.webp"
+    },
+    {
+      "ad_id": "4989690874",
+      "network": "Mgid",
+      "gravity": 17,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-06-10",
+      "last_seen": "2026-10-31",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_stilemilan_it_2026_06_10_d9dc8b79.webp"
+    },
+    {
+      "ad_id": "5593968249",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-03",
+      "last_seen": "2026-11-03",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_corongnias_com_2026_11_03_d7372960.webp"
+    },
+    {
+      "ad_id": "5583963378",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-10-31",
+      "last_seen": "2026-10-31",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_7elwa_com_2026_10_31_f1a0c6bf.webp"
+    },
+    {
+      "ad_id": "5642968472",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infokita_click_2026_11_14_077ff517.webp"
+    },
+    {
+      "ad_id": "5641861731",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Kirurg: »7-sekunders øre-reset-metode« vil afhjælpe dit høretab og din tinnitus",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_rightwingnewshour_com_2026_11_14_39f87b39.webp"
+    },
+    {
+      "ad_id": "5643710005",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_eu-gosto-e-tu_com_2026_11_15_43917534.webp"
+    },
+    {
+      "ad_id": "5643709618",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Toplæge: Nem metode lindrer høretab og øresusen!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_eu-gosto-e-tu_com_2026_11_15_06ca3771.webp"
+    },
+    {
+      "ad_id": "5626467889",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bazzing_it_2026_11_11_b71f87c2.webp"
+    },
+    {
+      "ad_id": "5616322128",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-08",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_indovideotube_com_2026_11_08_5ac73fa8.webp"
+    },
+    {
+      "ad_id": "5591877273",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-02",
+      "last_seen": "2026-11-02",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_11_02_4bcd282c.webp"
+    },
+    {
+      "ad_id": "5588180325",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-01",
+      "last_seen": "2026-11-01",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_11_01_1c74034b.webp"
+    },
+    {
+      "ad_id": "5596994098",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_indovideotube_com_2026_11_04_14c4cb13.webp"
+    },
+    {
+      "ad_id": "5595015769",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+      "first_seen": "2026-11-03",
+      "last_seen": "2026-11-03",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_prostir_top_2026_11_03_99bab436.webp"
+    },
+    {
+      "ad_id": "5639991247",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Toplæge: Nem metode lindrer høretab og øresusen!",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infoburgas_com_2026_11_14_121387ba.webp"
+    },
+    {
+      "ad_id": "5640727632",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Toplæge: Nem metode lindrer høretab og øresusen!",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ungkap_co_id_2026_11_14_d0a9dc18.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 211→264; n anúncios agora 35."
+}
