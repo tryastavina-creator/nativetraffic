@@ -1,0 +1,66 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "candy.ai",
+  "status": "volumando",
+  "tipo_player": "captura_suspeita",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Neuropatia zniknie w ciągu 2 dni! Dostępne w każdej aptece, a nazywa się...",
+    "Pieczenie, drętwienie kończyn i utrata czucia znikną — przyjmuj 1 tabletkę przed snem!"
+  ],
+  "max_gravity": 145,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 145,
+      "ad_id": "5261262862",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-08-22",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "volumando": [
+      "5261262862"
+    ],
+    "parado": [
+      "5277119743"
+    ]
+  },
+  "dominios_ligados": [
+    "solveclocktext.space"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5261262862",
+      "network": "AdsKeeper",
+      "gravity": 145,
+      "headline": "Neuropatia zniknie w ciągu 2 dni! Dostępne w każdej aptece, a nazywa się...",
+      "first_seen": "2026-08-22",
+      "last_seen": "2026-11-15",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_08_22_58e43409.webp"
+    },
+    {
+      "ad_id": "5277119743",
+      "network": "AdsKeeper",
+      "gravity": 44,
+      "headline": "Pieczenie, drętwienie kończyn i utrata czucia znikną — przyjmuj 1 tabletkę przed snem!",
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_08_25_c57fc39e.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→volumando; máx. gravidade 44→145; n anúncios agora 2."
+}
