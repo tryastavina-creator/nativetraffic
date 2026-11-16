@@ -73,3 +73,9 @@
 - NewsMax apareceu no nicho neuropathy (1 anúncio, gravidade 7). Piso de escalando adotado: ≥300, igual Taboola/MGID/AdsKeeper/AdNow/Popin, até haver briefing específico.
 - auditorey.co e auditorey.com redirecionam para o mesmo https://www2.auditorey.com.
 - integratedsupplementlatam.fun e globallaunch.store devolveram a mesma página padrão da Hostinger (MD5 idêntico) nesta visita.
+
+## Coleta (2026-11-16)
+- A rotina gravou as listagens (pipe: visão|termo|ad_id|datas|thumb|headline|gravidade|ad-strength|redes|geo|tags) e morreu antes do processamento. As gavetas dos criativos não foram abertas: o bloco "Site and Landing Page Information" não foi lido, então **lander_domain e lander_url não vieram**. No raw e no master, esses campos ficam em branco quando o ad_id é novo; só se reaproveita o domínio se o mesmo ad_id já existia no histórico. Não inventar domínio a partir do publisher no nome do thumbnail nem a partir de headline parecida.
+- Hearing: termos tinnitus e hearing (Translated Text). Tinnitus teve as sete visões (E com 3 cartões). Na busca “hearing”, C e F não tiveram cartões no corte de first-seen; B usou Date Range 2026-10-17 a 2026-11-15.
+- Neuropathy: **só o termo neuropathy foi buscado**. Os termos nerve, numbness e tingling não foram coletados neste dia — não tratar a ausência como sinal de mercado. C e F tentadas, sem cartões no corte (23 cartões carregados em cada, first-seen abaixo do pedido). E devolveu 2 cartões. G teve Days Running 30–534 e Gravity 0–520 (sliders que persistem: conferir ao trocar o termo).
+- NewsMax voltou com volume visível em wellnessgaze.com (já no master). Piso de escalando permanece ≥300 até haver briefing específico.
