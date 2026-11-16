@@ -9,10 +9,13 @@
   "redes": [
     "Mgid"
   ],
-  "n_anuncios": 4,
-  "n_headlines": 2,
+  "n_anuncios": 8,
+  "n_headlines": 5,
   "headlines": [
     "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+    "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+    "По 1/2 чаша всяка сутрин бързо премахва невропатията!",
+    "Neuropátiában szenvedők - Olvassák el, mielőtt törlik!",
     "Они који имају неуропатију - прочитајте пре него што је обришу!"
   ],
   "max_gravity": 573,
@@ -24,7 +27,7 @@
       "last_seen": "2026-11-14"
     }
   },
-  "first_seen": "2026-08-05",
+  "first_seen": "2026-07-18",
   "last_seen": "2026-11-16",
   "movimentos": {
     "escalando": [
@@ -32,15 +35,22 @@
       "5329795720"
     ],
     "volumando": [
-      "5391998187"
+      "5391998187",
+      "5209286666"
+    ],
+    "testando": [
+      "5389927257"
     ],
     "parado": [
+      "5139308383",
+      "5235287837",
       "5204291039"
     ]
   },
   "dominios_ligados": [
     "adskeeper.co.uk",
     "beauty-ri.click",
+    "linfaflowstore.online",
     "myvita.day",
     "solveclocktext.space",
     "washbosswhale.beauty"
@@ -81,6 +91,50 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bubbleshooter_eco_br_2026_09_17_f954e674.webp"
     },
     {
+      "ad_id": "5209286666",
+      "network": "Mgid",
+      "gravity": 111,
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "first_seen": "2026-08-07",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_d-onenews_com_2026_08_07_7c6b4055.webp"
+    },
+    {
+      "ad_id": "5389927257",
+      "network": "Mgid",
+      "gravity": 93,
+      "headline": "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+      "first_seen": "2026-09-16",
+      "last_seen": "2026-11-16",
+      "movimento": "testando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_pravda-tv_com_2026_09_16_96f98e2d.webp"
+    },
+    {
+      "ad_id": "5139308383",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "По 1/2 чаша всяка сутрин бързо премахва невропатията!",
+      "first_seen": "2026-07-18",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_joq-albania_com_2026_07_18_88cda4da.webp"
+    },
+    {
+      "ad_id": "5235287837",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Neuropátiában szenvedők - Olvassák el, mielőtt törlik!",
+      "first_seen": "2026-08-17",
+      "last_seen": "2026-10-26",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_08_17_340ce1b8.webp"
+    },
+    {
       "ad_id": "5204291039",
       "network": "Mgid",
       "gravity": 1,
@@ -92,5 +146,5 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_greenbreporters_com_2026_08_05_25370258.webp"
     }
   ],
-  "diff_desde_ontem": "máx. gravidade 586→573; n anúncios agora 4."
+  "diff_desde_ontem": "máx. gravidade 586→573; n anúncios agora 8."
 }

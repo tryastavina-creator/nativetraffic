@@ -10,19 +10,23 @@
   "rede_slug": "mgid",
   "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
   "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_d-onenews_com_2026_08_07_7c6b4055.webp",
-  "lander_domain": "",
+  "lander_domain": "green-ri.click",
   "gravity": 111,
   "ad_strength": 2250,
   "first_seen": "2026-08-07",
   "last_seen": "2026-11-16",
-  "dias_entre_primeira_e_ultima": "101",
+  "dias_entre_primeira_e_ultima": 101,
   "idioma_inferido": "de",
   "geo_hint": "HU",
   "tags": "",
   "search_term": "neuropathy (Translated Text)",
   "angle_id": "NEURO-A3",
   "movimento": "volumando",
-  "por_que": "Anúncio novo no master, MGID 111, Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát — headline idêntica à de beauty-ri.click. Domínio não coletado; não atribuir a beauty-ri.",
-  "n_anuncios_do_player": "",
-  "n_headlines_do_player": ""
+  "por_que": "Confirmado: Reggelente 1/2 csésze (MGID 111) é de green-ri.click, não de beauty-ri.click. A mesma headline húngara segue em beauty-ri a 181 (cluster já ligado por phash 0). green-ri.click segue escalando (máx. 573).",
+  "n_anuncios_do_player": 8,
+  "n_headlines_do_player": 5,
+  "dominios_ligados": [
+    "beauty-ri.click"
+  ],
+  "max_gravity_do_player": 573
 }
