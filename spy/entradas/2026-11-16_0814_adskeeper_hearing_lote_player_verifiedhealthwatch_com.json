@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "verifiedhealthwatch.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Derilla Acufeno ES"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5648926450",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5648926450",
+      "5648927879"
+    ]
+  },
+  "dominios_ligados": [
+    "dailylifeinsider.com",
+    "pgsrc.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5648926450",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Derilla Acufeno ES",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_16_7c162efa.webp"
+    },
+    {
+      "ad_id": "5648927879",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Derilla Acufeno ES",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_16_e2eb97ba.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-16."
+}
