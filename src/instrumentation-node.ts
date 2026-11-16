@@ -4,6 +4,7 @@
  */
 import { cachedCreatives } from "./lib/creatives";
 import { rangeFromPreset } from "./lib/metrics";
+import { getSpy } from "./lib/spy";
 import { computeTrafficTree } from "./lib/trafficTree";
 
 if (!process.env.NT_NO_WARM) {
@@ -13,6 +14,8 @@ if (!process.env.NT_NO_WARM) {
     }
     // Creatives (Criativos tab and the campaign creative picker).
     for (const preset of ["30d", "7d"]) await cachedCreatives(rangeFromPreset(preset)).catch(() => {});
+    // Spy: picks up a new push from the bot within a few minutes, even with nobody on the page.
+    await getSpy().catch(() => {});
   };
   setTimeout(warm, 5_000);
   setInterval(warm, 3 * 60_000).unref?.();
