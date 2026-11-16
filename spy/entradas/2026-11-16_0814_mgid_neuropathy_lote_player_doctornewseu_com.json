@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "doctornewseu.com",
+  "status": "parado",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Bizsergést érez a lábában? Ezt tudnia kell!"
+  ],
+  "max_gravity": 135,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 135,
+      "ad_id": "5630881415",
+      "last_seen": "2026-11-12"
+    }
+  },
+  "first_seen": "2026-11-12",
+  "last_seen": "2026-11-12",
+  "movimentos": {
+    "parado": [
+      "5630881415"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5630881415",
+      "network": "Mgid",
+      "gravity": 135,
+      "headline": "Bizsergést érez a lábában? Ezt tudnia kell!",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_12_67bb6bc1.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→parado; n anúncios agora 1."
+}

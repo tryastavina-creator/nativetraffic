@@ -1,0 +1,96 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "green-ri.click",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 2,
+  "headlines": [
+    "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+    "Они који имају неуропатију - прочитајте пре него што је обришу!"
+  ],
+  "max_gravity": 573,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 573,
+      "ad_id": "5329795720",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-08-05",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "escalando": [
+      "5328794421",
+      "5329795720"
+    ],
+    "volumando": [
+      "5391998187"
+    ],
+    "parado": [
+      "5204291039"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "beauty-ri.click",
+    "myvita.day",
+    "solveclocktext.space",
+    "washbosswhale.beauty"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5329795720",
+      "network": "Mgid",
+      "gravity": 573,
+      "headline": "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+      "first_seen": "2026-09-04",
+      "last_seen": "2026-11-14",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_publiweb_com_2026_09_04_e9f042be.webp"
+    },
+    {
+      "ad_id": "5328794421",
+      "network": "Mgid",
+      "gravity": 369,
+      "headline": "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+      "first_seen": "2026-09-04",
+      "last_seen": "2026-11-16",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_selerasa_com_2026_09_04_f5033685.webp"
+    },
+    {
+      "ad_id": "5391998187",
+      "network": "Mgid",
+      "gravity": 116,
+      "headline": "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bubbleshooter_eco_br_2026_09_17_f954e674.webp"
+    },
+    {
+      "ad_id": "5204291039",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Они који имају неуропатију - прочитајте пре него што је обришу!",
+      "first_seen": "2026-08-05",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_greenbreporters_com_2026_08_05_25370258.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 586→573; n anúncios agora 4."
+}
