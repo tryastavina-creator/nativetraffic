@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "drugie-ucho.pl",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Drugie Ucho (aparelhos suíços / teste)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!"
+  ],
+  "max_gravity": 458,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 458,
+      "ad_id": "5486366710",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "escalando": [
+      "5486366710"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5486366710",
+      "network": "Taboola",
+      "gravity": 458,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-10-07",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_07_d35aa4fc.png"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 137→458; n anúncios agora 1."
+}
