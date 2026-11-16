@@ -10,8 +10,8 @@
     "NewsMax",
     "Revcontent"
   ],
-  "n_anuncios": 35,
-  "n_headlines": 22,
+  "n_anuncios": 53,
+  "n_headlines": 26,
   "headlines": [
     "Neuropathy: Relieve 'Needle Pain' & Numbness - Try This at Home Today",
     "Neuropathy? When The Nerve Pain Won't Stop, Do This",
@@ -19,8 +19,12 @@
     "Neuropathy? This Will Transform Your Nerve System 15 Years Back",
     "People Over 45 With Neuropathy Are in for a Big Surprise (It's Genius)",
     "Anyone With Nerve Pain (Neuropathy) Should Watch This",
+    "When Neuropathy Hits, Try This (It's Genius)",
     "Neuropathy? When The Burning, Tingling & Numbness Won't Stop - Do This",
     "Neuropathy? Your Nervous System Can Be Restored, Even if You're Over 50",
+    "Neuropathy? When the Nerve Pain Won't Stop, Do This",
+    "Neuropathy & Nerve Pain: Why Didn't Your Neurologist Tell You About This?",
+    "Neurologist Begs People With Neuropathy and Nerve Pain: Stop Doing This Now",
     "Neuropathy: Sharp Pain, Tingling & Numbness May Become a Thing of the Past",
     "Neuropathy: Simple Method to Relieve The Sharp Pain & Numbness",
     "Anyone With Nerve Pain (Neuropathy) Should Start Doing This Immediately",
@@ -66,9 +70,12 @@
       "3896322287",
       "3889357887",
       "4965976715",
+      "3889042996",
       "3890864743",
+      "3890944023",
       "3888993910",
       "3889033635",
+      "3890935240",
       "3956384859",
       "4821386450",
       "3786866212",
@@ -82,8 +89,12 @@
       "3903424031"
     ],
     "testando": [
+      "3890983250",
+      "3890888084",
       "3896371934",
       "3891028905",
+      "5081093241",
+      "3897340659",
       "5196217769",
       "3787617433",
       "3808593337",
@@ -91,10 +102,21 @@
       "3896572275"
     ],
     "parado": [
+      "3885383047",
+      "3890981181",
+      "3885389115",
+      "3889131917",
+      "3890980999",
+      "3885298932",
+      "3885389549",
+      "4966620359",
+      "3896676369",
+      "3896703522",
+      "3889475377",
+      "3885388281",
       "5045641339",
       "4159101786",
       "5594549157",
-      "3896703522",
       "3889129266"
     ]
   },
@@ -102,7 +124,10 @@
     "apothekenblatt.de",
     "getorevive.com",
     "globallaunch.store",
-    "integratedsupplementlatam.fun"
+    "healthnervess.online",
+    "healthweekly.info",
+    "integratedsupplementlatam.fun",
+    "keller-cloudflare-pages.pages.dev"
   ],
   "funil": {},
   "anuncios": [
@@ -338,6 +363,17 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_chron_com_2026_06_05_88d5fd68.gif"
     },
     {
+      "ad_id": "3889042996",
+      "network": "NewsMax",
+      "gravity": 121,
+      "headline": "When Neuropathy Hits, Try This (It's Genius)",
+      "first_seen": "2025-10-27",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_27_75a53ccf.jpg"
+    },
+    {
       "ad_id": "3890864743",
       "network": "NewsMax",
       "gravity": 119,
@@ -347,6 +383,17 @@
       "movimento": "volumando",
       "angle_id": "NEURO-A7",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_30_fb8b2e8b.jpg"
+    },
+    {
+      "ad_id": "3890944023",
+      "network": "NewsMax",
+      "gravity": 119,
+      "headline": "When Neuropathy Hits, Try This (It's Genius)",
+      "first_seen": "2025-10-30",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_30_77ab4555.jpg"
     },
     {
       "ad_id": "3888993910",
@@ -371,6 +418,17 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_27_985e2205.jpg"
     },
     {
+      "ad_id": "3890935240",
+      "network": "NewsMax",
+      "gravity": 105,
+      "headline": "Neuropathy? When The Burning, Tingling & Numbness Won't Stop - Do This",
+      "first_seen": "2025-10-30",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_30_66b18f55.webp"
+    },
+    {
       "ad_id": "3787617433",
       "network": "Revcontent",
       "gravity": 94,
@@ -382,6 +440,28 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_iotwreport_com_2025_06_11_290ebf46.jpg"
     },
     {
+      "ad_id": "3890983250",
+      "network": "NewsMax",
+      "gravity": 91,
+      "headline": "Neuropathy? When the Nerve Pain Won't Stop, Do This",
+      "first_seen": "2025-10-30",
+      "last_seen": "2026-11-14",
+      "movimento": "testando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_30_8ac55afd.jpg"
+    },
+    {
+      "ad_id": "3890888084",
+      "network": "Revcontent",
+      "gravity": 90,
+      "headline": "When Neuropathy Hits, Try This (It's Genius)",
+      "first_seen": "2025-10-30",
+      "last_seen": "2026-11-15",
+      "movimento": "testando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_xxlmag_com_2025_10_30_66905422.jpg"
+    },
+    {
       "ad_id": "5045641339",
       "network": "Revcontent",
       "gravity": 84,
@@ -391,6 +471,17 @@
       "movimento": "parado",
       "angle_id": "NEURO-OUTRO",
       "thumbnail_url": ""
+    },
+    {
+      "ad_id": "3896676369",
+      "network": "Revcontent",
+      "gravity": 79,
+      "headline": "Neuropathy? When The Burning, Tingling & Numbness Won't Stop - Do This",
+      "first_seen": "2025-11-07",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_chron_com_2025_11_07_26c6fb55.jpg"
     },
     {
       "ad_id": "3896371934",
@@ -413,6 +504,50 @@
       "movimento": "testando",
       "angle_id": "NEURO-OUTRO",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_boingboing_net_2026_11_03_22641957.jpg"
+    },
+    {
+      "ad_id": "3897340659",
+      "network": "Revcontent",
+      "gravity": 77,
+      "headline": "Neuropathy? When The Burning, Tingling & Numbness Won't Stop - Do This",
+      "first_seen": "2025-11-07",
+      "last_seen": "2026-11-13",
+      "movimento": "testando",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_westernjournal_com_2025_11_07_036c3a12.jpg"
+    },
+    {
+      "ad_id": "3889131917",
+      "network": "Revcontent",
+      "gravity": 75,
+      "headline": "Neuropathy & Nerve Pain: Why Didn't Your Neurologist Tell You About This?",
+      "first_seen": "2025-10-27",
+      "last_seen": "2026-11-05",
+      "movimento": "parado",
+      "angle_id": "NEURO-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_ultimateclassicrock_com_2025_10_27_650a705c.jpg"
+    },
+    {
+      "ad_id": "3890980999",
+      "network": "Revcontent",
+      "gravity": 68,
+      "headline": "Neuropathy? When The Nerve Pain Won't Stop, Do This",
+      "first_seen": "2025-10-30",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_westernjournal_com_2025_10_30_6114445c.jpg"
+    },
+    {
+      "ad_id": "5081093241",
+      "network": "Revcontent",
+      "gravity": 68,
+      "headline": "Neurologist Begs People With Neuropathy and Nerve Pain: Stop Doing This Now",
+      "first_seen": "2026-07-04",
+      "last_seen": "2026-11-13",
+      "movimento": "testando",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_westernjournal_com_2026_07_04_812be8e2.jpg"
     },
     {
       "ad_id": "3896572275",
@@ -448,6 +583,28 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_washingtontimes_com_2025_10_30_6306706d.jpg"
     },
     {
+      "ad_id": "3885383047",
+      "network": "Revcontent",
+      "gravity": 55,
+      "headline": "When Neuropathy Hits, Try This (It's Genius)",
+      "first_seen": "2025-10-22",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_equestriadaily_com_2025_10_22_955b1fee.jpg"
+    },
+    {
+      "ad_id": "3885298932",
+      "network": "Revcontent",
+      "gravity": 53,
+      "headline": "Neuropathy? When the Nerve Pain Won't Stop, Do This",
+      "first_seen": "2025-10-22",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_chron_com_2025_10_22_082dd219.jpg"
+    },
+    {
       "ad_id": "3896703522",
       "network": "Revcontent",
       "gravity": 48,
@@ -457,6 +614,28 @@
       "movimento": "parado",
       "angle_id": "NEURO-A7",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_loudwire_com_2025_11_07_3f1ebcf1.jpg"
+    },
+    {
+      "ad_id": "3885388281",
+      "network": "Revcontent",
+      "gravity": 46,
+      "headline": "Neuropathy: Relieve 'Needle Pain' & Numbness - Try This at Home Today",
+      "first_seen": "2025-10-22",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_thechive_com_2025_10_22_b64d1c2c.jpg"
+    },
+    {
+      "ad_id": "3890981181",
+      "network": "Revcontent",
+      "gravity": 42,
+      "headline": "Neuropathy? When the Burning, Tingling & Numbness Won't Stop - Do This",
+      "first_seen": "2025-10-30",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_tvmaze_com_2025_10_30_cc1c7edf.jpg"
     },
     {
       "ad_id": "4159101786",
@@ -481,6 +660,28 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_thechive_com_2026_11_03_fd2c0e21.jpg"
     },
     {
+      "ad_id": "3885389549",
+      "network": "Revcontent",
+      "gravity": 38,
+      "headline": "Neuropathy? When The Nerve Pain Won't Stop, Do This",
+      "first_seen": "2025-10-22",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_readcrystalpalace_com_2025_10_22_545ff0ac.jpg"
+    },
+    {
+      "ad_id": "3889475377",
+      "network": "Revcontent",
+      "gravity": 35,
+      "headline": "Neuropathy? When The Burning, Tingling & Numbness Won't Stop - Do This",
+      "first_seen": "2025-10-28",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-A7",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_dailydot_com_2025_10_28_c7d0c1fc.jpg"
+    },
+    {
       "ad_id": "3889129266",
       "network": "Revcontent",
       "gravity": 34,
@@ -490,7 +691,29 @@
       "movimento": "parado",
       "angle_id": "NEURO-A4",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_100percentfedup_com_2025_10_27_d0e23e6c.jpg"
+    },
+    {
+      "ad_id": "4966620359",
+      "network": "Revcontent",
+      "gravity": 32,
+      "headline": "Neurologist Begs People With Neuropathy and Nerve Pain: Stop Doing This Now",
+      "first_seen": "2026-06-05",
+      "last_seen": "2026-11-02",
+      "movimento": "parado",
+      "angle_id": "NEURO-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_ultimateclassicrock_com_2026_06_05_da2614ad.jpg"
+    },
+    {
+      "ad_id": "3885389115",
+      "network": "Revcontent",
+      "gravity": 25,
+      "headline": "Neuropathy? Your Nervous System Can Be Restored, Even if You're Over 50",
+      "first_seen": "2025-10-22",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_westernjournal_com_2025_10_22_68b830fa.jpg"
     }
   ],
-  "diff_desde_ontem": "n anúncios agora 35."
+  "diff_desde_ontem": "n anúncios agora 53."
 }
