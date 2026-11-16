@@ -1,25 +1,23 @@
-# Padrões e ângulos — hearing — 2026-11-16
+# Padrões e ângulos — hearing — 2026-11-16 (correção com domínios)
 
-Coleta de 16/11/2026 (horário de Brasília, UTC-3), comparado com 15/11. Termos buscados: tinnitus e hearing (Translated Text). Visões A–G tentadas; na busca “hearing”, C e F não tiveram cartões no corte de first-seen. E: 3 cartões (tinnitus) e 5 (hearing). **Gavetas não abertas: lander_domain não veio.** 86 anúncios únicos no bruto, 0 excluídos depois de alargar o filtro para ακουστικ/צלצול/אוזנ. Master: 268 (58 novos, 28 atualizados, 182 só histórico). 58 dos novos ficaram sem domínio.
+Coleta de 16/11/2026 (horário de Brasília, UTC-3), comparado com 15/11, depois de preencher os 86 lander_domain. Termos: tinnitus e hearing. 0 excluídos. Master 268 (58 novos, 28 atualizados, 182 só histórico). 7 players novos. 60 players no mapa (22 escalando, 10 volumando, 19 lançando, 9 parado).
 
-## Limitação desta rodada
-Sem o bloco “Site and Landing Page Information” não dá para atribuir player a anúncio novo. Três criativos Taboola já acima do piso 300 (517 / 326 / 316) estão no master sem dono. A próxima coleta precisa abrir a gaveta desses ids.
+## Players novos
+- hansaton.at, escalando 326 (Taboola, Wien / KI-Hörgeräte). Marca varejo Sonova; lander legível (120+ lojas, teste online, trial; preço não visível na homepage).
+- hoerberatung.at, volumando 100 (Taboola, Mini-Hörgeräte da Suíça em Wien). www redireciona para hansaton.at.
+- buzzandblink.com, volumando 114 (Outbrain, GR). Lander 500.
+- verifiedhealthwatch.com, lançando 0 (Derilla Acufeno ES).
+- migliora-udito.it, gehoortesters.nl, avaliacao-auditiva.pt: parado, gravidade 1.
 
-## O que mudou nos players conhecidos
-- lphst.com: volumando 230 → escalando 502 (MGID).
-- drugie-ucho.pl: volumando 137 → escalando 458 (Taboola).
-- seravia.info: 395→455 (Taboola).
-- naturegrove24.com: máx. 625→520 (bandeira 625→391; 1 euro permanece 520 no histórico).
-- pgsrc.com: 211→264 (ainda volumando, abaixo do piso 300 da MGID).
-- wonderbanana.com: teste “cirujano” 0→255; máx. do player permanece 688.
-- gesund-vital-ratgeber.org: 296→250 (segue escalando na Outbrain, piso 150).
-- candyai.gg: 187→226 (captura suspeita; thumb AdsKeeper nesta coleta).
-- livenfermstizzy.top: lançando→parado (last_seen 12/11).
+## Já conhecidos (destaques desta correção)
+- hear-pro.com não é player novo: absorve Barcelona 517 e 'Antes de comprar' 316; máx. 958. Lander ilegível (CDN/cloak).
+- lphst.com 230→502 e drugie-ucho.pl 137→458 (volumando→escalando). seravia 395→455. naturegrove máx. 625→520. dailylifeinsider 0→170. trendy-info.jp 172→239. herelnd 4→10 anúncios, máx. 280, segue lançando. gesund-vital máx. 296→255. livenferm lançando→parado.
 
-Players no mapa: 53 (21 escalando, 8 volumando, 18 lançando, 6 parado). Nenhum player novo com domínio.
+## Funis (só players novos do topo + hear-pro, a pedido)
+- hansaton.at: legível (ver acima).
+- hoerberatung.at: 302 para hansaton.at.
+- hear-pro.com: página 'Content delivery network'; oferta não lida.
+- buzzandblink.com: 500.
 
-## Ângulos no master (contagem)
-HEAR-OUTRO 68, A5 54 (aparelho/teste grátis), A1 37, A2 28, A9 22 (causa oculta), A6 18 (cirurgião revela), A13 11, A4 9 (1 euro), A8 6, A11 4, A12 4, A3 3, A14 3, A15 1.
-
-## Testes de 15–16/11 (gravidade 0, sem domínio)
-Método de 7 segundos (HE), “lutei durante anos” (HE/ES/TR), Derilla Acufeno ES, Kalmeda auf Rezept, Fehler Nr. 1 à noite, Tinnitus erkennen & verstehen.
+## Ângulos no master
+HEAR-OUTRO 68, A5 54, A1 37, A2 28, A9 22, A6 18, A13 11, A4 9, A8 6, A11 4, A12 4, A3 3, A14 3, A15 1.
