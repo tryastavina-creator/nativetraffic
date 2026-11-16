@@ -1,0 +1,89 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "wexiy.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 1,
+  "headlines": [
+    "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!"
+  ],
+  "max_gravity": 264,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 264,
+      "ad_id": "5623974883",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-10",
+  "last_seen": "2026-11-15",
+  "movimentos": {
+    "lancando": [
+      "5623974883",
+      "5625350060"
+    ],
+    "parado": [
+      "5626185497",
+      "5624517524"
+    ]
+  },
+  "dominios_ligados": [
+    "liyng.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5623974883",
+      "network": "Outbrain",
+      "gravity": 264,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_10_cda422b0.webp"
+    },
+    {
+      "ad_id": "5624517524",
+      "network": "Outbrain",
+      "gravity": 243,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_10_177c961e.webp"
+    },
+    {
+      "ad_id": "5625350060",
+      "network": "Outbrain",
+      "gravity": 161,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_10_8c205f2d.webp"
+    },
+    {
+      "ad_id": "5626185497",
+      "network": "Outbrain",
+      "gravity": 123,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_11_75979e6b.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe escalando→lancando; n anúncios agora 4."
+}
