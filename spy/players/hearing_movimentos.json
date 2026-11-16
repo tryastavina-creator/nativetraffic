@@ -1,400 +1,90 @@
 {
   "nicho": "hearing",
-  "data_coleta": "2026-11-15",
-  "diff_contra": "2026-11-14",
-  "n_anuncios_raw": 139,
-  "n_excluidos_fora_do_nicho": 12,
-  "n_anuncios_master": 210,
-  "n_anuncios_novos": 110,
-  "n_anuncios_atualizados": 17,
-  "n_historico_so_ontem": 83,
+  "data_coleta": "2026-11-16",
+  "diff_contra": "2026-11-15",
+  "n_anuncios_raw": 86,
+  "n_excluidos_fora_do_nicho": 0,
+  "n_anuncios_master": 268,
+  "n_anuncios_novos": 58,
+  "n_anuncios_atualizados": 28,
+  "n_historico_so_ontem": 182,
   "minha_loja": [],
   "class_moves": [
     {
-      "lander_domain": "adskeeper.co.uk",
-      "status_ontem": "lancando",
-      "status_hoje": "volumando",
-      "max_gravity_ontem": 205,
-      "max_gravity_hoje": 205,
-      "last_seen": "2026-11-15"
-    }
-  ],
-  "new_players": [
-    {
-      "lander_domain": "hear.com",
-      "status": "escalando",
-      "tipo_player": "lead_gen_marca",
-      "max_gravity": 466,
-      "networks": "AdsKeeper, Taboola, Revcontent",
-      "n_anuncios": 17,
-      "first_seen": "2026-09-20",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "The Cost Of Hearing Aids In Thrissur Might Surprise You!",
-        "German Hearing Aids In Delhi At 0% EMI",
-        "The Cost Of Hearing Aids In Nellore Might Surprise You!",
-        "Living in New Delhi? Don't Buy Hearing Aids Before Reading This",
-        "The Cost Of Hearing Aids In Delhi Might Surprise You!",
-        "The Cost Of Hearing Aids In Kanpur Might Surprise You!",
-        "New Delhi – Born Before 1975? You're Eligible For Trial Of German Hearing Aid.",
-        "Pune – Born before 1976? You're eligible for trial of German hearing aid."
-      ]
-    },
-    {
-      "lander_domain": "auditorey.co",
-      "status": "escalando",
-      "tipo_player": "lead_gen",
-      "max_gravity": 428,
-      "networks": "Taboola",
-      "n_anuncios": 3,
-      "first_seen": "2026-11-08",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Sunday: We're Looking for People to try Revolutionary Hearing Aids for 14 Days",
-        "We're looking for people in Australia who want to try the latest high-tech hearing devices",
-        "Gov't Pays For New Hearing Aids"
-      ]
-    },
-    {
-      "lander_domain": "connecthearing.ca",
-      "status": "escalando",
-      "tipo_player": "marca_varejo",
-      "max_gravity": 426,
-      "networks": "Taboola",
-      "n_anuncios": 2,
-      "first_seen": "2026-08-17",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Free Hearing Tests Are Open Across Canada",
-        "Toronto Connect Hearing Is Giving Free 90-Minute Hearing Checks"
-      ]
-    },
-    {
-      "lander_domain": "bookappointmentonline.com",
-      "status": "escalando",
-      "tipo_player": "lead_gen",
-      "max_gravity": 360,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2026-10-19",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Toronto: Amplifon is looking for people to join a free hearing test"
-      ]
-    },
-    {
-      "lander_domain": "gesund-vital-ratgeber.org",
-      "status": "escalando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 296,
-      "networks": "Outbrain",
-      "n_anuncios": 3,
-      "first_seen": "2026-06-20",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
-        "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
-        "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser"
-      ]
-    },
-    {
-      "lander_domain": "healthmatters24.com",
-      "status": "escalando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 281,
-      "networks": "Mgid, Outbrain",
-      "n_anuncios": 6,
-      "first_seen": "2026-07-31",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Babičkino riešenie pre sluch. Váš sluch sa vráti do normálu",
-        "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
-        "Problémy se sluchem? Užívejte toto jednou denně večer"
-      ]
-    },
-    {
-      "lander_domain": "news360.pro",
-      "status": "volumando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 257,
-      "networks": "AdNow",
-      "n_anuncios": 2,
-      "first_seen": "2026-06-29",
-      "last_seen": "2026-11-13",
-      "headlines": [
-        "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
-        "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos."
-      ]
-    },
-    {
-      "lander_domain": "curiositaviva.com",
-      "status": "volumando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 197,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-04",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Аcufеne? Gli esрerti parlano di un dettaglio сhe quasi nessunо рrende sul seriо."
-      ]
+      "lander_domain": "lphst.com",
+      "status_ontem": "volumando",
+      "status_hoje": "escalando",
+      "max_gravity_ontem": 230,
+      "max_gravity_hoje": 502,
+      "last_seen": "2026-11-16"
     },
     {
       "lander_domain": "drugie-ucho.pl",
-      "status": "volumando",
-      "tipo_player": "marca_varejo",
-      "max_gravity": 137,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2026-10-07",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!"
-      ]
-    },
-    {
-      "lander_domain": "life-dzen.com",
-      "status": "volumando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 132,
-      "networks": "Mgid",
-      "n_anuncios": 1,
-      "first_seen": "2026-05-08",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Sluh se poboljšao za 87% u samo jednoj sedmici korištenja!"
-      ]
-    },
-    {
-      "lander_domain": "auditorey.com",
-      "status": "lancando",
-      "tipo_player": "lead_gen",
-      "max_gravity": 407,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-13",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Wanted: New Zealanders who want to try high-tech hearing devices"
-      ]
-    },
-    {
-      "lander_domain": "herelnd.com",
-      "status": "lancando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 280,
-      "networks": "Mgid",
-      "n_anuncios": 4,
-      "first_seen": "2026-11-13",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
-        "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!"
-      ]
+      "status_ontem": "volumando",
+      "status_hoje": "escalando",
+      "max_gravity_ontem": 137,
+      "max_gravity_hoje": 458,
+      "last_seen": "2026-11-15"
     },
     {
       "lander_domain": "livenfermstizzy.top",
-      "status": "lancando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 255,
-      "networks": "Mgid",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-11",
-      "last_seen": "2026-11-12",
-      "headlines": [
-        "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi"
-      ]
-    },
-    {
-      "lander_domain": "hertsad.co.uk",
-      "status": "lancando",
-      "tipo_player": "editorial_ou_publisher",
-      "max_gravity": 75,
-      "networks": "Outbrain",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-13",
-      "last_seen": "2026-11-13",
-      "headlines": [
-        "Drummer Roger Taylor quits Duran Duran due to worsening tinnitus"
-      ]
-    },
-    {
-      "lander_domain": "santeflux.com",
-      "status": "lancando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 0,
-      "networks": "Taboola",
-      "n_anuncios": 3,
-      "first_seen": "2026-11-14",
-      "last_seen": "2026-11-14",
-      "headlines": [
-        "Ringing Ears? MD's: When Tinnitus Won't Stop, Do This (Watch)",
-        "Severe Tinnitus Has Been Linked to a Common Habit"
-      ]
-    },
-    {
-      "lander_domain": "basis-rases-wacky.rest",
-      "status": "lancando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 0,
-      "networks": "AdsKeeper",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-15",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!"
-      ]
-    },
-    {
-      "lander_domain": "smarthealthmag.com",
-      "status": "lancando",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 0,
-      "networks": "Outbrain",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-15",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Next-Gen Chip Takes Over the US Hearing Aid Market"
-      ]
-    },
-    {
-      "lander_domain": "kalmeda.de",
-      "status": "lancando",
-      "tipo_player": "marca_dtc",
-      "max_gravity": 0,
-      "networks": "Outbrain",
-      "n_anuncios": 1,
-      "first_seen": "2026-11-14",
-      "last_seen": "2026-11-14",
-      "headlines": [
-        "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen."
-      ]
-    },
-    {
-      "lander_domain": "afftrack.one",
-      "status": "lancando",
-      "tipo_player": "dominio_da_rede_ou_tracker",
-      "max_gravity": 0,
-      "networks": "Outbrain",
-      "n_anuncios": 2,
-      "first_seen": "2026-11-15",
-      "last_seen": "2026-11-15",
-      "headlines": [
-        "Lista de precios de los audífonos para personas mayores en 2026",
-        "Precio de audífonos para adultos mayores: qué cuesta un buen aparato en 2026"
-      ]
-    },
-    {
-      "lander_domain": "revue-bien-etre.com",
-      "status": "parado",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 1,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2025-12-14",
-      "last_seen": "2026-10-27",
-      "headlines": [
-        "Acouphènes? Faites ceci tout de suite, et ils disparaîtront !"
-      ]
-    },
-    {
-      "lander_domain": "rrisinsh.com",
-      "status": "parado",
-      "tipo_player": "oferta_resposta_direta",
-      "max_gravity": 1,
-      "networks": "Popin",
-      "n_anuncios": 2,
-      "first_seen": "2026-08-26",
-      "last_seen": "2026-11-04",
-      "headlines": [
-        "耳が遠い人は絶対やって。耳鳴りがする本当の理由は、耳に溜まった◯毒…",
-        "「耳が遠い人」9割が知らない治し方"
-      ]
-    },
-    {
-      "lander_domain": "gutes-hoeren.de",
-      "status": "parado",
-      "tipo_player": "marca_varejo",
-      "max_gravity": 1,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2025-12-04",
-      "last_seen": "2026-11-07",
-      "headlines": [
-        "Frankfurt Am Main: Gutes Hören sucht 700 Testhörer für Hörgeräte ohne Zuzahlung"
-      ]
-    },
-    {
-      "lander_domain": "centros-auditivos.es",
-      "status": "parado",
-      "tipo_player": "marca_varejo",
-      "max_gravity": 1,
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "first_seen": "2026-09-14",
-      "last_seen": "2026-11-02",
-      "headlines": [
-        "El truco para mejorar la audición que está causando furor en España"
-      ]
+      "status_ontem": "lancando",
+      "status_hoje": "parado",
+      "max_gravity_ontem": 255,
+      "max_gravity_hoje": 255,
+      "last_seen": "2026-11-12"
     }
   ],
+  "new_players": [],
   "gravity_changes_players": [
     {
-      "lander_domain": "gaes.es",
+      "lander_domain": "drugie-ucho.pl",
       "status": "escalando",
-      "max_gravity_ontem": 907,
-      "max_gravity_hoje": 489,
-      "delta": -418
+      "max_gravity_ontem": 137,
+      "max_gravity_hoje": 458,
+      "delta": 321
     },
     {
-      "lander_domain": "hearease.site",
+      "lander_domain": "lphst.com",
       "status": "escalando",
-      "max_gravity_ontem": 525,
-      "max_gravity_hoje": 263,
-      "delta": -262
+      "max_gravity_ontem": 230,
+      "max_gravity_hoje": 502,
+      "delta": 272
     },
     {
-      "lander_domain": "eidikosvarikoias.gr",
-      "status": "volumando",
-      "max_gravity_ontem": 294,
-      "max_gravity_hoje": 217,
-      "delta": -77
-    },
-    {
-      "lander_domain": "candyai.gg",
-      "status": "volumando",
-      "max_gravity_ontem": 240,
-      "max_gravity_hoje": 187,
-      "delta": -53
+      "lander_domain": "naturegrove24.com",
+      "status": "escalando",
+      "max_gravity_ontem": 625,
+      "max_gravity_hoje": 520,
+      "delta": -105
     },
     {
       "lander_domain": "seravia.info",
       "status": "escalando",
-      "max_gravity_ontem": 410,
-      "max_gravity_hoje": 395,
-      "delta": -15
-    },
-    {
-      "lander_domain": "vivason.fr",
-      "status": "lancando",
-      "max_gravity_ontem": 245,
-      "max_gravity_hoje": 255,
-      "delta": 10
+      "max_gravity_ontem": 395,
+      "max_gravity_hoje": 455,
+      "delta": 60
     },
     {
       "lander_domain": "pgsrc.com",
       "status": "volumando",
-      "max_gravity_ontem": 215,
-      "max_gravity_hoje": 211,
-      "delta": -4
+      "max_gravity_ontem": 211,
+      "max_gravity_hoje": 264,
+      "delta": 53
     },
     {
-      "lander_domain": "lphst.com",
+      "lander_domain": "gesund-vital-ratgeber.org",
+      "status": "escalando",
+      "max_gravity_ontem": 296,
+      "max_gravity_hoje": 250,
+      "delta": -46
+    },
+    {
+      "lander_domain": "candyai.gg",
       "status": "volumando",
-      "max_gravity_ontem": 231,
-      "max_gravity_hoje": 230,
-      "delta": -1
+      "max_gravity_ontem": 187,
+      "max_gravity_hoje": 226,
+      "delta": 39
     }
   ],
   "players": [
@@ -765,7 +455,7 @@
           "geo_hint": "DK",
           "tags": "",
           "angle_id": "HEAR-OUTRO",
-          "movimento": "testando",
+          "movimento": "parado",
           "phash": "b80795f5c826976a",
           "search_term": "hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
@@ -805,7 +495,7 @@
       "flag": "",
       "ativo": "sim",
       "first_seen": "2026-11-07",
-      "last_seen": "2026-11-14",
+      "last_seen": "2026-11-16",
       "networks": "AdsKeeper",
       "n_anuncios": 2,
       "n_headlines": 2,
@@ -835,7 +525,7 @@
       "funil": null,
       "anuncios": [
         {
-          "views": "C",
+          "views": "A+C",
           "ad_id": "5640846034",
           "ad_url": "https://native.anstrex.com/creative/panel/5640846034",
           "network": "AdsKeeper",
@@ -845,19 +535,19 @@
           "thumbnail_local": "/workspace/spy/hearing/imagens/5640846034.webp",
           "lander_domain": "wonderbanana.com",
           "lander_url": "",
-          "gravity": "0",
-          "ad_strength": "0",
+          "gravity": "255",
+          "ad_strength": "726",
           "first_seen": "2026-11-14",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 0,
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 2,
           "idioma_inferido": "es",
           "geo_hint": "MX",
           "tags": "",
           "angle_id": "HEAR-A6",
           "movimento": "lancando",
           "phash": "9ecd614e7418b4bc",
-          "search_term": "tinnitus",
-          "data_ultima_coleta": "2026-11-14"
+          "search_term": "tinnitus; tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
         },
         {
           "views": "A+E",
@@ -925,6 +615,56 @@
       },
       "funil": null,
       "anuncios": [
+        {
+          "views": "A+G",
+          "ad_id": "5484787258",
+          "ad_url": "https://native.anstrex.com/creative/panel/5484787258",
+          "network": "Outbrain",
+          "network_slug": "outbrain",
+          "headline": "Ces aides auditives font fureur auprès des seniors",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gala_fr_2026_10_07_1988a214.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5484787258.webp",
+          "lander_domain": "bonne-audition.fr",
+          "lander_url": "",
+          "gravity": "152",
+          "ad_strength": "5418",
+          "first_seen": "2026-10-07",
+          "last_seen": "2026-11-12",
+          "dias_entre_primeira_e_ultima": 36,
+          "idioma_inferido": "fr",
+          "geo_hint": "FR",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-A5",
+          "movimento": "parado",
+          "phash": "982d5e615bbca156",
+          "search_term": "hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+B+D+G",
+          "ad_id": "5481747975",
+          "ad_url": "https://native.anstrex.com/creative/panel/5481747975",
+          "network": "Outbrain",
+          "network_slug": "outbrain",
+          "headline": "Ces aides auditives font fureur auprès des seniors",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gala_fr_2026_10_06_3b88fac5.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5481747975.webp",
+          "lander_domain": "bonne-audition.fr",
+          "lander_url": "",
+          "gravity": "124",
+          "ad_strength": "13154",
+          "first_seen": "2026-10-06",
+          "last_seen": "2026-11-12",
+          "dias_entre_primeira_e_ultima": 37,
+          "idioma_inferido": "fr",
+          "geo_hint": "FR",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-A5",
+          "movimento": "parado",
+          "phash": "982d5e615bbca156",
+          "search_term": "hearing; hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
         {
           "views": "C+F",
           "ad_id": "5644415680",
@@ -1051,31 +791,6 @@
           "data_ultima_coleta": "2026-11-15"
         },
         {
-          "views": "G",
-          "ad_id": "5484787258",
-          "ad_url": "https://native.anstrex.com/creative/panel/5484787258",
-          "network": "Outbrain",
-          "network_slug": "outbrain",
-          "headline": "Ces aides auditives font fureur auprès des seniors",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gala_fr_2026_10_07_1988a214.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5484787258.webp",
-          "lander_domain": "bonne-audition.fr",
-          "lander_url": "",
-          "gravity": "152",
-          "ad_strength": "5418",
-          "first_seen": "2026-10-07",
-          "last_seen": "2026-11-12",
-          "dias_entre_primeira_e_ultima": 36,
-          "idioma_inferido": "fr",
-          "geo_hint": "FR",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-A5",
-          "movimento": "escalando",
-          "phash": "982d5e615bbca156",
-          "search_term": "hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
           "views": "A+E",
           "ad_id": "5633268076",
           "ad_url": "https://native.anstrex.com/creative/panel/5633268076",
@@ -1145,7 +860,7 @@
           "geo_hint": "FR",
           "tags": "Health & Wellness",
           "angle_id": "HEAR-A5",
-          "movimento": "escalando",
+          "movimento": "parado",
           "phash": "b83b78bc42a464bb",
           "search_term": "hearing",
           "data_ultima_coleta": "2026-11-14"
@@ -1197,31 +912,6 @@
           "angle_id": "HEAR-A5",
           "movimento": "lancando",
           "phash": "efce4ce61ca14634",
-          "search_term": "hearing",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "D",
-          "ad_id": "5481747975",
-          "ad_url": "https://native.anstrex.com/creative/panel/5481747975",
-          "network": "Outbrain",
-          "network_slug": "outbrain",
-          "headline": "Ces aides auditives font fureur auprès des seniors",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gala_fr_2026_10_06_3b88fac5.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5481747975.webp",
-          "lander_domain": "bonne-audition.fr",
-          "lander_url": "",
-          "gravity": "247",
-          "ad_strength": "13154",
-          "first_seen": "2026-10-06",
-          "last_seen": "2026-11-12",
-          "dias_entre_primeira_e_ultima": 37,
-          "idioma_inferido": "fr",
-          "geo_hint": "FR",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-A5",
-          "movimento": "escalando",
-          "phash": "982d5e615bbca156",
           "search_term": "hearing",
           "data_ultima_coleta": "2026-11-14"
         },
@@ -1399,23 +1089,23 @@
       "flag": "",
       "ativo": "sim",
       "first_seen": "2026-08-25",
-      "last_seen": "2026-11-15",
+      "last_seen": "2026-11-16",
       "networks": "Mgid, Taboola, AdsKeeper",
       "n_anuncios": 15,
-      "n_headlines": 4,
-      "max_gravity": 625,
+      "n_headlines": 5,
+      "max_gravity": 520,
       "por_rede": {
         "mgid": {
           "network": "Mgid",
-          "gravity": 625,
-          "ad_id": "5283780296",
-          "last_seen": "2026-11-14"
+          "gravity": 520,
+          "ad_id": "5279869022",
+          "last_seen": "2026-11-15"
         },
         "taboola": {
           "network": "Taboola",
-          "gravity": 120,
-          "ad_id": "5575039798",
-          "last_seen": "2026-11-07"
+          "gravity": 116,
+          "ad_id": "5607611327",
+          "last_seen": "2026-11-09"
         },
         "adskeeper": {
           "network": "AdsKeeper",
@@ -1428,18 +1118,169 @@
         "candyai.gg"
       ],
       "headlines": [
-        "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
         "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+        "Musíš to urobiť, ak máš poruchу sluchu alebo hučanie в ušiach",
         "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
+        "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
         "Šum v ušiach alebo strata sluchu? Vyskúšajte to za 1 euro"
       ],
-      "angle_ids": "HEAR-A4, HEAR-A2",
+      "angle_ids": "HEAR-A2, HEAR-A4",
       "yesterday": {
         "status": "escalando",
         "max_gravity": "625"
       },
       "funil": null,
       "anuncios": [
+        {
+          "views": "A+E+G",
+          "ad_id": "5283780296",
+          "ad_url": "https://native.anstrex.com/creative/panel/5283780296",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_musbizu_com_ng_2026_08_26_2524a64a.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5283780296.webp",
+          "lander_domain": "naturegrove24.com",
+          "lander_url": "",
+          "gravity": "391",
+          "ad_strength": "8974",
+          "first_seen": "2026-08-26",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 82,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "escalando",
+          "phash": "a61025af15e6e3b3",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5277858275",
+          "ad_url": "https://native.anstrex.com/creative/panel/5277858275",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jeuxdefriv250_net_2026_08_25_b1fa1980.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5277858275.webp",
+          "lander_domain": "naturegrove24.com",
+          "lander_url": "",
+          "gravity": "287",
+          "ad_strength": "16612",
+          "first_seen": "2026-08-25",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 83,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "phash": "87709a9e71b0b4ec",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+E+G+R",
+          "ad_id": "5296392585",
+          "ad_url": "https://native.anstrex.com/creative/panel/5296392585",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mirroruttarakhand_com_2026_08_29_bb7e64fb.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5296392585.webp",
+          "lander_domain": "naturegrove24.com",
+          "lander_url": "",
+          "gravity": "232",
+          "ad_strength": "6480",
+          "first_seen": "2026-08-29",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 79,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "phash": "8e106dae14ecb7a3",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); naturegrove24.com (Landing Page Domain); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5277868478",
+          "ad_url": "https://native.anstrex.com/creative/panel/5277868478",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nendidau_com_2026_08_25_fc150954.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5277868478.webp",
+          "lander_domain": "naturegrove24.com",
+          "lander_url": "",
+          "gravity": "169",
+          "ad_strength": "10840",
+          "first_seen": "2026-08-25",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 83,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "phash": "87789ef530b4c583",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G+R",
+          "ad_id": "5288989793",
+          "ad_url": "https://native.anstrex.com/creative/panel/5288989793",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Musíš to urobiť, ak máš poruchу sluchu alebo hučanie в ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jaideemesuk_com_2026_08_27_d91fe5ea.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5288989793.webp",
+          "lander_domain": "naturegrove24.com",
+          "lander_url": "",
+          "gravity": "111",
+          "ad_strength": "3090",
+          "first_seen": "2026-08-27",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 81,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "phash": "a0e672d38999a9dc",
+          "search_term": "tinnitus OR hearing (Translated Text); naturegrove24.com (Landing Page Domain); tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+B+D",
+          "ad_id": "5575039798",
+          "ad_url": "https://native.anstrex.com/creative/panel/5575039798",
+          "network": "Taboola",
+          "network_slug": "taboola",
+          "headline": "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_29_17959753.png",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5575039798.png",
+          "lander_domain": "naturegrove24.com",
+          "lander_url": "",
+          "gravity": "4",
+          "ad_strength": "17338",
+          "first_seen": "2026-10-29",
+          "last_seen": "2026-11-07",
+          "dias_entre_primeira_e_ultima": 9,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "Nutraceuticals",
+          "angle_id": "HEAR-A4",
+          "movimento": "parado",
+          "phash": "c07215ecfc157927",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
         {
           "views": "A+G",
           "ad_id": "5279869022",
@@ -1463,31 +1304,6 @@
           "movimento": "escalando",
           "phash": "9afcb5e92e31d011",
           "search_term": "tinnitus; tinnitus (Translated Text); hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "A+E+G+R",
-          "ad_id": "5296392585",
-          "ad_url": "https://native.anstrex.com/creative/panel/5296392585",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mirroruttarakhand_com_2026_08_29_bb7e64fb.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5296392585.webp",
-          "lander_domain": "naturegrove24.com",
-          "lander_url": "",
-          "gravity": "375",
-          "ad_strength": "6390",
-          "first_seen": "2026-08-29",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 78,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "escalando",
-          "phash": "8e106dae14ecb7a3",
-          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); naturegrove24.com (Landing Page Domain)",
           "data_ultima_coleta": "2026-11-15"
         },
         {
@@ -1564,106 +1380,6 @@
           "phash": "863c954ed6cd4b70",
           "search_term": "tinnitus OR hearing (Translated Text); naturegrove24.com (Landing Page Domain)",
           "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "A+D+G+R",
-          "ad_id": "5288989793",
-          "ad_url": "https://native.anstrex.com/creative/panel/5288989793",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jaideemesuk_com_2026_08_27_d91fe5ea.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5288989793.webp",
-          "lander_domain": "naturegrove24.com",
-          "lander_url": "",
-          "gravity": "122",
-          "ad_strength": "2990",
-          "first_seen": "2026-08-27",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 80,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "volumando",
-          "phash": "a0e672d38999a9dc",
-          "search_term": "tinnitus OR hearing (Translated Text); naturegrove24.com (Landing Page Domain)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "A+E+G",
-          "ad_id": "5283780296",
-          "ad_url": "https://native.anstrex.com/creative/panel/5283780296",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_musbizu_com_ng_2026_08_26_2524a64a.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5283780296.webp",
-          "lander_domain": "naturegrove24.com",
-          "lander_url": "",
-          "gravity": "625",
-          "ad_strength": "8094",
-          "first_seen": "2026-08-26",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 80,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "escalando",
-          "phash": "a61025af15e6e3b3",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "A+D+G",
-          "ad_id": "5277858275",
-          "ad_url": "https://native.anstrex.com/creative/panel/5277858275",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jeuxdefriv250_net_2026_08_25_b1fa1980.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5277858275.webp",
-          "lander_domain": "naturegrove24.com",
-          "lander_url": "",
-          "gravity": "162",
-          "ad_strength": "16079",
-          "first_seen": "2026-08-25",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 81,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "volumando",
-          "phash": "87709a9e71b0b4ec",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "A+B+D",
-          "ad_id": "5575039798",
-          "ad_url": "https://native.anstrex.com/creative/panel/5575039798",
-          "network": "Taboola",
-          "network_slug": "taboola",
-          "headline": "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_29_17959753.png",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5575039798.png",
-          "lander_domain": "naturegrove24.com",
-          "lander_url": "",
-          "gravity": "120",
-          "ad_strength": "17338",
-          "first_seen": "2026-10-29",
-          "last_seen": "2026-11-07",
-          "dias_entre_primeira_e_ultima": 9,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "Nutraceuticals",
-          "angle_id": "HEAR-A4",
-          "movimento": "parado",
-          "phash": "c07215ecfc157927",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
         },
         {
           "views": "B",
@@ -1767,31 +1483,6 @@
         },
         {
           "views": "G",
-          "ad_id": "5277868478",
-          "ad_url": "https://native.anstrex.com/creative/panel/5277868478",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nendidau_com_2026_08_25_fc150954.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5277868478.webp",
-          "lander_domain": "naturegrove24.com",
-          "lander_url": "",
-          "gravity": "88",
-          "ad_strength": "10510",
-          "first_seen": "2026-08-25",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 81,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "testando",
-          "phash": "87789ef530b4c583",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "G",
           "ad_id": "5319202204",
           "ad_url": "https://native.anstrex.com/creative/panel/5319202204",
           "network": "Mgid",
@@ -1814,6 +1505,142 @@
           "phash": "b91b3120123abf9f",
           "search_term": "tinnitus OR hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-14"
+        }
+      ]
+    },
+    {
+      "lander_domain": "lphst.com",
+      "status": "escalando",
+      "tipo_player": "oferta_resposta_direta",
+      "tipo_nota": "",
+      "flag": "",
+      "ativo": "sim",
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-11-16",
+      "networks": "Mgid",
+      "n_anuncios": 4,
+      "n_headlines": 3,
+      "max_gravity": 502,
+      "por_rede": {
+        "mgid": {
+          "network": "Mgid",
+          "gravity": 502,
+          "ad_id": "4828973348",
+          "last_seen": "2026-11-16"
+        }
+      },
+      "linked_domains": [],
+      "headlines": [
+        "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+        "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+        "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!"
+      ],
+      "angle_ids": "HEAR-A6, HEAR-A3, HEAR-A2",
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "230"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "A+E+G",
+          "ad_id": "4828973348",
+          "ad_url": "https://native.anstrex.com/creative/panel/4828973348",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gameower_it_2026_05_05_09779d67.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/4828973348.webp",
+          "lander_domain": "lphst.com",
+          "lander_url": "",
+          "gravity": "502",
+          "ad_strength": "9437",
+          "first_seen": "2026-05-05",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 195,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A6",
+          "movimento": "escalando",
+          "phash": "857cf8e2958da6a2",
+          "search_term": "tinnitus; tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "4818259313",
+          "ad_url": "https://native.anstrex.com/creative/panel/4818259313",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_8eadc2be.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/4818259313.webp",
+          "lander_domain": "lphst.com",
+          "lander_url": "",
+          "gravity": "160",
+          "ad_strength": "8677",
+          "first_seen": "2026-05-02",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 198,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A3",
+          "movimento": "volumando",
+          "phash": "857cf8e2958da6a2",
+          "search_term": "tinnitus; tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "B+G",
+          "ad_id": "4772804679",
+          "ad_url": "https://native.anstrex.com/creative/panel/4772804679",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/4772804679.webp",
+          "lander_domain": "lphst.com",
+          "lander_url": "",
+          "gravity": "1",
+          "ad_strength": "16523",
+          "first_seen": "2026-04-21",
+          "last_seen": "2026-11-07",
+          "dias_entre_primeira_e_ultima": 200,
+          "idioma_inferido": "nl",
+          "geo_hint": "NL,BE",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "parado",
+          "phash": "c47b5b515497a12b",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "D+G",
+          "ad_id": "4818265293",
+          "ad_url": "https://native.anstrex.com/creative/panel/4818265293",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ichi_pro_2026_05_02_314ebb3e.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/4818265293.webp",
+          "lander_domain": "lphst.com",
+          "lander_url": "",
+          "gravity": "167",
+          "ad_strength": "5380",
+          "first_seen": "2026-05-02",
+          "last_seen": "2026-11-15",
+          "dias_entre_primeira_e_ultima": 197,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A3",
+          "movimento": "volumando",
+          "phash": "9779f9829481b6a6",
+          "search_term": "tinnitus; tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
         }
       ]
     },
@@ -1848,7 +1675,7 @@
       "angle_ids": "HEAR-A5, HEAR-OUTRO",
       "yesterday": {
         "status": "escalando",
-        "max_gravity": "907"
+        "max_gravity": "489"
       },
       "funil": null,
       "anuncios": [
@@ -1872,7 +1699,7 @@
           "geo_hint": "ES",
           "tags": "",
           "angle_id": "HEAR-A5",
-          "movimento": "testando",
+          "movimento": "parado",
           "phash": "ca0f965aadb70932",
           "search_term": "hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
@@ -2029,11 +1856,11 @@
         "The cost of hearing aids in Mumbai might surprise you"
       ],
       "angle_ids": "HEAR-A13, HEAR-A5",
-      "yesterday": null,
-      "funil": {
-        "leitura": "site_marca_legivel",
-        "nota": "Redirect www.hear.com (CloudFront/S3, Gatsby). Marca/lead-gen: World's Leading Online Provider of Hearing Aids, fundadores Marco Vietor e Paul Crusius, 670,000+ happy customers, teste sem risco (no-risk trial), guia grátis de preços, Check If You Qualify, telefone 786-526-0602. Preço do aparelho não estava visível na raiz. Nav menciona German Hearing Aids e HORIZON."
+      "yesterday": {
+        "status": "escalando",
+        "max_gravity": "466"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "A",
@@ -2463,6 +2290,178 @@
       ]
     },
     {
+      "lander_domain": "drugie-ucho.pl",
+      "status": "escalando",
+      "tipo_player": "marca_varejo",
+      "tipo_nota": "Drugie Ucho (aparelhos suíços / teste)",
+      "flag": "",
+      "ativo": "sim",
+      "first_seen": "2026-10-07",
+      "last_seen": "2026-11-15",
+      "networks": "Taboola",
+      "n_anuncios": 1,
+      "n_headlines": 1,
+      "max_gravity": 458,
+      "por_rede": {
+        "taboola": {
+          "network": "Taboola",
+          "gravity": 458,
+          "ad_id": "5486366710",
+          "last_seen": "2026-11-15"
+        }
+      },
+      "linked_domains": [],
+      "headlines": [
+        "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!"
+      ],
+      "angle_ids": "HEAR-A5",
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "137"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "A+B+E+G",
+          "ad_id": "5486366710",
+          "ad_url": "https://native.anstrex.com/creative/panel/5486366710",
+          "network": "Taboola",
+          "network_slug": "taboola",
+          "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_07_d35aa4fc.png",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5486366710.png",
+          "lander_domain": "drugie-ucho.pl",
+          "lander_url": "",
+          "gravity": "458",
+          "ad_strength": "13801",
+          "first_seen": "2026-10-07",
+          "last_seen": "2026-11-15",
+          "dias_entre_primeira_e_ultima": 39,
+          "idioma_inferido": "pl",
+          "geo_hint": "PL",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-A5",
+          "movimento": "escalando",
+          "phash": "9f1ffa01139a0576",
+          "search_term": "hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        }
+      ]
+    },
+    {
+      "lander_domain": "seravia.info",
+      "status": "escalando",
+      "tipo_player": "oferta_resposta_direta",
+      "tipo_nota": "",
+      "flag": "",
+      "ativo": "sim",
+      "first_seen": "2026-07-21",
+      "last_seen": "2026-11-16",
+      "networks": "Taboola",
+      "n_anuncios": 3,
+      "n_headlines": 3,
+      "max_gravity": 455,
+      "por_rede": {
+        "taboola": {
+          "network": "Taboola",
+          "gravity": 455,
+          "ad_id": "5216700834",
+          "last_seen": "2026-11-16"
+        }
+      },
+      "linked_domains": [
+        "curiositaviva.com"
+      ],
+      "headlines": [
+        "¿Sufrеs dе tinnitus? Lо quе muсhos haсen а diariо sin darsе cuentа",
+        "¿Тinnitus? Los ехрertos hablan dе un detаllе que casi nadiе tоma en sеrio",
+        "¿Tinnitus? Los ехpеrtоs hablan de un detаllе quе casi nadiе tоma en seriо"
+      ],
+      "angle_ids": "HEAR-OUTRO",
+      "yesterday": {
+        "status": "escalando",
+        "max_gravity": "395"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "A+E+G",
+          "ad_id": "5216700834",
+          "ad_url": "https://native.anstrex.com/creative/panel/5216700834",
+          "network": "Taboola",
+          "network_slug": "taboola",
+          "headline": "¿Sufrеs dе tinnitus? Lо quе muсhos haсen а diariо sin darsе cuentа",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_unotv_com_2026_08_11_e098fca9.jpg",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5216700834.jpg",
+          "lander_domain": "seravia.info",
+          "lander_url": "",
+          "gravity": "455",
+          "ad_strength": "2040",
+          "first_seen": "2026-08-11",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 97,
+          "idioma_inferido": "ru",
+          "geo_hint": "MX",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-OUTRO",
+          "movimento": "escalando",
+          "phash": "e39546e40cae6bc9",
+          "search_term": "tinnitus; tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "B",
+          "ad_id": "5216699334",
+          "ad_url": "https://native.anstrex.com/creative/panel/5216699334",
+          "network": "Taboola",
+          "network_slug": "taboola",
+          "headline": "¿Тinnitus? Los ехрertos hablan dе un detаllе que casi nadiе tоma en sеrio",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_unotv_com_2026_08_11_721cb47b.jpg",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5216699334.jpg",
+          "lander_domain": "seravia.info",
+          "lander_url": "",
+          "gravity": "4",
+          "ad_strength": "79346",
+          "first_seen": "2026-08-11",
+          "last_seen": "2026-11-05",
+          "dias_entre_primeira_e_ultima": 86,
+          "idioma_inferido": "ru",
+          "geo_hint": "US;MX;BA",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-OUTRO",
+          "movimento": "parado",
+          "phash": "ea012b9a9d33337c",
+          "search_term": "tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
+        },
+        {
+          "views": "B",
+          "ad_id": "5152303085",
+          "ad_url": "https://native.anstrex.com/creative/panel/5152303085",
+          "network": "Taboola",
+          "network_slug": "taboola",
+          "headline": "¿Tinnitus? Los ехpеrtоs hablan de un detаllе quе casi nadiе tоma en seriо",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_wapa_tv_2026_07_21_29344f28.jpg",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5152303085.jpg",
+          "lander_domain": "seravia.info",
+          "lander_url": "",
+          "gravity": "1",
+          "ad_strength": "29742",
+          "first_seen": "2026-07-21",
+          "last_seen": "2026-10-27",
+          "dias_entre_primeira_e_ultima": 98,
+          "idioma_inferido": "ru",
+          "geo_hint": "TR;ES",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-OUTRO",
+          "movimento": "parado",
+          "phash": "ea012b9a9d33337c",
+          "search_term": "tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
+        }
+      ]
+    },
+    {
       "lander_domain": "auditorey.co",
       "status": "escalando",
       "tipo_player": "lead_gen",
@@ -2490,11 +2489,11 @@
         "Gov't Pays For New Hearing Aids"
       ],
       "angle_ids": "HEAR-A5, HEAR-A14",
-      "yesterday": null,
-      "funil": {
-        "leitura": "site_lead_gen_legivel",
-        "nota": "auditorey.co (Heroku 302) e auditorey.com apontam para o mesmo destino https://www2.auditorey.com. Teste de audição complementar, adaptação grátis do aparelho, trials sem obrigação. Mesmo anunciante para AU e NZ. Preço não visível na raiz."
+      "yesterday": {
+        "status": "escalando",
+        "max_gravity": "428"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "A",
@@ -2566,7 +2565,7 @@
           "geo_hint": "AU",
           "tags": "Health & Wellness",
           "angle_id": "HEAR-A14",
-          "movimento": "lancando",
+          "movimento": "escalando",
           "phash": "81b8b64c7e03753d",
           "search_term": "hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
@@ -2602,11 +2601,11 @@
         "Toronto Connect Hearing Is Giving Free 90-Minute Hearing Checks"
       ],
       "angle_ids": "HEAR-A5",
-      "yesterday": null,
-      "funil": {
-        "leitura": "site_varejo_legivel",
-        "nota": "Site de varejo Connect Hearing Canada (Sonova). Phonak EON, Unitron, Advanced Bionics. Teste online grátis, agendamento, lojas, shop. Copyright 2026 Sonova. Telefone 1-888-501-2661. Preços de aparelho não destacados na raiz."
+      "yesterday": {
+        "status": "escalando",
+        "max_gravity": "426"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "E",
@@ -2661,119 +2660,6 @@
       ]
     },
     {
-      "lander_domain": "seravia.info",
-      "status": "escalando",
-      "tipo_player": "oferta_resposta_direta",
-      "tipo_nota": "",
-      "flag": "",
-      "ativo": "sim",
-      "first_seen": "2026-07-21",
-      "last_seen": "2026-11-15",
-      "networks": "Taboola",
-      "n_anuncios": 3,
-      "n_headlines": 3,
-      "max_gravity": 395,
-      "por_rede": {
-        "taboola": {
-          "network": "Taboola",
-          "gravity": 395,
-          "ad_id": "5216700834",
-          "last_seen": "2026-11-15"
-        }
-      },
-      "linked_domains": [
-        "curiositaviva.com"
-      ],
-      "headlines": [
-        "¿Sufrеs dе tinnitus? Lо quе muсhos haсen а diariо sin darsе cuentа",
-        "¿Тinnitus? Los ехрertos hablan dе un detаllе que casi nadiе tоma en sеrio",
-        "¿Tinnitus? Los ехpеrtоs hablan de un detаllе quе casi nadiе tоma en seriо"
-      ],
-      "angle_ids": "HEAR-OUTRO",
-      "yesterday": {
-        "status": "escalando",
-        "max_gravity": "410"
-      },
-      "funil": null,
-      "anuncios": [
-        {
-          "views": "A+E+G",
-          "ad_id": "5216700834",
-          "ad_url": "https://native.anstrex.com/creative/panel/5216700834",
-          "network": "Taboola",
-          "network_slug": "taboola",
-          "headline": "¿Sufrеs dе tinnitus? Lо quе muсhos haсen а diariо sin darsе cuentа",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_unotv_com_2026_08_11_e098fca9.jpg",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5216700834.jpg",
-          "lander_domain": "seravia.info",
-          "lander_url": "",
-          "gravity": "395",
-          "ad_strength": "1524",
-          "first_seen": "2026-08-11",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 96,
-          "idioma_inferido": "ru",
-          "geo_hint": "MX",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-OUTRO",
-          "movimento": "escalando",
-          "phash": "e39546e40cae6bc9",
-          "search_term": "tinnitus; tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "B",
-          "ad_id": "5216699334",
-          "ad_url": "https://native.anstrex.com/creative/panel/5216699334",
-          "network": "Taboola",
-          "network_slug": "taboola",
-          "headline": "¿Тinnitus? Los ехрertos hablan dе un detаllе que casi nadiе tоma en sеrio",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_unotv_com_2026_08_11_721cb47b.jpg",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5216699334.jpg",
-          "lander_domain": "seravia.info",
-          "lander_url": "",
-          "gravity": "4",
-          "ad_strength": "79346",
-          "first_seen": "2026-08-11",
-          "last_seen": "2026-11-05",
-          "dias_entre_primeira_e_ultima": 86,
-          "idioma_inferido": "ru",
-          "geo_hint": "US;MX;BA",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-OUTRO",
-          "movimento": "parado",
-          "phash": "ea012b9a9d33337c",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "B",
-          "ad_id": "5152303085",
-          "ad_url": "https://native.anstrex.com/creative/panel/5152303085",
-          "network": "Taboola",
-          "network_slug": "taboola",
-          "headline": "¿Tinnitus? Los ехpеrtоs hablan de un detаllе quе casi nadiе tоma en seriо",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_wapa_tv_2026_07_21_29344f28.jpg",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5152303085.jpg",
-          "lander_domain": "seravia.info",
-          "lander_url": "",
-          "gravity": "1",
-          "ad_strength": "29742",
-          "first_seen": "2026-07-21",
-          "last_seen": "2026-10-27",
-          "dias_entre_primeira_e_ultima": 98,
-          "idioma_inferido": "ru",
-          "geo_hint": "TR;ES",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-OUTRO",
-          "movimento": "parado",
-          "phash": "ea012b9a9d33337c",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        }
-      ]
-    },
-    {
       "lander_domain": "bookappointmentonline.com",
       "status": "escalando",
       "tipo_player": "lead_gen",
@@ -2799,11 +2685,11 @@
         "Toronto: Amplifon is looking for people to join a free hearing test"
       ],
       "angle_ids": "HEAR-A5",
-      "yesterday": null,
-      "funil": {
-        "leitura": "nao_legivel",
-        "nota": "TLS unexpected eof em https://bookappointmentonline.com/; www devolveu 404; http devolveu 500. Oferta não lida. O anúncio cita Amplifon em Toronto e teste grátis."
+      "yesterday": {
+        "status": "escalando",
+        "max_gravity": "360"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "E",
@@ -2968,117 +2854,6 @@
       ]
     },
     {
-      "lander_domain": "gesund-vital-ratgeber.org",
-      "status": "escalando",
-      "tipo_player": "oferta_resposta_direta",
-      "tipo_nota": "",
-      "flag": "",
-      "ativo": "sim",
-      "first_seen": "2026-06-20",
-      "last_seen": "2026-11-15",
-      "networks": "Outbrain",
-      "n_anuncios": 3,
-      "n_headlines": 3,
-      "max_gravity": 296,
-      "por_rede": {
-        "outbrain": {
-          "network": "Outbrain",
-          "gravity": 296,
-          "ad_id": "5023457882",
-          "last_seen": "2026-11-15"
-        }
-      },
-      "linked_domains": [],
-      "headlines": [
-        "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
-        "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
-        "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser"
-      ],
-      "angle_ids": "HEAR-A9",
-      "yesterday": null,
-      "funil": {
-        "leitura": "blog_generico",
-        "nota": "Raiz abriu um blog genérico Gesund und Vital Ratgeber (saúde, esporte, lifestyle). A listagem de produtos estava vazia (Keine Einträge gefunden). A oferta de zumbido dos anúncios não estava visível na homepage."
-      },
-      "anuncios": [
-        {
-          "views": "A",
-          "ad_id": "5641973983",
-          "ad_url": "https://native.anstrex.com/creative/panel/5641973983",
-          "network": "Outbrain",
-          "network_slug": "outbrain",
-          "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_14_546ee3b0.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5641973983.webp",
-          "lander_domain": "gesund-vital-ratgeber.org",
-          "lander_url": "",
-          "gravity": "0",
-          "ad_strength": "0",
-          "first_seen": "2026-11-14",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 0,
-          "idioma_inferido": "",
-          "geo_hint": "AT",
-          "tags": "",
-          "angle_id": "HEAR-A9",
-          "movimento": "lancando",
-          "phash": "a8537e734732162d",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "D",
-          "ad_id": "5023457882",
-          "ad_url": "https://native.anstrex.com/creative/panel/5023457882",
-          "network": "Outbrain",
-          "network_slug": "outbrain",
-          "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_serienjunkies_de_2026_06_20_d8800836.png",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5023457882.png",
-          "lander_domain": "gesund-vital-ratgeber.org",
-          "lander_url": "",
-          "gravity": "296",
-          "ad_strength": "668",
-          "first_seen": "2026-06-20",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 148,
-          "idioma_inferido": "de",
-          "geo_hint": "DE;AT",
-          "tags": "",
-          "angle_id": "HEAR-A9",
-          "movimento": "escalando",
-          "phash": "d7c2a97e53741115",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "D",
-          "ad_id": "5217286577",
-          "ad_url": "https://native.anstrex.com/creative/panel/5217286577",
-          "network": "Outbrain",
-          "network_slug": "outbrain",
-          "headline": "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_08_11_80da5f69.png",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5217286577.png",
-          "lander_domain": "gesund-vital-ratgeber.org",
-          "lander_url": "",
-          "gravity": "221",
-          "ad_strength": "5203",
-          "first_seen": "2026-08-11",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 95,
-          "idioma_inferido": "de",
-          "geo_hint": "DE;AT",
-          "tags": "",
-          "angle_id": "HEAR-A9",
-          "movimento": "escalando",
-          "phash": "aead74303112e3f3",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        }
-      ]
-    },
-    {
       "lander_domain": "healthmatters24.com",
       "status": "escalando",
       "tipo_player": "oferta_resposta_direta",
@@ -3112,11 +2887,11 @@
         "Problémy se sluchem? Užívejte toto jednou denně večer"
       ],
       "angle_ids": "HEAR-A8, HEAR-OUTRO",
-      "yesterday": null,
-      "funil": {
-        "leitura": "nao_legivel",
-        "nota": "HTTP 403 (Cloudflare) nesta visita. Oferta não lida. Headlines SK/CS do método Babkina / uso uma vez ao dia."
+      "yesterday": {
+        "status": "escalando",
+        "max_gravity": "281"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "B",
@@ -3213,7 +2988,7 @@
           "geo_hint": "SK",
           "tags": "Nutraceuticals",
           "angle_id": "HEAR-A8",
-          "movimento": "testando",
+          "movimento": "parado",
           "phash": "e335507c9f064bc3",
           "search_term": "hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
@@ -3299,7 +3074,7 @@
       "angle_ids": "HEAR-A9, HEAR-A2",
       "yesterday": {
         "status": "escalando",
-        "max_gravity": "525"
+        "max_gravity": "263"
       },
       "funil": null,
       "anuncios": [
@@ -3523,7 +3298,7 @@
           "geo_hint": "IT",
           "tags": "Nutraceuticals",
           "angle_id": "HEAR-A9",
-          "movimento": "lancando",
+          "movimento": "parado",
           "phash": "cccd9284ef7091d6",
           "search_term": "tinnitus",
           "data_ultima_coleta": "2026-11-14"
@@ -3531,278 +3306,112 @@
       ]
     },
     {
-      "lander_domain": "news360.pro",
-      "status": "volumando",
+      "lander_domain": "gesund-vital-ratgeber.org",
+      "status": "escalando",
       "tipo_player": "oferta_resposta_direta",
       "tipo_nota": "",
       "flag": "",
       "ativo": "sim",
-      "first_seen": "2026-06-29",
-      "last_seen": "2026-11-13",
-      "networks": "AdNow",
-      "n_anuncios": 2,
-      "n_headlines": 2,
-      "max_gravity": 257,
-      "por_rede": {
-        "adnow": {
-          "network": "AdNow",
-          "gravity": 257,
-          "ad_id": "5059609664",
-          "last_seen": "2026-11-13"
-        }
-      },
-      "linked_domains": [],
-      "headlines": [
-        "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
-        "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos."
-      ],
-      "angle_ids": "HEAR-A2, HEAR-OUTRO",
-      "yesterday": null,
-      "funil": null,
-      "anuncios": [
-        {
-          "views": "B+G",
-          "ad_id": "5062055168",
-          "ad_url": "https://native.anstrex.com/creative/panel/5062055168",
-          "network": "AdNow",
-          "network_slug": "adnow",
-          "headline": "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_fumara_gr_2026_06_30_178b1bfa.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5062055168.webp",
-          "lander_domain": "news360.pro",
-          "lander_url": "",
-          "gravity": "197",
-          "ad_strength": "408961",
-          "first_seen": "2026-06-30",
-          "last_seen": "2026-11-13",
-          "dias_entre_primeira_e_ultima": 136,
-          "idioma_inferido": "es",
-          "geo_hint": "MX",
-          "tags": "Nutraceuticals",
-          "angle_id": "HEAR-A2",
-          "movimento": "volumando",
-          "phash": "e932787e9c971644",
-          "search_term": "hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "B+D",
-          "ad_id": "5059609664",
-          "ad_url": "https://native.anstrex.com/creative/panel/5059609664",
-          "network": "AdNow",
-          "network_slug": "adnow",
-          "headline": "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos.",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_skandalno_net_2026_06_29_a2448f86.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5059609664.webp",
-          "lander_domain": "news360.pro",
-          "lander_url": "",
-          "gravity": "257",
-          "ad_strength": "194632",
-          "first_seen": "2026-06-29",
-          "last_seen": "2026-11-13",
-          "dias_entre_primeira_e_ultima": 137,
-          "idioma_inferido": "es",
-          "geo_hint": "MX",
-          "tags": "Nutraceuticals",
-          "angle_id": "HEAR-OUTRO",
-          "movimento": "volumando",
-          "phash": "f43f4db468c2346c",
-          "search_term": "hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        }
-      ]
-    },
-    {
-      "lander_domain": "lphst.com",
-      "status": "volumando",
-      "tipo_player": "oferta_resposta_direta",
-      "tipo_nota": "",
-      "flag": "",
-      "ativo": "sim",
-      "first_seen": "2026-04-21",
-      "last_seen": "2026-11-15",
-      "networks": "Mgid",
-      "n_anuncios": 4,
+      "first_seen": "2026-06-20",
+      "last_seen": "2026-11-16",
+      "networks": "Outbrain",
+      "n_anuncios": 3,
       "n_headlines": 3,
-      "max_gravity": 230,
+      "max_gravity": 250,
       "por_rede": {
-        "mgid": {
-          "network": "Mgid",
-          "gravity": 230,
-          "ad_id": "4818259313",
-          "last_seen": "2026-11-15"
+        "outbrain": {
+          "network": "Outbrain",
+          "gravity": 250,
+          "ad_id": "5023457882",
+          "last_seen": "2026-11-16"
         }
       },
       "linked_domains": [],
       "headlines": [
-        "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
-        "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
-        "Un chirurgien révèle : remède rapide contre surdité et acouphènes"
+        "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+        "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser",
+        "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen"
       ],
-      "angle_ids": "HEAR-A3, HEAR-A2, HEAR-A6",
+      "angle_ids": "HEAR-A9",
       "yesterday": {
-        "status": "volumando",
-        "max_gravity": "231"
+        "status": "escalando",
+        "max_gravity": "296"
       },
       "funil": null,
       "anuncios": [
         {
-          "views": "D",
-          "ad_id": "4818259313",
-          "ad_url": "https://native.anstrex.com/creative/panel/4818259313",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_8eadc2be.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/4818259313.webp",
-          "lander_domain": "lphst.com",
+          "views": "A+D",
+          "ad_id": "5023457882",
+          "ad_url": "https://native.anstrex.com/creative/panel/5023457882",
+          "network": "Outbrain",
+          "network_slug": "outbrain",
+          "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_serienjunkies_de_2026_06_20_d8800836.png",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5023457882.png",
+          "lander_domain": "gesund-vital-ratgeber.org",
           "lander_url": "",
-          "gravity": "230",
-          "ad_strength": "8587",
-          "first_seen": "2026-05-02",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 197,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
+          "gravity": "250",
+          "ad_strength": "872",
+          "first_seen": "2026-06-20",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 149,
+          "idioma_inferido": "de",
+          "geo_hint": "DE,AT",
           "tags": "",
-          "angle_id": "HEAR-A3",
-          "movimento": "volumando",
-          "phash": "857cf8e2958da6a2",
-          "search_term": "tinnitus; tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
+          "angle_id": "HEAR-A9",
+          "movimento": "escalando",
+          "phash": "d7c2a97e53741115",
+          "search_term": "tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
         },
         {
-          "views": "D+G",
-          "ad_id": "4818265293",
-          "ad_url": "https://native.anstrex.com/creative/panel/4818265293",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ichi_pro_2026_05_02_314ebb3e.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/4818265293.webp",
-          "lander_domain": "lphst.com",
+          "views": "A+D+G",
+          "ad_id": "5217286577",
+          "ad_url": "https://native.anstrex.com/creative/panel/5217286577",
+          "network": "Outbrain",
+          "network_slug": "outbrain",
+          "headline": "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_08_11_80da5f69.png",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5217286577.png",
+          "lander_domain": "gesund-vital-ratgeber.org",
           "lander_url": "",
-          "gravity": "167",
-          "ad_strength": "5380",
-          "first_seen": "2026-05-02",
+          "gravity": "200",
+          "ad_strength": "5383",
+          "first_seen": "2026-08-11",
           "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 197,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
+          "dias_entre_primeira_e_ultima": 96,
+          "idioma_inferido": "de",
+          "geo_hint": "DE,AT",
           "tags": "",
-          "angle_id": "HEAR-A3",
-          "movimento": "volumando",
-          "phash": "9779f9829481b6a6",
-          "search_term": "tinnitus; tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "G",
-          "ad_id": "4772804679",
-          "ad_url": "https://native.anstrex.com/creative/panel/4772804679",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/4772804679.webp",
-          "lander_domain": "lphst.com",
-          "lander_url": "",
-          "gravity": "37",
-          "ad_strength": "16463",
-          "first_seen": "2026-04-21",
-          "last_seen": "2026-08-26",
-          "dias_entre_primeira_e_ultima": 127,
-          "idioma_inferido": "nl",
-          "geo_hint": "NL",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "parado",
-          "phash": "c47b5b515497a12b",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
+          "angle_id": "HEAR-A9",
+          "movimento": "escalando",
+          "phash": "aead74303112e3f3",
+          "search_term": "tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
         },
         {
           "views": "A",
-          "ad_id": "4828973348",
-          "ad_url": "https://native.anstrex.com/creative/panel/4828973348",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gameower_it_2026_05_05_09779d67.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/4828973348.webp",
-          "lander_domain": "lphst.com",
+          "ad_id": "5641973983",
+          "ad_url": "https://native.anstrex.com/creative/panel/5641973983",
+          "network": "Outbrain",
+          "network_slug": "outbrain",
+          "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_14_546ee3b0.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5641973983.webp",
+          "lander_domain": "gesund-vital-ratgeber.org",
           "lander_url": "",
-          "gravity": "209",
-          "ad_strength": "8017",
-          "first_seen": "2026-05-05",
+          "gravity": "0",
+          "ad_strength": "0",
+          "first_seen": "2026-11-14",
           "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 193,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
+          "dias_entre_primeira_e_ultima": 0,
+          "idioma_inferido": "",
+          "geo_hint": "AT",
           "tags": "",
-          "angle_id": "HEAR-A6",
-          "movimento": "volumando",
-          "phash": "857cf8e2958da6a2",
-          "search_term": "tinnitus",
-          "data_ultima_coleta": "2026-11-14"
-        }
-      ]
-    },
-    {
-      "lander_domain": "eidikosvarikoias.gr",
-      "status": "volumando",
-      "tipo_player": "oferta_resposta_direta",
-      "tipo_nota": "",
-      "flag": "",
-      "ativo": "sim",
-      "first_seen": "2026-09-24",
-      "last_seen": "2026-11-15",
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "n_headlines": 1,
-      "max_gravity": 217,
-      "por_rede": {
-        "taboola": {
-          "network": "Taboola",
-          "gravity": 217,
-          "ad_id": "5423757466",
-          "last_seen": "2026-11-15"
-        }
-      },
-      "linked_domains": [],
-      "headlines": [
-        "Το κόλπο για τη βελτίωση της ακοής που προκαλεί &al"
-      ],
-      "angle_ids": "HEAR-OUTRO",
-      "yesterday": {
-        "status": "volumando",
-        "max_gravity": "294"
-      },
-      "funil": null,
-      "anuncios": [
-        {
-          "views": "D+G",
-          "ad_id": "5423757466",
-          "ad_url": "https://native.anstrex.com/creative/panel/5423757466",
-          "network": "Taboola",
-          "network_slug": "taboola",
-          "headline": "Το κόλπο για τη βελτίωση της ακοής που προκαλεί &al",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_calcalist_co_il_2026_09_24_ddcc742d.png",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5423757466.png",
-          "lander_domain": "eidikosvarikoias.gr",
-          "lander_url": "",
-          "gravity": "217",
-          "ad_strength": "8075",
-          "first_seen": "2026-09-24",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 52,
-          "idioma_inferido": "el",
-          "geo_hint": "GR",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-OUTRO",
-          "movimento": "volumando",
-          "phash": "b9272e13ce0167bc",
-          "search_term": "hearing; hearing (Translated Text)",
+          "angle_id": "HEAR-A9",
+          "movimento": "lancando",
+          "phash": "a8537e734732162d",
+          "search_term": "tinnitus (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
         }
       ]
@@ -3815,43 +3424,268 @@
       "flag": "",
       "ativo": "sim",
       "first_seen": "2026-06-10",
-      "last_seen": "2026-11-15",
+      "last_seen": "2026-11-16",
       "networks": "Mgid, AdsKeeper",
       "n_anuncios": 35,
       "n_headlines": 6,
-      "max_gravity": 211,
+      "max_gravity": 264,
       "por_rede": {
         "mgid": {
           "network": "Mgid",
-          "gravity": 211,
-          "ad_id": "5127311921",
-          "last_seen": "2026-11-14"
+          "gravity": 264,
+          "ad_id": "5004242051",
+          "last_seen": "2026-11-16"
         },
         "adskeeper": {
           "network": "AdsKeeper",
-          "gravity": 25,
-          "ad_id": "5592636323",
-          "last_seen": "2026-11-02"
+          "gravity": 195,
+          "ad_id": "5012503218",
+          "last_seen": "2026-11-16"
         }
       },
       "linked_domains": [
         "adskeeper.co.uk"
       ],
       "headlines": [
+        "Chirurgien révèle : aide rapide pour audition et acouphènes",
+        "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+        "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
         "Læge: høretab eller tinnitus? Gør dette straks",
         "Kirurg: »7-sekunders øre-reset-metode« vil afhjælpe dit høretab og din tinnitus",
-        "Toplæge: Nem metode lindrer høretab og øresusen!",
-        "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
-        "Chirurgien révèle : aide rapide pour audition et acouphènes",
-        "Médecin : perte auditive ou acouphènes ? Faites ceci vite"
+        "Toplæge: Nem metode lindrer høretab og øresusen!"
       ],
-      "angle_ids": "HEAR-A1, HEAR-A6",
+      "angle_ids": "HEAR-A6, HEAR-A1",
       "yesterday": {
         "status": "volumando",
-        "max_gravity": "215"
+        "max_gravity": "211"
       },
       "funil": null,
       "anuncios": [
+        {
+          "views": "D+G",
+          "ad_id": "5004242051",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004242051",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Chirurgien révèle : aide rapide pour audition et acouphènes",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_15_b2618f98.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5004242051.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "264",
+          "ad_strength": "6454",
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 154,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A6",
+          "movimento": "volumando",
+          "phash": "80afd0eb352e3953",
+          "search_term": "tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5012503218",
+          "ad_url": "https://native.anstrex.com/creative/panel/5012503218",
+          "network": "AdsKeeper",
+          "network_slug": "adskeeper",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_alienigenasdopassado_com_br_2026_06_17_eb052319.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5012503218.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "195",
+          "ad_strength": "8271",
+          "first_seen": "2026-06-17",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 152,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "phash": "827ae1257535b723",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "D+G",
+          "ad_id": "5011358426",
+          "ad_url": "https://native.anstrex.com/creative/panel/5011358426",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Chirurgien révèle : aide rapide pour audition et acouphènes",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_trendru_info_2026_06_17_1f9d04ff.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5011358426.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "179",
+          "ad_strength": "4330",
+          "first_seen": "2026-06-17",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 152,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A6",
+          "movimento": "volumando",
+          "phash": "80b5c2ed32af28eb",
+          "search_term": "tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5004621414",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004621414",
+          "network": "AdsKeeper",
+          "network_slug": "adskeeper",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_15_cd11be64.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5004621414.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "167",
+          "ad_strength": "2738",
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-15",
+          "dias_entre_primeira_e_ultima": 153,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "phash": "af4d929034c6cd79",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5132119064",
+          "ad_url": "https://native.anstrex.com/creative/panel/5132119064",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nonsolomarescialli_it_2026_07_16_60706ce8.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5132119064.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "151",
+          "ad_strength": "2620",
+          "first_seen": "2026-07-16",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 123,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "tags": "",
+          "angle_id": "HEAR-A6",
+          "movimento": "volumando",
+          "phash": "af4d929034c6cd79",
+          "search_term": "tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "D+G",
+          "ad_id": "5100989569",
+          "ad_url": "https://native.anstrex.com/creative/panel/5100989569",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_prigotovkino_com_2026_07_09_7f51fe0c.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5100989569.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "139",
+          "ad_strength": "3260",
+          "first_seen": "2026-07-09",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 130,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "tags": "",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "phash": "85403bc5f0c637cf",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D",
+          "ad_id": "5127311921",
+          "ad_url": "https://native.anstrex.com/creative/panel/5127311921",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_07_15_1dab04b7.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5127311921.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "134",
+          "ad_strength": "3235",
+          "first_seen": "2026-07-15",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 124,
+          "idioma_inferido": "da",
+          "geo_hint": "DK",
+          "tags": "",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "phash": "84403bcd7a8f3dcc",
+          "search_term": "tinnitus OR hearing (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5004240689",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004240689",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ikampinos_pl_2026_06_15_b925797b.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5004240689.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "121",
+          "ad_strength": "1690",
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-15",
+          "dias_entre_primeira_e_ultima": 153,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A1",
+          "movimento": "volumando",
+          "phash": "ef49969264c66963",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+B+G",
+          "ad_id": "5004245736",
+          "ad_url": "https://native.anstrex.com/creative/panel/5004245736",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_detikriau_id_2026_06_15_e0ea18ab.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5004245736.webp",
+          "lander_domain": "pgsrc.com",
+          "lander_url": "",
+          "gravity": "84",
+          "ad_strength": "10287",
+          "first_seen": "2026-06-15",
+          "last_seen": "2026-11-12",
+          "dias_entre_primeira_e_ultima": 150,
+          "idioma_inferido": "fr",
+          "geo_hint": "BE",
+          "tags": "",
+          "angle_id": "HEAR-A1",
+          "movimento": "parado",
+          "phash": "a7e57ce28082476f",
+          "search_term": "tinnitus OR hearing (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
         {
           "views": "A",
           "ad_id": "5642968472",
@@ -3954,156 +3788,6 @@
         },
         {
           "views": "D+G",
-          "ad_id": "5100989569",
-          "ad_url": "https://native.anstrex.com/creative/panel/5100989569",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_prigotovkino_com_2026_07_09_7f51fe0c.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5100989569.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "198",
-          "ad_strength": "3180",
-          "first_seen": "2026-07-09",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 128,
-          "idioma_inferido": "da",
-          "geo_hint": "DK",
-          "tags": "",
-          "angle_id": "HEAR-A1",
-          "movimento": "volumando",
-          "phash": "85403bc5f0c637cf",
-          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text); hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "D",
-          "ad_id": "5132119064",
-          "ad_url": "https://native.anstrex.com/creative/panel/5132119064",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nonsolomarescialli_it_2026_07_16_60706ce8.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5132119064.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "142",
-          "ad_strength": "2460",
-          "first_seen": "2026-07-16",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 122,
-          "idioma_inferido": "da",
-          "geo_hint": "DK",
-          "tags": "",
-          "angle_id": "HEAR-A6",
-          "movimento": "volumando",
-          "phash": "af4d929034c6cd79",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "G",
-          "ad_id": "5004242051",
-          "ad_url": "https://native.anstrex.com/creative/panel/5004242051",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Chirurgien révèle : aide rapide pour audition et acouphènes",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_15_b2618f98.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5004242051.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "118",
-          "ad_strength": "6044",
-          "first_seen": "2026-06-15",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 153,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
-          "tags": "",
-          "angle_id": "HEAR-A6",
-          "movimento": "volumando",
-          "phash": "80afd0eb352e3953",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "A+D+G",
-          "ad_id": "5012503218",
-          "ad_url": "https://native.anstrex.com/creative/panel/5012503218",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_alienigenasdopassado_com_br_2026_06_17_eb052319.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5012503218.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "130",
-          "ad_strength": "8011",
-          "first_seen": "2026-06-17",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 151,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
-          "tags": "",
-          "angle_id": "HEAR-A1",
-          "movimento": "volumando",
-          "phash": "827ae1257535b723",
-          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "A+D+G",
-          "ad_id": "5004621414",
-          "ad_url": "https://native.anstrex.com/creative/panel/5004621414",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_06_15_cd11be64.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5004621414.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "167",
-          "ad_strength": "2738",
-          "first_seen": "2026-06-15",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 153,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
-          "tags": "",
-          "angle_id": "HEAR-A1",
-          "movimento": "volumando",
-          "phash": "af4d929034c6cd79",
-          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "G",
-          "ad_id": "5011358426",
-          "ad_url": "https://native.anstrex.com/creative/panel/5011358426",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Chirurgien révèle : aide rapide pour audition et acouphènes",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_trendru_info_2026_06_17_1f9d04ff.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5011358426.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "129",
-          "ad_strength": "4100",
-          "first_seen": "2026-06-17",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 151,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
-          "tags": "",
-          "angle_id": "HEAR-A6",
-          "movimento": "volumando",
-          "phash": "80b5c2ed32af28eb",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "D+G",
           "ad_id": "4991265195",
           "ad_url": "https://native.anstrex.com/creative/panel/4991265195",
           "network": "Mgid",
@@ -4149,31 +3833,6 @@
           "angle_id": "HEAR-A1",
           "movimento": "testando",
           "phash": "d823e72f046696c7",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "A+B+G",
-          "ad_id": "5004245736",
-          "ad_url": "https://native.anstrex.com/creative/panel/5004245736",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_detikriau_id_2026_06_15_e0ea18ab.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5004245736.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "84",
-          "ad_strength": "10287",
-          "first_seen": "2026-06-15",
-          "last_seen": "2026-11-12",
-          "dias_entre_primeira_e_ultima": 150,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
-          "tags": "",
-          "angle_id": "HEAR-A1",
-          "movimento": "testando",
-          "phash": "a7e57ce28082476f",
           "search_term": "tinnitus OR hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-14"
         },
@@ -4374,56 +4033,6 @@
           "angle_id": "HEAR-A1",
           "movimento": "parado",
           "phash": "9afef4f51530d810",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "A+D",
-          "ad_id": "5127311921",
-          "ad_url": "https://native.anstrex.com/creative/panel/5127311921",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Læge: høretab eller tinnitus? Gør dette straks",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_07_15_1dab04b7.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5127311921.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "211",
-          "ad_strength": "3030",
-          "first_seen": "2026-07-15",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 122,
-          "idioma_inferido": "da",
-          "geo_hint": "DK",
-          "tags": "",
-          "angle_id": "HEAR-A1",
-          "movimento": "volumando",
-          "phash": "84403bcd7a8f3dcc",
-          "search_term": "tinnitus OR hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-14"
-        },
-        {
-          "views": "D",
-          "ad_id": "5004240689",
-          "ad_url": "https://native.anstrex.com/creative/panel/5004240689",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ikampinos_pl_2026_06_15_b925797b.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5004240689.webp",
-          "lander_domain": "pgsrc.com",
-          "lander_url": "",
-          "gravity": "172",
-          "ad_strength": "1620",
-          "first_seen": "2026-06-15",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 152,
-          "idioma_inferido": "fr",
-          "geo_hint": "BE",
-          "tags": "",
-          "angle_id": "HEAR-A1",
-          "movimento": "volumando",
-          "phash": "ef49969264c66963",
           "search_term": "tinnitus OR hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-14"
         },
@@ -4730,6 +4339,237 @@
       ]
     },
     {
+      "lander_domain": "news360.pro",
+      "status": "volumando",
+      "tipo_player": "oferta_resposta_direta",
+      "tipo_nota": "",
+      "flag": "",
+      "ativo": "sim",
+      "first_seen": "2026-06-29",
+      "last_seen": "2026-11-13",
+      "networks": "AdNow",
+      "n_anuncios": 2,
+      "n_headlines": 2,
+      "max_gravity": 257,
+      "por_rede": {
+        "adnow": {
+          "network": "AdNow",
+          "gravity": 257,
+          "ad_id": "5059609664",
+          "last_seen": "2026-11-13"
+        }
+      },
+      "linked_domains": [],
+      "headlines": [
+        "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
+        "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos."
+      ],
+      "angle_ids": "HEAR-A2, HEAR-OUTRO",
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "257"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "B+G",
+          "ad_id": "5062055168",
+          "ad_url": "https://native.anstrex.com/creative/panel/5062055168",
+          "network": "AdNow",
+          "network_slug": "adnow",
+          "headline": "Haz esto por la noche y por la mañana los problemas de audición desaparecerán.",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_fumara_gr_2026_06_30_178b1bfa.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5062055168.webp",
+          "lander_domain": "news360.pro",
+          "lander_url": "",
+          "gravity": "197",
+          "ad_strength": "408961",
+          "first_seen": "2026-06-30",
+          "last_seen": "2026-11-13",
+          "dias_entre_primeira_e_ultima": 136,
+          "idioma_inferido": "es",
+          "geo_hint": "MX",
+          "tags": "Nutraceuticals",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "phash": "e932787e9c971644",
+          "search_term": "hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
+        },
+        {
+          "views": "B+D",
+          "ad_id": "5059609664",
+          "ad_url": "https://native.anstrex.com/creative/panel/5059609664",
+          "network": "AdNow",
+          "network_slug": "adnow",
+          "headline": "Otorrinolaringólogos: ¿Pérdida de audición o zumbidos en los oídos? Prepara esto y espera 30 segundos.",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adnow_skandalno_net_2026_06_29_a2448f86.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5059609664.webp",
+          "lander_domain": "news360.pro",
+          "lander_url": "",
+          "gravity": "257",
+          "ad_strength": "194632",
+          "first_seen": "2026-06-29",
+          "last_seen": "2026-11-13",
+          "dias_entre_primeira_e_ultima": 137,
+          "idioma_inferido": "es",
+          "geo_hint": "MX",
+          "tags": "Nutraceuticals",
+          "angle_id": "HEAR-OUTRO",
+          "movimento": "volumando",
+          "phash": "f43f4db468c2346c",
+          "search_term": "hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
+        }
+      ]
+    },
+    {
+      "lander_domain": "candyai.gg",
+      "status": "volumando",
+      "tipo_player": "captura_suspeita",
+      "tipo_nota": "",
+      "flag": "lander_suspeita_ou_captura_errada",
+      "ativo": "sim",
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-16",
+      "networks": "AdsKeeper",
+      "n_anuncios": 2,
+      "n_headlines": 2,
+      "max_gravity": 226,
+      "por_rede": {
+        "adskeeper": {
+          "network": "AdsKeeper",
+          "gravity": 226,
+          "ad_id": "5276046119",
+          "last_seen": "2026-11-16"
+        }
+      },
+      "linked_domains": [
+        "naturegrove24.com"
+      ],
+      "headlines": [
+        "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
+        "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach"
+      ],
+      "angle_ids": "HEAR-A4, HEAR-A2",
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "187"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "A+D+G",
+          "ad_id": "5276046119",
+          "ad_url": "https://native.anstrex.com/creative/panel/5276046119",
+          "network": "AdsKeeper",
+          "network_slug": "adskeeper",
+          "headline": "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_nastol_com_ua_2026_08_25_8f3d697d.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5276046119.webp",
+          "lander_domain": "candyai.gg",
+          "lander_url": "",
+          "gravity": "226",
+          "ad_strength": "9372",
+          "first_seen": "2026-08-25",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 83,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A4",
+          "movimento": "volumando",
+          "phash": "c103acfca492e3e7",
+          "search_term": "tinnitus (Translated Text); hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
+        {
+          "views": "A+D+G",
+          "ad_id": "5285005751",
+          "ad_url": "https://native.anstrex.com/creative/panel/5285005751",
+          "network": "AdsKeeper",
+          "network_slug": "adskeeper",
+          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_08_27_86a9b522.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5285005751.webp",
+          "lander_domain": "candyai.gg",
+          "lander_url": "",
+          "gravity": "140",
+          "ad_strength": "2558",
+          "first_seen": "2026-08-27",
+          "last_seen": "2026-11-15",
+          "dias_entre_primeira_e_ultima": 80,
+          "idioma_inferido": "sk",
+          "geo_hint": "SK",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "volumando",
+          "phash": "e1ecf4e2ca98829d",
+          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        }
+      ]
+    },
+    {
+      "lander_domain": "eidikosvarikoias.gr",
+      "status": "volumando",
+      "tipo_player": "oferta_resposta_direta",
+      "tipo_nota": "",
+      "flag": "",
+      "ativo": "sim",
+      "first_seen": "2026-09-24",
+      "last_seen": "2026-11-15",
+      "networks": "Taboola",
+      "n_anuncios": 1,
+      "n_headlines": 1,
+      "max_gravity": 217,
+      "por_rede": {
+        "taboola": {
+          "network": "Taboola",
+          "gravity": 217,
+          "ad_id": "5423757466",
+          "last_seen": "2026-11-15"
+        }
+      },
+      "linked_domains": [],
+      "headlines": [
+        "Το κόλπο για τη βελτίωση της ακοής που προκαλεί &al"
+      ],
+      "angle_ids": "HEAR-OUTRO",
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "217"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "D+G",
+          "ad_id": "5423757466",
+          "ad_url": "https://native.anstrex.com/creative/panel/5423757466",
+          "network": "Taboola",
+          "network_slug": "taboola",
+          "headline": "Το κόλπο για τη βελτίωση της ακοής που προκαλεί &al",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_calcalist_co_il_2026_09_24_ddcc742d.png",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5423757466.png",
+          "lander_domain": "eidikosvarikoias.gr",
+          "lander_url": "",
+          "gravity": "217",
+          "ad_strength": "8075",
+          "first_seen": "2026-09-24",
+          "last_seen": "2026-11-15",
+          "dias_entre_primeira_e_ultima": 52,
+          "idioma_inferido": "el",
+          "geo_hint": "GR",
+          "tags": "Health & Wellness",
+          "angle_id": "HEAR-OUTRO",
+          "movimento": "volumando",
+          "phash": "b9272e13ce0167bc",
+          "search_term": "hearing; hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
+        }
+      ]
+    },
+    {
       "lander_domain": "adskeeper.co.uk",
       "status": "volumando",
       "tipo_player": "dominio_da_rede_ou_tracker",
@@ -4770,7 +4610,7 @@
       ],
       "angle_ids": "HEAR-OUTRO, HEAR-A1, HEAR-A6",
       "yesterday": {
-        "status": "lancando",
+        "status": "volumando",
         "max_gravity": "205"
       },
       "funil": null,
@@ -4820,7 +4660,7 @@
           "geo_hint": "DK",
           "tags": "",
           "angle_id": "HEAR-A1",
-          "movimento": "testando",
+          "movimento": "parado",
           "phash": "a7e57ce28082476f",
           "search_term": "tinnitus OR hearing (Translated Text)",
           "data_ultima_coleta": "2026-11-14"
@@ -4905,11 +4745,11 @@
         "Аcufеne? Gli esрerti parlano di un dettaglio сhe quasi nessunо рrende sul seriо."
       ],
       "angle_ids": "HEAR-OUTRO",
-      "yesterday": null,
-      "funil": {
-        "leitura": "blog_sem_oferta_na_raiz",
-        "nota": "Blog de lifestyle em italiano (Parma). A raiz não mostrou a oferta de zumbido do anúncio. Imagem idêntica (phash 0) à de seravia.info, com headline traduzida e caracteres disfarçados."
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "197"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "D",
@@ -4934,93 +4774,6 @@
           "movimento": "volumando",
           "phash": "ea012b9a9d33337c",
           "search_term": "hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        }
-      ]
-    },
-    {
-      "lander_domain": "candyai.gg",
-      "status": "volumando",
-      "tipo_player": "captura_suspeita",
-      "tipo_nota": "",
-      "flag": "lander_suspeita_ou_captura_errada",
-      "ativo": "sim",
-      "first_seen": "2026-08-25",
-      "last_seen": "2026-11-15",
-      "networks": "Mgid",
-      "n_anuncios": 2,
-      "n_headlines": 2,
-      "max_gravity": 187,
-      "por_rede": {
-        "mgid": {
-          "network": "Mgid",
-          "gravity": 187,
-          "ad_id": "5276046119",
-          "last_seen": "2026-11-15"
-        }
-      },
-      "linked_domains": [
-        "naturegrove24.com"
-      ],
-      "headlines": [
-        "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
-        "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach"
-      ],
-      "angle_ids": "HEAR-A4, HEAR-A2",
-      "yesterday": {
-        "status": "volumando",
-        "max_gravity": "240"
-      },
-      "funil": null,
-      "anuncios": [
-        {
-          "views": "D+G",
-          "ad_id": "5276046119",
-          "ad_url": "https://native.anstrex.com/creative/panel/5276046119",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_nastol_com_ua_2026_08_25_8f3d697d.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5276046119.webp",
-          "lander_domain": "candyai.gg",
-          "lander_url": "",
-          "gravity": "187",
-          "ad_strength": "9107",
-          "first_seen": "2026-08-25",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 82,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A4",
-          "movimento": "volumando",
-          "phash": "c103acfca492e3e7",
-          "search_term": "tinnitus (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "A+D+G",
-          "ad_id": "5285005751",
-          "ad_url": "https://native.anstrex.com/creative/panel/5285005751",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_08_27_86a9b522.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5285005751.webp",
-          "lander_domain": "candyai.gg",
-          "lander_url": "",
-          "gravity": "140",
-          "ad_strength": "2558",
-          "first_seen": "2026-08-27",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 79,
-          "idioma_inferido": "sk",
-          "geo_hint": "SK",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "volumando",
-          "phash": "e1ecf4e2ca98829d",
-          "search_term": "tinnitus OR hearing (Translated Text); tinnitus (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
         }
       ]
@@ -5240,62 +4993,6 @@
       ]
     },
     {
-      "lander_domain": "drugie-ucho.pl",
-      "status": "volumando",
-      "tipo_player": "marca_varejo",
-      "tipo_nota": "Drugie Ucho (aparelhos suíços / teste)",
-      "flag": "",
-      "ativo": "sim",
-      "first_seen": "2026-10-07",
-      "last_seen": "2026-11-15",
-      "networks": "Taboola",
-      "n_anuncios": 1,
-      "n_headlines": 1,
-      "max_gravity": 137,
-      "por_rede": {
-        "taboola": {
-          "network": "Taboola",
-          "gravity": 137,
-          "ad_id": "5486366710",
-          "last_seen": "2026-11-15"
-        }
-      },
-      "linked_domains": [],
-      "headlines": [
-        "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!"
-      ],
-      "angle_ids": "HEAR-A5",
-      "yesterday": null,
-      "funil": null,
-      "anuncios": [
-        {
-          "views": "G",
-          "ad_id": "5486366710",
-          "ad_url": "https://native.anstrex.com/creative/panel/5486366710",
-          "network": "Taboola",
-          "network_slug": "taboola",
-          "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_07_d35aa4fc.png",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5486366710.png",
-          "lander_domain": "drugie-ucho.pl",
-          "lander_url": "",
-          "gravity": "137",
-          "ad_strength": "13021",
-          "first_seen": "2026-10-07",
-          "last_seen": "2026-11-15",
-          "dias_entre_primeira_e_ultima": 39,
-          "idioma_inferido": "pl",
-          "geo_hint": "PL",
-          "tags": "Health & Wellness",
-          "angle_id": "HEAR-A5",
-          "movimento": "volumando",
-          "phash": "9f1ffa01139a0576",
-          "search_term": "hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        }
-      ]
-    },
-    {
       "lander_domain": "life-dzen.com",
       "status": "volumando",
       "tipo_player": "oferta_resposta_direta",
@@ -5321,7 +5018,10 @@
         "Sluh se poboljšao za 87% u samo jednoj sedmici korištenja!"
       ],
       "angle_ids": "HEAR-OUTRO",
-      "yesterday": null,
+      "yesterday": {
+        "status": "volumando",
+        "max_gravity": "132"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -5377,11 +5077,11 @@
         "Wanted: New Zealanders who want to try high-tech hearing devices"
       ],
       "angle_ids": "HEAR-OUTRO",
-      "yesterday": null,
-      "funil": {
-        "leitura": "site_lead_gen_legivel",
-        "nota": "Mesmo destino que auditorey.co: https://www2.auditorey.com (teste grátis, fitting grátis, trial sem obrigação). Mesmo anunciante."
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "407"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "E",
@@ -5437,11 +5137,11 @@
         "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!"
       ],
       "angle_ids": "HEAR-A6, HEAR-OUTRO",
-      "yesterday": null,
-      "funil": {
-        "leitura": "white_page",
-        "nota": "HTTP 200 com página branca, meta robots noindex,nofollow — sinal de cloaking/white page. Oferta não lida."
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "280"
       },
+      "funil": null,
       "anuncios": [
         {
           "views": "C+F",
@@ -5546,65 +5246,6 @@
       ]
     },
     {
-      "lander_domain": "livenfermstizzy.top",
-      "status": "lancando",
-      "tipo_player": "oferta_resposta_direta",
-      "tipo_nota": "",
-      "flag": "",
-      "ativo": "sim",
-      "first_seen": "2026-11-11",
-      "last_seen": "2026-11-12",
-      "networks": "Mgid",
-      "n_anuncios": 1,
-      "n_headlines": 1,
-      "max_gravity": 255,
-      "por_rede": {
-        "mgid": {
-          "network": "Mgid",
-          "gravity": 255,
-          "ad_id": "5627022023",
-          "last_seen": "2026-11-12"
-        }
-      },
-      "linked_domains": [],
-      "headlines": [
-        "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi"
-      ],
-      "angle_ids": "HEAR-A2",
-      "yesterday": null,
-      "funil": {
-        "leitura": "advertorial_legivel",
-        "nota": "Advertorial em BCMS: entrevista com dr. Franco Rizzo (também grafado Franca Rizza) de Roma. Produto nomeado na página como Otorincaps, ainda não nas farmácias, formulário de pedido e menção a 50% de desconto. Preço em valor absoluto não estava visível. Sem envio de formulário."
-      },
-      "anuncios": [
-        {
-          "views": "D",
-          "ad_id": "5627022023",
-          "ad_url": "https://native.anstrex.com/creative/panel/5627022023",
-          "network": "Mgid",
-          "network_slug": "mgid",
-          "headline": "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_media-investigasi_com_2026_11_11_29414038.webp",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5627022023.webp",
-          "lander_domain": "livenfermstizzy.top",
-          "lander_url": "",
-          "gravity": "255",
-          "ad_strength": "2720",
-          "first_seen": "2026-11-11",
-          "last_seen": "2026-11-12",
-          "dias_entre_primeira_e_ultima": 1,
-          "idioma_inferido": "cs",
-          "geo_hint": "HR",
-          "tags": "",
-          "angle_id": "HEAR-A2",
-          "movimento": "lancando",
-          "phash": "8f87753453fc04b8",
-          "search_term": "hearing (Translated Text)",
-          "data_ultima_coleta": "2026-11-15"
-        }
-      ]
-    },
-    {
       "lander_domain": "vivason.fr",
       "status": "lancando",
       "tipo_player": "marca_varejo",
@@ -5633,7 +5274,7 @@
       "angle_ids": "HEAR-A5",
       "yesterday": {
         "status": "lancando",
-        "max_gravity": "245"
+        "max_gravity": "255"
       },
       "funil": null,
       "anuncios": [
@@ -5784,7 +5425,7 @@
       "flag": "",
       "ativo": "sim",
       "first_seen": "2026-09-17",
-      "last_seen": "2026-11-14",
+      "last_seen": "2026-11-16",
       "networks": "Popin",
       "n_anuncios": 4,
       "n_headlines": 2,
@@ -5794,13 +5435,13 @@
           "network": "Popin",
           "gravity": 172,
           "ad_id": "5622729007",
-          "last_seen": "2026-11-14"
+          "last_seen": "2026-11-16"
         }
       },
       "linked_domains": [],
       "headlines": [
-        "50代から始める1日5秒習慣の耳鳴り対策",
-        "耳鳴りに1日たった5秒の「裏技」が話題！"
+        "耳鳴りに1日たった5秒の「裏技」が話題！",
+        "50代から始める1日5秒習慣の耳鳴り対策"
       ],
       "angle_ids": "HEAR-A11",
       "yesterday": {
@@ -5809,6 +5450,31 @@
       },
       "funil": null,
       "anuncios": [
+        {
+          "views": "D",
+          "ad_id": "5622729007",
+          "ad_url": "https://native.anstrex.com/creative/panel/5622729007",
+          "network": "Popin",
+          "network_slug": "popin",
+          "headline": "耳鳴りに1日たった5秒の「裏技」が話題！",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_10_cf57a7ed.jpg",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5622729007.jpg",
+          "lander_domain": "trendy-info.jp",
+          "lander_url": "",
+          "gravity": "172",
+          "ad_strength": "1046",
+          "first_seen": "2026-11-10",
+          "last_seen": "2026-11-16",
+          "dias_entre_primeira_e_ultima": 6,
+          "idioma_inferido": "ja",
+          "geo_hint": "JP",
+          "tags": "Nutraceuticals",
+          "angle_id": "HEAR-A11",
+          "movimento": "lancando",
+          "phash": "8e0f7ce32558ecc8",
+          "search_term": "tinnitus; tinnitus (Translated Text)",
+          "data_ultima_coleta": "2026-11-16"
+        },
         {
           "views": "B",
           "ad_id": "5393743213",
@@ -5858,31 +5524,6 @@
           "phash": "b31b7c311167fb80",
           "search_term": "tinnitus (Translated Text)",
           "data_ultima_coleta": "2026-11-15"
-        },
-        {
-          "views": "D",
-          "ad_id": "5622729007",
-          "ad_url": "https://native.anstrex.com/creative/panel/5622729007",
-          "network": "Popin",
-          "network_slug": "popin",
-          "headline": "耳鳴りに1日たった5秒の「裏技」が話題！",
-          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_10_cf57a7ed.jpg",
-          "thumbnail_local": "/workspace/spy/hearing/imagens/5622729007.jpg",
-          "lander_domain": "trendy-info.jp",
-          "lander_url": "",
-          "gravity": "172",
-          "ad_strength": "753",
-          "first_seen": "2026-11-10",
-          "last_seen": "2026-11-14",
-          "dias_entre_primeira_e_ultima": 4,
-          "idioma_inferido": "ja",
-          "geo_hint": "JP",
-          "tags": "Nutraceuticals",
-          "angle_id": "HEAR-A11",
-          "movimento": "lancando",
-          "phash": "8e0f7ce32558ecc8",
-          "search_term": "tinnitus",
-          "data_ultima_coleta": "2026-11-14"
         },
         {
           "views": "D",
@@ -5937,7 +5578,10 @@
         "Drummer Roger Taylor quits Duran Duran due to worsening tinnitus"
       ],
       "angle_ids": "HEAR-A15",
-      "yesterday": null,
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "75"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -6318,7 +5962,10 @@
         "Severe Tinnitus Has Been Linked to a Common Habit"
       ],
       "angle_ids": "HEAR-A1, HEAR-A9",
-      "yesterday": null,
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "0"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -6562,7 +6209,10 @@
         "Un cirujano revela: ¡Una solución rápida para la pérdida auditiva y el tinnitus!"
       ],
       "angle_ids": "HEAR-A6",
-      "yesterday": null,
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "0"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -6618,7 +6268,10 @@
         "Next-Gen Chip Takes Over the US Hearing Aid Market"
       ],
       "angle_ids": "HEAR-A5",
-      "yesterday": null,
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "0"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -6674,7 +6327,10 @@
         "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen."
       ],
       "angle_ids": "HEAR-OUTRO",
-      "yesterday": null,
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "0"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -6815,7 +6471,10 @@
         "Precio de audífonos para adultos mayores: qué cuesta un buen aparato en 2026"
       ],
       "angle_ids": "HEAR-A13",
-      "yesterday": null,
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "0"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -7133,6 +6792,65 @@
       ]
     },
     {
+      "lander_domain": "livenfermstizzy.top",
+      "status": "parado",
+      "tipo_player": "oferta_resposta_direta",
+      "tipo_nota": "",
+      "flag": "",
+      "ativo": "nao",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-12",
+      "networks": "Mgid",
+      "n_anuncios": 1,
+      "n_headlines": 1,
+      "max_gravity": 255,
+      "por_rede": {
+        "mgid": {
+          "network": "Mgid",
+          "gravity": 255,
+          "ad_id": "5627022023",
+          "last_seen": "2026-11-12"
+        }
+      },
+      "linked_domains": [],
+      "headlines": [
+        "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi"
+      ],
+      "angle_ids": "HEAR-A2",
+      "yesterday": {
+        "status": "lancando",
+        "max_gravity": "255"
+      },
+      "funil": null,
+      "anuncios": [
+        {
+          "views": "D",
+          "ad_id": "5627022023",
+          "ad_url": "https://native.anstrex.com/creative/panel/5627022023",
+          "network": "Mgid",
+          "network_slug": "mgid",
+          "headline": "Ponovite ovaj postupak dva puta dnevno dok se vaš sluh potpuno ne oporavi",
+          "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_media-investigasi_com_2026_11_11_29414038.webp",
+          "thumbnail_local": "/workspace/spy/hearing/imagens/5627022023.webp",
+          "lander_domain": "livenfermstizzy.top",
+          "lander_url": "",
+          "gravity": "255",
+          "ad_strength": "2720",
+          "first_seen": "2026-11-11",
+          "last_seen": "2026-11-12",
+          "dias_entre_primeira_e_ultima": 1,
+          "idioma_inferido": "cs",
+          "geo_hint": "HR",
+          "tags": "",
+          "angle_id": "HEAR-A2",
+          "movimento": "parado",
+          "phash": "8f87753453fc04b8",
+          "search_term": "hearing (Translated Text)",
+          "data_ultima_coleta": "2026-11-15"
+        }
+      ]
+    },
+    {
       "lander_domain": "pawer-growls-palps.rest",
       "status": "parado",
       "tipo_player": "oferta_resposta_direta",
@@ -7342,7 +7060,10 @@
         "Acouphènes? Faites ceci tout de suite, et ils disparaîtront !"
       ],
       "angle_ids": "HEAR-A2",
-      "yesterday": null,
+      "yesterday": {
+        "status": "parado",
+        "max_gravity": "1"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -7399,7 +7120,10 @@
         "「耳が遠い人」9割が知らない治し方"
       ],
       "angle_ids": "HEAR-OUTRO",
-      "yesterday": null,
+      "yesterday": {
+        "status": "parado",
+        "max_gravity": "1"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -7480,7 +7204,10 @@
         "Frankfurt Am Main: Gutes Hören sucht 700 Testhörer für Hörgeräte ohne Zuzahlung"
       ],
       "angle_ids": "HEAR-A14",
-      "yesterday": null,
+      "yesterday": {
+        "status": "parado",
+        "max_gravity": "1"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -7536,7 +7263,10 @@
         "El truco para mejorar la audición que está causando furor en España"
       ],
       "angle_ids": "HEAR-OUTRO",
-      "yesterday": null,
+      "yesterday": {
+        "status": "parado",
+        "max_gravity": "1"
+      },
       "funil": null,
       "anuncios": [
         {
@@ -7568,19 +7298,18 @@
     }
   ],
   "tendencias": [
-    "Novos players de marca/lead-gen entram com força na Taboola e na Revcontent: hear.com (466 Taboola / 446 Revcontent, teste sem risco, aparelhos alemães, elegibilidade por cidade), Auditorey (428 AU e 407 NZ, mesmo lander www2.auditorey.com) e Connect Hearing Canadá (426, Sonova/Phonak).",
-    "bookappointmentonline.com (360, anúncio de teste grátis da Amplifon em Toronto) também escala na Taboola, mas a lander não abriu (TLS/404/500).",
-    "O criativo de 1 euro de naturegrove24.com saltou de 181 para 520 na MGID; o anúncio 625 não reapareceu hoje e permanece no histórico (máx. do player segue 625).",
-    "GAES caiu de 907 para 489 na Outbrain e hearease.site de 525 para 263; os dois continuam escalando nessa rede (piso 150).",
-    "buyhears.com (40371) e AudioNova (5922) não reapareceram na coleta de hoje; foram mantidos no histórico com última vista em 14/11. A rechecagem R da AudioNova mostrou anúncios de tênis (516) e ar-portátil (482), excluídos do nicho.",
-    "Novo DR eslovaco/checo: healthmatters24.com (Outbrain 281, método Babkina, lander 403) e livenfermstizzy.top (MGID 255, advertorial Otorincaps)."
+    "A coleta de 16/11 não abriu as gavetas dos criativos: 58 anúncios novos entraram no master sem lander_domain (o campo ficou em branco; domínio não foi inventado). Os saltos de gravidade abaixo só têm dono quando o ad_id já existia no histórico.",
+    "lphst.com saiu de volumando (230) para escalando (502) na MGID, no criativo francês Un chirurgien révèle (209→502).",
+    "drugie-ucho.pl (varejo, Varsóvia, aparelhos suíços grátis) saiu de volumando (137) para escalando (458) na Taboola.",
+    "seravia.info subiu 395→455 na Taboola (mesmo criativo de tinnitus com letras disfarçadas).",
+    "naturegrove24.com: o criativo-bandeira Musíš to urobiť caiu 625→391; o máx. do player passa a 520 (o criativo de 1 euro, last_seen 15/11, histórico mantido).",
+    "Três anúncios Taboola já com gravidade de escalando (≥300) chegaram hoje sem domínio: jubilados de Barcelona 517, Wien KI-Hörgeräte 326, Antes de comprar audífonos 316. Precisam de rechecagem com a gaveta aberta.",
+    "Cluster de testes (gravidade 0) em 15–16/11, todos sem domínio: método de 7 segundos em hebraico, “lutei contra o tinnitus durante anos” (HE/ES/TR), Derilla Acufeno ES, Kalmeda na receita, “Fehler Nr. 1” à noite, “Tinnitus erkennen & verstehen”."
   ],
   "testes_promissorios": [
-    "santeflux.com: 3 testes Taboola de gravidade 0 em 14/11 com When Tinnitus Won't Stop (headline próxima da de wellnessgaze).",
-    "basis-rases-wacky.rest: teste AdsKeeper de 15/11 do ângulo cirurgião revela, headline idêntica à do cluster wonderbanana.",
-    "kalmeda.de: teste Outbrain de 14/11 da app de zumbido (terapia grátis em 3 passos).",
-    "dailylifeinsider.com: novas traduções de gravidade 0 (DA, IT, FR, PL, TR) do testemunho lutei anos contra o zumbido.",
-    "afftrack.one: dois testes Outbrain de 15/11 de lista de preços de aparelhos 2026 (domínio parece tracker).",
-    "herelnd.com: 4 anúncios MGID em hebraico (médico/cirurgião, 280 e 155) desde 13/11; a raiz é white page noindex."
+    "Dois criativos AdsKeeper “Derilla Acufeno ES” (gravidade 0, first_seen 16/11). Headline evoca o travesseiro Derila, mas o domínio desta variação não foi coletado — não atribuir a hearease.site.",
+    "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich (Outbrain, gravidade 0, 16/11). Há um teste anterior em kalmeda.de (14/11, outro ad_id); este de hoje está sem domínio.",
+    "Der Fehler Nr. 1, den Tinnitus-Geplagte jede Nacht machen (Outbrain, gravidade 0, 16/11) e Tinnitus erkennen & verstehen (Outbrain, gravidade 0, 16/11).",
+    "Várias variações hebraicas/turcas/espanholas “lutei durante anos / um método simples mudou tudo” (Taboola, gravidade 0, 15–16/11), sem domínio."
   ]
 }
