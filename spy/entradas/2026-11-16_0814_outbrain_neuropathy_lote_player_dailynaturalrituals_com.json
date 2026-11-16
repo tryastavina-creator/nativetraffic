@@ -1,0 +1,51 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "dailynaturalrituals.com",
+  "status": "testando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Neuropatia a bolesť nervov? Pozrite sa, čo pomáha ľuďom"
+  ],
+  "max_gravity": 23,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 23,
+      "ad_id": "5499396620",
+      "last_seen": "2026-11-13"
+    }
+  },
+  "first_seen": "2026-10-10",
+  "last_seen": "2026-11-13",
+  "movimentos": {
+    "testando": [
+      "5499396620"
+    ]
+  },
+  "dominios_ligados": [
+    "serenatura.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5499396620",
+      "network": "Outbrain",
+      "gravity": 23,
+      "headline": "Neuropatia a bolesť nervov? Pozrite sa, čo pomáha ľuďom",
+      "first_seen": "2026-10-10",
+      "last_seen": "2026-11-13",
+      "movimento": "testando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_10_990c8c25.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-16."
+}
