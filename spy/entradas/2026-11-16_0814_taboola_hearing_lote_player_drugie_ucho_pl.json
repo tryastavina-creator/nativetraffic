@@ -30,7 +30,9 @@
       "5486366710"
     ]
   },
-  "dominios_ligados": [],
+  "dominios_ligados": [
+    "geers.pl"
+  ],
   "funil": {},
   "anuncios": [
     {

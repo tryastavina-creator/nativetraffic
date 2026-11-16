@@ -1,0 +1,323 @@
+{
+  "data_coleta": "2026-11-16",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "dailylifeinsider.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola",
+    "Outbrain"
+  ],
+  "n_anuncios": 22,
+  "n_headlines": 11,
+  "headlines": [
+    "Yıllarca kulak çınlamasıyla mücadele ettim – tek bir basit yöntem her şeyi değiştirdi",
+    "צלצול באוזניים הרס לי את החיים – ואז גיליתי את הטריק הפשוט הזה",
+    "Luché contra el tinnitus durante años, pero un método sencillo lo cambió todo",
+    "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+    "Der Fehler Nr. 1, den Tinnitus-Geplagte jede Nacht machen (ich habe ihn jahrelang gemacht)",
+    "Jeg kæmpede med tinnitus i årevis – én enkel metode ændrede alt",
+    "Ho lottato contro l'acufene per anni – un semplice metodo ha cambiato tutto",
+    "J'ai lutté contre les acouphènes pendant des années – une méthode simple a tout changé",
+    "Zmagałem się z szumami usznymi przez lata – jedna prosta metoda zmieniła wszystko",
+    "Το μεγαλύτερο λάθος που κάνουν όσοι έχουν εμβοές κάθε βράδυ (το έκανα κι εγώ για χρόνια)",
+    "Godinama sam se borio s tinitusom – jedna jednostavna metoda promijenila je sve"
+  ],
+  "max_gravity": 170,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 170,
+      "ad_id": "5634011507",
+      "last_seen": "2026-11-16"
+    },
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5647767526",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2025-07-30",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5634011507",
+      "5646011198",
+      "5646135748",
+      "5646187444",
+      "5646918087",
+      "5646918217",
+      "5647294932",
+      "5647498767",
+      "5647767526",
+      "5647851850",
+      "5644726018",
+      "5644749928",
+      "5643838413",
+      "5643190472",
+      "5643190354",
+      "5642375477",
+      "5642297487",
+      "5639183565",
+      "5639880999",
+      "5639103125",
+      "5639879149"
+    ],
+    "parado": [
+      "3823300162"
+    ]
+  },
+  "dominios_ligados": [
+    "pgsrc.com",
+    "verifiedhealthwatch.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5634011507",
+      "network": "Taboola",
+      "gravity": 170,
+      "headline": "Yıllarca kulak çınlamasıyla mücadele ettim – tek bir basit yöntem her şeyi değiştirdi",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_eluniversal_com_mx_2026_11_12_93d0cafd.jpg"
+    },
+    {
+      "ad_id": "3823300162",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "צלצול באוזניים הרס לי את החיים – ואז גיליתי את הטריק הפשוט הזה",
+      "first_seen": "2025-07-30",
+      "last_seen": "2026-11-08",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_timeout_co_il_2025_07_30_725e4a3c.jpg"
+    },
+    {
+      "ad_id": "5646011198",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Yıllarca kulak çınlamasıyla mücadele ettim – tek bir basit yöntem her şeyi değiştirdi",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_dha_com_tr_2026_11_15_36d6c609.jpg"
+    },
+    {
+      "ad_id": "5646135748",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Luché contra el tinnitus durante años, pero un método sencillo lo cambió todo",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_alcalordeportivo_com_mx_2026_11_15_9466ec42.jpg"
+    },
+    {
+      "ad_id": "5646187444",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sport5_co_il_2026_11_15_d7029555.jpg"
+    },
+    {
+      "ad_id": "5646918087",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sport5_co_il_2026_11_15_9c5983ff.jpg"
+    },
+    {
+      "ad_id": "5646918217",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sport5_co_il_2026_11_15_6a4307ae.jpg"
+    },
+    {
+      "ad_id": "5647294932",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sport5_co_il_2026_11_15_faf0cce1.jpg"
+    },
+    {
+      "ad_id": "5647498767",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Yıllarca kulak çınlamasıyla mücadele ettim – tek bir basit yöntem her şeyi değiştirdi",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sabah_com_tr_2026_11_15_3613f73b.jpg"
+    },
+    {
+      "ad_id": "5647767526",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Der Fehler Nr. 1, den Tinnitus-Geplagte jede Nacht machen (ich habe ihn jahrelang gemacht)",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_berliner-kurier_de_2026_11_16_cf849333.webp"
+    },
+    {
+      "ad_id": "5647851850",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sport5_co_il_2026_11_16_c9fb4125.jpg"
+    },
+    {
+      "ad_id": "5644726018",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Jeg kæmpede med tinnitus i årevis – én enkel metode ændrede alt",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_atmag_co_il_2026_11_15_6a087e5d.jpg"
+    },
+    {
+      "ad_id": "5644749928",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ho lottato contro l'acufene per anni – un semplice metodo ha cambiato tutto",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_etruschi_name_2026_11_15_d02ddca7.jpg"
+    },
+    {
+      "ad_id": "5643838413",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "J'ai lutté contre les acouphènes pendant des années – une méthode simple a tout changé",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_aouaga_com_2026_11_15_d244150f.jpg"
+    },
+    {
+      "ad_id": "5643190472",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ho lottato contro l'acufene per anni – un semplice metodo ha cambiato tutto",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_etruschi_name_2026_11_15_e85509f7.jpg"
+    },
+    {
+      "ad_id": "5643190354",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ho lottato contro l'acufene per anni – un semplice metodo ha cambiato tutto",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_etruschi_name_2026_11_15_4c33ec7b.jpg"
+    },
+    {
+      "ad_id": "5642375477",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Zmagałem się z szumami usznymi przez lata – jedna prosta metoda zmieniła wszystko",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_rynek-lotniczy_pl_2026_11_14_beaab77a.jpg"
+    },
+    {
+      "ad_id": "5642297487",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Yıllarca kulak çınlamasıyla mücadele ettim – tek bir basit yöntem her şeyi değiştirdi",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_haber27_com_2026_11_14_442fe833.jpg"
+    },
+    {
+      "ad_id": "5639183565",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Το μεγαλύτερο λάθος που κάνουν όσοι έχουν εμβοές κάθε βράδυ (το έκανα κι εγώ για χρόνια)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mamapeinao_gr_2026_11_14_7a317f01.webp"
+    },
+    {
+      "ad_id": "5639880999",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "J'ai lutté contre les acouphènes pendant des années – une méthode simple a tout changé",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_concoursechantillonsquebec_com_2026_11_14_1c5987ae.jpg"
+    },
+    {
+      "ad_id": "5639103125",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Godinama sam se borio s tinitusom – jedna jednostavna metoda promijenila je sve",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_krstarica_com_2026_11_14_f3bb4bbe.jpg"
+    },
+    {
+      "ad_id": "5639879149",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "נאבקתי בטינטון במשך שנים – שיטה פשוטה אחת שינתה הכול",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_sport5_co_il_2026_11_14_c8ffb6da.png"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→170; n anúncios agora 22."
+}
