@@ -11,13 +11,14 @@
     "Taboola",
     "AdsKeeper"
   ],
-  "n_anuncios": 15,
-  "n_headlines": 5,
+  "n_anuncios": 17,
+  "n_headlines": 6,
   "headlines": [
     "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+    "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
     "Musíš to urobiť, ak máš poruchу sluchu alebo hučanie в ušiach",
     "Ušný šum alebo strata sluchu? Vyskúšajte to za 1 EUR",
-    "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
+    "Problémy so sluchom? Užívajte to raz denne",
     "Šum v ušiach alebo strata sluchu? Vyskúšajte to za 1 euro"
   ],
   "max_gravity": 520,
@@ -41,7 +42,7 @@
       "last_seen": "2026-11-07"
     }
   },
-  "first_seen": "2026-08-25",
+  "first_seen": "2026-06-02",
   "last_seen": "2026-11-16",
   "movimentos": {
     "escalando": [
@@ -52,10 +53,12 @@
       "5277858275",
       "5296392585",
       "5277868478",
+      "5276799200",
       "5288989793"
     ],
     "parado": [
       "5575039798",
+      "4951157376",
       "5283790576",
       "5276778059",
       "5607611708",
@@ -67,7 +70,8 @@
     ]
   },
   "dominios_ligados": [
-    "candyai.gg"
+    "candyai.gg",
+    "healthmatters24.com"
   ],
   "funil": {},
   "anuncios": [
@@ -138,6 +142,17 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_06_c37ed795.png"
     },
     {
+      "ad_id": "5276799200",
+      "network": "Mgid",
+      "gravity": 115,
+      "headline": "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infopena_com_2026_08_25_607eeb9b.webp"
+    },
+    {
       "ad_id": "5288989793",
       "network": "Mgid",
       "gravity": 111,
@@ -204,6 +219,17 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_06_2de2677c.png"
     },
     {
+      "ad_id": "4951157376",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "Problémy so sluchom? Užívajte to raz denne",
+      "first_seen": "2026-06-02",
+      "last_seen": "2026-10-21",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_bizportal_co_il_2026_06_02_c13802d7.jpg"
+    },
+    {
       "ad_id": "5490132485",
       "network": "Taboola",
       "gravity": 1,
@@ -237,5 +263,5 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_laprensamx_com_2026_11_07_818d9856.webp"
     }
   ],
-  "diff_desde_ontem": "máx. gravidade 625→520; n anúncios agora 15."
+  "diff_desde_ontem": "máx. gravidade 625→520; n anúncios agora 17."
 }

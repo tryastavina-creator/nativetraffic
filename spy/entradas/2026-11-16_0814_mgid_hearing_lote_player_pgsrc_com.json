@@ -10,15 +10,15 @@
     "Mgid",
     "AdsKeeper"
   ],
-  "n_anuncios": 35,
+  "n_anuncios": 38,
   "n_headlines": 6,
   "headlines": [
     "Chirurgien révèle : aide rapide pour audition et acouphènes",
     "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+    "Toplæge: Nem metode lindrer høretab og øresusen!",
     "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
     "Læge: høretab eller tinnitus? Gør dette straks",
-    "Kirurg: »7-sekunders øre-reset-metode« vil afhjælpe dit høretab og din tinnitus",
-    "Toplæge: Nem metode lindrer høretab og øresusen!"
+    "Kirurg: »7-sekunders øre-reset-metode« vil afhjælpe dit høretab og din tinnitus"
   ],
   "max_gravity": 264,
   "gravity_por_rede": {
@@ -40,12 +40,15 @@
   "movimentos": {
     "volumando": [
       "5004242051",
+      "5005885082",
+      "5587686137",
       "5012503218",
       "5011358426",
       "5004621414",
       "5132119064",
       "5100989569",
       "5127311921",
+      "5129963244",
       "5004240689",
       "4991265195"
     ],
@@ -83,7 +86,9 @@
     ]
   },
   "dominios_ligados": [
-    "adskeeper.co.uk"
+    "adskeeper.co.uk",
+    "dailylifeinsider.com",
+    "verifiedhealthwatch.com"
   ],
   "funil": {},
   "anuncios": [
@@ -97,6 +102,28 @@
       "movimento": "volumando",
       "angle_id": "HEAR-A6",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_odpowiedzi_net_2026_06_15_b2618f98.webp"
+    },
+    {
+      "ad_id": "5005885082",
+      "network": "Mgid",
+      "gravity": 257,
+      "headline": "Médecin : perte auditive ou acouphènes ? Faites ceci vite",
+      "first_seen": "2026-06-15",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_kstartrend_com_2026_06_15_9d2fb4b1.webp"
+    },
+    {
+      "ad_id": "5587686137",
+      "network": "Mgid",
+      "gravity": 202,
+      "headline": "Toplæge: Nem metode lindrer høretab og øresusen!",
+      "first_seen": "2026-11-01",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_olgascuisine_gr_2026_11_01_f748b170.webp"
     },
     {
       "ad_id": "5012503218",
@@ -163,6 +190,17 @@
       "movimento": "volumando",
       "angle_id": "HEAR-A1",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_dailysia_com_2026_07_15_1dab04b7.webp"
+    },
+    {
+      "ad_id": "5129963244",
+      "network": "Mgid",
+      "gravity": 128,
+      "headline": "Kirurg afslører: hurtig hjælp mod høretab og øresusen",
+      "first_seen": "2026-07-16",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_afsarnama_com_2026_07_16_f36b285d.webp"
     },
     {
       "ad_id": "5004240689",
@@ -473,5 +511,5 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ungkap_co_id_2026_11_14_d0a9dc18.webp"
     }
   ],
-  "diff_desde_ontem": "máx. gravidade 211→264; n anúncios agora 35."
+  "diff_desde_ontem": "máx. gravidade 211→264; n anúncios agora 38."
 }

@@ -9,11 +9,12 @@
   "redes": [
     "Mgid"
   ],
-  "n_anuncios": 4,
-  "n_headlines": 3,
+  "n_anuncios": 6,
+  "n_headlines": 4,
   "headlines": [
     "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
     "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+    "Chirurg onthult: Snelle oplossing voor gehoorverlies en tinnitus!",
     "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!"
   ],
   "max_gravity": 502,
@@ -36,7 +37,9 @@
       "4818265293"
     ],
     "parado": [
-      "4772804679"
+      "4771872786",
+      "4772804679",
+      "4824207166"
     ]
   },
   "dominios_ligados": [],
@@ -76,6 +79,17 @@
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_8eadc2be.webp"
     },
     {
+      "ad_id": "4771872786",
+      "network": "Mgid",
+      "gravity": 2,
+      "headline": "Chirurg onthult: Snelle oplossing voor gehoorverlies en tinnitus!",
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tuncarlos_com_2026_04_21_4a4549a8.webp"
+    },
+    {
       "ad_id": "4772804679",
       "network": "Mgid",
       "gravity": 1,
@@ -85,7 +99,18 @@
       "movimento": "parado",
       "angle_id": "HEAR-A2",
       "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp"
+    },
+    {
+      "ad_id": "4824207166",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-04",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mumcare_org_2026_05_04_0ada339a.webp"
     }
   ],
-  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 230→502; n anúncios agora 4."
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 230→502; n anúncios agora 6."
 }
