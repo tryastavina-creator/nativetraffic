@@ -1,0 +1,51 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "betterlivingdaily.co.uk",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Audiologists tested 5 hearing aids for 6 months. Only one stood out."
+  ],
+  "max_gravity": 132,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 132,
+      "ad_id": "4242691352",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-01-18",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "4242691352"
+    ]
+  },
+  "dominios_ligados": [
+    "trymodernhearing.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "4242691352",
+      "network": "Taboola",
+      "gravity": 132,
+      "headline": "Audiologists tested 5 hearing aids for 6 months. Only one stood out.",
+      "first_seen": "2026-01-18",
+      "last_seen": "2026-11-14",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_espn_com_2026_01_18_861545b8.png"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}

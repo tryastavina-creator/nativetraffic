@@ -1,0 +1,62 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "oriclehearing.com",
+  "status": "lancando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Oricle Hearing (lead-gen / varejo de aparelhos; confirmar na lander)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "This Tiny Hearing Aid Is Changing Lives—And It’s Under $100",
+    "Walmart Shoppers Are Going Nuts for These Hearing Aids"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5650859842",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5650859842",
+      "5651677197"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5650859842",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "This Tiny Hearing Aid Is Changing Lives—And It’s Under $100",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5651677197",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Walmart Shoppers Are Going Nuts for These Hearing Aids",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_eluniverso_com_2026_11_16_5aeae702.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}

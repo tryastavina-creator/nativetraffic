@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "connecthearing.ca",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Connect Hearing (Canadá)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Toronto Connect Hearing Is Giving Free 90-Minute Hearing Checks",
+    "Free Hearing Tests Are Open Across Canada"
+  ],
+  "max_gravity": 525,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 525,
+      "ad_id": "5235736125",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-08-17",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "escalando": [
+      "5235736125",
+      "5567322660"
+    ]
+  },
+  "dominios_ligados": [
+    "geers.pl"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5235736125",
+      "network": "Taboola",
+      "gravity": 525,
+      "headline": "Toronto Connect Hearing Is Giving Free 90-Minute Hearing Checks",
+      "first_seen": "2026-08-17",
+      "last_seen": "2026-11-16",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_businessinsider_com_2026_08_17_e43bebfe.jpg"
+    },
+    {
+      "ad_id": "5567322660",
+      "network": "Taboola",
+      "gravity": 426,
+      "headline": "Free Hearing Tests Are Open Across Canada",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-15",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_weather_com_2026_10_27_5ca96cf1.png"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 426→525; n anúncios agora 2."
+}
