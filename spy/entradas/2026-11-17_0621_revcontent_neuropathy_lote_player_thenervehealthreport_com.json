@@ -1,0 +1,67 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "thenervehealthreport.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Revcontent"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Your Feet Won't Settle at 2 a.m.? Turns out It Isn't Your Age",
+    "Your Feet Won't Settle at 2 A.M.? Turns out It Isn't Your Age"
+  ],
+  "max_gravity": 239,
+  "gravity_por_rede": {
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 239,
+      "ad_id": "5622756252",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-11-05",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5622756252"
+    ],
+    "volumando": [
+      "5600979038"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://thenervehealthreport.com redireciona para /rc/ (200). Advertorial 'The Nerve Health Report': vídeo 'Feet Keeping You Up? Take a Look at This Simple Drawing', história de Tom e Linda, CTA Watch Now. Sem preço no advertorial. O CTA aponta para getcalmzen.com (VSL do suplemento CalmZen, pagamento único, sem assinatura): 1 frasco 30 dias US$ 69 + frete US$ 9,99; 3 frascos 90 dias US$ 177 (de US$ 207) + 2 bônus e frete US grátis; 6 frascos 180 dias US$ 282 (de US$ 414) + 3 bônus e frete US grátis. Garantia de 180 dias. Frete internacional US$ 18,95. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5622756252",
+      "network": "Revcontent",
+      "gravity": 239,
+      "headline": "Your Feet Won't Settle at 2 a.m.? Turns out It Isn't Your Age",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_whec_com_2026_11_10_eea2c406.jpg"
+    },
+    {
+      "ad_id": "5600979038",
+      "network": "Revcontent",
+      "gravity": 132,
+      "headline": "Your Feet Won't Settle at 2 A.M.? Turns out It Isn't Your Age",
+      "first_seen": "2026-11-05",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_local3news_com_2026_11_05_ef72b90c.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}

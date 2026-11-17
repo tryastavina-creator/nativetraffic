@@ -1,0 +1,162 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "heartlandhealthjournal.com",
+  "status": "volumando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Revcontent"
+  ],
+  "n_anuncios": 10,
+  "n_headlines": 2,
+  "headlines": [
+    "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+    "MD Nerve Pain (Neuropathy) After 50 Comes Down to 1 Thing"
+  ],
+  "max_gravity": 361,
+  "gravity_por_rede": {
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 361,
+      "ad_id": "5637553330",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-09-29",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5637553330",
+      "5637552968"
+    ],
+    "volumando": [
+      "5595949967",
+      "5449341455"
+    ],
+    "parado": [
+      "5637600483",
+      "5637600726",
+      "5629497770",
+      "5628637255",
+      "5596163477",
+      "5596058719"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5637553330",
+      "network": "Revcontent",
+      "gravity": 361,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_13_ae821978.jpg"
+    },
+    {
+      "ad_id": "5595949967",
+      "network": "Revcontent",
+      "gravity": 200,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-03",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_03_f0f718eb.jpg"
+    },
+    {
+      "ad_id": "5449341455",
+      "network": "Revcontent",
+      "gravity": 153,
+      "headline": "MD Nerve Pain (Neuropathy) After 50 Comes Down to 1 Thing",
+      "first_seen": "2026-09-29",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_wccbcharlotte_com_2026_09_29_ca75fff1.jpg"
+    },
+    {
+      "ad_id": "5637552968",
+      "network": "Revcontent",
+      "gravity": 63,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_13_005a69c8.jpg"
+    },
+    {
+      "ad_id": "5637600483",
+      "network": "Revcontent",
+      "gravity": 44,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_13_671c87ef.jpg"
+    },
+    {
+      "ad_id": "5596058719",
+      "network": "Revcontent",
+      "gravity": 35,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-03",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_westernjournal_com_2026_11_03_ad025d85.jpg"
+    },
+    {
+      "ad_id": "5637600726",
+      "network": "Revcontent",
+      "gravity": 8,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_13_17b85a44.jpg"
+    },
+    {
+      "ad_id": "5596163477",
+      "network": "Revcontent",
+      "gravity": 1,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-03",
+      "last_seen": "2026-11-06",
+      "movimento": "parado",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_westernjournal_com_2026_11_03_314f929e.jpg"
+    },
+    {
+      "ad_id": "5629497770",
+      "network": "Revcontent",
+      "gravity": 0,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_news8000_com_2026_11_11_32920a10.jpg"
+    },
+    {
+      "ad_id": "5628637255",
+      "network": "Revcontent",
+      "gravity": 0,
+      "headline": "Neuropathy Warning: Do This 1 Thing Tonight Before Foot Numbness Turns Permanent",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "NEURO-A13",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_goodnewsnetwork_org_2026_11_11_faf8ac94.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→volumando; máx. gravidade 175→361; n anúncios agora 10."
+}
