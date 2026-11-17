@@ -1,0 +1,100 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "agewelljournal.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Taboola"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 3,
+  "headlines": [
+    "Neuropathy Is Not From Old Age. Meet The Real Enemy Of Numb Feet",
+    "Neuropathy is not from Low Vitamin B. Meet the Real Enemy of Neuropathy (Stop Doing This)",
+    "Over 50 with Numb or Tingling Feet? Try This Simple 15-Minute Method"
+  ],
+  "max_gravity": 120,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 120,
+      "ad_id": "5648778283",
+      "last_seen": "2026-11-16"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 52,
+      "ad_id": "5599046667",
+      "last_seen": "2026-11-10"
+    }
+  },
+  "first_seen": "2026-11-04",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5648778283",
+      "5649816828",
+      "5651117178"
+    ],
+    "parado": [
+      "5599046667"
+    ]
+  },
+  "dominios_ligados": [
+    "green-ri.click",
+    "thejornalwest.com",
+    "wellnesshome.blog"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5648778283",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Neuropathy Is Not From Old Age. Meet The Real Enemy Of Numb Feet",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_dailycaller_com_2026_11_16_5616cf16.webp"
+    },
+    {
+      "ad_id": "5649816828",
+      "network": "Outbrain",
+      "gravity": 90,
+      "headline": "Neuropathy is not from Low Vitamin B. Meet the Real Enemy of Neuropathy (Stop Doing This)",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_dailycaller_com_2026_11_16_46cfaf60.webp"
+    },
+    {
+      "ad_id": "5599046667",
+      "network": "Taboola",
+      "gravity": 52,
+      "headline": "Over 50 with Numb or Tingling Feet? Try This Simple 15-Minute Method",
+      "first_seen": "2026-11-04",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_cbssports_com_2026_11_04_d861c403.jpg"
+    },
+    {
+      "ad_id": "5651117178",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Neuropathy is not from Low Vitamin B. Meet the Real Enemy of Neuropathy (Stop Doing This)",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_afrikmag_com_2026_11_16_912c7cc1.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→lancando; máx. gravidade 52→120; n anúncios agora 4."
+}

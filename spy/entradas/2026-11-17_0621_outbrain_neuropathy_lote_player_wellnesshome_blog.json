@@ -1,0 +1,92 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "wellnesshome.blog",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Revcontent"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Neuropathy Is Not From Low Vitamin B. Meet the Real Enemy of Neuropathy",
+    "Tingling and Burning Feet at Night? Try This Simple At-Home Routine"
+  ],
+  "max_gravity": 178,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 178,
+      "ad_id": "5577402867",
+      "last_seen": "2026-11-16"
+    },
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 0,
+      "ad_id": "5628843166",
+      "last_seen": "2026-11-11"
+    }
+  },
+  "first_seen": "2026-10-30",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "escalando": [
+      "5577402867"
+    ],
+    "parado": [
+      "5628843166"
+    ],
+    "lancando": [
+      "5647903801"
+    ]
+  },
+  "dominios_ligados": [
+    "agewelljournal.com",
+    "lifetechadviser.com",
+    "smoothspine.com"
+  ],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://wellnesshome.blog devolveu Cloudflare Error 1000 (DNS points to prohibited IP). http:// no apex: 500. www.wellnesshome.blog: 404 (Webflow, 'Page not found'). Oferta, preço e checkout não estavam visíveis. Não reabrir formulário."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5577402867",
+      "network": "Outbrain",
+      "gravity": 178,
+      "headline": "Neuropathy Is Not From Low Vitamin B. Meet the Real Enemy of Neuropathy",
+      "first_seen": "2026-10-30",
+      "last_seen": "2026-11-16",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5628843166",
+      "network": "Revcontent",
+      "gravity": 0,
+      "headline": "Tingling and Burning Feet at Night? Try This Simple At-Home Routine",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_11_61ea57e8.jpg"
+    },
+    {
+      "ad_id": "5647903801",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy Is Not From Low Vitamin B. Meet the Real Enemy of Neuropathy",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}
