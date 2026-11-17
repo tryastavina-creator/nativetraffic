@@ -1,0 +1,31 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "achado",
+  "prioridade": "teste_promissor",
+  "visao": "C",
+  "ad_id": "5651414350",
+  "ad_url": "https://native.anstrex.com/creative/panel/5651414350",
+  "rede": "LockerDome",
+  "rede_slug": "lockerdome",
+  "headline": "Neurologists Beg Seniors With Neuropathy: Stop Doing This Now",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/lockerdome_ncronline_org_2026_11_16_56debaa6.jpg",
+  "lander_domain": "christianhealthreport.com",
+  "gravity": 0,
+  "ad_strength": 0,
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-16",
+  "dias_entre_primeira_e_ultima": "",
+  "idioma_inferido": "en",
+  "geo_hint": "US",
+  "tags": "Nutraceuticals",
+  "search_term": "neuropathy (Translated Text)",
+  "angle_id": "NEURO-A11",
+  "movimento": "lancando",
+  "por_que": "Player novo, lançando. Primeiro anúncio LockerDome desta operação (gravidade 0, 16/11), headline 'Neurologists Beg Seniors With Neuropathy: Stop Doing This Now' — a mesma linha de healthweekly.info (641). Piso de escalando adotado para LockerDome: ≥300, até haver briefing.",
+  "n_anuncios_do_player": 1,
+  "n_headlines_do_player": 1,
+  "dominios_ligados": [
+    "healthweekly.info"
+  ]
+}

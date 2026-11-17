@@ -1,0 +1,108 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "trimpath.site",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 2,
+  "headlines": [
+    "Top Neurosurgeon Reveals The Hidden Cause Of Neuropathy And How To Fix It (See How)",
+    "Nerve Pain Keeping You Awake? Try This Before Bed And See The Pain Start To Fade"
+  ],
+  "max_gravity": 168,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 168,
+      "ad_id": "5629936621",
+      "last_seen": "2026-11-16"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 153,
+      "ad_id": "5624397691",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-10",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5629936621",
+      "5624397691",
+      "5628819380",
+      "5628819326",
+      "5629101932"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://trimpath.site falhou TLS (unexpected eof). http:// no apex: 500. www.trimpath.site (BunnyCDN) devolveu 404 com a mensagem 'Ainda não há nada publicado aqui...'. Oferta não lida."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5629936621",
+      "network": "Mgid",
+      "gravity": 168,
+      "headline": "Top Neurosurgeon Reveals The Hidden Cause Of Neuropathy And How To Fix It (See How)",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_budayanusantara_web_id_2026_11_11_13ab4426.webp"
+    },
+    {
+      "ad_id": "5624397691",
+      "network": "AdsKeeper",
+      "gravity": 153,
+      "headline": "Top Neurosurgeon Reveals The Hidden Cause Of Neuropathy And How To Fix It (See How)",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_downloads-anymovies_co_2026_11_10_9d54bcaf.webp"
+    },
+    {
+      "ad_id": "5628819380",
+      "network": "Mgid",
+      "gravity": 140,
+      "headline": "Nerve Pain Keeping You Awake? Try This Before Bed And See The Pain Start To Fade",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_csmillennials_com_2026_11_11_865b7497.webp"
+    },
+    {
+      "ad_id": "5628819326",
+      "network": "Mgid",
+      "gravity": 133,
+      "headline": "Top Neurosurgeon Reveals The Hidden Cause Of Neuropathy And How To Fix It (See How)",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_csmillennials_com_2026_11_11_2a8ba4c5.webp"
+    },
+    {
+      "ad_id": "5629101932",
+      "network": "Mgid",
+      "gravity": 131,
+      "headline": "Nerve Pain Keeping You Awake? Try This Before Bed And See The Pain Start To Fade",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_plonszczak_pl_2026_11_11_9bb0383f.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}
