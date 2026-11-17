@@ -1,0 +1,110 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "deutscher-gesundheits-fachkreis.de",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 6,
+  "n_headlines": 2,
+  "headlines": [
+    "Der Tinnitus-Trick: Was uns Deutschen verschwiegen wird",
+    "Die Tinnitus-Lüge: Das hilft wirklich"
+  ],
+  "max_gravity": 135,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 135,
+      "ad_id": "5641496953",
+      "last_seen": "2026-11-15"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5641496953",
+      "5651602931",
+      "5639679410",
+      "5639392468",
+      "5644227440",
+      "5639680301"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5641496953",
+      "network": "Outbrain",
+      "gravity": 135,
+      "headline": "Der Tinnitus-Trick: Was uns Deutschen verschwiegen wird",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_guter-rat_de_2026_11_14_2ebbf263.webp"
+    },
+    {
+      "ad_id": "5651602931",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Tinnitus-Lüge: Das hilft wirklich",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_algerie360_com_2026_11_16_465ca147.webp"
+    },
+    {
+      "ad_id": "5639679410",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Tinnitus-Lüge: Das hilft wirklich",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_northwichguardian_co_uk_2026_11_14_362e19ae.webp"
+    },
+    {
+      "ad_id": "5639392468",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Der Tinnitus-Trick: Was uns Deutschen verschwiegen wird",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_14_2812e263.webp"
+    },
+    {
+      "ad_id": "5644227440",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Der Tinnitus-Trick: Was uns Deutschen verschwiegen wird",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_causeur_fr_2026_11_15_cff6e3c1.webp"
+    },
+    {
+      "ad_id": "5639680301",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Der Tinnitus-Trick: Was uns Deutschen verschwiegen wird",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_radiobielefeld_de_2026_11_14_5d3ec1f2.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→135; n anúncios agora 6."
+}
