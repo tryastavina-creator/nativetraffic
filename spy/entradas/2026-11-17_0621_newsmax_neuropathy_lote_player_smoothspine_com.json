@@ -1,0 +1,112 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "smoothspine.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "NewsMax",
+    "Revcontent"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 4,
+  "headlines": [
+    "Neuropathy is Not From Getting Older. Meet The Real Enemy of Neuropathy",
+    "Neuropathy is Not From Damaged Nerves in Your Feet. Meet The Real Enemy",
+    "Neuropathy and Numb Feet? This is The Simplest Method Doctors Won’t Tell You",
+    "Neuropathy and Numb Feet? This is The Simplest Method Doctors Won't Tell You"
+  ],
+  "max_gravity": 337,
+  "gravity_por_rede": {
+    "newsmax": {
+      "network": "NewsMax",
+      "gravity": 337,
+      "ad_id": "5486664128",
+      "last_seen": "2026-11-16"
+    },
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 1,
+      "ad_id": "5486462538",
+      "last_seen": "2026-10-20"
+    }
+  },
+  "first_seen": "2026-10-07",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "escalando": [
+      "5486664128"
+    ],
+    "parado": [
+      "5486462538",
+      "5519245651",
+      "5519246920",
+      "5519248343"
+    ]
+  },
+  "dominios_ligados": [
+    "lifetechadviser.com",
+    "wellnesshome.blog"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5486664128",
+      "network": "NewsMax",
+      "gravity": 337,
+      "headline": "Neuropathy is Not From Getting Older. Meet The Real Enemy of Neuropathy",
+      "first_seen": "2026-10-07",
+      "last_seen": "2026-11-16",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/newsmax_newsmax_com_2026_10_07_15df3211.png"
+    },
+    {
+      "ad_id": "5486462538",
+      "network": "Revcontent",
+      "gravity": 1,
+      "headline": "Neuropathy is Not From Damaged Nerves in Your Feet. Meet The Real Enemy",
+      "first_seen": "2026-10-07",
+      "last_seen": "2026-10-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_thegatewaypundit_com_2026_10_07_0e435887.jpg"
+    },
+    {
+      "ad_id": "5519245651",
+      "network": "Revcontent",
+      "gravity": 1,
+      "headline": "Neuropathy and Numb Feet? This is The Simplest Method Doctors Won’t Tell You",
+      "first_seen": "2026-10-14",
+      "last_seen": "2026-11-01",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_tvmaze_com_2026_10_14_74e10f99.jpg"
+    },
+    {
+      "ad_id": "5519246920",
+      "network": "Revcontent",
+      "gravity": 1,
+      "headline": "Neuropathy and Numb Feet? This is The Simplest Method Doctors Won’t Tell You",
+      "first_seen": "2026-10-14",
+      "last_seen": "2026-10-31",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_tvmaze_com_2026_10_14_41387204.jpg"
+    },
+    {
+      "ad_id": "5519248343",
+      "network": "Revcontent",
+      "gravity": 1,
+      "headline": "Neuropathy and Numb Feet? This is The Simplest Method Doctors Won't Tell You",
+      "first_seen": "2026-10-14",
+      "last_seen": "2026-10-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_emporiaindependentmessenger_com_2026_10_14_2825a3d6.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→escalando; máx. gravidade 420→337; n anúncios agora 5."
+}
