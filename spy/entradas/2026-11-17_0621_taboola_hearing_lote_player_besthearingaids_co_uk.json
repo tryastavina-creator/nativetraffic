@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "besthearingaids.co.uk",
+  "status": "volumando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Best Hearing Aids UK (nome de comparador/lead-gen; confirmar na lander)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Forget Expensive Hearing Aids (Do This Instead)"
+  ],
+  "max_gravity": 113,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 113,
+      "ad_id": "3770503027",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2025-05-14",
+  "last_seen": "2026-11-14",
+  "movimentos": {
+    "volumando": [
+      "3770503027"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "3770503027",
+      "network": "Taboola",
+      "gravity": 113,
+      "headline": "Forget Expensive Hearing Aids (Do This Instead)",
+      "first_seen": "2025-05-14",
+      "last_seen": "2026-11-14",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_inquirer_net_2025_05_14_ae16c081.png"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}

@@ -1,0 +1,49 @@
+{
+  "data_coleta": "2026-11-17",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "amplifon.au",
+  "status": "volumando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Amplifon (Austrália / marca varejo)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Don't buy hearing aids, do this (it's great)"
+  ],
+  "max_gravity": 110,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 110,
+      "ad_id": "5416032975",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-09-22",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "volumando": [
+      "5416032975"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5416032975",
+      "network": "Taboola",
+      "gravity": 110,
+      "headline": "Don't buy hearing aids, do this (it's great)",
+      "first_seen": "2026-09-22",
+      "last_seen": "2026-11-16",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_jsonline_com_2026_09_22_20c96ce5.png"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-17."
+}
