@@ -6,7 +6,17 @@ import { cached, friendlyError, hashKey } from "./cache";
 import { demoData } from "./demo";
 import type { Funnel } from "./connectors/shopify";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
-import { getSettings, getSupplierCosts, getSupplierImports, listConnections, uniqueAccounts, type Settings, type SupplierCost } from "./store";
+import { readSpendBook, recordSpend, spendFromBook } from "./history";
+import {
+  getSettings,
+  getSupplierCosts,
+  getSupplierImports,
+  listArchivedConnections,
+  listConnections,
+  uniqueAccounts,
+  type Settings,
+  type SupplierCost,
+} from "./store";
 import type { DateRange, Order, SpendRow } from "./types";
 
 export type PlatformRow = {
@@ -20,6 +30,8 @@ export type PlatformRow = {
   profit: number;
   roas: number;
   cpa: number;
+  /** Spend per account of this source (disconnected accounts flagged). */
+  accounts: { label: string; spend: number; archived: boolean }[];
 };
 
 export type CampaignRow = {
@@ -150,8 +162,9 @@ async function snapshotOrders(range: DateRange): Promise<Order[] | null> {
 }
 
 export async function computeMetrics(range: DateRange): Promise<Metrics> {
-  const [connections, settings, supplierCosts, imports] = await Promise.all([
+  const [connections, archivedConns, settings, supplierCosts, imports] = await Promise.all([
     listConnections(),
+    listArchivedConnections(),
     getSettings(),
     getSupplierCosts(),
     getSupplierImports(),
@@ -210,24 +223,42 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
     spend = rtRows;
     if (rtRows.length) spendSources.push("redtrack");
   } else {
-    // Every connected account of every traffic source (e.g. two Taboola accounts).
-    const jobs = uniqueAccounts(connections)
-      .filter((c) => TRAFFIC_CONNECTORS[c.provider])
-      .map(async (c) => {
-        try {
-          const rows = (
-            await cached(hashKey("spend", c.id, c.credentials, range), () =>
-              TRAFFIC_CONNECTORS[c.provider].fetchSpend(c.credentials, range),
-            )
-          ).value;
+    // Every account of every traffic source (e.g. two Taboola accounts), including disconnected ones: their past
+    // spend is read from the source while it still answers, else from the saved history.
+    const book = await readSpendBook().catch(() => ({}) as Awaited<ReturnType<typeof readSpendBook>>);
+    const accounts = uniqueAccounts([...connections, ...archivedConns]).filter((c) => TRAFFIC_CONNECTORS[c.provider]);
+    const jobs = accounts.map(async (c) => {
+      const name = c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider;
+      const archived = !!c.archivedAt;
+      const r = archived ? { from: range.from, to: [range.to, c.archivedAt!.slice(0, 10)].sort()[0] } : range;
+      const tag = (rows: SpendRow[]) => rows.map((x) => ({ ...x, account: name, archived }));
+      if (r.from > r.to) return spendFromBook(book, [c.id], range, archived);
+      try {
+        const rows = (
+          await cached(hashKey("spend", c.id, c.credentials, r), () => TRAFFIC_CONNECTORS[c.provider].fetchSpend(c.credentials, r))
+        ).value;
+        if (!spendSources.includes(c.provider)) spendSources.push(c.provider);
+        recordSpend(c, rows, r).catch(() => {});
+        return tag(rows);
+      } catch (e) {
+        const saved = spendFromBook(book, [c.id], r, archived);
+        if (saved.length) {
           if (!spendSources.includes(c.provider)) spendSources.push(c.provider);
-          return rows;
-        } catch (e) {
-          warnings.push(friendlyError(c.label ?? PLATFORM_LABEL[c.provider] ?? c.provider, e));
-          return [];
+          if (!archived) warnings.push(`${friendlyError(name, e)} Usando o gasto salvo no histórico.`);
+          return saved;
         }
-      });
+        if (!archived) warnings.push(friendlyError(name, e));
+        return [];
+      }
+    });
     spend = (await Promise.all(jobs)).flat();
+    // Accounts removed before the archive existed, or deleted for good: their saved days still count.
+    const known = new Set(accounts.map((c) => c.id));
+    const orphan = spendFromBook(book, Object.keys(book).filter((id) => !known.has(id)), range, true);
+    if (orphan.length) {
+      spend.push(...orphan);
+      for (const r of orphan) if (!spendSources.includes(r.platform)) spendSources.push(r.platform);
+    }
     // Fall back to RedTrack cost for platforms without a direct API connection.
     if (rtRows.length) {
       const covered = new Set(spendSources);
@@ -379,6 +410,19 @@ export function aggregate(input: {
         profit,
         roas: div(rev, sp),
         cpa: div(sp, os.length),
+        accounts: [
+          ...spend
+            .filter((s) => s.platform === platform && s.account)
+            .reduce((m, s) => {
+              const k = `${s.account}|${s.archived ? 1 : 0}`;
+              const cur = m.get(k) ?? { label: s.account!, spend: 0, archived: !!s.archived };
+              cur.spend += s.spend;
+              return m.set(k, cur);
+            }, new Map<string, { label: string; spend: number; archived: boolean }>())
+            .values(),
+        ]
+          .filter((a) => Math.abs(a.spend) > 0.005)
+          .sort((a, b) => b.spend - a.spend),
       };
     })
     .filter((p) => p.orders > 0 || p.spend > 0)

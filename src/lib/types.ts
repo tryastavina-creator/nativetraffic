@@ -35,6 +35,8 @@ export type Connection = {
   lastTestAt?: string;
   lastTestOk?: boolean;
   lastTestMessage?: string;
+  /** Disconnected by the user: no longer used for live data, but its spend history stays in the reports. */
+  archivedAt?: string;
 };
 
 /** Daily ad spend reported by a traffic source or tracker. */
@@ -48,6 +50,9 @@ export type SpendRow = {
   revenue?: number;
   /** InitiateCheckout count (RedTrack). */
   ic?: number;
+  /** Account the row came from (connection label), for per-account totals. */
+  account?: string;
+  archived?: boolean;
 };
 
 export type OrderLine = { product: string; quantity: number; price: number; unitCost: number };

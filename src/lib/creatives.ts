@@ -4,7 +4,8 @@ import { cached, friendlyError, hashKey } from "./cache";
 import { listRevcontent, listTaboola, type Creative } from "./connectors/taboolaCreatives";
 import { computeTraffic } from "./traffic";
 import { normProduct, parseRtName, parseSourceName } from "./naming";
-import { getSettings, listConnections, listSavedHeadlines, listVariants, uniqueAccounts } from "./store";
+import { creativesFromBook, readCreativeBook } from "./history";
+import { getSettings, listArchivedConnections, listConnections, listSavedHeadlines, listVariants, uniqueAccounts } from "./store";
 import type { DateRange } from "./types";
 
 /** Performance of an ad, an image or a headline, with sales attributed from Shopify. */
@@ -52,26 +53,49 @@ function finish(p: Omit<Perf, "ctr" | "cpa" | "roas">): Perf {
 
 export async function computeCreatives(range: DateRange) {
   const warnings: string[] = [];
-  const conns = uniqueAccounts(await listConnections()).filter((c) => c.provider === "taboola" || c.provider === "revcontent");
+  const [active, archived, book] = await Promise.all([
+    listConnections(),
+    listArchivedConnections(),
+    readCreativeBook().catch(() => ({}) as Awaited<ReturnType<typeof readCreativeBook>>),
+  ]);
+  const conns = uniqueAccounts([...active, ...archived]).filter((c) => c.provider === "taboola" || c.provider === "revcontent");
 
-  const items: (Creative & { accountId: string; accountLabel: string })[] = [];
+  const items: (Creative & { accountId: string; accountLabel: string; archived?: boolean })[] = [];
   // NT_SNAPSHOT_CREATIVES: JSON list of ads (with accountId/accountLabel) standing in for the APIs (tests).
   if (process.env.NT_SNAPSHOT_CREATIVES) {
     items.push(...JSON.parse(await fs.readFile(process.env.NT_SNAPSHOT_CREATIVES, "utf8")));
   } else await Promise.all(
     conns.map(async (a) => {
+      const label = a.label ?? a.provider;
+      const isArchived = !!a.archivedAt;
+      const tag = (list: Creative[]) => list.map((x) => ({ ...x, accountId: a.id, accountLabel: isArchived ? `${label} (desconectada)` : label, archived: isArchived }));
+      // Disconnected accounts: the source is asked only up to the day they were disconnected.
+      const r = isArchived ? { from: range.from, to: [range.to, a.archivedAt!.slice(0, 10)].sort()[0] } : range;
+      if (r.from > r.to) return void items.push(...tag(creativesFromBook(book, a.id, range)));
       try {
         const list = (
-          await cached(hashKey("creatives", a.id, a.credentials, range), () =>
-            a.provider === "taboola" ? listTaboola(a.credentials, range) : listRevcontent(a.credentials, range),
+          await cached(hashKey("creatives", a.id, a.credentials, r), () =>
+            a.provider === "taboola" ? listTaboola(a.credentials, r) : listRevcontent(a.credentials, r),
           )
         ).value;
-        items.push(...list.map((x) => ({ ...x, accountId: a.id, accountLabel: a.label ?? a.provider })));
+        items.push(...tag(list));
       } catch (e) {
-        warnings.push(friendlyError(a.label ?? a.provider, e));
+        const saved = creativesFromBook(book, a.id, r);
+        if (saved.length) {
+          items.push(...tag(saved));
+          if (!isArchived) warnings.push(`${friendlyError(label, e)} Usando os números salvos no histórico.`);
+        } else if (!isArchived) warnings.push(friendlyError(label, e));
       }
     }),
   );
+  // Accounts deleted for good: their saved ads still count.
+  if (!process.env.NT_SNAPSHOT_CREATIVES) {
+    const known = new Set(conns.map((c) => c.id));
+    for (const [id, a] of Object.entries(book)) {
+      if (known.has(id)) continue;
+      items.push(...creativesFromBook(book, id, range).map((x) => ({ ...x, accountId: id, accountLabel: `${a.label} (desconectada)`, archived: true })));
+    }
+  }
 
   // Real results per source campaign (sales, revenue, costs) from the Tráfego API view.
   const traffic = await computeTraffic(range);

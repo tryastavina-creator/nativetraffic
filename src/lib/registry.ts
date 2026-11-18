@@ -261,6 +261,24 @@ export function platformFromOrder(o: { utmSource?: string; utmCampaign?: string;
 }
 
 /** Map a raw utm_source / campaign string to a provider id. */
+/** Source codes used in our campaign names, e.g. "018 - TB | OmniPro …" or "[OMNIPRO] [TB] [US]". */
+const SOURCE_CODES: Record<string, string> = {
+  tb: "taboola",
+  tbl: "taboola",
+  tab: "taboola",
+  rc: "revcontent",
+  rev: "revcontent",
+  rvc: "revcontent",
+  ob: "outbrain",
+  otb: "outbrain",
+  mdg: "mediago",
+  mgo: "mediago",
+  nb: "newsbreak",
+  fb: "meta",
+  ig: "meta",
+  gads: "googleads",
+};
+
 export function platformFromUtm(source?: string): string {
   const s = (source ?? "").toLowerCase();
   if (!s) return "untracked";
@@ -272,6 +290,8 @@ export function platformFromUtm(source?: string): string {
   if (s.includes("mgid")) return "mgid";
   if (s.includes("google") || s === "adwords") return "googleads";
   if (s.includes("facebook") || s.includes("meta") || s === "fb" || s === "ig") return "meta";
+  // Whole-word source code inside a campaign name ("018 - TB | OmniPro | ADV").
+  for (const t of s.split(/[^a-z0-9]+/)) if (SOURCE_CODES[t]) return SOURCE_CODES[t];
   return "other";
 }
 

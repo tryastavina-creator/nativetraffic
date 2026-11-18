@@ -338,7 +338,7 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {m?.platforms.map((pl) => (
+                {m?.platforms.flatMap((pl) => [
                   <tr key={pl.platform}>
                     <td>
                       <span className="flex items-center gap-2">
@@ -354,8 +354,22 @@ export default function Dashboard() {
                     <td className="text-right">{pl.orders ? money(pl.aov, cur) : "—"}</td>
                     <td className="text-right text-muted">{pct(pl.refundRate)}</td>
                     <td className={`text-right font-medium ${pl.profit < 0 ? "text-bad" : "text-accent"}`}>{full ? money(pl.profit, cur) : "—"}</td>
-                  </tr>
-                ))}
+                  </tr>,
+                  // Spend per account (shown when the source has more than one, or a disconnected one).
+                  ...((pl.accounts?.length ?? 0) > 1 || pl.accounts?.some((a) => a.archived)
+                    ? pl.accounts.map((a) => (
+                        <tr key={`${pl.platform}-${a.label}-${a.archived}`} className="text-[11px] text-muted">
+                          <td className="pl-8">
+                            {a.label}
+                            {a.archived && <span className="ml-1.5 rounded bg-panel2 px-1 text-[10px] text-faint">desconectada</span>}
+                          </td>
+                          <td />
+                          <td className="text-right">{money(a.spend, cur)}</td>
+                          <td colSpan={6} />
+                        </tr>
+                      ))
+                    : []),
+                ])}
               </tbody>
             </table>
           </div>

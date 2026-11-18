@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { testConnection } from "@/lib/connectors";
 import { MCP_TEMPLATE, PROVIDERS, getProvider } from "@/lib/registry";
-import { deleteConnection, getConnection, redact, saveConnection, storageStatus } from "@/lib/store";
+import { renameHistory } from "@/lib/history";
+import { archiveConnection, deleteConnection, getConnection, redact, restoreConnection, saveConnection, storageStatus } from "@/lib/store";
 import type { Connection } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -98,9 +99,28 @@ async function upsert(req: Request) {
   return NextResponse.json({ connection: redact(conn), result });
 }
 
+/**
+ * Disconnect. Traffic accounts are archived (their spend history keeps counting in the reports);
+ * ?purge=1 removes the credentials for good (the saved history still counts).
+ */
 export async function DELETE(req: Request) {
-  const id = new URL(req.url).searchParams.get("id");
+  const u = new URL(req.url);
+  const id = u.searchParams.get("id");
   if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 });
+  const conn = (await storageStatus()).connections.find((c) => c.id === id);
+  if (conn && getProvider(conn.provider)?.category === "traffic" && !conn.archivedAt && u.searchParams.get("purge") !== "1") {
+    const newId = await archiveConnection(id);
+    if (newId) await renameHistory(id, newId);
+    return NextResponse.json({ ok: true, archived: newId });
+  }
   await deleteConnection(id);
+  return NextResponse.json({ ok: true });
+}
+
+/** Reconnect an archived account. */
+export async function PATCH(req: Request) {
+  const { id } = (await req.json()) as { id?: string };
+  if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 });
+  await restoreConnection(id);
   return NextResponse.json({ ok: true });
 }

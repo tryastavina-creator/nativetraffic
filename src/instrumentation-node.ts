@@ -2,6 +2,7 @@
  * Keeps the Tráfego and Criativos numbers warm: right after the server starts and every few minutes, the default periods
  * are rebuilt in the background, so opening the tab never waits for the source APIs. Node runtime only.
  */
+import { snapshotCreatives } from "./lib/creativeHistory";
 import { cachedCreatives } from "./lib/creatives";
 import { rangeFromPreset } from "./lib/metrics";
 import { getSpy } from "./lib/spy";
@@ -16,6 +17,8 @@ if (!process.env.NT_NO_WARM) {
     for (const preset of ["30d", "7d"]) await cachedCreatives(rangeFromPreset(preset)).catch(() => {});
     // Spy: picks up a new push from the bot within a few minutes, even with nobody on the page.
     await getSpy().catch(() => {});
+    // Day-by-day history of each ad's spend (kept after an account is disconnected).
+    await snapshotCreatives().catch(() => {});
   };
   setTimeout(warm, 5_000);
   setInterval(warm, 3 * 60_000).unref?.();
