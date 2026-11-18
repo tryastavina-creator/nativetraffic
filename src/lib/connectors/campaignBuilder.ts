@@ -19,7 +19,7 @@ import { RC, rcGet, revcontentToken, taboolaToken } from "./traffic";
 
 const TB = "https://backstage.taboola.com/backstage/api/1.0";
 
-const tbHeaders = async (c: Credentials) => ({ Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" });
+export const tbHeaders = async (c: Credentials) => ({ Authorization: `Bearer ${await taboolaToken(c)}`, "Content-Type": "application/json" });
 
 /** Accounts a campaign can be created in. A network account only holds advertiser accounts. */
 export type TbAccount = { accountId: string; name: string; network: boolean; timeZone?: string };
