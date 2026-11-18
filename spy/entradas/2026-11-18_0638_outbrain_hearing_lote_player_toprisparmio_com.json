@@ -1,0 +1,193 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "toprisparmio.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Comparador / lead-gen IT de aparelhos (risparmio)",
+  "redes": [
+    "Outbrain",
+    "AdsKeeper",
+    "Taboola",
+    "Google",
+    "Mgid"
+  ],
+  "n_anuncios": 10,
+  "n_headlines": 4,
+  "headlines": [
+    "Ecco la scelta furba per chi ha problemi di udito",
+    "Apparecchi acustici",
+    "Buone notizie per chi ha problemi di udito",
+    "Apparecchi Acustici"
+  ],
+  "max_gravity": 270,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 270,
+      "ad_id": "5651799536",
+      "last_seen": "2026-11-17"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5654428874",
+      "last_seen": "2026-11-17"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5654796634",
+      "last_seen": "2026-11-17"
+    },
+    "google": {
+      "network": "Google",
+      "gravity": 0,
+      "ad_id": "5655211760",
+      "last_seen": "2026-11-17"
+    },
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5655605094",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5651799536",
+      "5654428874",
+      "5654428930",
+      "5654429115",
+      "5654796634",
+      "5655007830",
+      "5655211760",
+      "5655211804",
+      "5655211839",
+      "5655605094"
+    ]
+  },
+  "dominios_ligados": [
+    "confrontoerisparmio.com"
+  ],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://toprisparmio.com (e www) não abriu: falha de TLS no curl e HTTP 504/500 no WebFetch. Oferta, preço e checkout não foram lidos. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5651799536",
+      "network": "Outbrain",
+      "gravity": 270,
+      "headline": "Ecco la scelta furba per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gazzettadiparma_it_2026_11_17_7b40a4e8.png"
+    },
+    {
+      "ad_id": "5654428874",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Apparecchi acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_webtvhd_com_2026_11_17_9a5aed68.webp"
+    },
+    {
+      "ad_id": "5654428930",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Apparecchi acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_webtvhd_com_2026_11_17_7b15f138.webp"
+    },
+    {
+      "ad_id": "5654429115",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Apparecchi acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_webtvhd_com_2026_11_17_d42fcf32.webp"
+    },
+    {
+      "ad_id": "5654796634",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ecco la scelta furba per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ynet_co_il_2026_11_17_b92739fd.png"
+    },
+    {
+      "ad_id": "5655007830",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gazzettadiparma_it_2026_11_17_6332a1aa.png"
+    },
+    {
+      "ad_id": "5655211760",
+      "network": "Google",
+      "gravity": 0,
+      "headline": "Apparecchi Acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/google_casertace_net_2026_11_17_32c29608.jpg"
+    },
+    {
+      "ad_id": "5655211804",
+      "network": "Google",
+      "gravity": 0,
+      "headline": "Apparecchi Acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/google_casertace_net_2026_11_17_b1e3ed34.jpg"
+    },
+    {
+      "ad_id": "5655211839",
+      "network": "Google",
+      "gravity": 0,
+      "headline": "Apparecchi Acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/google_casertace_net_2026_11_17_bdd1ab38.jpg"
+    },
+    {
+      "ad_id": "5655605094",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Apparecchi acustici",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_puer_org_ua_2026_11_17_e7fd5743.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}
