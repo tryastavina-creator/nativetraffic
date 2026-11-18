@@ -1,0 +1,53 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "medi-komfort.de",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!"
+  ],
+  "max_gravity": 90,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 90,
+      "ad_id": "5649694696",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5649694696"
+    ]
+  },
+  "dominios_ligados": [
+    "liyng.com",
+    "oekomarkt.co",
+    "wexiy.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5649694696",
+      "network": "Outbrain",
+      "gravity": 90,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}

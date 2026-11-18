@@ -1,0 +1,104 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "oekomarkt.co",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "Mesma headline DE de liyng.com (diabetes/taube Füße); domínio distinto",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 1,
+  "headlines": [
+    "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!"
+  ],
+  "max_gravity": 260,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 260,
+      "ad_id": "5651356256",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5651356256",
+      "5651099888",
+      "5651356101",
+      "5650983840",
+      "5651100026"
+    ]
+  },
+  "dominios_ligados": [
+    "liyng.com",
+    "medi-komfort.de",
+    "wexiy.com"
+  ],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://oekomarkt.co abriu uma loja Shopify 'Ökomarkt – Praktische Produkte für Haus, Garten & Alltag'. A homepage destaca o MicroBlade Pro (rasoir): preço normal €139,95, venda €69,95 (50% de desconto), envio DHL grátis, 100 dias de devolução; pagamentos Visa, Mastercard, Maestro, PayPal, Apple Pay e Google Pay. No catálogo há também 'MediKomfort - Leichte, wasserfeste Wärmeschuhe für schmerzfreies Gehen': 1 par €59,95 (de €119,95) ou 2 pares €89,90 (€44,95 o par); várias cores/tamanhos apareciam como esgotados. A homepage e o /collections/all não mostram texto de neuropatia, diabetes ou 'taube Füße' — a headline do anúncio é a mesma de liyng.com / wexiy.com / medi-komfort.de. O campo lander_url veio vazio, então o caminho exato do clique não foi capturado. Nada foi comprado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5651356256",
+      "network": "Outbrain",
+      "gravity": 260,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5651099888",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5651356101",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5650983840",
+      "network": "Outbrain",
+      "gravity": 160,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5651100026",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}
