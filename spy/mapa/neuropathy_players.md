@@ -1,72 +1,94 @@
 # Mapa de players — neuropathy
 
-Mapa de 17/11/2026 (America/Sao_Paulo), comparado com 16/11, termos neuropathy + nerve + numbness + tingling. Date Range 2026-10-18 a 2026-11-16 em todas as visões (gravidade na janela). Quedas grandes de máx. (adskeeper.co.uk 5847→1516, evidwell.com 1231→460) coincidem com a troca de método e não foram usadas sozinhas para mudar classe. LockerDome apareceu (piso de escalando ≥300, até haver briefing). Trackers (adskeeper.co.uk, candy.ai/candyai.gg) tratados como antes. Nenhum domínio próprio configurado.
+Mapa de 18/11/2026 (America/Sao_Paulo), comparado com 17/11. Coleta com Date Range 2026-10-19 a 2026-11-17 em todas as visões (comparável a 17/11). evidwell.com subiu nesta janela (o criativo Mgid 5638568232 foi de 210 em coletas anteriores para 1173 hoje; outro criativo AdsKeeper novo chegou a 1160) — não é explicável só por mudança de método, porque o valor antigo já era mais baixo. liyng.com 944 Outbrain (712→944 no mesmo anúncio) está sinalizado por ficar bem acima do pico Outbrain comparável de 17/11 (277). Redes e geos visíveis no card foram unidos ao histórico ('+N' não expandido). Gravidade só se compara dentro da mesma rede. Nenhum domínio próprio configurado.
 
 | Domínio | Tipo | Status | Anúncios | Redes | Max gravidade (rede) | Última vista | Nota / diff |
 |---------|------|--------|----------|-------|----------------------|--------------|-------------|
-| liyng.com | oferta_resposta_direta | escalando | 26 | Outbrain | Outbrain 3487 | 2026-11-15 |  |
+| liyng.com | oferta_resposta_direta | escalando | 33 | Outbrain | Outbrain 3487 | 2026-11-17 |  |
 | myvita.day | oferta_resposta_direta | escalando | 2 | Mgid | Mgid 1584 | 2026-11-15 |  |
-| adskeeper.co.uk | dominio_da_rede_ou_tracker | escalando | 16 | AdsKeeper, Mgid | AdsKeeper 904, Mgid 1516 | 2026-11-16 | máx. 5847→1516; dominio_da_rede_ou_tracker |
-| washbosswhale.beauty | oferta_resposta_direta | escalando | 11 | Mgid | Mgid 1006 | 2026-11-14 |  |
-| beauty-ri.click | oferta_resposta_direta | escalando | 5 | Mgid | Mgid 700 | 2026-11-16 |  |
-| solveclocktext.space | oferta_resposta_direta | escalando | 6 | Mgid | Mgid 684 | 2026-11-14 |  |
-| healthweekly.info | oferta_resposta_direta | escalando | 14 | Revcontent, Outbrain | Revcontent 641, Outbrain 165 | 2026-11-16 | máx. 484→641 |
-| green-ri.click | oferta_resposta_direta | escalando | 8 | Mgid | Mgid 573 | 2026-11-16 |  |
-| wellnessgaze.com | oferta_resposta_direta | escalando | 76 | Revcontent, NewsMax | Revcontent 520, NewsMax 367 | 2026-11-16 |  |
-| evidwell.com | oferta_resposta_direta | escalando | 19 | Mgid, AdsKeeper | Mgid 460, AdsKeeper 235 | 2026-11-16 | máx. 1231→460 |
-| science-actualite.com | oferta_resposta_direta | escalando | 32 | Outbrain | Outbrain 356 | 2026-11-15 |  |
-| smoothspine.com | oferta_resposta_direta | escalando | 5 | NewsMax, Revcontent | NewsMax 337, Revcontent 1 | 2026-11-16 | classe parado→escalando; máx. 420→337 |
-| integratedsupplementlatam.fun | oferta_resposta_direta | escalando | 28 | Outbrain | Outbrain 270 | 2026-11-16 | máx. 330→270 |
-| wellnesshome.blog | oferta_resposta_direta | escalando | 3 | Outbrain, Revcontent | Outbrain 178, Revcontent 0 | 2026-11-16 | NOVO |
-| heartlandhealthjournal.com | oferta_resposta_direta | volumando | 10 | Revcontent | Revcontent 361 | 2026-11-16 | classe lancando→volumando; máx. 175→361 |
-| thenervehealthreport.com | oferta_resposta_direta | volumando | 2 | Revcontent | Revcontent 239 | 2026-11-16 | NOVO |
-| tadahitasurakeizoku.click | oferta_resposta_direta | volumando | 8 | Popin | Popin 197 | 2026-11-15 |  |
-| candy.ai | captura_suspeita | volumando | 2 | AdsKeeper | AdsKeeper 145 | 2026-11-15 | lander_suspeita_ou_captura_errada |
-| wexiy.com | oferta_resposta_direta | lancando | 4 | Outbrain | Outbrain 264 | 2026-11-15 |  |
+| evidwell.com | oferta_resposta_direta | escalando | 23 | Mgid, AdsKeeper | Mgid 1173, AdsKeeper 1160 | 2026-11-17 | máx. 460→1173 |
+| washbosswhale.beauty | oferta_resposta_direta | escalando | 16 | Mgid, AdsKeeper | Mgid 1006, AdsKeeper 115 | 2026-11-17 |  |
+| healthweekly.info | oferta_resposta_direta | escalando | 14 | Revcontent, Outbrain | Revcontent 641, Outbrain 165 | 2026-11-16 |  |
+| green-ri.click | oferta_resposta_direta | escalando | 11 | Mgid | Mgid 573 | 2026-11-17 |  |
+| wellnessgaze.com | oferta_resposta_direta | escalando | 81 | NewsMax, Revcontent | NewsMax 367, Revcontent 520 | 2026-11-17 |  |
+| science-actualite.com | oferta_resposta_direta | escalando | 40 | Outbrain | Outbrain 444 | 2026-11-17 | máx. 356→444 |
+| smoothspine.com | oferta_resposta_direta | escalando | 5 | NewsMax, Revcontent | NewsMax 337, Revcontent 1 | 2026-11-16 |  |
+| integratedsupplementlatam.fun | oferta_resposta_direta | escalando | 28 | Outbrain | Outbrain 270 | 2026-11-16 |  |
+| oekomarkt.co | oferta_resposta_direta | escalando | 5 | Outbrain | Outbrain 260 | 2026-11-17 | NOVO; Mesma headline DE de liyng.com (diabetes/taube Füße); domínio distinto |
+| wellnesshome.blog | oferta_resposta_direta | escalando | 3 | Outbrain, Revcontent | Outbrain 178, Revcontent 0 | 2026-11-16 |  |
+| healingdaily.site | oferta_resposta_direta | escalando | 23 | Outbrain, Taboola | Outbrain 150, Taboola 6 | 2026-11-17 | classe lancando→escalando; máx. 90→150 |
+| giornalesm.org | oferta_resposta_direta | escalando | 4 | Outbrain | Outbrain 150 | 2026-11-16 | NOVO |
+| adskeeper.co.uk | dominio_da_rede_ou_tracker | volumando | 19 | AdsKeeper, Mgid | AdsKeeper 452, Mgid 1516 | 2026-11-17 | classe escalando→volumando; dominio_da_rede_ou_tracker |
+| beauty-ri.click | oferta_resposta_direta | volumando | 6 | Mgid | Mgid 700 | 2026-11-16 | classe escalando→volumando |
+| solveclocktext.space | oferta_resposta_direta | volumando | 7 | Mgid | Mgid 684 | 2026-11-16 | classe escalando→volumando |
+| heartlandhealthjournal.com | oferta_resposta_direta | volumando | 10 | Revcontent | Revcontent 361 | 2026-11-16 |  |
+| wexiy.com | oferta_resposta_direta | volumando | 4 | Outbrain | Outbrain 243 | 2026-11-15 | classe lancando→volumando; máx. 264→243 |
+| thenervehealthreport.com | oferta_resposta_direta | volumando | 2 | Revcontent | Revcontent 239 | 2026-11-16 |  |
+| tadahitasurakeizoku.click | oferta_resposta_direta | volumando | 11 | Popin | Popin 197 | 2026-11-17 |  |
+| trimpath.site | oferta_resposta_direta | volumando | 5 | Mgid, AdsKeeper | Mgid 168, AdsKeeper 153 | 2026-11-16 | classe lancando→volumando |
 | healthvanta.org | oferta_resposta_direta | lancando | 1 | Revcontent | Revcontent 230 | 2026-11-15 |  |
-| trimpath.site | oferta_resposta_direta | lancando | 5 | Mgid, AdsKeeper | Mgid 168, AdsKeeper 153 | 2026-11-16 | NOVO |
-| agewelljournal.com | oferta_resposta_direta | lancando | 4 | Outbrain, Taboola | Outbrain 120, Taboola 52 | 2026-11-16 | classe parado→lancando; máx. 52→120 |
-| bienvital.digital | oferta_resposta_direta | lancando | 5 | Mgid | Mgid 120 | 2026-11-15 |  |
+| skrytunerzibet.fun | oferta_resposta_direta | lancando | 2 | AdsKeeper | AdsKeeper 210 | 2026-11-17 | NOVO |
+| inkedreeksduppy.shop | oferta_resposta_direta | lancando | 1 | AdsKeeper | AdsKeeper 155 | 2026-11-16 | NOVO |
+| medizinrundschau.com | oferta_resposta_direta | lancando | 2 | Taboola | Taboola 145 | 2026-11-17 | NOVO |
+| lifetechadviser.com | oferta_resposta_direta | lancando | 13 | Outbrain, Taboola | Outbrain 135, Taboola 65 | 2026-11-16 | máx. 65→135 |
+| bienvital.digital | oferta_resposta_direta | lancando | 8 | Mgid | Mgid 120 | 2026-11-17 |  |
+| elivira.com | oferta_resposta_direta | lancando | 4 | Outbrain | Outbrain 120 | 2026-11-16 | NOVO |
+| agewelljournal.com | oferta_resposta_direta | lancando | 4 | Outbrain, Taboola | Outbrain 120, Taboola 52 | 2026-11-16 |  |
+| dailycarepro.com | oferta_resposta_direta | lancando | 3 | AdsKeeper | AdsKeeper 110 | 2026-11-17 | máx. 0→110 |
 | globallaunch.store | oferta_resposta_direta | lancando | 14 | Outbrain, Taboola | Outbrain 105, Taboola 0 | 2026-11-16 |  |
-| healingdaily.site | oferta_resposta_direta | lancando | 14 | Outbrain, Taboola | Outbrain 90, Taboola 0 | 2026-11-15 |  |
-| lifetechadviser.com | oferta_resposta_direta | lancando | 11 | Taboola, Outbrain | Taboola 65, Outbrain 0 | 2026-11-16 |  |
-| healthnervess.online | oferta_resposta_direta | lancando | 7 | Taboola | Taboola 6 | 2026-11-16 | máx. 0→6 |
+| medi-komfort.de | oferta_resposta_direta | lancando | 1 | Outbrain | Outbrain 90 | 2026-11-16 | NOVO |
+| zoryno.org | oferta_resposta_direta | lancando | 1 | Outbrain | Outbrain 90 | 2026-11-16 | NOVO |
+| aliexpress.com | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 90 | 2026-11-16 | NOVO |
+| vitalpfad.shop | oferta_resposta_direta | lancando | 7 | Taboola | Taboola 52 | 2026-11-17 | máx. 0→52 |
+| neuro-socken-de.com | oferta_resposta_direta | lancando | 3 | Outbrain | Outbrain 45 | 2026-11-17 | NOVO |
+| gesundheitsreport.site | oferta_resposta_direta | lancando | 2 | Mgid | Mgid 35 | 2026-11-16 | NOVO |
+| lanuvi.com | oferta_resposta_direta | lancando | 2 | Taboola | Taboola 20 | 2026-11-16 | NOVO |
+| healthnervess.online | oferta_resposta_direta | lancando | 7 | Taboola | Taboola 6 | 2026-11-16 |  |
+| obols-egises-muff.shop | oferta_resposta_direta | lancando | 3 | Mgid, AdsKeeper | Mgid 0, AdsKeeper 0 | 2026-11-17 | NOVO |
+| neuroshutz.site | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 0 | 2026-11-17 | NOVO |
+| saudeediadia.site | oferta_resposta_direta | lancando | 1 | AdsKeeper | AdsKeeper 0 | 2026-11-17 | NOVO |
+| topgadgetsreview.com | oferta_resposta_direta | lancando | 1 | Outbrain | Outbrain 0 | 2026-11-17 | NOVO |
 | thejornalwest.com | oferta_resposta_direta | lancando | 2 | Outbrain | Outbrain 0 | 2026-11-16 |  |
-| realfindstoday.com | oferta_resposta_direta | lancando | 3 | Taboola | Taboola 0 | 2026-11-16 | NOVO |
-| purehorizon.fit | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 0 | 2026-11-16 | NOVO |
-| christianhealthreport.com | oferta_resposta_direta | lancando | 1 | LockerDome | LockerDome 0 | 2026-11-16 | NOVO |
+| realfindstoday.com | oferta_resposta_direta | lancando | 3 | Taboola | Taboola 0 | 2026-11-16 |  |
+| purehorizon.fit | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 0 | 2026-11-16 |  |
+| christianhealthreport.com | oferta_resposta_direta | lancando | 1 | LockerDome | LockerDome 0 | 2026-11-16 |  |
 | trylevinasilka.com | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 0 | 2026-11-15 |  |
-| dailycarepro.com | oferta_resposta_direta | lancando | 3 | AdsKeeper | AdsKeeper 0 | 2026-11-14 |  |
-| seniorwellnessdigest.com | oferta_resposta_direta | lancando | 1 | Mgid | Mgid 0 | 2026-11-14 |  |
-| daetumblejauks.top | oferta_resposta_direta | lancando | 1 | AdsKeeper | AdsKeeper 0 | 2026-11-14 |  |
-| vitalpfad.shop | oferta_resposta_direta | lancando | 1 | Taboola | Taboola 0 | 2026-11-14 |  |
-| nervenratgeber.de | oferta_resposta_direta | lancando | 3 | Outbrain | Outbrain 0 | 2026-11-14 |  |
-| hilftnervenschmerz.com | oferta_resposta_direta | testando | 1 | Taboola | Taboola 5 | 2026-11-14 |  |
-| news360.pro | oferta_resposta_direta | parado | 1 | AdNow | AdNow 359 | 2026-11-13 | classe escalando→parado |
+| candy.ai | captura_suspeita | testando | 2 | AdsKeeper | AdsKeeper 73 | 2026-11-15 | classe volumando→testando; máx. 145→73; lander_suspeita_ou_captura_errada |
+| vitalinsightnews.com | oferta_resposta_direta | testando | 1 | Taboola | Taboola 13 | 2026-11-15 | NOVO |
+| news360.pro | oferta_resposta_direta | parado | 1 | AdNow | AdNow 359 | 2026-11-13 |  |
 | doctornewseu.com | oferta_resposta_direta | parado | 1 | Mgid | Mgid 135 | 2026-11-12 |  |
 | gesundheits-beratung.net | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 118 | 2026-11-05 |  |
 | natural-my.click | oferta_resposta_direta | parado | 2 | AdsKeeper | AdsKeeper 75 | 2026-11-09 |  |
 | serenatura.com | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 25 | 2026-11-09 |  |
-| dailynaturalrituals.com | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 23 | 2026-11-13 | classe testando→parado |
+| dailynaturalrituals.com | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 23 | 2026-11-13 |  |
 | keller-cloudflare-pages.pages.dev | oferta_resposta_direta | parado | 1 | Taboola | Taboola 19 | 2026-11-02 |  |
-| gesund-vital-ratgeber.org | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 8 | 2026-11-13 | classe testando→parado |
+| gesundheitsrundschau24.com | oferta_resposta_direta | parado | 1 | Taboola | Taboola 14 | 2026-10-31 | NOVO |
+| gesund-vital-ratgeber.org | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 8 | 2026-11-13 |  |
 | wellnesswiredaily.com | oferta_resposta_direta | parado | 1 | NewsMax | NewsMax 7 | 2026-11-06 |  |
+| hilftnervenschmerz.com | oferta_resposta_direta | parado | 1 | Taboola | Taboola 5 | 2026-11-14 | classe testando→parado |
 | dailylifeinsider.com | oferta_resposta_direta | parado | 1 | Taboola | Taboola 1 | 2026-11-08 |  |
 | candyai.gg | captura_suspeita | parado | 1 | AdsKeeper | AdsKeeper 1 | 2026-10-31 | lander_suspeita_ou_captura_errada; Redireciona para candy.ai / captura suspeita |
 | dcbgio.com | oferta_resposta_direta | parado | 1 | AdsKeeper | AdsKeeper 1 | 2026-11-06 |  |
 | nervehealthtodayy.com | oferta_resposta_direta | parado | 1 | Taboola | Taboola 1 | 2026-11-04 |  |
 | getorevive.com | oferta_resposta_direta | parado | 1 | Outbrain | Outbrain 1 | 2026-11-03 |  |
 | linfaflowstore.online | oferta_resposta_direta | parado | 1 | Mgid | Mgid 1 | 2026-10-26 |  |
-| apothekenblatt.de | oferta_resposta_direta | parado | 1 | Taboola | Taboola 0 | 2026-11-13 | classe lancando→parado |
-| portalsaudenews.com | oferta_resposta_direta | parado | 1 | Taboola | Taboola 0 | 2026-11-13 | classe lancando→parado |
+| seniorwellnessdigest.com | oferta_resposta_direta | parado | 1 | Mgid | Mgid 0 | 2026-11-14 | classe lancando→parado |
+| daetumblejauks.top | oferta_resposta_direta | parado | 1 | AdsKeeper | AdsKeeper 0 | 2026-11-14 | classe lancando→parado |
+| nervenratgeber.de | oferta_resposta_direta | parado | 3 | Outbrain | Outbrain 0 | 2026-11-14 | classe lancando→parado |
+| apothekenblatt.de | oferta_resposta_direta | parado | 1 | Taboola | Taboola 0 | 2026-11-13 |  |
+| portalsaudenews.com | oferta_resposta_direta | parado | 1 | Taboola | Taboola 0 | 2026-11-13 |  |
 
-## O que há de novo desde 16/11
-- **Players novos:** wellnesshome.blog (escalando, 178), thenervehealthreport.com (volumando, 239), trimpath.site (lancando, 168), realfindstoday.com (lancando, 0), purehorizon.fit (lancando, 0), christianhealthreport.com (lancando, 0).
-- **Mudança de classe:** smoothspine.com parado→escalando (máx. 420→337); heartlandhealthjournal.com lancando→volumando (máx. 175→361); agewelljournal.com parado→lancando (máx. 52→120); news360.pro escalando→parado (máx. 359→359); dailynaturalrituals.com testando→parado (máx. 23→23); gesund-vital-ratgeber.org testando→parado (máx. 8→8); apothekenblatt.de lancando→parado (máx. 0→0); portalsaudenews.com lancando→parado (máx. 0→0).
-- **Maiores variações de máx. gravidade (player):** adskeeper.co.uk 5847→1516 (-4331); evidwell.com 1231→460 (-771); heartlandhealthjournal.com 175→361 (+186); healthweekly.info 484→641 (+157); smoothspine.com 420→337 (-83); agewelljournal.com 52→120 (+68); integratedsupplementlatam.fun 330→270 (-60); healthnervess.online 0→6 (+6).
-- Anúncios novos no master (nicho): 82. Atualizados: 28. Só no histórico (não reapareceram em 17/11): 264.
+## O que há de novo desde 17/11
+- **Players novos:** oekomarkt.co (escalando, 260), giornalesm.org (escalando, 150), skrytunerzibet.fun (lancando, 210), inkedreeksduppy.shop (lancando, 155), medizinrundschau.com (lancando, 145), elivira.com (lancando, 120), medi-komfort.de (lancando, 90), zoryno.org (lancando, 90), aliexpress.com (lancando, 90), neuro-socken-de.com (lancando, 45), gesundheitsreport.site (lancando, 35), lanuvi.com (lancando, 20), obols-egises-muff.shop (lancando, 0), neuroshutz.site (lancando, 0), saudeediadia.site (lancando, 0), topgadgetsreview.com (lancando, 0), vitalinsightnews.com (testando, 13), gesundheitsrundschau24.com (parado, 14).
+- **Mudança de classe:** healingdaily.site lancando→escalando (máx. 90→150); adskeeper.co.uk escalando→volumando (máx. 1516→1516); beauty-ri.click escalando→volumando (máx. 700→700); solveclocktext.space escalando→volumando (máx. 684→684); wexiy.com lancando→volumando (máx. 264→243); trimpath.site lancando→volumando (máx. 168→168); candy.ai volumando→testando (máx. 145→73); hilftnervenschmerz.com testando→parado (máx. 5→5); seniorwellnessdigest.com lancando→parado (máx. 0→0); daetumblejauks.top lancando→parado (máx. 0→0); nervenratgeber.de lancando→parado (máx. 0→0).
+- **Maiores variações de máx. gravidade (player):** evidwell.com 460→1173 (+713); dailycarepro.com 0→110 (+110); science-actualite.com 356→444 (+88); candy.ai 145→73 (-72); lifetechadviser.com 65→135 (+70); healingdaily.site 90→150 (+60); vitalpfad.shop 0→52 (+52); wexiy.com 264→243 (-21).
+- Anúncios novos no master (nicho): 98. Atualizados: 62. Só no histórico (não reapareceram em 18/11): 312.
 
-## Lateralização (17/11)
-- Cluster de headline próxima “Not From Low Vitamin B / Not From Getting Older / Meet the Real Enemy”: wellnesshome.blog (novo, 178) ↔ lifetechadviser.com, agewelljournal.com e smoothspine.com. Domínios distintos; não fundir só pela headline.
-- Cluster “Neurologists Beg Seniors… Stop Doing This Now”: healthweekly.info (641) ↔ christianhealthreport.com (LockerDome, gravidade 0) ↔ healthvanta.org ↔ purehorizon.fit (teste 0) ↔ wellnessgaze.com (headline próxima). Mesmo ângulo, vários landers; christianhealthreport e healthweekly compartilham a linha, não há phash nesta passagem (thumbs/headline só).
-- O cluster MGID de phash 0 (green-ri, beauty-ri, washbosswhale, solveclocktext, myvita, adskeeper) permanece no histórico.
+## Lateralização
+- liyng.com, oekomarkt.co, wexiy.com e medi-komfort.de partilham a mesma headline DE ('Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!'): 165 pares de headline entre liyng e oekomarkt, 132 entre liyng e wexiy, 33 entre liyng e medi-komfort.de. Domínios distintos. No catálogo da oekomarkt.co aparece o produto 'MediKomfort' (Wärmeschuhe), o que liga o nome ao domínio medi-komfort.de; o caminho exato do anúncio não veio no lander_url.
+- evidwell.com e adskeeper.co.uk seguem com 87 pares (headline próxima e phash 0/8): adskeeper.co.uk é domínio da rede/tracker, não a loja.
+- Cluster Mgid/AdsKeeper (beauty-ri.click, green-ri.click, washbosswhale.beauty, solveclocktext.space, myvita.day, dailycarepro.com) continua com phash 0.
+- skrytunerzibet.fun (novo) tem phash Hamming 0 com daetumblejauks.top.
+- giornalesm.org (novo) tem phash Hamming 6 com lifetechadviser.com.
+- medizinrundschau.com e neuro-socken-de.com partilham headline próxima.
+- 2 landers de neuropathy desta coleta ficaram em branco (5528689380 grav. 61 e 3885389106 grav. 60) e não foram inventados.
