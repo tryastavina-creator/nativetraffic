@@ -1,0 +1,90 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "giornalesm.org",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 1,
+  "headlines": [
+    "È stato individuato il principale nemico della neuropatia. Leggi subito l'articolo"
+  ],
+  "max_gravity": 150,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 150,
+      "ad_id": "5651291278",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-16",
+  "movimentos": {
+    "lancando": [
+      "5651291278",
+      "5651298366",
+      "5651558756",
+      "5651555196"
+    ]
+  },
+  "dominios_ligados": [
+    "lifetechadviser.com"
+  ],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://giornalesm.org devolveu a parede 'One moment, please... Please wait while your request is being verified...'. Oferta, preço e checkout não foram lidos. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5651291278",
+      "network": "Outbrain",
+      "gravity": 150,
+      "headline": "È stato individuato il principale nemico della neuropatia. Leggi subito l'articolo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gazzettadiparma_it_2026_11_16_5f694c90.webp"
+    },
+    {
+      "ad_id": "5651298366",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "È stato individuato il principale nemico della neuropatia. Leggi subito l'articolo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_suedtirolnews_it_2026_11_16_46fc0563.webp"
+    },
+    {
+      "ad_id": "5651558756",
+      "network": "Outbrain",
+      "gravity": 22,
+      "headline": "È stato individuato il principale nemico della neuropatia. Leggi subito l'articolo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_stol_it_2026_11_16_37e4841e.webp"
+    },
+    {
+      "ad_id": "5651555196",
+      "network": "Outbrain",
+      "gravity": 20,
+      "headline": "È stato individuato il principale nemico della neuropatia. Leggi subito l'articolo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_motor1_com_2026_11_16_202da1c6.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}

@@ -1,0 +1,331 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "healingdaily.site",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Taboola"
+  ],
+  "n_anuncios": 23,
+  "n_headlines": 8,
+  "headlines": [
+    "Menschen über 45 mit Neuropathie erwartet eine große Überraschung (einfach genial!)",
+    "Neuropathie wird mit diesem Haushaltsgegenstand in Verbindung gebracht (Mehr erfahren)",
+    "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+    "Neuropathie: Lindern Sie stechende Schmerzen und Taubheitsgefühle – probieren Sie es heute zu Hause!",
+    "Arzt: Taubheitsgefühle oder Brennen in den Füßen (Neuropathie) ab 50 haben eine einzige Ursache",
+    "Chirurg: Wer unter Nervenschmerzen und Neuropathie leidet, sollte diese Gewohnheit kennen!",
+    "Das eine Vitamin, das Sie ab 50 bei Neuropathie und Nervenschmerzen kennen sollten!",
+    "Jeder, der unter Nervenschmerzen (Neuropathie) leidet, sollte sich das ansehen."
+  ],
+  "max_gravity": 150,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 150,
+      "ad_id": "5643269208",
+      "last_seen": "2026-11-15"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 6,
+      "ad_id": "5650896879",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5643269208",
+      "5643525473",
+      "5650873530",
+      "5640329757",
+      "5640140720",
+      "5647490429",
+      "5650896879",
+      "5651256277",
+      "5653306750",
+      "5655155980",
+      "5643812486",
+      "5643801276",
+      "5643532261",
+      "5643263154",
+      "5643812391",
+      "5643797076",
+      "5643524880",
+      "5642781959",
+      "5643809465",
+      "5643792254",
+      "5643524841"
+    ],
+    "parado": [
+      "5640571408",
+      "5640670716"
+    ]
+  },
+  "dominios_ligados": [
+    "wellnesswiredaily.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5643269208",
+      "network": "Outbrain",
+      "gravity": 150,
+      "headline": "Menschen über 45 mit Neuropathie erwartet eine große Überraschung (einfach genial!)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_15_4a4d2ecd.webp"
+    },
+    {
+      "ad_id": "5643525473",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Neuropathie wird mit diesem Haushaltsgegenstand in Verbindung gebracht (Mehr erfahren)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_48cde10f.webp"
+    },
+    {
+      "ad_id": "5650873530",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5640329757",
+      "network": "Outbrain",
+      "gravity": 99,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5640140720",
+      "network": "Outbrain",
+      "gravity": 96,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_14_1de6c961.webp"
+    },
+    {
+      "ad_id": "5642781959",
+      "network": "Outbrain",
+      "gravity": 90,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_14_7b6e19bf.webp"
+    },
+    {
+      "ad_id": "5647490429",
+      "network": "Outbrain",
+      "gravity": 45,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5650896879",
+      "network": "Taboola",
+      "gravity": 6,
+      "headline": "Neuropathie: Lindern Sie stechende Schmerzen und Taubheitsgefühle – probieren Sie es heute zu Hause!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5651256277",
+      "network": "Taboola",
+      "gravity": 4,
+      "headline": "Arzt: Taubheitsgefühle oder Brennen in den Füßen (Neuropathie) ab 50 haben eine einzige Ursache",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5653306750",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Neuropathie wird mit diesem Haushaltsgegenstand in Verbindung gebracht (Mehr erfahren)",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_vorschauxxl_de_2026_11_17_10b4f26b.jpg"
+    },
+    {
+      "ad_id": "5655155980",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Chirurg: Wer unter Nervenschmerzen und Neuropathie leidet, sollte diese Gewohnheit kennen!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_football-zone_net_2026_11_17_534774ac.png"
+    },
+    {
+      "ad_id": "5643812486",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_2e2c66e0.webp"
+    },
+    {
+      "ad_id": "5643801276",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_oe24_at_2026_11_15_a36f5ec0.webp"
+    },
+    {
+      "ad_id": "5643532261",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_wa_de_2026_11_15_5f75750c.webp"
+    },
+    {
+      "ad_id": "5643263154",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_7b721636.webp"
+    },
+    {
+      "ad_id": "5643812391",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Das eine Vitamin, das Sie ab 50 bei Neuropathie und Nervenschmerzen kennen sollten!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_f8626d14.webp"
+    },
+    {
+      "ad_id": "5643797076",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Das eine Vitamin, das Sie ab 50 bei Neuropathie und Nervenschmerzen kennen sollten!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_schwaebische-post_de_2026_11_15_dae0e3af.webp"
+    },
+    {
+      "ad_id": "5643524880",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_b2cdad03.webp"
+    },
+    {
+      "ad_id": "5643809465",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_15_5f2c2e99.webp"
+    },
+    {
+      "ad_id": "5643792254",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_15_e382f0a6.webp"
+    },
+    {
+      "ad_id": "5643524841",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_7ba96df3.webp"
+    },
+    {
+      "ad_id": "5640571408",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Jeder, der unter Nervenschmerzen (Neuropathie) leidet, sollte sich das ansehen.",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ynet_co_il_2026_11_14_36cd1d24.jpg"
+    },
+    {
+      "ad_id": "5640670716",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Wahrheit über Neuropathie in den Füßen und Nervenschmerzen (Jetzt ansehen)",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_weltski_de_2026_11_14_6d83af44.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 90→150; n anúncios agora 23."
+}
