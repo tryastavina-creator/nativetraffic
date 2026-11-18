@@ -655,18 +655,12 @@ function PlatformRows({
         </td>
         <Cells x={p} cols={cols} cur={cur} days={days} count={p.accounts.length} />
       </tr>
-      {isOpen && (
-        <tr>
-          <td colSpan={cols.length + 1} className="px-4 pb-1 pt-2 text-[10px] uppercase tracking-wider text-faint">
-            <span className="pl-7">Contas · {p.label}</span> <span className="ml-1">{p.accounts.length}</span>
-          </td>
-        </tr>
-      )}
       {isOpen &&
         p.accounts.map((a) => (
           <AccountRows
             key={a.id}
             a={a}
+            single={p.accounts.length === 1}
             cols={cols}
             cur={cur}
             days={days}
@@ -684,8 +678,12 @@ function PlatformRows({
   );
 }
 
+/** "Lasa Negocios Digitais LTDA - Conta 01 - SC (Taboola)" → "Lasa Negocios Digitais LTDA - Conta 01 - SC". */
+const shortAccount = (label: string) => label.replace(/\s*\((taboola|revcontent|outbrain|mediago|mgid)\)\s*$/i, "");
+
 function AccountRows({
   a,
+  single,
   cols,
   cur,
   days,
@@ -700,6 +698,8 @@ function AccountRows({
 }: {
   rangeQuery: string;
   a: TreeAccount;
+  /** Only account of the source: its totals are the source's, so it shows as a thin caption. */
+  single?: boolean;
   cols: { id: ColId }[];
   cur: string;
   days: number;
@@ -712,23 +712,26 @@ function AccountRows({
   onLink: (source: string, target: string | null) => void;
 }) {
   const ak = `a:${a.id}`;
-  const isOpen = open.has(ak);
+  // A source's only account starts open: the campaigns are what matters.
+  const isOpen = single ? !open.has(ak) : open.has(ak);
   const active = a.campaigns.filter((c) => c.active).length;
+  const name = shortAccount(a.label);
   return (
     <>
-      <tr className="cursor-pointer border-b border-line/60 hover:bg-white/[0.02]" onClick={() => toggle(ak)}>
-        <td className="py-2.5 pl-9 pr-3">
-          <div className="flex items-center gap-2">
-            <span className="w-3 text-muted">{isOpen ? "▾" : "▸"}</span>
-            <span className={`h-1.5 w-1.5 rounded-full ${active ? "bg-accent" : "bg-zinc-600"}`} />
-            <span className="font-medium">{a.label}</span>
-            <span className="rounded border border-line px-1.5 text-[9px] uppercase tracking-wider text-faint">conta</span>
-          </div>
-          <div className="pl-7 text-[11px] text-faint">
-            {a.campaigns.length} campanha(s){active ? ` · ${active} ativa(s)` : ""}
+      <tr className="cursor-pointer border-b border-line/40 hover:bg-white/[0.02]" onClick={() => toggle(ak)}>
+        <td className="py-1.5 pl-10 pr-3" colSpan={single ? cols.length + 1 : 1}>
+          <div className="flex min-w-0 items-center gap-1.5 text-[11px] text-faint">
+            <span className="w-3">{isOpen ? "▾" : "▸"}</span>
+            <span className="max-w-[260px] truncate text-muted" title={a.label}>
+              {name}
+            </span>
+            <span>
+              · {a.campaigns.length} campanha{a.campaigns.length === 1 ? "" : "s"}
+              {active ? ` · ${active} ativa${active === 1 ? "" : "s"}` : ""}
+            </span>
           </div>
         </td>
-        <Cells x={a} cols={cols} cur={cur} days={days} count={1} small />
+        {!single && <Cells x={a} cols={cols} cur={cur} days={days} count={1} small />}
       </tr>
       {isOpen &&
         a.campaigns.map((c) => (
@@ -806,7 +809,7 @@ function CampaignRow({
   return (
     <>
     <tr className="group border-b border-line/40 bg-white/[0.015] hover:bg-white/[0.03]">
-      <td className="py-2 pl-14 pr-3">
+      <td className="py-2.5 pl-10 pr-3">
         <div className="flex items-center gap-3">
           {c.editable && c.active !== null ? (
             <button
@@ -822,7 +825,7 @@ function CampaignRow({
             <span className="w-9" />
           )}
           <div className="min-w-0">
-            <div className="max-w-[280px] truncate font-mono text-[12px] xl:max-w-[340px]" title={c.name}>
+            <div className="max-w-[300px] truncate text-[13px] font-medium text-zinc-100 xl:max-w-[380px]" title={c.name}>
               {c.name}
             </div>
             <div className="flex items-center gap-2 text-[11px]">

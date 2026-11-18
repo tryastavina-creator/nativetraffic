@@ -47,7 +47,7 @@ export default function Integrations() {
   const duplicates = useMemo(() => {
     const seen = new Map<string, Connection>();
     const out: Connection[] = [];
-    for (const c of data?.connections ?? []) {
+    for (const c of data?.connections.filter((x) => !x.archivedAt) ?? []) {
       const k = `${c.provider}|${JSON.stringify(Object.entries(c.credentials).sort())}`;
       if (seen.has(k)) out.push(c);
       else seen.set(k, c);
@@ -119,7 +119,7 @@ export default function Integrations() {
                 <ProviderCard key={p.id} def={p} conn={byId.get(p.id)} onOpen={() => setEditing({ def: p, conn: byId.get(p.id) })} />,
                 // Extra accounts of the same source (e.g. a second Taboola account).
                 ...(data?.connections ?? [])
-                  .filter((c) => c.provider === p.id && c.id !== p.id)
+                  .filter((c) => c.provider === p.id && c.id !== p.id && !c.archivedAt)
                   .map((c) => (
                     <ProviderCard
                       key={c.id}
@@ -140,6 +140,24 @@ export default function Integrations() {
                 </button>
               )}
             </div>
+            {cat === "traffic" && (data?.connections ?? []).some((c) => c.archivedAt) && (
+              <div className="mt-4">
+                <div className="mb-2 text-xs text-muted">
+                  Contas desconectadas: não puxam dados novos, mas o gasto e os criativos delas continuam contando no
+                  Dashboard e em Criativos.
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {(data?.connections ?? [])
+                    .filter((c) => c.archivedAt)
+                    .map((c) => {
+                      const p = list.find((x) => x.id === c.provider);
+                      return p ? (
+                        <ProviderCard key={c.id} def={{ ...p, name: c.label ?? p.name }} conn={c} onOpen={() => setEditing({ def: p, conn: c })} />
+                      ) : null;
+                    })}
+                </div>
+              </div>
+            )}
           </section>
         );
       })}
@@ -173,6 +191,7 @@ export default function Integrations() {
           connections={data.connections}
           onClose={() => setPicking(false)}
           onPick={(def) => {
+            // (archived accounts don't count: they live under their own ids)
             setPicking(false);
             // First account of a source uses the main card; any further one becomes an extra account.
             setEditing({ def, newAccount: byId.has(def.id) });
@@ -219,7 +238,7 @@ function SourcePicker({
         </div>
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
           {providers.map((p) => {
-            const n = connections.filter((c) => c.provider === p.id).length;
+            const n = connections.filter((c) => c.provider === p.id && !c.archivedAt).length;
             return (
               <button
                 key={p.id}
@@ -256,6 +275,12 @@ function Logo({ def }: { def: ProviderDef }) {
 
 function StatusDot({ conn }: { conn?: Connection }) {
   if (!conn) return <span className="text-xs text-faint">Não conectado</span>;
+  if (conn.archivedAt)
+    return (
+      <span className="flex items-center gap-1.5 text-xs text-muted">
+        <span className="h-1.5 w-1.5 rounded-full bg-zinc-500" /> Desconectada em {new Date(conn.archivedAt).toLocaleDateString("pt-BR")} · histórico salvo
+      </span>
+    );
   return conn.lastTestOk ? (
     <span className="flex items-center gap-1.5 text-xs text-accent">
       <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Conectado
@@ -339,9 +364,10 @@ function ConnectDrawer({
     onChanged();
   }
 
-  async function remove() {
+  async function remove(purge = false) {
     if (!savedId) return;
-    await fetch(`/api/integrations?id=${encodeURIComponent(savedId)}`, { method: "DELETE" });
+    if (purge && !confirm("Apagar as credenciais desta conta? O gasto já salvo continua contando nos relatórios.")) return;
+    await fetch(`/api/integrations?id=${encodeURIComponent(savedId)}${purge ? "&purge=1" : ""}`, { method: "DELETE" });
     onChanged();
     onClose();
   }
@@ -457,9 +483,28 @@ function ConnectDrawer({
                 + Outra conta
               </button>
             )}
+            {savedId && conn?.archivedAt && (
+              <button
+                type="button"
+                disabled={busy}
+                onClick={async () => {
+                  await fetch("/api/integrations", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: savedId }) });
+                  onChanged();
+                  onClose();
+                }}
+                className="btn-ghost"
+              >
+                Reconectar
+              </button>
+            )}
             {savedId && (
-              <button type="button" onClick={remove} className="btn ml-auto text-bad hover:bg-bad/10">
-                Desconectar
+              <button
+                type="button"
+                onClick={() => remove(!!conn?.archivedAt)}
+                className="btn ml-auto text-bad hover:bg-bad/10"
+                title={multi && !conn?.archivedAt ? "Para de puxar dados novos; o gasto e os criativos já registrados continuam nos relatórios." : undefined}
+              >
+                {conn?.archivedAt ? "Apagar credenciais" : multi ? "Desconectar (mantém histórico)" : "Desconectar"}
               </button>
             )}
           </div>

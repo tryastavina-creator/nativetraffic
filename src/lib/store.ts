@@ -359,8 +359,40 @@ async function write(data: FileShape) {
   await fs.writeFile(FILE, json, { mode: 0o600 });
 }
 
+/** Active connections (archived ones are left out: they only feed the spend history). */
 export async function listConnections(): Promise<Connection[]> {
-  return (await storageStatus()).connections;
+  return (await storageStatus()).connections.filter((c) => !c.archivedAt);
+}
+
+/** Traffic accounts the user disconnected; kept so their past spend still counts. */
+export async function listArchivedConnections(): Promise<Connection[]> {
+  return (await storageStatus()).connections.filter((c) => c.archivedAt);
+}
+
+/**
+ * Disconnect a traffic account but keep its history: it moves to its own id (so a new account can take the
+ * main card) and is marked archived. Returns the new id.
+ */
+export async function archiveConnection(id: string): Promise<string | undefined> {
+  const data = await read();
+  const blob = data.connections[id];
+  if (!blob) return undefined;
+  const conn = JSON.parse(decrypt(blob)) as Connection;
+  const newId = id.includes(":") ? id : `${conn.provider}:${Date.now().toString(36)}`;
+  delete data.connections[id];
+  data.connections[newId] = encrypt(
+    JSON.stringify({ ...conn, id: newId, label: conn.label ?? conn.provider, archivedAt: new Date().toISOString() }),
+  );
+  await write(data);
+  return newId;
+}
+
+export async function restoreConnection(id: string) {
+  const conn = (await storageStatus()).connections.find((c) => c.id === id);
+  if (!conn) return;
+  const { archivedAt: _drop, ...rest } = conn;
+  void _drop;
+  await saveConnection(rest);
 }
 
 /** Where credentials live, and how many saved entries can't be decrypted (ENCRYPTION_KEY changed). */
