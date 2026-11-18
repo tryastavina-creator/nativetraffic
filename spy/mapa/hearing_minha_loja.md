@@ -1,3 +1,3 @@
 # Minha loja — hearing
 
-Nenhum domínio próprio configurado até 2026-11-17. O mapa permanece vazio.
+Nenhum domínio próprio configurado até 2026-11-18. O mapa permanece vazio.
