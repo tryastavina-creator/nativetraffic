@@ -53,6 +53,12 @@ export function bustCache() {
   inflight.clear();
 }
 
+/** Forget one key (next read fetches it again). */
+export function dropCache(key: string) {
+  store.delete(key);
+  inflight.delete(key);
+}
+
 export async function cached<T>(
   key: string,
   fn: () => Promise<T>,

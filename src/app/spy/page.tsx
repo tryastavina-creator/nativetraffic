@@ -16,19 +16,26 @@ const moveOf = (m: string) => MOVES.find((x) => x[0] === m) ?? [m, m || "—", "
 const br = (d: string) => (d ? d.split("-").reverse().slice(0, 2).join("/") : "—");
 const num = (n: number) => n.toLocaleString("pt-BR");
 
-type Tab = "ads" | "players" | "report" | "trends";
+type Tab = "changes" | "ads" | "players" | "report" | "trends";
 
 export default function Spy() {
   const [data, setData] = useState<SpyData | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [nicho, setNicho] = useState("hearing");
-  const [tab, setTab] = useState<Tab>("ads");
+  const [tab, setTab] = useState<Tab>("changes");
   const [reload, setReload] = useState(0);
+
+  // While the page is open it checks for a new push from the bot every 5 minutes.
+  useEffect(() => {
+    const t = setInterval(() => setReload((r) => -(Math.abs(r) + 1)), 5 * 60_000);
+    return () => clearInterval(t);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/spy")
+    // The button (reload > 0) asks GitHub right now; the timer and first load use the server copy (≤3 min old).
+    fetch(reload > 0 ? "/api/spy?fresh=1" : "/api/spy")
       .then(async (r) => {
         const j = await r.json();
         if (!r.ok) throw new Error(j.error ?? "Erro ao carregar");
@@ -53,9 +60,11 @@ export default function Spy() {
           </p>
           {n && (
             <p className="mt-1 text-[11px] text-faint">
-              Coleta de {br(n.collectedAt)} · {num(n.totalAds)} anúncios · {n.players.length} players · {n.update}
+              Coleta de {br(n.collectedAt)} · {num(n.ads.length)} anúncios · {n.players.length} players
+              {n.update ? ` · ${n.update}` : ""}
             </p>
           )}
+          {data?.lastPush && <LastPush at={data.lastPush.at} message={data.lastPush.message} />}
         </div>
         <div className="flex items-center gap-2">
           <div className="flex gap-1 rounded-lg border border-line bg-panel p-1">
@@ -65,7 +74,7 @@ export default function Spy() {
               </button>
             ))}
           </div>
-          <button className="btn-ghost py-1.5 text-xs" disabled={loading} onClick={() => setReload((r) => r + 1)}>
+          <button className="btn-ghost py-1.5 text-xs" disabled={loading} onClick={() => setReload((r) => Math.abs(r) + 1)}>
             {loading ? "Carregando…" : "↻ Atualizar"}
           </button>
         </div>
@@ -92,9 +101,10 @@ export default function Spy() {
           <div className="mt-5 flex flex-wrap gap-1 rounded-lg border border-line bg-panel p-1 text-sm">
             {(
               [
+                ["changes", "O que mudou"],
                 ["ads", `Anúncios (${n.ads.length})`],
                 ["players", `Players (${n.players.length})`],
-                ["report", "Padrões e ângulos"],
+                ["report", `Relatórios (${n.reports.length})`],
                 ["trends", `Tendências e testes (${n.trends.length + n.promising.length})`],
               ] as [Tab, string][]
             ).map(([id, label]) => (
@@ -107,7 +117,8 @@ export default function Spy() {
           <div className="mt-4">
             {tab === "ads" && <Ads niche={n} />}
             {tab === "players" && <Players niche={n} />}
-            {tab === "report" && (n.report ? <Markdown text={n.report.markdown} /> : <p className="text-sm text-muted">Sem relatório para este nicho ainda.</p>)}
+            {tab === "changes" && <Changes niche={n} />}
+            {tab === "report" && <Reports niche={n} />}
             {tab === "trends" && <Trends niche={n} ads={n.ads} />}
           </div>
           <p className="mt-6 text-[11px] text-faint">
@@ -127,6 +138,7 @@ function Badge({ move }: { move: string }) {
 }
 
 function Ads({ niche }: { niche: SpyNiche }) {
+  const [onlyLatest, setOnlyLatest] = useState(false);
   const [move, setMove] = useState("");
   const [network, setNetwork] = useState("");
   const [q, setQ] = useState("");
@@ -136,12 +148,13 @@ function Ads({ niche }: { niche: SpyNiche }) {
   const list = useMemo(() => {
     const t = q.trim().toLowerCase();
     return niche.ads
+      .filter((a) => !onlyLatest || !a.lastCollected || a.lastCollected === niche.collectedAt)
       .filter((a) => (!move || a.movimento === move) && (!network || a.network === network) && (!onlyWhy || a.porQue))
       .filter((a) => !t || `${a.headline} ${a.landerDomain} ${a.angleId} ${a.geo} ${a.idioma}`.toLowerCase().includes(t))
       .sort((a, b) =>
         sort === "recent" ? b.firstSeen.localeCompare(a.firstSeen) : sort === "days" ? b.days - a.days : b.gravity - a.gravity,
       );
-  }, [niche, move, network, q, onlyWhy, sort]);
+  }, [niche, move, network, q, onlyWhy, sort, onlyLatest]);
 
   return (
     <div>
@@ -173,6 +186,9 @@ function Ads({ niche }: { niche: SpyNiche }) {
         <input className="input w-48 py-1 text-xs" placeholder="Buscar headline, domínio, ângulo…" value={q} onChange={(e) => setQ(e.target.value)} />
         <label className="flex items-center gap-1.5 text-muted">
           <input type="checkbox" checked={onlyWhy} onChange={(e) => setOnlyWhy(e.target.checked)} /> só com análise do bot
+        </label>
+        <label className="flex items-center gap-1.5 text-muted">
+          <input type="checkbox" checked={onlyLatest} onChange={(e) => setOnlyLatest(e.target.checked)} /> só da última coleta
         </label>
         <span className="ml-auto text-faint">{list.length} anúncios</span>
       </div>
@@ -212,7 +228,9 @@ function AdCard({ ad }: { ad: SpyAd }) {
       <div className="relative aspect-[16/9] bg-panel2">
         {ad.thumbnail && <img src={ad.thumbnail} alt="" referrerPolicy="no-referrer" loading="lazy" className="h-full w-full object-cover" />}
         <div className="absolute left-2 top-2 flex gap-1">
-          <Badge move={ad.movimento} />
+          <span className="rounded bg-black/80">
+            <Badge move={ad.movimento} />
+          </span>
           {ad.prioridade && <span className="rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-zinc-200">{ad.prioridade.replace(/_/g, " ")}</span>}
         </div>
         <span className="absolute right-2 top-2 rounded bg-black/70 px-1.5 py-0.5 text-[10px] text-zinc-200">{ad.network}</span>
@@ -378,7 +396,7 @@ function Trends({ niche, ads }: { niche: SpyNiche; ads: SpyAd[] }) {
           {niche.promising.map((p) => {
             const a = byId.get(p.adId);
             return (
-              <li key={p.adId} className="flex gap-3">
+              <li key={`${p.adId}-${p.landerDomain}-${p.why.slice(0, 20)}`} className="flex gap-3">
                 {a?.thumbnail && <img src={a.thumbnail} alt="" referrerPolicy="no-referrer" className="h-14 w-24 shrink-0 rounded object-cover" />}
                 <div>
                   <div className="font-medium">
@@ -435,4 +453,154 @@ function Markdown({ text }: { text: string }) {
     else if (l.trim()) out.push(`<p class="mt-2">${inline(l)}</p>`);
   }
   return <div className="card card-pad text-sm leading-relaxed text-zinc-300" dangerouslySetInnerHTML={{ __html: out.join("") }} />;
+}
+
+function LastPush({ at, message }: { at: string; message: string }) {
+  const h = (Date.now() - new Date(at).getTime()) / 3600_000;
+  const when = new Date(at).toLocaleString("pt-BR", { timeZone: "America/New_York", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+  return (
+    <p className="mt-1 flex flex-wrap items-center gap-2 text-[11px] text-muted">
+      {h < 24 && <span className="rounded bg-accent/20 px-1.5 py-0.5 text-[10px] font-semibold text-accent">NOVO</span>}
+      Último envio do bot: {when} EST ({h < 1 ? "agora há pouco" : h < 48 ? `há ${Math.round(h)} h` : `há ${Math.round(h / 24)} dias`})
+      <span className="text-faint">· {message}</span>
+    </p>
+  );
+}
+
+function Changes({ niche }: { niche: SpyNiche }) {
+  const c = niche.changes;
+  const empty = !c.newAds && !c.newPlayers.length && !c.statusMoves.length && !c.gravityMoves.length;
+  if (empty) return <p className="text-sm text-muted">Esta coleta não trouxe comparação com a anterior.</p>;
+  return (
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        {(
+          [
+            ["Anúncios novos", c.newAds],
+            ["Anúncios atualizados", c.updatedAds],
+            ["Players novos", c.newPlayers.length],
+            ["Mudaram de status", c.statusMoves.length],
+          ] as [string, number][]
+        ).map(([l, v]) => (
+          <div key={l} className="card card-pad">
+            <div className="label">{l}</div>
+            <div className="mt-1 text-2xl font-semibold">{num(v)}</div>
+          </div>
+        ))}
+      </div>
+      {c.against && (
+        <p className="text-[11px] text-faint">
+          Comparado com a coleta de {br(c.against)}. {niche.diff}
+        </p>
+      )}
+      <div className="grid gap-4 lg:grid-cols-2">
+        {c.newPlayers.length > 0 && (
+          <div className="card overflow-x-auto lg:col-span-2">
+            <div className="label px-4 pt-3">Players que entraram</div>
+            <table className="tbl w-full">
+              <thead>
+                <tr>
+                  <th>Domínio</th>
+                  <th>Status</th>
+                  <th>Tipo</th>
+                  <th>Redes</th>
+                  <th className="text-right">Anúncios</th>
+                  <th className="text-right">Maior gravidade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...c.newPlayers]
+                  .sort((a, b) => b.maxGravity - a.maxGravity)
+                  .map((p) => (
+                    <tr key={p.domain}>
+                      <td className="font-medium">{p.domain}</td>
+                      <td>
+                        <Badge move={p.status} />
+                      </td>
+                      <td className="text-muted">{p.type.replace(/_/g, " ") || "—"}</td>
+                      <td className="text-muted">{p.networks.join(", ")}</td>
+                      <td className="text-right">{p.ads}</td>
+                      <td className="text-right">{num(p.maxGravity)}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {c.statusMoves.length > 0 && (
+          <div className="card card-pad">
+            <div className="label">Mudaram de status</div>
+            <ul className="mt-2 space-y-2 text-sm">
+              {c.statusMoves.map((m) => (
+                <li key={m.domain} className="flex flex-wrap items-center gap-2">
+                  <span className="font-medium">{m.domain}</span>
+                  <Badge move={m.from} /> → <Badge move={m.to} />
+                  <span className="text-[11px] text-faint">gravidade {num(m.gravity)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {c.gravityMoves.length > 0 && (
+          <div className="card card-pad">
+            <div className="label">Gravidade subiu ou caiu</div>
+            <ul className="mt-2 space-y-2 text-sm">
+              {[...c.gravityMoves]
+                .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta))
+                .map((m) => (
+                  <li key={m.domain} className="flex flex-wrap items-center gap-2">
+                    <span className="font-medium">{m.domain}</span>
+                    <span className="text-muted">
+                      {num(m.from)} → {num(m.to)}
+                    </span>
+                    <span className={m.delta >= 0 ? "text-accent" : "text-bad"}>
+                      {m.delta >= 0 ? "▲" : "▼"} {num(Math.abs(m.delta))}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      {niche.myStore && (
+        <div className="card card-pad text-xs text-muted">
+          <div className="label">Nossa loja no mapa do bot</div>
+          <p className="mt-1">{niche.myStore.replace(/^#.*\n+/, "").trim()}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Reports({ niche }: { niche: SpyNiche }) {
+  const [path, setPath] = useState(niche.reports[0]?.path ?? "");
+  const [text, setText] = useState<Record<string, string>>(niche.report ? { [niche.report.path]: niche.report.markdown } : {});
+  const [err, setErr] = useState("");
+  useEffect(() => {
+    setPath(niche.reports[0]?.path ?? "");
+    if (niche.report) setText((t) => ({ ...t, [niche.report!.path]: niche.report!.markdown }));
+  }, [niche]);
+  useEffect(() => {
+    if (!path || text[path] != null) return;
+    setErr("");
+    fetch(`/api/spy?report=${encodeURIComponent(path)}`)
+      .then((r) => r.json())
+      .then((j) => (j.error ? setErr(j.error) : setText((t) => ({ ...t, [path]: j.markdown }))))
+      .catch(() => setErr("Sem conexão."));
+  }, [path, text]);
+  if (!niche.reports.length) return <p className="text-sm text-muted">Sem relatório para este nicho ainda.</p>;
+  return (
+    <div>
+      <div className="mb-3 flex flex-wrap gap-1 text-xs">
+        {niche.reports.map((r, i) => (
+          <button key={r.path} onClick={() => setPath(r.path)} className={`chip border border-line ${path === r.path ? "chip-on" : ""}`}>
+            {br(r.date)}
+            {i === 0 ? " · mais recente" : ""}
+          </button>
+        ))}
+      </div>
+      {err && <p className="text-sm text-bad">{err}</p>}
+      {text[path] != null ? <Markdown text={text[path]} /> : !err && <p className="text-sm text-muted">Carregando…</p>}
+    </div>
+  );
 }
