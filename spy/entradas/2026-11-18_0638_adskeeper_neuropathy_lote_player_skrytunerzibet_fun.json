@@ -1,0 +1,66 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "skrytunerzibet.fun",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Половин чаша всяка сутрин бързо премахва невропатията!"
+  ],
+  "max_gravity": 210,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 210,
+      "ad_id": "5652428471",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5652428471",
+      "5653285592"
+    ]
+  },
+  "dominios_ligados": [
+    "daetumblejauks.top"
+  ],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://skrytunerzibet.fun abriu lander em búlgaro do suplemento Wellnexis Super Complex (apoio a neuropatia diabética). Oferta na página: −50% 'só hoje', pagamento na entrega; preço regular 81,18 €, hoje 40,58 €; meta de entrega em 48 h. Formulário de lead com nome e telefone e CTA de encomenda (consultor entra em contacto). Avaliação 4,88/5 exibida como indicador social. Produto declarado como suplemento, não medicamento. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5652428471",
+      "network": "AdsKeeper",
+      "gravity": 210,
+      "headline": "Половин чаша всяка сутрин бързо премахва невропатията!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_gledai-film_com_2026_11_17_3f3657b7.webp"
+    },
+    {
+      "ad_id": "5653285592",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Половин чаша всяка сутрин бързо премахва невропатията!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_gledai-film_com_2026_11_17_5760a090.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}
