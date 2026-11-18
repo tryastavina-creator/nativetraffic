@@ -31,3 +31,10 @@
 
 **Alerta 12/11:** queda de 25 pedidos/semana para 1 nesta semana. Verificar no CRM se as campanhas foram pausadas, se o gasto continua
 (gasto sem venda = checar tracking/checkout) ou se é atraso de dados. **Não mexer em tracking/checkout sem o gestor.**
+
+## Atribuição (18/11/2026)
+- Pedidos da Taboola chegam na Shopify **sem utm_source**, só com `utm_campaign` = nome da campanha do RedTrack
+  (ex. `018 - TB | OmniPro - Ap Auditivo | ADV | modernlivingbrief.com`, referrer modernlivingbrief.com). Antes do PR #4 o CRM
+  jogava esses pedidos em "Outros" (#1048, US$99,90). O código da fonte no nome (TB/RC/OB/MDG) passa a decidir.
+- Recomendação ao gestor: mandar `utm_source={fonte}` no link da campanha para não depender do nome.
+- Contas de tráfego desconectadas antes de 18/11 não têm histórico salvo no CRM; reconectar e arquivar para recuperar 60 dias.
