@@ -17,6 +17,7 @@ export default function Integrations() {
   const [data, setData] = useState<Data | null>(null);
   const [editing, setEditing] = useState<Editing | null>(null);
   const [notice, setNotice] = useState<{ ok: boolean; text: string } | null>(null);
+  const [picking, setPicking] = useState(false);
 
   // Result of "Autorizar na Shopify" (the callback redirects back here).
   useEffect(() => {
@@ -103,7 +104,16 @@ export default function Integrations() {
         if (!list.length) return null;
         return (
           <section key={cat}>
-            <h2 className="h-section">{CATEGORY_LABEL[cat]}</h2>
+            {cat === "traffic" ? (
+              <div className="mb-3 mt-8 flex items-center justify-between">
+                <h2 className="text-sm font-semibold text-zinc-300">{CATEGORY_LABEL[cat]}</h2>
+                <button className="btn-primary py-1.5 text-xs" onClick={() => setPicking(true)}>
+                  + Adicionar fonte de tráfego
+                </button>
+              </div>
+            ) : (
+              <h2 className="h-section">{CATEGORY_LABEL[cat]}</h2>
+            )}
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {list.flatMap((p) => [
                 <ProviderCard key={p.id} def={p} conn={byId.get(p.id)} onOpen={() => setEditing({ def: p, conn: byId.get(p.id) })} />,
@@ -119,6 +129,16 @@ export default function Integrations() {
                     />
                   )),
               ])}
+              {cat === "traffic" && (
+                <button
+                  onClick={() => setPicking(true)}
+                  className="card card-pad flex min-h-[132px] flex-col items-center justify-center gap-1 border-dashed text-center text-muted transition hover:border-zinc-500 hover:text-zinc-100"
+                >
+                  <span className="text-2xl leading-none">+</span>
+                  <span className="text-sm font-medium">Adicionar fonte ou conta</span>
+                  <span className="text-[11px] text-faint">Taboola, Outbrain, Revcontent, MediaGo, MGID, Meta, Google…</span>
+                </button>
+              )}
             </div>
           </section>
         );
@@ -147,6 +167,18 @@ export default function Integrations() {
         )}
       </section>
 
+      {picking && data && (
+        <SourcePicker
+          providers={data.providers.filter((p) => p.category === "traffic")}
+          connections={data.connections}
+          onClose={() => setPicking(false)}
+          onPick={(def) => {
+            setPicking(false);
+            // First account of a source uses the main card; any further one becomes an extra account.
+            setEditing({ def, newAccount: byId.has(def.id) });
+          }}
+        />
+      )}
       {editing && (
         <ConnectDrawer
           key={editing.conn?.id ?? `new-${editing.def.id}-${editing.newAccount ? "extra" : "main"}`}
@@ -158,6 +190,55 @@ export default function Integrations() {
           onAddAccount={() => setEditing({ def: editing.def, newAccount: true })}
         />
       )}
+    </div>
+  );
+}
+
+function SourcePicker({
+  providers,
+  connections,
+  onClose,
+  onPick,
+}: {
+  providers: ProviderDef[];
+  connections: Connection[];
+  onClose: () => void;
+  onPick: (def: ProviderDef) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm" onClick={onClose}>
+      <div className="w-full max-w-lg rounded-xl border border-line bg-panel p-5" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center">
+          <div>
+            <div className="font-semibold">Adicionar fonte de tráfego</div>
+            <p className="text-xs text-muted">Escolha a fonte. Se ela já estiver conectada, entra como mais uma conta (o gasto soma no Tráfego).</p>
+          </div>
+          <button onClick={onClose} className="ml-auto text-muted hover:text-zinc-100" aria-label="Fechar">
+            ✕
+          </button>
+        </div>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          {providers.map((p) => {
+            const n = connections.filter((c) => c.provider === p.id).length;
+            return (
+              <button
+                key={p.id}
+                onClick={() => onPick(p)}
+                className="flex items-center gap-3 rounded-lg border border-line bg-panel2 px-3 py-2.5 text-left transition hover:border-zinc-500"
+              >
+                <Logo def={p} />
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5 text-sm font-medium">
+                    {p.name}
+                    {p.status === "beta" && <span className="rounded bg-panel px-1 text-[10px] text-muted">beta</span>}
+                  </div>
+                  <div className="text-[11px] text-faint">{n ? `${n} conta${n > 1 ? "s" : ""} · + outra conta` : "Conectar"}</div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
