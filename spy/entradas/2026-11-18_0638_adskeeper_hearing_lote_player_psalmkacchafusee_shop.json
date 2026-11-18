@@ -1,0 +1,76 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "psalmkacchafusee.shop",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 1,
+  "headlines": [
+    "Bu yöntemi bulana kadar kulak çınlamasıyla ömür boyu yaşayacağımı sanıyordum"
+  ],
+  "max_gravity": 300,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 300,
+      "ad_id": "5652629572",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5652629572",
+      "5655055216",
+      "5652630193"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://psalmkacchafusee.shop abriu advertorial em turco do suplemento Earlick Forte (cápsulas para audição/zumbido; composição visível: extrato de ginkgo biloba, alho, urtiga e curcumina). Pedido com nome, e-mail e telefone; pagamento na entrega (kapıda ödeme). Preço visível: 449 TRY. Contacto no rodapé: +90 540 640 00 19, Mimar Sinan, 19100 Çorum Merkez/Çorum, Türkiye; copyright 2026 Hear Vive. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5652629572",
+      "network": "AdsKeeper",
+      "gravity": 300,
+      "headline": "Bu yöntemi bulana kadar kulak çınlamasıyla ömür boyu yaşayacağımı sanıyordum",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_11_17_e4500821.webp"
+    },
+    {
+      "ad_id": "5655055216",
+      "network": "AdsKeeper",
+      "gravity": 155,
+      "headline": "Bu yöntemi bulana kadar kulak çınlamasıyla ömür boyu yaşayacağımı sanıyordum",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_11_17_ace7fc9e.webp"
+    },
+    {
+      "ad_id": "5652630193",
+      "network": "AdsKeeper",
+      "gravity": 126,
+      "headline": "Bu yöntemi bulana kadar kulak çınlamasıyla ömür boyu yaşayacağımı sanıyordum",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_11_17_2901f4b2.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}
