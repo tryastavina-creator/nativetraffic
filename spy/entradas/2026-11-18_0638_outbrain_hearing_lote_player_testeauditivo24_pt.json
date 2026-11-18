@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "testeauditivo24.pt",
+  "status": "lancando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Teste auditivo PT (lead-gen de aparelho invisível); gravidade Outbrain 1410 a confirmar — possível artefato",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível"
+  ],
+  "max_gravity": 1410,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 1410,
+      "ad_id": "5655024389",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5655024389",
+      "5655412867"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://testeauditivo24.pt (e www) não abriu: falha de TLS (EOF inesperado no handshake) no curl e HTTP 500 no WebFetch. Nenhum HTML de oferta, preço ou formulário foi lido. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5655024389",
+      "network": "Outbrain",
+      "gravity": 1410,
+      "headline": "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sapo_pt_2026_11_17_8878b4ee.webp"
+    },
+    {
+      "ad_id": "5655412867",
+      "network": "Outbrain",
+      "gravity": 705,
+      "headline": "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_impala_pt_2026_11_17_9cd33803.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}

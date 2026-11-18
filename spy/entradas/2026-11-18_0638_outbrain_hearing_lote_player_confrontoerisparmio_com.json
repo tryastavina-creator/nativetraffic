@@ -1,0 +1,66 @@
+{
+  "data_coleta": "2026-11-18",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "confrontoerisparmio.com",
+  "status": "lancando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Comparador / lead-gen IT de aparelhos (risparmio)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Buone notizie per chi ha problemi di udito"
+  ],
+  "max_gravity": 120,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 120,
+      "ad_id": "5654726355",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-17",
+  "movimentos": {
+    "lancando": [
+      "5654726355",
+      "5655009995"
+    ]
+  },
+  "dominios_ligados": [
+    "toprisparmio.com"
+  ],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://confrontoerisparmio.com não abriu (TLS no curl, HTTP 500 no WebFetch). Headline próxima da de toprisparmio.com. Oferta não lida. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5654726355",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5655009995",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-18."
+}
