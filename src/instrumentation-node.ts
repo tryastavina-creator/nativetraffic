@@ -5,6 +5,7 @@
 import { snapshotCreatives } from "./lib/creativeHistory";
 import { cachedCreatives } from "./lib/creatives";
 import { rangeFromPreset } from "./lib/metrics";
+import { autoRecover } from "./lib/recoverAccounts";
 import { getSpy } from "./lib/spy";
 import { computeTrafficTree } from "./lib/trafficTree";
 
@@ -17,6 +18,8 @@ if (!process.env.NT_NO_WARM) {
     for (const preset of ["30d", "7d"]) await cachedCreatives(rangeFromPreset(preset)).catch(() => {});
     // Spy: picks up a new push from the bot within a few minutes, even with nobody on the page.
     await getSpy().catch(() => {});
+    // Taboola accounts disconnected before the history existed (same login): added back as disconnected.
+    await autoRecover().catch(() => {});
     // Day-by-day history of each ad's spend (kept after an account is disconnected).
     await snapshotCreatives().catch(() => {});
   };

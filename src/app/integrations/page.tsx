@@ -107,9 +107,12 @@ export default function Integrations() {
             {cat === "traffic" ? (
               <div className="mb-3 mt-8 flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-zinc-300">{CATEGORY_LABEL[cat]}</h2>
-                <button className="btn-primary py-1.5 text-xs" onClick={() => setPicking(true)}>
-                  + Adicionar fonte de tráfego
-                </button>
+                <div className="flex items-center gap-2">
+                  <RecoverButton onDone={load} />
+                  <button className="btn-primary py-1.5 text-xs" onClick={() => setPicking(true)}>
+                    + Adicionar fonte de tráfego
+                  </button>
+                </div>
               </div>
             ) : (
               <h2 className="h-section">{CATEGORY_LABEL[cat]}</h2>
@@ -210,6 +213,40 @@ export default function Integrations() {
         />
       )}
     </div>
+  );
+}
+
+/** Finds Taboola accounts of the same login that were disconnected and brings their history back. */
+function RecoverButton({ onDone }: { onDone: () => void }) {
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState("");
+  return (
+    <span className="flex items-center gap-2">
+      {msg && <span className="max-w-[360px] text-[11px] text-muted">{msg}</span>}
+      <button
+        className="btn-ghost py-1.5 text-xs"
+        disabled={busy}
+        title="Procura as contas Taboola do mesmo login que já rodaram e não estão conectadas, e traz o gasto e os criativos delas como contas desconectadas (não aparecem no Tráfego)."
+        onClick={async () => {
+          setBusy(true);
+          setMsg("");
+          const r = await fetch("/api/integrations/recover", { method: "POST" })
+            .then((x) => x.json())
+            .catch(() => ({ error: "Sem conexão." }));
+          setBusy(false);
+          if (r.error) return setMsg(r.error);
+          const added = (r.found ?? []).filter((f: { added: boolean }) => f.added);
+          setMsg(
+            added.length
+              ? `Recuperadas: ${added.map((f: { name: string; spend180: number }) => `${f.name} (US$${f.spend180.toFixed(0)} em 180 dias)`).join(", ")}.`
+              : (r.errors?.[0] ?? "Nenhuma conta antiga com gasto encontrada nas chaves Taboola conectadas."),
+          );
+          onDone();
+        }}
+      >
+        {busy ? "Procurando…" : "Recuperar contas antigas"}
+      </button>
+    </span>
   );
 }
 
