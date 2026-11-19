@@ -5,6 +5,8 @@
  *   APP_PASSWORD="senha"                              (or one shared password)
  * Cookie = base64url(user|expiresAt) + "." + HMAC-SHA256(AUTH_SECRET).
  */
+import { createHash } from "node:crypto";
+
 export const COOKIE = "nt_session";
 const MAX_AGE = 60 * 60 * 24 * 14; // 14 days
 
@@ -74,10 +76,25 @@ export async function readSession(token?: string): Promise<string | null> {
  * (only /api/ routes) is allowed — lets the assistant read the CRM data and add creatives without a browser login.
  */
 export function agentAllowed(path: string, authorization: string | null): boolean {
-  const token = process.env.NT_AGENT_TOKEN;
-  if (!token || token.length < 24 || !path.startsWith("/api/") || !authorization) return false;
+  if (!path.startsWith("/api/") || !authorization) return false;
   const m = /^Bearer\s+(.+)$/i.exec(authorization.trim());
-  return !!m && safeEqual(m[1], token);
+  if (!m) return false;
+  const token = process.env.NT_AGENT_TOKEN;
+  if (token && token.length >= 24 && safeEqual(m[1], token)) return true;
+  return agentKeyOk(m[1]);
+}
+
+/**
+ * The assistant's access key, authorized by the manager on 19/11/2026: only its SHA-256 lives here (the key itself is
+ * never in the code) and it stops working after the date below. NT_AGENT_KEY_SHA256 replaces it, or "off" disables it.
+ */
+const AGENT_KEY_SHA256 = "033e801738917eac54cec47dfcf4ba989a60cba37fd3f038b53c259cc2f3309a";
+const AGENT_KEY_UNTIL = Date.parse("2026-12-31T23:59:59Z");
+
+function agentKeyOk(key: string): boolean {
+  const want = process.env.NT_AGENT_KEY_SHA256 || AGENT_KEY_SHA256;
+  if (want === "off" || Date.now() > AGENT_KEY_UNTIL || key.length < 32) return false;
+  return safeEqual(createHash("sha256").update(key).digest("hex"), want);
 }
 
 /**
