@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "pillsenpower.click",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Une astuce pour restaurer l’audition jusqu’à 100 % : versez 3 gouttes chaque jour"
+  ],
+  "max_gravity": 345,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 345,
+      "ad_id": "5658466777",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5658466777"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://pillsenpower.click abriu só uma página 'youbehealth.com — Coming Soon' (Powered by VESTA), 1 KB. A oferta das '3 gouttes' não está na raiz. Preço e checkout não lidos. Nada enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5658466777",
+      "network": "AdsKeeper",
+      "gravity": 345,
+      "headline": "Une astuce pour restaurer l’audition jusqu’à 100 % : versez 3 gouttes chaque jour",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_18_f9670ba8.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-19."
+}
