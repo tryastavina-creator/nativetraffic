@@ -13,14 +13,28 @@ function LoginForm() {
     e.preventDefault();
     setBusy(true);
     setError("");
-    const r = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user, password }),
-    });
-    setBusy(false);
-    if (r.ok) window.location.href = next.startsWith("/") ? next : "/";
-    else setError((await r.json()).error ?? "Erro ao entrar");
+    // Never stay stuck on "Entrando…": time out after 20 s and show what happened.
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20_000);
+    try {
+      const r = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user: user.trim(), password }),
+        signal: ctrl.signal,
+      });
+      if (r.ok) {
+        window.location.href = next.startsWith("/") ? next : "/";
+        return;
+      }
+      const j = await r.json().catch(() => null);
+      setError(j?.error ?? (r.status >= 500 ? "O servidor está reiniciando. Tente de novo em 1 minuto." : "Erro ao entrar"));
+    } catch {
+      setError(ctrl.signal.aborted ? "O servidor demorou para responder. Tente de novo." : "Sem conexão com o servidor. Tente de novo.");
+    } finally {
+      clearTimeout(timer);
+      setBusy(false);
+    }
   }
 
   return (
