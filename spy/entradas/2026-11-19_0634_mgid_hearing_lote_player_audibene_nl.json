@@ -1,0 +1,75 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audibene.nl",
+  "status": "lancando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Audibene",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 1,
+  "headlines": [
+    "Audibene hoortoestellen"
+  ],
+  "max_gravity": 408,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 408,
+      "ad_id": "5638475544",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5638475544"
+    ],
+    "parado": [
+      "5643382851",
+      "5641225445"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5638475544",
+      "network": "Mgid",
+      "gravity": 408,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nepalivirals_com_2026_11_13_c1378482.webp"
+    },
+    {
+      "ad_id": "5643382851",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_lamdepcungban_info_2026_11_15_63c7fa1d.webp"
+    },
+    {
+      "ad_id": "5641225445",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_realitateadebrasov_net_2026_11_14_1afd9141.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→408; n anúncios agora 3."
+}

@@ -1,0 +1,33 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "lancando",
+  "visao": "A+D",
+  "ad_id": "5640008164",
+  "ad_url": "https://native.anstrex.com/creative/panel/5640008164",
+  "rede": "Mgid",
+  "rede_slug": "mgid",
+  "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_queroreceitasoberana_com_br_2026_11_14_b9ea4dea.webp",
+  "lander_domain": "herelnd.com",
+  "gravity": 262,
+  "ad_strength": 1210,
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-18",
+  "dias_entre_primeira_e_ultima": 4,
+  "idioma_inferido": "he",
+  "geo_hint": "IL",
+  "tags": "",
+  "search_term": "tinnitus (Translated Text); hearing (Translated Text)",
+  "angle_id": "HEAR-A6",
+  "movimento": "lancando",
+  "por_que": "Maior gravidade de 'tinnitus' na janela (262 Mgid, IL). O player tem 7 anúncios vistos hoje, 4 novos em 18/11, inclusive a variação 'רופא בכיר'. Em 15/11 a raiz era white page.",
+  "n_anuncios_do_player": 16,
+  "n_headlines_do_player": 2,
+  "variacoes": [
+    "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+    "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!"
+  ],
+  "oferta": ""
+}
