@@ -1,0 +1,107 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "obols-egises-muff.shop",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 1,
+  "headlines": [
+    "Meia chávena todas as manhãs elimina rapidamente a neuropatia!"
+  ],
+  "max_gravity": 75,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 75,
+      "ad_id": "5653974772",
+      "last_seen": "2026-11-18"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5654794901",
+      "last_seen": "2026-11-17"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5653974772",
+      "5652383817",
+      "5654794901",
+      "5654797035",
+      "5655059182"
+    ]
+  },
+  "dominios_ligados": [
+    "daetumblejauks.top",
+    "skrytunerzibet.fun"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5653974772",
+      "network": "Mgid",
+      "gravity": 75,
+      "headline": "Meia chávena todas as manhãs elimina rapidamente a neuropatia!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_komandobhayangkara_id_2026_11_17_4b15be76.webp"
+    },
+    {
+      "ad_id": "5652383817",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Meia chávena todas as manhãs elimina rapidamente a neuropatia!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_11_17_bc2a2527.webp"
+    },
+    {
+      "ad_id": "5654794901",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Meia chávena todas as manhãs elimina rapidamente a neuropatia!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_genioquiz_com_br_2026_11_17_9ebad6fa.webp"
+    },
+    {
+      "ad_id": "5654797035",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Meia chávena todas as manhãs elimina rapidamente a neuropatia!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_genioquiz_com_br_2026_11_17_7b21bf10.webp"
+    },
+    {
+      "ad_id": "5655059182",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Meia chávena todas as manhãs elimina rapidamente a neuropatia!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_satupiston_com_2026_11_17_45c8198b.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→75; n anúncios agora 5."
+}

@@ -1,0 +1,79 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "seniorwellnessdigest.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+    "Neuropathie (brennende Füße)? Machen Sie das sofort"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5656956798",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5656956798",
+      "5658102030"
+    ],
+    "parado": [
+      "5640011868"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "evidwell.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5656956798",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_zcj_ro_2026_11_18_c50d4fde.webp"
+    },
+    {
+      "ad_id": "5658102030",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tek_id_2026_11_18_85a1a356.webp"
+    },
+    {
+      "ad_id": "5640011868",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tek_id_2026_11_14_6314c165.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→lancando; n anúncios agora 3."
+}

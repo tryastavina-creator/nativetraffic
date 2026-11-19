@@ -1,0 +1,33 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "neuropathy",
+  "tipo": "achado",
+  "prioridade": "lancando",
+  "visao": "C+F",
+  "ad_id": "5658102030",
+  "ad_url": "https://native.anstrex.com/creative/panel/5658102030",
+  "rede": "Mgid",
+  "rede_slug": "mgid",
+  "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tek_id_2026_11_18_85a1a356.webp",
+  "lander_domain": "seniorwellnessdigest.com",
+  "gravity": 0,
+  "ad_strength": 0,
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-18",
+  "dias_entre_primeira_e_ultima": "",
+  "idioma_inferido": "de",
+  "geo_hint": "DE",
+  "tags": "",
+  "search_term": "neuropathy (Translated Text)",
+  "angle_id": "NEURO-A1",
+  "movimento": "lancando",
+  "por_que": "Voltou (parado → lançando) com a headline exata de evidwell.com na Mgid (18/11) e uma variação 'macht Ärzte sprachlos'.",
+  "n_anuncios_do_player": 3,
+  "n_headlines_do_player": 2,
+  "variacoes": [
+    "Neuropathie (brennende Füße)? Machen Sie das sofort",
+    "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos"
+  ],
+  "oferta": ""
+}
