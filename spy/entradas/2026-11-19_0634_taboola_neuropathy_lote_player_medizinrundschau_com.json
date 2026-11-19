@@ -1,0 +1,63 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "medizinrundschau.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Neuropathie liegt nicht an Vitamin-Mangel – hier der echte Grund"
+  ],
+  "max_gravity": 145,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 145,
+      "ad_id": "5655384740",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5655384740",
+      "5655237538"
+    ]
+  },
+  "dominios_ligados": [
+    "neuro-socken-de.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5655384740",
+      "network": "Taboola",
+      "gravity": 145,
+      "headline": "Neuropathie liegt nicht an Vitamin-Mangel – hier der echte Grund",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_cumhuriyet_com_tr_2026_11_17_14721158.jpg"
+    },
+    {
+      "ad_id": "5655237538",
+      "network": "Taboola",
+      "gravity": 72,
+      "headline": "Neuropathie liegt nicht an Vitamin-Mangel – hier der echte Grund",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tag24_de_2026_11_17_c4ae5c7c.jpg"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 2."
+}

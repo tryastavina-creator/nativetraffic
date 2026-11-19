@@ -1,0 +1,90 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hansaton.at",
+  "status": "volumando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Hansaton Áustria (grupo Sonova): lojas, teste online, trial",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 2,
+  "headlines": [
+    "Wien: Ansturm auf KI-Hörgeräte – Das ist die Revolution",
+    "Wien: Hansaton sucht 100 Tester für kaum sichtbares Hörgerät"
+  ],
+  "max_gravity": 102,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 102,
+      "ad_id": "5415274282",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-08-25",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "volumando": [
+      "5415274282"
+    ],
+    "lancando": [
+      "5658301056",
+      "5658855139"
+    ],
+    "testando": [
+      "5275720040"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5415274282",
+      "network": "Taboola",
+      "gravity": 102,
+      "headline": "Wien: Ansturm auf KI-Hörgeräte – Das ist die Revolution",
+      "first_seen": "2026-09-22",
+      "last_seen": "2026-11-18",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_birgun_net_2026_09_22_32b7a17c.jpg"
+    },
+    {
+      "ad_id": "5275720040",
+      "network": "Taboola",
+      "gravity": 73,
+      "headline": "Wien: Hansaton sucht 100 Tester für kaum sichtbares Hörgerät",
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-17",
+      "movimento": "testando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_googlewatchblog_de_2026_08_25_3b41c398.jpg"
+    },
+    {
+      "ad_id": "5658301056",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Wien: Hansaton sucht 100 Tester für kaum sichtbares Hörgerät",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_journalistenwatch_com_2026_11_18_c2e8135a.jpg"
+    },
+    {
+      "ad_id": "5658855139",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Wien: Hansaton sucht 100 Tester für kaum sichtbares Hörgerät",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_turkiyegazetesi_com_tr_2026_11_18_1a151454.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe escalando→volumando; máx. gravidade 326→102; n anúncios agora 4."
+}
