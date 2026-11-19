@@ -1,0 +1,170 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "amplificadorauditivo.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Lead-gen de aparelho auditivo (PT); oferta a confirmar na lander",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 11,
+  "n_headlines": 2,
+  "headlines": [
+    "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+    "Novembro de 2026: Não compre aparelhos auditivos a menos que você tenha..."
+  ],
+  "max_gravity": 438,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 438,
+      "ad_id": "5650668207",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5650668207",
+      "5653077125",
+      "5650943718",
+      "5652279889",
+      "5650138757",
+      "5653076840",
+      "5651763612",
+      "5652029671",
+      "5652033127",
+      "5654624769",
+      "5655162795"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5650668207",
+      "network": "Outbrain",
+      "gravity": 438,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sapo_pt_2026_11_16_be764148.webp"
+    },
+    {
+      "ad_id": "5650943718",
+      "network": "Outbrain",
+      "gravity": 280,
+      "headline": "Novembro de 2026: Não compre aparelhos auditivos a menos que você tenha...",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lancashiretelegraph_co_uk_2026_11_16_b4930c14.webp"
+    },
+    {
+      "ad_id": "5653077125",
+      "network": "Outbrain",
+      "gravity": 260,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lancashiretelegraph_co_uk_2026_11_17_f56253c3.webp"
+    },
+    {
+      "ad_id": "5652279889",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tv7dias_pt_2026_11_17_68ecd03f.webp"
+    },
+    {
+      "ad_id": "5650138757",
+      "network": "Outbrain",
+      "gravity": 210,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sapo_pt_2026_11_16_58956f16.webp"
+    },
+    {
+      "ad_id": "5653076840",
+      "network": "Outbrain",
+      "gravity": 210,
+      "headline": "Novembro de 2026: Não compre aparelhos auditivos a menos que você tenha...",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lancashiretelegraph_co_uk_2026_11_17_43c85e70.webp"
+    },
+    {
+      "ad_id": "5651763612",
+      "network": "Outbrain",
+      "gravity": 180,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bgland24_de_2026_11_17_bdec4748.png"
+    },
+    {
+      "ad_id": "5652029671",
+      "network": "Outbrain",
+      "gravity": 180,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_uol_com_br_2026_11_17_5b7b7466.webp"
+    },
+    {
+      "ad_id": "5652033127",
+      "network": "Outbrain",
+      "gravity": 180,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lancashiretelegraph_co_uk_2026_11_17_5fb9f762.webp"
+    },
+    {
+      "ad_id": "5654624769",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_uol_com_br_2026_11_17_55fc4d5a.webp"
+    },
+    {
+      "ad_id": "5655162795",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Pensionistas nascidos entre 1943 e 1979 têm direito a estes aparelhos auditivos",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_lancashiretelegraph_co_uk_2026_11_17_b861e9fe.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 280→438; n anúncios agora 11."
+}

@@ -1,0 +1,32 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "escalando",
+  "visao": "G",
+  "ad_id": "5194328533",
+  "ad_url": "https://native.anstrex.com/creative/panel/5194328533",
+  "rede": "Outbrain",
+  "rede_slug": "outbrain",
+  "headline": "250 Testers gezocht voor nieuw mini-hoortoestel",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_rtvnoord_nl_2026_08_02_c46d7a02.webp",
+  "lander_domain": "gehoortesters.nl",
+  "gravity": 158,
+  "ad_strength": 3801,
+  "first_seen": "2026-08-02",
+  "last_seen": "2026-11-18",
+  "dias_entre_primeira_e_ultima": 108,
+  "idioma_inferido": "nl",
+  "geo_hint": "NL",
+  "tags": "Health & Wellness",
+  "search_term": "hearing (Translated Text)",
+  "angle_id": "HEAR-A16",
+  "movimento": "escalando",
+  "por_que": "Player voltou (parado → escalando): anúncio de 02/08 com last_seen 18/11, Outbrain 158 (ad_strength 3801). Imagem idêntica (phash 0) à de testeauditivo24.pt: mesma fórmula de recrutamento de testers em NL.",
+  "n_anuncios_do_player": 2,
+  "n_headlines_do_player": 2,
+  "variacoes": [
+    "250 Testers gezocht voor nieuw mini-hoortoestel"
+  ],
+  "oferta": ""
+}
