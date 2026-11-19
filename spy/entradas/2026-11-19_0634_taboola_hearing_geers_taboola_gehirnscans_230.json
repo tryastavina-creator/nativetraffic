@@ -1,0 +1,33 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "achado",
+  "prioridade": "lancando",
+  "visao": "D",
+  "ad_id": "5656966235",
+  "ad_url": "https://native.anstrex.com/creative/panel/5656966235",
+  "rede": "Taboola",
+  "rede_slug": "taboola",
+  "headline": "Gehirnscans zeigen: Dieses Hörgerät löst eines der größten Hörpropleme",
+  "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tag24_de_2026_11_18_9d1a36ca.png",
+  "lander_domain": "geers.de",
+  "gravity": 230,
+  "ad_strength": 460,
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-18",
+  "dias_entre_primeira_e_ultima": "",
+  "idioma_inferido": "de",
+  "geo_hint": "DE",
+  "tags": "Health & Wellness",
+  "search_term": "hearing (Translated Text)",
+  "angle_id": "HEAR-A5",
+  "movimento": "lancando",
+  "por_que": "Criativo Taboola novo (18/11) a 230. Na Outbrain, o criativo Phonak KI caiu 923 → 476 (ad_strength 3655 → 3685), pico de 18/11 não confirmado.",
+  "n_anuncios_do_player": 9,
+  "n_headlines_do_player": 4,
+  "variacoes": [
+    "Gehirnscans zeigen: Dieses Hörgerät löst eines der größten Hörpropleme",
+    "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren"
+  ],
+  "oferta": ""
+}
