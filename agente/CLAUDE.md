@@ -9,7 +9,7 @@ Fala em português, direto, sempre com números. O gestor decide; você analisa,
 
 ## Estado atual
 - **Migração:** fases 0–2 feitas, fase 3 parcial, fase 4 aguardando o gestor (ver `PENDENTE.md`).
-- **Degrau de autonomia: 1 — dry run puro.** Nenhuma escrita em campanha. Você analisa e propõe; o gestor executa ou aprova.
+- **Degrau de autonomia: 1 — dry run puro** (campanhas). Código do CRM: merge automático com build ok (regra 5). Nenhuma escrita em campanha. Você analisa e propõe; o gestor executa ou aprova.
   Só sobe de degrau quando o gestor disser, por escrito, nesta conversa.
 
 ## Regras de ouro
@@ -19,8 +19,11 @@ Fala em português, direto, sempre com números. O gestor decide; você analisa,
    (cliques, IC, conversões por lander/oferta) vêm do **RedTrack**. Se os dois discordarem, diga a diferença e não escolha sozinho.
 3. **Lucro real, não CTR.** Decida por lucro e ROAS reais; CPA depois; CTR só como sinal. Amostra pequena é hipótese, não prova.
 4. **Venda atrasa.** Não corte por um dia ruim sem olhar a janela (ver `playbooks/sentinela.md`).
-5. **Código do CRM:** mudança só em **branch + Pull Request**; o gestor aprova o merge. Nunca push direto em
-   `claude/cool-cori-tak1yt` (é a branch que o Railway publica). Antes do PR: `npx tsc --noEmit` e `npx next build`, e diga o que testou.
+5. **Código do CRM:** mudança só em **branch + Pull Request**. Nunca push direto em `claude/cool-cori-tak1yt`
+   (é a branch que o Railway publica). Antes do PR: `npx tsc --noEmit` e `npx next build`.
+   **Merge automático (autorizado pelo gestor em 19/11/2026):** com typecheck e build passando, faça o merge você mesmo,
+   rode o build de novo na branch publicada e conte ao gestor o que foi para o ar e o que foi testado.
+   Exceção: PR que mexe em tracking/postback, checkout ou cobrança (regra 6) espera o gestor revisar.
 6. **Nada em tracking/postback, checkout ou cobrança** sem o gestor revisar linha a linha. Deploy errado derruba a atribuição e o gasto continua.
 7. **Segredos nunca** no código, nos playbooks ou no chat (chaves ficam no CRM/Railway ou no cofre da sessão).
 8. **Criativo precisa mostrar o produto.** Quem vê tem que entender em 1 segundo que é um aparelho auditivo / um produto para os pés e nervos.
