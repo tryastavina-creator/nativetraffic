@@ -1,0 +1,157 @@
+{
+  "data_coleta": "2026-11-19",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "geers.de",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GEERS (Sonova)",
+  "redes": [
+    "Outbrain",
+    "Taboola"
+  ],
+  "n_anuncios": 9,
+  "n_headlines": 4,
+  "headlines": [
+    "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren",
+    "Gehirnscans zeigen: Dieses Hörgerät löst eines der größten Hörpropleme",
+    "Das Hörgerät, das 2026 alle wollen",
+    "Der Ferrari unter den Hörgeräten kommt aus der Schweiz"
+  ],
+  "max_gravity": 476,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 476,
+      "ad_id": "5632737584",
+      "last_seen": "2026-11-18"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 230,
+      "ad_id": "5656966235",
+      "last_seen": "2026-11-18"
+    }
+  },
+  "first_seen": "2026-11-12",
+  "last_seen": "2026-11-18",
+  "movimentos": {
+    "lancando": [
+      "5632737584",
+      "5656966235",
+      "5634703494",
+      "5632744214",
+      "5634705712"
+    ],
+    "parado": [
+      "5632738155",
+      "5641148101",
+      "5641147866",
+      "5635515842"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5632737584",
+      "network": "Outbrain",
+      "gravity": 476,
+      "headline": "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_12_7d5118d3.webp"
+    },
+    {
+      "ad_id": "5635515842",
+      "network": "Outbrain",
+      "gravity": 300,
+      "headline": "Der Ferrari unter den Hörgeräten kommt aus der Schweiz",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sauerlandkurier_de_2026_11_13_588168f3.webp"
+    },
+    {
+      "ad_id": "5632738155",
+      "network": "Outbrain",
+      "gravity": 280,
+      "headline": "Der Ferrari unter den Hörgeräten kommt aus der Schweiz",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_12_6cb3664a.webp"
+    },
+    {
+      "ad_id": "5656966235",
+      "network": "Taboola",
+      "gravity": 230,
+      "headline": "Gehirnscans zeigen: Dieses Hörgerät löst eines der größten Hörpropleme",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tag24_de_2026_11_18_9d1a36ca.png"
+    },
+    {
+      "ad_id": "5632744214",
+      "network": "Outbrain",
+      "gravity": 203,
+      "headline": "Das Hörgerät, das 2026 alle wollen",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tz_de_2026_11_12_206507db.webp"
+    },
+    {
+      "ad_id": "5634703494",
+      "network": "Outbrain",
+      "gravity": 194,
+      "headline": "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_12_04344faf.webp"
+    },
+    {
+      "ad_id": "5634705712",
+      "network": "Outbrain",
+      "gravity": 178,
+      "headline": "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren",
+      "first_seen": "2026-11-12",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_12_a2b59d57.webp"
+    },
+    {
+      "ad_id": "5641148101",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Der Ferrari unter den Hörgeräten kommt aus der Schweiz",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_buzzfeed_at_2026_11_14_2b554028.webp"
+    },
+    {
+      "ad_id": "5641147866",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neu von Phonak: Innovative KI-Hörgeräte jetzt kostenlos ausprobieren",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_buzzfeed_at_2026_11_14_e049260a.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 923→476; n anúncios agora 9."
+}
