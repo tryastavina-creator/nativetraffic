@@ -1,0 +1,105 @@
+{
+  "data_coleta": "2026-11-20",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "gadgetswatcher.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 5,
+  "n_headlines": 1,
+  "headlines": [
+    "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5662287696",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-11-19",
+  "last_seen": "2026-11-19",
+  "movimentos": {
+    "lancando": [
+      "5662287696",
+      "5662298756",
+      "5662830202",
+      "5663100419",
+      "5663119938"
+    ]
+  },
+  "dominios_ligados": [
+    "liyng.com",
+    "medi-komfort.de",
+    "oekomarkt.co",
+    "wexiy.com"
+  ],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://gadgetswatcher.com abre um site de análises de gadgets ('Independent Gadget Reviews'), com textos de Pixel 10 Pro, iPhone 17 Pro Max, Sony WH-1000XM6, etc. Não há oferta, preço nem checkout de neuropatia, apesar da headline ser a mesma de liyng.com ('Ständig taube Füße?…'). Parece fachada/cloaking. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5662287696",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_19_3518f7ac.webp"
+    },
+    {
+      "ad_id": "5662298756",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sport_de_2026_11_19_4c97d7a3.webp"
+    },
+    {
+      "ad_id": "5662830202",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_19_5c7eec0b.webp"
+    },
+    {
+      "ad_id": "5663100419",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_19_06360dfb.webp"
+    },
+    {
+      "ad_id": "5663119938",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Ständig taube Füße? Nervenschädigung bei Diabetes gezielt lindern!",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eishockey-magazin_de_2026_11_19_ac1f063f.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-20."
+}
