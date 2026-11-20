@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-20",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "tiendacolshop.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Las personas mayores con neuropatía quedan asombradas con este innovador dispositivo"
+  ],
+  "max_gravity": 373,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 373,
+      "ad_id": "4939153936",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-05-30",
+  "last_seen": "2026-11-19",
+  "movimentos": {
+    "escalando": [
+      "4939153936"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://tiendacolshop.com abre uma loja Col.shop em pesos colombianos; a homepage não mostra produtos (carrinho vazio). Em /collections/all há 21 produtos no products.json (LegFix, GlucoNix, OpticPro, ErgoSleep, etc.). A página de LegFix é um advertorial de joelho/artrose (não de neuropatia), com pagamento contra entrega SOLO $149.000 (de $369.000) e envio grátis na Colômbia. O anúncio fala de neuropatia em idosos; o lander_url veio vazio, então o caminho exato do clique não foi capturado. Nada foi comprado nem enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "4939153936",
+      "network": "Taboola",
+      "gravity": 373,
+      "headline": "Las personas mayores con neuropatía quedan asombradas con este innovador dispositivo",
+      "first_seen": "2026-05-30",
+      "last_seen": "2026-11-19",
+      "movimento": "escalando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-20."
+}
