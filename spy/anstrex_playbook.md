@@ -107,3 +107,16 @@
 - Exclusões desta rodada: endokrino.com (10 anúncios Schilddrüse/L-Thyroxin com «Kribbeln») e trending-hunt.com (sapatos). Headlines checas de formigamento/ardor nos pés («mravenčení nohou», «brnění a pálení nohou») passam a ser mantidas no nicho neuropathy.
 - Ângulo novo **HEAR-A16 — recrutamento de testers** («Procura-se: 250 pessoas…», «250 Testers gezocht…», «Hansaton sucht 100 Tester…»). Ajustes de regra: «chirurgo/chirurgul» → A6; «סבסוד» (subsídio) → A14; «za 49 Kč» → A4 (preço simbólico); «Neurologen flehen» → NEURO-A11; «nicht Vitamin B» / «nicht an Vitamin» → NEURO-A10; «meia chávena» / «половин чаша» / «μισό φλιτζάνι» → NEURO-A3.
 - Funis lidos só na raiz e só de players novos. grazianeidettagli.info tem a mesma casca /build/bundle.min.js de wonderbanana/chudopolsko. giornale-salute.it e deutscher-gesundheits-fachkreis.de têm a mesma casca de loja vazia de gesund-vital-ratgeber.org. digitalpages.co.il mostra uma página de produto italiana sem relação com o anúncio (fachada). Nada foi comprado nem enviado.
+
+## Coleta (2026-11-20)
+- Date Range desta coleta: **2026-10-21 a 2026-11-19** (últimos 30 dias, terminando ontem), em todas as visões. Método igual ao de 17–19/11; a gravidade é comparável.
+- **Qualidade dos dados (visões copiadas):** o coletor admitiu, e a inspeção do raw confirmou, que vários blocos não são extrações reais dessa visão:
+  - hearing E: 14 de 15 linhas iguais a A|hearing (a 15.ª só troca o id, mesma gravidade 352);
+  - hearing C e F: sequência de payloads idêntica, nos termos tinnitus e hearing;
+  - neuropathy A: prefixo igual a E|neuropathy + um subconjunto de D|neuropathy;
+  - nerve A: exatamente E|nerve seguido de D|nerve; nerve E também copiada.
+  Nessas linhas, **não usar a letra da visão** como evidência (lançando via C, volumando via D, escalando via E, novos via F). Gravidade, first_seen e last_seen do ad_id valem. Bloques de numbness/tingling e as demais visões (B, D, G, E|tinnitus, E|neuropathy, C/F neuropathy com 2 ids diferentes, etc.) não mostraram cópia fechada e foram mantidos.
+- Hosts de rede/tracker (ex.: adskeeper.co.uk) **não contam como players novos**; ficam no mapa com o tipo `dominio_da_rede_ou_tracker`.
+- evidwell.com 1173→587 (mesmo ad_strength 5410) confirma o padrão já visto em 19/11: pico de um dia que não se sustenta quando o strength não acompanha. Já gesund-vital 200→640 veio com subida de ad_strength (5383→7813) — mais credível do que os Outbrain de 18/11.
+- Exclusões: superdin.co.il (שימוע = audiência trabalhista, não audição); endokrino.com (Schilddrüse/L-Thyroxin); drvitalex.com (estenose espinal em sueco, sem termo de neuropatia). «tinitom» (eslovaco) passa a ser mantido no nicho hearing.
+- Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
