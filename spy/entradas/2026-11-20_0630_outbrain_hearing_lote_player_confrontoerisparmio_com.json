@@ -1,0 +1,123 @@
+{
+  "data_coleta": "2026-11-20",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "confrontoerisparmio.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Comparador / lead-gen IT de aparelhos (risparmio)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 7,
+  "n_headlines": 1,
+  "headlines": [
+    "Buone notizie per chi ha problemi di udito"
+  ],
+  "max_gravity": 380,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 380,
+      "ad_id": "5650973454",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-19",
+  "movimentos": {
+    "lancando": [
+      "5650973454",
+      "5661242923",
+      "5658578268",
+      "5658847015",
+      "5658316893",
+      "5654726355",
+      "5655009995"
+    ]
+  },
+  "dominios_ligados": [
+    "toprisparmio.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5650973454",
+      "network": "Outbrain",
+      "gravity": 380,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tuttojuve_com_2026_11_16_a381d7e8.png"
+    },
+    {
+      "ad_id": "5658578268",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_serchioindiretta_it_2026_11_18_9020ab0c.jpg"
+    },
+    {
+      "ad_id": "5658847015",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_ilcentro_it_2026_11_18_7b74b79e.jpg"
+    },
+    {
+      "ad_id": "5654726355",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5661242923",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5658316893",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eldiariomontanes_es_2026_11_18_1d3f5ce0.webp"
+    },
+    {
+      "ad_id": "5655009995",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Buone notizie per chi ha problemi di udito",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 120→380; n anúncios agora 7."
+}
