@@ -1,0 +1,164 @@
+{
+  "data_coleta": "2026-11-20",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "trendy-info.jp",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Popin"
+  ],
+  "n_anuncios": 10,
+  "n_headlines": 4,
+  "headlines": [
+    "健康管理士「耳鳴りの原因は実はアレ!?」",
+    "50代から始める1日5秒習慣の耳鳴り対策",
+    "耳鳴りに1日たった5秒の「裏技」が話題！",
+    "楽天1位がず〜っと半額！耳鳴りがスーッとラクに"
+  ],
+  "max_gravity": 319,
+  "gravity_por_rede": {
+    "popin": {
+      "network": "Popin",
+      "gravity": 319,
+      "ad_id": "5622028137",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-09-17",
+  "last_seen": "2026-11-19",
+  "movimentos": {
+    "escalando": [
+      "5622028137"
+    ],
+    "volumando": [
+      "5622035185",
+      "5622729007"
+    ],
+    "parado": [
+      "5393733942",
+      "5393743255",
+      "5394088383",
+      "5393747310",
+      "5394096379",
+      "5393743213",
+      "5394746352"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5622028137",
+      "network": "Popin",
+      "gravity": 319,
+      "headline": "健康管理士「耳鳴りの原因は実はアレ!?」",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-19",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_10_9cceeb2f.jpg"
+    },
+    {
+      "ad_id": "5622035185",
+      "network": "Popin",
+      "gravity": 202,
+      "headline": "50代から始める1日5秒習慣の耳鳴り対策",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-19",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_biteki_com_2026_11_10_2d402db0.jpg"
+    },
+    {
+      "ad_id": "5622729007",
+      "network": "Popin",
+      "gravity": 103,
+      "headline": "耳鳴りに1日たった5秒の「裏技」が話題！",
+      "first_seen": "2026-11-10",
+      "last_seen": "2026-11-19",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_11_10_cf57a7ed.jpg"
+    },
+    {
+      "ad_id": "5394746352",
+      "network": "Popin",
+      "gravity": 10,
+      "headline": "50代から始める1日5秒習慣の耳鳴り対策",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_mynavi_jp_2026_09_17_58c46dec.jpg"
+    },
+    {
+      "ad_id": "5393743213",
+      "network": "Popin",
+      "gravity": 8,
+      "headline": "50代から始める1日5秒習慣の耳鳴り対策",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_09_17_fa260751.jpg"
+    },
+    {
+      "ad_id": "5394096379",
+      "network": "Popin",
+      "gravity": 6,
+      "headline": "楽天1位がず〜っと半額！耳鳴りがスーッとラクに",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_labaq_com_2026_09_17_93e2ed6f.jpg"
+    },
+    {
+      "ad_id": "5393743255",
+      "network": "Popin",
+      "gravity": 2,
+      "headline": "健康管理士「耳鳴りの原因は実はアレ!?」",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_nikkan-gendai_com_2026_09_17_ef4ec928.jpg"
+    },
+    {
+      "ad_id": "5394088383",
+      "network": "Popin",
+      "gravity": 2,
+      "headline": "耳鳴りに1日たった5秒の「裏技」が話題！",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_biteki_com_2026_09_17_6f6487b5.jpg"
+    },
+    {
+      "ad_id": "5393733942",
+      "network": "Popin",
+      "gravity": 1,
+      "headline": "耳鳴りに1日たった5秒の「裏技」が話題！",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-A11",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_mynavi_jp_2026_09_17_f2c7acc6.jpg"
+    },
+    {
+      "ad_id": "5393747310",
+      "network": "Popin",
+      "gravity": 1,
+      "headline": "健康管理士「耳鳴りの原因は実はアレ!?」",
+      "first_seen": "2026-09-17",
+      "last_seen": "2026-11-10",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/popin_biteki_com_2026_09_17_d585b41d.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 239→319; n anúncios agora 10."
+}
