@@ -1,0 +1,54 @@
+{
+  "data_coleta": "2026-11-20",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audibene.fr",
+  "status": "lancando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Audibene (marca/lead-gen de aparelhos, grupo WS Audiology)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Ces aides auditives font fureur auprès des seniors"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5662873042",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-11-19",
+  "last_seen": "2026-11-19",
+  "movimentos": {
+    "lancando": [
+      "5662873042"
+    ]
+  },
+  "dominios_ligados": [
+    "bonne-audition.fr"
+  ],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://audibene.fr redireciona para https://www.audibene.fr, marca/rede de audioprotesistas em França (grupo WS Audiology): ensaio gratuito, 100% Santé, teste auditivo online, marcas Signia, Widex, Phonak, Starkey, Unitron, Bernafon, ReSound e Oticon. Não é loja de suplemento. Formulário não foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5662873042",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ces aides auditives font fureur auprès des seniors",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ccm_net_2026_11_19_f41d5884.png"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-20."
+}

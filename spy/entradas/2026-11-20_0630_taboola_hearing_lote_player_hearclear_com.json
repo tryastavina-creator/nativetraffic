@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-20",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hearclear.com",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Marketing VF / MVF Global — agenda consulta com especialista",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Personer født mellem 1944 og 1969 er berettiget til høreapparater, hvis de er...",
+    "Personer født mellem 1944 og 1969 er berettiget til høreapparater, hvis de er…"
+  ],
+  "max_gravity": 449,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 449,
+      "ad_id": "5549396075",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-07-17",
+  "last_seen": "2026-11-19",
+  "movimentos": {
+    "escalando": [
+      "5549396075"
+    ],
+    "parado": [
+      "5134416301"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5549396075",
+      "network": "Taboola",
+      "gravity": 449,
+      "headline": "Personer født mellem 1944 og 1969 er berettiget til høreapparater, hvis de er...",
+      "first_seen": "2026-10-23",
+      "last_seen": "2026-11-19",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tipsbladet_dk_2026_10_23_08e41a48.jpg"
+    },
+    {
+      "ad_id": "5134416301",
+      "network": "Taboola",
+      "gravity": 24,
+      "headline": "Personer født mellem 1944 og 1969 er berettiget til høreapparater, hvis de er…",
+      "first_seen": "2026-07-17",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tipsbladet_dk_2026_07_17_b1ecd279.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 239→449; n anúncios agora 2."
+}
