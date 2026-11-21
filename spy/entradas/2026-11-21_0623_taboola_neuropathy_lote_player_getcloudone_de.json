@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-21",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "getcloudone.de",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Taubheitsgefühle: Warum Ihre Nerven Sauerstoff brauchen und ohne absterben"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5664928108",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-11-20",
+  "last_seen": "2026-11-20",
+  "movimentos": {
+    "lancando": [
+      "5664928108"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://getcloudone.de abre uma loja em EUR (carrinho vazio na homepage; «C1», envio grátis, 90 dias de garantia). O products.json lista 9 itens: ReNerv 3D (aparelho EMS/NMES para taubheit/Kribbeln, €89,90 / €179,80), CloudOne Pulse Pro, Knee Pro e FootComfort. A oferta de ReNerv coincide com o headline de neuropatia («Taubheitsgefühle…»). HTTP 200, legível. Nada foi comprado nem enviado no formulário."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5664928108",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Taubheitsgefühle: Warum Ihre Nerven Sauerstoff brauchen und ohne absterben",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_stangl_eu_2026_11_20_8dd3f0ca.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-21."
+}

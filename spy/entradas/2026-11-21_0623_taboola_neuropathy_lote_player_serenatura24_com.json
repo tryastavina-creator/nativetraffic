@@ -1,0 +1,76 @@
+{
+  "data_coleta": "2026-11-21",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "serenatura24.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+    "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč"
+  ],
+  "max_gravity": 402,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 402,
+      "ad_id": "5657955269",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-20",
+  "movimentos": {
+    "lancando": [
+      "5657955269",
+      "5660953161",
+      "5657776814"
+    ]
+  },
+  "dominios_ligados": [
+    "yournaturalharmony.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5657955269",
+      "network": "Taboola",
+      "gravity": 402,
+      "headline": "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_18_f78b2801.jpg"
+    },
+    {
+      "ad_id": "5660953161",
+      "network": "Taboola",
+      "gravity": 35,
+      "headline": "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_19_ce9db275.jpg"
+    },
+    {
+      "ad_id": "5657776814",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_onlyu_cz_2026_11_18_6a4d485c.jpg"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 355→402; n anúncios agora 3."
+}
