@@ -21,6 +21,15 @@
 - Se a busca/filtros sumirem: fechar o drawer e diminuir o zoom.
 - Árvore de acessibilidade não expõe o diálogo de busca: clicar por coordenadas.
 
+## Como buscar (atualizado em 2026-11-21)
+- Escape e rolar até o topo da listagem antes de cada busca nova.
+- Clicar **Reset All** primeiro: isso limpa o chip Search, o Date Range, o sort e os sliders.
+- O botão azul **Search** ao lado de Reset All abre o diálogo central **BASIC SEARCH**. O chip vazio «Search ✕» **não** abre esse diálogo.
+- No diálogo: rádio **Translated Text**, digitar o termo e Enter.
+- O campo Date Range é só leitura: mudar as datas pelas setas do calendário, não digitando no input.
+- Slider: clicar o número (elemento `.p-inplace-display`), digitar o valor, Enter. Um máximo acima do máximo atual do slider é ignorado — usar Reset All para alargar a faixa antes de subir o teto.
+- Domínio da lander: no painel do criativo, na linha imediatamente abaixo de «Bounce Rate:».
+
 ## Regras
 - Nunca filtrar por geo; geo é só pista. Gravidade julgada dentro de cada rede.
 - Limites de escalando: Taboola/MGID/AdsKeeper ≥300, Outbrain ≥150, Revcontent ≥400.
@@ -119,4 +128,13 @@
 - Hosts de rede/tracker (ex.: adskeeper.co.uk) **não contam como players novos**; ficam no mapa com o tipo `dominio_da_rede_ou_tracker`.
 - evidwell.com 1173→587 (mesmo ad_strength 5410) confirma o padrão já visto em 19/11: pico de um dia que não se sustenta quando o strength não acompanha. Já gesund-vital 200→640 veio com subida de ad_strength (5383→7813) — mais credível do que os Outbrain de 18/11.
 - Exclusões: superdin.co.il (שימוע = audiência trabalhista, não audição); endokrino.com (Schilddrüse/L-Thyroxin); drvitalex.com (estenose espinal em sueco, sem termo de neuropatia). «tinitom» (eslovaco) passa a ser mantido no nicho hearing.
+- Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
+
+## Coleta (2026-11-21)
+- Date Range desta coleta: **2026-10-22 a 2026-11-20** (últimos 30 dias, terminando ontem), em todas as visões. Método igual ao de 17–20/11; a gravidade é comparável.
+- **Todas as visões foram extrações reais** (não houve blocos copiados como em 20/11). As letras C/D/E/F voltam a contar como evidência. C e F quase iguais em anúncios novos a gravidade 0 (first_seen 11/20) é o esperado, não uma cópia: em hearing C e F tiveram a mesma sequência de 15 linhas a gravidade 0; em tinnitus C/F houve 14/15 de sobreposição, com 1 id exclusivo em cada lado (gravidades 205 e 45).
+- numbness E = 0 anúncios (o máximo do slider de gravidade nesta busca ficou em 150, abaixo do piso 300 da visão E). E vazio por esse motivo não é falha de coleta.
+- Passos de busca que funcionaram hoje (também em «Como buscar (atualizado em 2026-11-21)»): Escape e rolar ao topo; **Reset All** primeiro (limpa o chip Search, o Date Range, o sort e os sliders); o botão azul **Search** ao lado de Reset All abre o diálogo central BASIC SEARCH (o chip vazio «Search ✕» não abre); rádio Translated Text, termo + Enter. Date Range é só leitura — usar as setas do calendário. Slider: clicar o número (`.p-inplace-display`), digitar, Enter; um máximo acima do máximo atual do slider é ignorado, então Reset All para alargar. Domínio da lander: na linha imediatamente abaixo de «Bounce Rate:» no painel.
+- Hosts de rede/tracker (ex.: adskeeper.co.uk) **não contam como players novos**. Domínios off-niche também não: superdin.co.il (שימוע trabalhista hebraico, não audiologia) e endokrino.com (tireoide). drvitalex.com segue fora (estenose espinal, sem termo de neuropatia).
+- gesund-vital-ratgeber.org 250→3320 (ad_strength 872→19400, o mesmo valor em A+D+E+G) foi registado como coletado, mas é um outlier; não usar sozinho como prova de explosão. testeauditivo24.pt 660 (Outbrain, first_seen 11/20) entra no mesmo aviso dos picos de um dia.
 - Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
