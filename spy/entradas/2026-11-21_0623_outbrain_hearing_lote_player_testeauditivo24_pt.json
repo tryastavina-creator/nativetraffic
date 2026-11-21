@@ -1,0 +1,182 @@
+{
+  "data_coleta": "2026-11-21",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "testeauditivo24.pt",
+  "status": "escalando",
+  "tipo_player": "lead_gen",
+  "tipo_nota": "Teste auditivo PT (lead-gen de aparelho invisível); gravidade Outbrain 1410 a confirmar — possível artefato",
+  "redes": [
+    "Outbrain",
+    "Taboola"
+  ],
+  "n_anuncios": 11,
+  "n_headlines": 3,
+  "headlines": [
+    "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+    "Lisbon: Procuram-se pessoas para experimentar um aparelho auditivo quase invisível",
+    "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo"
+  ],
+  "max_gravity": 705,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 705,
+      "ad_id": "5655024389",
+      "last_seen": "2026-11-17"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 552,
+      "ad_id": "5650512297",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-11-16",
+  "last_seen": "2026-11-20",
+  "movimentos": {
+    "lancando": [
+      "5664380476",
+      "5650512297",
+      "5664896562",
+      "5650576778",
+      "5657665150",
+      "5650371333",
+      "5658265737",
+      "5659282554",
+      "5650669062"
+    ],
+    "parado": [
+      "5655024389",
+      "5655412867"
+    ]
+  },
+  "dominios_ligados": [
+    "gehoortesters.nl"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5655024389",
+      "network": "Outbrain",
+      "gravity": 705,
+      "headline": "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sapo_pt_2026_11_17_8878b4ee.webp"
+    },
+    {
+      "ad_id": "5664380476",
+      "network": "Outbrain",
+      "gravity": 660,
+      "headline": "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tv7dias_pt_2026_11_20_1c718bdb.webp"
+    },
+    {
+      "ad_id": "5650512297",
+      "network": "Taboola",
+      "gravity": 552,
+      "headline": "Lisbon: Procuram-se pessoas para experimentar um aparelho auditivo quase invisível",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ntnews_com_2026_11_16_41deee67.jpg"
+    },
+    {
+      "ad_id": "5664896562",
+      "network": "Outbrain",
+      "gravity": 440,
+      "headline": "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_magazine-hd_com_2026_11_20_eeaf438e.webp"
+    },
+    {
+      "ad_id": "5650576778",
+      "network": "Outbrain",
+      "gravity": 407,
+      "headline": "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sapo_pt_2026_11_16_8e547aa7.webp"
+    },
+    {
+      "ad_id": "5657665150",
+      "network": "Outbrain",
+      "gravity": 353,
+      "headline": "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tv7dias_pt_2026_11_18_a4091fb6.webp"
+    },
+    {
+      "ad_id": "5655412867",
+      "network": "Outbrain",
+      "gravity": 353,
+      "headline": "Procura-se: 250 seniores para experimentar um aparelho auditivo invisível",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_impala_pt_2026_11_17_9cd33803.webp"
+    },
+    {
+      "ad_id": "5658265737",
+      "network": "Outbrain",
+      "gravity": 352,
+      "headline": "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_magazine-hd_com_2026_11_18_9493fa47.webp"
+    },
+    {
+      "ad_id": "5659282554",
+      "network": "Outbrain",
+      "gravity": 352,
+      "headline": "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_magazine-hd_com_2026_11_18_0a04153d.webp"
+    },
+    {
+      "ad_id": "5650669062",
+      "network": "Outbrain",
+      "gravity": 247,
+      "headline": "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_sapo_pt_2026_11_16_7180d216.webp"
+    },
+    {
+      "ad_id": "5650371333",
+      "network": "Taboola",
+      "gravity": 191,
+      "headline": "Procura-se: 250 pessoas para testar o novo mini-aparelho auditivo",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_globo_com_2026_11_16_033bbd98.jpg"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 11."
+}
