@@ -1,25 +1,1224 @@
 # Movimentos — neuropathy
 
-Coleta de 2026-11-20, comparado com 2026-11-19.
+Coleta de 2026-11-21, comparado com 2026-11-20.
 
-- **Escalando:** liyng.com (2662), adskeeper.co.uk (1516), washbosswhale.beauty (1006), evidwell.com (587), science-actualite.com (511), green-ri.click (475), tiendacolshop.com (373), serenatura24.com (355), oekomarkt.co (160)
-- **Volumando:** beauty-ri.click (700), solveclocktext.space (684), wellnessgaze.com (367), tadahitasurakeizoku.click (197)
-- **Lancando:** yournaturalharmony.com (265), wexiy.com (243), skrytunerzibet.fun (210), healingdaily.site (150), medizinrundschau.com (145), lifetechadviser.com (135), dailycarepro.com (110), obols-egises-muff.shop (75), dailylifeinsider.com (60), seniorwellnessdigest.com (55), neuro-socken-de.com (45), gesundheitsreport.site (35), deutscher-gesundheits-fachkreis.de (30), vitalpfad.shop (29), bienvital.digital (25), topgadgetsreview.com (20), saudeediadia.site (3), neuroshutz.site (1), alqinst.com (0), dailywellpress.com (0), gadgetswatcher.com (0)
-- **Parado:** myvita.day (1584), healthweekly.info (641), heartlandhealthjournal.com (361), news360.pro (359), smoothspine.com (337), integratedsupplementlatam.fun (270), thenervehealthreport.com (239), healthvanta.org (230), wellnesshome.blog (178), trimpath.site (168), inkedreeksduppy.shop (155), giornalesm.org (150), doctornewseu.com (135), elivira.com (120), agewelljournal.com (120), gesundheits-beratung.net (118), globallaunch.store (105), medi-komfort.de (90), natural-my.click (75), candy.ai (73), zoryno.org (45), aliexpress.com (45), serenatura.com (25), dailynaturalrituals.com (23), lanuvi.com (20), keller-cloudflare-pages.pages.dev (19), gesundheitsrundschau24.com (14), vitalinsightnews.com (13), gesund-vital-ratgeber.org (8), wellnesswiredaily.com (7), healthnervess.online (6), hilftnervenschmerz.com (5), linfaflowstore.online (1), candyai.gg (1), dcbgio.com (1), nervehealthtodayy.com (1), getorevive.com (1), thejornalwest.com (0), realfindstoday.com (0), purehorizon.fit (0), christianhealthreport.com (0), trylevinasilka.com (0), daetumblejauks.top (0), nervenratgeber.de (0), apothekenblatt.de (0), portalsaudenews.com (0)
+- **Escalando:** liyng.com (2662), adskeeper.co.uk (1516), washbosswhale.beauty (1006), beauty-ri.click (700), science-actualite.com (511), green-ri.click (475), serenatura24.com (402)
+- **Volumando:** solveclocktext.space (684), wellnessgaze.com (360), tiendacolshop.com (291), wexiy.com (243), tadahitasurakeizoku.click (201), dailywellpress.com (124)
+- **Lancando:** yournaturalharmony.com (265), medizinrundschau.com (165), healingdaily.site (150), lifetechadviser.com (135), gadgetswatcher.com (90), obols-egises-muff.shop (75), vitalpfad.shop (60), bienvital.digital (41), dailylifeinsider.com (30), deutscher-gesundheits-fachkreis.de (30), seniorwellnessdigest.com (28), topgadgetsreview.com (20), alqinst.com (12), getcloudone.de (0), artstampsea.beauty (0), apothekenblatt.de (0)
+- **Testando:** gesundheitsrundschau24.com (16)
+- **Parado:** myvita.day (1584), healthweekly.info (641), evidwell.com (410), heartlandhealthjournal.com (361), news360.pro (359), smoothspine.com (337), integratedsupplementlatam.fun (270), thenervehealthreport.com (239), healthvanta.org (230), skrytunerzibet.fun (210), wellnesshome.blog (178), trimpath.site (168), oekomarkt.co (160), inkedreeksduppy.shop (155), giornalesm.org (150), doctornewseu.com (135), elivira.com (120), agewelljournal.com (120), gesundheits-beratung.net (118), dailycarepro.com (110), globallaunch.store (105), medi-komfort.de (90), natural-my.click (75), candy.ai (73), zoryno.org (45), aliexpress.com (45), neuro-socken-de.com (45), gesundheitsreport.site (35), serenatura.com (25), dailynaturalrituals.com (23), lanuvi.com (20), keller-cloudflare-pages.pages.dev (19), vitalinsightnews.com (13), gesund-vital-ratgeber.org (8), wellnesswiredaily.com (7), healthnervess.online (6), hilftnervenschmerz.com (5), saudeediadia.site (3), linfaflowstore.online (1), neuroshutz.site (1), candyai.gg (1), dcbgio.com (1), nervehealthtodayy.com (1), getorevive.com (1), thejornalwest.com (0), realfindstoday.com (0), purehorizon.fit (0), christianhealthreport.com (0), trylevinasilka.com (0), daetumblejauks.top (0), nervenratgeber.de (0), portalsaudenews.com (0)
 
 ## Tendências
-- Nesta coleta, vários blocos de visão foram preenchidos com linhas copiadas de outras visões, não com uma extração real: hearing E (14 de 15 linhas iguais a A|hearing); hearing C e F idênticos (nos termos tinnitus e hearing); neuropathy A remontada com o prefixo de E|neuropathy mais um subconjunto de D; nerve A exatamente E|nerve seguido de D|nerve; e nerve E também copiada. Essas letras de visão não entram como evidência de lançando via C, volumando via D, escalando via E ou novos via F. A gravidade, first_seen e last_seen de cada ad_id continuam a valer.
-- evidwell.com segue no topo desta janela (Mgid 587 e AdsKeeper 580), mas o criativo 5638568232 foi 1173→587 com ad_strength idêntico (5410): o pico de 18/11 não se confirmou.
-- science-actualite.com subiu 157→511 Outbrain (ad_strength 1626→2616, first_seen 08/10). liyng.com ativo nesta janela está a 482/462/446 Outbrain; o 3487 que ainda aparecia no máx. do player era um valor antigo sem janela, de um anúncio com last_seen 14/11 (agora parado) — o 5623826246 foi regravado para 462 ao reaparecer hoje.
-- washbosswhale.beauty voltou a escalando com volume desta janela (AdsKeeper 473, Mgid 442), não pelo máx. histórico 1006. green-ri.click 475/439 Mgid. adskeeper.co.uk também foi para escalando, mas continua host da rede/tracker, não loja.
-- Muitos players de 18/11 passaram a parado por last_seen 16/11 (healthweekly 641, heartland 361, smoothspine 337, thenervehealthreport 239, wellnesshome.blog 178, oekomarkt/giornalesm/elivira, etc.).
+- #
+- #
+-  
+- T
+- e
+- n
+- d
+- ê
+- n
+- c
+- i
+- a
+- s
+-  
+- —
+-  
+- n
+- e
+- u
+- r
+- o
+- p
+- a
+- t
+- h
+- y
+- 
+
+- 
+
+- T
+- o
+- p
+-  
+- d
+- a
+-  
+- j
+- a
+- n
+- e
+- l
+- a
+-  
+- a
+- t
+- i
+- v
+- a
+-  
+- (
+- s
+- e
+- m
+-  
+- e
+- v
+- i
+- d
+- w
+- e
+- l
+- l
+- ,
+-  
+- a
+- g
+- o
+- r
+- a
+-  
+- p
+- a
+- r
+- a
+- d
+- o
+- )
+- :
+-  
+- s
+- c
+- i
+- e
+- n
+- c
+- e
+- -
+- a
+- c
+- t
+- u
+- a
+- l
+- i
+- t
+- e
+- .
+- c
+- o
+- m
+-  
+- O
+- u
+- t
+- b
+- r
+- a
+- i
+- n
+-  
+- 5
+- 1
+- 1
+-  
+- (
+- i
+- g
+- u
+- a
+- l
+-  
+- a
+-  
+- o
+- n
+- t
+- e
+- m
+- ,
+-  
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 2
+- 6
+- 1
+- 6
+- )
+- .
+-  
+- g
+- r
+- e
+- e
+- n
+- -
+- r
+- i
+- .
+- c
+- l
+- i
+- c
+- k
+-  
+- M
+- g
+- i
+- d
+-  
+- 4
+- 7
+- 5
+-  
+- e
+-  
+- w
+- a
+- s
+- h
+- b
+- o
+- s
+- s
+- w
+- h
+- a
+- l
+- e
+- .
+- b
+- e
+- a
+- u
+- t
+- y
+-  
+- A
+- d
+- s
+- K
+- e
+- e
+- p
+- e
+- r
+-  
+- 4
+- 7
+- 3
+-  
+- e
+- s
+- t
+- á
+- v
+- e
+- i
+- s
+- ;
+-  
+- u
+- m
+-  
+- o
+- u
+- t
+- r
+- o
+-  
+- a
+- n
+- ú
+- n
+- c
+- i
+- o
+-  
+- M
+- g
+- i
+- d
+-  
+- d
+- e
+-  
+- w
+- a
+- s
+- h
+- b
+- o
+- s
+- s
+- w
+- h
+- a
+- l
+- e
+-  
+- s
+- u
+- b
+- i
+- u
+-  
+- 2
+- 7
+- 3
+- →
+- 3
+- 9
+- 6
+-  
+- (
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 5
+- 0
+- 6
+- 0
+- →
+- 5
+- 5
+- 8
+- 0
+- )
+- .
+-  
+- l
+- i
+- y
+- n
+- g
+- .
+- c
+- o
+- m
+-  
+- a
+- t
+- i
+- v
+- o
+-  
+- n
+- o
+-  
+- m
+- á
+- x
+- i
+- m
+- o
+-  
+- 4
+- 4
+- 0
+-  
+- (
+- 3
+- 9
+- 7
+- →
+- 4
+- 4
+- 0
+- ,
+-  
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 3
+- 8
+- 1
+- 0
+- →
+- 1
+- 3
+- 2
+- 0
+- 0
+-  
+- n
+- o
+-  
+- a
+- d
+-  
+- 5
+- 6
+- 2
+- 4
+- 3
+- 8
+- 4
+- 7
+- 9
+- 2
+- )
+- ;
+-  
+- o
+-  
+- 4
+- 8
+- 2
+-  
+- d
+- e
+-  
+- o
+- n
+- t
+- e
+- m
+-  
+- (
+- 5
+- 6
+- 2
+- 4
+- 1
+- 0
+- 4
+- 1
+- 0
+- 0
+- )
+-  
+- c
+- a
+- i
+- u
+-  
+- p
+- a
+- r
+- a
+-  
+- 2
+- 5
+- 6
+- .
+-  
+- s
+- e
+- r
+- e
+- n
+- a
+- t
+- u
+- r
+- a
+- 2
+- 4
+- .
+- c
+- o
+- m
+-  
+- 3
+- 5
+- 5
+- →
+- 4
+- 0
+- 2
+-  
+- (
+- T
+- a
+- b
+- o
+- o
+- l
+- a
+- ,
+-  
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 7
+- 1
+- 0
+- →
+- 1
+- 1
+- 6
+- 0
+- )
+- .
+-  
+- b
+- e
+- a
+- u
+- t
+- y
+- -
+- r
+- i
+- .
+- c
+- l
+- i
+- c
+- k
+-  
+- v
+- o
+- l
+- t
+- o
+- u
+-  
+- a
+-  
+- e
+- s
+- c
+- a
+- l
+- a
+- n
+- d
+- o
+- ,
+-  
+- c
+- o
+- m
+-  
+- 4
+- 0
+- 5
+-  
+- h
+- o
+- j
+- e
+-  
+- (
+- f
+- i
+- r
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 7
+- /
+- 0
+- 6
+- ,
+-  
+- n
+- o
+- v
+- o
+-  
+- n
+- o
+-  
+- m
+- a
+- s
+- t
+- e
+- r
+- )
+- .
+-  
+- e
+- v
+- i
+- d
+- w
+- e
+- l
+- l
+- .
+- c
+- o
+- m
+-  
+- 5
+- 8
+- 7
+- →
+- 2
+- 9
+- 4
+- /
+- 2
+- 9
+- 0
+-  
+- c
+- o
+- m
+-  
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- i
+- d
+- ê
+- n
+- t
+- i
+- c
+- o
+-  
+- 5
+- 4
+- 1
+- 0
+- /
+- 4
+- 9
+- 5
+- 0
+-  
+- e
+-  
+- l
+- a
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 1
+- /
+- 1
+- 7
+- :
+-  
+- o
+-  
+- p
+- u
+- l
+- s
+- o
+-  
+- n
+- ã
+- o
+-  
+- s
+- e
+-  
+- s
+- u
+- s
+- t
+- e
+- v
+- e
+-  
+- e
+-  
+- o
+-  
+- p
+- l
+- a
+- y
+- e
+- r
+-  
+- p
+- a
+- s
+- s
+- o
+- u
+-  
+- a
+-  
+- p
+- a
+- r
+- a
+- d
+- o
+-  
+- p
+- e
+- l
+- o
+-  
+- c
+- u
+- t
+- o
+- f
+- f
+-  
+- d
+- e
+-  
+- h
+- o
+- j
+- e
+- .
+- 
+
 
 ## Testes promissórios
-- tiendacolshop.com é o único player novo com gravidade alta: 1 anúncio Taboola 373 (first_seen 30/05, por isso escalando na regra de 7+ dias), headline ES de neuropatia. Lander: loja Col.shop em COP; homepage vazia; catálogo com vários produtos; LegFix é advertorial de joelho a $149.000 COP contra entrega, sem texto de neuropatia.
-- serenatura24.com 0→355 e yournaturalharmony.com 0→265 (Taboola, headlines checas, phash 0 entre si). serenatura já existia no mapa de 19/11 a 0.
-- gadgetswatcher.com (5 anúncios Outbrain a 0, mesma headline de liyng) aponta para um site de reviews de gadgets, não para a oferta. alqinst.com e dailywellpress.com são testes a 0.
+- #
+- #
+-  
+- T
+- e
+- s
+- t
+- e
+- s
+-  
+- —
+-  
+- n
+- e
+- u
+- r
+- o
+- p
+- a
+- t
+- h
+- y
+- 
 
-## Diff vs 19/11 (resumo)
-- Anúncios novos no nicho: 41; atualizados: 80; só no histórico: 430.
-- Players novos: tiendacolshop.com (escalando 373), alqinst.com (lancando 0), dailywellpress.com (lancando 0), gadgetswatcher.com (lancando 0).
-- Classes: adskeeper.co.uk volumando→escalando; washbosswhale.beauty volumando→escalando; serenatura24.com lancando→escalando; wellnessgaze.com escalando→volumando; healthweekly.info volumando→parado; heartlandhealthjournal.com volumando→parado; smoothspine.com escalando→parado; integratedsupplementlatam.fun escalando→parado; thenervehealthreport.com volumando→parado; wellnesshome.blog escalando→parado; trimpath.site volumando→parado; inkedreeksduppy.shop lancando→parado; giornalesm.org escalando→parado; elivira.com lancando→parado; agewelljournal.com lancando→parado; globallaunch.store lancando→parado; medi-komfort.de lancando→parado; zoryno.org lancando→parado; aliexpress.com lancando→parado; lanuvi.com lancando→parado; healthnervess.online lancando→parado; thejornalwest.com lancando→parado; realfindstoday.com lancando→parado; purehorizon.fit lancando→parado; christianhealthreport.com lancando→parado.
+- 
+
+- D
+- o
+- i
+- s
+-  
+- p
+- l
+- a
+- y
+- e
+- r
+- s
+-  
+- n
+- o
+- v
+- o
+- s
+-  
+- a
+-  
+- g
+- r
+- a
+- v
+- i
+- d
+- a
+- d
+- e
+-  
+- 0
+-  
+- e
+-  
+- f
+- i
+- r
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 1
+- /
+- 2
+- 0
+- :
+-  
+- g
+- e
+- t
+- c
+- l
+- o
+- u
+- d
+- o
+- n
+- e
+- .
+- d
+- e
+-  
+- (
+- T
+- a
+- b
+- o
+- o
+- l
+- a
+- ;
+-  
+- l
+- o
+- j
+- a
+-  
+- D
+- E
+-  
+- c
+- o
+- m
+-  
+- R
+- e
+- N
+- e
+- r
+- v
+-  
+- 3
+- D
+-  
+- E
+- M
+- S
+-  
+- p
+- a
+- r
+- a
+-  
+- K
+- r
+- i
+- b
+- b
+- e
+- l
+- n
+- /
+- T
+- a
+- u
+- b
+- h
+- e
+- i
+- t
+- ,
+-  
+- €
+- 8
+- 9
+- ,
+- 9
+- 0
+- )
+-  
+- e
+-  
+- a
+- r
+- t
+- s
+- t
+- a
+- m
+- p
+- s
+- e
+- a
+- .
+- b
+- e
+- a
+- u
+- t
+- y
+-  
+- (
+- M
+- g
+- i
+- d
+- ,
+-  
+- h
+- e
+- a
+- d
+- l
+- i
+- n
+- e
+-  
+- d
+- e
+-  
+- «
+- 2
+-  
+- b
+- i
+- l
+- j
+- k
+- e
+- »
+- ;
+-  
+- r
+- a
+- i
+- z
+-  
+- H
+- T
+- T
+- P
+-  
+- 2
+- 0
+- 0
+-  
+- c
+- o
+- m
+-  
+- c
+- o
+- r
+- p
+- o
+-  
+- v
+- a
+- z
+- i
+- o
+- )
+- .
+-  
+- d
+- a
+- i
+- l
+- y
+- w
+- e
+- l
+- l
+- p
+- r
+- e
+- s
+- s
+- .
+- c
+- o
+- m
+-  
+- l
+- a
+- n
+- ç
+- a
+- n
+- d
+- o
+- →
+- v
+- o
+- l
+- u
+- m
+- a
+- n
+- d
+- o
+-  
+- 0
+- →
+- 1
+- 2
+- 4
+- .
+-  
+- a
+- p
+- o
+- t
+- h
+- e
+- k
+- e
+- n
+- b
+- l
+- a
+- t
+- t
+- .
+- d
+- e
+-  
+- p
+- a
+- r
+- a
+- d
+- o
+- →
+- l
+- a
+- n
+- ç
+- a
+- n
+- d
+- o
+-  
+- 0
+- .
+-  
+- y
+- o
+- u
+- r
+- n
+- a
+- t
+- u
+- r
+- a
+- l
+- h
+- a
+- r
+- m
+- o
+- n
+- y
+- .
+- c
+- o
+- m
+-  
+- (
+- j
+- á
+-  
+- n
+- o
+-  
+- m
+- a
+- p
+- a
+- ,
+-  
+- l
+- i
+- g
+- a
+- d
+- o
+-  
+- a
+-  
+- s
+- e
+- r
+- e
+- n
+- a
+- t
+- u
+- r
+- a
+- 2
+- 4
+- )
+-  
+- t
+- e
+- v
+- e
+-  
+- u
+- m
+-  
+- a
+- n
+- ú
+- n
+- c
+- i
+- o
+-  
+- 0
+- →
+- 2
+- 6
+- 5
+- .
+-  
+- g
+- a
+- d
+- g
+- e
+- t
+- s
+- w
+- a
+- t
+- c
+- h
+- e
+- r
+- .
+- c
+- o
+- m
+-  
+- s
+- e
+- g
+- u
+- e
+-  
+- l
+- a
+- n
+- ç
+- a
+- n
+- d
+- o
+- ,
+-  
+- a
+- g
+- o
+- r
+- a
+-  
+- c
+- o
+- m
+-  
+- g
+- r
+- a
+- v
+- i
+- d
+- a
+- d
+- e
+-  
+- 0
+- →
+- 9
+- 0
+-  
+- e
+-  
+- a
+-  
+- m
+- e
+- s
+- m
+- a
+-  
+- h
+- e
+- a
+- d
+- l
+- i
+- n
+- e
+-  
+- D
+- E
+-  
+- d
+- e
+-  
+- l
+- i
+- y
+- n
+- g
+- .
+- 
+
+
+## Diff vs 20/11 (resumo)
+- Anúncios novos no nicho: 34; atualizados: 89; só no histórico: 462.
+- Players novos: getcloudone.de (lancando 0), artstampsea.beauty (lancando 0).
+- Classes: beauty-ri.click volumando→escalando; tiendacolshop.com escalando→volumando; wexiy.com lancando→volumando; dailywellpress.com lancando→volumando; apothekenblatt.de parado→lancando; gesundheitsrundschau24.com parado→testando; evidwell.com escalando→parado; skrytunerzibet.fun lancando→parado; oekomarkt.co escalando→parado; dailycarepro.com lancando→parado; neuro-socken-de.com lancando→parado; gesundheitsreport.site lancando→parado; saudeediadia.site lancando→parado; neuroshutz.site lancando→parado.
