@@ -1,0 +1,332 @@
+{
+  "data_coleta": "2026-11-21",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "herelnd.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 24,
+  "n_headlines": 2,
+  "headlines": [
+    "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+    "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון"
+  ],
+  "max_gravity": 432,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 432,
+      "ad_id": "5636707785",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-20",
+  "movimentos": {
+    "escalando": [
+      "5636707785"
+    ],
+    "lancando": [
+      "5664805203",
+      "5665854627",
+      "5666510204",
+      "5666528764",
+      "5666832422",
+      "5666840168",
+      "5640008164",
+      "5657463910",
+      "5657460399",
+      "5660211309",
+      "5660591741",
+      "5643669324",
+      "5642650168",
+      "5658039951",
+      "5658430388"
+    ],
+    "parado": [
+      "5636206817",
+      "5654319345",
+      "5640469961",
+      "5637722734",
+      "5645767658",
+      "5646803547",
+      "5647871844",
+      "5644734623"
+    ]
+  },
+  "dominios_ligados": [
+    "pgsrc.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5636707785",
+      "network": "Mgid",
+      "gravity": 432,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-20",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_vse-knigi_org_2026_11_13_b617212a.webp"
+    },
+    {
+      "ad_id": "5640008164",
+      "network": "Mgid",
+      "gravity": 262,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_queroreceitasoberana_com_br_2026_11_14_b9ea4dea.webp"
+    },
+    {
+      "ad_id": "5640469961",
+      "network": "Mgid",
+      "gravity": 257,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_cgel_me_2026_11_14_7d04f582.webp"
+    },
+    {
+      "ad_id": "5636206817",
+      "network": "Mgid",
+      "gravity": 211,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_korrespondent_az_2026_11_13_a682c0a0.webp"
+    },
+    {
+      "ad_id": "5643669324",
+      "network": "Mgid",
+      "gravity": 165,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infoburgas_com_2026_11_15_bbb95e7a.webp"
+    },
+    {
+      "ad_id": "5642650168",
+      "network": "Mgid",
+      "gravity": 163,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_news365_co_za_2026_11_14_053da07a.webp"
+    },
+    {
+      "ad_id": "5637722734",
+      "network": "Mgid",
+      "gravity": 158,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_harveycliniccare_com_2026_11_13_f20f60b7.webp"
+    },
+    {
+      "ad_id": "5657463910",
+      "network": "Mgid",
+      "gravity": 35,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_beritainspiratif_com_2026_11_18_7522574a.webp"
+    },
+    {
+      "ad_id": "5657460399",
+      "network": "Mgid",
+      "gravity": 10,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_kaltengtoday_com_2026_11_18_33c025dd.webp"
+    },
+    {
+      "ad_id": "5664805203",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_keeponmind_com_2026_11_20_6ad457a8.webp"
+    },
+    {
+      "ad_id": "5665854627",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nepaljapan_com_2026_11_20_4c8ae522.webp"
+    },
+    {
+      "ad_id": "5666510204",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_polychka_com_2026_11_20_20383de0.webp"
+    },
+    {
+      "ad_id": "5666528764",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_hausundkochen_com_2026_11_20_f77a3cc7.webp"
+    },
+    {
+      "ad_id": "5666832422",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_korrespondent_az_2026_11_20_f6e9fba8.webp"
+    },
+    {
+      "ad_id": "5666840168",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_teraslampung_com_2026_11_20_86d60199.webp"
+    },
+    {
+      "ad_id": "5660211309",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_beritainspiratif_com_2026_11_19_9c6aea5d.webp"
+    },
+    {
+      "ad_id": "5660591741",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_niadi_net_2026_11_19_fc773b41.webp"
+    },
+    {
+      "ad_id": "5658039951",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_kibus_net_2026_11_18_956ad88f.webp"
+    },
+    {
+      "ad_id": "5658430388",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_beritagambar_com_2026_11_18_c64692c7.webp"
+    },
+    {
+      "ad_id": "5654319345",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_kabarhandayani_com_2026_11_17_73ff4786.webp"
+    },
+    {
+      "ad_id": "5645767658",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ungkap_co_id_2026_11_15_f1a7ad3f.webp"
+    },
+    {
+      "ad_id": "5646803547",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_cartablanca_org_2026_11_15_ea03314a.webp"
+    },
+    {
+      "ad_id": "5647871844",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "מנתח: \"שיטת איפוס האוזן ב-7 שניות\" תתקן ירידה בשמיעה וטינטון",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_d-onenews_com_2026_11_16_72f7ce73.webp"
+    },
+    {
+      "ad_id": "5644734623",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "רופא בכיר: שיטה קלה מקלה על ירידה בשמיעה ועל צלצולים באוזניים!",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_kaltengtoday_com_2026_11_15_7a0b179c.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 280→432; n anúncios agora 24."
+}
