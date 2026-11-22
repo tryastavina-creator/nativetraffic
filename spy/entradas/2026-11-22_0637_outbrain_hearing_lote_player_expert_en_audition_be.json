@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-22",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "expert-en-audition.be",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "On recherche 300 Belges pour un appareil auditif quasi invisible"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5669582450",
+      "last_seen": "2026-11-21"
+    }
+  },
+  "first_seen": "2026-11-21",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "lancando": [
+      "5669582450"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://expert-en-audition.be devolveu HTTP 522 (16 bytes, 'error code: 522'). Oferta não foi legível. Headline de recrutamento de testers na Bélgica, no mesmo ângulo de testeauditivo24.pt / gehoortesters.nl. Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5669582450",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "On recherche 300 Belges pour un appareil auditif quasi invisible",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bfmtv_com_2026_11_21_3c3c298a.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-22."
+}
