@@ -1,12 +1,12 @@
 # Movimentos — neuropathy
 
-Coleta de 2026-11-21, comparado com 2026-11-20.
+Coleta de 2026-11-22, comparado com 2026-11-21.
 
-- **Escalando:** liyng.com (2662), adskeeper.co.uk (1516), washbosswhale.beauty (1006), beauty-ri.click (700), science-actualite.com (511), green-ri.click (475), serenatura24.com (402)
-- **Volumando:** solveclocktext.space (684), wellnessgaze.com (360), tiendacolshop.com (291), wexiy.com (243), tadahitasurakeizoku.click (201), dailywellpress.com (124)
-- **Lancando:** yournaturalharmony.com (265), medizinrundschau.com (165), healingdaily.site (150), lifetechadviser.com (135), gadgetswatcher.com (90), obols-egises-muff.shop (75), vitalpfad.shop (60), bienvital.digital (41), dailylifeinsider.com (30), deutscher-gesundheits-fachkreis.de (30), seniorwellnessdigest.com (28), topgadgetsreview.com (20), alqinst.com (12), getcloudone.de (0), artstampsea.beauty (0), apothekenblatt.de (0)
-- **Testando:** gesundheitsrundschau24.com (16)
-- **Parado:** myvita.day (1584), healthweekly.info (641), evidwell.com (410), heartlandhealthjournal.com (361), news360.pro (359), smoothspine.com (337), integratedsupplementlatam.fun (270), thenervehealthreport.com (239), healthvanta.org (230), skrytunerzibet.fun (210), wellnesshome.blog (178), trimpath.site (168), oekomarkt.co (160), inkedreeksduppy.shop (155), giornalesm.org (150), doctornewseu.com (135), elivira.com (120), agewelljournal.com (120), gesundheits-beratung.net (118), dailycarepro.com (110), globallaunch.store (105), medi-komfort.de (90), natural-my.click (75), candy.ai (73), zoryno.org (45), aliexpress.com (45), neuro-socken-de.com (45), gesundheitsreport.site (35), serenatura.com (25), dailynaturalrituals.com (23), lanuvi.com (20), keller-cloudflare-pages.pages.dev (19), vitalinsightnews.com (13), gesund-vital-ratgeber.org (8), wellnesswiredaily.com (7), healthnervess.online (6), hilftnervenschmerz.com (5), saudeediadia.site (3), linfaflowstore.online (1), neuroshutz.site (1), candyai.gg (1), dcbgio.com (1), nervehealthtodayy.com (1), getorevive.com (1), thejornalwest.com (0), realfindstoday.com (0), purehorizon.fit (0), christianhealthreport.com (0), trylevinasilka.com (0), daetumblejauks.top (0), nervenratgeber.de (0), portalsaudenews.com (0)
+- **Escalando:** liyng.com (2662), myvita.day (1584), washbosswhale.beauty (1006), beauty-ri.click (700), science-actualite.com (630), yournaturalharmony.com (580), green-ri.click (532), wexiy.com (243), gadgetswatcher.com (240)
+- **Volumando:** adskeeper.co.uk (1516), solveclocktext.space (684), wellnessgaze.com (360), tiendacolshop.com (291), tadahitasurakeizoku.click (201), dailywellpress.com (124)
+- **Lancando:** serenatura24.com (402), wellnesshome.blog (178), trimpath.site (168), medizinrundschau.com (165), healingdaily.site (150), lifetechadviser.com (135), agewelljournal.com (120), obols-egises-muff.shop (75), vitalpfad.shop (60), deutscher-gesundheits-fachkreis.de (30), seniorwellnessdigest.com (28), bienvital.digital (21), getcloudone.de (20), gesund-vital-ratgeber.org (20), alqinst.com (12), apothekenblatt.de (7), bract-reeks-bowie.shop (0), recuperabem.site (0), healthtribunenews.com (0), nervenratgeber.de (0), artstampsea.beauty (0)
+- **Testando:** gesundheitsrundschau24.com (53)
+- **Parado:** healthweekly.info (641), evidwell.com (410), heartlandhealthjournal.com (361), news360.pro (359), smoothspine.com (337), integratedsupplementlatam.fun (270), thenervehealthreport.com (239), healthvanta.org (230), skrytunerzibet.fun (210), oekomarkt.co (160), inkedreeksduppy.shop (155), giornalesm.org (150), doctornewseu.com (135), elivira.com (120), gesundheits-beratung.net (118), dailycarepro.com (110), globallaunch.store (105), medi-komfort.de (90), natural-my.click (75), candy.ai (73), zoryno.org (45), aliexpress.com (45), neuro-socken-de.com (45), gesundheitsreport.site (35), dailylifeinsider.com (30), serenatura.com (25), dailynaturalrituals.com (23), topgadgetsreview.com (20), lanuvi.com (20), keller-cloudflare-pages.pages.dev (19), vitalinsightnews.com (13), wellnesswiredaily.com (7), healthnervess.online (6), hilftnervenschmerz.com (5), linfaflowstore.online (1), saudeediadia.site (1), neuroshutz.site (1), candyai.gg (1), dcbgio.com (1), nervehealthtodayy.com (1), getorevive.com (1), thejornalwest.com (0), realfindstoday.com (0), purehorizon.fit (0), christianhealthreport.com (0), trylevinasilka.com (0), daetumblejauks.top (0), portalsaudenews.com (0)
 
 ## Tendências
 - #
@@ -58,54 +58,13 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - i
 - v
 - a
--  
-- (
-- s
-- e
-- m
--  
-- e
-- v
-- i
-- d
-- w
-- e
-- l
-- l
-- ,
--  
-- a
-- g
-- o
-- r
-- a
--  
-- p
-- a
-- r
-- a
-- d
-- o
-- )
 - :
 -  
-- s
-- c
-- i
-- e
-- n
-- c
-- e
-- -
-- a
-- c
-- t
-- u
-- a
 - l
 - i
-- t
-- e
+- y
+- n
+- g
 - .
 - c
 - o
@@ -120,26 +79,172 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - i
 - n
 -  
-- 5
-- 1
-- 1
+- 7
+- 8
+- 7
 -  
 - (
-- i
+- 3
+- 4
+- 1
+- →
+- 7
+- 8
+- 7
+- ,
+-  
+- a
+- d
+- _
+- s
+- t
+- r
+- e
+- n
 - g
+- t
+- h
+-  
+- 4
+- 4
+- 0
+- 0
+- →
+- 7
+- 3
+- 0
+- 0
+-  
+- n
+- o
+-  
+- a
+- d
+-  
+- 5
+- 6
+- 2
+- 4
+- 1
+- 0
+- 6
+- 6
+- 5
+- 0
+- )
+-  
+- —
+-  
+- s
+- u
+- b
+- i
+- d
+- a
+-  
+- c
+- o
+- m
+-  
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- a
+-  
+- a
+- c
+- o
+- m
+- p
+- a
+- n
+- h
+- a
+- r
+- ;
+-  
+- o
+-  
+- m
+- á
+- x
+- i
+- m
+- o
+-  
+- h
+- i
+- s
+- t
+- ó
+- r
+- i
+- c
+- o
+-  
+- 2
+- 6
+- 6
+- 2
+-  
+- n
+- ã
+- o
+-  
+- é
+-  
+- o
+-  
+- t
+- o
+- p
+-  
+- d
+- e
+-  
+- h
+- o
+- j
+- e
+- .
+-  
+- s
+- c
+- i
+- e
+- n
+- c
+- e
+- -
+- a
+- c
+- t
 - u
 - a
 - l
--  
-- a
--  
-- o
-- n
+- i
 - t
 - e
+- .
+- c
+- o
 - m
-- ,
 -  
+- 5
+- 1
+- 1
+- →
+- 6
+- 3
+- 0
+-  
+- (
 - s
 - t
 - r
@@ -153,6 +258,281 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - 6
 - 1
 - 6
+- →
+- 3
+- 7
+- 2
+- 6
+- )
+- ,
+-  
+- a
+-  
+- s
+- u
+- b
+- i
+- d
+- a
+-  
+- d
+- e
+-  
+- 2
+- 0
+- /
+- 1
+- 1
+-  
+- s
+- e
+- g
+- u
+- r
+- o
+- u
+-  
+- e
+-  
+- a
+- i
+- n
+- d
+- a
+-  
+- c
+- r
+- e
+- s
+- c
+- e
+- u
+- .
+-  
+- y
+- o
+- u
+- r
+- n
+- a
+- t
+- u
+- r
+- a
+- l
+- h
+- a
+- r
+- m
+- o
+- n
+- y
+- .
+- c
+- o
+- m
+-  
+- 6
+- 5
+- →
+- 5
+- 8
+- 0
+-  
+- T
+- a
+- b
+- o
+- o
+- l
+- a
+-  
+- (
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 1
+- 3
+- 0
+- →
+- 1
+- 3
+- 6
+- 3
+- )
+- ,
+-  
+- p
+- a
+- s
+- s
+- o
+- u
+-  
+- a
+-  
+- e
+- s
+- c
+- a
+- l
+- a
+- n
+- d
+- o
+- ;
+-  
+- c
+- o
+- n
+- t
+- i
+- n
+- u
+- a
+-  
+- l
+- a
+- t
+- e
+- r
+- a
+- l
+- i
+- z
+- a
+- d
+- o
+-  
+- c
+- o
+- m
+-  
+- s
+- e
+- r
+- e
+- n
+- a
+- t
+- u
+- r
+- a
+- 2
+- 4
+- .
+- c
+- o
+- m
+-  
+- (
+- 4
+- 0
+- 2
+- ,
+-  
+- l
+- a
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 1
+- /
+- 2
+- 0
+- ,
+-  
+- c
+- l
+- a
+- s
+- s
+- e
+-  
+- v
+- o
+- l
+- t
+- o
+- u
+-  
+- a
+-  
+- l
+- a
+- n
+- ç
+- a
+- n
+- d
+- o
+-  
+- p
+- o
+- r
+- q
+- u
+- e
+-  
+- f
+- i
+- r
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 1
+- /
+- 1
+- 8
+-  
+- a
+- i
+- n
+- d
+- a
+-  
+- e
+- s
+- t
+- á
+-  
+- n
+- a
+-  
+- j
+- a
+- n
+- e
+- l
+- a
+-  
+- d
+- e
+-  
+- 7
+-  
+- d
+- i
+- a
+- s
 - )
 - .
 -  
@@ -171,16 +551,62 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - c
 - k
 -  
-- M
-- g
-- i
+- t
+- e
+- m
+-  
+- u
+- m
+-  
+- a
 - d
+-  
+- a
+-  
+- 5
+- 3
+- 2
+-  
+- (
+- o
 -  
 - 4
 - 7
 - 5
+- /
+- 4
+- 3
+- 9
 -  
+- d
 - e
+-  
+- o
+- n
+- t
+- e
+- m
+-  
+- c
+- a
+- i
+- u
+-  
+- p
+- a
+- r
+- a
+-  
+- ~
+- 2
+- 3
+- 8
+- /
+- 2
+- 2
+- 0
+- )
+- .
 -  
 - w
 - a
@@ -202,6 +628,17 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - u
 - t
 - y
+-  
+- 4
+- 7
+- 3
+- →
+- 2
+- 3
+- 7
+-  
+- n
+- o
 -  
 - A
 - d
@@ -213,22 +650,15 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - e
 - r
 -  
-- 4
-- 7
-- 3
--  
+- d
 - e
-- s
+-  
+- o
+- n
 - t
-- á
-- v
 - e
-- i
-- s
-- ;
--  
-- u
 - m
+- ;
 -  
 - o
 - u
@@ -237,478 +667,90 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - o
 -  
 - a
-- n
-- ú
-- n
-- c
-- i
-- o
+- d
 -  
 - M
 - g
 - i
 - d
 -  
-- d
 - e
--  
-- w
-- a
-- s
-- h
-- b
-- o
-- s
-- s
-- w
-- h
-- a
-- l
-- e
--  
-- s
-- u
-- b
-- i
-- u
--  
-- 2
-- 7
-- 3
-- →
-- 3
-- 9
-- 6
--  
-- (
 - s
 - t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- 5
-- 0
-- 6
-- 0
-- →
-- 5
-- 5
-- 8
-- 0
-- )
-- .
--  
-- l
-- i
-- y
-- n
-- g
-- .
-- c
-- o
-- m
--  
-- a
-- t
-- i
-- v
-- o
--  
-- n
-- o
--  
-- m
 - á
-- x
-- i
-- m
-- o
 -  
-- 4
-- 4
-- 0
+- a
+-  
+- 3
+- 9
+- 1
+- .
+-  
+- m
+- y
+- v
+- i
+- t
+- a
+- .
+- d
+- a
+- y
+-  
+- r
+- e
+- a
+- p
+- a
+- r
+- e
+- c
+- e
+- u
 -  
 - (
 - 3
-- 9
 - 7
-- →
 - 4
-- 4
-- 0
-- ,
--  
-- s
-- t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- 3
-- 8
-- 1
-- 0
-- →
-- 1
-- 3
-- 2
-- 0
-- 0
 -  
 - n
-- o
--  
 - a
-- d
 -  
-- 5
-- 6
-- 2
-- 4
-- 3
-- 8
-- 4
-- 7
-- 9
-- 2
-- )
+- j
+- a
+- n
+- e
+- l
+- a
+-  
+- d
+- e
+-  
+- h
+- o
+- j
+- e
 - ;
 -  
 - o
 -  
-- 4
-- 8
-- 2
--  
-- d
-- e
--  
-- o
-- n
-- t
-- e
-- m
--  
-- (
-- 5
-- 6
-- 2
-- 4
 - 1
-- 0
-- 4
-- 1
-- 0
-- 0
-- )
--  
-- c
-- a
-- i
-- u
--  
-- p
-- a
-- r
-- a
--  
-- 2
-- 5
-- 6
-- .
--  
-- s
-- e
-- r
-- e
-- n
-- a
-- t
-- u
-- r
-- a
-- 2
-- 4
-- .
-- c
-- o
-- m
--  
-- 3
-- 5
-- 5
-- →
-- 4
-- 0
-- 2
--  
-- (
-- T
-- a
-- b
-- o
-- o
-- l
-- a
-- ,
--  
-- s
-- t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- 7
-- 1
-- 0
-- →
-- 1
-- 1
-- 6
-- 0
-- )
-- .
--  
-- b
-- e
-- a
-- u
-- t
-- y
-- -
-- r
-- i
-- .
-- c
-- l
-- i
-- c
-- k
--  
-- v
-- o
-- l
-- t
-- o
-- u
--  
-- a
--  
-- e
-- s
-- c
-- a
-- l
-- a
-- n
-- d
-- o
-- ,
--  
-- c
-- o
-- m
--  
-- 4
-- 0
-- 5
--  
-- h
-- o
-- j
-- e
--  
-- (
-- f
-- i
-- r
-- s
-- t
-- _
-- s
-- e
-- e
-- n
--  
-- 1
-- 7
-- /
-- 0
-- 6
-- ,
--  
-- n
-- o
-- v
-- o
--  
-- n
-- o
--  
-- m
-- a
-- s
-- t
-- e
-- r
-- )
-- .
--  
-- e
-- v
-- i
-- d
-- w
-- e
-- l
-- l
-- .
-- c
-- o
-- m
--  
 - 5
 - 8
-- 7
-- →
-- 2
-- 9
 - 4
-- /
-- 2
-- 9
-- 0
 -  
-- c
-- o
-- m
+- é
 -  
+- h
+- i
 - s
 - t
+- ó
 - r
-- e
-- n
-- g
-- t
-- h
--  
-- i
-- d
-- ê
-- n
-- t
 - i
 - c
 - o
--  
-- 5
-- 4
-- 1
-- 0
-- /
-- 4
-- 9
-- 5
-- 0
--  
-- e
--  
-- l
-- a
-- s
-- t
-- _
-- s
-- e
-- e
-- n
--  
-- 1
-- 1
-- /
-- 1
-- 7
-- :
--  
-- o
--  
-- p
-- u
-- l
-- s
-- o
--  
-- n
-- ã
-- o
--  
-- s
-- e
--  
-- s
-- u
-- s
-- t
-- e
-- v
-- e
--  
-- e
--  
-- o
--  
-- p
-- l
-- a
-- y
-- e
-- r
--  
-- p
-- a
-- s
-- s
-- o
-- u
--  
-- a
--  
-- p
-- a
-- r
-- a
-- d
-- o
--  
-- p
-- e
-- l
-- o
--  
-- c
-- u
-- t
-- o
-- f
-- f
--  
-- d
-- e
--  
-- h
-- o
-- j
-- e
+- )
 - .
 - 
 
@@ -740,9 +782,9 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 
 - 
 
-- D
-- o
-- i
+- T
+- r
+- ê
 - s
 -  
 - p
@@ -790,338 +832,247 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - 1
 - /
 - 2
-- 0
+- 1
 - :
 -  
-- g
-- e
-- t
-- c
-- l
-- o
-- u
-- d
-- o
-- n
-- e
-- .
-- d
-- e
--  
-- (
-- T
+- b
+- r
 - a
+- c
+- t
+- -
+- r
+- e
+- e
+- k
+- s
+- -
 - b
 - o
+- w
+- i
+- e
+- .
+- s
+- h
 - o
-- l
-- a
+- p
+-  
+- (
+- A
+- d
+- s
+- K
+- e
+- e
+- p
+- e
+- r
 - ;
 -  
 - l
+- a
+- n
+- d
+- e
+- r
+-  
+- I
+- T
+-  
+- d
 - o
-- j
+-  
+- W
+- e
+- l
+- l
+- n
+- e
+- x
+- i
+- s
+-  
+- S
+- u
+- p
+- e
+- r
+-  
+- C
+- o
+- m
+- p
+- l
+- e
+- x
+- ,
+-  
+- C
+- O
+- D
+- ,
+-  
+- −
+- 5
+- 0
+- %
+- ,
+-  
+- 4
+- 0
+- ,
+- 5
+- 8
+-  
+- €
+-  
+- /
+-  
+- 8
+- 1
+- ,
+- 1
+- 8
+-  
+- €
+- )
+- ,
+-  
+- r
+- e
+- c
+- u
+- p
+- e
+- r
+- a
+- b
+- e
+- m
+- .
+- s
+- i
+- t
+- e
+-  
+- (
+- A
+- d
+- s
+- K
+- e
+- e
+- p
+- e
+- r
+- ;
+-  
+- p
+- á
+- g
+- i
+- n
 - a
 -  
-- D
-- E
+- «
+- c
+- o
+- m
+- i
+- n
+- g
 -  
+- s
+- o
+- o
+- n
+- »
+- )
+-  
+- e
+-  
+- h
+- e
+- a
+- l
+- t
+- h
+- t
+- r
+- i
+- b
+- u
+- n
+- e
+- n
+- e
+- w
+- s
+- .
 - c
 - o
 - m
 -  
-- R
-- e
-- N
-- e
-- r
-- v
--  
-- 3
-- D
--  
-- E
+- (
 - M
-- S
--  
-- p
-- a
-- r
-- a
--  
-- K
-- r
+- g
 - i
-- b
-- b
-- e
-- l
-- n
+- d
 - /
 - T
 - a
-- u
 - b
-- h
-- e
-- i
-- t
-- ,
--  
-- €
-- 8
-- 9
-- ,
-- 9
-- 0
-- )
--  
-- e
--  
-- a
-- r
-- t
-- s
-- t
-- a
-- m
-- p
-- s
-- e
-- a
-- .
-- b
-- e
-- a
-- u
-- t
-- y
--  
-- (
-- M
-- g
-- i
-- d
-- ,
--  
-- h
-- e
-- a
-- d
+- o
+- o
 - l
-- i
-- n
-- e
--  
-- d
-- e
--  
-- «
-- 2
--  
-- b
-- i
-- l
-- j
-- k
-- e
-- »
+- a
 - ;
 -  
+- W
+- o
 - r
-- a
-- i
-- z
--  
-- H
-- T
-- T
+- d
 - P
--  
-- 2
-- 0
-- 0
--  
-- c
-- o
-- m
--  
-- c
-- o
 - r
-- p
-- o
+- e
+- s
+- s
 -  
 - v
 - a
 - z
 - i
 - o
-- )
-- .
 -  
-- d
-- a
-- i
-- l
-- y
-- w
-- e
-- l
-- l
-- p
-- r
-- e
-- s
-- s
-- .
 - c
 - o
 - m
 -  
-- l
-- a
-- n
-- ç
-- a
-- n
-- d
-- o
-- →
-- v
-- o
-- l
-- u
-- m
-- a
-- n
-- d
-- o
--  
-- 0
-- →
-- 1
-- 2
-- 4
-- .
--  
-- a
-- p
-- o
-- t
-- h
-- e
-- k
-- e
-- n
-- b
-- l
-- a
-- t
-- t
-- .
-- d
-- e
--  
-- p
-- a
-- r
-- a
-- d
-- o
-- →
-- l
-- a
-- n
-- ç
-- a
-- n
-- d
-- o
--  
-- 0
-- .
--  
-- y
-- o
-- u
-- r
-- n
-- a
-- t
-- u
-- r
-- a
-- l
-- h
-- a
-- r
-- m
-- o
-- n
-- y
-- .
 - c
-- o
-- m
--  
-- (
-- j
-- á
--  
-- n
-- o
--  
-- m
 - a
-- p
-- a
-- ,
--  
-- l
-- i
+- t
+- e
 - g
-- a
-- d
 - o
--  
-- a
--  
-- s
-- e
 - r
-- e
-- n
-- a
-- t
-- u
-- r
-- a
-- 2
-- 4
-- )
--  
-- t
-- e
-- v
-- e
--  
-- u
-- m
--  
-- a
-- n
-- ú
-- n
-- c
 - i
-- o
+- a
 -  
-- 0
-- →
-- 2
-- 6
-- 5
+- d
+- e
+-  
+- n
+- e
+- u
+- r
+- o
+- p
+- a
+- t
+- i
+- a
+- )
 - .
 -  
 - g
@@ -1143,12 +1094,6 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - o
 - m
 -  
-- s
-- e
-- g
-- u
-- e
--  
 - l
 - a
 - n
@@ -1157,41 +1102,34 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - n
 - d
 - o
+- →
+- e
+- s
+- c
+- a
+- l
+- a
+- n
+- d
+- o
+-  
+- 0
+- →
+- 2
+- 4
+- 0
 - ,
 -  
 - a
-- g
-- o
-- r
+- i
+- n
+- d
 - a
 -  
 - c
 - o
 - m
 -  
-- g
-- r
-- a
-- v
-- i
-- d
-- a
-- d
-- e
--  
-- 0
-- →
-- 9
-- 0
--  
-- e
--  
-- a
--  
-- m
-- e
-- s
-- m
 - a
 -  
 - h
@@ -1214,11 +1152,81 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - y
 - n
 - g
+- .
+-  
+- w
+- e
+- x
+- i
+- y
+- .
+- c
+- o
+- m
+-  
+- v
+- o
+- l
+- u
+- m
+- a
+- n
+- d
+- o
+- →
+- e
+- s
+- c
+- a
+- l
+- a
+- n
+- d
+- o
+-  
+- (
+- m
+- á
+- x
+- .
+-  
+- h
+- i
+- s
+- t
+- ó
+- r
+- i
+- c
+- o
+-  
+- 2
+- 4
+- 3
+- ;
+-  
+- u
+- m
+-  
+- a
+- d
+-  
+- n
+- o
+- v
+- o
+-  
+- a
+-  
+- 2
+- 1
+- 0
+- )
 - .
 - 
 
 
-## Diff vs 20/11 (resumo)
-- Anúncios novos no nicho: 34; atualizados: 89; só no histórico: 462.
-- Players novos: getcloudone.de (lancando 0), artstampsea.beauty (lancando 0).
-- Classes: beauty-ri.click volumando→escalando; tiendacolshop.com escalando→volumando; wexiy.com lancando→volumando; dailywellpress.com lancando→volumando; apothekenblatt.de parado→lancando; gesundheitsrundschau24.com parado→testando; evidwell.com escalando→parado; skrytunerzibet.fun lancando→parado; oekomarkt.co escalando→parado; dailycarepro.com lancando→parado; neuro-socken-de.com lancando→parado; gesundheitsreport.site lancando→parado; saudeediadia.site lancando→parado; neuroshutz.site lancando→parado.
+## Diff vs 21/11 (resumo)
+- Anúncios novos no nicho: 38; atualizados: 79; só no histórico: 506.
+- Players novos: bract-reeks-bowie.shop (lancando 0), recuperabem.site (lancando 0), healthtribunenews.com (lancando 0).
+- Classes: myvita.day parado→escalando; yournaturalharmony.com lancando→escalando; wexiy.com volumando→escalando; gadgetswatcher.com lancando→escalando; adskeeper.co.uk escalando→volumando; serenatura24.com escalando→lancando; wellnesshome.blog parado→lancando; trimpath.site parado→lancando; agewelljournal.com parado→lancando; gesund-vital-ratgeber.org parado→lancando; nervenratgeber.de parado→lancando; dailylifeinsider.com lancando→parado; topgadgetsreview.com lancando→parado.
