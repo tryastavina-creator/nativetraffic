@@ -138,3 +138,13 @@
 - Hosts de rede/tracker (ex.: adskeeper.co.uk) **não contam como players novos**. Domínios off-niche também não: superdin.co.il (שימוע trabalhista hebraico, não audiologia) e endokrino.com (tireoide). drvitalex.com segue fora (estenose espinal, sem termo de neuropatia).
 - gesund-vital-ratgeber.org 250→3320 (ad_strength 872→19400, o mesmo valor em A+D+E+G) foi registado como coletado, mas é um outlier; não usar sozinho como prova de explosão. testeauditivo24.pt 660 (Outbrain, first_seen 11/20) entra no mesmo aviso dos picos de um dia.
 - Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
+
+## Coleta (2026-11-22)
+- Date Range desta coleta: **2026-10-23 a 2026-11-21** (últimos 30 dias, terminando ontem), em todas as visões. Método igual ao de 17–21/11; a gravidade é comparável.
+- **Todas as visões foram extrações reais.** Os blocos A e C de nerve, numbness e tingling estão no raw (15 anúncios em cada um; o coletor não tinha reportado essas contagens).
+- **E incompleta em neuropathy/nerve:** E|neuropathy trouxe 5 cartões, mas A|neuropathy tem 7 ads com gravidade ≥300 (faltam 5398184405 a 374 e 5013132410 a 307). E|nerve trouxe 2 cartões, iguais aos 2 ads ≥300 de A|nerve neste ficheiro. Não usar a ausência em E como evidência contra «escalando via E»; classificar pela gravidade, first_seen e last_seen do ad_id. tingling E (4) bateu com os 4 ads ≥300 de A|tingling.
+- numbness E = 0 anúncios (máximo do slider de gravidade nesta busca: 152, abaixo do piso 300). E vazio por esse motivo não é falha de coleta.
+- A e E de hearing saíram com a mesma sequência de 15 anúncios, todos ≥369: sobreposição natural da visão 300+ com os mais populares recentes, não cópia. C e F de neuropathy idênticos a gravidade 0 e first_seen 11/21 é o esperado para anúncios novos.
+- O Outbrain 3320 de gesund-vital-ratgeber.org (ad 5023457882, de 21/11) **não se repetiu**: o anúncio não está no pull de hoje (last_seen 11/20). O número permanece no histórico e não entra no top desta janela. testeauditivo24.pt apareceu com um pico de um dia a 1290 (first_seen 11/21) — registado como coletado, não prova sozinha de explosão.
+- Hosts de rede/tracker (ex.: adskeeper.co.uk) **não contam como players novos**. Domínios off-niche também não: superdin.co.il (שימוע trabalhista) e endokrino.com (tireoide).
+- Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
