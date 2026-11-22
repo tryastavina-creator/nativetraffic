@@ -1,12 +1,12 @@
 # Movimentos — hearing
 
-Coleta de 2026-11-21, comparado com 2026-11-20.
+Coleta de 2026-11-22, comparado com 2026-11-21.
 
-- **Escalando:** gesund-vital-ratgeber.org (3320), testeauditivo24.pt (705), bonne-audition.fr (608), wonderbanana.com (604), gaes.es (578), naturegrove24.com (520), pgsrc.com (497), hearclear.com (449), herelnd.com (432), amplificadorauditivo.com (403), dailylifeinsider.com (361), geers.de (300), healthmatters24.com (273), confrontoerisparmio.com (250), gehoortesters.nl (158)
-- **Volumando:** wellnessgaze.com (259), lphst.com (258), trendy-info.jp (220), geers.pl (220), audibene.de (198), centros-auditivos.es (190), drugie-ucho.pl (116), hansaton.at (102), perfectadd.art (92)
-- **Lancando:** pillsenpower.click (345), toprisparmio.com (270), chudopolsko.info (259), psalmkacchafusee.shop (155), basis-rases-wacky.rest (125), filmijudcombo.site (120), hoerberatung.at (100), kalmeda.de (90), giornale-salute.it (15), elreporte.online (0), gal-ear.co.il (0), tinnibalance.com (0), digitalpages.co.il (0), hoergeratezentren.at (0), audibene.fr (0), grazianeidettagli.info (0), onmeda.de (0), afftrack.one (0), xn--hrgerte-9wa1n.com (0)
-- **Testando:** audibene.nl (408), adskeeper.co.uk (205), candyai.gg (96), audionovaitalia.it (84)
-- **Parado:** buyhears.com (40371), audionovabrasil.com.br (5922), hear-pro.com (958), hear.com (722), connecthearing.ca (525), seravia.info (455), auditorey.com (407), bookappointmentonline.com (360), auditorey.co (316), hearease.site (263), livenfermstizzy.top (255), vivason.fr (255), curiositaviva.com (197), verifiedhealthwatch.com (191), eidikosvarikoias.gr (153), deutscher-gesundheits-fachkreis.de (135), betterlivingdaily.co.uk (132), life-dzen.com (132), vieenmieux.com (117), buzzandblink.com (114), besthearingaids.co.uk (113), amplifon.au (110), pawer-growls-palps.rest (92), trymodernhearing.com (86), hertsad.co.uk (75), comunicareaparelhosauditivos.com (69), gutes-hoeren.de (66), hoergeraete-vergleich.com (66), neotex.pro (34), news360.pro (9), well-being-review.com (3), revue-bien-etre.com (1), rrisinsh.com (1), douceofficiel.com (1), notechtrends.com (1), migliora-udito.it (1), avaliacao-auditiva.pt (1), thinkstreamed.com (0), oriclehearing.com (0), audionova.com (0), hlus-formflow.web.app (0), silencemyears.com (0), santeflux.com (0), smarthealthmag.com (0), checkfox.de (0), apparecchiacustici.philips (0)
+- **Escalando:** gesund-vital-ratgeber.org (3320), testeauditivo24.pt (1290), hear-pro.com (958), candyai.gg (719), bonne-audition.fr (626), wonderbanana.com (604), geers.pl (586), healthmatters24.com (573), pgsrc.com (465), herelnd.com (382), gaes.es (316), geers.de (300), amplificadorauditivo.com (280), kalmeda.de (150)
+- **Volumando:** naturegrove24.com (520), audibene.nl (408), dailylifeinsider.com (298), hearclear.com (259), wellnessgaze.com (259), lphst.com (231), trendy-info.jp (220), centros-auditivos.es (190)
+- **Lancando:** pillsenpower.click (345), toprisparmio.com (270), chudopolsko.info (259), confrontoerisparmio.com (250), apparecchiacustici.philips (240), adskeeper.co.uk (205), audibene.de (198), gehoortesters.nl (158), psalmkacchafusee.shop (155), basis-rases-wacky.rest (125), filmijudcombo.site (120), hoerberatung.at (100), tinnibalance.com (60), expert-en-audition.be (0), digitalpages.co.il (0), elreporte.online (0), checkfox.de (0), gal-ear.co.il (0), hoergeratezentren.at (0), audibene.fr (0), grazianeidettagli.info (0)
+- **Testando:** audionovaitalia.it (84)
+- **Parado:** buyhears.com (40371), audionovabrasil.com.br (5922), hear.com (722), connecthearing.ca (525), seravia.info (455), auditorey.com (407), bookappointmentonline.com (360), auditorey.co (316), hearease.site (263), livenfermstizzy.top (255), vivason.fr (255), curiositaviva.com (197), verifiedhealthwatch.com (191), eidikosvarikoias.gr (153), deutscher-gesundheits-fachkreis.de (135), betterlivingdaily.co.uk (132), life-dzen.com (132), vieenmieux.com (117), drugie-ucho.pl (116), buzzandblink.com (114), besthearingaids.co.uk (113), amplifon.au (110), hansaton.at (102), perfectadd.art (92), pawer-growls-palps.rest (92), trymodernhearing.com (86), hertsad.co.uk (75), comunicareaparelhosauditivos.com (69), gutes-hoeren.de (66), hoergeraete-vergleich.com (66), neotex.pro (17), giornale-salute.it (15), news360.pro (3), well-being-review.com (3), revue-bien-etre.com (1), rrisinsh.com (1), douceofficiel.com (1), notechtrends.com (1), migliora-udito.it (1), avaliacao-auditiva.pt (1), onmeda.de (0), afftrack.one (0), xn--hrgerte-9wa1n.com (0), thinkstreamed.com (0), oriclehearing.com (0), audionova.com (0), hlus-formflow.web.app (0), silencemyears.com (0), santeflux.com (0), smarthealthmag.com (0)
 
 ## Tendências
 - #
@@ -32,6 +32,358 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - i
 - n
 - g
+- 
+
+- 
+
+- O
+-  
+- a
+- d
+-  
+- 5
+- 0
+- 2
+- 3
+- 4
+- 5
+- 7
+- 8
+- 8
+- 2
+-  
+- d
+- e
+-  
+- g
+- e
+- s
+- u
+- n
+- d
+- -
+- v
+- i
+- t
+- a
+- l
+- -
+- r
+- a
+- t
+- g
+- e
+- b
+- e
+- r
+- .
+- o
+- r
+- g
+- ,
+-  
+- q
+- u
+- e
+-  
+- o
+- n
+- t
+- e
+- m
+-  
+- e
+- s
+- t
+- a
+- v
+- a
+-  
+- a
+-  
+- O
+- u
+- t
+- b
+- r
+- a
+- i
+- n
+-  
+- 3
+- 3
+- 2
+- 0
+-  
+- c
+- o
+- m
+-  
+- a
+- d
+- _
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 1
+- 9
+- 4
+- 0
+- 0
+- ,
+-  
+- *
+- *
+- n
+- ã
+- o
+-  
+- r
+- e
+- a
+- p
+- a
+- r
+- e
+- c
+- e
+- u
+- *
+- *
+-  
+- n
+- o
+-  
+- p
+- u
+- l
+- l
+-  
+- d
+- e
+-  
+- h
+- o
+- j
+- e
+-  
+- (
+- l
+- a
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 1
+- /
+- 2
+- 0
+- )
+- .
+-  
+- O
+-  
+- 3
+- 3
+- 2
+- 0
+-  
+- f
+- i
+- c
+- a
+-  
+- n
+- o
+-  
+- h
+- i
+- s
+- t
+- ó
+- r
+- i
+- c
+- o
+-  
+- d
+- o
+-  
+- p
+- l
+- a
+- y
+- e
+- r
+-  
+- e
+-  
+- n
+- ã
+- o
+-  
+- é
+-  
+- o
+-  
+- t
+- o
+- p
+-  
+- d
+- e
+- s
+- t
+- a
+-  
+- j
+- a
+- n
+- e
+- l
+- a
+- .
+-  
+- O
+-  
+- c
+- r
+- i
+- a
+- t
+- i
+- v
+- o
+-  
+- i
+- r
+- m
+- ã
+- o
+-  
+- 5
+- 2
+- 1
+- 7
+- 2
+- 8
+- 6
+- 5
+- 7
+- 7
+-  
+- a
+- r
+- r
+- e
+- f
+- e
+- c
+- e
+- u
+-  
+- o
+- u
+- t
+- r
+- a
+-  
+- v
+- e
+- z
+- ,
+-  
+- 4
+- 1
+- 0
+- →
+- 2
+- 0
+- 5
+- ,
+-  
+- c
+- o
+- m
+-  
+- a
+- d
+- _
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- i
+- n
+- a
+- l
+- t
+- e
+- r
+- a
+- d
+- o
+-  
+- 7
+- 9
+- 9
+- 3
+-  
+- —
+-  
+- o
+-  
+- p
+- u
+- l
+- s
+- o
+-  
+- d
+- e
+-  
+- 2
+- 0
+- –
+- 2
+- 1
+- /
+- 1
+- 1
+-  
+- n
+- ã
+- o
+-  
+- s
+- e
+-  
+- s
+- u
+- s
+- t
+- e
+- n
+- t
+- o
+- u
+- .
 - 
 
 - 
@@ -67,31 +419,24 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 -  
 - é
 -  
-- g
+- t
 - e
 - s
+- t
+- e
+- a
 - u
-- n
 - d
-- -
-- v
 - i
 - t
-- a
-- l
-- -
-- r
-- a
-- t
-- g
-- e
-- b
-- e
-- r
-- .
+- i
+- v
 - o
-- r
-- g
+- 2
+- 4
+- .
+- p
+- t
 -  
 - O
 - u
@@ -102,35 +447,67 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - i
 - n
 -  
-- 3
-- 3
+- 1
 - 2
+- 9
 - 0
+-  
+- n
+- u
+- m
+-  
+- a
+- n
+- ú
+- n
+- c
+- i
+- o
+-  
+- n
+- o
+- v
+- o
 -  
 - (
-- a
-- d
--  
 - 5
-- 0
-- 2
-- 3
-- 4
-- 5
+- 6
+- 6
+- 9
+- 9
+- 9
 - 7
-- 8
-- 8
-- 2
+- 7
+- 7
+- 1
 - ,
 -  
+- f
+- i
+- r
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+- =
+- l
+- a
+- s
+- t
+- _
+- s
+- e
+- e
+- n
+-  
+- 1
+- 1
+- /
 - 2
-- 5
-- 0
-- →
-- 3
-- 3
-- 2
-- 0
+- 1
 - ,
 -  
 - a
@@ -145,16 +522,167 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - t
 - h
 -  
-- 8
-- 7
 - 2
-- →
-- 1
-- 9
-- 4
+- 5
+- 8
 - 0
-- 0
+- )
 - ,
+-  
+- o
+-  
+- m
+- e
+- s
+- m
+- o
+-  
+- â
+- n
+- g
+- u
+- l
+- o
+-  
+- d
+- e
+-  
+- r
+- e
+- c
+- r
+- u
+- t
+- a
+- m
+- e
+- n
+- t
+- o
+-  
+- d
+- e
+-  
+- t
+- e
+- s
+- t
+- e
+- r
+- s
+- .
+-  
+- É
+-  
+- u
+- m
+-  
+- p
+- i
+- c
+- o
+-  
+- d
+- e
+-  
+- u
+- m
+-  
+- d
+- i
+- a
+- ,
+-  
+- n
+- o
+-  
+- p
+- a
+- d
+- r
+- ã
+- o
+-  
+- d
+- o
+- s
+-  
+- O
+- u
+- t
+- b
+- r
+- a
+- i
+- n
+-  
+- d
+- e
+-  
+- 1
+- 8
+- /
+- 1
+- 1
+-  
+- e
+-  
+- d
+- o
+-  
+- 6
+- 6
+- 0
+-  
+- d
+- e
+-  
+- o
+- n
+- t
+- e
+- m
+- ;
+-  
+- o
+-  
+- 6
+- 6
+- 0
+-  
+- (
+- 5
+- 6
+- 6
+- 4
+- 3
+- 8
+- 0
+- 4
+- 7
+- 6
+- )
+-  
+- m
+- a
+- n
+- t
+- e
+- v
+- e
+-  
+- o
+-  
+- v
+- a
+- l
+- o
+- r
+- ,
+-  
+- c
+- o
+- m
 -  
 - l
 - a
@@ -166,118 +694,37 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - e
 - n
 -  
-- 1
-- 1
-- /
-- 1
-- 6
-- →
+- a
+- i
+- n
+- d
+- a
+-  
+- e
+- m
+-  
 - 1
 - 1
 - /
 - 2
 - 0
-- )
-- ,
--  
-- i
-- g
-- u
-- a
-- l
--  
-- n
-- a
-- s
--  
-- v
-- i
-- s
-- õ
-- e
-- s
--  
-- A
-- +
-- D
-- +
-- E
-- +
-- G
 - .
 -  
-- F
-- o
-- i
--  
-- r
-- e
-- g
-- i
-- s
-- t
-- a
-- d
-- o
--  
-- c
-- o
-- m
-- o
--  
-- c
-- o
-- l
-- e
-- t
-- a
-- d
-- o
-- ;
--  
-- é
--  
-- u
-- m
--  
-- o
-- u
-- t
-- l
-- i
-- e
-- r
--  
-- (
-- o
--  
-- s
-- e
-- g
-- u
-- n
-- d
-- o
--  
-- é
--  
-- 6
-- 6
-- 0
-- )
--  
-- e
--  
-- n
+- N
 - ã
 - o
 -  
-- s
-- e
--  
 - u
 - s
 - a
+- r
+-  
+- o
+-  
+- 1
+- 2
+- 9
+- 0
 -  
 - s
 - o
@@ -310,395 +757,60 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - ã
 - o
 - .
--  
-- O
--  
-- c
-- r
-- i
-- a
-- t
-- i
-- v
-- o
--  
-- i
-- r
-- m
-- ã
-- o
--  
-- 5
-- 2
-- 1
-- 7
-- 2
-- 8
-- 6
-- 5
-- 7
-- 7
-- ,
--  
-- q
-- u
-- e
--  
-- o
-- n
-- t
-- e
-- m
--  
-- e
-- s
-- t
-- a
-- v
-- a
--  
-- a
--  
-- 6
-- 4
-- 0
--  
-- c
-- o
-- m
--  
-- s
-- t
-- r
-- e
-- n
-- g
-- t
+- 
+
+- 
+
 - h
--  
 - e
-- m
--  
 - a
 - l
 - t
-- a
-- ,
--  
-- a
-- r
-- r
-- e
-- f
-- e
-- c
-- e
-- u
--  
-- p
-- a
-- r
-- a
--  
-- 4
-- 1
-- 0
--  
-- (
-- s
-- t
-- r
-- e
-- n
-- g
-- t
 - h
+- m
+- a
+- t
+- t
+- e
+- r
+- s
+- 2
+- 4
+- .
+- c
+- o
+- m
 -  
-- 7
-- 8
 - 1
-- 3
+- 9
+- 5
 - →
+- 5
 - 7
-- 9
-- 9
 - 3
-- )
-- .
-- 
-
-- 
-
-- t
-- e
+-  
+- (
 - s
 - t
+- r
 - e
-- a
-- u
-- d
-- i
+- n
+- g
 - t
-- i
-- v
-- o
+- h
+-  
+- 5
+- 8
 - 2
 - 4
-- .
-- p
-- t
--  
-- v
-- o
-- l
-- t
-- o
-- u
--  
-- à
--  
-- j
-- a
-- n
-- e
-- l
-- a
--  
-- d
-- e
--  
-- h
-- o
-- j
-- e
-- :
--  
-- O
-- u
-- t
-- b
-- r
-- a
-- i
-- n
--  
+- →
 - 6
-- 6
+- 9
 - 0
--  
-- n
-- u
-- m
--  
-- a
-- n
-- ú
-- n
-- c
-- i
-- o
--  
-- c
-- o
-- m
--  
-- f
-- i
-- r
-- s
-- t
-- _
-- s
-- e
-- e
-- n
--  
-- 1
-- 1
-- /
-- 2
-- 0
--  
-- (
-- a
-- d
-- _
-- s
-- t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- 1
-- 3
-- 2
-- 0
+- 4
 - )
 -  
-- —
--  
-- p
-- i
-- c
-- o
--  
-- d
 - e
--  
-- u
-- m
--  
-- d
-- i
-- a
-- ,
--  
-- n
-- o
--  
-- p
-- a
-- d
-- r
-- ã
-- o
--  
-- d
-- o
-- s
--  
-- O
-- u
-- t
-- b
-- r
-- a
-- i
-- n
--  
-- d
-- e
--  
-- 1
-- 8
-- /
-- 1
-- 1
-- ,
--  
-- t
-- r
-- a
-- t
-- a
-- d
-- o
--  
-- c
-- o
-- m
--  
-- c
-- a
-- u
-- t
-- e
-- l
-- a
-- ;
--  
-- o
--  
-- T
-- a
-- b
-- o
-- o
-- l
-- a
--  
-- 5
-- 5
-- 2
--  
-- (
-- f
-- i
-- r
-- s
-- t
-- _
-- s
-- e
-- e
-- n
--  
-- 1
-- 1
-- /
-- 1
-- 6
-- ,
--  
-- s
-- t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- 3
-- 8
-- 6
-- 1
-- )
--  
-- é
--  
-- o
--  
-- n
-- ú
-- m
-- e
-- r
-- o
--  
-- m
-- a
-- i
-- s
--  
-- s
-- ó
-- l
-- i
-- d
-- o
--  
-- d
-- e
-- s
-- t
-- e
--  
-- p
-- l
-- a
-- y
-- e
-- r
--  
-- h
-- o
-- j
-- e
-- .
 -  
 - b
 - o
@@ -718,19 +830,99 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - f
 - r
 -  
-- 6
+- 4
 - 0
-- 8
+- 6
+- →
+- 6
+- 2
+- 6
 -  
 - (
-- O
-- u
+- s
 - t
-- b
 - r
-- a
-- i
+- e
 - n
+- g
+- t
+- h
+-  
+- 4
+- 0
+- 7
+- 0
+- )
+-  
+- s
+- o
+- b
+- e
+- m
+-  
+- c
+- o
+- m
+-  
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- a
+-  
+- a
+- c
+- o
+- m
+- p
+- a
+- n
+- h
+- a
+- r
+- .
+-  
+- g
+- e
+- e
+- r
+- s
+- .
+- p
+- l
+-  
+- T
+- a
+- b
+- o
+- o
+- l
+- a
+-  
+- 5
+- 8
+- 6
+-  
+- (
+- s
+- t
+- r
+- e
+- n
+- g
+- t
+- h
+-  
+- 3
+- 0
+- 8
+- 9
+- 6
 - ,
 -  
 - f
@@ -747,8 +939,98 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - 1
 - 1
 - /
-- 1
+- 0
+- 8
+- )
+-  
+- é
+-  
+- o
+-  
+- n
+- ú
+- m
+- e
+- r
+- o
+-  
+- d
+- e
+-  
+- m
+- a
+- r
+- c
+- a
+-  
+- m
+- a
+- i
+- s
+-  
+- s
+- ó
+- l
+- i
+- d
+- o
+-  
+- d
+- o
+-  
+- d
+- i
+- a
+- .
+-  
+- O
+-  
 - 7
+- 1
+- 9
+-  
+- a
+- t
+- r
+- i
+- b
+- u
+- í
+- d
+- o
+-  
+- a
+-  
+- c
+- a
+- n
+- d
+- y
+- a
+- i
+- .
+- g
+- g
+-  
+- (
+- 5
+- 2
+- 8
+- 5
+- 0
+- 0
+- 5
+- 7
+- 5
+- 1
+- ,
+-  
+- 9
+- 6
+- →
+- 7
+- 1
+- 9
 - ,
 -  
 - s
@@ -761,130 +1043,20 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - h
 -  
 - 2
-- 5
-- 6
-- 5
-- )
--  
-- t
-- a
-- m
-- b
-- é
-- m
--  
-- e
-- s
-- t
-- á
--  
-- s
-- i
-- n
-- a
-- l
-- i
-- z
-- a
-- d
-- o
-- .
--  
-- g
-- a
-- e
-- s
-- .
-- e
-- s
--  
-- 5
-- 7
-- 8
-- /
-- 5
-- 1
-- 3
--  
-- s
-- e
-- g
-- u
-- e
--  
-- e
-- s
-- t
-- á
-- v
-- e
-- l
-- ,
--  
-- c
-- o
-- m
--  
-- a
-- d
-- _
-- s
-- t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- a
-- l
-- t
-- o
--  
-- e
--  
-- i
-- n
-- a
-- l
-- t
-- e
-- r
-- a
-- d
-- o
--  
-- (
-- 3
-- 3
 - 9
+- 2
+- 8
+- →
 - 4
-- 8
-- /
-- 5
+- 4
 - 3
-- 8
-- 8
-- 1
+- 3
 - )
-- .
-- 
-
-- 
-
-- p
-- g
-- s
-- r
-- c
-- .
-- c
-- o
-- m
-- :
 -  
-- o
+- é
+-  
+- u
+- m
 -  
 - a
 - n
@@ -894,301 +1066,122 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - i
 - o
 -  
-- 5
-- 0
-- 0
-- 8
-- 7
-- 3
-- 2
-- 5
-- 8
-- 9
+- S
+- K
 -  
-- s
-- u
-- b
-- i
-- u
--  
-- 6
-- 1
-- →
-- 4
-- 9
-- 7
--  
-- (
-- s
-- t
-- r
+- d
 - e
-- n
-- g
-- t
-- h
 -  
-- 2
-- 6
-- 2
-- 9
-- →
-- 3
-- 7
-- 2
-- 9
-- )
-- ;
--  
-- o
--  
-- c
 - a
-- r
-- t
+- u
+- d
+- i
+- ç
 - ã
 - o
 -  
+- c
+- u
+- j
+- a
+-  
+- l
+- a
+- n
 - d
 - e
--  
-- h
-- o
-- j
-- e
--  
-- m
-- o
-- s
-- t
 - r
-- a
+-  
+- n
+- o
 -  
 - A
-- d
+- n
 - s
-- K
-- e
-- e
-- p
-- e
+- t
 - r
+- e
+- x
 -  
-- (
+- é
+-  
 - a
 -  
-- r
-- e
-- d
-- e
--  
+- c
+- a
 - p
+- t
+- u
 - r
-- i
-- m
+- a
+-  
+- j
 - á
-- r
-- i
-- a
 -  
+- c
+- o
+- n
 - h
-- i
-- s
-- t
-- ó
-- r
-- i
-- c
-- a
--  
-- n
-- o
--  
-- m
-- a
-- s
-- t
-- e
-- r
--  
-- p
-- e
-- r
-- m
-- a
-- n
 - e
 - c
-- e
--  
-- M
-- g
 - i
 - d
-- )
-- .
--  
-- O
--  
-- M
-- g
-- i
-- d
--  
-- q
-- u
-- e
--  
-- o
-- n
-- t
-- e
-- m
--  
-- e
-- s
-- t
 - a
-- v
-- a
--  
-- a
--  
-- 5
-- 9
-- 1
--  
-- c
-- a
-- i
-- u
 -  
 - p
 - a
 - r
 - a
 -  
-- 3
-- 6
-- 5
-- .
--  
-- h
-- e
-- r
-- e
-- l
-- n
-- d
-- .
 - c
-- o
-- m
--  
-- 2
-- 8
-- 0
-- →
-- 4
-- 3
-- 2
--  
-- (
-- M
-- g
-- i
-- d
-- ,
--  
-- s
-- t
-- r
-- e
-- n
-- g
-- t
-- h
--  
-- 6
-- 6
-- 0
-- →
-- 4
-- 9
-- 6
-- 0
-- )
--  
-- e
--  
-- d
 - a
-- i
-- l
+- n
+- d
 - y
-- l
-- i
-- f
-- e
-- i
-- n
-- s
-- i
-- d
-- e
-- r
 - .
-- c
-- o
-- m
--  
-- 1
-- 7
-- 0
-- →
-- 3
-- 6
-- 1
--  
 - a
-- c
-- o
-- m
-- p
-- a
-- n
-- h
-- a
-- m
--  
-- o
--  
-- c
-- l
-- u
-- s
-- t
-- e
-- r
--  
-- d
-- e
--  
 - i
-- m
-- a
-- g
-- e
-- m
 -  
-- d
+- —
+-  
+- n
+- ã
 - o
 -  
-- p
-- g
-- s
+- t
 - r
+- a
+- t
+- a
+- r
+-  
 - c
+- o
+- m
+- o
+-  
+- e
+- s
+- c
+- a
+- l
+- a
+-  
+- r
+- e
+- a
+- l
+-  
+- d
+- e
+- s
+- s
+- a
+-  
+- l
+- o
+- j
+- a
 - .
 - 
 
@@ -1217,10 +1210,8 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 
 - 
 
-- D
-- o
-- i
-- s
+- U
+- m
 -  
 - p
 - l
@@ -1228,22 +1219,45 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - y
 - e
 - r
-- s
 -  
 - n
 - o
 - v
 - o
-- s
-- ,
+- :
 -  
+- e
+- x
+- p
+- e
+- r
+- t
+- -
+- e
+- n
+- -
 - a
-- m
-- b
+- u
+- d
+- i
+- t
+- i
 - o
-- s
+- n
+- .
+- b
+- e
 -  
+- (
+- O
+- u
+- t
+- b
+- r
 - a
+- i
+- n
+- ,
 -  
 - g
 - r
@@ -1256,8 +1270,7 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - e
 -  
 - 0
--  
-- e
+- ,
 -  
 - f
 - i
@@ -1274,61 +1287,35 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - 1
 - /
 - 2
-- 0
-- :
--  
-- e
-- l
-- r
-- e
-- p
-- o
-- r
-- t
-- e
-- .
-- o
-- n
-- l
-- i
-- n
-- e
--  
-- (
-- T
-- a
-- b
-- o
-- o
-- l
-- a
+- 1
 - ,
 -  
-- 2
+- «
+- O
+- n
 -  
-- a
-- n
-- ú
-- n
+- r
+- e
 - c
-- i
-- o
-- s
--  
-- E
-- S
--  
-- d
+- h
+- e
+- r
+- c
+- h
 - e
 -  
-- t
-- i
-- n
-- n
-- i
-- t
-- u
+- 3
+- 0
+- 0
+-  
+- B
+- e
+- l
+- g
+- e
 - s
+- …
+- »
 - ;
 -  
 - a
@@ -1347,283 +1334,242 @@ Coleta de 2026-11-21, comparado com 2026-11-20.
 - e
 - u
 -  
-- 4
-- 0
-- 3
-- )
+- H
+- T
+- T
+- P
 -  
-- e
--  
-- t
-- i
-- n
-- n
-- i
-- b
-- a
-- l
-- a
-- n
-- c
-- e
-- .
-- c
-- o
-- m
--  
-- (
-- O
-- u
-- t
-- b
-- r
-- a
-- i
-- n
-- ,
--  
-- a
-- d
-- v
-- e
-- r
-- t
-- o
-- r
-- i
-- a
-- l
--  
-- g
-- r
-- e
-- g
-- o
--  
-- d
-- e
--  
-- l
-- i
-- v
-- r
-- o
--  
-- d
-- e
--  
-- r
-- e
-- c
-- e
-- i
-- t
-- a
-- s
--  
-- p
-- a
-- r
-- a
--  
-- ε
-- μ
-- β
-- ο
-- έ
-- ς
-- ,
--  
-- v
-- e
-- n
-- d
-- a
--  
-- n
-- o
--  
-- A
-- m
-- a
-- z
-- o
-- n
--  
-- a
--  
-- $
-- 3
-- 9
-- )
-- .
--  
-- a
-- u
-- d
-- i
-- o
-- n
-- o
-- v
-- a
-- i
-- t
-- a
-- l
-- i
-- a
-- .
-- i
-- t
--  
-- s
-- a
-- i
-- u
--  
-- d
-- e
--  
-- p
-- a
-- r
-- a
-- d
-- o
--  
-- p
-- a
-- r
-- a
--  
-- t
-- e
-- s
-- t
-- a
-- n
-- d
-- o
--  
-- (
-- 7
 - 5
+- 2
+- 2
+- )
+- .
+-  
+- a
+- p
+- p
+- a
+- r
+- e
+- c
+- c
+- h
+- i
+- a
+- c
+- u
+- s
+- t
+- i
+- c
+- i
+- .
+- p
+- h
+- i
+- l
+- i
+- p
+- s
+-  
+- s
+- a
+- i
+- u
+-  
+- d
+- e
+-  
+- p
+- a
+- r
+- a
+- d
+- o
+-  
+- p
+- a
+- r
+- a
+-  
+- l
+- a
+- n
+- ç
+- a
+- n
+- d
+- o
+-  
+- (
+- 0
 - →
-- 8
+- 2
 - 4
+- 0
+- ,
+-  
+- h
+- e
+- a
+- d
+- l
+- i
+- n
+- e
+-  
+- d
+- e
+-  
+- s
+- a
+- l
+- u
+- t
+- e
+-  
+- u
+- d
+- i
+- t
+- i
+- v
+- a
 - )
 - .
 -  
 - c
+- h
 - e
-- n
-- t
-- r
+- c
+- k
+- f
 - o
-- s
+- x
+- .
+- d
+- e
+-  
+- p
+- a
+- r
+- a
+- d
+- o
+- →
+- l
+- a
+- n
+- ç
+- a
+- n
+- d
+- o
+-  
+- 0
+- .
+-  
+- h
+- e
+- a
+- r
 - -
-- a
-- u
-- d
-- i
-- t
-- i
-- v
-- o
-- s
-- .
-- e
-- s
--  
-- t
-- e
-- s
-- t
-- a
-- n
-- d
-- o
-- →
-- v
-- o
-- l
-- u
-- m
-- a
-- n
-- d
-- o
--  
-- 7
-- 3
-- →
-- 1
-- 9
-- 0
-- .
--  
-- g
-- e
-- e
-- r
-- s
-- .
 - p
-- l
+- r
+- o
+- .
+- c
+- o
+- m
 -  
+- r
+- e
+- a
 - p
 - a
 - r
-- a
-- d
-- o
-- →
-- v
-- o
-- l
+- e
+- c
+- e
 - u
-- m
-- a
-- n
-- d
-- o
--  
-- 2
-- 2
-- 0
 -  
 - (
+- p
+- a
+- r
+- a
+- d
+- o
+- →
+- e
+- s
+- c
+- a
 - l
 - a
-- s
-- t
-- _
-- s
-- e
-- e
 - n
+- d
+- o
+- ;
+-  
+- o
+-  
+- a
+- n
+- ú
+- n
+- c
+- i
+- o
 -  
 - v
-- o
+- i
+- s
+- í
+- v
+- e
 - l
-- t
+-  
+- h
 - o
-- u
+- j
+- e
+-  
+- e
+- s
+- t
+- á
 -  
 - a
 -  
-- 1
-- 1
-- /
-- 2
-- 0
+- 3
+- 8
+- 6
+- ,
+-  
+- o
+-  
+- 9
+- 5
+- 8
+-  
+- é
+-  
+- h
+- i
+- s
+- t
+- ó
+- r
+- i
+- c
+- o
 - )
 - .
 - 
 
 
-## Diff vs 20/11 (resumo)
-- Anúncios novos no nicho: 39; atualizados: 76; só no histórico: 472.
-- Players novos: elreporte.online (lancando 0), tinnibalance.com (lancando 0).
-- Classes: herelnd.com lancando→escalando; dailylifeinsider.com volumando→escalando; lphst.com escalando→volumando; trendy-info.jp escalando→volumando; geers.pl parado→volumando; centros-auditivos.es testando→volumando; toprisparmio.com escalando→lancando; audibene.nl lancando→testando; audionovaitalia.it parado→testando; verifiedhealthwatch.com lancando→parado; deutscher-gesundheits-fachkreis.de lancando→parado; comunicareaparelhosauditivos.com lancando→parado; gutes-hoeren.de testando→parado; hoergeraete-vergleich.com testando→parado; thinkstreamed.com lancando→parado.
+## Diff vs 21/11 (resumo)
+- Anúncios novos no nicho: 35; atualizados: 71; só no histórico: 516.
+- Players novos: expert-en-audition.be (lancando 0).
+- Classes: hear-pro.com parado→escalando; candyai.gg testando→escalando; geers.pl volumando→escalando; kalmeda.de lancando→escalando; naturegrove24.com escalando→volumando; audibene.nl testando→volumando; dailylifeinsider.com escalando→volumando; hearclear.com escalando→volumando; confrontoerisparmio.com escalando→lancando; apparecchiacustici.philips parado→lancando; adskeeper.co.uk testando→lancando; audibene.de volumando→lancando; gehoortesters.nl escalando→lancando; checkfox.de parado→lancando; drugie-ucho.pl volumando→parado; hansaton.at volumando→parado; perfectadd.art volumando→parado; giornale-salute.it lancando→parado; onmeda.de lancando→parado; afftrack.one lancando→parado; xn--hrgerte-9wa1n.com lancando→parado.
