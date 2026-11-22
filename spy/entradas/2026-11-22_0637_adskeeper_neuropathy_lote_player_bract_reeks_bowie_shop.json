@@ -1,0 +1,54 @@
+{
+  "data_coleta": "2026-11-22",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "bract-reeks-bowie.shop",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Mezza tazza ogni mattina elimina rapidamente la neuropatia!"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5668762199",
+      "last_seen": "2026-11-21"
+    }
+  },
+  "first_seen": "2026-11-21",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "lancando": [
+      "5668762199"
+    ]
+  },
+  "dominios_ligados": [
+    "obols-egises-muff.shop"
+  ],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://bract-reeks-bowie.shop abre um advertorial IT do Wellnexis Super Complex (integratore para neuropatia diabética: formicolio, bruciore, perdita di sensibilità). Pagamento alla consegna, promoção −50%, preços visíveis 81,18 € e 40,58 €, envio em 48 h. HTTP 200, legível. O anúncio usa a headline «Mezza tazza ogni mattina…». Nada foi comprado nem enviado no formulário."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5668762199",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Mezza tazza ogni mattina elimina rapidamente la neuropatia!",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_webtvhd_com_2026_11_21_1d46a86d.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-22."
+}

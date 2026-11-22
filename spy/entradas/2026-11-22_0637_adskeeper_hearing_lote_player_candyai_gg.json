@@ -1,0 +1,68 @@
+{
+  "data_coleta": "2026-11-22",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "candyai.gg",
+  "status": "escalando",
+  "tipo_player": "captura_suspeita",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper",
+    "Mgid",
+    "PeerClick"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+    "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro"
+  ],
+  "max_gravity": 719,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 719,
+      "ad_id": "5285005751",
+      "last_seen": "2026-11-21"
+    }
+  },
+  "first_seen": "2026-08-25",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "escalando": [
+      "5285005751"
+    ],
+    "testando": [
+      "5276046119"
+    ]
+  },
+  "dominios_ligados": [
+    "naturegrove24.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5285005751",
+      "network": "AdsKeeper",
+      "gravity": 719,
+      "headline": "Musíš to urobiť, ak máš poruchu sluchu alebo hučanie v ušiach",
+      "first_seen": "2026-08-27",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_08_27_86a9b522.webp"
+    },
+    {
+      "ad_id": "5276046119",
+      "network": "AdsKeeper",
+      "gravity": 92,
+      "headline": "Hučanie v ušiach a porucha sluchu? Zbav sa ich za 1 euro",
+      "first_seen": "2026-08-25",
+      "last_seen": "2026-11-20",
+      "movimento": "testando",
+      "angle_id": "HEAR-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_nastol_com_ua_2026_08_25_8f3d697d.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe testando→escalando; máx. gravidade 96→719; n anúncios agora 2."
+}
