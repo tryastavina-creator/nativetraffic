@@ -1,0 +1,102 @@
+{
+  "data_coleta": "2026-11-22",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "geers.pl",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GEERS / Dobry Słuch (Sonova)",
+  "redes": [
+    "Taboola",
+    "Mgid"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 4,
+  "headlines": [
+    "GEERS poszukuje 200 kobiet, które chciałyby wypróbować niewidoczny aparat słuchowy.",
+    "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+    "Gniezno: Bezpłatne badanie słuchu – zarezerwuj termin",
+    "Poznan: Bezpłatne badanie słuchu – zarezerwuj termin"
+  ],
+  "max_gravity": 586,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 586,
+      "ad_id": "5217034838",
+      "last_seen": "2026-11-21"
+    },
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 220,
+      "ad_id": "5640319786",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-06-26",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "escalando": [
+      "5217034838"
+    ],
+    "volumando": [
+      "5047132740"
+    ],
+    "parado": [
+      "5640319786",
+      "5637120740"
+    ]
+  },
+  "dominios_ligados": [
+    "connecthearing.ca",
+    "drugie-ucho.pl"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5217034838",
+      "network": "Taboola",
+      "gravity": 586,
+      "headline": "GEERS poszukuje 200 kobiet, które chciałyby wypróbować niewidoczny aparat słuchowy.",
+      "first_seen": "2026-08-11",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_moja-ostroleka_pl_2026_08_11_9739bdbe.jpg"
+    },
+    {
+      "ad_id": "5640319786",
+      "network": "Mgid",
+      "gravity": 220,
+      "headline": "Gniezno: Bezpłatne badanie słuchu – zarezerwuj termin",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_rudawkuchni_pl_2026_11_14_280f8005.webp"
+    },
+    {
+      "ad_id": "5637120740",
+      "network": "Mgid",
+      "gravity": 220,
+      "headline": "Poznan: Bezpłatne badanie słuchu – zarezerwuj termin",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_iochota_pl_2026_11_13_9b7f0461.webp"
+    },
+    {
+      "ad_id": "5047132740",
+      "network": "Taboola",
+      "gravity": 123,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-06-26",
+      "last_seen": "2026-11-20",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_egospodarka_pl_2026_06_26_dedb4727.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 220→586; n anúncios agora 4."
+}
