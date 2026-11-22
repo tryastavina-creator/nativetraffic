@@ -1,0 +1,68 @@
+{
+  "data_coleta": "2026-11-22",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "myvita.day",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!"
+  ],
+  "max_gravity": 1584,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 1584,
+      "ad_id": "5396712497",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-09-18",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "escalando": [
+      "5398184405"
+    ],
+    "parado": [
+      "5396712497"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "beauty-ri.click",
+    "green-ri.click",
+    "washbosswhale.beauty"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5396712497",
+      "network": "Mgid",
+      "gravity": 1584,
+      "headline": "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+      "first_seen": "2026-09-18",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_09_18_1cc5514f.webp"
+    },
+    {
+      "ad_id": "5398184405",
+      "network": "Mgid",
+      "gravity": 374,
+      "headline": "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+      "first_seen": "2026-09-18",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jurnalnewssite_net_2026_09_18_f5b8d4ee.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→escalando; n anúncios agora 2."
+}
