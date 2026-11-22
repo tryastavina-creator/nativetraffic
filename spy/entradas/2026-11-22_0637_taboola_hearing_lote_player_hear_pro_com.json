@@ -1,0 +1,77 @@
+{
+  "data_coleta": "2026-11-22",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "hear-pro.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 3,
+  "headlines": [
+    "Los jubilados de Barcelona están probando este audífono gratis (¡compruébalo!)",
+    "Antes de comprar audífonos, haz esto primero (la mayoría de la gente no lo sabe)",
+    "Los jubilados de Madrid están probando este audífono gratis (¡compruébalo!)"
+  ],
+  "max_gravity": 958,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 958,
+      "ad_id": "5518768148",
+      "last_seen": "2026-11-14"
+    }
+  },
+  "first_seen": "2026-04-29",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "escalando": [
+      "5518776162"
+    ],
+    "parado": [
+      "4805746108",
+      "5518768148"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5518768148",
+      "network": "Taboola",
+      "gravity": 958,
+      "headline": "Los jubilados de Madrid están probando este audífono gratis (¡compruébalo!)",
+      "first_seen": "2026-10-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_publico_es_2026_10_14_e0e3777b.png"
+    },
+    {
+      "ad_id": "5518776162",
+      "network": "Taboola",
+      "gravity": 386,
+      "headline": "Los jubilados de Barcelona están probando este audífono gratis (¡compruébalo!)",
+      "first_seen": "2026-10-14",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_dha_com_tr_2026_10_14_1ea36169.png"
+    },
+    {
+      "ad_id": "4805746108",
+      "network": "Taboola",
+      "gravity": 316,
+      "headline": "Antes de comprar audífonos, haz esto primero (la mayoría de la gente no lo sabe)",
+      "first_seen": "2026-04-29",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_eluniverso_com_2026_04_29_6489ffa7.png"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→escalando; n anúncios agora 3."
+}
