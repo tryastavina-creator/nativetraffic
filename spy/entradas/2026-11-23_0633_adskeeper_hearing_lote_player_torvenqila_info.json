@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-23",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "torvenqila.info",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Lihtne nipp, mis parandab kuulmist lausa kolm korda"
+  ],
+  "max_gravity": 419,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 419,
+      "ad_id": "5586134579",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-11-01",
+  "last_seen": "2026-11-22",
+  "movimentos": {
+    "escalando": [
+      "5586134579"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://torvenqila.info devolveu HTTP 404 (Cloudflare, corpo vazio) no acesso direto. Oferta, preço e checkout não legíveis. Headline estoniana 'Lihtne nipp, mis parandab kuulmist lausa kolm korda' (AdsKeeper 419). Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5586134579",
+      "network": "AdsKeeper",
+      "gravity": 419,
+      "headline": "Lihtne nipp, mis parandab kuulmist lausa kolm korda",
+      "first_seen": "2026-11-01",
+      "last_seen": "2026-11-22",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_sattaaking_xyz_2026_11_01_bdcac2e2.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-23."
+}

@@ -1,0 +1,271 @@
+{
+  "data_coleta": "2026-11-23",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audibene.de",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Audibene",
+  "redes": [
+    "AdsKeeper",
+    "Taboola",
+    "Outbrain"
+  ],
+  "n_anuncios": 17,
+  "n_headlines": 11,
+  "headlines": [
+    "Deutsche Mini-Hörgeräte",
+    "Frankfurt Am Main reißt sich um dieses Mini-Hörgerät – wo gibt es das exklusiv?",
+    "Neu in Deutschland: Dieses Hörgerät filtert Lärm und macht Sprache glasklar",
+    "Ü60: Im Restaurant schlecht verstehen? Hörexpertin rät, dieses Mini-Hörgerät zu testen",
+    "Deutsche Hörakustikerin warnt: Niemals Hörgeräte testen ohne diesen Tipp",
+    "Expertin mahnt: Wer trotz Rezept kein Hörgerät trägt, macht einen großen Fehler",
+    "Neue Mini-Hörgeräte: Verstehen Sie jedes Wort, auch in lauter Umgebung",
+    "Hör-Sensation 2026: Deutsche Erfindung bringt glasklares Verstehen zurück",
+    "2026: Deutsche Firma stellt revolutionäre Erfindung für glasklares Hören vor",
+    "Diese deutsche Hörgeräte-Marke stellt geniales Akku-Hörgerät 2026 vor",
+    "Experte testet dieses Mini-Hörgerät: Sein Urteil wird Sie überraschen"
+  ],
+  "max_gravity": 595,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 595,
+      "ad_id": "5546525077",
+      "last_seen": "2026-11-22"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5673212432",
+      "last_seen": "2026-11-22"
+    },
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 0,
+      "ad_id": "5670428276",
+      "last_seen": "2026-11-21"
+    }
+  },
+  "first_seen": "2026-10-22",
+  "last_seen": "2026-11-22",
+  "movimentos": {
+    "escalando": [
+      "5546525077"
+    ],
+    "lancando": [
+      "5673212432",
+      "5673653293",
+      "5673771946",
+      "5670428276",
+      "5670919143",
+      "5666279828",
+      "5666951481",
+      "5666956677",
+      "5666962778",
+      "5666968271"
+    ],
+    "parado": [
+      "5661408158",
+      "5662123971",
+      "5662186293",
+      "5658489722",
+      "5644602378",
+      "5640321181"
+    ]
+  },
+  "dominios_ligados": [
+    "xn--hrgerte-9wa1n.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5546525077",
+      "network": "AdsKeeper",
+      "gravity": 595,
+      "headline": "Deutsche Mini-Hörgeräte",
+      "first_seen": "2026-10-22",
+      "last_seen": "2026-11-22",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_10_22_03639b7e.webp"
+    },
+    {
+      "ad_id": "5673212432",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Frankfurt Am Main reißt sich um dieses Mini-Hörgerät – wo gibt es das exklusiv?",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_weather_com_2026_11_22_8f2c66e0.jpg"
+    },
+    {
+      "ad_id": "5673653293",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Neu in Deutschland: Dieses Hörgerät filtert Lärm und macht Sprache glasklar",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_googlewatchblog_de_2026_11_22_2266b7d3.gif"
+    },
+    {
+      "ad_id": "5673771946",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Ü60: Im Restaurant schlecht verstehen? Hörexpertin rät, dieses Mini-Hörgerät zu testen",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_correiobraziliense_com_br_2026_11_22_0eb65df7.jpg"
+    },
+    {
+      "ad_id": "5670428276",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Deutsche Hörakustikerin warnt: Niemals Hörgeräte testen ohne diesen Tipp",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_21_46546dd8.webp"
+    },
+    {
+      "ad_id": "5670919143",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Deutsche Hörakustikerin warnt: Niemals Hörgeräte testen ohne diesen Tipp",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_21_608227db.webp"
+    },
+    {
+      "ad_id": "5666279828",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Expertin mahnt: Wer trotz Rezept kein Hörgerät trägt, macht einen großen Fehler",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bild_de_2026_11_20_826dc918.webp"
+    },
+    {
+      "ad_id": "5666951481",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neue Mini-Hörgeräte: Verstehen Sie jedes Wort, auch in lauter Umgebung",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bild_de_2026_11_20_bf2c896b.webp"
+    },
+    {
+      "ad_id": "5666956677",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Hör-Sensation 2026: Deutsche Erfindung bringt glasklares Verstehen zurück",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_20_27348831.webp"
+    },
+    {
+      "ad_id": "5666962778",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Hör-Sensation 2026: Deutsche Erfindung bringt glasklares Verstehen zurück",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_swp_de_2026_11_20_235770a7.webp"
+    },
+    {
+      "ad_id": "5666968271",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neue Mini-Hörgeräte: Verstehen Sie jedes Wort, auch in lauter Umgebung",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_come-on_de_2026_11_20_c5ae9d6d.webp"
+    },
+    {
+      "ad_id": "5661408158",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "2026: Deutsche Firma stellt revolutionäre Erfindung für glasklares Hören vor",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_weather_com_2026_11_19_3d51066d.jpg"
+    },
+    {
+      "ad_id": "5662123971",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Diese deutsche Hörgeräte-Marke stellt geniales Akku-Hörgerät 2026 vor",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_weather_com_2026_11_19_1483e32f.jpg"
+    },
+    {
+      "ad_id": "5662186293",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Deutsche Hörakustikerin warnt: Niemals Hörgeräte testen ohne diesen Tipp",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_foxnews_com_2026_11_19_c8360a03.webp"
+    },
+    {
+      "ad_id": "5658489722",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Expertin mahnt: Wer trotz Rezept kein Hörgerät trägt, macht einen großen Fehler",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_stuttgarter-nachrichten_de_2026_11_18_8527a31a.jpg"
+    },
+    {
+      "ad_id": "5644602378",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "2026: Deutsche Firma stellt revolutionäre Erfindung für glasklares Hören vor",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5640321181",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Experte testet dieses Mini-Hörgerät: Sein Urteil wird Sie überraschen",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ynet_co_il_2026_11_14_eed00345.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 198→595; n anúncios agora 17."
+}
