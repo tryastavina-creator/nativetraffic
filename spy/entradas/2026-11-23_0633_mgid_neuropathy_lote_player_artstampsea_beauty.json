@@ -1,0 +1,66 @@
+{
+  "data_coleta": "2026-11-23",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "artstampsea.beauty",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Cei care au neuropatie - Citesc înainte să o șteargă!",
+    "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!"
+  ],
+  "max_gravity": 205,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 205,
+      "ad_id": "5667197136",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-11-20",
+  "last_seen": "2026-11-22",
+  "movimentos": {
+    "lancando": [
+      "5667197136",
+      "5666741815"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "solveclocktext.space",
+    "washbosswhale.beauty"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5667197136",
+      "network": "Mgid",
+      "gravity": 205,
+      "headline": "Cei care au neuropatie - Citesc înainte să o șteargă!",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mahjongtitans_eco_br_2026_11_21_c9d567f5.webp"
+    },
+    {
+      "ad_id": "5666741815",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_koreanindo_net_2026_11_20_04b368c0.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→205; n anúncios agora 2."
+}

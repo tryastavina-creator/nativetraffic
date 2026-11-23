@@ -1,0 +1,458 @@
+{
+  "data_coleta": "2026-11-23",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "washbosswhale.beauty",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 32,
+  "n_headlines": 15,
+  "headlines": [
+    "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+    "1/2 cană în fiecare dimineață elimină rapid neuropatia. Încearcă!",
+    "Невролози: 2 билки ще премахнат невропатията бързо!",
+    "Хората с невропатия – прочетете го, преди да го изтриете!",
+    "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+    "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+    "Невропатија ће нестати за два дана! Доступно у свакој апотеци, и зове се...",
+    "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+    "Neurolodzy apelują do seniorów z neuropatią: przestańcie jeść te 3 produkty",
+    "Objawy neuropatii znikną! Wystarczy robić to dwa razy dziennie",
+    "Хората с невропатия – прочетете го, преди да го изтрият!",
+    "Cei care au neuropatie - Citesc înainte să o șteargă!",
+    "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+    "Неуролог моли људе са неуропатијом: престаните одмах да радите ово!",
+    "1/2 šalice svako jutro brzo uklanja neuropatiju!"
+  ],
+  "max_gravity": 1006,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 1006,
+      "ad_id": "5581258192",
+      "last_seen": "2026-11-13"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 249,
+      "ad_id": "5612957110",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-10-20",
+  "last_seen": "2026-11-22",
+  "movimentos": {
+    "escalando": [
+      "5574275382",
+      "5606210512"
+    ],
+    "volumando": [
+      "5621320220",
+      "5547406423",
+      "5582314802",
+      "5612957110",
+      "5581456606",
+      "5574410892",
+      "5539618859",
+      "5613665349"
+    ],
+    "lancando": [
+      "5650316394",
+      "5663162661",
+      "5663221230",
+      "5664225061"
+    ],
+    "parado": [
+      "5568857426",
+      "5566638614",
+      "5655569501",
+      "5579762963",
+      "5582533200",
+      "5650271032",
+      "5538641885",
+      "5547419548",
+      "5650965810",
+      "5650043094",
+      "5649916989",
+      "5649961757",
+      "5546897691",
+      "5652992583",
+      "5640180131",
+      "5539618841",
+      "5620826751",
+      "5581258192"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "artstampsea.beauty",
+    "beauty-ri.click",
+    "candy.ai",
+    "green-ri.click",
+    "healthweekly.info",
+    "linfaflowstore.online",
+    "myvita.day",
+    "solveclocktext.space"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5581258192",
+      "network": "Mgid",
+      "gravity": 1006,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-10-31",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_malaysianupdate_my_2026_10_31_f91eb5a2.webp"
+    },
+    {
+      "ad_id": "5606210512",
+      "network": "Mgid",
+      "gravity": 318,
+      "headline": "Ti, kteří trpí neuropatií - přečtěte si to, než to smažou!",
+      "first_seen": "2026-11-06",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nguoi-noi-tieng_com_2026_11_06_ea3782e4.webp"
+    },
+    {
+      "ad_id": "5574275382",
+      "network": "Mgid",
+      "gravity": 313,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-10-29",
+      "last_seen": "2026-11-22",
+      "movimento": "escalando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_lirikanmu_com_2026_10_29_bd3a37b5.webp"
+    },
+    {
+      "ad_id": "5620826751",
+      "network": "Mgid",
+      "gravity": 273,
+      "headline": "1/2 šalice svako jutro brzo uklanja neuropatiju!",
+      "first_seen": "2026-11-09",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ukrcup_top_2026_11_09_b6019936.webp"
+    },
+    {
+      "ad_id": "5663162661",
+      "network": "Mgid",
+      "gravity": 250,
+      "headline": "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_recettesdemami_com_2026_11_19_c04d2ad4.webp"
+    },
+    {
+      "ad_id": "5612957110",
+      "network": "AdsKeeper",
+      "gravity": 249,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-11-07",
+      "last_seen": "2026-11-20",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_11_07_7a77213c.webp"
+    },
+    {
+      "ad_id": "5568857426",
+      "network": "AdsKeeper",
+      "gravity": 237,
+      "headline": "Невропатија ће нестати за два дана! Доступно у свакој апотеци, и зове се...",
+      "first_seen": "2026-10-28",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_10_28_684f1c74.webp"
+    },
+    {
+      "ad_id": "5621320220",
+      "network": "Mgid",
+      "gravity": 230,
+      "headline": "1/2 cană în fiecare dimineață elimină rapid neuropatia. Încearcă!",
+      "first_seen": "2026-11-09",
+      "last_seen": "2026-11-21",
+      "movimento": "volumando",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_queroreceitasoberana_com_br_2026_11_09_1812dcbc.webp"
+    },
+    {
+      "ad_id": "5547406423",
+      "network": "Mgid",
+      "gravity": 226,
+      "headline": "Невролози: 2 билки ще премахнат невропатията бързо!",
+      "first_seen": "2026-10-22",
+      "last_seen": "2026-11-22",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_beritainspiratif_com_2026_10_22_57220e06.webp"
+    },
+    {
+      "ad_id": "5579762963",
+      "network": "Mgid",
+      "gravity": 222,
+      "headline": "Невролози: 2 билки ще премахнат невропатията бързо!",
+      "first_seen": "2026-10-30",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_postpati_com_2026_10_30_c68ca130.webp"
+    },
+    {
+      "ad_id": "5582314802",
+      "network": "Mgid",
+      "gravity": 208,
+      "headline": "Невролози: 2 билки ще премахнат невропатията бързо!",
+      "first_seen": "2026-10-31",
+      "last_seen": "2026-11-22",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_d-onenews_com_2026_10_31_5081bc62.webp"
+    },
+    {
+      "ad_id": "5650316394",
+      "network": "AdsKeeper",
+      "gravity": 208,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтриете!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_bgseriali_com_2026_11_16_e42843d1.webp"
+    },
+    {
+      "ad_id": "5539618841",
+      "network": "Mgid",
+      "gravity": 199,
+      "headline": "Невролози: 2 билки ще премахнат невропатията бързо!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_postpati_com_2026_10_20_4970a8f8.webp"
+    },
+    {
+      "ad_id": "5566638614",
+      "network": "Mgid",
+      "gravity": 198,
+      "headline": "Невропатија ће нестати за два дана! Доступно у свакој апотеци, и зове се...",
+      "first_seen": "2026-10-27",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mumcare_org_2026_10_27_27ae9865.webp"
+    },
+    {
+      "ad_id": "5581456606",
+      "network": "Mgid",
+      "gravity": 195,
+      "headline": "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+      "first_seen": "2026-10-31",
+      "last_seen": "2026-11-21",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_derwaechter_net_2026_10_31_64e99b78.webp"
+    },
+    {
+      "ad_id": "5538641885",
+      "network": "Mgid",
+      "gravity": 186,
+      "headline": "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_joq-albania_com_2026_10_20_20f2a894.webp"
+    },
+    {
+      "ad_id": "5582533200",
+      "network": "Mgid",
+      "gravity": 185,
+      "headline": "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+      "first_seen": "2026-10-31",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_emdep_vn_2026_10_31_c185a20e.webp"
+    },
+    {
+      "ad_id": "5650271032",
+      "network": "Mgid",
+      "gravity": 170,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтриете!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_daotaovuabep_com_2026_11_16_7f5c87ce.webp"
+    },
+    {
+      "ad_id": "5574410892",
+      "network": "Mgid",
+      "gravity": 156,
+      "headline": "Neurolodzy apelują do seniorów z neuropatią: przestańcie jeść te 3 produkty",
+      "first_seen": "2026-10-29",
+      "last_seen": "2026-11-21",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bigmir_net_2026_10_29_752bc3d9.webp"
+    },
+    {
+      "ad_id": "5547419548",
+      "network": "Mgid",
+      "gravity": 152,
+      "headline": "Невролози: 2 билки ще премахнат невропатията бързо!",
+      "first_seen": "2026-10-22",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_thewisdomawakened_com_2026_10_22_8af91073.webp"
+    },
+    {
+      "ad_id": "5539618859",
+      "network": "Mgid",
+      "gravity": 151,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтрият!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-20",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_postpati_com_2026_10_20_36484bdb.webp"
+    },
+    {
+      "ad_id": "5655569501",
+      "network": "Mgid",
+      "gravity": 146,
+      "headline": "Objawy neuropatii znikną! Wystarczy robić to dwa razy dziennie",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bingkaiberita_com_2026_11_17_f26a930c.webp"
+    },
+    {
+      "ad_id": "5613665349",
+      "network": "Mgid",
+      "gravity": 139,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-11-08",
+      "last_seen": "2026-11-20",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gameower_it_2026_11_08_b8167d15.webp"
+    },
+    {
+      "ad_id": "5650965810",
+      "network": "AdsKeeper",
+      "gravity": 126,
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_videoletoltes_com_2026_11_16_0e6ab137.webp"
+    },
+    {
+      "ad_id": "5650043094",
+      "network": "Mgid",
+      "gravity": 117,
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_bazzing_it_2026_11_16_fde3ebf1.webp"
+    },
+    {
+      "ad_id": "5649916989",
+      "network": "AdsKeeper",
+      "gravity": 115,
+      "headline": "Reggelente 1/2 csésze gyorsan megszünteti a neuropátiát!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_videoletoltes_com_2026_11_16_eebbad21.webp"
+    },
+    {
+      "ad_id": "5649961757",
+      "network": "AdsKeeper",
+      "gravity": 115,
+      "headline": "Неуролог моли људе са неуропатијом: престаните одмах да радите ово!",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_11_16_e7f7895c.webp"
+    },
+    {
+      "ad_id": "5546897691",
+      "network": "AdsKeeper",
+      "gravity": 113,
+      "headline": "1/2 šalice svako jutro brzo uklanja neuropatiju!",
+      "first_seen": "2026-10-22",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_10_22_f1d511cd.webp"
+    },
+    {
+      "ad_id": "5663221230",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Cei care au neuropatie - Citesc înainte să o șteargă!",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_banglanewslive_com_2026_11_20_65f14ccf.webp"
+    },
+    {
+      "ad_id": "5664225061",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Cei care au neuropatie - Citesc înainte să o șteargă!",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_pressnews365_com_2026_11_20_91de7e3e.webp"
+    },
+    {
+      "ad_id": "5652992583",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Неуролог моли људе са неуропатијом: престаните одмах да радите ово!",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_vikna_if_ua_2026_11_17_f2d1776e.webp"
+    },
+    {
+      "ad_id": "5640180131",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "1/2 šalice svako jutro brzo uklanja neuropatiju!",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_indovideotube_com_2026_11_14_a1516e9f.webp"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 32."
+}
