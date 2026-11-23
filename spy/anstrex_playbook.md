@@ -148,3 +148,13 @@
 - O Outbrain 3320 de gesund-vital-ratgeber.org (ad 5023457882, de 21/11) **não se repetiu**: o anúncio não está no pull de hoje (last_seen 11/20). O número permanece no histórico e não entra no top desta janela. testeauditivo24.pt apareceu com um pico de um dia a 1290 (first_seen 11/21) — registado como coletado, não prova sozinha de explosão.
 - Hosts de rede/tracker (ex.: adskeeper.co.uk) **não contam como players novos**. Domínios off-niche também não: superdin.co.il (שימוע trabalhista) e endokrino.com (tireoide).
 - Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
+
+## Coleta (2026-11-23)
+- Date Range desta coleta: **2026-10-24 a 2026-11-22** (últimos 30 dias, terminando ontem), em todas as visões. Método igual ao de 17–22/11; a gravidade é comparável.
+- **Todas as visões foram extrações reais.** E bateu com os ads ≥300 de cada termo (tinnitus 6, neuropathy 4, tingling 3, nerve 1, numbness 1). E|hearing foi cortada em 15 de 20: faltaram 2 ads ≥300 que aparecem noutras visões (audibene.de 595 em G, pgsrc.com 314). A ausência em E não é evidência contra escalando. C e F idênticas em hearing (anúncios de 22/11 a gravidade 0) é o esperado.
+- **Decaimento confirmado outra vez:** testeauditivo24.pt 1290→645 e 660→330, com ad_strength igual (2580/1320). geers.pl 586→298 (strength 30896→30906). Regra mantida: pico isolado não é escala sem repetição ou sem o strength crescer.
+- Filtro de nicho alargado (o filtro antigo excluía anúncios reais): ET «kuulmist» (audição), RO «țiuit în urechi» / «Audiolog», HU «fülzúg» (zumbido). Com isto torvenqila.info (AdsKeeper 419, EE) entrou como player novo.
+- Fora do nicho nesta rodada: drvitalex.com (estenose espinal; agora na lista de domínios off-niche), endokrino.com (8), zdraveikrasota.bg (adormecimento da cabeça), adskeeper.co.uk «1 cucchiaino… grasso» (emagrecimento), pgsrc.com «Sumea näkö» (visão), thisiscm.com (vietnamita).
+- Thumbnails com prefixo `newsmax_` podem vir com o badge «Revcontent» no card. A rede primária continua a ser a do arquivo do thumbnail, como nas rodadas anteriores.
+- medizinbericht.de: a raiz faz meta-refresh para /adv01/ (advertorial), que leva a /vsl01/ (VSL NervenGold em player converteai/vturb). O preço não está no HTML. Nada foi enviado.
+- Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
