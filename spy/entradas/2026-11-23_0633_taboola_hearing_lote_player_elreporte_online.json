@@ -1,0 +1,123 @@
+{
+  "data_coleta": "2026-11-23",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "elreporte.online",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 7,
+  "n_headlines": 3,
+  "headlines": [
+    "¿Tinnitus severo? Este hábito cotidiano es el nuevo aliado",
+    "El aliado nº1 contra el tinnitus que te han ocultado por años",
+    "Tinnitus crónico: hábito diario se vuelve aliado nº1"
+  ],
+  "max_gravity": 270,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 270,
+      "ad_id": "5670811129",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-11-20",
+  "last_seen": "2026-11-22",
+  "movimentos": {
+    "lancando": [
+      "5670811129",
+      "5665131767",
+      "5673643207",
+      "5675288032",
+      "5670398962",
+      "5670612002",
+      "5665124235"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5670811129",
+      "network": "Taboola",
+      "gravity": 270,
+      "headline": "¿Tinnitus severo? Este hábito cotidiano es el nuevo aliado",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_eltiempo_com_2026_11_21_29329a35.png"
+    },
+    {
+      "ad_id": "5665131767",
+      "network": "Taboola",
+      "gravity": 107,
+      "headline": "El aliado nº1 contra el tinnitus que te han ocultado por años",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_elsol_com_ar_2026_11_20_f2fa8340.png"
+    },
+    {
+      "ad_id": "5673643207",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "El aliado nº1 contra el tinnitus que te han ocultado por años",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_eltiempo_com_2026_11_22_af739b77.png"
+    },
+    {
+      "ad_id": "5675288032",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Tinnitus crónico: hábito diario se vuelve aliado nº1",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_vanguardia_com_2026_11_22_d8163236.png"
+    },
+    {
+      "ad_id": "5670398962",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "El aliado nº1 contra el tinnitus que te han ocultado por años",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_eluniversal_com_co_2026_11_21_1ceb2ac1.png"
+    },
+    {
+      "ad_id": "5670612002",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Tinnitus crónico: hábito diario se vuelve aliado nº1",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_minuto30_com_2026_11_21_b67c2598.png"
+    },
+    {
+      "ad_id": "5665124235",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "¿Tinnitus severo? Este hábito cotidiano es el nuevo aliado",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_lapatria_com_2026_11_20_44756549.png"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→270; n anúncios agora 7."
+}
