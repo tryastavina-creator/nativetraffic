@@ -1,0 +1,100 @@
+{
+  "data_coleta": "2026-11-23",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "wellnesshome.blog",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Revcontent"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 3,
+  "headlines": [
+    "Neuropati skyldes ikke B-vitaminmangel. Synderen er en helt anden",
+    "Neuropathy Is Not From Low Vitamin B. Meet the Real Enemy of Neuropathy",
+    "Tingling and Burning Feet at Night? Try This Simple At-Home Routine"
+  ],
+  "max_gravity": 240,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 240,
+      "ad_id": "5670151051",
+      "last_seen": "2026-11-21"
+    },
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 0,
+      "ad_id": "5628843166",
+      "last_seen": "2026-11-11"
+    }
+  },
+  "first_seen": "2026-10-30",
+  "last_seen": "2026-11-21",
+  "movimentos": {
+    "lancando": [
+      "5670151051"
+    ],
+    "parado": [
+      "5577402867",
+      "5628843166",
+      "5647903801"
+    ]
+  },
+  "dominios_ligados": [
+    "agewelljournal.com",
+    "lifetechadviser.com",
+    "smoothspine.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5670151051",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "Neuropati skyldes ikke B-vitaminmangel. Synderen er en helt anden",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_nenaghlive_ie_2026_11_21_c20d8be0.webp"
+    },
+    {
+      "ad_id": "5577402867",
+      "network": "Outbrain",
+      "gravity": 178,
+      "headline": "Neuropathy Is Not From Low Vitamin B. Meet the Real Enemy of Neuropathy",
+      "first_seen": "2026-10-30",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": ""
+    },
+    {
+      "ad_id": "5628843166",
+      "network": "Revcontent",
+      "gravity": 0,
+      "headline": "Tingling and Burning Feet at Night? Try This Simple At-Home Routine",
+      "first_seen": "2026-11-11",
+      "last_seen": "2026-11-11",
+      "movimento": "parado",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_breitbart_com_2026_11_11_61ea57e8.jpg"
+    },
+    {
+      "ad_id": "5647903801",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Neuropathy Is Not From Low Vitamin B. Meet the Real Enemy of Neuropathy",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": ""
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 178→240; n anúncios agora 4."
+}
