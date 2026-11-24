@@ -1,0 +1,89 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "filmijudcombo.site",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 1,
+  "headlines": [
+    "No puedo creer que los médicos hayan ocultado este método para tratar el acúfeno."
+  ],
+  "max_gravity": 120,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 120,
+      "ad_id": "5657346389",
+      "last_seen": "2026-11-19"
+    }
+  },
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5678099967",
+      "5679159919"
+    ],
+    "parado": [
+      "5657346389",
+      "5657344169"
+    ]
+  },
+  "dominios_ligados": [
+    "lphst.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5657346389",
+      "network": "AdsKeeper",
+      "gravity": 120,
+      "headline": "No puedo creer que los médicos hayan ocultado este método para tratar el acúfeno.",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_gotvq_eu_2026_11_18_6f0094eb.webp"
+    },
+    {
+      "ad_id": "5678099967",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "No puedo creer que los médicos hayan ocultado este método para tratar el acúfeno.",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_jornalbrasilonline_com_br_2026_11_23_ff4a67f1.webp"
+    },
+    {
+      "ad_id": "5679159919",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "No puedo creer que los médicos hayan ocultado este método para tratar el acúfeno.",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_lavidalucida_com_2026_11_23_f585649f.webp"
+    },
+    {
+      "ad_id": "5657344169",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "No puedo creer que los médicos hayan ocultado este método para tratar el acúfeno.",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_lavidalucida_com_2026_11_18_4740756b.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→lancando; n anúncios agora 4."
+}
