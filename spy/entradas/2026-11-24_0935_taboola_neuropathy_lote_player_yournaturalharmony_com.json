@@ -1,0 +1,127 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "yournaturalharmony.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 7,
+  "n_headlines": 3,
+  "headlines": [
+    "Večerní rituál na brnění a pálení nohou, který nestojí skoro nic",
+    "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč",
+    "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč"
+  ],
+  "max_gravity": 654,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 654,
+      "ad_id": "5658139095",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5658139095",
+      "5657958720",
+      "5658498003",
+      "5657955404"
+    ],
+    "parado": [
+      "5660224177",
+      "5658321406",
+      "5657982378"
+    ]
+  },
+  "dominios_ligados": [
+    "serenatura24.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5658139095",
+      "network": "Taboola",
+      "gravity": 654,
+      "headline": "Večerní rituál na brnění a pálení nohou, který nestojí skoro nic",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_jimeto_cz_2026_11_18_2efddf6e.jpg"
+    },
+    {
+      "ad_id": "5660224177",
+      "network": "Taboola",
+      "gravity": 265,
+      "headline": "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_onlyu_cz_2026_11_19_8519e2e1.jpg"
+    },
+    {
+      "ad_id": "5657958720",
+      "network": "Taboola",
+      "gravity": 177,
+      "headline": "Večerní rituál na brnění a pálení nohou, který nestojí skoro nic",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_jimeto_cz_2026_11_18_c633a143.jpg"
+    },
+    {
+      "ad_id": "5658321406",
+      "network": "Taboola",
+      "gravity": 175,
+      "headline": "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_onlyu_cz_2026_11_18_c44207f1.jpg"
+    },
+    {
+      "ad_id": "5658498003",
+      "network": "Taboola",
+      "gravity": 131,
+      "headline": "Večerní rituál na brnění a pálení nohou, který nestojí skoro nic",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_18_7f852a31.jpg"
+    },
+    {
+      "ad_id": "5657955404",
+      "network": "Taboola",
+      "gravity": 106,
+      "headline": "Večerní rituál na brnění a pálení nohou, který nestojí skoro nic",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_18_9a88abe1.jpg"
+    },
+    {
+      "ad_id": "5657982378",
+      "network": "Taboola",
+      "gravity": 72,
+      "headline": "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_18_e7465bbd.jpg"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 580→654; n anúncios agora 7."
+}
