@@ -1,0 +1,153 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "solveclocktext.space",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 8,
+  "n_headlines": 6,
+  "headlines": [
+    "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+    "Neurológusok: 2 gyógynövény gyorsan megszünteti a neuropátiát!",
+    "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+    "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+    "Neuropatia zniknie w ciągu 2 dni! Dostępne w każdej aptece, a nazywa się...",
+    "Хората с невропатия – прочетете го, преди да го изтриете!"
+  ],
+  "max_gravity": 1000,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 1000,
+      "ad_id": "5535258990",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-10-19",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "escalando": [
+      "5535258990",
+      "5535564880"
+    ],
+    "volumando": [
+      "5536909803"
+    ],
+    "parado": [
+      "5535678705",
+      "5535890565",
+      "5537561346",
+      "5537142056",
+      "5535463577"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "artstampsea.beauty",
+    "beauty-ri.click",
+    "candy.ai",
+    "dcbgio.com",
+    "green-ri.click",
+    "healthweekly.info",
+    "linfaflowstore.online",
+    "washbosswhale.beauty"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5535258990",
+      "network": "Mgid",
+      "gravity": 1000,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_10_19_172d79be.webp"
+    },
+    {
+      "ad_id": "5535564880",
+      "network": "Mgid",
+      "gravity": 711,
+      "headline": "Neurológusok: 2 gyógynövény gyorsan megszünteti a neuropátiát!",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_deguate_com_gt_2026_10_19_f93c8ae7.webp"
+    },
+    {
+      "ad_id": "5535890565",
+      "network": "Mgid",
+      "gravity": 684,
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_pravda-tv_com_2026_10_19_313d42c7.webp"
+    },
+    {
+      "ad_id": "5537142056",
+      "network": "Mgid",
+      "gravity": 572,
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_faiththaistory_com_2026_10_20_ca957de4.webp"
+    },
+    {
+      "ad_id": "5535463577",
+      "network": "Mgid",
+      "gravity": 349,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтриете!",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_gotvq_eu_2026_10_19_6972d548.webp"
+    },
+    {
+      "ad_id": "5537561346",
+      "network": "Mgid",
+      "gravity": 286,
+      "headline": "Neuropatia zniknie w ciągu 2 dni! Dostępne w każdej aptece, a nazywa się...",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_10_20_7d3af0d6.webp"
+    },
+    {
+      "ad_id": "5536909803",
+      "network": "Mgid",
+      "gravity": 272,
+      "headline": "Neurológusok: 2 gyógynövény gyorsan megszünteti a neuropátiát!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-23",
+      "movimento": "volumando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_greenbreporters_com_2026_10_20_e365e092.webp"
+    },
+    {
+      "ad_id": "5535678705",
+      "network": "Mgid",
+      "gravity": 145,
+      "headline": "1/2 cană în fiecare dimineață elimină rapid neuropatia!",
+      "first_seen": "2026-10-19",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_chakrirkhobor_com_bd_2026_10_19_4b7bb2a5.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 684→1000; n anúncios agora 8."
+}

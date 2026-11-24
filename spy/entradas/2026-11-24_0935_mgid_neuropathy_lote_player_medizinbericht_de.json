@@ -1,0 +1,206 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "medizinbericht.de",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 13,
+  "n_headlines": 2,
+  "headlines": [
+    "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+    "Neuropathie (brennende Füße)? Machen Sie das sofort"
+  ],
+  "max_gravity": 315,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 315,
+      "ad_id": "5673804344",
+      "last_seen": "2026-11-23"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5674815346",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-11-22",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5673804344",
+      "5673811141",
+      "5678080407",
+      "5678262955",
+      "5678540172",
+      "5679159268",
+      "5673872757",
+      "5673920442",
+      "5674241663",
+      "5674815346",
+      "5674817216",
+      "5674938736",
+      "5675346779"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "christianhealthreport.com",
+    "evidwell.com",
+    "seniorwellnessdigest.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5673804344",
+      "network": "Mgid",
+      "gravity": 315,
+      "headline": "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_revistadebricolaje_com_2026_11_22_ce44d63a.webp"
+    },
+    {
+      "ad_id": "5673811141",
+      "network": "Mgid",
+      "gravity": 165,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_infokita_click_2026_11_22_9b0f7fce.webp"
+    },
+    {
+      "ad_id": "5678080407",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_wordfulanswers_info_2026_11_23_bc8fe1d4.webp"
+    },
+    {
+      "ad_id": "5678262955",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_chakrirkhobor_com_bd_2026_11_23_72efb295.webp"
+    },
+    {
+      "ad_id": "5678540172",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_irecetasfaciles_com_2026_11_23_6321df77.webp"
+    },
+    {
+      "ad_id": "5679159268",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_newsakhada_com_2026_11_23_ba53bd8f.webp"
+    },
+    {
+      "ad_id": "5673872757",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_realitateadecluj_net_2026_11_22_ecfebade.webp"
+    },
+    {
+      "ad_id": "5673920442",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gossiplanka_com_2026_11_22_21fbf9e5.webp"
+    },
+    {
+      "ad_id": "5674241663",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nguoi-noi-tieng_com_2026_11_22_76e0eda3.webp"
+    },
+    {
+      "ad_id": "5674815346",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_webtvhd_com_2026_11_22_8772d920.webp"
+    },
+    {
+      "ad_id": "5674817216",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Entdeckung zu Neuropathie in den Füßen macht Ärzte sprachlos",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_22_3bb6347c.webp"
+    },
+    {
+      "ad_id": "5674938736",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_boomsbeat_com_2026_11_22_2d57c5bd.webp"
+    },
+    {
+      "ad_id": "5675346779",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Neuropathie (brennende Füße)? Machen Sie das sofort",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_22_38a9c583.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 0→315; n anúncios agora 13."
+}
