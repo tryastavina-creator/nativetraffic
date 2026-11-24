@@ -1,0 +1,255 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "deutscher-gesundheits-fachkreis.de",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 18,
+  "n_headlines": 1,
+  "headlines": [
+    "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen"
+  ],
+  "max_gravity": 120,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 120,
+      "ad_id": "5674774608",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5674774608",
+      "5675346662",
+      "5674595756",
+      "5676574065",
+      "5677192072",
+      "5677196567",
+      "5677201368",
+      "5677448922",
+      "5677836224",
+      "5678239532",
+      "5669471634",
+      "5670993377",
+      "5671261234"
+    ],
+    "parado": [
+      "5659657242",
+      "5659648940",
+      "5659402602",
+      "5655770859",
+      "5655871861"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5674774608",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_22_4a39d097.webp"
+    },
+    {
+      "ad_id": "5675346662",
+      "network": "Outbrain",
+      "gravity": 60,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_22_acc9808e.webp"
+    },
+    {
+      "ad_id": "5659402602",
+      "network": "Outbrain",
+      "gravity": 30,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bild_de_2026_11_18_569a0a47.webp"
+    },
+    {
+      "ad_id": "5674595756",
+      "network": "Outbrain",
+      "gravity": 24,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_22_4c035d6c.webp"
+    },
+    {
+      "ad_id": "5659657242",
+      "network": "Outbrain",
+      "gravity": 20,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_19_16995c06.webp"
+    },
+    {
+      "ad_id": "5659648940",
+      "network": "Outbrain",
+      "gravity": 18,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bild_de_2026_11_19_027ebbcc.webp"
+    },
+    {
+      "ad_id": "5669471634",
+      "network": "Outbrain",
+      "gravity": 15,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_21_b1e9e306.webp"
+    },
+    {
+      "ad_id": "5670993377",
+      "network": "Outbrain",
+      "gravity": 15,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bild_de_2026_11_21_c28e6ab9.webp"
+    },
+    {
+      "ad_id": "5676574065",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_landtiere_de_2026_11_23_d044fb94.webp"
+    },
+    {
+      "ad_id": "5677192072",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_23_03f83ef7.webp"
+    },
+    {
+      "ad_id": "5677196567",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_23_fa8e8ba0.webp"
+    },
+    {
+      "ad_id": "5677201368",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_guter-rat_de_2026_11_23_b38d1c08.webp"
+    },
+    {
+      "ad_id": "5677448922",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_23_dd31d155.webp"
+    },
+    {
+      "ad_id": "5677836224",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_23_f52d4ee3.webp"
+    },
+    {
+      "ad_id": "5678239532",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tatort-fans_de_2026_11_23_60f0e33b.webp"
+    },
+    {
+      "ad_id": "5671261234",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_bild_de_2026_11_22_1df031df.webp"
+    },
+    {
+      "ad_id": "5655770859",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_op-online_de_2026_11_18_b5d9268c.webp"
+    },
+    {
+      "ad_id": "5655871861",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kribbeln, Brennen, Pieksen: Was deine Füße dir damit sagen wollen",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_18_5efb0a7c.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 30→120; n anúncios agora 18."
+}
