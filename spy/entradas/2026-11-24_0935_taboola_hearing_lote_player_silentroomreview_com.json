@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "silentroomreview.com",
+  "status": "testando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Persistent tinnitus linked to a habit most people over 50 share"
+  ],
+  "max_gravity": 94,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 94,
+      "ad_id": "5550551906",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-10-23",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "testando": [
+      "5550551906"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://silentroomreview.com/ devolve HTTP 200 (26 KB, inglês). Pré-sell tipo página-vídeo/advertorial «After the House Goes Quiet — a short video report», com VSL em player converteai/vturb (scripts.converteai.net) e pixel/preconnect Taboola. O texto resume pesquisas publicadas sobre suplementos para zumbido (ginkgo, zinco, melatonina, magnésio, B12, citando Cochrane e AAO-HNSF, 7 fontes) e termina com divulgação «This page is an advertisement… the publisher receives compensation when a purchase is made through the video above». Narrador, produto, mecanismo, preço, kits, garantia e domínio de checkout NÃO aparecem no HTML (ficam dentro do vídeo); ficam em branco. Uma única leitura direta: não dá para afirmar nem descartar cloaking. Nada foi comprado nem enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5550551906",
+      "network": "Taboola",
+      "gravity": 94,
+      "headline": "Persistent tinnitus linked to a habit most people over 50 share",
+      "first_seen": "2026-10-23",
+      "last_seen": "2026-11-23",
+      "movimento": "testando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_espn_com_2026_10_23_ac13a998.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-24."
+}
