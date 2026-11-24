@@ -1,0 +1,114 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "thinkstreamed.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 6,
+  "n_headlines": 2,
+  "headlines": [
+    "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζο&u",
+    "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζουν την προσοχή"
+  ],
+  "max_gravity": 180,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 180,
+      "ad_id": "5675290177",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-11-17",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5675290177",
+      "5678292974",
+      "5678293718",
+      "5678295751",
+      "5679087754"
+    ],
+    "parado": [
+      "5654400126"
+    ]
+  },
+  "dominios_ligados": [
+    "buzzandblink.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5675290177",
+      "network": "Outbrain",
+      "gravity": 180,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζο&u",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_flight_com_gr_2026_11_22_535e6349.webp"
+    },
+    {
+      "ad_id": "5678292974",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζουν την προσοχή",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_voria_gr_2026_11_23_e38729e6.webp"
+    },
+    {
+      "ad_id": "5678293718",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζουν την προσοχή",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_makeleio_gr_2026_11_23_5cdf19fd.webp"
+    },
+    {
+      "ad_id": "5678295751",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζουν την προσοχή",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_makeleio_gr_2026_11_23_5a5cfc40.jpg"
+    },
+    {
+      "ad_id": "5679087754",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζουν την προσοχή",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_onalert_gr_2026_11_23_885ab344.webp"
+    },
+    {
+      "ad_id": "5654400126",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Οι νέες επιλογές ακουστικών βοηθημάτων κερδίζουν την προσοχή",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_flight_com_gr_2026_11_17_36753787.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 0→180; n anúncios agora 6."
+}
