@@ -158,3 +158,14 @@
 - Thumbnails com prefixo `newsmax_` podem vir com o badge «Revcontent» no card. A rede primária continua a ser a do arquivo do thumbnail, como nas rodadas anteriores.
 - medizinbericht.de: a raiz faz meta-refresh para /adv01/ (advertorial), que leva a /vsl01/ (VSL NervenGold em player converteai/vturb). O preço não está no HTML. Nada foi enviado.
 - Funis só de players novos, em leitura: nunca comprar, nunca enviar o formulário.
+
+## Coleta (2026-11-24)
+- Date Range desta coleta: **2026-10-25 a 2026-11-23** (últimos 30 dias, terminando ontem), em todas as visões. Método igual ao de 17–23/11; a gravidade é comparável. Todas as visões foram extrações reais (hearing 203 linhas, neuropathy 245).
+- E|tinnitus teve só 8 cartões (≥300). E|numbness teve 0 anúncios: o máximo do slider de gravidade era 196, logo nenhum ad ≥300 existia nesse termo. Contagens do dia: neuropathy E 11, nerve D 14, numbness D 4, tingling E 6. Alguns «+N countries» não foram expandidos (geo_hint incompleto). C e F de tinnitus saíram idênticas porque todos os cards novos têm gravidade 0–60.
+- Uma headline veio truncada pelo coletor (hearing D, 5675290177, «…κερδίζο&u»); o texto completo aparece nos outros anúncios do mesmo domínio («…κερδίζουν την προσοχή»). Um anúncio (hearing B, 5224603393) veio com thumbnail vazia. Os 89 ids novos tiveram o domínio lido no painel do criativo (0 em branco).
+- **Pico de 1.º dia e decaimento, de novo:** gesund-vital-ratgeber.org 3320→602 (strength 19400→20060), amplificadorauditivo.com 635→362, torvenqila.info 419→214 (strength +10). Anúncios de 1 dia vêm com strength = 2× a gravidade (caffeinecommons 642/1284, elreporte 305/610, medizinbericht 315/630); caffeinecommons.com ficou em lançando por ser pico de um dia.
+- **Outbrain mexe de anúncio para anúncio:** no liyng.com um anúncio foi 2662→1040 e outro 167→1566 no mesmo dia, com strength subindo. Julgar o player (cluster de anúncios e strength), não o anúncio isolado.
+- Snapshots master_2026-11-23/players_2026-11-23 foram copiados do master/players de 23/11 antes da mescla, como em 23/11 (master_2026-11-22/players_2026-11-22).
+- Fora do nicho nesta rodada (nenhuma extensão de filtro necessária): pgsrc.com «Sumea näkö» (visão), superdin.co.il «שימוע» (audiência trabalhista), laleggepertutti.it «udienza» (audiência judicial), drvitalex.com (estenose espinal), zdraveikrasota.bg (adormecimento da cabeça), endokrino.com ×7 (tireoide).
+- Funis só de players novos, em leitura: silentroomreview.com é página-vídeo com VSL converteai/vturb (produto e preço dentro do vídeo, não legíveis); caffeinecommons.com devolveu 500/corpo vazio. Nada foi enviado.
+- Correção de processo: em 23/11 as «Tendências» e «Testes» dos movimentos.md/json saíram letra a letra (lista feita a partir de uma string). Em 24/11 são listas de bullets.
