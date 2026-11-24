@@ -1,0 +1,116 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audibene.nl",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Audibene",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 6,
+  "n_headlines": 1,
+  "headlines": [
+    "Audibene hoortoestellen"
+  ],
+  "max_gravity": 528,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 528,
+      "ad_id": "5661616219",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-11-13",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5661616219",
+      "5664784273"
+    ],
+    "escalando": [
+      "5638475544"
+    ],
+    "volumando": [
+      "5637978608"
+    ],
+    "parado": [
+      "5643382851",
+      "5641225445"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5661616219",
+      "network": "Mgid",
+      "gravity": 528,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topiktrend_com_2026_11_19_637d2717.webp"
+    },
+    {
+      "ad_id": "5638475544",
+      "network": "Mgid",
+      "gravity": 319,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nepalivirals_com_2026_11_13_c1378482.webp"
+    },
+    {
+      "ad_id": "5664784273",
+      "network": "Mgid",
+      "gravity": 295,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_korrespondent_az_2026_11_20_29f2cfff.webp"
+    },
+    {
+      "ad_id": "5637978608",
+      "network": "Mgid",
+      "gravity": 214,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-21",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_learningfromhollywood_pl_2026_11_13_85156ee8.webp"
+    },
+    {
+      "ad_id": "5643382851",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_lamdepcungban_info_2026_11_15_63c7fa1d.webp"
+    },
+    {
+      "ad_id": "5641225445",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Audibene hoortoestellen",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_realitateadebrasov_net_2026_11_14_1afd9141.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe volumando→escalando; máx. gravidade 408→528; n anúncios agora 6."
+}
