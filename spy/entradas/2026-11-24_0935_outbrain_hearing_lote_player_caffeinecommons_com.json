@@ -1,0 +1,54 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "caffeinecommons.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "¿Cuánto cuesta un audífono? Aquí está la lista"
+  ],
+  "max_gravity": 642,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 642,
+      "ad_id": "5676159830",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-11-23",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5676159830"
+    ]
+  },
+  "dominios_ligados": [
+    "perfectadd.art"
+  ],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "http://caffeinecommons.com/ redireciona (302) para /en; o GET devolveu HTTP 500 sem corpo e o HEAD em /en deu 200 com content-length 0. Pré-sell, produto, preço, garantia e checkout não legíveis. O anúncio (Outbrain ES) pergunta «¿Cuánto cuesta un audífono? Aquí está la lista». Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5676159830",
+      "network": "Outbrain",
+      "gravity": 642,
+      "headline": "¿Cuánto cuesta un audífono? Aquí está la lista",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_elespanol_com_2026_11_23_2ab5bf08.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-24."
+}

@@ -1,0 +1,300 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "kalmeda.de",
+  "status": "lancando",
+  "tipo_player": "marca_dtc",
+  "tipo_nota": "App Kalmeda (terapia de zumbido)",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 21,
+  "n_headlines": 10,
+  "headlines": [
+    "Tinnitus-Therapie per App. Wissenschaftlich bestätigt & erprobt.",
+    "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen.",
+    "Ohrgeräusche-Check von Kalmeda. Tinnitus-Schweregrad besser einschätzen.",
+    "Tinnitus erkennen & verstehen. Hol dir jetzt kostenlose Infos.",
+    "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+    "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+    "Tinnitus? Jetzt kognitive Verhaltenstherapie per App mit Kalmeda kostenlos starten.",
+    "Die Kalmeda-Tinnitus-App. Von Ärzten entwickelt. Deine Krankenkasse übernimmt die Kosten.",
+    "Wie stark ist dein Tinnitus wirklich? Jetzt Fragebogen ausfüllen & Hilfe erhalten.",
+    "Kostenloser Tinnitus-Fragebogen. Schweregrad einschätzen. Gut vorbereitet zum Arzt."
+  ],
+  "max_gravity": 150,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 150,
+      "ad_id": "5664730073",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "lancando": [
+      "5675020568",
+      "5677838496",
+      "5678115585",
+      "5668388150",
+      "5668388279",
+      "5673209223"
+    ],
+    "parado": [
+      "5664730073",
+      "5664476801",
+      "5660354773",
+      "5661404328",
+      "5662453290",
+      "5655508067",
+      "5651324011",
+      "5651317753",
+      "5648922903",
+      "5647373444",
+      "5647390336",
+      "5648665120",
+      "5649682175",
+      "5646077316",
+      "5643188267"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5664730073",
+      "network": "Outbrain",
+      "gravity": 150,
+      "headline": "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_20_6af24b90.webp"
+    },
+    {
+      "ad_id": "5648922903",
+      "network": "Outbrain",
+      "gravity": 90,
+      "headline": "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_come-on_de_2026_11_16_1c341b94.webp"
+    },
+    {
+      "ad_id": "5675020568",
+      "network": "Outbrain",
+      "gravity": 60,
+      "headline": "Tinnitus-Therapie per App. Wissenschaftlich bestätigt & erprobt.",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_11_22_ab2e13ca.webp"
+    },
+    {
+      "ad_id": "5651324011",
+      "network": "Outbrain",
+      "gravity": 60,
+      "headline": "Wie stark ist dein Tinnitus wirklich? Jetzt Fragebogen ausfüllen & Hilfe erhalten.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_16_39adfdcd.jpg"
+    },
+    {
+      "ad_id": "5651317753",
+      "network": "Outbrain",
+      "gravity": 50,
+      "headline": "Kostenloser Tinnitus-Fragebogen. Schweregrad einschätzen. Gut vorbereitet zum Arzt.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-A1",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_16_97e6ceb8.jpg"
+    },
+    {
+      "ad_id": "5668388150",
+      "network": "Outbrain",
+      "gravity": 45,
+      "headline": "Tinnitus erkennen & verstehen. Hol dir jetzt kostenlose Infos.",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_21_f246e56f.webp"
+    },
+    {
+      "ad_id": "5647373444",
+      "network": "Outbrain",
+      "gravity": 30,
+      "headline": "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_15_6e2ef449.webp"
+    },
+    {
+      "ad_id": "5647390336",
+      "network": "Outbrain",
+      "gravity": 30,
+      "headline": "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_op-online_de_2026_11_15_ac54e4da.webp"
+    },
+    {
+      "ad_id": "5668388279",
+      "network": "Outbrain",
+      "gravity": 22,
+      "headline": "Tinnitus-Therapie per App. Wissenschaftlich bestätigt & erprobt.",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_21_1d21966e.webp"
+    },
+    {
+      "ad_id": "5655508067",
+      "network": "Outbrain",
+      "gravity": 20,
+      "headline": "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_11_17_4f598b48.webp"
+    },
+    {
+      "ad_id": "5677838496",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen.",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_23_4c26b546.webp"
+    },
+    {
+      "ad_id": "5678115585",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Ohrgeräusche-Check von Kalmeda. Tinnitus-Schweregrad besser einschätzen.",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_11_23_c05d351e.webp"
+    },
+    {
+      "ad_id": "5673209223",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_22_720e37e1.webp"
+    },
+    {
+      "ad_id": "5664476801",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus? Jetzt kognitive Verhaltenstherapie per App mit Kalmeda kostenlos starten.",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_20_35176eeb.webp"
+    },
+    {
+      "ad_id": "5660354773",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_berliner-kurier_de_2026_11_19_98926b7f.webp"
+    },
+    {
+      "ad_id": "5661404328",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Die Kalmeda-Tinnitus-App. Von Ärzten entwickelt. Deine Krankenkasse übernimmt die Kosten.",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_19_b9e63f7a.webp"
+    },
+    {
+      "ad_id": "5662453290",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Kalmeda Tinnitus-App. Kostenfrei auf Rezept erhältlich.",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mittelbayerische_de_2026_11_19_1befd28a.webp"
+    },
+    {
+      "ad_id": "5648665120",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus erkennen & verstehen. Hol dir jetzt kostenlose Infos.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_11_16_7d0f197c.webp"
+    },
+    {
+      "ad_id": "5649682175",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus-Therapie per App. Wissenschaftlich bestätigt & erprobt.",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_11_16_625b5923.webp"
+    },
+    {
+      "ad_id": "5646077316",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Chronischer Tinnitus. Erfahre alles zu Formen, Ursachen & Therapie.",
+      "first_seen": "2026-11-15",
+      "last_seen": "2026-11-15",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_mein-schoener-garten_de_2026_11_15_e701581a.webp"
+    },
+    {
+      "ad_id": "5643188267",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus-App. Nur drei Schritte zur Tinnitus-App – jetzt kostenlose Therapie beginnen.",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_14_ccbea53a.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe escalando→lancando; n anúncios agora 21."
+}

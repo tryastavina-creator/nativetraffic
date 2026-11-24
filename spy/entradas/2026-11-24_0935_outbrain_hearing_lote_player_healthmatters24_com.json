@@ -1,0 +1,510 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "healthmatters24.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain",
+    "Taboola",
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 36,
+  "n_headlines": 7,
+  "headlines": [
+    "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+    "Nesmierte sa už s tinnitusom. Prečítajte si toto...",
+    "Máte 1 EUR a trpíte tinnitusom alebo stratou sluchu? Skúste to",
+    "Tinnitus alebo strata sluchu? Vyskúšajte toto",
+    "Problémy so sluchom? Užívajte toto raz denne večer",
+    "Babičkino riešenie pre sluch. Váš sluch sa vráti do normálu",
+    "Problémy se sluchem? Užívejte toto jednou denně večer"
+  ],
+  "max_gravity": 640,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 640,
+      "ad_id": "5542617745",
+      "last_seen": "2026-11-23"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 478,
+      "ad_id": "5654444950",
+      "last_seen": "2026-11-23"
+    },
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 325,
+      "ad_id": "5671220212",
+      "last_seen": "2026-11-23"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 180,
+      "ad_id": "5674239946",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-07-31",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "escalando": [
+      "5542617745",
+      "5543135866",
+      "5542617874",
+      "5543401997",
+      "5366566531",
+      "5551922055",
+      "5542615879",
+      "5376140955",
+      "5369115586",
+      "5542877940"
+    ],
+    "lancando": [
+      "5654444950",
+      "5654444869",
+      "5654447131",
+      "5671220212",
+      "5671236597",
+      "5672694289",
+      "5671219960",
+      "5671221412",
+      "5671240366",
+      "5674239946",
+      "5677803293",
+      "5677803456",
+      "5674242599"
+    ],
+    "volumando": [
+      "5543647748",
+      "5365521187",
+      "5187480974"
+    ],
+    "parado": [
+      "5187183070",
+      "5188403893",
+      "5663826549",
+      "5187829969",
+      "5542615383",
+      "5654004563",
+      "5359371385",
+      "5366566674",
+      "5379908080"
+    ],
+    "testando": [
+      "5186425661"
+    ]
+  },
+  "dominios_ligados": [
+    "douceofficiel.com",
+    "lphst.com",
+    "naturegrove24.com",
+    "pgsrc.com",
+    "revue-bien-etre.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5542617745",
+      "network": "Outbrain",
+      "gravity": 640,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_d3cdf6be.webp"
+    },
+    {
+      "ad_id": "5542615879",
+      "network": "Outbrain",
+      "gravity": 573,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_01114e6f.webp"
+    },
+    {
+      "ad_id": "5543135866",
+      "network": "Outbrain",
+      "gravity": 501,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_7cdc4695.webp"
+    },
+    {
+      "ad_id": "5654444950",
+      "network": "Taboola",
+      "gravity": 478,
+      "headline": "Nesmierte sa už s tinnitusom. Prečítajte si toto...",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_17_4b61caf0.png"
+    },
+    {
+      "ad_id": "5663826549",
+      "network": "Outbrain",
+      "gravity": 435,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_11_20_924bb779.webp"
+    },
+    {
+      "ad_id": "5654444869",
+      "network": "Taboola",
+      "gravity": 377,
+      "headline": "Máte 1 EUR a trpíte tinnitusom alebo stratou sluchu? Skúste to",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_17_da3cab80.png"
+    },
+    {
+      "ad_id": "5542617874",
+      "network": "Outbrain",
+      "gravity": 369,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_d897cef2.webp"
+    },
+    {
+      "ad_id": "5376140955",
+      "network": "Outbrain",
+      "gravity": 369,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-09-13",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_09_13_e93032df.webp"
+    },
+    {
+      "ad_id": "5654447131",
+      "network": "Taboola",
+      "gravity": 349,
+      "headline": "Tinnitus alebo strata sluchu? Vyskúšajte toto",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_17_eb88319a.png"
+    },
+    {
+      "ad_id": "5671220212",
+      "network": "Mgid",
+      "gravity": 325,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mensajesdfe_com_2026_11_22_e3ae9bcd.webp"
+    },
+    {
+      "ad_id": "5542615383",
+      "network": "Outbrain",
+      "gravity": 273,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_567c3d18.webp"
+    },
+    {
+      "ad_id": "5671236597",
+      "network": "Mgid",
+      "gravity": 260,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_realizeminds_com_2026_11_22_42b607a2.webp"
+    },
+    {
+      "ad_id": "5369115586",
+      "network": "Outbrain",
+      "gravity": 260,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-09-12",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fussball_news_2026_09_12_5c4c6d40.webp"
+    },
+    {
+      "ad_id": "5543401997",
+      "network": "Outbrain",
+      "gravity": 257,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_b957af2a.webp"
+    },
+    {
+      "ad_id": "5672694289",
+      "network": "Mgid",
+      "gravity": 255,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_guntursapta_com_2026_11_22_80c39546.webp"
+    },
+    {
+      "ad_id": "5654004563",
+      "network": "Outbrain",
+      "gravity": 255,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_11_17_4b27859d.png"
+    },
+    {
+      "ad_id": "5671219960",
+      "network": "Mgid",
+      "gravity": 250,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_liataja_com_2026_11_22_d674c598.webp"
+    },
+    {
+      "ad_id": "5187829969",
+      "network": "Outbrain",
+      "gravity": 223,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_07_31_1b5fc46e.webp"
+    },
+    {
+      "ad_id": "5542877940",
+      "network": "Outbrain",
+      "gravity": 206,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_cfa89b13.webp"
+    },
+    {
+      "ad_id": "5671221412",
+      "network": "Mgid",
+      "gravity": 205,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_suaranasional_com_2026_11_22_7be1c006.webp"
+    },
+    {
+      "ad_id": "5671240366",
+      "network": "Mgid",
+      "gravity": 205,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_niadi_net_2026_11_22_942091e7.webp"
+    },
+    {
+      "ad_id": "5366566531",
+      "network": "Outbrain",
+      "gravity": 188,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-09-11",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eurozpravy_cz_2026_09_11_1e6732ff.webp"
+    },
+    {
+      "ad_id": "5674239946",
+      "network": "AdsKeeper",
+      "gravity": 180,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_22_3d3ca5b6.webp"
+    },
+    {
+      "ad_id": "5551922055",
+      "network": "Outbrain",
+      "gravity": 178,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-23",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_23_e1c3f977.webp"
+    },
+    {
+      "ad_id": "5379908080",
+      "network": "Outbrain",
+      "gravity": 157,
+      "headline": "Problémy se sluchem? Užívejte toto jednou denně večer",
+      "first_seen": "2026-09-14",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_nenaghlive_ie_2026_09_14_181b8e95.webp"
+    },
+    {
+      "ad_id": "5543647748",
+      "network": "Outbrain",
+      "gravity": 122,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-10-21",
+      "last_seen": "2026-11-23",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_10_21_fb50a458.webp"
+    },
+    {
+      "ad_id": "5365521187",
+      "network": "Outbrain",
+      "gravity": 120,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-09-11",
+      "last_seen": "2026-11-23",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eurozpravy_cz_2026_09_11_6b177331.webp"
+    },
+    {
+      "ad_id": "5187480974",
+      "network": "Outbrain",
+      "gravity": 110,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-23",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_07_31_4b896da5.webp"
+    },
+    {
+      "ad_id": "5359371385",
+      "network": "Taboola",
+      "gravity": 82,
+      "headline": "Problémy se sluchem? Užívejte toto jednou denně večer",
+      "first_seen": "2026-09-10",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_09_10_a0aba93b.jpg"
+    },
+    {
+      "ad_id": "5186425661",
+      "network": "Outbrain",
+      "gravity": 43,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-22",
+      "movimento": "testando",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pinkun_com_2026_07_31_8f29b99e.webp"
+    },
+    {
+      "ad_id": "5366566674",
+      "network": "Outbrain",
+      "gravity": 12,
+      "headline": "Babkina metóda na problémy so sluchom. Užívajte ho raz denne",
+      "first_seen": "2026-09-11",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eurozpravy_cz_2026_09_11_2c3b2b93.webp"
+    },
+    {
+      "ad_id": "5187183070",
+      "network": "AdsKeeper",
+      "gravity": 1,
+      "headline": "Babičkino riešenie pre sluch. Váš sluch sa vráti do normálu",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_nastol_com_ua_2026_07_31_f2098021.webp"
+    },
+    {
+      "ad_id": "5188403893",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Babičkino riešenie pre sluch. Váš sluch sa vráti do normálu",
+      "first_seen": "2026-08-01",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "HEAR-A8",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_wordsofwonders_app_2026_08_01_f2e3eab9.webp"
+    },
+    {
+      "ad_id": "5677803293",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_jornalbrasilonline_com_br_2026_11_23_d8e9ac49.webp"
+    },
+    {
+      "ad_id": "5677803456",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_jornalbrasilonline_com_br_2026_11_23_9ecdbabd.webp"
+    },
+    {
+      "ad_id": "5674242599",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Problémy so sluchom? Užívajte toto raz denne večer",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_22_96591cb8.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 573→640; n anúncios agora 36."
+}

@@ -1,0 +1,228 @@
+{
+  "data_coleta": "2026-11-24",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "gesund-vital-ratgeber.org",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 15,
+  "n_headlines": 3,
+  "headlines": [
+    "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+    "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser",
+    "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen"
+  ],
+  "max_gravity": 602,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 602,
+      "ad_id": "5023457882",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2025-12-25",
+  "last_seen": "2026-11-23",
+  "movimentos": {
+    "escalando": [
+      "5023457882",
+      "5217286577",
+      "5574103092"
+    ],
+    "volumando": [
+      "5187681201"
+    ],
+    "parado": [
+      "4100674856",
+      "4106808649",
+      "5635849858",
+      "5662247475",
+      "5660916041",
+      "5662249313",
+      "5117941599",
+      "5658819939",
+      "5654553854",
+      "5641973983"
+    ],
+    "lancando": [
+      "5671509942"
+    ]
+  },
+  "dominios_ligados": [
+    "dailylifeinsider.com",
+    "giornale-salute.it"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5023457882",
+      "network": "Outbrain",
+      "gravity": 602,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-06-20",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_serienjunkies_de_2026_06_20_d8800836.png"
+    },
+    {
+      "ad_id": "5217286577",
+      "network": "Outbrain",
+      "gravity": 246,
+      "headline": "Tinnitus ist nur ein Symptom – das ist der wahre Auslöser",
+      "first_seen": "2026-08-11",
+      "last_seen": "2026-11-23",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_pnp_de_2026_08_11_80da5f69.png"
+    },
+    {
+      "ad_id": "4106808649",
+      "network": "Outbrain",
+      "gravity": 187,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2025-12-26",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2025_12_26_babbc6df.png"
+    },
+    {
+      "ad_id": "5574103092",
+      "network": "Outbrain",
+      "gravity": 156,
+      "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
+      "first_seen": "2026-10-29",
+      "last_seen": "2026-11-21",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_oe24_at_2026_10_29_d75e2274.png"
+    },
+    {
+      "ad_id": "5187681201",
+      "network": "Outbrain",
+      "gravity": 127,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-22",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_wa_de_2026_07_31_ca54845b.webp"
+    },
+    {
+      "ad_id": "5635849858",
+      "network": "Outbrain",
+      "gravity": 117,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_serienjunkies_de_2026_11_13_99f0c096.png"
+    },
+    {
+      "ad_id": "5117941599",
+      "network": "Outbrain",
+      "gravity": 92,
+      "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
+      "first_seen": "2026-07-13",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tagesspiegel_de_2026_07_13_5df157ad.png"
+    },
+    {
+      "ad_id": "5662247475",
+      "network": "Outbrain",
+      "gravity": 20,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_19_d314bba1.webp"
+    },
+    {
+      "ad_id": "4100674856",
+      "network": "Outbrain",
+      "gravity": 2,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2025-12-25",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2025_12_25_5590eb4a.png"
+    },
+    {
+      "ad_id": "5671509942",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_fr_de_2026_11_22_2b76b49d.webp"
+    },
+    {
+      "ad_id": "5660916041",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_oe24_at_2026_11_19_dec08496.webp"
+    },
+    {
+      "ad_id": "5662249313",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Forscher erstaunt: Tinnitus Ursache liegt nicht im Ohr",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_19_4bd56039.webp"
+    },
+    {
+      "ad_id": "5658819939",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_buzzfeed_de_2026_11_18_8cd12542.webp"
+    },
+    {
+      "ad_id": "5654553854",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_merkur_de_2026_11_17_825cc588.jpg"
+    },
+    {
+      "ad_id": "5641973983",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Tinnitus ist nur ein Symptom – hier liegt die eigentliche Ursache verborgen",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A9",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_vol_at_2026_11_14_546ee3b0.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 3320→602; n anúncios agora 15."
+}
