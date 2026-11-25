@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-25",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "portalsaudenews.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Todos que sofrem com neuropatia precisam conhecer esta solução natural",
+    "Formigamento e queimação nos pés? Faça isso antes de dormir"
+  ],
+  "max_gravity": 348,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 348,
+      "ad_id": "5602108248",
+      "last_seen": "2026-11-24"
+    }
+  },
+  "first_seen": "2026-11-05",
+  "last_seen": "2026-11-24",
+  "movimentos": {
+    "escalando": [
+      "5602108248"
+    ],
+    "parado": [
+      "5638221984"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5602108248",
+      "network": "Taboola",
+      "gravity": 348,
+      "headline": "Todos que sofrem com neuropatia precisam conhecer esta solução natural",
+      "first_seen": "2026-11-05",
+      "last_seen": "2026-11-24",
+      "movimento": "escalando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_acidadeon_com_2026_11_05_5d2880fc.png"
+    },
+    {
+      "ad_id": "5638221984",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Formigamento e queimação nos pés? Faça isso antes de dormir",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "NEURO-A14",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_techtudo_com_br_2026_11_13_ef3d66aa.png"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→escalando; máx. gravidade 0→348; n anúncios agora 2."
+}

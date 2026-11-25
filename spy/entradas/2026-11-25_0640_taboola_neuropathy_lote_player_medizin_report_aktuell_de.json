@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-25",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "medizin-report-aktuell.de",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Schwere Beine und Fußkribbeln: Zwei getrennte Probleme?"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5681925238",
+      "last_seen": "2026-11-24"
+    }
+  },
+  "first_seen": "2026-11-24",
+  "last_seen": "2026-11-24",
+  "movimentos": {
+    "lancando": [
+      "5681925238"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://medizin-report-aktuell.de/ devolveu HTTP 404 com a página «Parked Domain – It might be waiting to be connected to Funnelish right now». Domínio estacionado numa plataforma de funis (Funnelish), sem oferta, preço ou texto de neuropatia. O anúncio Taboola AT («Schwere Beine und Fußkribbeln: Zwei getrennte Probleme?») tem thumbnail de tippsundtricks_co, mas o lander vem do painel. Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5681925238",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Schwere Beine und Fußkribbeln: Zwei getrennte Probleme?",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-24",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_tippsundtricks_co_2026_11_24_243e3303.png"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-25."
+}
