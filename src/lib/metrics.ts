@@ -7,6 +7,7 @@ import { demoData } from "./demo";
 import type { Funnel } from "./connectors/shopify";
 import { PLATFORM_LABEL, platformFromOrder } from "./registry";
 import { readSpendBook, recordSpend, spendFromBook } from "./history";
+import { applyManualSpend, listManualSpend } from "./manualSpend";
 import {
   getSettings,
   getSupplierCosts,
@@ -268,6 +269,13 @@ export async function computeMetrics(range: DateRange): Promise<Metrics> {
         spendSources.push("redtrack");
       }
     }
+  }
+
+  // Spend typed by hand (Configurações → Gasto manual de tráfego), for days a source didn't report.
+  const manualEntries = await listManualSpend().catch(() => []);
+  if (manualEntries.length) {
+    spend = applyManualSpend(spend, manualEntries, range);
+    for (const e of manualEntries) if (!spendSources.includes(e.platform) && e.to >= range.from && e.from <= range.to) spendSources.push(e.platform);
   }
 
   // Ignored campaigns (e.g. other products sharing the ad account): subtract their spend day by day.
