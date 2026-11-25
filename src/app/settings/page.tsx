@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import ManualSpendCard from "@/components/ManualSpendCard";
 import type { Settings, SupplierModel } from "@/lib/store";
 
 type CostRow = { product: string; cost: string };
@@ -13,6 +14,9 @@ type ImportResult = {
   changes: { item: string; from: number | null; to: number }[];
   unresolved: string[];
   error?: string;
+  source?: "dropshipbot";
+  store?: string;
+  totalCost?: number;
 };
 type ImportInfo = { at: string; file: string; orders: number; from?: string; to?: string; newOrders?: number; updatedOrders?: number };
 const usd = (n: number) => `$${n.toFixed(2)}`;
@@ -97,12 +101,16 @@ export default function SettingsPage() {
       <h1 className="text-2xl font-semibold tracking-tight">Configurações</h1>
       <p className="mt-1 text-sm text-muted">Premissas usadas no cálculo do lucro.</p>
 
-      <h2 className="h-section">Fornecedor (Wiio)</h2>
+      <h2 className="h-section">Gasto manual de tráfego</h2>
+      <ManualSpendCard />
+
+      <h2 className="h-section">Fornecedor (Wiio ou DropshipBot)</h2>
       <div className="card card-pad space-y-5">
         <div className="rounded-lg border border-dashed border-line bg-bg p-4">
-          <div className="text-sm font-medium">Importar planilha da Wiio</div>
+          <div className="text-sm font-medium">Importar planilha do fornecedor</div>
           <p className="mt-1 text-xs text-muted">
-            Exporte a lista de pedidos na Wiio (OrderList .xls ou .csv) e envie aqui sempre que puder. Cada pedido do arquivo passa a usar
+            Wiio: lista de pedidos (OrderList .xls ou .csv). DropshipBot: o CSV de transações (pagamentos menos reembolsos de imposto e
+            frete = custo real de cada pedido; só a loja conectada conta). Envie sempre que puder. Cada pedido do arquivo passa a usar
             o custo exato, todas as métricas (Dashboard, Tráfego, Criativos) são recalculadas e a tabela de custos aprende com todos os
             envios — os pedidos que ainda não chegaram num arquivo usam essa média.
           </p>
@@ -129,6 +137,11 @@ export default function SettingsPage() {
                 {result.from ? ` (de ${br(result.from)} a ${br(result.to)})` : ""}
                 {result.newOrders !== undefined ? ` · ${result.newOrders} novos, ${result.updatedOrders} atualizados` : ""}. Métricas recalculadas.
               </div>
+              {result.source === "dropshipbot" && (
+                <div className="text-zinc-300">
+                  DropshipBot, loja {result.store}: custo total {usd(result.totalCost ?? 0)} (pago − reembolsos).
+                </div>
+              )}
               {result.model && (
                 <div className="text-zinc-300">
                   Aprendido com {result.model.orders} pedidos: custo médio por pedido <b>{usd(result.model.avgTotalPerOrder)}</b> (produto{" "}

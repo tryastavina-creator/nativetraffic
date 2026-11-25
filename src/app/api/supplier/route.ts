@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { guardRoute } from "@/lib/auth";
-import { getSettings, getSupplierCosts, getSupplierImports, saveSupplierImport, type SupplierImport } from "@/lib/store";
-import { learnCosts, parseSupplierFile } from "@/lib/supplier";
+import { getSettings, getSupplierCosts, getSupplierImports, listConnections, saveSupplierImport, type SupplierImport } from "@/lib/store";
+import { isDropshipBot, learnCosts, parseDropshipBot, parseSupplierFile, readSupplierRows } from "@/lib/supplier";
+
+const round2 = (n: number) => Math.round(n * 100) / 100;
 
 export const dynamic = "force-dynamic";
 
@@ -30,9 +32,55 @@ export async function POST(req: Request) {
     );
   }
 
+  const buf = Buffer.from(await file.arrayBuffer());
+  // DropshipBot "transações" export: exact paid cost per order (payments − refunds), no cost table to learn.
+  try {
+    const rows = readSupplierRows(buf, file.name);
+    if (isDropshipBot(rows)) {
+      const shop = (await listConnections()).find((c) => c.provider === "shopify")?.credentials.shop ?? "";
+      const handle = shop.replace(/^https?:\/\//, "").replace(/\.myshopify\.com.*$/i, "");
+      const p = parseDropshipBot(rows, handle);
+      // Keep the product/shipping split and items an earlier (Wiio) upload gave the same order.
+      const existing = await getSupplierCosts();
+      for (const [k, o] of Object.entries(p.orders)) {
+        const old = existing[k];
+        if (old?.total && old.total > 0) {
+          const ship = round2(o.total * (old.shipping / old.total));
+          p.orders[k] = { ...o, product: round2(o.total - ship), shipping: ship, items: old.items };
+        }
+      }
+      const count = Object.keys(p.orders).length;
+      const dates = Object.values(p.orders)
+        .map((o) => o.date)
+        .filter((d): d is string => !!d)
+        .sort();
+      const info: SupplierImport = { at: new Date().toISOString(), file: file.name, orders: count, from: dates[0], to: dates[dates.length - 1] };
+      const model = await saveSupplierImport(p.orders, info, {}, (all) => learnCosts(all));
+      const total = Object.values(p.orders).reduce((a, o) => a + o.total, 0);
+      return NextResponse.json({
+        orders: count,
+        from: info.from,
+        to: info.to,
+        newOrders: info.newOrders,
+        updatedOrders: info.updatedOrders,
+        model: model ?? null,
+        rows: p.rows,
+        changes: [],
+        unresolved: [],
+        source: "dropshipbot",
+        store: p.store,
+        totalCost: round2(total),
+        unlinked: p.unlinked,
+        settings: await getSettings(),
+      });
+    }
+  } catch (e) {
+    return NextResponse.json({ error: `Não consegui ler o arquivo da DropshipBot: ${(e as Error).message}` }, { status: 400 });
+  }
+
   let parsed;
   try {
-    parsed = parseSupplierFile(Buffer.from(await file.arrayBuffer()), file.name);
+    parsed = parseSupplierFile(buf, file.name);
   } catch (e) {
     return NextResponse.json({ error: `Não consegui ler a planilha: ${(e as Error).message}` }, { status: 400 });
   }

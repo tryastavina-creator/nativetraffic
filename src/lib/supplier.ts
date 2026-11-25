@@ -65,8 +65,77 @@ export type SupplierParse = {
   unresolved: string[];
 };
 
+/**
+ * DropshipBot "transações" export: one row per money movement (order payment, refund of import tax / freight /
+ * weight adjustment, top-up). The cost of an order is what was paid minus what came back. Top-ups and rows of other
+ * stores are ignored. No product split in this file: the whole amount goes to `product` (shipping 0) unless an
+ * earlier upload already split that order, then that split is kept.
+ */
+export type DropshipBotParse = { orders: Record<string, SupplierCost>; rows: number; store: string; stores: Record<string, number>; unlinked: number };
+
+export function isDropshipBot(rows: Cell[][]): boolean {
+  const head = (rows[0] ?? []).map((c) => String(c ?? "").trim().toLowerCase());
+  return head.some((c) => c.includes("pedido na loja")) && head.some((c) => c.startsWith("valor"));
+}
+
+export function parseDropshipBot(rows: Cell[][], storeHandle?: string): DropshipBotParse {
+  const head = rows[0].map((c) => String(c ?? "").trim().toLowerCase());
+  const at = (re: RegExp) => head.findIndex((c) => re.test(c));
+  const c = {
+    store: at(/loja de terceiros/),
+    order: at(/pedido na loja/),
+    date: at(/^data$/),
+    type: at(/^tipo$/),
+    value: at(/^valor/),
+    status: at(/^status$/),
+  };
+  if (c.order < 0 || c.value < 0) throw new Error('Não encontrei as colunas "Nº do pedido na loja" e "Valor (USD)".');
+  const body = rows.slice(1).filter((r) => r?.length && String(r[c.value] ?? "").trim());
+  const stores: Record<string, number> = {};
+  for (const r of body) {
+    const s = String(r[c.store] ?? "").trim();
+    if (s && s !== "--") stores[s] = (stores[s] ?? 0) + 1;
+  }
+  // The connected Shopify store ("0dbhhy-ry.myshopify.com" → "0dbhhy-ry"), else the store with most rows.
+  const store = storeHandle && stores[storeHandle] ? storeHandle : (Object.entries(stores).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "");
+  const acc = new Map<string, { paid: number; back: number; date?: string }>();
+  let unlinked = 0;
+  for (const r of body) {
+    if (c.status >= 0 && !/sucesso|success/i.test(String(r[c.status] ?? "sucesso"))) continue;
+    const type = String(r[c.type] ?? "").toLowerCase();
+    if (/recarreg|top.?up|recharge/.test(type)) continue;
+    const v = num(r[c.value]);
+    const order = String(r[c.order] ?? "").trim();
+    if (String(r[c.store] ?? "").trim() !== store) continue;
+    if (!order || order === "--") {
+      unlinked++;
+      continue;
+    }
+    const name = order.startsWith("#") ? order : `#${order}`;
+    const o = acc.get(name) ?? { paid: 0, back: 0 };
+    const date = normDate(String(r[c.date] ?? ""));
+    if (v < 0) {
+      o.paid += -v;
+      if (date && (!o.date || date < o.date)) o.date = date;
+    } else o.back += v;
+    acc.set(name, o);
+  }
+  if (!acc.size) throw new Error(`Nenhum pedido da loja ${store || "conectada"} no arquivo.`);
+  const orders: Record<string, SupplierCost> = {};
+  for (const [name, o] of acc) {
+    const total = round2(o.paid - o.back);
+    orders[name] = { product: total, shipping: 0, total, date: o.date };
+  }
+  return { orders, rows: body.length, store, stores, unlinked };
+}
+
+/** Reads a supplier file into rows (CSV or XLS). */
+export function readSupplierRows(buf: Buffer, filename: string): Cell[][] {
+  return /\.csv$/i.test(filename) ? readCsv(buf.toString("utf8").replace(/^﻿/, "")) : readXls(buf);
+}
+
 export function parseSupplierFile(buf: Buffer, filename: string): SupplierParse {
-  const rows: Cell[][] = /\.csv$/i.test(filename) ? readCsv(buf.toString("utf8").replace(/^﻿/, "")) : readXls(buf);
+  const rows: Cell[][] = readSupplierRows(buf, filename);
 
   // Header row = first row that has an order-number column.
   const h = rows.findIndex((r) => r?.some((c) => typeof c === "string" && COLS.order.test(c.trim())));
