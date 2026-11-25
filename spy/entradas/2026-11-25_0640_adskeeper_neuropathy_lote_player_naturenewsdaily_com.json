@@ -1,0 +1,71 @@
+{
+  "data_coleta": "2026-11-25",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "naturenewsdaily.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper",
+    "Mgid"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 1,
+  "headlines": [
+    "Peckanje u tabanu posle 50. godine – šta lekari ne kažu na vreme"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5679532664",
+      "last_seen": "2026-11-24"
+    },
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5680527442",
+      "last_seen": "2026-11-24"
+    }
+  },
+  "first_seen": "2026-11-24",
+  "last_seen": "2026-11-24",
+  "movimentos": {
+    "lancando": [
+      "5679532664",
+      "5680527442"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://naturenewsdaily.com/ (só a raiz; o anúncio não traz lander_url) devolveu HTTP 200 com um blog WordPress genérico («Purevibe – whiteboard 24/7 relationships», posts de moda e lifestyle de 2023, sem palavra de neuropatia, formigueiro ou preço). Não mostra a oferta do anúncio; fachada. Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5679532664",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Peckanje u tabanu posle 50. godine – šta lekari ne kažu na vreme",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-24",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_filmclub_tv_2026_11_24_6318ce50.webp"
+    },
+    {
+      "ad_id": "5680527442",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Peckanje u tabanu posle 50. godine – šta lekari ne kažu na vreme",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-24",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gosumbar_com_2026_11_24_016ef21a.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-25."
+}
