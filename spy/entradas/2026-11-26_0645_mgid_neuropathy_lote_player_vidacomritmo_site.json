@@ -1,0 +1,78 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "vidacomritmo.site",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 1,
+  "headlines": [
+    "ALIVIO DA NEUROPATIA"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5685043187",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2026-11-25",
+  "last_seen": "2026-11-25",
+  "movimentos": {
+    "lancando": [
+      "5685043187",
+      "5685043605",
+      "5685046360"
+    ]
+  },
+  "dominios_ligados": [
+    "recuperabem.site"
+  ],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://vidacomritmo.site/ devolveu HTTP 200 com a página «Welcome – something interesting is coming». Sem oferta (mesmo modelo «coming soon» de recuperabem.site, também «ALIVIO DA NEUROPATIA»). Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5685043187",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_readthefullstory_com_2026_11_25_c7feead1.webp"
+    },
+    {
+      "ad_id": "5685043605",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_readthefullstory_com_2026_11_25_206f1ee5.webp"
+    },
+    {
+      "ad_id": "5685046360",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_rightwingnewshour_com_2026_11_25_4143d4ba.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-26."
+}
