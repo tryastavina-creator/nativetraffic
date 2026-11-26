@@ -180,3 +180,16 @@
 - Lacuna conhecida: o anúncio hearing 5186932914 (Taboola PL, gravidade 501) está sem lander_domain no master desde 18/11; nada foi inferido a partir do thumbnail (publisher fronda_pl).
 - Funis só de players novos, em leitura: naturenewsdaily.com é um blog WordPress genérico (raiz); medizin-report-aktuell.de é «Parked Domain» da Funnelish (404). Nada foi enviado.
 - Snapshots master_2026-11-24/players_2026-11-24 foram copiados do master/players de 24/11 antes da mescla. Rotina de busca (Reset All → Search → Translated Text) segue a seção «Como buscar» acima.
+
+## Coleta (2026-11-26)
+- Date Range: **2026-10-27 a 2026-11-25** em todas as visões (30 dias terminando ontem), comparável a 17–25/11. C = first_seen ≥ 11-19, F = first_seen ≥ 11-12. Sessão expirada e refeita pelo usuário (sem código).
+- **Todas as visões foram lidas na própria página; nenhuma cópia hoje.** tinnitus C=F, hearing A=E e neuropathy C=F saíram idênticas por causa das datas e dos pisos de gravidade, o que é legítimo. Por isso UNRELIABLE_BLOCKS ficou vazio e todas as letras entram em `views`.
+- Em cada visão, os cartões vêm ordenados pela métrica do sort, mas no layout masonry a ordem de cartões empatados não é garantida. Não usar posição como sinal.
+- hearing: 14 visões, 197 linhas de cartão no arquivo (o relato fala em 209; diferença não resolvida, listada como lacuna); E|tinnitus 2. neuropathy: 19 visões, 212 linhas; D e E de numbness 0 (máximo do slider 75; o UI ignorou min=100 e o coletor não registrou os cards não filtrados); E neuropathy 5, nerve 9, tingling 1; D nerve 9, tingling 13. Geos «+N» incompletos.
+- **Lacuna de 25/11 fechada:** lander_5186932914.txt trouxe 5186932914|geers.pl (lido no painel). O master foi corrigido (LANDER_FIXES no analyze, só preenche se estiver em branco) e o anúncio entrou no player geers.pl.
+- **Picos de 25/11 conferidos (só conta se repetir e o strength seguir):** healthmatters24 Outbrain 1410 e Taboola 756, e geers.pl 728 repetiram o mesmo número com strength idêntico (congelado), então não contam. myvita.day 939 e caffeinecommons 642 não apareceram no pull. Números que reaparecem iguais, com strength igual, são leitura parada do Anstrex, não confirmação.
+- Novo número alto a conferir amanhã: bonne-audition.fr Outbrain 1417 (strength 9270).
+- Host de rede não é player: 5683621873 → adskeeper.co.uk. Off-niche mantidos: superdin.co.il (שימוע), onemove-shop.com (ciática em hebraico), endokrino.com, drvitalex.com.
+- Filtro de neuropatia ampliado: «nevropati», «douleurs nerveuses», «brûlures aux pieds», «necitlivost», «brnění». Sem isso, lifetechadviser.com, healthtribunenews.com e um anúncio de serenatura24.com ficavam de fora.
+- Funis de players novos, só leitura: reportguide.site 403; nomads-notebook.com 500; zeyna.co.il loja hebraica (produto/preço não aparecem no HTML); medizin-blatt.de advertorial NeuroSchutz (79 € / 69 €/mês / 49 €/mês); vidacomritmo.site coming soon. Nada foi enviado.
+- Snapshots master_2026-11-25 e players_2026-11-25 copiados antes da mescla.

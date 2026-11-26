@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "reportguide.site",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Fülzúgás és csengés? A stroke első jele! Idd meg ezt, mielőtt elrepednek az erek..."
+  ],
+  "max_gravity": 147,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 147,
+      "ad_id": "5682032458",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2026-11-24",
+  "last_seen": "2026-11-25",
+  "movimentos": {
+    "lancando": [
+      "5682032458"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://reportguide.site/ devolveu HTTP 403 (nginx). Oferta não legível. O anúncio AdsKeeper HU liga zumbido a AVC («Fülzúgás és csengés? A stroke első jele!…»). Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5682032458",
+      "network": "AdsKeeper",
+      "gravity": 147,
+      "headline": "Fülzúgás és csengés? A stroke első jele! Idd meg ezt, mielőtt elrepednek az erek...",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_videoletoltes_com_2026_11_24_bb34eaac.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-26."
+}
