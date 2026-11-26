@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "medizin-blatt.de",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Neuropathie und taube Füße? Das ist die einfachste Methode, die Ärzte Ihnen verschweigen"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5683703980",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2026-11-25",
+  "last_seen": "2026-11-25",
+  "movimentos": {
+    "lancando": [
+      "5683703980"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://medizin-blatt.de/ devolveu HTTP 200: advertorial alemão «Der übersehene Feind Ihrer Nerven» (história de Werner, 54, assinada «Dr. Katrin Weiß»), produto NeuroSchutz (1 cápsula por dia). Preços no texto: 30 dias 79 €, 3 meses 69 €/mês, 6 meses 49 €/mês; garantia de 180 dias, compra única, sem assinatura, envio na Alemanha. Nada foi comprado nem enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5683703980",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neuropathie und taube Füße? Das ist die einfachste Methode, die Ärzte Ihnen verschweigen",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_zcj_ro_2026_11_25_41da2637.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-26."
+}
