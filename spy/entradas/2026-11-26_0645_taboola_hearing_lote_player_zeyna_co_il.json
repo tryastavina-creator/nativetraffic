@@ -1,0 +1,65 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "zeyna.co.il",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "לצחוק שוב ברגעים החשובים: איך אפשר לחזק את השמיעה מהבית?",
+    "אוזניית האור האדום לשמיעה ברורה יותר: 20 דקות בערב"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5686267482",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2026-11-25",
+  "last_seen": "2026-11-25",
+  "movimentos": {
+    "lancando": [
+      "5686267482",
+      "5686438713"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "parcial",
+    "resumo": "https://www.zeyna.co.il/ devolveu HTTP 200: loja virtual em hebraico (frete grátis para ponto de retirada acima de 199 ₪, 90 dias para testar, embalagem discreta). O produto anunciado («אוזניית האור האדום…», fone de luz vermelha para ouvir melhor) e o preço dele não aparecem no HTML (carregados por script); ficam em branco. Nada foi comprado nem enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5686267482",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "לצחוק שוב ברגעים החשובים: איך אפשר לחזק את השמיעה מהבית?",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_bariladaat_com_2026_11_25_d79f1e8e.jpg"
+    },
+    {
+      "ad_id": "5686438713",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "אוזניית האור האדום לשמיעה ברורה יותר: 20 דקות בערב",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_globes_co_il_2026_11_25_d5054291.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-26."
+}

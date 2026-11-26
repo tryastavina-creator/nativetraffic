@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "nomads-notebook.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Preços de aparelho auditivo: veja os valores em 2026"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5684654271",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2026-11-25",
+  "last_seen": "2026-11-25",
+  "movimentos": {
+    "lancando": [
+      "5684654271"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://nomads-notebook.com/ redirecionou para http://nomads-notebook.com/en e devolveu HTTP 500 sem corpo. Oferta não legível (anúncio Taboola «Preços de aparelho auditivo: veja os valores em 2026», ângulo lista de preços, como caffeinecommons.com). Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5684654271",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Preços de aparelho auditivo: veja os valores em 2026",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_kitsapsun_com_2026_11_25_4d8b97de.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-26."
+}
