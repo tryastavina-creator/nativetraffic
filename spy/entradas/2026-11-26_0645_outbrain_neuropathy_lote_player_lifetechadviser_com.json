@@ -1,0 +1,315 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "lifetechadviser.com",
+  "status": "testando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola",
+    "Outbrain"
+  ],
+  "n_anuncios": 21,
+  "n_headlines": 13,
+  "headlines": [
+    "Nevropati kommer ikke av mangel på vitamin B. Oppdag den sanne fienden til nevropati",
+    "נוירופתיה לא נגרמת מחוסר בוויטמין B. גלה את האויב האמיתי של הנוירופתיה",
+    "La neuropatía no se debe a la falta de vitamina B. Descubre al verdadero enemigo.",
+    "La neuropatía no se debe a la falta de vitamina B. Conoce a su verdadero enemigo",
+    "La thérapie idéale contre la neuropathie à la maison (c’est brillant !)",
+    "Neuropati beror inte på brist på vitamin B. Möt dess verkliga fiende",
+    "Neuropatia nie je spôsobená nedostatkom vitamínu B. Objavte skutočného vinníka",
+    "La neuropatia non è causata da una carenza di vitamina B. Scopri il vero nemico della neuropatia",
+    "Neuropathie wird nicht durch einen Vitamin-B-Mangel verursacht. Lernen Sie den wahren Feind kennen",
+    "The ideal at-home neuropathy therapy (it’s brilliant!)",
+    "Neuropathy is Not From Low Vitamin B. Meet Its Real Enemy",
+    "Neuropathy is Not Caused by Vitamin B Deficiency. Learn the Real Enemy",
+    "The Ideal At-home Neuropathy Therapy (It’s Brilliant!)"
+  ],
+  "max_gravity": 135,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 65,
+      "ad_id": "3865700441",
+      "last_seen": "2026-11-12"
+    },
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 135,
+      "ad_id": "5647611105",
+      "last_seen": "2026-11-16"
+    }
+  },
+  "first_seen": "2025-09-25",
+  "last_seen": "2026-11-24",
+  "movimentos": {
+    "testando": [
+      "4529703304"
+    ],
+    "parado": [
+      "3866408823",
+      "3867061091",
+      "3867404982",
+      "3872772442",
+      "5674758285",
+      "5668679233",
+      "3895713799",
+      "4047019978",
+      "5663523172",
+      "5666158365",
+      "5660364769",
+      "5647611105",
+      "5294976698",
+      "3865700441",
+      "3876003751",
+      "3875856226",
+      "3898953994",
+      "3900066078",
+      "3867266622",
+      "5641090224"
+    ]
+  },
+  "dominios_ligados": [
+    "giornalesm.org",
+    "healingdaily.site",
+    "smoothspine.com",
+    "wellnesshome.blog"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5647611105",
+      "network": "Outbrain",
+      "gravity": 135,
+      "headline": "La thérapie idéale contre la neuropathie à la maison (c’est brillant !)",
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_gala_fr_2026_11_16_4722342b.webp"
+    },
+    {
+      "ad_id": "3865700441",
+      "network": "Taboola",
+      "gravity": 65,
+      "headline": "The ideal at-home neuropathy therapy (it’s brilliant!)",
+      "first_seen": "2025-09-25",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_viviendoensalud_com_2025_09_25_459ed3d3.jpg"
+    },
+    {
+      "ad_id": "5294976698",
+      "network": "Outbrain",
+      "gravity": 60,
+      "headline": "La thérapie idéale contre la neuropathie à la maison (c’est brillant !)",
+      "first_seen": "2026-08-29",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_meteobelgique_be_2026_08_29_5186fb79.webp"
+    },
+    {
+      "ad_id": "3876003751",
+      "network": "Taboola",
+      "gravity": 59,
+      "headline": "Neuropathy is Not From Low Vitamin B. Meet Its Real Enemy",
+      "first_seen": "2025-10-09",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_dailynews_co_th_2025_10_09_dfc7046d.jpg"
+    },
+    {
+      "ad_id": "4529703304",
+      "network": "Taboola",
+      "gravity": 45,
+      "headline": "Nevropati kommer ikke av mangel på vitamin B. Oppdag den sanne fienden til nevropati",
+      "first_seen": "2026-03-08",
+      "last_seen": "2026-11-24",
+      "movimento": "testando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_gossiplankanews_com_2026_03_08_6fb60b43.jpg"
+    },
+    {
+      "ad_id": "3875856226",
+      "network": "Taboola",
+      "gravity": 33,
+      "headline": "Neuropathy is Not From Low Vitamin B. Meet Its Real Enemy",
+      "first_seen": "2025-10-09",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_thesummitexpress_com_2025_10_09_117ddb57.jpg"
+    },
+    {
+      "ad_id": "3900066078",
+      "network": "Taboola",
+      "gravity": 33,
+      "headline": "Neuropathy is Not Caused by Vitamin B Deficiency. Learn the Real Enemy",
+      "first_seen": "2025-11-10",
+      "last_seen": "2026-11-09",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ccm_net_2025_11_10_d3cff68e.jpg"
+    },
+    {
+      "ad_id": "3898953994",
+      "network": "Taboola",
+      "gravity": 18,
+      "headline": "Neuropathy is Not Caused by Vitamin B Deficiency. Learn the Real Enemy",
+      "first_seen": "2025-11-09",
+      "last_seen": "2026-11-01",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_mujerde10_com_2025_11_09_61c91851.jpg"
+    },
+    {
+      "ad_id": "3866408823",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "נוירופתיה לא נגרמת מחוסר בוויטמין B. גלה את האויב האמיתי של הנוירופתיה",
+      "first_seen": "2025-09-26",
+      "last_seen": "2026-10-30",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_sport5_co_il_2025_09_26_36da3ca4.jpg"
+    },
+    {
+      "ad_id": "3867061091",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "La neuropatía no se debe a la falta de vitamina B. Descubre al verdadero enemigo.",
+      "first_seen": "2025-09-27",
+      "last_seen": "2026-10-31",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_mujerde10_com_2025_09_27_021d323b.jpg"
+    },
+    {
+      "ad_id": "3867404982",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "La neuropatía no se debe a la falta de vitamina B. Descubre al verdadero enemigo.",
+      "first_seen": "2025-09-27",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_ciudad_com_ar_2025_09_27_92e4e8cf.jpg"
+    },
+    {
+      "ad_id": "3872772442",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "La neuropatía no se debe a la falta de vitamina B. Conoce a su verdadero enemigo",
+      "first_seen": "2025-10-05",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-A10",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_donbalon_com_2025_10_05_74cd12e8.png"
+    },
+    {
+      "ad_id": "3895713799",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "Neuropati beror inte på brist på vitamin B. Möt dess verkliga fiende",
+      "first_seen": "2025-11-06",
+      "last_seen": "2026-10-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_hamariweb_com_2025_11_06_419fe4a4.png"
+    },
+    {
+      "ad_id": "4047019978",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "Neuropatia nie je spôsobená nedostatkom vitamínu B. Objavte skutočného vinníka",
+      "first_seen": "2025-12-15",
+      "last_seen": "2026-10-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_gizchina_com_2025_12_15_2a9911e9.png"
+    },
+    {
+      "ad_id": "3867266622",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "The Ideal At-home Neuropathy Therapy (It’s Brilliant!)",
+      "first_seen": "2025-09-27",
+      "last_seen": "2026-11-07",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_terra_com_2025_09_27_c7ac880b.jpg"
+    },
+    {
+      "ad_id": "5674758285",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La thérapie idéale contre la neuropathie à la maison (c’est brillant !)",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_modele-texte_fr_2026_11_22_cddc5efc.webp"
+    },
+    {
+      "ad_id": "5668679233",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La thérapie idéale contre la neuropathie à la maison (c’est brillant !)",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_consommerdurable_com_2026_11_21_7d27b6bd.webp"
+    },
+    {
+      "ad_id": "5663523172",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La neuropatia non è causata da una carenza di vitamina B. Scopri il vero nemico della neuropatia",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_unionesarda_it_2026_11_20_2d4950c0.webp"
+    },
+    {
+      "ad_id": "5666158365",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La thérapie idéale contre la neuropathie à la maison (c’est brillant !)",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_cosmopolitan_fr_2026_11_20_60363d54.webp"
+    },
+    {
+      "ad_id": "5660364769",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Neuropathie wird nicht durch einen Vitamin-B-Mangel verursacht. Lernen Sie den wahren Feind kennen",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-19",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_stuttgarter-nachrichten_de_2026_11_19_96fb0bf1.jpg"
+    },
+    {
+      "ad_id": "5641090224",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "La neuropatia non è causata da una carenza di vitamina B. Scopri il vero nemico della neuropatia",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_unionesarda_it_2026_11_14_f7a701db.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→testando; n anúncios agora 21."
+}
