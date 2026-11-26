@@ -1,0 +1,91 @@
+{
+  "data_coleta": "2026-11-26",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audionovabrasil.com.br",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "AudioNova (Sonova)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 3,
+  "headlines": [
+    "Aparelho auditivo suíço chega no Brasil com vagas para teste grátis por 7 dias!",
+    "Buscamos 100 pessoas para testar grátis por 7 dias o menor aparelho auditivo do mundo",
+    "3 Sinais de que Você Precisa de uma Avaliação Auditiva Gratuita."
+  ],
+  "max_gravity": 610,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 610,
+      "ad_id": "4984876651",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2025-10-06",
+  "last_seen": "2026-11-25",
+  "movimentos": {
+    "escalando": [
+      "4984876651"
+    ],
+    "testando": [
+      "4992090149"
+    ],
+    "parado": [
+      "3873669696",
+      "5087593914"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "4984876651",
+      "network": "Taboola",
+      "gravity": 610,
+      "headline": "Aparelho auditivo suíço chega no Brasil com vagas para teste grátis por 7 dias!",
+      "first_seen": "2026-06-09",
+      "last_seen": "2026-11-25",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_macworld_com_2026_06_09_13c1879d.png"
+    },
+    {
+      "ad_id": "4992090149",
+      "network": "Taboola",
+      "gravity": 10,
+      "headline": "Buscamos 100 pessoas para testar grátis por 7 dias o menor aparelho auditivo do mundo",
+      "first_seen": "2026-06-11",
+      "last_seen": "2026-11-24",
+      "movimento": "testando",
+      "angle_id": "HEAR-A16",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_r7_com_2026_06_11_660e06c9.png"
+    },
+    {
+      "ad_id": "3873669696",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "3 Sinais de que Você Precisa de uma Avaliação Auditiva Gratuita.",
+      "first_seen": "2025-10-06",
+      "last_seen": "2026-10-23",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_com_r7_com_2025_10_06_b875d987.jpg"
+    },
+    {
+      "ad_id": "5087593914",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "Aparelho auditivo suíço chega no Brasil com vagas para teste grátis por 7 dias!",
+      "first_seen": "2026-07-06",
+      "last_seen": "2026-10-21",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_globo_com_2026_07_06_77f99205.png"
+    }
+  ],
+  "diff_desde_ontem": "classe testando→escalando; máx. gravidade 5922→610; n anúncios agora 4."
+}
