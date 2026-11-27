@@ -1,0 +1,182 @@
+{
+  "data_coleta": "2026-11-27",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "geers.pl",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "GEERS / Dobry Słuch (Sonova)",
+  "redes": [
+    "Taboola",
+    "Mgid"
+  ],
+  "n_anuncios": 10,
+  "n_headlines": 10,
+  "headlines": [
+    "Ten aparat słuchowy zdominuje rynek w 2026 roku",
+    "Nowy aparat słuchowy Phonak EON trafia do Polski",
+    "Szczecin: Bezpłatne badanie słuchu – zarezerwuj termin",
+    "Warsaw: Dlaczego ten aparat słuchowy budzi taki entuzjazm?",
+    "Warsaw: Co sprawia, że ten aparat słuchowy jest tak wyjątkowy?",
+    "Jeszcze mniejszy. Jeszcze lżejszy. Nowy aparat słuchowy Phonak EON już w Polsce",
+    "GEERS poszukuje 200 kobiet, które chciałyby wypróbować niewidoczny aparat słuchowy.",
+    "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+    "Gniezno: Bezpłatne badanie słuchu – zarezerwuj termin",
+    "Poznan: Bezpłatne badanie słuchu – zarezerwuj termin"
+  ],
+  "max_gravity": 501,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 501,
+      "ad_id": "5186932914",
+      "last_seen": "2026-11-24"
+    },
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 260,
+      "ad_id": "5683148848",
+      "last_seen": "2026-11-24"
+    }
+  },
+  "first_seen": "2026-06-26",
+  "last_seen": "2026-11-24",
+  "movimentos": {
+    "escalando": [
+      "5455230057",
+      "5186932914"
+    ],
+    "lancando": [
+      "5681353437",
+      "5683148848",
+      "5682920859"
+    ],
+    "volumando": [
+      "5453331608"
+    ],
+    "parado": [
+      "5217034838",
+      "5047132740",
+      "5640319786",
+      "5637120740"
+    ]
+  },
+  "dominios_ligados": [
+    "connecthearing.ca",
+    "drugie-ucho.pl"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5186932914",
+      "network": "Taboola",
+      "gravity": 501,
+      "headline": "Warsaw: Dlaczego ten aparat słuchowy budzi taki entuzjazm?",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-24",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_07_31_fbe9a77d.png"
+    },
+    {
+      "ad_id": "5455230057",
+      "network": "Taboola",
+      "gravity": 364,
+      "headline": "Ten aparat słuchowy zdominuje rynek w 2026 roku",
+      "first_seen": "2026-09-30",
+      "last_seen": "2026-11-24",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_09_30_2e757ad4.jpg"
+    },
+    {
+      "ad_id": "5681353437",
+      "network": "Taboola",
+      "gravity": 350,
+      "headline": "Nowy aparat słuchowy Phonak EON trafia do Polski",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-24",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_24_3da02bb4.jpg"
+    },
+    {
+      "ad_id": "5683148848",
+      "network": "Mgid",
+      "gravity": 260,
+      "headline": "Szczecin: Bezpłatne badanie słuchu – zarezerwuj termin",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-24",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_rudawkuchni_pl_2026_11_24_bd6f1e1e.webp"
+    },
+    {
+      "ad_id": "5640319786",
+      "network": "Mgid",
+      "gravity": 220,
+      "headline": "Gniezno: Bezpłatne badanie słuchu – zarezerwuj termin",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_rudawkuchni_pl_2026_11_14_280f8005.webp"
+    },
+    {
+      "ad_id": "5637120740",
+      "network": "Mgid",
+      "gravity": 220,
+      "headline": "Poznan: Bezpłatne badanie słuchu – zarezerwuj termin",
+      "first_seen": "2026-11-13",
+      "last_seen": "2026-11-13",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_iochota_pl_2026_11_13_9b7f0461.webp"
+    },
+    {
+      "ad_id": "5453331608",
+      "network": "Taboola",
+      "gravity": 216,
+      "headline": "Warsaw: Co sprawia, że ten aparat słuchowy jest tak wyjątkowy?",
+      "first_seen": "2026-09-30",
+      "last_seen": "2026-11-24",
+      "movimento": "volumando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_moja-ostroleka_pl_2026_09_30_12352413.jpg"
+    },
+    {
+      "ad_id": "5217034838",
+      "network": "Taboola",
+      "gravity": 169,
+      "headline": "GEERS poszukuje 200 kobiet, które chciałyby wypróbować niewidoczny aparat słuchowy.",
+      "first_seen": "2026-08-11",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_moja-ostroleka_pl_2026_08_11_9739bdbe.jpg"
+    },
+    {
+      "ad_id": "5047132740",
+      "network": "Taboola",
+      "gravity": 123,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-06-26",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_egospodarka_pl_2026_06_26_dedb4727.jpg"
+    },
+    {
+      "ad_id": "5682920859",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Jeszcze mniejszy. Jeszcze lżejszy. Nowy aparat słuchowy Phonak EON już w Polsce",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-24",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_moja-ostroleka_pl_2026_11_24_4d2253ef.jpg"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 728→501; n anúncios agora 10."
+}
