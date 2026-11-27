@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-27",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "fitnessefrance.shop",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "90 % der Medikamente versagen bei Kribbeln in den Füßen? Erfahren Sie, was wirklich hilft!"
+  ],
+  "max_gravity": 45,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 45,
+      "ad_id": "5686859747",
+      "last_seen": "2026-11-26"
+    }
+  },
+  "first_seen": "2026-11-26",
+  "last_seen": "2026-11-26",
+  "movimentos": {
+    "lancando": [
+      "5686859747"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "parcial",
+    "resumo": "https://fitnessefrance.shop/ devolveu HTTP 200: advertorial alemão «Charité-Arzt enthüllt natürliche Methode gegen Neuropathie» (falso jornal «Gesundheit im Fokus», datado 24.11.2026, gancho de «documento vazado da Charité»). Produto, preço e link de compra não aparecem no HTML: ficam em branco. Nada foi comprado nem enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5686859747",
+      "network": "Mgid",
+      "gravity": 45,
+      "headline": "90 % der Medikamente versagen bei Kribbeln in den Füßen? Erfahren Sie, was wirklich hilft!",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-26",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tek_id_2026_11_26_25d7b900.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-27."
+}

@@ -1,0 +1,240 @@
+{
+  "data_coleta": "2026-11-27",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "artstampsea.beauty",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 15,
+  "n_headlines": 6,
+  "headlines": [
+    "Cei care au neuropatie - Citesc înainte să o șteargă!",
+    "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+    "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+    "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+    "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+    "Хората с невропатия – прочетете го, преди да го изтрият!"
+  ],
+  "max_gravity": 1033,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 1033,
+      "ad_id": "5667197136",
+      "last_seen": "2026-11-26"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 145,
+      "ad_id": "5677818636",
+      "last_seen": "2026-11-23"
+    }
+  },
+  "first_seen": "2026-11-20",
+  "last_seen": "2026-11-26",
+  "movimentos": {
+    "lancando": [
+      "5667197136",
+      "5667171870",
+      "5685241049",
+      "5679553969"
+    ],
+    "parado": [
+      "5677818636",
+      "5677819686",
+      "5677415178",
+      "5677584016",
+      "5677588506",
+      "5677602151",
+      "5677790836",
+      "5677891733",
+      "5677899254",
+      "5679236919",
+      "5666741815"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "agewelljournal.com",
+    "beauty-ri.click",
+    "dcbgio.com",
+    "green-ri.click",
+    "myvita.day",
+    "solveclocktext.space",
+    "washbosswhale.beauty"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5667197136",
+      "network": "Mgid",
+      "gravity": 1033,
+      "headline": "Cei care au neuropatie - Citesc înainte să o șteargă!",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-26",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mahjongtitans_eco_br_2026_11_21_c9d567f5.webp"
+    },
+    {
+      "ad_id": "5667171870",
+      "network": "Mgid",
+      "gravity": 382,
+      "headline": "Cei care au neuropatie - Citesc înainte să o șteargă!",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-26",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_selerasa_com_2026_11_21_ecdbcb19.webp"
+    },
+    {
+      "ad_id": "5679553969",
+      "network": "Mgid",
+      "gravity": 210,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-11-24",
+      "last_seen": "2026-11-25",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_media-investigasi_com_2026_11_24_38b4f5cb.webp"
+    },
+    {
+      "ad_id": "5677818636",
+      "network": "AdsKeeper",
+      "gravity": 145,
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_vse-knigi_org_2026_11_23_a3aa1400.webp"
+    },
+    {
+      "ad_id": "5677819686",
+      "network": "AdsKeeper",
+      "gravity": 133,
+      "headline": "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_haberdarim_com_2026_11_23_a7cd30ad.webp"
+    },
+    {
+      "ad_id": "5685241049",
+      "network": "Mgid",
+      "gravity": 125,
+      "headline": "Neurolozi: 2 biljke će brzo ukloniti neuropatiju!",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-26",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_indovideotube_com_2026_11_25_e4b096c4.webp"
+    },
+    {
+      "ad_id": "5677415178",
+      "network": "AdsKeeper",
+      "gravity": 115,
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_opoznaybulgaria_com_2026_11_23_18180785.webp"
+    },
+    {
+      "ad_id": "5677584016",
+      "network": "Mgid",
+      "gravity": 115,
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nepalivirals_com_2026_11_23_634501eb.webp"
+    },
+    {
+      "ad_id": "5677588506",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "1/2 šolje svako jutro brzo eliminiše neuropatiju!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_anonpublico_com_2026_11_23_d68e8aeb.webp"
+    },
+    {
+      "ad_id": "5677602151",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Oni koji imaju neuropatiju - pročitajte ovo prije nego što to izbrišu!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_koreanindo_net_2026_11_23_7f3dc66f.webp"
+    },
+    {
+      "ad_id": "5677790836",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтрият!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_joq-albania_com_2026_11_23_b810c1ae.webp"
+    },
+    {
+      "ad_id": "5677891733",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтрият!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_beritainspiratif_com_2026_11_23_2a1ed519.webp"
+    },
+    {
+      "ad_id": "5677899254",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Хората с невропатия – прочетете го, преди да го изтрият!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_aquienlasierra_es_2026_11_23_bbc35593.webp"
+    },
+    {
+      "ad_id": "5679236919",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_perpusku_com_2026_11_23_a088bfe0.webp"
+    },
+    {
+      "ad_id": "5666741815",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Neurolozi: 2 biljke će brzo eliminisati neuropatiju!",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_koreanindo_net_2026_11_20_04b368c0.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; máx. gravidade 210→1033; n anúncios agora 15."
+}
