@@ -1,0 +1,91 @@
+{
+  "data_coleta": "2026-11-27",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "drugie-ucho.pl",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Drugie Ucho (aparelhos suíços / teste)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 1,
+  "headlines": [
+    "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!"
+  ],
+  "max_gravity": 2113,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 2113,
+      "ad_id": "5538344585",
+      "last_seen": "2026-11-26"
+    }
+  },
+  "first_seen": "2026-07-02",
+  "last_seen": "2026-11-26",
+  "movimentos": {
+    "escalando": [
+      "5538344585",
+      "5538355444"
+    ],
+    "volumando": [
+      "5486366710"
+    ],
+    "parado": [
+      "5073011620"
+    ]
+  },
+  "dominios_ligados": [
+    "geers.pl"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5538344585",
+      "network": "Taboola",
+      "gravity": 2113,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-26",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_moja-ostroleka_pl_2026_10_20_a328f06c.jpg"
+    },
+    {
+      "ad_id": "5538355444",
+      "network": "Taboola",
+      "gravity": 325,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-10-20",
+      "last_seen": "2026-11-24",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_zpleszewa_pl_2026_10_20_be934022.jpg"
+    },
+    {
+      "ad_id": "5486366710",
+      "network": "Taboola",
+      "gravity": 286,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-10-07",
+      "last_seen": "2026-11-24",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_10_07_d35aa4fc.png"
+    },
+    {
+      "ad_id": "5073011620",
+      "network": "Taboola",
+      "gravity": 1,
+      "headline": "Warsaw bezpłatnie aparaty słuchowe stworzone w Szwajcarii. Przetestuj bez zobowiązań!",
+      "first_seen": "2026-07-02",
+      "last_seen": "2026-10-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_07_02_0213ba51.png"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 325→2113; n anúncios agora 4."
+}

@@ -1,0 +1,64 @@
+{
+  "data_coleta": "2026-11-27",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "audionovaitalia.it",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "AudioNova Itália (grupo Sonova)",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 2,
+  "n_headlines": 2,
+  "headlines": [
+    "Milano: Apparecchio acustico di ultima generazione: AudioNova cerca 250 tester!",
+    "Milano: Solo per 100 persone! Test dell'udito gratuito per chi ha più di 50 anni"
+  ],
+  "max_gravity": 667,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 667,
+      "ad_id": "5159522671",
+      "last_seen": "2026-11-26"
+    }
+  },
+  "first_seen": "2026-02-13",
+  "last_seen": "2026-11-26",
+  "movimentos": {
+    "escalando": [
+      "5159522671"
+    ],
+    "parado": [
+      "4388488514"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5159522671",
+      "network": "Taboola",
+      "gravity": 667,
+      "headline": "Milano: Apparecchio acustico di ultima generazione: AudioNova cerca 250 tester!",
+      "first_seen": "2026-07-24",
+      "last_seen": "2026-11-26",
+      "movimento": "escalando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_ilgiornale_it_2026_07_24_87b4fce6.png"
+    },
+    {
+      "ad_id": "4388488514",
+      "network": "Taboola",
+      "gravity": 75,
+      "headline": "Milano: Solo per 100 persone! Test dell'udito gratuito per chi ha più di 50 anni",
+      "first_seen": "2026-02-13",
+      "last_seen": "2026-11-06",
+      "movimento": "parado",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_trattoriusati_com_2026_02_13_b87b8df2.png"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→escalando; máx. gravidade 175→667; n anúncios agora 2."
+}
