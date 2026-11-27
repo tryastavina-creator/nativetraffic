@@ -1,0 +1,81 @@
+{
+  "data_coleta": "2026-11-27",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "dailycarepro.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 2,
+  "headlines": [
+    "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić",
+    "Neurolodzy pilnie wzywają seniorów z neuropatią: Przestańcie jeść te 3 pokarmy"
+  ],
+  "max_gravity": 731,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 731,
+      "ad_id": "5640666792",
+      "last_seen": "2026-11-25"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-26",
+  "movimentos": {
+    "testando": [
+      "5640668900"
+    ],
+    "escalando": [
+      "5640666792"
+    ],
+    "parado": [
+      "5641199160"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "evidwell.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5640666792",
+      "network": "AdsKeeper",
+      "gravity": 731,
+      "headline": "Neurolodzy pilnie wzywają seniorów z neuropatią: Przestańcie jeść te 3 pokarmy",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-25",
+      "movimento": "escalando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_25e093be.webp"
+    },
+    {
+      "ad_id": "5640668900",
+      "network": "AdsKeeper",
+      "gravity": 97,
+      "headline": "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-26",
+      "movimento": "testando",
+      "angle_id": "NEURO-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_68ca5878.webp"
+    },
+    {
+      "ad_id": "5641199160",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Neurolog pilnie wzywa ludzi z neuropatią i bólami nerwów: Przestańcie to natychmiast robić",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "NEURO-A4",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_fastpic_org_2026_11_14_f46db9e6.webp"
+    }
+  ],
+  "diff_desde_ontem": "n anúncios agora 3."
+}

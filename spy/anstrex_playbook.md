@@ -193,3 +193,15 @@
 - Filtro de neuropatia ampliado: «nevropati», «douleurs nerveuses», «brûlures aux pieds», «necitlivost», «brnění». Sem isso, lifetechadviser.com, healthtribunenews.com e um anúncio de serenatura24.com ficavam de fora.
 - Funis de players novos, só leitura: reportguide.site 403; nomads-notebook.com 500; zeyna.co.il loja hebraica (produto/preço não aparecem no HTML); medizin-blatt.de advertorial NeuroSchutz (79 € / 69 €/mês / 49 €/mês); vidacomritmo.site coming soon. Nada foi enviado.
 - Snapshots master_2026-11-25 e players_2026-11-25 copiados antes da mescla.
+
+## Coleta (2026-11-27)
+- Date Range: **2026-10-28 a 2026-11-26** em todas as visões (30 dias terminando ontem). C = first_seen ≥ 11-20, F = first_seen ≥ 11-13. Classes: parado = última vista ≤ 23/11; lançando = first_seen ≥ 20/11.
+- Contagem conferida com o status do coletor: hearing 194 linhas (tinnitus A15 B15 C15 D11 E3 F15 G15; hearing 7×15); neuropathy 205 linhas (D|numbness e E|numbness 0, slider máx. 48; E|nerve 0, máx. 209; E|tingling 1; E|neuropathy 11).
+- C=F em tinnitus e em hearing porque todos os cartões tinham first_seen 26/11; extraídas separadamente, válidas. UNRELIABLE_BLOCKS vazio.
+- Off-niche por id: 4994907358 (emagrecimento IT, lander adskeeper.co.uk), apontado pelo coletor; o analyze ganhou OFF_NICHE_IDS. Outros excluídos: pgsrc «Sumea näkö» (visão), tiemposur.com.ar, medizinmonitor.de (ciática), rebang360.com, tz.de, além dos de sempre (superdin.co.il, onemove-shop.com, endokrino.com).
+- Hosts de rede (não player): 5684475093 e 5686869673 → adskeeper.co.uk.
+- 5684463211 (thinkstreamed.com): headline truncada no próprio site; mantida como está.
+- **Conferência dos picos de 26/11:** bonne-audition 1417→1308 (strength +1200) e healthmatters24 Taboola 756→858 (strength +960) confirmados. healthmatters24 Outbrain 1410→705 e geers.pl 728→364 caíram exatamente pela metade com strength igual (artefato). liyng caiu para ~¼ com strength igual e foi para parado. dailycarepro 731, audionovabrasil 610, naturegrove24 576 e pgsrc 507 não apareceram no pull. solveclocktext ficou em ~430–440 com strength subindo.
+- Padrões do método observados: metade exata ou um quarto com strength congelado = leitura do Anstrex, não queda real; número novo com strength exatamente 2× = 1.º dia.
+- Funil novo (só leitura): fitnessefrance.shop, advertorial «Charité», produto e preço não visíveis. Nada foi enviado.
+- Snapshots master_2026-11-26 e players_2026-11-26 copiados antes da mescla.
