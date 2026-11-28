@@ -1,0 +1,92 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "apparecchiacustici.philips",
+  "status": "escalando",
+  "tipo_player": "marca_varejo",
+  "tipo_nota": "Philips",
+  "redes": [
+    "Outbrain"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 3,
+  "headlines": [
+    "Apparecchi acustici: il primo passo verso una vita più piena",
+    "Il tuo udito è importante: scopri di più con Philips",
+    "Scopri come migliorare la tua salute uditiva oggi stesso"
+  ],
+  "max_gravity": 240,
+  "gravity_por_rede": {
+    "outbrain": {
+      "network": "Outbrain",
+      "gravity": 240,
+      "ad_id": "5664464769",
+      "last_seen": "2026-11-20"
+    }
+  },
+  "first_seen": "2026-11-14",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "lancando": [
+      "5687515444",
+      "5687792528"
+    ],
+    "parado": [
+      "5664464769",
+      "5640379051"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "Não é player novo. Foi conferido por causa do domínio fora do padrão (TLD de marca .philips). A raiz devolveu, por webFetch, o site «Homepage – Philips | Apparecchi Acustici»: «Riconnettiti con il mondo intorno a te», checklist de perda auditiva e linhas de aparelhos (ELITE…), com centros acústicos Philips. Parece ser o site legítimo da marca. O curl direto deu 500. Preço não aparece."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5664464769",
+      "network": "Outbrain",
+      "gravity": 240,
+      "headline": "Scopri come migliorare la tua salute uditiva oggi stesso",
+      "first_seen": "2026-11-20",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_tz_de_2026_11_20_f423e952.webp"
+    },
+    {
+      "ad_id": "5687515444",
+      "network": "Outbrain",
+      "gravity": 210,
+      "headline": "Apparecchi acustici: il primo passo verso una vita più piena",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_redditchadvertiser_co_uk_2026_11_26_a2ae7e14.webp"
+    },
+    {
+      "ad_id": "5687792528",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Il tuo udito è importante: scopri di più con Philips",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-26",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_redditchadvertiser_co_uk_2026_11_26_a7671dd9.webp"
+    },
+    {
+      "ad_id": "5640379051",
+      "network": "Outbrain",
+      "gravity": 0,
+      "headline": "Scopri come migliorare la tua salute uditiva oggi stesso",
+      "first_seen": "2026-11-14",
+      "last_seen": "2026-11-14",
+      "movimento": "parado",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/outbrain_eveshamjournal_co_uk_2026_11_14_cdff23f6.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe lancando→escalando; n anúncios agora 4."
+}
