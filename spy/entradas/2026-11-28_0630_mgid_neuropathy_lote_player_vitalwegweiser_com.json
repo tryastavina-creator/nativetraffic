@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "vitalwegweiser.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Kribbeln im Fuß: Wann Sie es ernst nehmen sollten"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 0,
+      "ad_id": "5690372446",
+      "last_seen": "2026-11-27"
+    }
+  },
+  "first_seen": "2026-11-27",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "lancando": [
+      "5690372446"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "legivel",
+    "resumo": "https://vitalwegweiser.com/ devolveu HTTP 200: advertorial alemão «NeuroSchutz – VitalWegweiser» marcado como ANZEIGE, assinado por um «Dr. med. Karsten Weber, Facharzt für Neurologie», datado de terça, 24/11. O texto diz «Neue deutsche Formel stoppt Kribbeln, Erschöpfung und Taubheit». Preço legível: «ab 49 € / Monat», 30 dias de garantia de reembolso, frete grátis a partir de 3 frascos, 1 cápsula por dia. Os botões levam a neuroschutz.com com parâmetro de afiliado. É o mesmo produto do advertorial de medizin-blatt.de (25/11: 79 €, 69 €/mês, 49 €/mês). Nada foi comprado nem enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5690372446",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Kribbeln im Fuß: Wann Sie es ernst nehmen sollten",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_zcj_ro_2026_11_27_1824faf8.webp"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-28."
+}
