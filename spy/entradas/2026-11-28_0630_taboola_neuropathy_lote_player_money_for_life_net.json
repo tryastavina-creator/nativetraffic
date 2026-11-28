@@ -1,0 +1,76 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "money-for-life.net",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 3,
+  "n_headlines": 1,
+  "headlines": [
+    "手がピリピリする人はやって！神経を修復する新習慣"
+  ],
+  "max_gravity": 110,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 110,
+      "ad_id": "5690633084",
+      "last_seen": "2026-11-27"
+    }
+  },
+  "first_seen": "2026-11-27",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "lancando": [
+      "5690633084",
+      "5690857982",
+      "5691094963"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "A raiz https://money-for-life.net/ mostra só a página inicial padrão da hospedagem XServer («ainda não há site enviado»). A lander real não é legível no acesso direto. Produto e preço em branco. Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5690633084",
+      "network": "Taboola",
+      "gravity": 110,
+      "headline": "手がピリピリする人はやって！神経を修復する新習慣",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_yomiuri_co_jp_2026_11_27_608c7256.jpg"
+    },
+    {
+      "ad_id": "5690857982",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "手がピリピリする人はやって！神経を修復する新習慣",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_oricon_co_jp_2026_11_27_414a4971.jpg"
+    },
+    {
+      "ad_id": "5691094963",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "手がピリピリする人はやって！神経を修復する新習慣",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_encount_press_2026_11_27_f86876a6.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-28."
+}
