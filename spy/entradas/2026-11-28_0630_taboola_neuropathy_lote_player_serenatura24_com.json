@@ -1,0 +1,187 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "serenatura24.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 12,
+  "n_headlines": 3,
+  "headlines": [
+    "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+    "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+    "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč"
+  ],
+  "max_gravity": 260,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 260,
+      "ad_id": "5689163881",
+      "last_seen": "2026-11-27"
+    }
+  },
+  "first_seen": "2026-11-18",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "lancando": [
+      "5689163881",
+      "5689587649",
+      "5684693214",
+      "5688232474",
+      "5688416203",
+      "5688602508",
+      "5688056155",
+      "5688054843"
+    ],
+    "parado": [
+      "5657955395",
+      "5657955269",
+      "5660953161",
+      "5657776814"
+    ]
+  },
+  "dominios_ligados": [
+    "yournaturalharmony.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5689163881",
+      "network": "Taboola",
+      "gravity": 260,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_3134d812.png"
+    },
+    {
+      "ad_id": "5689587649",
+      "network": "Taboola",
+      "gravity": 220,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_d7fa552b.png"
+    },
+    {
+      "ad_id": "5657955395",
+      "network": "Taboola",
+      "gravity": 206,
+      "headline": "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_18_8ee86ffa.jpg"
+    },
+    {
+      "ad_id": "5684693214",
+      "network": "Taboola",
+      "gravity": 172,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_25_c7f6dd58.png"
+    },
+    {
+      "ad_id": "5688232474",
+      "network": "Taboola",
+      "gravity": 135,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_eefad60a.png"
+    },
+    {
+      "ad_id": "5657955269",
+      "network": "Taboola",
+      "gravity": 132,
+      "headline": "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_18_f78b2801.jpg"
+    },
+    {
+      "ad_id": "5688416203",
+      "network": "Taboola",
+      "gravity": 93,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_dafe8301.jpg"
+    },
+    {
+      "ad_id": "5688602508",
+      "network": "Taboola",
+      "gravity": 75,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_173fe8f6.png"
+    },
+    {
+      "ad_id": "5688056155",
+      "network": "Taboola",
+      "gravity": 67,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_55c71e67.jpg"
+    },
+    {
+      "ad_id": "5688054843",
+      "network": "Taboola",
+      "gravity": 56,
+      "headline": "Brnění, necitlivost v nohou a rukou? Užívejte to jednou denně",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_26_bec069ee.jpg"
+    },
+    {
+      "ad_id": "5660953161",
+      "network": "Taboola",
+      "gravity": 35,
+      "headline": "Tento zvláštní lék dobývá Evropu. Neuropatie ustupuje. Za 49 Kč",
+      "first_seen": "2026-11-19",
+      "last_seen": "2026-11-20",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_fronda_pl_2026_11_19_ce9db275.jpg"
+    },
+    {
+      "ad_id": "5657776814",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Stačí minuta každý večer a nepříjemné mravenčení nohou zmizí. Pouze za 49 Kč",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_onlyu_cz_2026_11_18_6a4d485c.jpg"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 206→260; n anúncios agora 12."
+}

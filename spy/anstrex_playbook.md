@@ -205,3 +205,14 @@
 - Padrões do método observados: metade exata ou um quarto com strength congelado = leitura do Anstrex, não queda real; número novo com strength exatamente 2× = 1.º dia.
 - Funil novo (só leitura): fitnessefrance.shop, advertorial «Charité», produto e preço não visíveis. Nada foi enviado.
 - Snapshots master_2026-11-26 e players_2026-11-26 copiados antes da mescla.
+
+## Coleta (2026-11-28)
+- Date Range: **2026-10-29 a 2026-11-27** em todas as visões. C = first_seen ≥ 11-21, F = first_seen ≥ 11-14. Classes: parado = última vista ≤ 24/11; lançando = first_seen ≥ 21/11.
+- Contagem: hearing com 14 visões e 204 linhas (E|tinnitus 9); neuropathy com 19 visões e 218 linhas (E|nerve 0, slider máx. 130; E|numbness 0, máx. 260; E|tingling 0, máx. 260; D|nerve 5 e D|numbness 5 só com o mínimo de 100; E|neuropathy 13). C=F em tinnitus/hearing (todos first_seen 27/11) e em neuropathy (todos ≤60), extraídas separadamente, válidas. UNRELIABLE_BLOCKS vazio. Uma linha placeholder de D|tingling foi corrigida pelo coletor.
+- **Filtro de hearing ampliado com o norueguês:** «hørselstap», «øresus» (e «hörselnedsättning»). Sem isso, um criativo novo do lphst.com em NO era excluído por engano.
+- Domínio de TLD de marca: apparecchiacustici.philips é o site da Philips (aparelhos auditivos, IT). Não é captura errada. Domínio fora do padrão não é motivo para descartar; conferir pela raiz.
+- **Conferência dos números de 27/11:** drugie-ucho 2113→1315 (strength +518), não se manteve. healthmatters24 1627→1262 (strength +897), sustentado acima de 1000. naturegrove24 713 congelado (strength igual), não conta. healthmatters24 979, audionovabrasil 1187 e audionovaitalia 667 ausentes. Cluster Mgid neuropatia confirmado no 2.º dia (artstampsea 1346, green-ri 777, washbosswhale 712).
+- Pico de 1.º dia (strength exatamente 2×): healthmatters24 Outbrain 1620/3240. Conferir amanhã. Número novo alto: geers.pl Taboola PL 1737 (primeira leitura do id).
+- Headline com letras cirílicas no meio do espanhol (seravia.info, «Sufrеs dе tinnitus»): pode driblar busca por texto. Ao buscar por termo, esses anúncios podem não aparecer.
+- Funis novos, só leitura: resultssuggestions.com (500), money-for-life.net (página padrão da hospedagem), vitalwegweiser.com (NeuroSchutz a partir de 49 €/mês, mesmo produto do medizin-blatt.de). Nada foi enviado.
+- Snapshots master_2026-11-27 e players_2026-11-27 copiados antes da mescla.
