@@ -1,0 +1,165 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "neuropathy",
+  "tipo": "lote_player",
+  "lander_domain": "recuperabem.site",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "AdsKeeper",
+    "Mgid",
+    "Taboola"
+  ],
+  "n_anuncios": 9,
+  "n_headlines": 2,
+  "headlines": [
+    "ALIVIO DA NEUROPATIA",
+    "Neuropatia: Queimação e dores nos nervos? Experimente usar esse método caseiro."
+  ],
+  "max_gravity": 265,
+  "gravity_por_rede": {
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 265,
+      "ad_id": "5667229711",
+      "last_seen": "2026-11-27"
+    },
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 162,
+      "ad_id": "5685655194",
+      "last_seen": "2026-11-27"
+    },
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5673826843",
+      "last_seen": "2026-11-22"
+    }
+  },
+  "first_seen": "2026-11-21",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "lancando": [
+      "5667229711",
+      "5685655194",
+      "5673354931",
+      "5691828601",
+      "5692917180",
+      "5686811534"
+    ],
+    "parado": [
+      "5673365898",
+      "5673826843",
+      "5669672742"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "vidacomritmo.site"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5667229711",
+      "network": "AdsKeeper",
+      "gravity": 265,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_21_9aecaa8f.webp"
+    },
+    {
+      "ad_id": "5685655194",
+      "network": "Mgid",
+      "gravity": 162,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-25",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_banglanewslive_com_2026_11_25_9a4ba771.webp"
+    },
+    {
+      "ad_id": "5673354931",
+      "network": "AdsKeeper",
+      "gravity": 139,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_22_ea2c2686.webp"
+    },
+    {
+      "ad_id": "5691828601",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_games-answers_net_2026_11_27_b1fec123.webp"
+    },
+    {
+      "ad_id": "5692917180",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jeuxdefriv250_net_2026_11_27_062a24bf.webp"
+    },
+    {
+      "ad_id": "5686811534",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-26",
+      "last_seen": "2026-11-26",
+      "movimento": "lancando",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_menurutparaahli_com_2026_11_26_a36dce13.webp"
+    },
+    {
+      "ad_id": "5673365898",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_11_22_5cc0d4d1.webp"
+    },
+    {
+      "ad_id": "5673826843",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Neuropatia: Queimação e dores nos nervos? Experimente usar esse método caseiro.",
+      "first_seen": "2026-11-22",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_globo_com_2026_11_22_319e459b.png"
+    },
+    {
+      "ad_id": "5669672742",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "ALIVIO DA NEUROPATIA",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "parado",
+      "angle_id": "NEURO-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_onlinefmradio_in_2026_11_21_53ab364b.webp"
+    }
+  ],
+  "diff_desde_ontem": "máx. gravidade 0→265; n anúncios agora 9."
+}
