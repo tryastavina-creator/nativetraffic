@@ -1,0 +1,356 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "lphst.com",
+  "status": "escalando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Mgid",
+    "AdsKeeper"
+  ],
+  "n_anuncios": 24,
+  "n_headlines": 7,
+  "headlines": [
+    "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+    "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+    "Forskere er forbløffet: En rask løsning på hørselstap og øresus!",
+    "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+    "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+    "Biologist: If You Suffer From Hearing Loss Or Tinnitus, Do This!",
+    "Chirurg onthult: Snelle oplossing voor gehoorverlies en tinnitus!"
+  ],
+  "max_gravity": 520,
+  "gravity_por_rede": {
+    "mgid": {
+      "network": "Mgid",
+      "gravity": 520,
+      "ad_id": "4869996299",
+      "last_seen": "2026-11-27"
+    },
+    "adskeeper": {
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "ad_id": "5692899522",
+      "last_seen": "2026-11-27"
+    }
+  },
+  "first_seen": "2026-04-21",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "escalando": [
+      "4869996299"
+    ],
+    "volumando": [
+      "4828973348",
+      "4818259313"
+    ],
+    "testando": [
+      "4831935428",
+      "4824207168",
+      "4818265293"
+    ],
+    "parado": [
+      "4819352403",
+      "4818259315",
+      "4824207166",
+      "5678112180",
+      "4772804679",
+      "5669669965",
+      "4830500801",
+      "4844888148",
+      "5656990972",
+      "4797255969",
+      "4771872786"
+    ],
+    "lancando": [
+      "5692853620",
+      "5692853692",
+      "5692863792",
+      "5692899522",
+      "5692935945",
+      "5693308163",
+      "5693309627"
+    ]
+  },
+  "dominios_ligados": [
+    "adskeeper.co.uk",
+    "basis-rases-wacky.rest",
+    "chudopolsko.info",
+    "filmijudcombo.site",
+    "grazianeidettagli.info",
+    "healthmatters24.com",
+    "herelnd.com",
+    "seravia.info",
+    "wonderbanana.com"
+  ],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "4869996299",
+      "network": "Mgid",
+      "gravity": 520,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-14",
+      "last_seen": "2026-11-27",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_liataja_com_2026_05_14_062817de.webp"
+    },
+    {
+      "ad_id": "4828973348",
+      "network": "Mgid",
+      "gravity": 284,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-05-05",
+      "last_seen": "2026-11-27",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_gameower_it_2026_05_05_09779d67.webp"
+    },
+    {
+      "ad_id": "4818259313",
+      "network": "Mgid",
+      "gravity": 110,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-27",
+      "movimento": "volumando",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_8eadc2be.webp"
+    },
+    {
+      "ad_id": "4830500801",
+      "network": "Mgid",
+      "gravity": 93,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-05-05",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_guntursapta_com_2026_05_05_20015f08.webp"
+    },
+    {
+      "ad_id": "4797255969",
+      "network": "Mgid",
+      "gravity": 90,
+      "headline": "Biologist: If You Suffer From Hearing Loss Or Tinnitus, Do This!",
+      "first_seen": "2026-04-27",
+      "last_seen": "2026-11-16",
+      "movimento": "parado",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_nendidau_com_2026_04_27_0d4915db.webp"
+    },
+    {
+      "ad_id": "4831935428",
+      "network": "Mgid",
+      "gravity": 83,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-05",
+      "last_seen": "2026-11-27",
+      "movimento": "testando",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tek_id_2026_05_05_c9d5da0f.webp"
+    },
+    {
+      "ad_id": "4844888148",
+      "network": "Mgid",
+      "gravity": 75,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-09",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_khanjahanali24_com_2026_05_09_34540002.webp"
+    },
+    {
+      "ad_id": "4818265293",
+      "network": "Mgid",
+      "gravity": 67,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-25",
+      "movimento": "testando",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_ichi_pro_2026_05_02_314ebb3e.webp"
+    },
+    {
+      "ad_id": "4824207168",
+      "network": "Mgid",
+      "gravity": 50,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-05-04",
+      "last_seen": "2026-11-26",
+      "movimento": "testando",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mumcare_org_2026_05_04_809ac3e0.webp"
+    },
+    {
+      "ad_id": "5678112180",
+      "network": "Mgid",
+      "gravity": 15,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-11-23",
+      "last_seen": "2026-11-23",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_petunjukonlene_com_2026_11_23_5490a2fa.webp"
+    },
+    {
+      "ad_id": "5669669965",
+      "network": "Mgid",
+      "gravity": 10,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-11-21",
+      "last_seen": "2026-11-21",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_studytution_com_2026_11_21_2e4378f1.webp"
+    },
+    {
+      "ad_id": "4772804679",
+      "network": "Mgid",
+      "gravity": 4,
+      "headline": "Bioloog: Als je last hebt van gehoorverlies of tinnitus, doe dit!",
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-11-21",
+      "movimento": "parado",
+      "angle_id": "HEAR-A2",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_topikini_com_2026_04_21_a3568da4.webp"
+    },
+    {
+      "ad_id": "4771872786",
+      "network": "Mgid",
+      "gravity": 2,
+      "headline": "Chirurg onthult: Snelle oplossing voor gehoorverlies en tinnitus!",
+      "first_seen": "2026-04-21",
+      "last_seen": "2026-11-12",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_tuncarlos_com_2026_04_21_4a4549a8.webp"
+    },
+    {
+      "ad_id": "4819352403",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-22",
+      "movimento": "parado",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_vse-prostoo_com_2026_05_02_d09cac52.webp"
+    },
+    {
+      "ad_id": "4818259315",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Un chirurgien révèle : remède rapide contre surdité et acouphènes",
+      "first_seen": "2026-05-02",
+      "last_seen": "2026-11-21",
+      "movimento": "parado",
+      "angle_id": "HEAR-A6",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_jagoteknologi_com_2026_05_02_f33a4e17.webp"
+    },
+    {
+      "ad_id": "4824207166",
+      "network": "Mgid",
+      "gravity": 1,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-05-04",
+      "last_seen": "2026-11-04",
+      "movimento": "parado",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mumcare_org_2026_05_04_0ada339a.webp"
+    },
+    {
+      "ad_id": "5692853620",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Forskere er forbløffet: En rask løsning på hørselstap og øresus!",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_hogarynatura_com_2026_11_27_f36c62ec.webp"
+    },
+    {
+      "ad_id": "5692853692",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_hogarynatura_com_2026_11_27_8eb47534.webp"
+    },
+    {
+      "ad_id": "5692863792",
+      "network": "Mgid",
+      "gravity": 0,
+      "headline": "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/mgid_mirroruttarakhand_com_2026_11_27_4cea11d7.webp"
+    },
+    {
+      "ad_id": "5692899522",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_naijavibes_com_2026_11_27_6468ff96.webp"
+    },
+    {
+      "ad_id": "5692935945",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_djs_sk_2026_11_27_fe10fad1.webp"
+    },
+    {
+      "ad_id": "5693308163",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_27_74d206e1.webp"
+    },
+    {
+      "ad_id": "5693309627",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Oppdagelsen om hørselstap og tinnitus gjør legene målløse (prøv det i kveld)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-OUTRO",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_27_4ed5e808.webp"
+    },
+    {
+      "ad_id": "5656990972",
+      "network": "AdsKeeper",
+      "gravity": 0,
+      "headline": "Biologiste : si tu souffres de surdité ou d’acouphènes, fais ceci",
+      "first_seen": "2026-11-18",
+      "last_seen": "2026-11-18",
+      "movimento": "parado",
+      "angle_id": "HEAR-A3",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/adskeeper_newsyou_info_2026_11_18_03546394.webp"
+    }
+  ],
+  "diff_desde_ontem": "classe testando→escalando; máx. gravidade 139→520; n anúncios agora 24."
+}
