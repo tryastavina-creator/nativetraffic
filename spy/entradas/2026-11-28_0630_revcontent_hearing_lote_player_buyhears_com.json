@@ -1,0 +1,90 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "buyhears.com",
+  "status": "escalando",
+  "tipo_player": "marca_dtc",
+  "tipo_nota": "Hears — tampões auriculares de alta fidelidade (GiddyUp)",
+  "redes": [
+    "Revcontent"
+  ],
+  "n_anuncios": 4,
+  "n_headlines": 4,
+  "headlines": [
+    "Muchos creen que son audífonos, pero esto es lo que realmente hacen",
+    "Why Concert Fans Are Ditching Foam Earplugs for These",
+    "People Think They're Earbuds—here's What They Actually Do",
+    "The Tiny Ear Accessory Everyone is Suddenly Wearing"
+  ],
+  "max_gravity": 25181,
+  "gravity_por_rede": {
+    "revcontent": {
+      "network": "Revcontent",
+      "gravity": 25181,
+      "ad_id": "5187552178",
+      "last_seen": "2026-11-27"
+    }
+  },
+  "first_seen": "2026-07-29",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "escalando": [
+      "5187552178"
+    ],
+    "parado": [
+      "5178044889",
+      "5177946328",
+      "5177949352"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {},
+  "anuncios": [
+    {
+      "ad_id": "5187552178",
+      "network": "Revcontent",
+      "gravity": 25181,
+      "headline": "Muchos creen que son audífonos, pero esto es lo que realmente hacen",
+      "first_seen": "2026-07-31",
+      "last_seen": "2026-11-27",
+      "movimento": "escalando",
+      "angle_id": "HEAR-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_allstarbio_com_2026_07_31_615f2c6e.jpg"
+    },
+    {
+      "ad_id": "5178044889",
+      "network": "Revcontent",
+      "gravity": 21,
+      "headline": "Why Concert Fans Are Ditching Foam Earplugs for These",
+      "first_seen": "2026-07-29",
+      "last_seen": "2026-10-25",
+      "movimento": "parado",
+      "angle_id": "HEAR-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_allstarbio_com_2026_07_29_5c9c3dcc.jpg"
+    },
+    {
+      "ad_id": "5177946328",
+      "network": "Revcontent",
+      "gravity": 12,
+      "headline": "People Think They're Earbuds—here's What They Actually Do",
+      "first_seen": "2026-07-29",
+      "last_seen": "2026-10-27",
+      "movimento": "parado",
+      "angle_id": "HEAR-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_yakimaherald_com_2026_07_29_07dcdb35.jpg"
+    },
+    {
+      "ad_id": "5177949352",
+      "network": "Revcontent",
+      "gravity": 1,
+      "headline": "The Tiny Ear Accessory Everyone is Suddenly Wearing",
+      "first_seen": "2026-07-29",
+      "last_seen": "2026-08-04",
+      "movimento": "parado",
+      "angle_id": "HEAR-A12",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/revcontent_allnewspipeline_com_2026_07_29_2d3cd480.jpg"
+    }
+  ],
+  "diff_desde_ontem": "classe parado→escalando; máx. gravidade 40371→25181; n anúncios agora 4."
+}
