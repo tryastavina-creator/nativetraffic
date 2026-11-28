@@ -1,0 +1,52 @@
+{
+  "data_coleta": "2026-11-28",
+  "nicho": "hearing",
+  "tipo": "lote_player",
+  "lander_domain": "resultssuggestions.com",
+  "status": "lancando",
+  "tipo_player": "oferta_resposta_direta",
+  "tipo_nota": "",
+  "redes": [
+    "Taboola"
+  ],
+  "n_anuncios": 1,
+  "n_headlines": 1,
+  "headlines": [
+    "Welche sind die besten wiederaufladbaren Hörgeräte (Hier finden)"
+  ],
+  "max_gravity": 0,
+  "gravity_por_rede": {
+    "taboola": {
+      "network": "Taboola",
+      "gravity": 0,
+      "ad_id": "5693305808",
+      "last_seen": "2026-11-27"
+    }
+  },
+  "first_seen": "2026-11-27",
+  "last_seen": "2026-11-27",
+  "movimentos": {
+    "lancando": [
+      "5693305808"
+    ]
+  },
+  "dominios_ligados": [],
+  "funil": {
+    "status": "ilegivel",
+    "resumo": "https://resultssuggestions.com/ devolveu HTTP 500 (Pingora) por curl e por webFetch. Headline «Welche sind die besten wiederaufladbaren Hörgeräte (Hier finden)» tem formato de página de busca/arbitragem. Oferta, produto e preço não legíveis: em branco. Nada foi enviado."
+  },
+  "anuncios": [
+    {
+      "ad_id": "5693305808",
+      "network": "Taboola",
+      "gravity": 0,
+      "headline": "Welche sind die besten wiederaufladbaren Hörgeräte (Hier finden)",
+      "first_seen": "2026-11-27",
+      "last_seen": "2026-11-27",
+      "movimento": "lancando",
+      "angle_id": "HEAR-A5",
+      "thumbnail_url": "https://appresources.anstrex.com/thumbnails/taboola_hurriyet_com_tr_2026_11_27_b9bf6aa6.jpg"
+    }
+  ],
+  "diff_desde_ontem": "Player novo na coleta de 2026-11-28."
+}
